@@ -1,68 +1,123 @@
 {
   "Actor": {
-    "types": ["character"],
+    "types": [ "character" ],
     "templates": {
       "base": {
-        "health": {
-          "value": 10,
-          "min": 0,
-          "max": 10
+        "role": {
+          "label": "MYZ.ROLE",
+          "value": ""
         },
-        "power": {
-          "value": 5,
+        "appearance": {
+          "head": {
+            "label": "MYZ.HEAD",
+            "value": ""
+          },
+          "body": {
+            "label": "MYZ.BODY",
+            "value": ""
+          },
+          "clothing": {
+            "label": "MYZ.CLOTHING",
+            "value": ""
+          }
+        },
+        "description": "",
+        "mutation-points": {
+          "label": "MYZ.MUTATION.POINTS",
+          "value": 0
+        },
+        "armor-rating": {
+          "label": "MYZ.ARMOR",
+          "value": 0
+        },
+        "rot": {
+          "label": "MYZ.ROT",
+          "value": 0
+        },
+        "xp": {
+          "label": "MYZ.EXPERIENCE",
+          "value": 0
+        }
+      },
+      "attributes": {
+        "strength": {
+          "label": "MYZ.ATTRIBUTE.STRENGTH",
+          "value": 4,
           "min": 0,
-          "max": 5
+          "max": 4
+        },
+        "agility": {
+          "label": "MYZ.ATTRIBUTE.AGILITY",
+          "value": 4,
+          "min": 0,
+          "max": 4
+        },
+        "wits": {
+          "label": "MYZ.ATTRIBUTE.WITS",
+          "value": 4,
+          "min": 0,
+          "max": 4
+        },
+        "empathy": {
+          "label": "MYZ.ATTRIBUTE.EMPATHY",
+          "value": 4,
+          "min": 0,
+          "max": 4
+        }
+      },
+      "status": {
+        "conditions": {
+          "starving": {
+            "label": "MYZ.CONDITION.STARVING",
+            "value": false
+          },
+          "dehydrated": {
+            "label": "MYZ.CONDITION.DEHYDRATED",
+            "value": false
+          },
+          "sleepless": {
+            "label": "MYZ.CONDITION.SLEEPLESS",
+            "value": false
+          },
+          "hypothermic": {
+            "label": "MYZ.CONDITION.HYPOTHERMIC",
+            "value": false
+          }
         }
       }
     },
     "character": {
-      "templates": ["base"],
-      "biography": "",
-      "attributes": {
-        "level": {
-          "value": 1
-        }
-      },
-      "abilities": {
-        "str": {
-          "value": 10
-        },
-        "dex": {
-          "value": 10
-        },
-        "con": {
-          "value": 10
-        },
-        "int": {
-          "value": 10
-        },
-        "wis": {
-          "value": 10
-        },
-        "cha": {
-          "value": 10
-        }
-      }
+      "templates": [ "base", "attributes", "status"]   
     }
   },
   "Item": {
-    "types": ["item", "feature", "spell"],
+    "types": [ "skill", "mutation", "talent", "weapon", "armor", "gear" ],
     "templates": {
       "base": {
         "description": ""
+      },
+      "physical": {
+        "quantity": 1,
+        "weight": 0
       }
     },
-    "item": {
-      "templates": ["base"],
-      "quantity": 1,
-      "weight": 0
+    "skill": {
+      "templates": [ "base" ]
     },
-    "feature": {
-      "templates": ["base"]
+    "mutation": {
+      "templates": [ "base" ]
     },
-    "spell": {
-      "templates": ["base"],
-      "spellLevel": 1
+    "talent": {
+      "templates": [ "base" ]
+    },
+    "weapon": {
+      "templates": [ "base", "physical" ]
+    },
+    "armor": {
+      "templates": [ "base", "physical" ]
+    },
+    "gear": {
+      "templates": [ "base", "physical" ]
     }
   }
 }

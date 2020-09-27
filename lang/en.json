@@ -1,1 +1,13 @@
-{}
+{
+  "MYZ.MUTANT_YEAR_ZERO": "Mutant Year Zero",
+
+  "MYZ.ATTRIBUTE.STRENGTH": "Strength",
+  "MYZ.ATTRIBUTE.AGILITY": "Agility",
+  "MYZ.ATTRIBUTE.WITS": "Wits",
+  "MYZ.ATTRIBUTE.EMPATHY": "Empathy",
+
+  "MYZ.CONDITION.STARVING": "Starving",
+  "MYZ.CONDITION.DEHYDRATED": "Dehydrated",
+  "MYZ.CONDITION.SLEEPLESS": "Sleepless",
+  "MYZ.CONDITION.HYPOTHERMIC": "Hypothermic"
+}
