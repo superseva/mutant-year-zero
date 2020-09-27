@@ -1,0 +1,27 @@
+{
+  "name": "mutant-year-zero",
+  "title": "Mutant Year Zero",
+  "description": "The Mutant Year Zero system for FoundryVTT!",
+  "version": "0.0.1",
+  "minimumCoreVersion": "0.6.0",
+  "compatibleCoreVersion": "0.6.5",
+  "templateVersion": 1,
+  "author": "HappySteve",
+  "esmodules": ["module/myz.js"],
+  "styles": ["css/mutant-year-zero.css"],
+  "scripts": [],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 1,
+  "gridUnits": "m",  
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "LICENSE.txt"
+}

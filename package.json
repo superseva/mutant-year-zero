@@ -1,0 +1,25 @@
+{
+  "name": "mutant-year-zero",
+  "version": "1.0.0",
+  "description": "CSS compiler for the Mutant Year Zero system",
+  "scripts": {
+    "build": "gulp",
+    "compile": "gulp css",
+    "watch": "gulp",
+    "gulp": "gulp"
+  },
+  "browserslist": [
+    "last 3 versions"
+  ],
+  "author": "HappySteve",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
