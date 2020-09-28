@@ -2,3 +2,35 @@
 
 $font-primary: 'Roboto', sans-serif;
 $font-secondary: 'Roboto', sans-serif;
+
+
+/* MYZ FONT SYMBOLS*/
+@font-face {
+    font-family: 'myz';
+    src: url('../fonts/myz.eot');
+    src: url('../fonts/myz.eot?#iefix') format('embedded-opentype'), url('../fonts/myz.woff') format('woff'), url('../fonts/myz.ttf') format('truetype'), url('../fonts/myz.svg#myz') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class*='myz-']:before {
+    display: inline-block;
+    font-family: 'myz';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.myz-radioactive:before {
+    content: '\0041';
+}
+
+.myz-biohazard:before {
+    content: '\0042';
+}
+
+.myz-explosion:before {
+    content: '\0043';
+}
