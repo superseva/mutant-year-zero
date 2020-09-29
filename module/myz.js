@@ -1,5 +1,6 @@
 // Import Modules
 import { MYZ } from "./config.js";
+import  MYZHooks from "./MYZHooks.js"
 import { MYZActor } from "./actor/actor.js";
 import { MYZMutantSheet } from "./actor/mutant-sheet.js";
 import { MYZAnimalSheet } from "./actor/animal-sheet.js";
@@ -10,6 +11,11 @@ import { MYZItemSheet } from "./item/item-sheet.js";
 
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
+
+/* ------------------------------------ */
+/* Setup MYZ system							            */
+/* ------------------------------------ */
+//Hooks.once('setup', () => MYZHooks.onSetup());
 
 Hooks.once('init', async function () {
 
@@ -69,6 +75,11 @@ Hooks.once("ready", async function () {
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
 });
+
+/* -------------------------------------------- */
+/*  POPULATE CHARACTER WITH DEFAULT SKILLS      */
+/* -------------------------------------------- */
+Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */

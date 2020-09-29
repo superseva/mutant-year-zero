@@ -65,10 +65,15 @@
     .box-content{
         padding:2px;        
         .box-item{
-            .short-input{
+            padding:2px 0;
+            /*.short-input{
                 max-width:2em;
                 text-align: center;
-            }
+            }*/
         }
     }
+}
+.short-input {
+    max-width: 2em;
+    text-align: center;
 }

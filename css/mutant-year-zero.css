@@ -299,7 +299,15 @@
   padding: 2px;
 }
 
-.mutant-year-zero .box-list .box-content .box-item .short-input {
+.mutant-year-zero .box-list .box-content .box-item {
+  padding: 2px 0;
+  /*.short-input{
+                max-width:2em;
+                text-align: center;
+            }*/
+}
+
+.mutant-year-zero .short-input {
   max-width: 2em;
   text-align: center;
 }

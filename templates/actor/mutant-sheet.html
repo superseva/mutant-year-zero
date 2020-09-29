@@ -74,11 +74,17 @@
         <!--MID SECTION-->
         <div class="col2">
             <div class="box-list skills flexcol">
-                <div class="box-header">
-                    SKILLS
+                <div class="box-header flexrow">
+                    <span>SKILLS</span>
+                    <span>+ Add</span>
                 </div>
                 <div class="box-content flexcol">
-
+                    {{#each actor.skills as |skill index|}}
+                    <div class="flexrow box-item">
+                        <label class="rollable skill-item" data-itemid="{{skill._id}}">{{skill.name}}</label>
+                        <input class="skill-value short-input" data-itemid="{{skill._id}}" value="{{skill.data.value}}" />
+                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>

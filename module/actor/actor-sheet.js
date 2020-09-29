@@ -9,20 +9,18 @@ export class MYZActorSheet extends ActorSheet {
 
     diceRoller = new DiceRoller();
 
-
-
     /* -------------------------------------------- */
 
     /** @override */
-    //getData() {
-    //  const data = super.getData();
-    //  data.dtypes = ["String", "Number", "Boolean"];
-    //  // Prepare items.
-    //  if (this.actor.data.type == 'mutant') {
-    //    this._prepareCharacterItems(data);
-    //  }
-    //  return data;
-    //}
+    getData() {
+      const data = super.getData();
+      data.dtypes = ["String", "Number", "Boolean"];
+      // Prepare items.
+      if (this.actor.data.type == 'mutant') {
+        this._prepareCharacterItems(data);
+      }
+      return data;
+    }
 
     /**
      * Organize and classify Items for Character sheets.
@@ -33,10 +31,13 @@ export class MYZActorSheet extends ActorSheet {
      */
     _prepareCharacterItems(sheetData) {
 
+        console.warn("PREPING DATA");
+        console.log(sheetData);
 
         const actorData = sheetData.actor;
 
         // Initialize containers.
+        const skills = [];
         const gear = [];
         const features = [];
         const spells = {
@@ -58,7 +59,11 @@ export class MYZActorSheet extends ActorSheet {
             let item = i.data;
             i.img = i.img || DEFAULT_TOKEN;
             // Append to gear.
-            if (i.type === 'item') {
+            if (i.type === 'skill') {
+                console.log("ITS A SKILL");
+                skills.push(i);
+            }
+            else if (i.type === 'item') {
                 gear.push(i);
             }
             // Append to features.
@@ -74,9 +79,13 @@ export class MYZActorSheet extends ActorSheet {
         }
 
         // Assign and return
+        actorData.skills = skills;
         actorData.gear = gear;
         actorData.features = features;
         actorData.spells = spells;
+
+        //console.log(skills);
+        console.log(actorData);
     }
 
     /* -------------------------------------------- */
@@ -89,12 +98,15 @@ export class MYZActorSheet extends ActorSheet {
         if (!this.options.editable) return;
 
         html.find(".button-roll").click((ev) => {
-            RollDialog.prepareRollDialog({ rollName: "Roll From Dialog", diceRoller: this.diceRoller, baseDefault: 3, skillDefault: 4, gearDefault: 2, modifierDefault: 1 });
+            RollDialog.prepareRollDialog({ rollName: "Roll From Dialog", diceRoller: this.diceRoller });
         });
 
         html.find(".button-push").click((ev) => {
             this.diceRoller.push();
         });
+
+        //Change Skill Value
+        html.find('.skill-value').change(this._onChangeSkillValue.bind(this));
 
         // Add Inventory Item
         html.find('.item-create').click(this._onItemCreate.bind(this));
@@ -114,7 +126,7 @@ export class MYZActorSheet extends ActorSheet {
         });
 
         // Rollable abilities.
-        html.find('.rollable').click(this._onRoll.bind(this));
+        html.find('.rollable.skill-item').click(this._onRoll.bind(this));
 
         // Drag events for macros.
         if (this.actor.owner) {
@@ -124,6 +136,17 @@ export class MYZActorSheet extends ActorSheet {
                 li.setAttribute("draggable", true);
                 li.addEventListener("dragstart", handler, false);
             });
+        }
+    }
+
+    async _onChangeSkillValue(event) {
+        event.preventDefault();
+        let _item = this.actor.items.find(element => element._id == event.currentTarget.dataset.itemid);
+        console.warn($(event.currentTarget).val());            
+        if (_item) {
+            console.log(`update this ITEM: ${{ _item }}`);
+            let update = {_id: _item._id, data: { value: $(event.currentTarget).val() } };
+            await this.actor.updateEmbeddedEntity('OwnedItem', update);
         }
     }
 
@@ -159,17 +182,25 @@ export class MYZActorSheet extends ActorSheet {
      * @param {Event} event   The originating click event
      * @private
      */
-    _onRoll(event) {
+    _onRoll(event) {        
         event.preventDefault();
         const element = event.currentTarget;
-        const dataset = element.dataset;
+        const dataset = element.dataset;        
+        console.log(dataset);
+        if (dataset.itemid) {
+           //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
+            const skill = this.actor.items.find(element => element._id == dataset.itemid);
+            console.warn(skill);
+            //let baseDice = this.actor.data.attributes[skill.data.data.attribute].value;
+            let baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
 
-        if (dataset.roll) {
-            let roll = new Roll(dataset.roll, this.actor.data.data);
-            let label = dataset.label ? `Rolling ${dataset.label}` : '';
-            roll.roll().toMessage({
-                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                flavor: label
+            RollDialog.prepareRollDialog({
+                rollName: skill.data.name,
+                diceRoller: this.diceRoller,
+                baseDefault: baseDice,
+                skillDefault: skill.data.data.value,
+                gearDefault: 0,
+                modifierDefault: 0
             });
         }
     }

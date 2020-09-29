@@ -24,7 +24,7 @@ export class MYZActor extends Actor {
    * Prepare Character type specific data
    */
   _prepareMutantData(actorData) {
-    const data = actorData.data;
+      const data = actorData.data;
   }
 
 
