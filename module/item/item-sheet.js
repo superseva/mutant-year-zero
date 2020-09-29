@@ -47,7 +47,8 @@ export class MYZItemSheet extends ItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  activateListeners(html) {
+    activateListeners(html) {
+     
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable

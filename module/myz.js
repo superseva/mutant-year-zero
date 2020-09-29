@@ -1,4 +1,5 @@
 // Import Modules
+import { MYZ } from "./config.js";
 import { MYZActor } from "./actor/actor.js";
 import { MYZMutantSheet } from "./actor/mutant-sheet.js";
 import { MYZAnimalSheet } from "./actor/animal-sheet.js";
@@ -13,6 +14,7 @@ import { RollDialog } from "./app/roll-dialog.js";
 Hooks.once('init', async function () {
 
     game.myz = {
+        MYZ,
         MYZActor,
         MYZMutantSheet,
         MYZAnimalSheet,
@@ -33,6 +35,7 @@ Hooks.once('init', async function () {
     };
 
     // Define custom Entity classes
+    CONFIG.MYZ = MYZ;
     CONFIG.Actor.entityClass = MYZActor;
     CONFIG.Item.entityClass = MYZItem;
     CONFIG.diceRoller = DiceRoller;

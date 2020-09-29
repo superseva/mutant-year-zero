@@ -15,11 +15,11 @@ export class MYZMutantSheet extends MYZActorSheet {
 
     /** @override */
     getData() {
-        const data = super.getData();       
+        const data = super.getData();
         return data;
     }
 
-/** @override */
+    /** @override */
     activateListeners(html) {
         super.activateListeners(html);
         console.log(this.actor.data);
