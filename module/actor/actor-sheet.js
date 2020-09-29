@@ -1,37 +1,28 @@
+import { DiceRoller } from "../component/dice-roller.js";
+import { RollDialog } from "../app/roll-dialog.js";
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class BoilerplateActorSheet extends ActorSheet {
+export class MYZActorSheet extends ActorSheet {
 
-  /** @override */
-  static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
-      classes: ["boilerplate", "sheet", "actor"],
-      template: "systems/boilerplate/templates/actor/actor-sheet.html",
-      width: 600,
-      height: 600,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
-    });
-  }
+    diceRoller = new DiceRoller();
+
+
 
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
-    data.dtypes = ["String", "Number", "Boolean"];
-    for (let attr of Object.values(data.data.attributes)) {
-      attr.isCheckbox = attr.dtype === "Boolean";
-    }
-
-    // Prepare items.
-    if (this.actor.data.type == 'character') {
-      this._prepareCharacterItems(data);
-    }
-
-    return data;
-  }
+  //getData() {
+  //  const data = super.getData();
+  //  data.dtypes = ["String", "Number", "Boolean"];
+  //  // Prepare items.
+  //  if (this.actor.data.type == 'mutant') {
+  //    this._prepareCharacterItems(data);
+  //  }
+  //  return data;
+  //}
 
   /**
    * Organize and classify Items for Character sheets.
@@ -40,7 +31,9 @@ export class BoilerplateActorSheet extends ActorSheet {
    *
    * @return {undefined}
    */
-  _prepareCharacterItems(sheetData) {
+    _prepareCharacterItems(sheetData) {
+
+     
     const actorData = sheetData.actor;
 
     // Initialize containers.
@@ -93,7 +86,15 @@ export class BoilerplateActorSheet extends ActorSheet {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return;
+      if (!this.options.editable) return;
+
+      html.find(".button-roll").click((ev) => {          
+          RollDialog.prepareRollDialog({ rollName: "Roll From Dialog", diceRoller: this.diceRoller, baseDefault: 3, skillDefault: 4, gearDefault: 2, modifierDefault: 1 });
+      });
+
+      html.find(".button-push").click((ev) => {
+          this.diceRoller.push();
+      });
 
     // Add Inventory Item
     html.find('.item-create').click(this._onItemCreate.bind(this));

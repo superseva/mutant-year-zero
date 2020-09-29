@@ -145,12 +145,79 @@
   justify-content: space-between;
 }
 
-/* Styles limited to boilerplate sheets */
-.boilerplate .item-form {
+/* Styles limited to mutant-year-zero sheets */
+.mutant-year-zero .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mutant-year-zero .row {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.mutant-year-zero .column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.mutant-year-zero .full {
+  width: 100%;
+  height: 100%;
+}
+
+.mutant-year-zero .wrap {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.mutant-year-zero .half {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.mutant-year-zero .center {
+  text-align: center;
+}
+
+.mutant-year-zero .margin {
+  margin: 5px;
+}
+
+.mutant-year-zero .grow {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.mutant-year-zero .align-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.mutant-year-zero .align-end {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+
+.mutant-year-zero .space-around {
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.mutant-year-zero .item-form {
   font-family: "Roboto", sans-serif;
 }
 
-.boilerplate .sheet-header {
+.mutant-year-zero .sheet-header {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 210px;
   flex: 0 0 210px;
@@ -170,7 +237,7 @@
   margin-bottom: 10px;
 }
 
-.boilerplate .sheet-header .profile-img {
+.mutant-year-zero .sheet-header .profile-img {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100px;
   flex: 0 0 100px;
@@ -178,100 +245,120 @@
   margin-right: 10px;
 }
 
-.boilerplate .sheet-header .header-fields {
+.mutant-year-zero .sheet-header .header-fields {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.boilerplate .sheet-header h1.charname {
+.mutant-year-zero .sheet-header h1.charname {
   height: 50px;
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
 }
 
-.boilerplate .sheet-header h1.charname input {
+.mutant-year-zero .sheet-header h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
 }
 
-.boilerplate .sheet-tabs {
+.mutant-year-zero .sheet-tabs {
   -webkit-box-flex: 0;
   -ms-flex: 0;
   flex: 0;
 }
 
-.boilerplate .sheet-body,
-.boilerplate .sheet-body .tab,
-.boilerplate .sheet-body .tab .editor {
+.mutant-year-zero .sheet-body,
+.mutant-year-zero .sheet-body .tab,
+.mutant-year-zero .sheet-body .tab .editor {
   height: 100%;
 }
 
-.boilerplate .tox .tox-editor-container {
+.mutant-year-zero .tox .tox-editor-container {
   background: #fff;
 }
 
-.boilerplate .tox .tox-edit-area {
+.mutant-year-zero .tox .tox-edit-area {
   padding: 0 8px;
 }
 
-.boilerplate .resource-label {
+.mutant-year-zero .box-list {
+  border: 1px solid;
+  margin-bottom: 10px;
+}
+
+.mutant-year-zero .box-list .box-header {
+  padding: 5px;
+  color: white;
+  background-color: saddlebrown;
+}
+
+.mutant-year-zero .box-list .box-content {
+  padding: 2px;
+}
+
+.mutant-year-zero .box-list .box-content .box-item .short-input {
+  max-width: 2em;
+  text-align: center;
+}
+
+.mutant-year-zero .resource-label {
   font-weight: bold;
   text-transform: uppercase;
 }
 
-.boilerplate .tabs {
+.mutant-year-zero .tabs {
   height: 40px;
   border-top: 1px solid #AAA;
   border-bottom: 1px solid #AAA;
 }
 
-.boilerplate .tabs .item {
+.mutant-year-zero .tabs .item {
   line-height: 40px;
   font-weight: bold;
 }
 
-.boilerplate .tabs .item.active {
+.mutant-year-zero .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
 }
 
-.boilerplate .items-list {
+.mutant-year-zero .items-list {
   list-style: none;
   margin: 7px 0;
   padding: 0;
   overflow-y: auto;
 }
 
-.boilerplate .items-list .item-header {
+.mutant-year-zero .items-list .item-header {
   font-weight: bold;
 }
 
-.boilerplate .items-list .item {
+.mutant-year-zero .items-list .item {
   height: 30px;
   line-height: 24px;
   padding: 3px 0;
   border-bottom: 1px solid #BBB;
 }
 
-.boilerplate .items-list .item .item-image {
+.mutant-year-zero .items-list .item .item-image {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 24px;
   flex: 0 0 24px;
   margin-right: 5px;
 }
 
-.boilerplate .items-list .item img {
+.mutant-year-zero .items-list .item img {
   display: block;
 }
 
-.boilerplate .items-list .item-name {
+.mutant-year-zero .items-list .item-name {
   margin: 0;
 }
 
-.boilerplate .items-list .item-controls {
+.mutant-year-zero .items-list .item-controls {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 86px;
   flex: 0 0 86px;

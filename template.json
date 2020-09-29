@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": [ "character" ],
+    "types": [ "mutant", "animal", "robot", "human" ],
     "templates": {
       "base": {
         "role": {
@@ -8,24 +8,10 @@
           "value": ""
         },
         "appearance": {
-          "head": {
-            "label": "MYZ.HEAD",
-            "value": ""
-          },
-          "body": {
-            "label": "MYZ.BODY",
-            "value": ""
-          },
-          "clothing": {
-            "label": "MYZ.CLOTHING",
-            "value": ""
-          }
+          "label": "MYZ.APPEARANCE",
+          "value": ""
         },
         "description": "",
-        "mutation-points": {
-          "label": "MYZ.MUTATION.POINTS",
-          "value": 0
-        },
         "armor-rating": {
           "label": "MYZ.ARMOR",
           "value": 0
@@ -39,6 +25,30 @@
           "value": 0
         }
       },
+      "status": {
+        "conditions": {
+          "starving": {
+            "label": "MYZ.CONDITION.STARVING",
+            "value": false
+          },
+          "dehydrated": {
+            "label": "MYZ.CONDITION.DEHYDRATED",
+            "value": false
+          },
+          "sleepless": {
+            "label": "MYZ.CONDITION.SLEEPLESS",
+            "value": false
+          },
+          "hypothermic": {
+            "label": "MYZ.CONDITION.HYPOTHERMIC",
+            "value": false
+          }
+        }
+      }
+    },
+    "mutant": {
+      "templates": [ "base", "status" ],
+
       "attributes": {
         "strength": {
           "label": "MYZ.ATTRIBUTE.STRENGTH",
@@ -65,29 +75,11 @@
           "max": 4
         }
       },
-      "status": {
-        "conditions": {
-          "starving": {
-            "label": "MYZ.CONDITION.STARVING",
-            "value": false
-          },
-          "dehydrated": {
-            "label": "MYZ.CONDITION.DEHYDRATED",
-            "value": false
-          },
-          "sleepless": {
-            "label": "MYZ.CONDITION.SLEEPLESS",
-            "value": false
-          },
-          "hypothermic": {
-            "label": "MYZ.CONDITION.HYPOTHERMIC",
-            "value": false
-          }
-        }
+
+      "mutation-points": {
+        "label": "MYZ.MUTATION.POINTS",
+        "value": 0
       }
-    },
-    "character": {
-      "templates": [ "base", "attributes", "status"]   
     }
   },
   "Item": {
@@ -102,7 +94,10 @@
       }
     },
     "skill": {
-      "templates": [ "base" ]
+      "templates": [ "base" ],
+      "value": 0,
+      "min": 0,
+      "attribute": ""
     },
     "mutation": {
       "templates": [ "base" ]

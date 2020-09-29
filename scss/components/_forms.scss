@@ -53,3 +53,22 @@
     padding: 0 8px;
   }
 }
+
+.box-list {
+    border: 1px solid;
+    margin-bottom: 10px;
+    .box-header{
+        padding: 5px;
+        color:white;
+        background-color:saddlebrown;
+    }
+    .box-content{
+        padding:2px;        
+        .box-item{
+            .short-input{
+                max-width:2em;
+                text-align: center;
+            }
+        }
+    }
+}

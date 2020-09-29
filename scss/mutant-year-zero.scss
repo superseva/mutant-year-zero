@@ -9,10 +9,12 @@
 @import 'global/grid';
 @import 'global/flex';
 
-/* Styles limited to boilerplate sheets */
-.boilerplate {
-  @import 'components/forms';
-  @import 'components/resource';
-  @import 'components/tabs';
-  @import 'components/items';
+
+/* Styles limited to mutant-year-zero sheets */
+.mutant-year-zero {
+    @import 'global/common';
+    @import 'components/forms';
+    @import 'components/resource';
+    @import 'components/tabs';
+    @import 'components/items';
 }

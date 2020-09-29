@@ -45,6 +45,27 @@ export class DiceRoller {
     }
 
     /**
+     * Push the last roll
+     */
+    push() {
+        this.dices.forEach((dice) => {
+            if ((dice.value < 6 && dice.value > 1 && dice.type !== "skill") || (dice.value < 6 && ["artifact", "skill"].includes(dice.type))) {
+                let die = new Die(dice.face);
+                die.roll(1);
+                dice.value = die.total;
+                let successAndWeight = this.getSuccessAndWeight(dice.value, dice.type);
+                dice.success = successAndWeight.success;
+                dice.weight = successAndWeight.weight;
+            }
+        });
+        if (this.lastType === "spell") {
+            this.sendRollSpellToChat(true);
+        } else {
+            this.sendRollToChat(true);
+        }
+    }
+
+    /**
      * Roll a set of dice
      * 
      * @param  {number} numberOfDice     How many dice to roll
