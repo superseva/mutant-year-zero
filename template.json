@@ -48,7 +48,6 @@
     },
     "mutant": {
       "templates": [ "base", "status" ],
-
       "attributes": {
         "strength": {
           "label": "MYZ.ATTRIBUTE.STRENGTH",
@@ -75,10 +74,10 @@
           "max": 4
         }
       },
-
       "mutation-points": {
         "label": "MYZ.MUTATION.POINTS",
-        "value": 0
+        "value": 0,
+        "max": 10
       }
     }
   },

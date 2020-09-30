@@ -9,7 +9,6 @@ export class MYZ {
 
     static mutantSkills = [
         "Endure",
-        "Endure",
         "Force",
         "Fight",
         "Sneak",
