@@ -1,5 +1,5 @@
 .window-app {
-  font-family: $font-primary;
+    font-family: $font-primary;    
 }
 
 .rollable {
@@ -9,4 +9,29 @@
     text-shadow: 0 0 10px red;
     cursor: pointer;
   }
+}
+
+.sheet.actor .window-content{
+    background: url("../ui/mutant-sheet-bg.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+/*ROLL DIALOG*/
+.roll-dialog {
+    background: url("../ui/mutant-sheet-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: -18px -8px 0 -8px;
+    padding:8px;
+
+    .dice-image {
+        max-width: 20px;
+        max-height: 20px;
+        border: none;
+    }
+
+    label {
+        text-transform: capitalize;
+    }
 }

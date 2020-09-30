@@ -1,17 +1,43 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-    <div class="actor-header flexrow">
-        <div class="avatar">
-            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
-        </div>
-        <div class="character-info">
-            <div class="character-name">
-                <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
-            </div>
-            <div class="character-role">
-                <label>Role:</label>
-                <input name="data.role.value" type="text" value="{{data.role.value}}" />
-            </div>
+    <div class="actor-header">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="grid grid-3col">
+                <div class="character-role flex column">
+                    <div class="flexrow">
+                        <label for="data.role.value">{{localize "MYZ.ROLE"}}:</label>
+                        <input name="data.role.value" type="text" value="{{data.role.value}}" />
+                    </div>
+                    <div class="flexrow">
+                        <label for="data.xp.value">{{localize "MYZ.XP"}}:</label><input type="text" data-type="Number" name="data.xp.value" value="{{data.xp.value}}" />
+                    </div>
+                    </div>
+
+
+                    <div class="flexcol">
+                        <button class="button-roll">ROLL</button>
+                        <button class="button-push">PUSH</button>
+                    </div>
+                    <div class="flex column">
+                        <div class="box-list rot-points">
+                            <div class="box-header flexrow">
+                                <label for="data.rot.value">MYZ.ROT</label><input type="text" name="data.rot.value" value="{{data.rot.value}}" />
+                            </div>
+                        </div>
+                        <!--<div class="box-list xp">
+                            <div class="box-header flexrow">
+                                <label for="data.xp.value">MYZ.XP</label><input type="text" name="data.xp.value" value="{{data.xp.value}}" />
+                            </div>
+                        </div>-->
+                        <div class="box-list armor">
+                            <div class="box-header flexrow">
+                                <label for="data.armor-rating.value">MYZ.ARMOR</label><input type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
     <div class="sheet-body grid grid-3col">
@@ -54,34 +80,20 @@
                     LIST OF CRITS
                 </div>
             </div>
+
             
-            <div class="box-list rot-points">
-                <div class="box-header flexrow">
-                    <label for="data.rot.value">MYZ.ROT</label><input type="text" name="data.rot.value" value="{{data.rot.value}}" />
-                </div>
-            </div>
-            <div class="box-list xp">
-                <div class="box-header flexrow">
-                    <label for="data.xp.value">MYZ.XP</label><input type="text" name="data.xp.value" value="{{data.xp.value}}" />
-                </div>
-            </div>
-            <div class="box-list armor">
-                <div class="box-header flexrow">
-                    <label for="data.armor-rating.value">MYZ.ARMOR</label><input type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
-                </div>
-            </div>
         </div>
         <!--MID SECTION-->
         <div class="col2">
             <div class="box-list skills flexcol">
                 <div class="box-header flexrow">
-                    <span>SKILLS</span>
-                    <span>+ Add</span>
+                    <span>{{localize "MYZ.SKILLS"}}</span>
+                    <span class="item-create" data-type="skill">+ Add</span>
                 </div>
                 <div class="box-content flexcol">
                     {{#each actor.skills as |skill index|}}
                     <div class="flexrow box-item">
-                        <label class="rollable skill-item" data-itemid="{{skill._id}}">{{skill.name}}</label>
+                        <label class="rollable skill-item" data-itemid="{{skill._id}}" data-skillname="{{skill.name}}">{{skill.name}}</label>
                         <input class="skill-value short-input" data-itemid="{{skill._id}}" value="{{skill.data.value}}" />
                     </div>
                     {{/each}}
@@ -95,14 +107,37 @@
                     <label for="data.mutation-points.value">MYZ.MUTAIONPOINTS</label><input type="text" name="data.mutation-points.value" value="{{data.mutation-points.value}}" />
                 </div>
             </div>
-            <div class="mutations">mutations</div>
-            <div class="talents">talents</div>
+
+            <div class="box-list mutations">
+                <div class="box-header flexrow">
+                    <span>{{localize "MYZ.MUTATIONS"}}</span>
+                    <span class="item-create" data-type="mutation">+ Add</span>
+                </div>
+                <div class="box-content flexcol">
+                    {{#each actor.mutations as |mutation index|}}
+                    <div class="flexrow box-item mutation-item" data-itemid="{{mutation._id}}" data-skillname="{{mutation.name}}">
+                        <span class="viewable" data-itemid="{{mutation._id}}">{{mutation.name}}</span>
+                        <span style="text-align:right" class="chatable" data-itemid="{{mutation._id}}"><i class="fas fa-comment"></i></span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="box-list talents">
+                <div class="box-header flexrow">
+                    <span>{{localize "MYZ.TALENTS"}}</span>
+                    <span class="item-create" data-type="talent">+ Add</span>
+                </div>
+                <div class="box-content flexcol">
+                    {{#each actor.talents as |talent index|}}
+                    <div class="flexrow box-item talent-item" data-itemid="{{talent._id}}" data-skillname="{{talent.name}}">
+                        <span class="viewable" data-itemid="{{talent._id}}">{{talent.name}}</span>
+                        <span style="text-align:right" class="chatable" data-itemid="{{talent._id}}"><i class="fas fa-comment"></i></span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-
-
-        <div>MUTANTE</div>
-        <button class="button-roll">ROLL</button>
-        <button class="button-push">PUSH</button>
 
 </form>
 

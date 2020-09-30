@@ -16,7 +16,64 @@ export class RollDialog {
      * @param  {callback}      [onAfterRoll]
      */
     //static prepareRollDialog(rollName, baseDefault, skillDefault, gearDefault, artifactDefault, modifierDefault, damage, diceRoller, onAfterRoll) {
-    static prepareRollDialog({ rollName="", baseDefault = 0, skillDefault = 0, gearDefault = 0, artifactDefault = 0, modifierDefault = 0, damage = 0, diceRoller=null, onAfterRoll = null } = {}) {
+    static async prepareRollDialog({ rollName = "", baseDefault = 0, skillDefault = 0, gearDefault = 0, artifactDefault = 0, modifierDefault = 0, damage = 0, diceRoller = null, onAfterRoll = null } = {}) {
+        if (!diceRoller) {
+            throw new Error('DiceRoller object must be passed to prepareRollDialog()');
+        }
+       // onAfterRoll = onAfterRoll || function () { };
+        //if (typeof baseDefault !== 'object') baseDefault = { name: "Base", value: baseDefault };
+       // if (typeof skillDefault !== 'object') skillDefault = { name: "Skill", value: skillDefault };
+
+        let htmlData = {
+            base: { name: "MYZ.DICE_BASE", type: "base", value: baseDefault },
+            skill: { name: "MYZ.DICE_SKILL", type: "skill", value: skillDefault },
+            gear: { name: "MYZ.DICE_GEAR", type: "gear", value: gearDefault },
+            artifact: { name: "MYZ.ARTIFACTS", type: "artifact", value: artifactDefault },
+            modifier: { name: "MYZ.MODIFIER", type: "modifier", value: modifierDefault }
+        };
+
+        const htmlContent = await renderTemplate('systems/mutant-year-zero/templates/app/roll-dialog.html', htmlData);
+        return new Promise((resolve) => {
+            let d = new Dialog({
+                title: "Roll : " + rollName,
+                content: htmlContent,
+                buttons: {
+                    roll: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Roll",
+                        callback: (html) => {
+                            //console.log(html.find("#base"));
+                            let base = html.find("#base")[0].value;
+                            let skill = html.find("#skill")[0].value;
+                            let gear = html.find('#gear')[0].value;
+                            let artifact = this.parseArtifact(html.find('#artifact')[0].value);
+                            let modifier = html.find('#modifier')[0].value;
+                            diceRoller.roll({
+                                rollName: rollName,
+                                base: parseInt(base, 10),
+                                skill: parseInt(skill, 10),
+                                gear: parseInt(gear, 10),
+                                artifact: artifact,
+                                modifier: parseInt(modifier, 10),
+                                damage: parseInt(damage, 10)
+                            });
+                            // onAfterRoll(diceRoller);
+                        }
+                    },
+                    cancel: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: "Cancel",
+                        callback: () => { }
+                    }
+                },
+                default: "roll",
+                close: () => { }
+            });
+            d.render(true);
+        });
+    }
+    /*
+    static prepareRollDialog({ rollName = "", baseDefault = 0, skillDefault = 0, gearDefault = 0, artifactDefault = 0, modifierDefault = 0, damage = 0, diceRoller = null, onAfterRoll = null } = {}) {
         if (!diceRoller) {
             throw new Error('DiceRoller object must be passed to prepareRollDialog()');
         }
@@ -67,6 +124,7 @@ export class RollDialog {
         });
         d.render(true);
     }
+    */
 
     /**
      * @param {object}   spell       Spell data

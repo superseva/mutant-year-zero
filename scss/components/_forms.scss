@@ -2,8 +2,8 @@
   font-family: $font-primary;
 }
 
-.sheet-header {
-  flex: 0 0 210px;
+.sheet-header, .actor-header {
+  flex: 0 0 180px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -22,7 +22,7 @@
   }
 
   h1.charname {
-    height: 50px;
+    height: 2em;
     padding: 0px;
     margin: 5px 0;
     border-bottom: 0;
@@ -57,23 +57,45 @@
 .box-list {
     border: 1px solid;
     margin-bottom: 10px;
-    .box-header{
+
+    .box-header {
         padding: 5px;
-        color:white;
-        background-color:saddlebrown;
+        color: white;
+        background-color: $c-brown-dark;
+        background-image: url("../ui/box-header-brown.jpg");
+        input{
+            background-color:$c-white;
+        }
     }
-    .box-content{
-        padding:2px;        
-        .box-item{
-            padding:2px 0;
-            /*.short-input{
-                max-width:2em;
-                text-align: center;
-            }*/
+
+    .box-content {
+        padding: 2px;
+        background-color: $c-brown-pale;
+
+        .box-item {
+            border-bottom: 1px solid $c-brown-mid;
+            padding: 2px 0;
+
+            .fa-eye {
+                cursor: pointer;
+            }
+        }
+
+        .box-item:last-child {
+            border: none;
         }
     }
 }
+
+.viewable, .chatable, .item-create{
+    cursor:pointer;
+}
+
 .short-input {
     max-width: 2em;
     text-align: center;
 }
+.item-create{
+    text-align:right;
+}
+

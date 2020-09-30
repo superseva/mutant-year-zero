@@ -21,4 +21,15 @@ export class MYZ {
         "Sense Emotion",
         "Manipulate",
         "Heal"];
+
+    static talentTypes = {
+        general: {
+            lablel: "MYZ.TALENT_GENERAL",
+            value:"general"
+        },
+        other: {
+            lablel: "MYZ.TALENT_OTHER",
+            value: "other"
+        }
+    }
 } 

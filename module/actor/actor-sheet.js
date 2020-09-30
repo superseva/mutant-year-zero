@@ -13,45 +13,31 @@ export class MYZActorSheet extends ActorSheet {
 
     /** @override */
     getData() {
-      const data = super.getData();
-      data.dtypes = ["String", "Number", "Boolean"];
-      // Prepare items.
-      if (this.actor.data.type == 'mutant') {
-        this._prepareCharacterItems(data);
-      }
-      return data;
+        const data = super.getData();
+        data.dtypes = ["String", "Number", "Boolean"];
+        // Prepare items.
+        if (this.actor.data.type == 'mutant') {
+            this._prepareCharacterItems(data);
+        }
+        return data;
     }
 
     /**
      * Organize and classify Items for Character sheets.
-     *
      * @param {Object} actorData The actor to prepare.
-     *
      * @return {undefined}
      */
     _prepareCharacterItems(sheetData) {
-
-        console.warn("PREPING DATA");
-        console.log(sheetData);
 
         const actorData = sheetData.actor;
 
         // Initialize containers.
         const skills = [];
+        const talents = [];
+        const mutations = [];
         const gear = [];
         const features = [];
-        const spells = {
-            0: [],
-            1: [],
-            2: [],
-            3: [],
-            4: [],
-            5: [],
-            6: [],
-            7: [],
-            8: [],
-            9: []
-        };
+        const spells = {};
 
         // Iterate through items, allocating to containers
         // let totalWeight = 0;
@@ -60,8 +46,13 @@ export class MYZActorSheet extends ActorSheet {
             i.img = i.img || DEFAULT_TOKEN;
             // Append to gear.
             if (i.type === 'skill') {
-                console.log("ITS A SKILL");
                 skills.push(i);
+            }
+            else if (i.type === 'talent') {
+                talents.push(i);
+            }
+            else if (i.type === 'mutation') {
+                mutations.push(i);
             }
             else if (i.type === 'item') {
                 gear.push(i);
@@ -80,12 +71,11 @@ export class MYZActorSheet extends ActorSheet {
 
         // Assign and return
         actorData.skills = skills;
-        actorData.gear = gear;
-        actorData.features = features;
-        actorData.spells = spells;
-
-        //console.log(skills);
-        console.log(actorData);
+        actorData.talents = talents;
+        actorData.mutations = mutations;
+        //actorData.gear = gear;
+        //actorData.features = features;
+        //actorData.spells = spells;
     }
 
     /* -------------------------------------------- */
@@ -125,8 +115,36 @@ export class MYZActorSheet extends ActorSheet {
             li.slideUp(200, () => this.render(false));
         });
 
-        // Rollable abilities.
-        html.find('.rollable.skill-item').click(this._onRoll.bind(this));
+        // Rollable Item
+        html.find('.rollable.skill-item').click(this._onRollSkill.bind(this));
+        // Viewable Item
+        html.find('.viewable').click(this._onItemView.bind(this));
+        // Chatable Item
+        html.find('.chatable').click(this._onItemSendToChat.bind(this));
+        //Editable Item
+
+        /* -------------------------------------------- */
+        /* ADD LEFT CLICK CONTENT MENU
+        /* -------------------------------------------- */
+
+        let menu_items = [{
+            icon: '<i class="fas fa-dice-d6"></i>', name: "Edit",
+            callback: (t) => {
+                this._editOwnedItemById(t[0].dataset.itemid);
+            }
+        },
+        {
+            icon: '<i class="fas fa-dice-d6"></i>', name: "Delete",
+            callback: (t) => {
+                this._deleteOwnedItemById(t[0].dataset.itemid);
+            },
+            condition: (t) => {
+                return !CONFIG.MYZ.mutantSkills.includes(t[0].dataset.skillname);
+            }
+        }];
+        new ContextMenu(html.find('.skill-item'), null, menu_items);
+        new ContextMenu(html.find('.talent-item'), null, menu_items);
+        new ContextMenu(html.find('.mutation-item'), null, menu_items);
 
         // Drag events for macros.
         if (this.actor.owner) {
@@ -139,13 +157,20 @@ export class MYZActorSheet extends ActorSheet {
         }
     }
 
+    _editOwnedItemById(_itemId) {
+        const item = this.actor.getOwnedItem(_itemId);
+        item.sheet.render(true);
+    }
+    _deleteOwnedItemById(_itemId) {
+        this.actor.deleteOwnedItem(_itemId);
+    }
+
     async _onChangeSkillValue(event) {
         event.preventDefault();
         let _item = this.actor.items.find(element => element._id == event.currentTarget.dataset.itemid);
-        console.warn($(event.currentTarget).val());            
+        console.warn($(event.currentTarget).val());
         if (_item) {
-            console.log(`update this ITEM: ${{ _item }}`);
-            let update = {_id: _item._id, data: { value: $(event.currentTarget).val() } };
+            let update = { _id: _item._id, data: { value: $(event.currentTarget).val() } };
             await this.actor.updateEmbeddedEntity('OwnedItem', update);
         }
     }
@@ -155,7 +180,7 @@ export class MYZActorSheet extends ActorSheet {
      * @param {Event} event   The originating click event
      * @private
      */
-    _onItemCreate(event) {
+    async _onItemCreate(event) {
         event.preventDefault();
         const header = event.currentTarget;
         // Get the type of item to create.
@@ -172,9 +197,29 @@ export class MYZActorSheet extends ActorSheet {
         };
         // Remove the type from the dataset since it's in the itemData.type prop.
         delete itemData.data["type"];
-
         // Finally, create the item!
-        return this.actor.createOwnedItem(itemData);
+        await this.actor.createOwnedItem(itemData).then((_i) => {
+            const item = this.actor.getOwnedItem(_i._id);
+            item.sheet.render(true);
+            //return _i;
+        });      
+
+    }
+
+    _onItemView(event) {
+        event.preventDefault();
+        const item = this.actor.getOwnedItem($(event.currentTarget).data('itemid'));
+        item.sheet.render(true);
+    }
+
+    _onItemSendToChat(event) {
+        event.preventDefault();
+        const item = this.actor.getOwnedItem($(event.currentTarget).data('itemid'));
+        if (!item)
+            return;
+        let msgText = `<h2>${item.data.name}</h2>` + item.data.data.description;
+        ChatMessage.create({ content: msgText });
+
     }
 
     /**
@@ -182,13 +227,13 @@ export class MYZActorSheet extends ActorSheet {
      * @param {Event} event   The originating click event
      * @private
      */
-    _onRoll(event) {        
+    _onRollSkill(event) {
         event.preventDefault();
         const element = event.currentTarget;
-        const dataset = element.dataset;        
+        const dataset = element.dataset;
         console.log(dataset);
         if (dataset.itemid) {
-           //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
+            //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find(element => element._id == dataset.itemid);
             console.warn(skill);
             //let baseDice = this.actor.data.attributes[skill.data.data.attribute].value;

@@ -30,6 +30,7 @@
   content: '\0043';
 }
 
+/*BROWNS*/
 /* Global styles */
 .window-app {
   font-family: "Roboto", sans-serif;
@@ -39,6 +40,31 @@
   color: #000;
   text-shadow: 0 0 10px red;
   cursor: pointer;
+}
+
+.sheet.actor .window-content {
+  background: url("../ui/mutant-sheet-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/*ROLL DIALOG*/
+.roll-dialog {
+  background: url("../ui/mutant-sheet-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: -18px -8px 0 -8px;
+  padding: 8px;
+}
+
+.roll-dialog .dice-image {
+  max-width: 20px;
+  max-height: 20px;
+  border: none;
+}
+
+.roll-dialog label {
+  text-transform: capitalize;
 }
 
 .grid,
@@ -217,10 +243,10 @@
   font-family: "Roboto", sans-serif;
 }
 
-.mutant-year-zero .sheet-header {
+.mutant-year-zero .sheet-header, .mutant-year-zero .actor-header {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 210px;
-  flex: 0 0 210px;
+  -ms-flex: 0 0 180px;
+  flex: 0 0 180px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -237,7 +263,7 @@
   margin-bottom: 10px;
 }
 
-.mutant-year-zero .sheet-header .profile-img {
+.mutant-year-zero .sheet-header .profile-img, .mutant-year-zero .actor-header .profile-img {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100px;
   flex: 0 0 100px;
@@ -245,20 +271,20 @@
   margin-right: 10px;
 }
 
-.mutant-year-zero .sheet-header .header-fields {
+.mutant-year-zero .sheet-header .header-fields, .mutant-year-zero .actor-header .header-fields {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.mutant-year-zero .sheet-header h1.charname {
-  height: 50px;
+.mutant-year-zero .sheet-header h1.charname, .mutant-year-zero .actor-header h1.charname {
+  height: 2em;
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
 }
 
-.mutant-year-zero .sheet-header h1.charname input {
+.mutant-year-zero .sheet-header h1.charname input, .mutant-year-zero .actor-header h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -292,24 +318,43 @@
 .mutant-year-zero .box-list .box-header {
   padding: 5px;
   color: white;
-  background-color: saddlebrown;
+  background-color: #26211c;
+  background-image: url("../ui/box-header-brown.jpg");
+}
+
+.mutant-year-zero .box-list .box-header input {
+  background-color: #fff;
 }
 
 .mutant-year-zero .box-list .box-content {
   padding: 2px;
+  background-color: #f0d5b7;
 }
 
 .mutant-year-zero .box-list .box-content .box-item {
+  border-bottom: 1px solid #9d5625;
   padding: 2px 0;
-  /*.short-input{
-                max-width:2em;
-                text-align: center;
-            }*/
+}
+
+.mutant-year-zero .box-list .box-content .box-item .fa-eye {
+  cursor: pointer;
+}
+
+.mutant-year-zero .box-list .box-content .box-item:last-child {
+  border: none;
+}
+
+.mutant-year-zero .viewable, .mutant-year-zero .chatable, .mutant-year-zero .item-create {
+  cursor: pointer;
 }
 
 .mutant-year-zero .short-input {
   max-width: 2em;
   text-align: center;
+}
+
+.mutant-year-zero .item-create {
+  text-align: right;
 }
 
 .mutant-year-zero .resource-label {

@@ -100,10 +100,12 @@
       "attribute": ""
     },
     "mutation": {
-      "templates": [ "base" ]
+      "templates": [ "base" ],
+      "type": ""
     },
     "talent": {
-      "templates": [ "base" ]
+      "templates": [ "base" ],
+      "type": ""
     },
     "weapon": {
       "templates": [ "base", "physical" ]

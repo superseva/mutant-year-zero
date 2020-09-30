@@ -9,5 +9,12 @@
   "MYZ.CONDITION.STARVING": "Starving",
   "MYZ.CONDITION.DEHYDRATED": "Dehydrated",
   "MYZ.CONDITION.SLEEPLESS": "Sleepless",
-  "MYZ.CONDITION.HYPOTHERMIC": "Hypothermic"
+  "MYZ.CONDITION.HYPOTHERMIC": "Hypothermic",
+
+  "MYZ.DICE_BASE": "base",
+  "MYZ.DICE_SKILL": "skill",
+  "MYZ.DICE_GEAR": "gear",
+  "MYZ.ARTIFACTS": "artifacts",
+  "MYZ.MODIFIER": "modifier"
+
 }
