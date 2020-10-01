@@ -72,6 +72,16 @@ export class MYZActorSheet extends ActorSheet {
                 criticals.push(i);
             }            
         }
+        //sort skills
+        const sortedBy = {
+            'strength': 0,
+            'agility': 1,
+            'wits': 2,
+            'empathy': 3
+        };
+        skills.sort(
+            (a, b) => sortedBy[a.data.attribute] - sortedBy[b.data.attribute]
+        )
 
         // Assign and return
         actorData.skills = skills;

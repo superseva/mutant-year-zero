@@ -1,10 +1,10 @@
-<div class="box-list conditions flexcol">
+<div class="box-list conditions">
     <div class="box-header">
         {{localize "MYZ.CONDITIONS"}}
     </div>
-    <div class="box-content flexcol">
+    <div class="grid grid-2col box-content">
         {{#each data.conditions as |condition key|}}
-        <div class="flexrow box-item">
+        <div class="flex row align-center">
             <label for="data.conditions.{{key}}.value">{{localize condition.label}}</label>
             <input type="checkbox" name="data.conditions.{{key}}.value" {{checked condition.value}} />
         </div>

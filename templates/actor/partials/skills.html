@@ -5,9 +5,9 @@
     </div>
     <div class="box-content flexcol">
         {{#each actor.skills as |skill index|}}
-        <div class="flexrow box-item">
-            <label class="rollable skill-item editable-item" data-itemid="{{skill._id}}" data-skillname="{{skill.name}}">{{skill.name}}</label>
-            <input class="skill-value short-input" data-itemid="{{skill._id}}" value="{{skill.data.value}}" />
+        <div class="flex row box-item space-between">
+            <label class="rollable skill-item editable-item" data-itemid="{{skill._id}}" data-skillname="{{skill.name}}"><strong>{{skill.name}}</strong></label>
+            <span><label>({{trimString3 skill.data.attribute}}) </label><input class="skill-value short-input" data-itemid="{{skill._id}}" value="{{skill.data.value}}" /></span>
         </div>
         {{/each}}
     </div>

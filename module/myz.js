@@ -75,6 +75,11 @@ Hooks.once('init', async function () {
         return str.toLowerCase();
     });
 
+    Handlebars.registerHelper('trimString3', function (passedString) {
+        var theString = passedString.substring(0, 3);
+        return new Handlebars.SafeString(theString)
+    });
+
 });
 
 Hooks.once("ready", async function () {

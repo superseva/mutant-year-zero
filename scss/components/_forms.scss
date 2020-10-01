@@ -126,6 +126,15 @@
     }*/
 }
 
+.conditions{
+    .box-content{
+        padding: 0 5px 0 5px;
+    }
+    .grid{
+        margin: 0
+    }
+}
+
 .viewable, .chatable, .item-create {
     cursor: pointer;
 }

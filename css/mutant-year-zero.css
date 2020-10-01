@@ -245,6 +245,12 @@
   justify-content: space-around;
 }
 
+.mutant-year-zero .space-between {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .mutant-year-zero .item-form {
   font-family: "Roboto", sans-serif;
 }
@@ -400,6 +406,14 @@
 
 .mutant-year-zero .box-list .box-content .box-item:last-child {
   border: none;
+}
+
+.mutant-year-zero .conditions .box-content {
+  padding: 0 5px 0 5px;
+}
+
+.mutant-year-zero .conditions .grid {
+  margin: 0;
 }
 
 .mutant-year-zero .viewable, .mutant-year-zero .chatable, .mutant-year-zero .item-create {
