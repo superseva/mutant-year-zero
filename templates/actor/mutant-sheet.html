@@ -94,8 +94,14 @@
                         <div class="box-header">
                             {{localize "MYZ.CRITICALS"}}
                         </div>
-                        <div class="box-content flexcol">
-                            <textarea name="data.crit.value" style="resize: none; color:crimson">{{data.crit.value}}</textarea>
+                        <div class="box-content">
+                            {{#each actor.criticals as |critical index|}}
+                            <div class="box-item critical-item editable-item" data-itemid="{{critical._id}}">
+                                <label><strong>{{critical.name}}:</strong> </label>
+                                <label>{{critical.data.effect}}</label>
+                                <i class="fas fa-comment chatable" data-itemid="{{critical._id}}"></i>
+                            </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
@@ -109,7 +115,7 @@
                         <div class="box-content flexcol">
                             {{#each actor.skills as |skill index|}}
                             <div class="flexrow box-item">
-                                <label class="rollable skill-item" data-itemid="{{skill._id}}" data-skillname="{{skill.name}}">{{skill.name}}</label>
+                                <label class="rollable skill-item editable-item" data-itemid="{{skill._id}}" data-skillname="{{skill.name}}">{{skill.name}}</label>
                                 <input class="skill-value short-input" data-itemid="{{skill._id}}" value="{{skill.data.value}}" />
                             </div>
                             {{/each}}
@@ -132,7 +138,7 @@
                         </div>
                         <div class="box-content">
                             {{#each actor.mutations as |mutation index|}}
-                            <div class="flexrow box-item mutation-item" data-itemid="{{mutation._id}}" data-skillname="{{mutation.name}}">
+                            <div class="flexrow box-item mutation-item editable-item" data-itemid="{{mutation._id}}" data-skillname="{{mutation.name}}">
                                 <span class="viewable" data-itemid="{{mutation._id}}">{{mutation.name}}</span>
                                 <span style="text-align:right" class="chatable" data-itemid="{{mutation._id}}"><i class="fas fa-comment"></i></span>
                             </div>
@@ -147,7 +153,7 @@
                         </div>
                         <div class="box-content">
                             {{#each actor.talents as |talent index|}}
-                            <div class="flexrow box-item talent-item" data-itemid="{{talent._id}}" data-skillname="{{talent.name}}">
+                            <div class="flexrow box-item talent-item editable-item" data-itemid="{{talent._id}}" data-skillname="{{talent.name}}">
                                 <span class="viewable" data-itemid="{{talent._id}}">{{talent.name}}</span>
                                 <span style="text-align:right" class="chatable" data-itemid="{{talent._id}}"><i class="fas fa-comment"></i></span>
                             </div>
@@ -188,95 +194,11 @@
                     </div>
                 </div>
                 <div class="col2">
-                    
-                        <div class="box-list weapons">
-                            <div class="box-header">
-                                <label>{{localize "MYZ.WEAPONS"}}</label>
-                                <span class="item-create" data-type="weapon">+ ADD</span>
-                            </div>
-                            <div class="box-content items-list">
-                                <div class="item weapon flexrow">
-                                    <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
-                                    <span class="item-name">{{localize 'MYZ.NAME'}}</span>
-                                    <span>{{localize 'MYZ.DAMAGE'}}</span>
-                                    <span>{{localize 'MYZ.RANGE'}}</span>
-                                </div>
-                                {{#each actor.weapons as |weapon key|}}
-                                <div class="item weapon flexrow" data-itemid="{{weapon._id}}">
-                                    <img class="item-image" src="{{weapon.img}}"/>
-                                    <span class="item-name">{{weapon.name}}</span>
-                                    <span>{{weapon.data.damage}}</span>
-                                    <span>{{weapon.data.range}}</span>
-                                </div>
-                                {{/each}}
-                            </div>
-                        </div>
-                        <div class="box-list armors">
-                            <div class="box-header">
-                                <label>{{localize "MYZ.ARMOR"}}</label>
-                                <span class="item-create" data-type="armor">+ ADD</span>
-                            </div>
-                            <div class="box-content items-list">
-                                <div class="item armor flexrow">
-                                    <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
-                                    <span class="item-name">{{localize 'MYZ.NAME'}}</span>
-                                    <span>{{localize 'MYZ.RATING'}}</span>
-                                    <span>{{localize 'MYZ.TYPE'}}</span>
-                                    <span>{{localize 'MYZ.EQUIPED'}}</span>
-                                </div>
-                                {{#each actor.armor as |armor key|}}
-                                <div class="item armor flexrow" data-itemid="{{armor._id}}">
-                                    <img class="item-image" src="{{armor.img}}" />
-                                    <span class="item-name">{{armor.name}}</span>
-                                    <span>{{armor.data.rating}}</span>
-                                    <span>{{armor.data.type}}</span>
-                                    <span>{{armor.data.equiped}}</span>
-                                </div>
-                                {{/each}}
-                            </div>
-                        </div>
-                    
+                    {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
                     <div class="gear-row grid grid-2col">
-                        <div class="box-list gear">
-                            <div class="box-header">
-                                <label>{{localize "MYZ.GEAR"}}</label>
-                                <span class="item-create" data-type="gear">+ ADD</span>
-                            </div>
-                            <div class="box-content items-list">
-                                <div class="item gear flexrow">
-                                    <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
-                                    <span class="item-name">{{localize 'MYZ.NAME'}}</span>
-                                    <span>{{localize 'MYZ.WEIGHT'}}</span>
-                                </div>
-                                {{#each actor.gear as |gear key|}}
-                                <div class="item gear flexrow" data-itemid="{{gear._id}}">
-                                    <img class="item-image" src="{{gear.img}}" />
-                                    <span class="item-name">{{gear.name}}</span>
-                                    <span>{{gear.data.weight}}</span>
-                                </div>
-                                {{/each}}
-                            </div>
-                        </div>
-                        <div class="box-list artifacts">
-                            <div class="box-header">
-                                <label>{{localize "MYZ.ARTIFACTS"}}</label>
-                                <span class="item-create" data-type="artifact">+ ADD</span>
-                            </div>
-                            <div class="box-content items-list">
-                                <div class="item artifact flexrow">
-                                    <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
-                                    <span class="item-name">{{localize 'MYZ.NAME'}}</span>
-                                    <span>{{localize 'MYZ.WEIGHT'}}</span>
-                                </div>
-                                {{#each actor.artifacts as |artifact key|}}
-                                <div class="item artifact flexrow" data-itemid="{{artifact._id}}">
-                                    <img class="item-image" src="{{artifact.img}}" />
-                                    <span class="item-name">{{artifact.name}}</span>
-                                    <span>{{artifact.data.weight}}</span>
-                                </div>
-                                {{/each}}
-                            </div>
-                        </div>
+                        {{> systems/mutant-year-zero/templates/actor/partials/gear.html}}
+                        {{> systems/mutant-year-zero/templates/actor/partials/artifacts.html}}
                     </div>
                 </div>
             </div>

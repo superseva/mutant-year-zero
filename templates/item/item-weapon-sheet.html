@@ -16,39 +16,65 @@
                     <label for="data.cost" class="resource-label">{{localize 'MYZ.COST'}}</label>
                     <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" />
                 </div>
-                <div>
-                    <label for="data.damage" class="resource-label">{{localize 'MYZ.DAMAGE'}}</label>
-                    <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number" />
-                </div>
-                <div>
-                    <label for="data.range" class="resource-label">{{localize 'MYZ.RANGE'}}</label>
-                    <input type="text" name="data.range" value="{{data.range}}"/>
-                </div>
-                <div>
-                    <label for="data.skill" class="resource-label">{{localize 'MYZ.SKILL'}}</label>
-                    <input type="text" name="data.skill" value="{{data.skill}}"/>
-                </div>
             </div>
         </div>
     </header>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <!--<a class="item" data-tab="attributes">Attributes</a>-->
+        <a class="item" data-tab="attributes">Attributes</a>
+        <a class="item" data-tab="comment">Description</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
-        {{!-- Description Tab --}}
-        <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        {{!-- Attributes Tab --}}
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <div class="grid grid-3col">
+                
+                <div>
+                    <label for="data.damage" class="resource-label">{{localize 'MYZ.DAMAGE'}}</label>
+                    <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number" />
+                </div>
+                <div>
+                    <label>{{localize 'WEAPON.RANGE'}}</label>
+                    <select name="data.range">
+                        {{#select data.range}}
+                        <option value="arm">{{localize "RANGE.ARM"}}</option>
+                        <option value="near">{{localize "RANGE.NEAR"}}</option>
+                        <option value="short">{{localize "RANGE.SHORT"}}</option>
+                        <option value="long">{{localize "RANGE.LONG"}}</option>
+                        <option value="distant">{{localize "RANGE.DISTANT"}}</option>
+                        {{/select}}
+                    </select>
+                </div>
+                <div>
+                    <label for="data.skill" class="resource-label">{{localize 'MYZ.SKILL'}}</label>
+                    <input type="text" name="data.skill" value="{{data.skill}}" />
+                </div>
+                <div>
+                    <label for="data.bonus.value" class="resource-label">{{localize 'MYZ.BONUS'}}</label>
+                    <div class="flex">
+                        <input type="text" name="data.bonus.value" value="{{data.bonus.value}}" />
+                        <span>/</span>
+                        <input type="text" name="data.bonus.max" value="{{data.bonus.max}}" />
+                    </div>
+                </div>
+                <div>
+                    <label for="data.skillBonus" class="resource-label">{{localize 'MYZ.SKILL_BONUS'}}</label>
+                    <input type="text" name="data.skillBonus" value="{{data.skillBonus}}" />
+                </div>
+                <div>
+                    <label for="data.artifactBonus" class="resource-label">{{localize 'MYZ.ARTIFACT_BONUS'}}</label>
+                    <input type="text" name="data.artifactBonus" value="{{data.artifactBonus}}" />
+                </div>
+            </div>
         </div>
 
-        {{!-- Attributes Tab --}}
-        <!--<div class="tab attributes" data-group="primary" data-tab="attributes">
-            {{!-- As you add new fields, add them in here! --}}
-        </div>-->
+        {{!-- Description Tab --}}
+        <div class="tab" data-group="primary" data-tab="comment">
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
     </section>
 </form>

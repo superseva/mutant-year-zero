@@ -56,6 +56,9 @@ Hooks.once('init', async function () {
     Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
 
     // If you need to add Handlebars helpers, here are a few useful examples:
+    
+   _preloadHandlebarsTemplates();
+
     Handlebars.registerHelper('concat', function () {
         var outStr = '';
         for (var arg in arguments) {
@@ -69,6 +72,7 @@ Hooks.once('init', async function () {
     Handlebars.registerHelper('toLowerCase', function (str) {
         return str.toLowerCase();
     });
+
 });
 
 Hooks.once("ready", async function () {
@@ -80,6 +84,9 @@ Hooks.once("ready", async function () {
 /*  POPULATE CHARACTER WITH DEFAULT SKILLS      */
 /* -------------------------------------------- */
 Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
+
+
+
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -129,4 +136,14 @@ function rollItemMacro(itemName) {
 
     // Trigger the item roll
     return item.roll();
+}
+
+function _preloadHandlebarsTemplates(){
+    const templatePaths = [
+        "systems/mutant-year-zero/templates/actor/partials/weapons.html",
+        "systems/mutant-year-zero/templates/actor/partials/armors.html",
+        "systems/mutant-year-zero/templates/actor/partials/gear.html",
+         "systems/mutant-year-zero/templates/actor/partials/artifacts.html"
+    ];
+    return loadTemplates(templatePaths);
 }

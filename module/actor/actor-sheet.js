@@ -38,8 +38,8 @@ export class MYZActorSheet extends ActorSheet {
         const weapons = [];
         const armor = [];
         const gear = [];
-        const artifacts = [];       
-        const spells = {};
+        const artifacts = [];
+        const criticals = [];
 
         // Iterate through items, allocating to containers
         // let totalWeight = 0;
@@ -68,12 +68,9 @@ export class MYZActorSheet extends ActorSheet {
             else if (i.type === 'artifact') {
                 artifacts.push(i);
             }
-            // Append to spells.
-            else if (i.type === 'spell') {
-                if (i.data.spellLevel != undefined) {
-                    spells[i.data.spellLevel].push(i);
-                }
-            }
+            else if (i.type === 'critical') {
+                criticals.push(i);
+            }            
         }
 
         // Assign and return
@@ -84,7 +81,7 @@ export class MYZActorSheet extends ActorSheet {
         actorData.armor = armor;
         actorData.gear = gear;
         actorData.artifacts = artifacts;
-        //actorData.spells = spells;
+        actorData.criticals = criticals;
     }
 
     /* -------------------------------------------- */
@@ -167,11 +164,12 @@ export class MYZActorSheet extends ActorSheet {
             condition: (t) => {
                 return !CONFIG.MYZ.mutantSkills.includes(t[0].dataset.skillname);
             }
-        }];
-        new ContextMenu(html.find('.skill-item'), null, menu_items);
-        new ContextMenu(html.find('.talent-item'), null, menu_items);
-        new ContextMenu(html.find('.mutation-item'), null, menu_items);
-        new ContextMenu(html.find('.item'), null, menu_items);
+            }];
+        new ContextMenu(html.find('.editable-item'), null, menu_items);
+       // new ContextMenu(html.find('.skill-item'), null, menu_items);
+       // new ContextMenu(html.find('.talent-item'), null, menu_items);
+        //new ContextMenu(html.find('.mutation-item'), null, menu_items);
+        //new ContextMenu(html.find('.item'), null, menu_items);
 
         // Drag events for macros.
         if (this.actor.owner) {
@@ -244,9 +242,14 @@ export class MYZActorSheet extends ActorSheet {
         const item = this.actor.getOwnedItem($(event.currentTarget).data('itemid'));
         if (!item)
             return;
-        let msgText = `<h2>${item.data.name}</h2>` + item.data.data.description;
+        let msgText = "";
+        if (item.data.type == "critical") {
+            msgText = `<h2>${item.data.name}</h2>` + item.data.data.effect;
+        } else {
+           msgText = `<h2>${item.data.name}</h2>` + item.data.data.description;
+        }
+        
         ChatMessage.create({ content: msgText });
-
     }
 
     /**

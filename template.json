@@ -107,7 +107,7 @@
     }
   },
   "Item": {
-    "types": [ "skill", "mutation", "talent", "weapon", "armor", "gear", "artifact" ],
+    "types": [ "skill", "mutation", "talent", "weapon", "armor", "gear", "artifact", "critical" ],
     "templates": {
       "base": {
         "description": "",
@@ -115,8 +115,14 @@
       },
       "physical": {
         "quantity": 1,
-        "weight": 0,
+        "weight": "",
         "cost": 0
+      },
+      "bonus": {
+        "bonus": {
+          "value": 0, 
+          "max": 0
+        }
       }
     },
     "skill": {
@@ -134,16 +140,21 @@
       "type": ""
     },
     "weapon": {
-      "templates": [ "base", "physical" ],
+      "templates": [ "base", "physical", "bonus" ],
       "bonus": 0,
       "damage": 0,
       "range": "",
-      "skill": ""
+      "skill": "",
+      "artifactBonus": 0,
+      "skillBonus": 0
     },
     "armor": {
       "templates": [ "base", "physical" ],
       "type": "",
-      "rating": 0,
+      "rating": {
+        "value": 1,
+        "max": 1
+      },
       "equiped": false
     },
     "gear": {
@@ -152,6 +163,12 @@
     },
     "artifact": {
       "templates": [ "base", "physical" ]
+    },
+    "critical": {
+      "leathal": "",
+      "timeLimit": "",
+      "healingTime": "",
+      "effect": ""
     }
   }
 }
