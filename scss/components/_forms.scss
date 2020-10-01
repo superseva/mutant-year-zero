@@ -45,17 +45,23 @@
     height: 100%;
 }
 
-.gear-section{
-    margin-top: 10px;
-    display:flex;
+.attribute-name{
+    font-weight: 500;
+    text-transform:uppercase;
+}
+
+.gear-section {
+    padding-top: 10px;
+    display: flex;
     flex-direction: row;
 
-    .col1{
-        max-width:150px;
+    .col1 {
+        max-width: 150px;
+        margin-right: 10px;
     }
 
-    .col2, col3{
-
+    .col2 {
+        width: 100%;
     }
 }
 
@@ -72,6 +78,7 @@
 .box-list {
     border: 1px solid;
     margin-bottom: 10px;
+    background-color: $c-brown-pale;
 
     .box-header {
         padding: 5px;
@@ -79,6 +86,9 @@
         align-items: center;
         background-color: $c-brown-dark;
         background-image: url("../ui/box-header-brown.jpg");
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 
         input {
             background-color: $c-white;
@@ -87,7 +97,7 @@
 
     .box-content {
         padding: 2px;
-        background-color: $c-brown-pale;
+        min-height: 87px;
 
         .box-item {
             border-bottom: 1px solid $c-brown-mid;
@@ -109,22 +119,22 @@
         }
     }
 
-    &.mutations, &.talents {
+   /* &.mutations, &.talents {
         .box-content {
             min-height: 87px;
         }
-    }
+    }*/
 }
 
-    .viewable, .chatable, .item-create {
-        cursor: pointer;
-    }
+.viewable, .chatable, .item-create {
+    cursor: pointer;
+}
 
-    .short-input {
-        max-width: 3em;
-        text-align: center;
-    }
+.short-input {
+    max-width: 3em;
+    text-align: center;
+}
 
-    .item-create {
-        text-align: right;
-    }
+.item-create {
+    text-align: right;
+}

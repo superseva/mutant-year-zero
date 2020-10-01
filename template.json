@@ -44,6 +44,10 @@
         "xp": {
           "label": "MYZ.EXPERIENCE",
           "value": 0
+        },
+        "crit": {
+          "label": "MYZ.CRITICAL",
+          "value": ""
         }
       },
       "status": {
@@ -103,7 +107,7 @@
     }
   },
   "Item": {
-    "types": [ "skill", "mutation", "talent", "weapon", "armor", "gear" ],
+    "types": [ "skill", "mutation", "talent", "weapon", "armor", "gear", "artifact" ],
     "templates": {
       "base": {
         "description": "",
@@ -131,19 +135,23 @@
     },
     "weapon": {
       "templates": [ "base", "physical" ],
-      "bonus":  0,
+      "bonus": 0,
       "damage": 0,
       "range": "",
-      "skill":""
+      "skill": ""
     },
     "armor": {
       "templates": [ "base", "physical" ],
       "type": "",
-      "bonus": 0
+      "rating": 0,
+      "equiped": false
     },
     "gear": {
       "templates": [ "base", "physical" ],
       "requirement": ""
+    },
+    "artifact": {
+      "templates": [ "base", "physical" ]
     }
   }
 }

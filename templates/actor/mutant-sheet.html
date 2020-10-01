@@ -22,7 +22,7 @@
                 </div>
                 <div class="flex column">
                     <div class="box-list rot-points">
-                        <div class="box-header flexrow">
+                        <div class="box-header">
                             <label for="data.rot.value">{{localize 'MYZ.ROT'}}</label>
                             <input class="short-input rot" type="number" name="data.rot.value" value="{{data.rot.value}}" min="{{data.rot.min}}" />
                             <span>/</span>
@@ -31,12 +31,12 @@
                         </div>
                     </div>
                     <!--<div class="box-list xp">
-                        <div class="box-header flexrow">
+                        <div class="box-header">
                             <label for="data.xp.value">MYZ.XP</label><input type="text" name="data.xp.value" value="{{data.xp.value}}" />
                         </div>
                     </div>-->
                     <div class="box-list armor">
-                        <div class="box-header flexrow">
+                        <div class="box-header">
                             <label for="data.armor-rating.value">MYZ.ARMOR</label>
                             <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
                         </div>
@@ -68,7 +68,7 @@
                         <div class="box-content flexcol">
                             {{#each data.attributes as |attribute key|}}
                             <div class="flexrow box-item">
-                                <label>{{key}}</label>
+                                <label class="attribute-name">{{key}}</label>
                                 <div>
                                     <input name="data.attributes.{{key}}.value" value="{{attribute.value}}" class="short-input" />
                                     <span>/</span>
@@ -96,7 +96,7 @@
                             {{localize "MYZ.CRITICALS"}}
                         </div>
                         <div class="box-content flexcol">
-                            <textarea></textarea>
+                            <textarea name="data.crit.value" style="resize: none; color:crimson">{{data.crit.value}}</textarea>
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@
                 <!--MID SECTION-->
                 <div class="col2">
                     <div class="box-list skills flexcol">
-                        <div class="box-header flexrow">
+                        <div class="box-header">
                             <span>{{localize "MYZ.SKILLS"}}</span>
                             <span class="item-create" data-type="skill">+ Add</span>
                         </div>
@@ -122,14 +122,14 @@
                 <!--3rd SECTION-->
                 <div class="col3">
                     <div class="box-list mutation-points">
-                        <div class="box-header flexrow">
+                        <div class="box-header">
                             <label for="data.mutation-points.value">MYZ.MUTAIONPOINTS</label>
                             <input class="short-input" type="text" name="data.mutation-points.value" value="{{data.mutation-points.value}}" />
                         </div>
                     </div>
 
                     <div class="box-list mutations">
-                        <div class="box-header flexrow">
+                        <div class="box-header">
                             <span>{{localize "MYZ.MUTATIONS"}}</span>
                             <span class="item-create" data-type="mutation">+ Add</span>
                         </div>
@@ -144,7 +144,7 @@
                     </div>
 
                     <div class="box-list talents">
-                        <div class="box-header flexrow">
+                        <div class="box-header">
                             <span>{{localize "MYZ.TALENTS"}}</span>
                             <span class="item-create" data-type="talent">+ Add</span>
                         </div>
@@ -167,7 +167,7 @@
             <div class="gear-section">
                 <div class="col1">
                     <div class="box-list consumables">
-                        <div class="box-header flexrow">
+                        <div class="box-header">
                             <span>{{localize "MYZ.CONSUMABLES"}}</span>
                         </div>
                         <div class="box-content">
@@ -191,7 +191,96 @@
                     </div>
                 </div>
                 <div class="col2">
-
+                    
+                        <div class="box-list weapons">
+                            <div class="box-header">
+                                <label>{{localize "MYZ.WEAPONS"}}</label>
+                                <span class="item-create" data-type="weapon">+ ADD</span>
+                            </div>
+                            <div class="box-content items-list">
+                                <div class="item weapon flexrow">
+                                    <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
+                                    <span class="item-name">{{localize 'MYZ.NAME'}}</span>
+                                    <span>{{localize 'MYZ.DAMAGE'}}</span>
+                                    <span>{{localize 'MYZ.RANGE'}}</span>
+                                </div>
+                                {{#each actor.weapons as |weapon key|}}
+                                <div class="item weapon flexrow" data-itemid="{{weapon._id}}">
+                                    <img class="item-image" src="{{weapon.img}}"/>
+                                    <span class="item-name">{{weapon.name}}</span>
+                                    <span>{{weapon.data.damage}}</span>
+                                    <span>{{weapon.data.range}}</span>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                        <div class="box-list armors">
+                            <div class="box-header">
+                                <label>{{localize "MYZ.ARMOR"}}</label>
+                                <span class="item-create" data-type="armor">+ ADD</span>
+                            </div>
+                            <div class="box-content items-list">
+                                <div class="item armor flexrow">
+                                    <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
+                                    <span class="item-name">{{localize 'MYZ.NAME'}}</span>
+                                    <span>{{localize 'MYZ.RATING'}}</span>
+                                    <span>{{localize 'MYZ.TYPE'}}</span>
+                                    <span>{{localize 'MYZ.EQUIPED'}}</span>
+                                </div>
+                                {{#each actor.armor as |armor key|}}
+                                <div class="item armor flexrow" data-itemid="{{armor._id}}">
+                                    <img class="item-image" src="{{armor.img}}" />
+                                    <span class="item-name">{{armor.name}}</span>
+                                    <span>{{armor.data.rating}}</span>
+                                    <span>{{armor.data.type}}</span>
+                                    <span>{{armor.data.equiped}}</span>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    
+                    <div class="gear-row grid grid-2col">
+                        <div class="box-list gear">
+                            <div class="box-header">
+                                <label>{{localize "MYZ.GEAR"}}</label>
+                                <span class="item-create" data-type="gear">+ ADD</span>
+                            </div>
+                            <div class="box-content items-list">
+                                <div class="item gear flexrow">
+                                    <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
+                                    <span class="item-name">{{localize 'MYZ.NAME'}}</span>
+                                    <span>{{localize 'MYZ.WEIGHT'}}</span>
+                                </div>
+                                {{#each actor.gear as |gear key|}}
+                                <div class="item gear flexrow" data-itemid="{{gear._id}}">
+                                    <img class="item-image" src="{{gear.img}}" />
+                                    <span class="item-name">{{gear.name}}</span>
+                                    <span>{{gear.data.weight}}</span>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                        <div class="box-list artifacts">
+                            <div class="box-header">
+                                <label>{{localize "MYZ.ARTIFACTS"}}</label>
+                                <span class="item-create" data-type="artifact">+ ADD</span>
+                            </div>
+                            <div class="box-content items-list">
+                                <div class="item artifact flexrow">
+                                    <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
+                                    <span class="item-name">{{localize 'MYZ.NAME'}}</span>
+                                    <span>{{localize 'MYZ.WEIGHT'}}</span>
+                                </div>
+                                {{#each actor.artifacts as |artifact key|}}
+                                <div class="item artifact flexrow" data-itemid="{{artifact._id}}">
+                                    <img class="item-image" src="{{artifact.img}}" />
+                                    <span class="item-name">{{artifact.name}}</span>
+                                    <span>{{artifact.data.weight}}</span>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -308,8 +308,13 @@
   height: 100%;
 }
 
+.mutant-year-zero .attribute-name {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
 .mutant-year-zero .gear-section {
-  margin-top: 10px;
+  padding-top: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -321,6 +326,11 @@
 
 .mutant-year-zero .gear-section .col1 {
   max-width: 150px;
+  margin-right: 10px;
+}
+
+.mutant-year-zero .gear-section .col2 {
+  width: 100%;
 }
 
 .mutant-year-zero .tox .tox-editor-container {
@@ -334,6 +344,12 @@
 .mutant-year-zero .box-list {
   border: 1px solid;
   margin-bottom: 10px;
+  background-color: #f0d5b7;
+  /* &.mutations, &.talents {
+        .box-content {
+            min-height: 87px;
+        }
+    }*/
 }
 
 .mutant-year-zero .box-list .box-header {
@@ -344,6 +360,16 @@
   align-items: center;
   background-color: #26211c;
   background-image: url("../ui/box-header-brown.jpg");
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .mutant-year-zero .box-list .box-header input {
@@ -352,7 +378,7 @@
 
 .mutant-year-zero .box-list .box-content {
   padding: 2px;
-  background-color: #f0d5b7;
+  min-height: 87px;
 }
 
 .mutant-year-zero .box-list .box-content .box-item {
@@ -374,10 +400,6 @@
 
 .mutant-year-zero .box-list .box-content .box-item:last-child {
   border: none;
-}
-
-.mutant-year-zero .box-list.mutations .box-content, .mutant-year-zero .box-list.talents .box-content {
-  min-height: 87px;
 }
 
 .mutant-year-zero .viewable, .mutant-year-zero .chatable, .mutant-year-zero .item-create {
@@ -416,9 +438,7 @@
 
 .mutant-year-zero .items-list {
   list-style: none;
-  margin: 7px 0;
   padding: 0;
-  overflow-y: auto;
 }
 
 .mutant-year-zero .items-list .item-header {
@@ -429,13 +449,21 @@
   height: 30px;
   line-height: 24px;
   padding: 3px 0;
-  border-bottom: 1px solid #BBB;
+  border-bottom: 1px solid #9d5625;
+}
+
+.mutant-year-zero .items-list .item.weapon .item-name, .mutant-year-zero .items-list .item.armor .item-name {
+  -webkit-box-flex: 3;
+  -ms-flex-positive: 3;
+  flex-grow: 3;
 }
 
 .mutant-year-zero .items-list .item .item-image {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 24px;
   flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
   margin-right: 5px;
 }
 

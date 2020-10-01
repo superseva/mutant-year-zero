@@ -35,8 +35,10 @@ export class MYZActorSheet extends ActorSheet {
         const skills = [];
         const talents = [];
         const mutations = [];
+        const weapons = [];
+        const armor = [];
         const gear = [];
-        const features = [];
+        const artifacts = [];       
         const spells = {};
 
         // Iterate through items, allocating to containers
@@ -54,12 +56,17 @@ export class MYZActorSheet extends ActorSheet {
             else if (i.type === 'mutation') {
                 mutations.push(i);
             }
-            else if (i.type === 'item') {
+            else if (i.type === 'weapon') {
+                weapons.push(i);
+            }
+            else if (i.type === 'armor') {
+                armor.push(i);
+            }
+            else if (i.type === 'gear') {
                 gear.push(i);
             }
-            // Append to features.
-            else if (i.type === 'feature') {
-                features.push(i);
+            else if (i.type === 'artifact') {
+                artifacts.push(i);
             }
             // Append to spells.
             else if (i.type === 'spell') {
@@ -73,8 +80,10 @@ export class MYZActorSheet extends ActorSheet {
         actorData.skills = skills;
         actorData.talents = talents;
         actorData.mutations = mutations;
-        //actorData.gear = gear;
-        //actorData.features = features;
+        actorData.weapons = weapons;
+        actorData.armor = armor;
+        actorData.gear = gear;
+        actorData.artifacts = artifacts;
         //actorData.spells = spells;
     }
 
@@ -152,7 +161,7 @@ export class MYZActorSheet extends ActorSheet {
         },
         {
             icon: '<i class="fas fa-dice-d6"></i>', name: "Delete",
-            callback: (t) => {
+            callback: (t) => { 
                 this._deleteOwnedItemById(t[0].dataset.itemid);
             },
             condition: (t) => {
@@ -162,6 +171,7 @@ export class MYZActorSheet extends ActorSheet {
         new ContextMenu(html.find('.skill-item'), null, menu_items);
         new ContextMenu(html.find('.talent-item'), null, menu_items);
         new ContextMenu(html.find('.mutation-item'), null, menu_items);
+        new ContextMenu(html.find('.item'), null, menu_items);
 
         // Drag events for macros.
         if (this.actor.owner) {
