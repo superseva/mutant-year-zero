@@ -87,6 +87,10 @@ export class MYZActorSheet extends ActorSheet {
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
 
+        /* -------------------------------------------- */
+        /* ROLL & PUSH BUTTONS
+        /* -------------------------------------------- */
+
         html.find(".button-roll").click((ev) => {
             RollDialog.prepareRollDialog({ rollName: "Roll From Dialog", diceRoller: this.diceRoller });
         });
@@ -95,25 +99,38 @@ export class MYZActorSheet extends ActorSheet {
             this.diceRoller.push();
         });
 
-        //Change Skill Value
+        /* -------------------------------------------- */
+        /* LISTEN VALUE CHANGING
+        /* -------------------------------------------- */
+
+        /* CHANGE SKILL VALUE */
         html.find('.skill-value').change(this._onChangeSkillValue.bind(this));
 
-        // Add Inventory Item
+        /* ADD INVENTORY ITEM */
         html.find('.item-create').click(this._onItemCreate.bind(this));
 
-        // Update Inventory Item
+        // UPDATE INVENTORY ITEM
         html.find('.item-edit').click(ev => {
             const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.getOwnedItem(li.data("itemId"));
             item.sheet.render(true);
         });
 
-        // Delete Inventory Item
+        // DELETE INVENTORY ITEM
         html.find('.item-delete').click(ev => {
             const li = $(ev.currentTarget).parents(".item");
             this.actor.deleteOwnedItem(li.data("itemId"));
             li.slideUp(200, () => this.render(false));
         });
+
+        // listen permanent rot change and update value accordingly
+        html.find('.rot-perma').change(function () {
+        
+        }.bind(this));
+
+        /* -------------------------------------------- */
+        /* LISTEN CLICKS
+        /* -------------------------------------------- */
 
         // Rollable Item
         html.find('.rollable.skill-item').click(this._onRollSkill.bind(this));
@@ -202,7 +219,7 @@ export class MYZActorSheet extends ActorSheet {
             const item = this.actor.getOwnedItem(_i._id);
             item.sheet.render(true);
             //return _i;
-        });      
+        });
 
     }
 

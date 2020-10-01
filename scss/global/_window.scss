@@ -1,12 +1,18 @@
 .window-app {
-    font-family: $font-primary;    
+    font-family: $font-primary;
+
+    .window-content {
+        background-image: url(../ui/mutant-sheet-bg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 }
 
 .rollable {
   &:hover,
   &:focus {
     color: #000;
-    text-shadow: 0 0 10px red;
+    text-shadow: 0 0 10px black;
     cursor: pointer;
   }
 }

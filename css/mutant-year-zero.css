@@ -36,9 +36,15 @@
   font-family: "Roboto", sans-serif;
 }
 
+.window-app .window-content {
+  background-image: url(../ui/mutant-sheet-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .rollable:hover, .rollable:focus {
   color: #000;
-  text-shadow: 0 0 10px red;
+  text-shadow: 0 0 10px black;
   cursor: pointer;
 }
 
@@ -302,6 +308,21 @@
   height: 100%;
 }
 
+.mutant-year-zero .gear-section {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.mutant-year-zero .gear-section .col1 {
+  max-width: 150px;
+}
+
 .mutant-year-zero .tox .tox-editor-container {
   background: #fff;
 }
@@ -318,6 +339,9 @@
 .mutant-year-zero .box-list .box-header {
   padding: 5px;
   color: white;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   background-color: #26211c;
   background-image: url("../ui/box-header-brown.jpg");
 }
@@ -334,6 +358,14 @@
 .mutant-year-zero .box-list .box-content .box-item {
   border-bottom: 1px solid #9d5625;
   padding: 2px 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.mutant-year-zero .box-list .box-content .box-item input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
 }
 
 .mutant-year-zero .box-list .box-content .box-item .fa-eye {
@@ -344,12 +376,16 @@
   border: none;
 }
 
+.mutant-year-zero .box-list.mutations .box-content, .mutant-year-zero .box-list.talents .box-content {
+  min-height: 87px;
+}
+
 .mutant-year-zero .viewable, .mutant-year-zero .chatable, .mutant-year-zero .item-create {
   cursor: pointer;
 }
 
 .mutant-year-zero .short-input {
-  max-width: 2em;
+  max-width: 3em;
   text-align: center;
 }
 

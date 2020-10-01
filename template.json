@@ -7,6 +7,26 @@
           "label": "MYZ.ROLE",
           "value": ""
         },
+        "resources": {
+          "resources": {
+            "grub": {
+              "label": "MYZ.GRUB",
+              "value": 0
+            },
+            "water": {
+              "label": "MYZ.WATER",
+              "value": 0
+            },
+            "booze": {
+              "label": "MYZ.BOOZE",
+              "value": 0
+            },
+            "bullets": {
+              "label": "MYZ.BULLETS",
+              "value": 0
+            }
+          }
+        },
         "appearance": {
           "label": "MYZ.APPEARANCE",
           "value": ""
@@ -18,6 +38,7 @@
         },
         "rot": {
           "label": "MYZ.ROT",
+          "min": 0,
           "value": 0
         },
         "xp": {
@@ -47,7 +68,7 @@
       }
     },
     "mutant": {
-      "templates": [ "base", "status" ],
+      "templates": [ "base", "status", "resources" ],
       "attributes": {
         "strength": {
           "label": "MYZ.ATTRIBUTE.STRENGTH",
@@ -85,11 +106,13 @@
     "types": [ "skill", "mutation", "talent", "weapon", "armor", "gear" ],
     "templates": {
       "base": {
-        "description": ""
+        "description": "",
+        "comment": ""
       },
       "physical": {
         "quantity": 1,
-        "weight": 0
+        "weight": 0,
+        "cost": 0
       }
     },
     "skill": {
@@ -107,13 +130,20 @@
       "type": ""
     },
     "weapon": {
-      "templates": [ "base", "physical" ]
+      "templates": [ "base", "physical" ],
+      "bonus":  0,
+      "damage": 0,
+      "range": "",
+      "skill":""
     },
     "armor": {
-      "templates": [ "base", "physical" ]
+      "templates": [ "base", "physical" ],
+      "type": "",
+      "bonus": 0
     },
     "gear": {
-      "templates": [ "base", "physical" ]
+      "templates": [ "base", "physical" ],
+      "requirement": ""
     }
   }
 }

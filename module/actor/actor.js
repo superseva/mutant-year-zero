@@ -4,28 +4,34 @@
  */
 export class MYZActor extends Actor {
 
-  /**
-   * Augment the basic actor data with additional dynamic data.
-   */
-  prepareData() {
-    super.prepareData();
+    /**
+     * Augment the basic actor data with additional dynamic data.
+     */
+    prepareData() {
+        super.prepareData();
 
-    const actorData = this.data;
-    const data = actorData.data;
-    const flags = actorData.flags;
+        const actorData = this.data;
+        const data = actorData.data;
+        const flags = actorData.flags;
 
+        console.warn(data);
 
-    // Make separate methods for each Actor type (character, npc, etc.) to keep
-    // things organized.
-    if (actorData.type === 'mutant') this._prepareMutantData(actorData);
-  }
+        // Make separate methods for each Actor type (character, npc, etc.) to keep
+        // things organized.
+        if (actorData.type === 'mutant') this._prepareMutantData(actorData);
 
-  /**
-   * Prepare Character type specific data
-   */
-  _prepareMutantData(actorData) {
-      const data = actorData.data;
-  }
+        // update ROT
+        if (data.rot.value < data.rot.min) {
+            data.rot.value = data.rot.min;
+        }
+    }
+
+    /**
+     * Prepare Character type specific data
+     */
+    _prepareMutantData(actorData) {
+        const data = actorData.data;
+    }
 
 
 }

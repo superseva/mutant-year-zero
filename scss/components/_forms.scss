@@ -1,57 +1,72 @@
 .item-form {
-  font-family: $font-primary;
+    font-family: $font-primary;
 }
 
 .sheet-header, .actor-header {
-  flex: 0 0 180px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-bottom: 10px;
+    flex: 0 0 180px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 10px;
 
-  .profile-img {
-    flex: 0 0 100px;
-    height: 100px;
-    margin-right: 10px;
-  }
-
-  .header-fields {
-    flex: 1;
-  }
-
-  h1.charname {
-    height: 2em;
-    padding: 0px;
-    margin: 5px 0;
-    border-bottom: 0;
-    input {
-      width: 100%;
-      height: 100%;
-      margin: 0;
+    .profile-img {
+        flex: 0 0 100px;
+        height: 100px;
+        margin-right: 10px;
     }
-  }
+
+    .header-fields {
+        flex: 1;
+    }
+
+    h1.charname {
+        height: 2em;
+        padding: 0px;
+        margin: 5px 0;
+        border-bottom: 0;
+
+        input {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+    }
 }
 
 .sheet-tabs {
-  flex: 0;
+    flex: 0;
 }
 
 .sheet-body,
 .sheet-body .tab,
 .sheet-body .tab .editor {
-  height: 100%;
+    height: 100%;
+}
+
+.gear-section{
+    margin-top: 10px;
+    display:flex;
+    flex-direction: row;
+
+    .col1{
+        max-width:150px;
+    }
+
+    .col2, col3{
+
+    }
 }
 
 .tox {
-  .tox-editor-container {
-    background: $c-white;
-  }
+    .tox-editor-container {
+        background: $c-white;
+    }
 
-  .tox-edit-area {
-    padding: 0 8px;
-  }
+    .tox-edit-area {
+        padding: 0 8px;
+    }
 }
 
 .box-list {
@@ -61,10 +76,12 @@
     .box-header {
         padding: 5px;
         color: white;
+        align-items: center;
         background-color: $c-brown-dark;
         background-image: url("../ui/box-header-brown.jpg");
-        input{
-            background-color:$c-white;
+
+        input {
+            background-color: $c-white;
         }
     }
 
@@ -75,6 +92,12 @@
         .box-item {
             border-bottom: 1px solid $c-brown-mid;
             padding: 2px 0;
+            align-items: center;
+
+            input[type='checkbox'] {
+                width: 15px;
+                height: 15px;
+            }
 
             .fa-eye {
                 cursor: pointer;
@@ -85,17 +108,23 @@
             border: none;
         }
     }
+
+    &.mutations, &.talents {
+        .box-content {
+            min-height: 87px;
+        }
+    }
 }
 
-.viewable, .chatable, .item-create{
-    cursor:pointer;
-}
+    .viewable, .chatable, .item-create {
+        cursor: pointer;
+    }
 
-.short-input {
-    max-width: 2em;
-    text-align: center;
-}
-.item-create{
-    text-align:right;
-}
+    .short-input {
+        max-width: 3em;
+        text-align: center;
+    }
 
+    .item-create {
+        text-align: right;
+    }
