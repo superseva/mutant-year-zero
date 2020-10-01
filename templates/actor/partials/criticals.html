@@ -1,0 +1,14 @@
+<div class="box-list criticals">
+    <div class="box-header">
+        {{localize "MYZ.CRITICALS"}}
+    </div>
+    <div class="box-content">
+        {{#each actor.criticals as |critical index|}}
+        <div class="box-item critical-item editable-item" data-itemid="{{critical._id}}">
+            <label><strong>{{critical.name}}:</strong> </label>
+            <label>{{critical.data.effect}}</label>
+            <i class="fas fa-comment chatable" data-itemid="{{critical._id}}"></i>
+        </div>
+        {{/each}}
+    </div>
+</div>

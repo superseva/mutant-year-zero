@@ -1,0 +1,14 @@
+<div class="box-list talents">
+    <div class="box-header">
+        <span>{{localize "MYZ.TALENTS"}}</span>
+        <span class="item-create" data-type="talent">+ Add</span>
+    </div>
+    <div class="box-content">
+        {{#each actor.talents as |talent index|}}
+        <div class="flexrow box-item talent-item editable-item" data-itemid="{{talent._id}}" data-skillname="{{talent.name}}">
+            <span class="viewable" data-itemid="{{talent._id}}">{{talent.name}}</span>
+            <span style="text-align:right" class="chatable" data-itemid="{{talent._id}}"><i class="fas fa-comment"></i></span>
+        </div>
+        {{/each}}
+    </div>
+</div>

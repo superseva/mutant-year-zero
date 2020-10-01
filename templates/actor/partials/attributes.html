@@ -1,0 +1,17 @@
+<div class="box-list attributes flexcol">
+    <div class="box-header">
+        {{localize "MYZ.ATTRIBUTES"}}
+    </div>
+    <div class="box-content flexcol">
+        {{#each data.attributes as |attribute key|}}
+        <div class="flexrow box-item">
+            <label class="attribute-name">{{key}}</label>
+            <div>
+                <input name="data.attributes.{{key}}.value" value="{{attribute.value}}" class="short-input" />
+                <span>/</span>
+                <input name="data.attributes.{{key}}.max" value="{{attribute.max}}" class="short-input" />
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

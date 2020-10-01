@@ -30,11 +30,6 @@
                             <input class="short-input rot-perma" type="number" name="data.rot.min" value="{{data.rot.min}}" min="0"/>
                         </div>
                     </div>
-                    <!--<div class="box-list xp">
-                        <div class="box-header">
-                            <label for="data.xp.value">MYZ.XP</label><input type="text" name="data.xp.value" value="{{data.xp.value}}" />
-                        </div>
-                    </div>-->
                     <div class="box-list armor">
                         <div class="box-header">
                             <label for="data.armor-rating.value">MYZ.ARMOR</label>
@@ -58,108 +53,21 @@
         {{!-- Attributes Tab --}}
         <div class="tab" data-group="primary" data-tab="attributes">
             <div class="grid grid-3col">
-                <!--FIRST SECTION-->
+                <!--LEFT SECTION-->
                 <div class="col1 flexcol">
-                    <div class="box-list attributes flexcol">
-                        <div class="box-header">
-                            {{localize "MYZ.ATTRIBUTES"}}
-                        </div>
-                        <div class="box-content flexcol">
-                            {{#each data.attributes as |attribute key|}}
-                            <div class="flexrow box-item">
-                                <label class="attribute-name">{{key}}</label>
-                                <div>
-                                    <input name="data.attributes.{{key}}.value" value="{{attribute.value}}" class="short-input" />
-                                    <span>/</span>
-                                    <input name="data.attributes.{{key}}.max" value="{{attribute.max}}" class="short-input" />
-                                </div>
-                            </div>
-                            {{/each}}
-                        </div>
-                    </div>
-                    <div class="box-list conditions flexcol">
-                        <div class="box-header">
-                            {{localize "MYZ.CONDITIONS"}}
-                        </div>
-                        <div class="box-content flexcol">
-                            {{#each data.conditions as |condition key|}}
-                            <div class="flexrow box-item">
-                                <label for="data.conditions.{{key}}.value">{{localize condition.label}}</label>
-                                <input type="checkbox" name="data.conditions.{{key}}.value" {{checked condition.value}} />
-                            </div>
-                            {{/each}}
-                        </div>
-                    </div>
-                    <div class="box-list criticals">
-                        <div class="box-header">
-                            {{localize "MYZ.CRITICALS"}}
-                        </div>
-                        <div class="box-content">
-                            {{#each actor.criticals as |critical index|}}
-                            <div class="box-item critical-item editable-item" data-itemid="{{critical._id}}">
-                                <label><strong>{{critical.name}}:</strong> </label>
-                                <label>{{critical.data.effect}}</label>
-                                <i class="fas fa-comment chatable" data-itemid="{{critical._id}}"></i>
-                            </div>
-                            {{/each}}
-                        </div>
-                    </div>
+                    {{> systems/mutant-year-zero/templates/actor/partials/attributes.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/conditions.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/criticals.html}}
+
                 </div>
                 <!--MID SECTION-->
                 <div class="col2">
-                    <div class="box-list skills flexcol">
-                        <div class="box-header">
-                            <span>{{localize "MYZ.SKILLS"}}</span>
-                            <span class="item-create" data-type="skill">+ Add</span>
-                        </div>
-                        <div class="box-content flexcol">
-                            {{#each actor.skills as |skill index|}}
-                            <div class="flexrow box-item">
-                                <label class="rollable skill-item editable-item" data-itemid="{{skill._id}}" data-skillname="{{skill.name}}">{{skill.name}}</label>
-                                <input class="skill-value short-input" data-itemid="{{skill._id}}" value="{{skill.data.value}}" />
-                            </div>
-                            {{/each}}
-                        </div>
-                    </div>
+                    {{> systems/mutant-year-zero/templates/actor/partials/skills.html}}
                 </div>
-                <!--3rd SECTION-->
+                <!--RIGHT SECTION-->
                 <div class="col3">
-                    <div class="box-list mutation-points">
-                        <div class="box-header">
-                            <label for="data.mutation-points.value">MYZ.MUTAIONPOINTS</label>
-                            <input class="short-input" type="text" name="data.mutation-points.value" value="{{data.mutation-points.value}}" />
-                        </div>
-                    </div>
-
-                    <div class="box-list mutations">
-                        <div class="box-header">
-                            <span>{{localize "MYZ.MUTATIONS"}}</span>
-                            <span class="item-create" data-type="mutation">+ Add</span>
-                        </div>
-                        <div class="box-content">
-                            {{#each actor.mutations as |mutation index|}}
-                            <div class="flexrow box-item mutation-item editable-item" data-itemid="{{mutation._id}}" data-skillname="{{mutation.name}}">
-                                <span class="viewable" data-itemid="{{mutation._id}}">{{mutation.name}}</span>
-                                <span style="text-align:right" class="chatable" data-itemid="{{mutation._id}}"><i class="fas fa-comment"></i></span>
-                            </div>
-                            {{/each}}
-                        </div>
-                    </div>
-
-                    <div class="box-list talents">
-                        <div class="box-header">
-                            <span>{{localize "MYZ.TALENTS"}}</span>
-                            <span class="item-create" data-type="talent">+ Add</span>
-                        </div>
-                        <div class="box-content">
-                            {{#each actor.talents as |talent index|}}
-                            <div class="flexrow box-item talent-item editable-item" data-itemid="{{talent._id}}" data-skillname="{{talent.name}}">
-                                <span class="viewable" data-itemid="{{talent._id}}">{{talent.name}}</span>
-                                <span style="text-align:right" class="chatable" data-itemid="{{talent._id}}"><i class="fas fa-comment"></i></span>
-                            </div>
-                            {{/each}}
-                        </div>
-                    </div>
+                    {{> systems/mutant-year-zero/templates/actor/partials/mutations.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/talents.html}}
                 </div>
             </div>
         </div>
@@ -168,6 +76,7 @@
         <div class="tab" data-group="primary" data-tab="gear">
 
             <div class="gear-section">
+                <!--CONSUMABLES SECTION-->
                 <div class="col1">
                     <div class="box-list consumables">
                         <div class="box-header">
@@ -193,6 +102,7 @@
                         </div>
                     </div>
                 </div>
+                <!--WEAPON AND ARMOR SECTION-->
                 <div class="col2">
                     {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}}
                     {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
@@ -205,9 +115,7 @@
         </div>
 
         {{!-- Info Tab --}}
-        <div class="tab" data-group="primary" data-tab="info">
-
-        </div>
+        {{> systems/mutant-year-zero/templates/actor/partials/info.html}}
 
 </form>
 

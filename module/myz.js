@@ -1,6 +1,6 @@
 // Import Modules
 import { MYZ } from "./config.js";
-import  MYZHooks from "./MYZHooks.js"
+import MYZHooks from "./MYZHooks.js"
 import { MYZActor } from "./actor/actor.js";
 import { MYZMutantSheet } from "./actor/mutant-sheet.js";
 import { MYZAnimalSheet } from "./actor/animal-sheet.js";
@@ -55,9 +55,11 @@ Hooks.once('init', async function () {
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
 
-    // If you need to add Handlebars helpers, here are a few useful examples:
-    
-   _preloadHandlebarsTemplates();
+    /* -------------------------------------------- */
+    /*  HANDLEBARS HELPERS      */
+    /* -------------------------------------------- */
+
+    _preloadHandlebarsTemplates();
 
     Handlebars.registerHelper('concat', function () {
         var outStr = '';
@@ -84,8 +86,6 @@ Hooks.once("ready", async function () {
 /*  POPULATE CHARACTER WITH DEFAULT SKILLS      */
 /* -------------------------------------------- */
 Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
-
-
 
 
 /* -------------------------------------------- */
@@ -138,12 +138,23 @@ function rollItemMacro(itemName) {
     return item.roll();
 }
 
-function _preloadHandlebarsTemplates(){
+/**
+ * LOAD PARTIALS 
+ **/
+
+function _preloadHandlebarsTemplates() {
     const templatePaths = [
+        "systems/mutant-year-zero/templates/actor/partials/attributes.html",
+        "systems/mutant-year-zero/templates/actor/partials/conditions.html",
+        "systems/mutant-year-zero/templates/actor/partials/criticals.html",
+        "systems/mutant-year-zero/templates/actor/partials/skills.html",
         "systems/mutant-year-zero/templates/actor/partials/weapons.html",
         "systems/mutant-year-zero/templates/actor/partials/armors.html",
         "systems/mutant-year-zero/templates/actor/partials/gear.html",
-         "systems/mutant-year-zero/templates/actor/partials/artifacts.html"
+        "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
+        "systems/mutant-year-zero/templates/actor/partials/mutations.html",
+        "systems/mutant-year-zero/templates/actor/partials/talents.html",
+        "systems/mutant-year-zero/templates/actor/partials/info.html"
     ];
     return loadTemplates(templatePaths);
 }
