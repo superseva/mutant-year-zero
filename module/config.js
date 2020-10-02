@@ -1,5 +1,12 @@
 export class MYZ {
 
+    static ActorTypes = {
+        mutant: { value: "mutant", label:"MYZ.MUTANT"},
+        animal: { value: "animal", label: "MYZ.ANIMAL" },
+        robot: { value: "robot", label: "MYZ.ROBOT" },
+        human: { value: "human", label: "MYZ.HUMAN" }
+    }
+
     static attributes = {
         strength: "MYZ.ATTRIBUTE.STRENGTH",
         agility: "MYZ.ATTRIBUTE.AGILITY",
