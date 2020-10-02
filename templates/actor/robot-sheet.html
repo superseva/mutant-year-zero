@@ -26,7 +26,7 @@
                             <label for="data.rot.value">{{localize 'MYZ.ROT'}}</label>
                             <input class="short-input rot" type="number" name="data.rot.value" value="{{data.rot.value}}" min="{{data.rot.min}}" />
                             <span>/</span>
-                            <label for="data.rot.value">{{localize 'MYZ.PERMANENT'}}</label>
+                            <label for="data.rot.value">{{localize 'MYZ.PERMA_ROT'}}</label>
                             <input class="short-input rot-perma" type="number" name="data.rot.min" value="{{data.rot.min}}" min="0" />
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                 <!--LEFT SECTION-->
                 <div class="col1">
                     {{> systems/mutant-year-zero/templates/actor/partials/attributes.html}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/conditions.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/chasis.html}}
                     {{> systems/mutant-year-zero/templates/actor/partials/criticals.html}}
 
                 </div>

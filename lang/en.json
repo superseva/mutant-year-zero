@@ -24,10 +24,23 @@
   "MYZ.ATTRIBUTE_WITS_ROBOT": "Processor",
   "MYZ.ATTRIBUTE_EMPATHY_ROBOT": "Network",
 
+  "MYZ.ROT": "Rot",
+  "MYZ.PERMA_ROT": "Perma Rot",
+
   "MYZ.CONDITION_STARVING": "Starving",
   "MYZ.CONDITION_DEHYDRATED": "Dehydrated",
   "MYZ.CONDITION_SLEEPLESS": "Sleepless",
   "MYZ.CONDITION_HYPOTHERMIC": "Hypothermic",
+
+  "MYZ.RESOURCE_POINTS_MUTANT": "Mutation Points",
+  "MYZ.RESOURCE_POINTS_ANIMAL": "Feral Points",
+  "MYZ.RESOURCE_POINTS_ROBOT": "Energy Points",
+  "MYZ.RESOURCE_POINTS_HUMAN": "Influence Points",
+
+  "MYZ.SKILLS_LABEL_MUTANT": "Skills",
+  "MYZ.SKILLS_LABEL_ANIMAL": "Skills",
+  "MYZ.SKILLS_LABEL_ROBOT": "Programs",
+  "MYZ.SKILLS_LABEL_HUMAN": "Skills",
 
   "MYZ.DICE_BASE": "base",
   "MYZ.DICE_SKILL": "skill",

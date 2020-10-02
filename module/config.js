@@ -98,8 +98,8 @@ export class MYZ {
         heal: {
             mutant: "Heal",
             animal: "Heal",
-            robot: "Heal",
-            human: "Repair"
+            robot: "Repair",
+            human: "Heal"
         }
     }
 

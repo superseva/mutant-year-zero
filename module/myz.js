@@ -183,6 +183,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
         "systems/mutant-year-zero/templates/actor/partials/mutations.html",
         "systems/mutant-year-zero/templates/actor/partials/talents.html",
+        "systems/mutant-year-zero/templates/actor/partials/chasis.html",
         "systems/mutant-year-zero/templates/actor/partials/info.html"
     ];
     return loadTemplates(templatePaths);
