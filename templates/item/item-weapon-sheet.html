@@ -41,17 +41,22 @@
                     <label>{{localize 'WEAPON.RANGE'}}</label>
                     <select name="data.range">
                         {{#select data.range}}
-                        <option value="arm">{{localize "RANGE.ARM"}}</option>
-                        <option value="near">{{localize "RANGE.NEAR"}}</option>
-                        <option value="short">{{localize "RANGE.SHORT"}}</option>
-                        <option value="long">{{localize "RANGE.LONG"}}</option>
-                        <option value="distant">{{localize "RANGE.DISTANT"}}</option>
+                        <option value="arm">{{localize "MYZ.RANGE.ARM"}}</option>
+                        <option value="near">{{localize "MYZ.RANGE.NEAR"}}</option>
+                        <option value="short">{{localize "MYZ.RANGE.SHORT"}}</option>
+                        <option value="long">{{localize "MYZ.RANGE.LONG"}}</option>
+                        <option value="distant">{{localize "MYZ.RANGE.DISTANT"}}</option>
                         {{/select}}
                     </select>
                 </div>
                 <div>
-                    <label for="data.skill" class="resource-label">{{localize 'MYZ.SKILL'}}</label>
-                    <input type="text" name="data.skill" value="{{data.skill}}" />
+                    <label>{{localize "WEAPON.CATEGORY"}}</label>
+                    <select name="data.category">
+                        {{#select data.category}}
+                        <option value="melee">{{localize "MYZ.WEAPON.MELEE"}}</option>
+                        <option value="ranged">{{localize "MYZ.WEAPON.RANGED"}}</option>
+                        {{/select}}
+                    </select>
                 </div>
                 <div>
                     <label for="data.bonus.value" class="resource-label">{{localize 'MYZ.BONUS'}}</label>

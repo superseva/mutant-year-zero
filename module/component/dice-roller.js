@@ -38,7 +38,7 @@ export class DiceRoller {
         if (damage) {
             if (damage > 0) {
                 computedDamage = computedDamage - 1;
-            }
+            }            
             this.lastDamage = computedDamage;
         }
         this.sendRollToChat(false);

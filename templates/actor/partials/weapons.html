@@ -9,14 +9,19 @@
             <span class="item-name">{{localize 'MYZ.NAME'}}</span>
             <span>{{localize 'MYZ.DAMAGE'}}</span>
             <span>{{localize 'MYZ.RANGE'}}</span>
+            <span></span>
         </div>
         {{#each actor.weapons as |weapon key|}}
-        <div class="item weapon flexrow editable-item" data-itemid="{{weapon._id}}">
-            <img class="item-image" src="{{weapon.img}}" />
-            <span class="item-name">{{weapon.name}}</span>
-            <span>{{weapon.data.damage}}</span>
-            <span>{{weapon.data.range}}</span>
+    <div class="item weapon flexrow editable-item" data-itemid="{{weapon._id}}">
+        <img class="item-image" src="{{weapon.img}}" />
+        <span class="item-name roll-weapon" data-itemid="{{weapon._id}}">{{weapon.name}}</span>
+        <span>{{weapon.data.damage}}</span>
+        <span>{{weapon.data.range}}</span>
+        <div class="item-controls">            
+            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
         </div>
+    </div>
         {{/each}}
     </div>
 </div>

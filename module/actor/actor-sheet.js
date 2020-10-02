@@ -128,15 +128,22 @@ export class MYZActorSheet extends ActorSheet {
         // UPDATE INVENTORY ITEM
         html.find('.item-edit').click(ev => {
             const li = $(ev.currentTarget).parents(".item");
-            const item = this.actor.getOwnedItem(li.data("itemId"));
+            const item = this.actor.getOwnedItem(li.data("itemid"));
             item.sheet.render(true);
         });
 
         // DELETE INVENTORY ITEM
         html.find('.item-delete').click(ev => {
             const li = $(ev.currentTarget).parents(".item");
-            this.actor.deleteOwnedItem(li.data("itemId"));
+            this.actor.deleteOwnedItem(li.data("itemid"));
             li.slideUp(200, () => this.render(false));
+        });
+
+        //Toggle Equip Inventory Item
+        html.find('.item-toggle').click(async (ev) => {
+            const li = $(ev.currentTarget).parents(".item");
+            const item = this.actor.getOwnedItem(li.data('itemid'));
+            await this.actor.updateOwnedItem(this._toggleEquipped(li.data('itemid'), item));
         });
 
         // listen permanent rot change and update value accordingly
@@ -154,7 +161,51 @@ export class MYZActorSheet extends ActorSheet {
         html.find('.viewable').click(this._onItemView.bind(this));
         // Chatable Item
         html.find('.chatable').click(this._onItemSendToChat.bind(this));
-        //Editable Item
+        //Roll Weapon Item
+        html.find(".roll-weapon").click((event) => {            
+            const itemId = $(event.currentTarget).data("itemid");            
+            const weapon = this.actor.getOwnedItem(itemId);
+            let testName = weapon.name;
+            let attribute;
+            let skill;
+            if (weapon.data.data.category === "melee") {
+                if (this.actor.data.type != 'robot') {
+                    attribute = this.actor.data.data.attributes.strength;
+                    skill = this.actor.data.items.find(i => i.name=="Fight");
+                } else {
+                    attribute = this.actor.data.data.attributes.servos;
+                    skill = this.actor.data.items.find(i => i.name == "Assault");
+                }                
+            } else {
+                if(this.actor.data.type != 'robot') {
+                    attribute = this.actor.data.data.attributes.agility;
+                }else {
+                    attribute = this.actor.data.data.attributes.stability;
+                }
+                skill = this.actor.data.items.find(i => i.name == "Shoot");
+            }
+            //let bonus = this.parseBonus(weapon.data.data.bonus.value);
+            RollDialog.prepareRollDialog({
+                rollName: testName,
+                diceRoller: this.diceRoller,
+                baseDefault: attribute.value,
+                skillDefault: skill.data.value,
+                gearDefault: weapon.data.data.bonus.value,
+                modifierDefault: weapon.data.data.skillBonus,
+                artifactDefault: weapon.data.data.artifactBonus || 0,
+                damage : weapon.data.data.damage
+            });
+            /*RollDialog.prepareRollDialog(
+                testName,
+                { name: game.i18n.localize(attribute.label), value: attribute.value },
+                { name: game.i18n.localize(skill.label), value: skill.value },
+                bonus,
+                weapon.data.data.artifactBonus || "",
+                weapon.data.data.skillBonus,
+                weapon.data.data.damage,
+                this.diceRoller
+            );*/
+        });
 
         /* -------------------------------------------- */
         /* ADD LEFT CLICK CONTENT MENU
@@ -288,6 +339,16 @@ export class MYZActorSheet extends ActorSheet {
                 modifierDefault: 0
             });
         }
+    }
+
+    //Toggle Equipment
+    _toggleEquipped(id, item) {
+        return {
+            _id: id,
+            data: {
+                equipped: !item.data.data.equipped,
+            },
+        };
     }
 
 }
