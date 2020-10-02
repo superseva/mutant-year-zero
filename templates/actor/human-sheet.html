@@ -1,7 +1,121 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} flexcol {{data.type}}" autocomplete="off">
 
-    <div>HUMANE</div>
-    <button class="button-roll">ROLL</button>
-    <button class="button-push">PUSH</button>
+    <div class="actor-header">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="grid grid-3col">
+                <div class="character-role flex column">
+                    <div class="flexrow">
+                        <label for="data.role.value">{{localize "MYZ.ROLE"}}:</label>
+                        <input name="data.role.value" type="text" value="{{data.role.value}}" />
+                    </div>
+                    <div class="flexrow">
+                        <label for="data.xp.value">{{localize "MYZ.XP"}}:</label><input type="text" data-type="Number" name="data.xp.value" value="{{data.xp.value}}" />
+                    </div>
+                </div>
+
+
+                <div class="flexcol">
+                    <button class="button-roll">ROLL</button>
+                    <button class="button-push">PUSH</button>
+                </div>
+                <div class="flex column">
+                    <div class="box-list rot-points {{data.type}}">
+                        <div class="box-header {{data.type}}">
+                            <label for="data.rot.value">{{localize 'MYZ.ROT'}}</label>
+                            <input class="short-input rot" type="number" name="data.rot.value" value="{{data.rot.value}}" min="{{data.rot.min}}" />
+                            <span>/</span>
+                            <label for="data.rot.value">{{localize 'MYZ.PERMANENT'}}</label>
+                            <input class="short-input rot-perma" type="number" name="data.rot.min" value="{{data.rot.min}}" min="0" />
+                        </div>
+                    </div>
+                    <div class="box-list armor {{data.type}}">
+                        <div class="box-header">
+                            <label for="data.armor-rating.value">MYZ.ARMOR</label>
+                            <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="attributes">{{localize "MYZ.ATTRIBUTES"}}</a>
+        <a class="item" data-tab="gear">{{localize "MYZ.GEAR"}}</a>
+        <a class="item" data-tab="info">{{localize "MYZ.INFO"}}</a>
+    </nav>
+
+
+    <div class="sheet-body">
+        {{!-- Attributes Tab --}}
+        <div class="tab" data-group="primary" data-tab="attributes">
+            <div class="grid grid-3col">
+                <!--LEFT SECTION-->
+                <div class="col1">
+                    {{> systems/mutant-year-zero/templates/actor/partials/attributes.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/conditions.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/criticals.html}}
+
+                </div>
+                <!--MID SECTION-->
+                <div class="col2">
+                    {{> systems/mutant-year-zero/templates/actor/partials/skills.html}}
+                </div>
+                <!--RIGHT SECTION-->
+                <div class="col3">
+                    {{> systems/mutant-year-zero/templates/actor/partials/mutations.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/talents.html}}
+                </div>
+            </div>
+        </div>
+
+        {{!-- Gear Tab --}}
+        <div class="tab" data-group="primary" data-tab="gear">
+
+            <div class="gear-section">
+                <!--CONSUMABLES SECTION-->
+                <div class="col1">
+                    <div class="box-list consumables {{data.type}}">
+                        <div class="box-header {{data.type}}">
+                            <span>{{localize "MYZ.CONSUMABLES"}}</span>
+                        </div>
+                        <div class="box-content">
+                            <div>
+                                <label for="data.resources.grub.value">{{localize "MYZ.GRUB"}}</label>
+                                <input name="data.resources.grub.value" type="text" data-type="Number" value="{{data.resources.grub.value}}" />
+                            </div>
+                            <div>
+                                <label for="data.resources.water.value">{{localize "MYZ.WATER"}}</label>
+                                <input name="data.resources.water.value" type="text" data-type="Number" value="{{data.resources.water.value}}" />
+                            </div>
+                            <div>
+                                <label for="data.resources.bullets.value">{{localize "MYZ.BULLETS"}}</label>
+                                <input name="data.resources.bullets.value" type="text" data-type="Number" value="{{data.resources.bullets.value}}" />
+                            </div>
+                            <div>
+                                <label for="data.resources.booze.value">{{localize "MYZ.BOOZE"}}</label>
+                                <input name="data.resources.booze.value" type="text" data-type="Number" value="{{data.resources.booze.value}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--WEAPON AND ARMOR SECTION-->
+                <div class="col2">
+                    {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
+                    <div class="gear-row grid grid-2col">
+                        {{> systems/mutant-year-zero/templates/actor/partials/gear.html}}
+                        {{> systems/mutant-year-zero/templates/actor/partials/artifacts.html}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Info Tab --}}
+        {{> systems/mutant-year-zero/templates/actor/partials/info.html}}
 
 </form>
+

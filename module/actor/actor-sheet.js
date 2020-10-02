@@ -16,9 +16,9 @@ export class MYZActorSheet extends ActorSheet {
         const data = super.getData();
         data.dtypes = ["String", "Number", "Boolean"];
         // Prepare items.
-        if (this.actor.data.type == 'mutant') {
+        //if (this.actor.data.type == 'mutant') {
             this._prepareCharacterItems(data);
-        }
+        //}
         return data;
     }
 
@@ -223,7 +223,8 @@ export class MYZActorSheet extends ActorSheet {
                 this._deleteOwnedItemById(t[0].dataset.itemid);
             },
             condition: (t) => {
-                return !CONFIG.MYZ.mutantSkills.includes(t[0].dataset.skillname);
+                return t[0].dataset.coreskill.length<1;
+                //return !CONFIG.MYZ.mutantSkills.includes(t[0].dataset.skillname);
             }
             }];
         new ContextMenu(html.find('.editable-item'), null, menu_items);

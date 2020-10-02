@@ -13,10 +13,10 @@
   "packs": [
 
     {
-      "name": "skills",
-      "label": "Skills",
+      "name": "core-skills",
+      "label": "Core Skills",
       "system": "mutant-year-zero",
-      "path": "./packs/skills.db",
+      "path": "./packs/core-skills.db",
       "entity": "Item"
     }
   ],

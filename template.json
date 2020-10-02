@@ -2,7 +2,7 @@
   "Actor": {
     "types": [ "mutant", "animal", "robot", "human" ],
     "templates": {
-      "base": {        
+      "base": {
         "role": {
           "label": "MYZ.ROLE",
           "value": ""
@@ -53,25 +53,25 @@
       "stats": {
         "attributes": {
           "strength": {
-            "label": "MYZ.ATTRIBUTE.STRENGTH",
+            "label": "MYZ.ATTRIBUTE_STRENGTH",
             "value": 4,
             "min": 0,
             "max": 4
           },
           "agility": {
-            "label": "MYZ.ATTRIBUTE.AGILITY",
+            "label": "MYZ.ATTRIBUTE_AGILITY",
             "value": 4,
             "min": 0,
             "max": 4
           },
           "wits": {
-            "label": "MYZ.ATTRIBUTE.WITS",
+            "label": "MYZ.ATTRIBUTE_WITS",
             "value": 4,
             "min": 0,
             "max": 4
           },
           "empathy": {
-            "label": "MYZ.ATTRIBUTE.EMPATHY",
+            "label": "MYZ.ATTRIBUTE_EMPATHY",
             "value": 4,
             "min": 0,
             "max": 4
@@ -81,28 +81,52 @@
       "status": {
         "conditions": {
           "starving": {
-            "label": "MYZ.CONDITION.STARVING",
+            "label": "MYZ.CONDITION_STARVING",
             "value": false
           },
           "dehydrated": {
-            "label": "MYZ.CONDITION.DEHYDRATED",
+            "label": "MYZ.CONDITION_DEHYDRATED",
             "value": false
           },
           "sleepless": {
-            "label": "MYZ.CONDITION.SLEEPLESS",
+            "label": "MYZ.CONDITION_SLEEPLESS",
             "value": false
           },
           "hypothermic": {
-            "label": "MYZ.CONDITION.HYPOTHERMIC",
+            "label": "MYZ.CONDITION_HYPOTHERMIC",
             "value": false
           }
         }
       }
     },
     "mutant": {
-      "templates": [ "base", "stats", "status", "resources"],
+      "templates": [ "base", "stats", "status", "resources" ],
       "resource-points": {
-        "label": "MYZ.MUTATION.POINTS",
+        "label": "MYZ.MUTATION_POINTS",
+        "value": 0,
+        "max": 10
+      }
+    },
+    "animal": {
+      "templates": [ "base", "stats", "status", "resources" ],
+      "resource-points": {
+        "label": "MYZ.FERAL_POINTS",
+        "value": 0,
+        "max": 10
+      }
+    },
+    "robot": {
+      "templates": [ "base", "stats", "status", "resources" ],
+      "resource-points": {
+        "label": "MYZ.ENERGY_POINTS",
+        "value": 0,
+        "max": 10
+      }
+    },
+    "human": {
+      "templates": [ "base", "stats", "status", "resources" ],
+      "resource-points": {
+        "label": "MYZ.INFLUENCE_POINTS",
         "value": 0,
         "max": 10
       }
@@ -132,7 +156,8 @@
       "value": 0,
       "min": 0,
       "attribute": "",
-      "actorType": ""
+      "actorType": "mutant",
+      "coreSkill": ""
     },
     "mutation": {
       "templates": [ "base" ],

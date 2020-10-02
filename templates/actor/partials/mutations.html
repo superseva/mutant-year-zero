@@ -1,12 +1,12 @@
-<div class="box-list mutation-points">
-    <div class="box-header">
+<div class="box-list mutation-points {{data.type}}">
+    <div class="box-header {{data.type}}">
         <label for="data.resource-points.value">MYZ.MUTAIONPOINTS</label>
         <input class="short-input" type="text" name="data.resource-points.value" value="{{data.resource-points.value}}" />
     </div>
 </div>
 
-<div class="box-list mutations">
-    <div class="box-header">
+<div class="box-list mutations {{data.type}}">
+    <div class="box-header {{data.type}}">
         <span>{{localize "MYZ.MUTATIONS"}}</span>
         <span class="item-create" data-type="mutation">+ Add</span>
     </div>

@@ -7,8 +7,8 @@ export class MYZHumanSheet extends MYZActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ["mutant-year-zero", "sheet", "actor"],
             template: "systems/mutant-year-zero/templates/actor/human-sheet.html",
-            width: 600,
-            height: 600,
+            width: 730,
+            height: 730,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
         });
     }

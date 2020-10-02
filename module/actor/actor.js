@@ -14,11 +14,12 @@ export class MYZActor extends Actor {
         const data = actorData.data;
         const flags = actorData.flags;
 
-        console.warn(actorData);
+        console.warn(data);
 
         // Make separate methods for each Actor type (character, npc, etc.) to keep
         // things organized.
-        if (actorData.type === 'mutant') this._prepareMutantData(actorData);
+        data.type = actorData.type;
+        //if (actorData.type === 'mutant') this._prepareMutantData(actorData);
 
         // update ROT
         if (data.rot.value < data.rot.min) {

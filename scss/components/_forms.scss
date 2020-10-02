@@ -80,6 +80,22 @@
     margin-bottom: 10px;
     background-color: $c-brown-pale;
 
+    &.mutant {
+        background-color: $c-brown-pale;
+    }
+
+    &.animal {
+        background-color: $c-green-pale;
+    }
+
+    &.robot {
+        background-color: $c-blue-pale;
+    }
+
+    &.human {
+        background-color: $c-teal-pale;
+    }
+
     .box-header {
         padding: 5px;
         color: white;
@@ -89,6 +105,22 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+        &.mutant {
+            background-image: url("../ui/box-header-brown.jpg");
+        }
+
+        &.animal {
+            background-image: url("../ui/box-header-green.jpg");
+        }
+
+        &.robot {
+            background-image: url("../ui/box-header-blue.jpg");
+        }
+
+        &.human {
+            background-image: url("../ui/box-header-tile.jpg");
+        }
 
         input {
             background-color: $c-white;
@@ -118,8 +150,7 @@
             border: none;
         }
     }
-
-   /* &.mutations, &.talents {
+    /* &.mutations, &.talents {
         .box-content {
             min-height: 87px;
         }

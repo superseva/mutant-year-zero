@@ -80,6 +80,10 @@ Hooks.once('init', async function () {
         return new Handlebars.SafeString(theString)
     });
 
+    Handlebars.registerHelper('resolveActorType', function (pre, keyName, actorType) {
+        return pre + '_' + keyName.toUpperCase() +'_'+ actorType.toUpperCase();
+    });
+
 });
 
 Hooks.once("ready", async function () {
@@ -91,6 +95,26 @@ Hooks.once("ready", async function () {
 /*  POPULATE CHARACTER WITH DEFAULT SKILLS      */
 /* -------------------------------------------- */
 Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
+
+// MAKE SURE OWNED SKILLS ARE THE SAME TYPE AS ACTOR
+Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
+    if (item.type == "skill") {
+        try {
+            if (updateData.data.actorType != actor.data.type) {
+                updateData.data.actorType = actor.data.type;
+            }
+        } catch{
+            //console.log('PROBABLY YOU ARE NOT CHANGING ACTOR TYPE');
+        }
+    }
+});
+Hooks.on("preCreateOwnedItem", (actor, item, updateData) => {
+    if (item.type == "skill") {
+        if (item.data.actorType != actor.data.type) {
+            item.data.actorType = actor.data.type;
+        }
+    }
+});
 
 
 /* -------------------------------------------- */

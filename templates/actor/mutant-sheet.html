@@ -1,4 +1,4 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} flexcol {{data.type}}" autocomplete="off">
 
     <div class="actor-header">
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
@@ -21,8 +21,8 @@
                     <button class="button-push">PUSH</button>
                 </div>
                 <div class="flex column">
-                    <div class="box-list rot-points">
-                        <div class="box-header">
+                    <div class="box-list rot-points {{data.type}}">
+                        <div class="box-header {{data.type}}">
                             <label for="data.rot.value">{{localize 'MYZ.ROT'}}</label>
                             <input class="short-input rot" type="number" name="data.rot.value" value="{{data.rot.value}}" min="{{data.rot.min}}" />
                             <span>/</span>
@@ -30,7 +30,7 @@
                             <input class="short-input rot-perma" type="number" name="data.rot.min" value="{{data.rot.min}}" min="0"/>
                         </div>
                     </div>
-                    <div class="box-list armor">
+                    <div class="box-list armor {{data.type}}">
                         <div class="box-header">
                             <label for="data.armor-rating.value">MYZ.ARMOR</label>
                             <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
@@ -78,8 +78,8 @@
             <div class="gear-section">
                 <!--CONSUMABLES SECTION-->
                 <div class="col1">
-                    <div class="box-list consumables">
-                        <div class="box-header">
+                    <div class="box-list consumables {{data.type}}">
+                        <div class="box-header {{data.type}}">
                             <span>{{localize "MYZ.CONSUMABLES"}}</span>
                         </div>
                         <div class="box-content">

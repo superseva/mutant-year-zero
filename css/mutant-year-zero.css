@@ -31,6 +31,9 @@
 }
 
 /*BROWNS*/
+/*GREENS*/
+/*BLUES*/
+/*TEAL*/
 /* Global styles */
 .window-app {
   font-family: "Roboto", sans-serif;
@@ -358,6 +361,22 @@
     }*/
 }
 
+.mutant-year-zero .box-list.mutant {
+  background-color: #f0d5b7;
+}
+
+.mutant-year-zero .box-list.animal {
+  background-color: #dee9d3;
+}
+
+.mutant-year-zero .box-list.robot {
+  background-color: #e2eaf4;
+}
+
+.mutant-year-zero .box-list.human {
+  background-color: #e1ede9;
+}
+
 .mutant-year-zero .box-list .box-header {
   padding: 5px;
   color: white;
@@ -376,6 +395,22 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.mutant-year-zero .box-list .box-header.mutant {
+  background-image: url("../ui/box-header-brown.jpg");
+}
+
+.mutant-year-zero .box-list .box-header.animal {
+  background-image: url("../ui/box-header-green.jpg");
+}
+
+.mutant-year-zero .box-list .box-header.robot {
+  background-image: url("../ui/box-header-blue.jpg");
+}
+
+.mutant-year-zero .box-list .box-header.human {
+  background-image: url("../ui/box-header-tile.jpg");
 }
 
 .mutant-year-zero .box-list .box-header input {
