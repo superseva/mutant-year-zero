@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;500;800&family=Montserrat:wght@300;400;500&display=swap");
+/*$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Roboto', sans-serif;*/
 /* MYZ FONT SYMBOLS*/
 @font-face {
   font-family: 'myz';
@@ -36,7 +38,7 @@
 /*TEAL*/
 /* Global styles */
 .window-app {
-  font-family: "Roboto", sans-serif;
+  font-family: "Karla", sans-serif;
   /*.editor-content{
         height:100%;
     }*/
@@ -258,7 +260,7 @@
 }
 
 .mutant-year-zero .item-form {
-  font-family: "Roboto", sans-serif;
+  font-family: "Karla", sans-serif;
 }
 
 .mutant-year-zero .sheet-header, .mutant-year-zero .actor-header {
@@ -321,7 +323,7 @@
 }
 
 .mutant-year-zero .attribute-name {
-  font-weight: 500;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
