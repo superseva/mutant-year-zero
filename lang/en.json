@@ -6,6 +6,10 @@
   "MYZ.ROBOT": "Robot",
   "MYZ.HUMAN": "Human",
 
+  "MYZ.NAME": "Name",
+  "MYZ.INFO": "Info",
+  "MYZ.VALUE": "Value",
+
   "MYZ.ATTRIBUTES": "Attributes",
   "MYZ.ATTRIBUTE_STRENGTH_MUTANT": "Strength",
   "MYZ.ATTRIBUTE_AGILITY_MUTANT": "Agility",
@@ -27,10 +31,14 @@
   "MYZ.ROT": "Rot",
   "MYZ.PERMA_ROT": "Perma Rot",
 
+  "MYZ.CONDITIONS": "Conditions",
   "MYZ.CONDITION_STARVING": "Starving",
   "MYZ.CONDITION_DEHYDRATED": "Dehydrated",
   "MYZ.CONDITION_SLEEPLESS": "Sleepless",
   "MYZ.CONDITION_HYPOTHERMIC": "Hypothermic",
+
+  "MYZ.CRITICAL": "Critical",
+  "MYZ.CRITICALS": "Criticals",
 
   "MYZ.MUTATIONS": "Mutations",
   "MYZ.ANIMAL_POWERS": "Animal Powers",
@@ -40,16 +48,27 @@
   "MYZ.RESOURCE_POINTS_ANIMAL": "Feral Points",
   "MYZ.RESOURCE_POINTS_ROBOT": "Energy Points",
   "MYZ.RESOURCE_POINTS_HUMAN": "Influence Points",
+  "MYZ.TALENT": "Talent",
+  "MYZ.TALENTS": "Talents",
+  "MYZ.SECONDARY_FUNCTION": "Secondary Function",
+  "MYZ.SECONDARY_FUNCTIONS": "Secondary Functions",
+
+  "MYZ.BROKEN": "Borken",
+  "MYZ.WEAPON": "Weapon",
+  "MYZ.WEAPONS": "Weapons",
+  "MYZ.ARMOR": "Armor",
+  "MYZ.GEAR": "Gear",
+  "MYZ.ARTIFACT": "Artifact",
+  "MYZ.ARTIFACTS": "Artifacts",
 
   "MYZ.SKILLS_LABEL_MUTANT": "Skills",
   "MYZ.SKILLS_LABEL_ANIMAL": "Skills",
   "MYZ.SKILLS_LABEL_ROBOT": "Programs",
   "MYZ.SKILLS_LABEL_HUMAN": "Skills",
 
-  "MYZ.DICE_BASE": "base",
-  "MYZ.DICE_SKILL": "skill",
-  "MYZ.DICE_GEAR": "gear",
-  "MYZ.ARTIFACTS": "artifacts",
-  "MYZ.MODIFIER": "modifier"
+  "MYZ.DICE_BASE": "Base",
+  "MYZ.DICE_SKILL": "Skill",
+  "MYZ.DICE_GEAR": "Gear",
+  "MYZ.MODIFIER": "Modifier"
 
 }

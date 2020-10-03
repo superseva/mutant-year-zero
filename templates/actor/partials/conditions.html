@@ -5,8 +5,10 @@
     <div class="grid grid-2col box-content">
         {{#each data.conditions as |condition key|}}
         <div class="flex row align-center">
-            <label for="data.conditions.{{key}}.value">{{localize condition.label}}</label>
-            <input type="checkbox" name="data.conditions.{{key}}.value" {{checked condition.value}} />
+            <label class="checkbox-label" for="data.conditions.{{key}}.value">
+                {{localize condition.label}}
+                <input type="checkbox" name="data.conditions.{{key}}.value" {{checked condition.value}} />
+            </label>
         </div>
         {{/each}}
     </div>

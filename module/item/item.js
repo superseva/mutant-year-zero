@@ -13,6 +13,7 @@ export class MYZItem extends Item {
         const itemData = this.data;
         const actorData = this.actor ? this.actor.data : {};
         const data = itemData.data;
+        data.itemType = itemData.type;
         data.default_attributes = CONFIG.MYZ.attributes;
     }
 
