@@ -161,6 +161,15 @@ export class MYZActorSheet extends ActorSheet {
         html.find('.viewable').click(this._onItemView.bind(this));
         // Chatable Item
         html.find('.chatable').click(this._onItemSendToChat.bind(this));
+        //Roll Rot
+        html.find(".roll-rot").click((event) => {
+            console.log(this.actor.data.data.rot.value);
+            RollDialog.prepareRollDialog({
+                rollName: game.i18n.localize('MYZ.ROT'),
+                diceRoller: this.diceRoller,
+                baseDefault: this.actor.data.data.rot.value
+            });
+        });
         //Roll Weapon Item
         html.find(".roll-weapon").click((event) => {            
             const itemId = $(event.currentTarget).data("itemid");            
@@ -195,16 +204,6 @@ export class MYZActorSheet extends ActorSheet {
                 artifactDefault: weapon.data.data.artifactBonus || 0,
                 damage : weapon.data.data.damage
             });
-            /*RollDialog.prepareRollDialog(
-                testName,
-                { name: game.i18n.localize(attribute.label), value: attribute.value },
-                { name: game.i18n.localize(skill.label), value: skill.value },
-                bonus,
-                weapon.data.data.artifactBonus || "",
-                weapon.data.data.skillBonus,
-                weapon.data.data.damage,
-                this.diceRoller
-            );*/
         });
 
         /* -------------------------------------------- */

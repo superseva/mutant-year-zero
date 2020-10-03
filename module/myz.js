@@ -176,6 +176,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/attributes.html",
         "systems/mutant-year-zero/templates/actor/partials/conditions.html",
         "systems/mutant-year-zero/templates/actor/partials/criticals.html",
+        "systems/mutant-year-zero/templates/actor/partials/rot.html",
         "systems/mutant-year-zero/templates/actor/partials/skills.html",
         "systems/mutant-year-zero/templates/actor/partials/weapons.html",
         "systems/mutant-year-zero/templates/actor/partials/armors.html",

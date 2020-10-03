@@ -1,0 +1,12 @@
+<div class="box-list rot-points {{data.type}}">
+    <div class="box-header {{data.type}}">
+        <label for="data.rot.value">{{localize 'MYZ.ROT'}}</label>
+        <input class="short-input rot" type="number" name="data.rot.value" value="{{data.rot.value}}" min="{{data.rot.min}}" />
+        <span>/</span>
+        <label for="data.rot.value">{{localize 'MYZ.PERMA_ROT'}}</label>
+        <input class="short-input rot-perma" type="number" name="data.rot.min" value="{{data.rot.min}}" min="0" />
+    </div>
+    <div>
+        <button class="roll-rot">ROLL ROT</button>
+    </div>
+</div>

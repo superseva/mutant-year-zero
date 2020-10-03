@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": [ "mutant", "animal", "robot", "human" ],
+    "types": ["mutant", "animal", "robot", "human" ],
     "templates": {
       "base": {
         "role": {
