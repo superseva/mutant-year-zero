@@ -1,13 +1,17 @@
-<div class="box-list talents {{data.type}}">
+{{! PARAM: sourceType: to create a new item type in the list}}
+{{! PARAM: sourceList: existing list of mutations/powers/contacts}}
+{{! PARAM: sourceLabel: to create a header label}}
+
+<div class="box-list mutations {{data.type}}">
     <div class="box-header {{data.type}}">
-        <span>{{localize "MYZ.TALENTS"}}</span>
-        <span class="item-create" data-type="talent">+ Add</span>
+        <span>{{localize sourceLabel}}</span>
+        <span class="item-create" data-type="{{sourceType}}">+ Add</span>
     </div>
     <div class="box-content">
-        {{#each actor.talents as |talent index|}}
-        <div class="flexrow box-item talent-item editable-item" data-itemid="{{talent._id}}" data-skillname="{{talent.name}}">
-            <span class="viewable" data-itemid="{{talent._id}}">{{talent.name}}</span>
-            <span style="text-align:right" class="chatable" data-itemid="{{talent._id}}"><i class="fas fa-comment"></i></span>
+        {{#each sourceList as |listItem index|}}
+        <div class="flexrow box-item editable-item" data-itemid="{{listItem._id}}" data-skillname="{{listItem.name}}">
+            <span class="viewable" data-itemid="{{listItem._id}}">{{listItem.name}}</span>            
+            <span style="text-align:right" class="chatable" data-itemid="{{listItem._id}}"><i class="fas fa-comment"></i></span>
         </div>
         {{/each}}
     </div>

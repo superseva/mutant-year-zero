@@ -34,7 +34,7 @@ export class MYZActorSheet extends ActorSheet {
         // Initialize containers.
         const skills = [];
         const talents = [];
-        const secondary_powers = [];
+        const secondary_functions = [];
         const mutations = [];
         const animal_powers = [];
         const modules = [];
@@ -57,8 +57,8 @@ export class MYZActorSheet extends ActorSheet {
             else if (i.type === 'talent') {
                 talents.push(i);
             }
-            else if (i.type === 'secondary_power') {
-                secondary_powers.push(i);
+            else if (i.type === 'secondary_function') {
+                secondary_functions.push(i);
             }
             else if (i.type === 'mutation') {
                 mutations.push(i);
@@ -102,7 +102,7 @@ export class MYZActorSheet extends ActorSheet {
         // Assign and return
         actorData.skills = skills;
         actorData.talents = talents;
-        actorData.secondary_powers = secondary_powers;
+        actorData.secondary_functions = secondary_functions;
         actorData.mutations = mutations;
         actorData.animal_powers = animal_powers;
         actorData.contacts = contacts;
