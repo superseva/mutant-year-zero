@@ -17,7 +17,7 @@ export class MYZActorSheet extends ActorSheet {
         data.dtypes = ["String", "Number", "Boolean"];
         // Prepare items.
         //if (this.actor.data.type == 'mutant') {
-            this._prepareCharacterItems(data);
+        this._prepareCharacterItems(data);
         //}
         return data;
     }
@@ -34,7 +34,11 @@ export class MYZActorSheet extends ActorSheet {
         // Initialize containers.
         const skills = [];
         const talents = [];
+        const secondary_powers = [];
         const mutations = [];
+        const animal_powers = [];
+        const modules = [];
+        const contacts = [];
         const weapons = [];
         const armor = [];
         const gear = [];
@@ -53,8 +57,20 @@ export class MYZActorSheet extends ActorSheet {
             else if (i.type === 'talent') {
                 talents.push(i);
             }
+            else if (i.type === 'secondary_power') {
+                secondary_powers.push(i);
+            }
             else if (i.type === 'mutation') {
                 mutations.push(i);
+            }
+            else if (i.type === 'animal_power') {
+                animal_powers.push(i);
+            }
+            else if (i.type === 'contact') {
+                contacts.push(i);
+            }
+            else if (i.type === 'module') {
+                modules.push(i);
             }
             else if (i.type === 'weapon') {
                 weapons.push(i);
@@ -70,7 +86,7 @@ export class MYZActorSheet extends ActorSheet {
             }
             else if (i.type === 'critical') {
                 criticals.push(i);
-            }            
+            }
         }
         //sort skills
         const sortedBy = {
@@ -86,7 +102,11 @@ export class MYZActorSheet extends ActorSheet {
         // Assign and return
         actorData.skills = skills;
         actorData.talents = talents;
+        actorData.secondary_powers = secondary_powers;
         actorData.mutations = mutations;
+        actorData.animal_powers = animal_powers;
+        actorData.contacts = contacts;
+        actorData.modules = modules;
         actorData.weapons = weapons;
         actorData.armor = armor;
         actorData.gear = gear;
@@ -146,10 +166,12 @@ export class MYZActorSheet extends ActorSheet {
             await this.actor.updateOwnedItem(this._toggleEquipped(li.data('itemid'), item));
         });
 
-        // listen permanent rot change and update value accordingly
-        html.find('.rot-perma').change(function () {
-        
-        }.bind(this));
+        //LISTEN MODULE BROKEN CHECKBOX IN MODULES LIST
+        html.find('.module-checkbox').change(async (ev) => {
+            const modId = $(ev.currentTarget).data('modid');
+            const item = this.actor.getOwnedItem(modId);
+            await this.actor.updateOwnedItem(this._toggleBroken(modId, item));
+        });
 
         /* -------------------------------------------- */
         /* LISTEN CLICKS
@@ -171,8 +193,8 @@ export class MYZActorSheet extends ActorSheet {
             });
         });
         //Roll Weapon Item
-        html.find(".roll-weapon").click((event) => {            
-            const itemId = $(event.currentTarget).data("itemid");            
+        html.find(".roll-weapon").click((event) => {
+            const itemId = $(event.currentTarget).data("itemid");
             const weapon = this.actor.getOwnedItem(itemId);
             let testName = weapon.name;
             let attribute;
@@ -180,15 +202,15 @@ export class MYZActorSheet extends ActorSheet {
             if (weapon.data.data.category === "melee") {
                 if (this.actor.data.type != 'robot') {
                     attribute = this.actor.data.data.attributes.strength;
-                    skill = this.actor.data.items.find(i => i.name=="Fight");
+                    skill = this.actor.data.items.find(i => i.name == "Fight");
                 } else {
                     attribute = this.actor.data.data.attributes.servos;
                     skill = this.actor.data.items.find(i => i.name == "Assault");
-                }                
+                }
             } else {
-                if(this.actor.data.type != 'robot') {
+                if (this.actor.data.type != 'robot') {
                     attribute = this.actor.data.data.attributes.agility;
-                }else {
+                } else {
                     attribute = this.actor.data.data.attributes.stability;
                 }
                 skill = this.actor.data.items.find(i => i.name == "Shoot");
@@ -202,7 +224,7 @@ export class MYZActorSheet extends ActorSheet {
                 gearDefault: weapon.data.data.bonus.value,
                 modifierDefault: weapon.data.data.skillBonus,
                 artifactDefault: weapon.data.data.artifactBonus || 0,
-                damage : weapon.data.data.damage
+                damage: weapon.data.data.damage
             });
         });
 
@@ -218,19 +240,18 @@ export class MYZActorSheet extends ActorSheet {
         },
         {
             icon: '<i class="fas fa-dice-d6"></i>', name: "Delete",
-            callback: (t) => { 
+            callback: (t) => {
                 this._deleteOwnedItemById(t[0].dataset.itemid);
             },
             condition: (t) => {
-                return t[0].dataset.coreskill.length<1;
-                //return !CONFIG.MYZ.mutantSkills.includes(t[0].dataset.skillname);
+                if (t[0].dataset.coreskill) {
+                    return t[0].dataset.coreskill.length < 1;
+                } else {
+                    return true;
+                }
             }
-            }];
+        }];
         new ContextMenu(html.find('.editable-item'), null, menu_items);
-       // new ContextMenu(html.find('.skill-item'), null, menu_items);
-       // new ContextMenu(html.find('.talent-item'), null, menu_items);
-        //new ContextMenu(html.find('.mutation-item'), null, menu_items);
-        //new ContextMenu(html.find('.item'), null, menu_items);
 
         // Drag events for macros.
         if (this.actor.owner) {
@@ -307,9 +328,9 @@ export class MYZActorSheet extends ActorSheet {
         if (item.data.type == "critical") {
             msgText = `<h2>${item.data.name}</h2>` + item.data.data.effect;
         } else {
-           msgText = `<h2>${item.data.name}</h2>` + item.data.data.description;
+            msgText = `<h2>${item.data.name}</h2>` + item.data.data.description;
         }
-        
+
         ChatMessage.create({ content: msgText });
     }
 
@@ -350,5 +371,17 @@ export class MYZActorSheet extends ActorSheet {
             },
         };
     }
+
+    //Toggle Broken
+    _toggleBroken(id, item) {
+        return {
+            _id: id,
+            data: {
+                broken: !item.data.data.broken,
+            },
+        };
+    }
+
+
 
 }

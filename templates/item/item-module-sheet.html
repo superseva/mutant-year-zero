@@ -2,6 +2,11 @@
     {{!-- HEADER --}}
     {{> systems/mutant-year-zero/templates/item/partials/header-simple.html}}
 
+    <div class="flexrow">
+        <label>{{localize "MYZ.BROKEN"}}</label>
+        <input type="checkbox" name="data.broken"  {{checked data.broken}} />
+    </div>
+
     {{!-- Sheet Body --}}
     {{> systems/mutant-year-zero/templates/item/partials/mutation-template.html}}
 </form>

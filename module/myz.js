@@ -84,6 +84,10 @@ Hooks.once('init', async function () {
         return pre + '_' + keyName.toUpperCase() +'_'+ actorType.toUpperCase();
     });
 
+    Handlebars.registerHelper('isdefined', function (value) {
+        return value !== undefined;
+    });
+
 });
 
 Hooks.once("ready", async function () {
@@ -182,6 +186,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/armors.html",
         "systems/mutant-year-zero/templates/actor/partials/gear.html",
         "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
+        "systems/mutant-year-zero/templates/actor/partials/resource-counter.html",
         "systems/mutant-year-zero/templates/actor/partials/mutations.html",
         "systems/mutant-year-zero/templates/actor/partials/talents.html",
         "systems/mutant-year-zero/templates/actor/partials/chasis.html",

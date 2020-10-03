@@ -1,20 +1,25 @@
-<div class="box-list mutation-points {{data.type}}">
-    <div class="box-header {{data.type}}">
-        <label for="data.resource-points.value">{{localize (resolveActorType "MYZ.RESOURCE" "POINTS" data.type )}}</label>
-        <input class="short-input" type="text" name="data.resource-points.value" value="{{data.resource-points.value}}" />
-    </div>
-</div>
+{{! PARAM: sourceType: to create a new item type in the list}}
+{{! PARAM: sourceList: existing list of mutations/powers/contacts}}
+{{! PARAM: sourceLabel: to create a header label}}
+
+{{> systems/mutant-year-zero/templates/actor/partials/resource-counter.html}}
 
 <div class="box-list mutations {{data.type}}">
     <div class="box-header {{data.type}}">
-        <span>{{localize "MYZ.MUTATIONS"}}</span>
-        <span class="item-create" data-type="mutation">+ Add</span>
+        <span>{{localize sourceLabel}}</span>
+        <span class="item-create" data-type="{{sourceType}}">+ Add</span>
     </div>
     <div class="box-content">
-        {{#each actor.mutations as |mutation index|}}
-        <div class="flexrow box-item mutation-item editable-item" data-itemid="{{mutation._id}}" data-skillname="{{mutation.name}}">
-            <span class="viewable" data-itemid="{{mutation._id}}">{{mutation.name}}</span>
-            <span style="text-align:right" class="chatable" data-itemid="{{mutation._id}}"><i class="fas fa-comment"></i></span>
+        {{#each sourceList as |listItem index|}}
+        <div class="flexrow box-item editable-item" data-itemid="{{listItem._id}}" data-skillname="{{listItem.name}}">
+            <span class="viewable" data-itemid="{{listItem._id}}">{{listItem.name}}</span>
+            {{#if (isdefined listItem.data.broken)}}
+            <div class="flex row align-center">
+                <label>{{localize "MYZ.BROKEN"}}</label>
+                <input type="checkbox" class="module-checkbox" data-modid="{{listItem._id}}" {{checked listItem.data.broken}} />
+            </div>
+            {{/if}}
+            <span style="text-align:right" class="chatable" data-itemid="{{listItem._id}}"><i class="fas fa-comment"></i></span>
         </div>
         {{/each}}
     </div>

@@ -32,6 +32,10 @@
   "MYZ.CONDITION_SLEEPLESS": "Sleepless",
   "MYZ.CONDITION_HYPOTHERMIC": "Hypothermic",
 
+  "MYZ.MUTATIONS": "Mutations",
+  "MYZ.ANIMAL_POWERS": "Animal Powers",
+  "MYZ.MODULES": "Modules",
+  "MYZ.CONTACTS": "Contacts",
   "MYZ.RESOURCE_POINTS_MUTANT": "Mutation Points",
   "MYZ.RESOURCE_POINTS_ANIMAL": "Feral Points",
   "MYZ.RESOURCE_POINTS_ROBOT": "Energy Points",

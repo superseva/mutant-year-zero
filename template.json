@@ -172,7 +172,8 @@
     "module": {
       "templates": [ "base" ],
       "effect": "",
-      "type": ""
+      "type": "",
+      "broken": false
     },
     "contact": {
       "templates": [ "base" ],
