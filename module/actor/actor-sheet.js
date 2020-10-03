@@ -41,6 +41,7 @@ export class MYZActorSheet extends ActorSheet {
         const contacts = [];
         const weapons = [];
         const armor = [];
+        const chasis = [];
         const gear = [];
         const artifacts = [];
         const criticals = [];
@@ -78,6 +79,9 @@ export class MYZActorSheet extends ActorSheet {
             else if (i.type === 'armor') {
                 armor.push(i);
             }
+            else if (i.type === 'chasis') {
+                chasis.push(i);
+            }
             else if (i.type === 'gear') {
                 gear.push(i);
             }
@@ -109,6 +113,7 @@ export class MYZActorSheet extends ActorSheet {
         actorData.modules = modules;
         actorData.weapons = weapons;
         actorData.armor = armor;
+        actorData.chasis = chasis;
         actorData.gear = gear;
         actorData.artifacts = artifacts;
         actorData.criticals = criticals;
@@ -166,11 +171,11 @@ export class MYZActorSheet extends ActorSheet {
             await this.actor.updateOwnedItem(this._toggleEquipped(li.data('itemid'), item));
         });
 
-        //LISTEN MODULE BROKEN CHECKBOX IN MODULES LIST
-        html.find('.module-checkbox').change(async (ev) => {
-            const modId = $(ev.currentTarget).data('modid');
-            const item = this.actor.getOwnedItem(modId);
-            await this.actor.updateOwnedItem(this._toggleBroken(modId, item));
+        // Toggle Broken Module
+        html.find('.item-broken').click(async (ev) => {
+            const li = $(ev.currentTarget).parents(".box-item");
+            const item = this.actor.getOwnedItem(li.data('itemid'));
+            await this.actor.updateOwnedItem(this._toggleBroken(li.data('itemid'), item));
         });
 
         /* -------------------------------------------- */

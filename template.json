@@ -209,6 +209,13 @@
     },
     "chasis": {
       "templates": [ "base" ],
+      "location": "",
+      "strength": 0,
+      "agility": 0,
+      "wits": 0,
+      "empathy": 0,
+      "modules": 0,
+      "armor": 0,
       "equipped": false
     },
     "gear": {

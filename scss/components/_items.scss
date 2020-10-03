@@ -16,12 +16,6 @@
         padding: 3px 0;
         border-bottom: 1px solid $c-brown-mid;
 
-        &.weapon, &.armor {
-            .item-name {
-                /*flex-grow: 3;*/
-            }
-        }
-
         .item-image {
             flex: 0 0 24px;
             width: 24px;

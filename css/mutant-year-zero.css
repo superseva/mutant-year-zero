@@ -467,6 +467,10 @@
   text-align: right;
 }
 
+.mutant-year-zero .item-broken {
+  cursor: pointer;
+}
+
 .mutant-year-zero .checkbox-label {
   display: inline-block;
   padding-left: 30px;
@@ -517,10 +521,6 @@
   line-height: 24px;
   padding: 3px 0;
   border-bottom: 1px solid #9d5625;
-}
-
-.mutant-year-zero .items-list .item.weapon .item-name, .mutant-year-zero .items-list .item.armor .item-name {
-  /*flex-grow: 3;*/
 }
 
 .mutant-year-zero .items-list .item .item-image {
