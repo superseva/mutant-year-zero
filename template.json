@@ -161,18 +161,22 @@
     },
     "mutation": {
       "templates": [ "base" ],
+      "effect": "",
       "type": ""
     },
     "animal_power": {
       "templates": [ "base" ],
+      "effect": "",
       "type": ""
     },
     "module": {
       "templates": [ "base" ],
+      "effect": "",
       "type": ""
     },
     "contact": {
       "templates": [ "base" ],
+      "effect": "",
       "type": ""
     },
     "talent": {

@@ -185,7 +185,10 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/mutations.html",
         "systems/mutant-year-zero/templates/actor/partials/talents.html",
         "systems/mutant-year-zero/templates/actor/partials/chasis.html",
-        "systems/mutant-year-zero/templates/actor/partials/info.html"
+        "systems/mutant-year-zero/templates/actor/partials/info.html",
+        "systems/mutant-year-zero/templates/item/partials/header-simple.html",
+        "systems/mutant-year-zero/templates/item/partials/talent-template.html",
+        "systems/mutant-year-zero/templates/item/partials/mutation-template.html"
     ];
     return loadTemplates(templatePaths);
 }

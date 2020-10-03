@@ -37,6 +37,9 @@
 /* Global styles */
 .window-app {
   font-family: "Roboto", sans-serif;
+  /*.editor-content{
+        height:100%;
+    }*/
 }
 
 .window-app .window-content {
