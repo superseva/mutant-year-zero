@@ -77,7 +77,6 @@ export class DiceRoller {
         if (numberOfDice > 0) {
             let die = new Die(numberOfFaces);
             die.roll(numberOfDice);
-            console.log(die.results);
             die.results.forEach((result) => {
                 if (automaticSuccess > 0) {
                     result = numberOfFaces;
