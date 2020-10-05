@@ -25,6 +25,16 @@
         line-height: 14px;
         border-bottom: 1px solid rgba(0,0,0,0.2);
 
+        &.physical {
+            .item-name {
+                flex-basis: 45%;
+            }
+
+            .item-controls {
+                flex-basis: 10%;
+            }
+        }
+
         &.header {
             color: ghostwhite;
             font-weight: 800;
@@ -58,23 +68,28 @@
         }
 
         .item-name {
-            flex-basis: 55%;
-            padding-left: 0.5em;
+            flex-basis: 60%;
+            padding-left: 0.2em;
         }
 
         .item-values {
             flex-basis: 35%;
-            &.grid {
-                margin: 0;
-                grid-gap: 1px;
-            }
         }
 
         .item-controls {
             text-align: right;
-            flex-basis: 15%;
-            padding-right: 0.5em;
+            flex-basis: 30%;
+            padding-right: 0.2em;
         }
+
+        .grid {
+            margin: 0;
+            grid-gap: 1px;
+        }
+    }
+
+    .item:last-child {
+        border: none;
     }
 }
 

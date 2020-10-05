@@ -183,7 +183,7 @@ export class MYZActorSheet extends ActorSheet {
         /* -------------------------------------------- */
 
         // Rollable Item
-        html.find('.rollable.skill-item').click(this._onRollSkill.bind(this));
+        html.find('.rollable.roll-skill').click(this._onRollSkill.bind(this));
         // Viewable Item
         html.find('.viewable').click(this._onItemView.bind(this));
         // Chatable Item
@@ -280,7 +280,6 @@ export class MYZActorSheet extends ActorSheet {
     async _onChangeSkillValue(event) {
         event.preventDefault();
         let _item = this.actor.items.find(element => element._id == event.currentTarget.dataset.itemid);
-        console.warn($(event.currentTarget).val());
         if (_item) {
             let update = { _id: _item._id, data: { value: $(event.currentTarget).val() } };
             await this.actor.updateEmbeddedEntity('OwnedItem', update);
