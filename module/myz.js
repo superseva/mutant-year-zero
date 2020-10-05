@@ -6,6 +6,7 @@ import { MYZMutantSheet } from "./actor/mutant-sheet.js";
 import { MYZAnimalSheet } from "./actor/animal-sheet.js";
 import { MYZRobotSheet } from "./actor/robot-sheet.js";
 import { MYZHumanSheet } from "./actor/human-sheet.js";
+import { MYZNpcSheet } from "./actor/npc-sheet.js";
 import { MYZItem } from "./item/item.js";
 import { MYZItemSheet } from "./item/item-sheet.js";
 
@@ -26,6 +27,7 @@ Hooks.once('init', async function () {
         MYZAnimalSheet,
         MYZRobotSheet,
         MYZHumanSheet,
+        MYZNpcSheet,
         rollItemMacro,
         DiceRoller,
         RollDialog
@@ -52,6 +54,7 @@ Hooks.once('init', async function () {
     Actors.registerSheet("mutant-year-zero", MYZAnimalSheet, { types: ["animal"], makeDefault: true });
     Actors.registerSheet("mutant-year-zero", MYZRobotSheet, { types: ["robot"], makeDefault: true });
     Actors.registerSheet("mutant-year-zero", MYZHumanSheet, { types: ["human"], makeDefault: true });
+    Actors.registerSheet("mutant-year-zero", MYZNpcSheet, { types: ["npc"], makeDefault: true });
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
 
@@ -86,6 +89,10 @@ Hooks.once('init', async function () {
 
     Handlebars.registerHelper('isdefined', function (value) {
         return value !== undefined;
+    });
+
+    Handlebars.registerHelper('ifvalue', function (condition, value) {
+        return condition == value;
     });
 
 });

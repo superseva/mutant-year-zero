@@ -1,0 +1,13 @@
+<form class="{{cssClass}} flexcol {{data.type}} {{data.creatureType}}" autocomplete="off">
+
+    <div>NPC SHEET - {{data.creatureType}}</div>
+    {{#if (ifvalue data.creatureType 'npc')}}
+    <div>
+        <button class="crature-picker" data-creature="mutant">MUTANT</button>
+        <button class="crature-picker" data-creature="animal">ANIMAL</button>
+        <button class="crature-picker" data-creature="robot">ROBOT</button>
+        <button class="crature-picker" data-creature="human">HUMAN</button>
+    </div>
+    {{/if}}
+
+</form>

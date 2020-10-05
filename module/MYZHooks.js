@@ -6,8 +6,9 @@ export default class MYZHooks {
         // NPCs should have type=npc and then ceratureType = m/a/r/h
         // PCs should have type=m/a/r/h and then ceratureType = m/a/r/h
         await actor.update({ 'data.creatureType': actor.data.type });
+        console.warn(actor.data.data.creatureType);
 
-        if (actor.type != "npc") {            
+        if (actor.data.type != "npc") {            
             const actorCoreSkills = actor.data.data.coreSkills;
             // Check if skill allready exists by some chance
             const existingSkills = actor.items
@@ -30,7 +31,8 @@ export default class MYZHooks {
             await actor.createEmbeddedEntity('OwnedItem', _skillsList);
         }
         else {
-            console.log('THE ACTOR IS NPC');
+            console.warn('THE ACTOR IS NPC');
+            console.log(actor.data);
         }
     }
 

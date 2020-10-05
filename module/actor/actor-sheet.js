@@ -173,7 +173,7 @@ export class MYZActorSheet extends ActorSheet {
 
         // Toggle Broken Module
         html.find('.item-broken').click(async (ev) => {
-            const li = $(ev.currentTarget).parents(".box-item");
+            const li = $(ev.currentTarget).parents(".item");
             const item = this.actor.getOwnedItem(li.data('itemid'));
             await this.actor.updateOwnedItem(this._toggleBroken(li.data('itemid'), item));
         });
@@ -233,6 +233,9 @@ export class MYZActorSheet extends ActorSheet {
             });
         });
 
+        //SET NPC creatureType
+        html.find('.crature-picker').click(this._updateNPCCreatureType.bind(this));    
+
         /* -------------------------------------------- */
         /* ADD LEFT CLICK CONTENT MENU
         /* -------------------------------------------- */
@@ -267,6 +270,15 @@ export class MYZActorSheet extends ActorSheet {
                 li.addEventListener("dragstart", handler, false);
             });
         }
+    }
+
+    async _updateNPCCreatureType(event) {
+        let _creatureType = $(event.currentTarget).data('creature');
+        console.warn(_creatureType);
+        console.log(this.actor);
+        await this.actor.update({ 'data.creatureType': _creatureType });
+        this.actor.sheet.render();
+        console.log(this.actor);
     }
 
     _editOwnedItemById(_itemId) {
