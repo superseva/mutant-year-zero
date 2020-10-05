@@ -1,5 +1,86 @@
 .items-list {
     list-style: none;
+    padding: 0;
+    border: 1px solid;
+    margin-bottom: 10px;
+
+    &.mutant {
+        background-color: $c-brown-pale;
+    }
+
+    &.animal {
+        background-color: $c-green-pale;
+    }
+
+    &.robot {
+        background-color: $c-blue-pale;
+    }
+
+    &.human {
+        background-color: $c-teal-pale;
+    }
+
+    .item {
+        min-height: 30px;
+        line-height: 14px;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+
+        &.header {
+            color: ghostwhite;
+            font-weight: 800;
+
+            &.mutant {
+                background-image: url("../ui/box-header-brown.jpg");
+            }
+
+            &.animal {
+                background-image: url("../ui/box-header-green.jpg");
+            }
+
+            &.robot {
+                background-image: url("../ui/box-header-blue.jpg");
+            }
+
+            &.human {
+                background-image: url("../ui/box-header-tile.jpg");
+            }
+        }
+
+        .item-image {
+            flex: 0 0 24px;
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5em;
+        }
+
+        img {
+            display: block;
+        }
+
+        .item-name {
+            flex-basis: 55%;
+            padding-left: 0.5em;
+        }
+
+        .item-values {
+            flex-basis: 35%;
+            &.grid {
+                margin: 0;
+                grid-gap: 1px;
+            }
+        }
+
+        .item-controls {
+            text-align: right;
+            flex-basis: 15%;
+            padding-right: 0.5em;
+        }
+    }
+}
+
+
+/*.items-list {
+    list-style: none;
     //margin: 7px 0;
     padding: 0;
 
@@ -36,7 +117,7 @@
         flex: 0 0 86px;
         text-align: right;
     }
-}
+}*/
 
 .item-unequipped {
     color: rgba(0, 0, 0, 0.2);

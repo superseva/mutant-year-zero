@@ -104,8 +104,8 @@ Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor
 Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
     if (item.type == "skill") {
         try {
-            if (updateData.data.actorType != actor.data.type) {
-                updateData.data.actorType = actor.data.type;
+            if (updateData.data.actorType != actor.data.creatureType) {
+                updateData.data.actorType = actor.data.creatureType;
             }
         } catch{
             //console.log('PROBABLY YOU ARE NOT CHANGING ACTOR TYPE');

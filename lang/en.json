@@ -60,6 +60,13 @@
   "MYZ.GEAR": "Gear",
   "MYZ.ARTIFACT": "Artifact",
   "MYZ.ARTIFACTS": "Artifacts",
+  "MYZ.DAMAGE": "Damage",
+  "MYZ.RANGE": "Range",
+  "MYZ.RANGE_ARM": "Arms Length",
+  "MYZ.RANGE_NEAR": "Near",
+  "MYZ.RANGE_SHORT": "Short",
+  "MYZ.RANGE_LONG": "Long",
+  "MYZ.RANGE_DISTANT": "Distant",
 
   "MYZ.SKILLS_LABEL_MUTANT": "Skills",
   "MYZ.SKILLS_LABEL_ANIMAL": "Skills",

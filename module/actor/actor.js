@@ -14,7 +14,7 @@ export class MYZActor extends Actor {
         const data = actorData.data;
         const flags = actorData.flags;
 
-        console.warn(actorData);
+        //console.warn(actorData);
 
         // Make separate methods for each Actor type (character, npc, etc.) to keep
         // things organized.

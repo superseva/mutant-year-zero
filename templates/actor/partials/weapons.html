@@ -1,28 +1,28 @@
-<div class="box-list weapons {{data.type}}">
-    <div class="box-header {{data.type}}">
-        <label>{{localize "MYZ.WEAPONS"}}</label>
-        <span class="item-create" data-type="weapon">+ ADD</span>
-    </div>
-    <div class="box-content items-list">
-        <div class="item weapon flex row ">
-            <label class="item-name" style="width:60%">{{localize 'MYZ.NAME'}}</label>
-            <span>{{localize 'MYZ.DAMAGE'}}</span>
-            <span>{{localize 'MYZ.RANGE'}}</span>
-            <span></span>
+<div class="items-list {{data.type}}">
+    <div class="item header flex row align-center space-between {{data.type}}">
+        <label class="item-name">{{localize "MYZ.WEAPONS"}}</label>
+        <div class="item-values grid center">
+            <label>{{localize 'MYZ.DAMAGE'}}</label>
+            <label>{{localize 'MYZ.RANGE'}}</label>
         </div>
-        {{#each actor.weapons as |weapon key|}}
-    <div class="item weapon flex row editable-item" data-itemid="{{weapon._id}}">
-        <span class="flex row" style="width:60%">
+        <div class="item-controls">
+            <a class="item-create" data-type="weapon">+</a>
+        </div>
+    </div>
+    {{#each actor.weapons as |weapon key|}}
+    <div class="item flex row align-center space-between editable-item"  data-itemid="{{weapon._id}}">
+        <span class="item-name flex row align-center roll-weapon rollable" data-itemid="{{weapon._id}}">
             <img class="item-image" src="{{weapon.img}}" />
-            <label class="item-name roll-weapon" data-itemid="{{weapon._id}}">{{weapon.name}}</label>
+            <a>{{weapon.name}}</a>
         </span>
-        <span>{{weapon.data.damage}}</span>
-        <span>{{weapon.data.range}}</span>
-        <div class="item-controls">            
+        <div class="item-values grid center">
+            <label>{{weapon.data.damage}}</label>
+            <label>{{weapon.data.range}}</label>
+        </div>
+        <div class="item-controls">
             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
         </div>
     </div>
-        {{/each}}
-    </div>
+    {{/each}}
 </div>

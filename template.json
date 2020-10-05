@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["mutant", "animal", "robot", "human" ],
+    "types": ["mutant", "animal", "robot", "human", "npc" ],
     "templates": {
       "base": {
         "role": {
@@ -48,7 +48,8 @@
         "crit": {
           "label": "MYZ.CRITICAL",
           "value": ""
-        }
+        },
+        "creatureType": ""
       },
       "stats": {
         "attributes": {
@@ -101,6 +102,20 @@
     },
     "mutant": {
       "templates": [ "base", "stats", "status", "resources" ],
+      "coreSkills": [
+        "Endure",
+        "Force",
+        "Fight",
+        "Sneak",
+        "Move",
+        "Shoot",
+        "Scout",
+        "Comprehend",
+        "Know the Zone",
+        "Sense Emotion",
+        "Manipulate",
+        "Heal"
+      ],
       "resource-points": {
         "label": "MYZ.MUTATION_POINTS",
         "value": 0,
@@ -109,6 +124,20 @@
     },
     "animal": {
       "templates": [ "base", "stats", "status", "resources" ],
+      "coreSkills": [
+        "Endure",
+        "Force",
+        "Fight",
+        "Sneak",
+        "Move",
+        "Shoot",
+        "Scout",
+        "Comprehend",
+        "Know the Zone",
+        "Sense Emotion",
+        "Dominate",
+        "Heal"
+      ],
       "resource-points": {
         "label": "MYZ.FERAL_POINTS",
         "value": 0,
@@ -117,6 +146,7 @@
     },
     "robot": {
       "templates": [ "base", "stats", "status", "resources" ],
+      "coreSkills": [ "Overload", "Force", "Assault", "Infiltrate", "Move", "Shoot", "Scan", "Datamine", "Analyze", "Question", "Interact", "Repair" ],
       "resource-points": {
         "label": "MYZ.ENERGY_POINTS",
         "value": 0,
@@ -125,8 +155,30 @@
     },
     "human": {
       "templates": [ "base", "stats", "status", "resources" ],
+      "coreSkills": [
+        "Endure",
+        "Force",
+        "Fight",
+        "Sneak",
+        "Move",
+        "Shoot",
+        "Scout",
+        "Comprehend",
+        "Know the Zone",
+        "Sense Emotion",
+        "Manipulate",
+        "Heal"
+      ],
       "resource-points": {
         "label": "MYZ.INFLUENCE_POINTS",
+        "value": 0,
+        "max": 10
+      }
+    },
+    "npc": {
+      "templates": [ "base", "stats" ],
+      "resource-points": {
+        "label": "MYZ.RESOURCE_POINTS",
         "value": 0,
         "max": 10
       }

@@ -2,27 +2,36 @@ export default class MYZHooks {
 
     static async onCreateActor(actor, options, userId) {
 
-        const coreSkills = CONFIG.MYZ.coreSkills;
-        const existingSkills = actor.items
-            .filter((i) => i.type === ItemType.Skill)
-            .map((i) => i.name);
-        const skillsToAdd = coreSkills.filter((s) => !existingSkills.includes(s));
-        console.warn(skillsToAdd);
-        const skillIndex = (await game.packs
-            .get('mutant-year-zero.core-skills')
-            .getContent());
-        // Add ACTOR TYPE to each skill in skillIndex before you assign it to the actor;
+        // set creatureType adn use it for building NPCS and PCs
+        // NPCs should have type=npc and then ceratureType = m/a/r/h
+        // PCs should have type=m/a/r/h and then ceratureType = m/a/r/h
+        await actor.update({ 'data.creatureType': actor.data.type });
 
-        skillIndex.filter((i) => skillsToAdd.includes(i.data.name))
-        skillIndex.forEach(s => {
-            s.data.data['actorType'] = actor.data.type;
-            s.data.data['coreSkill'] = s.name;
-            s.data.name = CONFIG.MYZ.skillNames[s.name][actor.data.type];
-        });
+        if (actor.type != "npc") {            
+            const actorCoreSkills = actor.data.data.coreSkills;
+            // Check if skill allready exists by some chance
+            const existingSkills = actor.items
+                .filter((i) => i.type === ItemType.Skill)
+                .map((i) => i.name);
+            const skillsToAdd = actorCoreSkills.filter((s) => !existingSkills.includes(s));
+            // Load Core Skills Compendium skills
+            const skillIndex = (await game.packs
+                .get('mutant-year-zero.core-skills')
+                .getContent());
 
-        await actor.createEmbeddedEntity('OwnedItem', skillIndex);
+            // Filter skillIndex array to include only skills for Actor Type.
+            let _skillsList = skillIndex.filter(i => skillsToAdd.includes(i.data.name));
+            // Add ACTOR TYPE and CORE to each skill in _skillsList before you assign it to the actor;
+            _skillsList.forEach(s => {
+                s.data.data['actorType'] = actor.data.type;
+                s.data.data['coreSkill'] = true;
+            });
 
-        //await actor.createEmbeddedEntity('OwnedItem', skillIndex.filter((i) => skillsToAdd.includes(i.data.name)));
+            await actor.createEmbeddedEntity('OwnedItem', _skillsList);
+        }
+        else {
+            console.log('THE ACTOR IS NPC');
+        }
     }
 
 }
