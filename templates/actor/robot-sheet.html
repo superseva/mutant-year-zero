@@ -1,36 +1,7 @@
 <form class="{{cssClass}} flexcol {{data.type}}" autocomplete="off">
 
-    <div class="actor-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
-            <div class="grid grid-3col">
-                <div class="character-role flex column">
-                    <div class="flexrow">
-                        <label for="data.role.value">{{localize "MYZ.ROLE"}}:</label>
-                        <input name="data.role.value" type="text" value="{{data.role.value}}" />
-                    </div>
-                    <div class="flexrow">
-                        <label for="data.xp.value">{{localize "MYZ.XP"}}:</label><input type="text" data-type="Number" name="data.xp.value" value="{{data.xp.value}}" />
-                    </div>
-                </div>
-
-
-                <div class="flexcol">
-                    <button class="button-roll">ROLL</button>
-                    <button class="button-push">PUSH</button>
-                </div>
-                <div class="flex column">                    
-                    <div class="box-list armor {{data.type}}">
-                        <div class="box-header {{data.type}}">
-                            <label for="data.armor-rating.value">MYZ.ARMOR</label>
-                            <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{!-- Character Header --}}
+    {{> systems/mutant-year-zero/templates/actor/partials/character-header.html}}
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">

@@ -107,23 +107,25 @@ Hooks.on('updateActor', (actor, options, userId) => console.log(actor));
 /* MAKE SURE OWNED SKILLS ARE OF THE SAME TYPE AS THE ACTOR */
 Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
     if (item.type == "skill" || item.type == "ability") {
-        try {
+        if (updateData.data.hasOwnProperty('actorType')) {
             if (updateData.data.actorType != actor.data.data.creatureType) {
                 ui.notifications.warn(`ENTITY TYPE CHANGED FROM ${updateData.data.actorType} to ${actor.data.data.creatureType}`);
                 updateData.data.actorType = actor.data.data.creatureType;
             }
-        } catch{
-            //console.log('PROBABLY YOU ARE NOT CHANGING ACTOR TYPE');
         }
     } 
 });
 
-Hooks.on("preCreateOwnedItem", (actor, item, updateData) => {
+Hooks.on("preCreateOwnedItem", (actor, item, options) => {
     if (item.type == "skill" || item.type == "ability") {
-        if (item.data.actorType != actor.data.data.creatureType) {
-            ui.notifications.warn(`ENTITY TYPE CHANGED FROM ${item.data.actorType} to ${actor.data.data.creatureType}`);
-            item.data.actorType = actor.data.data.creatureType;
-        }
+        if (!item.data.hasOwnProperty('actorType')) {
+            item.data['actorType'] = actor.data.data.creatureType;
+        } else {
+            if (item.data.actorType != actor.data.data.creatureType) {
+                ui.notifications.warn(`ENTITY TYPE CHANGED FROM ${item.data.actorType} to ${actor.data.data.creatureType}`);
+                item.data.actorType = actor.data.data.creatureType;
+            }
+        }        
     }
 });
 
@@ -183,6 +185,7 @@ function rollItemMacro(itemName) {
 
 function _preloadHandlebarsTemplates() {
     const templatePaths = [
+        "systems/mutant-year-zero/templates/actor/partials/character-header.html",
         "systems/mutant-year-zero/templates/actor/partials/attributes.html",
         "systems/mutant-year-zero/templates/actor/partials/conditions.html",
         "systems/mutant-year-zero/templates/actor/partials/criticals.html",
