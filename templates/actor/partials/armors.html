@@ -1,31 +1,32 @@
-<div class="box-list armors {{data.type}}">
-    <div class="box-header {{data.type}}">
-        <label>{{localize "MYZ.ARMOR"}}</label>
-        <span class="item-create" data-type="armor">+ ADD</span>
-    </div>
-    <div class="box-content items-list">
-        <div class="item armor flexrow">
-            <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
-            <span class="item-name">{{localize 'MYZ.NAME'}}</span>
-            <span>{{localize 'MYZ.RATING'}}</span>
+<div class="box-list {{data.type}}">
+    <div class="box-item physical header flex row align-center space-between {{data.type}}">
+        <label class="item-name">{{localize "MYZ.ARMOR"}}</label>
+        <div class="item-values grid center">
+            <label>{{localize 'MYZ.RATING'}}</label>
             <span>{{localize 'MYZ.TYPE'}}</span>
-            <span></span>
         </div>
-        {{#each actor.armor as |armor key|}}
-        <div class="item armor flexrow editable-item" data-itemid="{{armor._id}}">
-            <img class="item-image" src="{{armor.img}}" />
-            <span class="item-name">{{armor.name}}</span>
-            <span>{{armor.data.rating.value}}/{{armor.data.rating.max}}</span>
-            <span>{{armor.data.type}}</span>
-            <div class="item-controls">
-                <a class="item-control item-toggle {{#unless armor.data.equipped}}item-unequipped{{/unless}}"
-                   title='{{localize "MYZ.EQUIPPED"}}'>
-                    <i class="fas fa-tshirt"></i>
-                </a>
-                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-            </div>
+        <div class="item-controls">
+            <a class="item-create" data-type="armor">+ Add</a>
         </div>
-        {{/each}}
     </div>
+    {{#each actor.armor as |armor key|}}
+    <div class="box-item physical flex row align-center space-between editable-item" data-itemid="{{armor._id}}">
+        <span class="item-name flex row align-center" data-itemid="{{armor._id}}">
+            <img class="item-image" src="{{armor.img}}" />
+            <a>{{armor.name}}</a>
+        </span>
+        <div class="item-values grid center">
+            <label>{{armor.data.rating.value}}/{{armor.data.rating.max}}</label>
+            <label>{{armor.data.armorType}}</label>
+        </div>
+        <div class="item-controls">
+            <a class="item-control item-toggle {{#unless armor.data.equipped}}item-unequipped{{/unless}}"
+               title='{{localize "MYZ.EQUIPPED"}}'>
+                <i class="fas fa-tshirt"></i>
+            </a>
+            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+    </div>
+    {{/each}}
 </div>

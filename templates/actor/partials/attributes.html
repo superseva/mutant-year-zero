@@ -1,39 +1,38 @@
-<div class="box-list attributes flexcol {{data.type}}">
-    <div class="box-header {{data.type}}">
-        {{localize "MYZ.ATTRIBUTES"}}
+<div class="box-list attributes {{data.type}}">
+    <div class="box-item header flex row align-center {{data.type}}">
+        <label class="item-name">{{localize "MYZ.ATTRIBUTES"}}</label>
     </div>
-    <div class="box-content flexcol">
-        <div class="flexrow box-item">
-            <label class="attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.type)}}</label>
-            <div>
+    <div class="box-item flex row align-center space-between">       
+            <label class="item-name attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.type)}}</label>
+            <div class="item-controls flex row">
                 <input name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
                 <span>/</span>
                 <input name="data.attributes.strength.max" value="{{data.attributes.strength.max}}" class="short-input" />
-            </div>
-        </div>
-        <div class="flexrow box-item">
-            <label class="attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.type)}}</label>
-            <div>
-                <input name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
-                <span>/</span>
-                <input name="data.attributes.agility.max" value="{{data.attributes.agility.max}}" class="short-input" />
-            </div>
-        </div>
-        <div class="flexrow box-item">
-            <label class="attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.type)}}</label>
-            <div>
-                <input name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
-                <span>/</span>
-                <input name="data.attributes.wits.max" value="{{data.attributes.wits.max}}" class="short-input" />
-            </div>
-        </div>
-        <div class="flexrow box-item">
-            <label class="attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.type)}}</label>
-            <div>
-                <input name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
-                <span>/</span>
-                <input name="data.attributes.empathy.max" value="{{data.attributes.empathy.max}}" class="short-input" />
-            </div>
-        </div>       
+            </div>            
     </div>
+    <div class="box-item flex row align-center space-between">
+        <label class="item-name attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.type)}}</label>
+        <div class="item-controls flex row">
+            <input name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
+            <span>/</span>
+            <input name="data.attributes.agility.max" value="{{data.attributes.agility.max}}" class="short-input" />
+        </div>
+    </div>
+    <div class="box-item flex row align-center space-between">
+        <label class="item-name attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.type)}}</label>
+        <div class="item-controls flex row">
+            <input name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
+            <span>/</span>
+            <input name="data.attributes.wits.max" value="{{data.attributes.wits.max}}" class="short-input" />
+        </div>
+    </div>
+    <div class="box-item flex row align-center space-between">
+        <label class="item-name attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.type)}}</label>
+        <div class="item-controls flex row">
+            <input name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
+            <span>/</span>
+            <input name="data.attributes.empathy.max" value="{{data.attributes.empathy.max}}" class="short-input" />
+        </div>
+    </div>
+
 </div>

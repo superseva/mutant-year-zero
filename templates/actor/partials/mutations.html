@@ -4,15 +4,15 @@
 
 {{> systems/mutant-year-zero/templates/actor/partials/resource-counter.html}}
 
-<div class="items-list mutations {{data.type}}">
-    <div class="item header flex row  align-center space-between {{data.type}}">
+<div class="box-list mutations {{data.type}}">
+    <div class="box-item header flex row  align-center space-between {{data.type}}">
         <label class="item-name">{{localize sourceLabel}}</label>
         <span class="item-controls">
             <a class="item-create" data-type="{{sourceType}}">+ Add</a>
         </span>
     </div>
     {{#each sourceList as |listItem index|}}
-    <div class="item flex row align-center space-between editable-item" data-itemid="{{listItem._id}}">
+    <div class="box-item flex row align-center space-between editable-item" data-itemid="{{listItem._id}}">
         <a class="item-name viewable" data-itemid="{{listItem._id}}">{{listItem.name}}</a>
         <span class="item-controls">
             {{#if (isdefined listItem.data.broken)}}
@@ -28,32 +28,4 @@
         </span>
     </div>
     {{/each}}
-</div>
-
-
-
-<div class="box-list mutations {{data.type}}">
-    <div class="box-header {{data.type}}">
-        <span>{{localize sourceLabel}}</span>
-        <span class="item-create" data-type="{{sourceType}}">+ Add</span>
-    </div>
-    <div class="box-content">
-        {{#each sourceList as |listItem index|}}
-        <div class="flex row box-item editable-item space-between" data-itemid="{{listItem._id}}">
-            <label class="viewable" data-itemid="{{listItem._id}}">{{listItem.name}}</label>
-            <span class="flex row">
-                {{#if (isdefined listItem.data.broken)}}
-                <a class="item-broken" title="{{localize 'MYZ.BROKEN'}}">
-                    {{#if  listItem.data.broken}}
-                    <i class="fa fa-exclamation-circle" style="color:darkred"></i>
-                    {{else}}
-                    <i class="fa fa-check-circle"></i>
-                    {{/if}}
-                </a>
-                {{/if}}
-                <a class="chatable" data-itemid="{{listItem._id}}"><i class="fas fa-comment"></i></a>
-            </span>
-        </div>
-        {{/each}}
-    </div>
 </div>

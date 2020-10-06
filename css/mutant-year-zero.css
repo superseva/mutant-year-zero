@@ -187,6 +187,102 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 /* Styles limited to mutant-year-zero sheets */
 .mutant-year-zero {
+  /*
+.box-list {
+    border: 1px solid;
+    margin-bottom: 10px;
+    background-color: $c-brown-pale;
+
+    &.mutant {
+        background-color: $c-brown-pale;
+    }
+
+    &.animal {
+        background-color: $c-green-pale;
+    }
+
+    &.robot {
+        background-color: $c-blue-pale;
+    }
+
+    &.human {
+        background-color: $c-teal-pale;
+    }
+
+    .box-header {
+        padding: 5px;
+        color: white;
+        align-items: center;
+        background-color: $c-brown-dark;
+        background-image: url("../ui/box-header-brown.jpg");
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &.mutant {
+            background-image: url("../ui/box-header-brown.jpg");
+        }
+
+        &.animal {
+            background-image: url("../ui/box-header-green.jpg");
+        }
+
+        &.robot {
+            background-image: url("../ui/box-header-blue.jpg");
+        }
+
+        &.human {
+            background-image: url("../ui/box-header-tile.jpg");
+        }
+
+        input {
+            background-color: $c-white;
+        }
+    }
+
+    .box-content {
+        padding: 2px;
+        min-height: 87px;
+
+        .box-item {
+            border-bottom: 1px solid $c-brown-mid;
+            padding: 2px 0;
+            align-items: center;
+
+            input[type='checkbox'] {
+                width: 15px;
+                height: 15px;
+            }
+
+            .fa-eye {
+                cursor: pointer;
+            }
+        }
+
+        .box-item:last-child {
+            border: none;
+        }
+    }
+}
+*/
+  /* .tabs {
+   .item {
+     background: rgba(0, 0, 0, 0.125);
+     border: 1px solid;
+     border-radius: 4px;
+     margin: 0 10px 0;
+     padding: 8px 4px;
+
+     &:hover,
+     &:focus {
+       background: rgba(0, 0, 0, 0.125);
+     }
+
+     &.active {
+       background: transparent;
+     }
+   }
+ }*/
   /*.items-list {
     list-style: none;
     //margin: 7px 0;
@@ -397,99 +493,6 @@ $font-secondary: 'Roboto', sans-serif;*/
   padding: 0 8px;
 }
 
-.mutant-year-zero .box-list {
-  border: 1px solid;
-  margin-bottom: 10px;
-  background-color: #f0d5b7;
-  /* &.mutations, &.talents {
-        .box-content {
-            min-height: 87px;
-        }
-    }*/
-}
-
-.mutant-year-zero .box-list.mutant {
-  background-color: #f0d5b7;
-}
-
-.mutant-year-zero .box-list.animal {
-  background-color: #dee9d3;
-}
-
-.mutant-year-zero .box-list.robot {
-  background-color: #e2eaf4;
-}
-
-.mutant-year-zero .box-list.human {
-  background-color: #e1ede9;
-}
-
-.mutant-year-zero .box-list .box-header {
-  padding: 5px;
-  color: white;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background-color: #26211c;
-  background-image: url("../ui/box-header-brown.jpg");
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.mutant-year-zero .box-list .box-header.mutant {
-  background-image: url("../ui/box-header-brown.jpg");
-}
-
-.mutant-year-zero .box-list .box-header.animal {
-  background-image: url("../ui/box-header-green.jpg");
-}
-
-.mutant-year-zero .box-list .box-header.robot {
-  background-image: url("../ui/box-header-blue.jpg");
-}
-
-.mutant-year-zero .box-list .box-header.human {
-  background-image: url("../ui/box-header-tile.jpg");
-}
-
-.mutant-year-zero .box-list .box-header input {
-  background-color: #fff;
-}
-
-.mutant-year-zero .box-list .box-content {
-  padding: 2px;
-  min-height: 87px;
-}
-
-.mutant-year-zero .box-list .box-content .box-item {
-  border-bottom: 1px solid #9d5625;
-  padding: 2px 0;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.mutant-year-zero .box-list .box-content .box-item input[type='checkbox'] {
-  width: 15px;
-  height: 15px;
-}
-
-.mutant-year-zero .box-list .box-content .box-item .fa-eye {
-  cursor: pointer;
-}
-
-.mutant-year-zero .box-list .box-content .box-item:last-child {
-  border: none;
-}
-
 .mutant-year-zero .conditions .box-content {
   padding: 0 5px 0 5px;
 }
@@ -505,6 +508,8 @@ $font-secondary: 'Roboto', sans-serif;*/
 .mutant-year-zero .short-input {
   max-width: 3em;
   text-align: center;
+  background-color: white;
+  color: black;
 }
 
 .mutant-year-zero .item-create {
@@ -546,72 +551,54 @@ $font-secondary: 'Roboto', sans-serif;*/
   font-weight: bold;
 }
 
-.mutant-year-zero .tabs .item.active {
+.mutant-year-zero .tabs.active {
   text-decoration: underline;
   text-shadow: none;
 }
 
-.mutant-year-zero .items-list {
-  list-style: none;
-  padding: 0;
-  border: 1px solid;
-  margin-bottom: 10px;
-}
-
-.mutant-year-zero .items-list.mutant {
-  background-color: #f0d5b7;
-}
-
-.mutant-year-zero .items-list.animal {
-  background-color: #dee9d3;
-}
-
-.mutant-year-zero .items-list.robot {
-  background-color: #e2eaf4;
-}
-
-.mutant-year-zero .items-list.human {
-  background-color: #e1ede9;
-}
-
-.mutant-year-zero .items-list .item {
+.mutant-year-zero .box-item {
   min-height: 30px;
+  padding: 0.3em 0 0.3em 0;
   line-height: 14px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.mutant-year-zero .items-list .item.physical .item-name {
+.mutant-year-zero .box-item.physical .item-name {
   -ms-flex-preferred-size: 45%;
   flex-basis: 45%;
 }
 
-.mutant-year-zero .items-list .item.physical .item-controls {
-  -ms-flex-preferred-size: 10%;
-  flex-basis: 10%;
+.mutant-year-zero .box-item.physical .item-controls {
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
 }
 
-.mutant-year-zero .items-list .item.header {
+.mutant-year-zero .box-item.header {
   color: ghostwhite;
   font-weight: 800;
 }
 
-.mutant-year-zero .items-list .item.header.mutant {
+.mutant-year-zero .box-item.header.mutant {
   background-image: url("../ui/box-header-brown.jpg");
 }
 
-.mutant-year-zero .items-list .item.header.animal {
+.mutant-year-zero .box-item.header.animal {
   background-image: url("../ui/box-header-green.jpg");
 }
 
-.mutant-year-zero .items-list .item.header.robot {
+.mutant-year-zero .box-item.header.robot {
   background-image: url("../ui/box-header-blue.jpg");
 }
 
-.mutant-year-zero .items-list .item.header.human {
+.mutant-year-zero .box-item.header.human {
   background-image: url("../ui/box-header-tile.jpg");
 }
 
-.mutant-year-zero .items-list .item .item-image {
+.mutant-year-zero .box-item.chasie .chasie-name {
+  padding-left: 0.5em;
+}
+
+.mutant-year-zero .box-item .item-image {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 24px;
   flex: 0 0 24px;
@@ -620,34 +607,62 @@ $font-secondary: 'Roboto', sans-serif;*/
   margin-right: 0.5em;
 }
 
-.mutant-year-zero .items-list .item img {
+.mutant-year-zero .box-item img {
   display: block;
 }
 
-.mutant-year-zero .items-list .item .item-name {
+.mutant-year-zero .box-item .item-name {
   -ms-flex-preferred-size: 60%;
   flex-basis: 60%;
-  padding-left: 0.2em;
+  padding-left: 0.5em;
 }
 
-.mutant-year-zero .items-list .item .item-values {
-  -ms-flex-preferred-size: 35%;
-  flex-basis: 35%;
+.mutant-year-zero .box-item .item-values {
+  -ms-flex-preferred-size: 30%;
+  flex-basis: 30%;
 }
 
-.mutant-year-zero .items-list .item .item-controls {
+.mutant-year-zero .box-item .item-controls {
   text-align: right;
   -ms-flex-preferred-size: 30%;
   flex-basis: 30%;
-  padding-right: 0.2em;
+  padding-right: 0.5em;
 }
 
-.mutant-year-zero .items-list .item .grid {
+.mutant-year-zero .box-item .right-element {
+  padding-right: 0.5em;
+}
+
+.mutant-year-zero .box-item .grid {
   margin: 0;
   grid-gap: 1px;
 }
 
-.mutant-year-zero .items-list .item:last-child {
+.mutant-year-zero .box-list {
+  list-style: none;
+  padding: 0;
+  border: 1px solid;
+  margin-bottom: 10px;
+  min-height: 120px;
+}
+
+.mutant-year-zero .box-list.mutant {
+  background-color: #f0d5b7;
+}
+
+.mutant-year-zero .box-list.animal {
+  background-color: #dee9d3;
+}
+
+.mutant-year-zero .box-list.robot {
+  background-color: #e2eaf4;
+}
+
+.mutant-year-zero .box-list.human {
+  background-color: #e1ede9;
+}
+
+.mutant-year-zero .box-list .box-item:last-child {
   border: none;
 }
 

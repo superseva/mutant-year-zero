@@ -14,12 +14,10 @@ import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
 
 /* ------------------------------------ */
-/* Setup MYZ system							            */
+/* Setup MYZ system	 */
 /* ------------------------------------ */
-//Hooks.once('setup', () => MYZHooks.onSetup());
 
 Hooks.once('init', async function () {
-
     game.myz = {
         MYZ,
         MYZActor,
@@ -102,12 +100,10 @@ Hooks.once("ready", async function () {
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
 });
 
-/* -------------------------------------------- */
-/*  POPULATE CHARACTER WITH DEFAULT SKILLS      */
-/* -------------------------------------------- */
+/* POPULATE CHARACTER WITH DEFAULT SKILLS */
 Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
 
-// MAKE SURE OWNED SKILLS ARE THE SAME TYPE AS ACTOR
+/* MAKE SURE OWNED SKILLS ARE OF THE SAME TYPE AS THE ACTOR */
 Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
     if (item.type == "skill") {
         try {
@@ -119,6 +115,7 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
         }
     }
 });
+
 Hooks.on("preCreateOwnedItem", (actor, item, updateData) => {
     if (item.type == "skill") {
         if (item.data.actorType != actor.data.type) {
@@ -126,7 +123,6 @@ Hooks.on("preCreateOwnedItem", (actor, item, updateData) => {
         }
     }
 });
-
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -178,9 +174,9 @@ function rollItemMacro(itemName) {
     return item.roll();
 }
 
-/**
- * LOAD PARTIALS 
- **/
+/* -------------------------------------------- */
+/** LOAD PARTIALS
+/* -------------------------------------------- */
 
 function _preloadHandlebarsTemplates() {
     const templatePaths = [

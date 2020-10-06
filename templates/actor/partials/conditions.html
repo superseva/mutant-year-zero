@@ -1,6 +1,6 @@
 <div class="box-list conditions {{data.type}}">
-    <div class="box-header {{data.type}}">
-        {{localize "MYZ.CONDITIONS"}}
+    <div class="box-item header flex row align-center {{data.type}}">
+        <label class="item-name">{{localize "MYZ.CONDITIONS"}}</label>
     </div>
     <div class="grid grid-2col box-content">
         {{#each data.conditions as |condition key|}}

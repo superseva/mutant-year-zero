@@ -1,5 +1,5 @@
-<div class="items-list {{data.type}}">
-    <div class="item physical header flex row align-center space-between {{data.type}}">
+<div class="box-list {{data.type}}">
+    <div class="box-item physical header flex row align-center space-between {{data.type}}">
         <label class="item-name">{{localize "MYZ.WEAPONS"}}</label>
         <div class="item-values grid center">
             <label>{{localize 'MYZ.DAMAGE'}}</label>
@@ -10,7 +10,7 @@
         </div>
     </div>
     {{#each actor.weapons as |weapon key|}}
-    <div class="item physical flex row align-center space-between editable-item"  data-itemid="{{weapon._id}}">
+    <div class="box-item physical flex row align-center space-between editable-item"  data-itemid="{{weapon._id}}">
         <span class="item-name flex row align-center roll-weapon rollable" data-itemid="{{weapon._id}}">
             <img class="item-image" src="{{weapon.img}}" />
             <a>{{weapon.name}}</a>

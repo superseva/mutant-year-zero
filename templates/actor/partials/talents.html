@@ -3,16 +3,20 @@
 {{! PARAM: sourceLabel: to create a header label}}
 
 <div class="box-list mutations {{data.type}}">
-    <div class="box-header {{data.type}}">
-        <span>{{localize sourceLabel}}</span>
-        <span class="item-create" data-type="{{sourceType}}">+ Add</span>
+    <div class="box-item header flex row align-center space-between {{data.type}}">
+        <span class="item-name">{{localize sourceLabel}}</span>
+        <span class="item-controls">
+            <a class="item-create" data-type="{{sourceType}}">+ Add</a>
+        </span>
     </div>
-    <div class="box-content">
-        {{#each sourceList as |listItem index|}}
-        <div class="flexrow box-item editable-item" data-itemid="{{listItem._id}}" data-skillname="{{listItem.name}}">
-            <span class="viewable" data-itemid="{{listItem._id}}">{{listItem.name}}</span>            
-            <span style="text-align:right" class="chatable" data-itemid="{{listItem._id}}"><i class="fas fa-comment"></i></span>
-        </div>
-        {{/each}}
+
+    {{#each sourceList as |listItem index|}}
+    <div class="box-item flex row align-center space-between editable-item" data-itemid="{{listItem._id}}">
+        <label class="item-name viewable" data-itemid="{{listItem._id}}">{{listItem.name}}</label>
+        <span class="item-controls">
+            <a class="chatable" data-itemid="{{listItem._id}}"><i class="fas fa-comment"></i></a>
+        </span>
     </div>
+    {{/each}}
+
 </div>

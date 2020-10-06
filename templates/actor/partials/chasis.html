@@ -1,22 +1,31 @@
 <div class="box-list chasis {{data.type}}">
-    <div class="box-header {{data.type}}">
-        <label>{{localize "MYZ.CHASIS"}}</label>
-        <span class="item-create" data-type="chasis">+ ADD</span>
+    <div class="box-item header flex row align-center space-between {{data.type}}">
+        <label class="item-name">{{localize "MYZ.CHASIS"}}</label>
+        <span class="item-controls">
+            <a class="item-create" data-type="chasis">+ Add</a>
+        </span>
     </div>
-    <div class="box-content items-list">        
-        {{#each actor.chasis as |chasis key|}}
-        <div class="editable-item" data-itemid="{{chasis._id}}">
-            <div>
-                <label class="item-name">{{chasis.name}}</label>
-            </div>
-            <div class="item chasis flex row space-between">
-                <label>{{chasis.data.location}}</label>
-                <span>
-                    <label class="">[{{chasis.data.strength}}|{{chasis.data.agility}}|{{chasis.data.wits}}|{{chasis.data.empathy}}]</label>
-                    <label class="">{{chasis.data.armor}}</label>
-                </span>
-            </div>
+    <!--{{#each actor.chasis as |chasis key|}}
+<div class="grid grid-2col align-center">
+    <span>
+        <label class="item-name">{{chasis.name}}</label>
+        <label class="item-name">{{chasis.data.location}}</label>
+    </span>
+    <label>[{{chasis.data.strength}} - {{chasis.data.agility}} - {{chasis.data.wits}} - {{chasis.data.empathy}}] {{chasis.data.armor}}</label>
+</div>
+    {{/each}}-->
+    {{#each actor.chasis as |chasis key|}}
+    <div class="box-item chasie flex column editable-item" data-itemid="{{chasis._id}}">
+
+        <label class="item-name"><strong>{{chasis.name}}</strong></label>
+
+        <div class="chasis flex row space-between">
+            <label class="chasie-name">{{chasis.data.location}}</label>
+            <span style="padding-right:0.5em;">
+                <label>[{{chasis.data.strength}} - {{chasis.data.agility}} - {{chasis.data.wits}} - {{chasis.data.empathy}}] {{chasis.data.armor}}</label>
+            </span>
         </div>
-        {{/each}}
     </div>
+    {{/each}}
+
 </div>

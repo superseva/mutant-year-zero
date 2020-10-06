@@ -75,6 +75,7 @@
     }
 }
 
+/*
 .box-list {
     border: 1px solid;
     margin-bottom: 10px;
@@ -150,13 +151,8 @@
             border: none;
         }
     }
-    /* &.mutations, &.talents {
-        .box-content {
-            min-height: 87px;
-        }
-    }*/
 }
-
+*/
 .conditions{
     .box-content{
         padding: 0 5px 0 5px;
@@ -173,6 +169,8 @@
 .short-input {
     max-width: 3em;
     text-align: center;
+    background-color:white;
+    color: black;
 }
 
 .item-create {

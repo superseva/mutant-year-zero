@@ -1,20 +1,20 @@
 <div class="box-list gear {{data.type}}">
-    <div class="box-header {{data.type}}">
-        <label>{{localize "MYZ.GEAR"}}</label>
-        <span class="item-create" data-type="gear">+ ADD</span>
+    <div class="box-item header flex row align-center space-between {{data.type}}">
+        <label class="item-name">{{localize "MYZ.GEAR"}}</label>
+        <span class="item-controls">
+            <a class="item-create" data-type="gear">+ Add</a>
+        </span>
     </div>
-    <div class="box-content items-list">
-        <div class="item gear flexrow">
-            <img class="item-image" src="systems/mutant-year-zero/ui/1x1-0.png" style="visibility: hidden" />
-            <span class="item-name">{{localize 'MYZ.NAME'}}</span>
-            <span>{{localize 'MYZ.WEIGHT'}}</span>
-        </div>
         {{#each actor.gear as |gear key|}}
-        <div class="item gear flexrow editable-item" data-itemid="{{gear._id}}">
-            <img class="item-image" src="{{gear.img}}" />
-            <span class="item-name">{{gear.name}}</span>
-            <span>{{gear.data.weight}}</span>
+        <div class="box-item gear flex row align-center space-between editable-item" data-itemid="{{gear._id}}">
+            <span class="item-name flex row align-center">
+                <img class="item-image" src="{{gear.img}}" />
+                <label>{{gear.name}}</label>
+            </span>
+            <span class="right-element">
+                <label>W:{{gear.data.weight}}</label>
+            </span>
         </div>
         {{/each}}
-    </div>
+
 </div>

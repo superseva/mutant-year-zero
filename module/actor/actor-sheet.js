@@ -152,28 +152,28 @@ export class MYZActorSheet extends ActorSheet {
 
         // UPDATE INVENTORY ITEM
         html.find('.item-edit').click(ev => {
-            const li = $(ev.currentTarget).parents(".item");
+            const li = $(ev.currentTarget).parents(".box-item");
             const item = this.actor.getOwnedItem(li.data("itemid"));
             item.sheet.render(true);
         });
 
         // DELETE INVENTORY ITEM
         html.find('.item-delete').click(ev => {
-            const li = $(ev.currentTarget).parents(".item");
+            const li = $(ev.currentTarget).parents(".box-item");
             this.actor.deleteOwnedItem(li.data("itemid"));
             li.slideUp(200, () => this.render(false));
         });
 
         //Toggle Equip Inventory Item
         html.find('.item-toggle').click(async (ev) => {
-            const li = $(ev.currentTarget).parents(".item");
+            const li = $(ev.currentTarget).parents(".box-item");
             const item = this.actor.getOwnedItem(li.data('itemid'));
             await this.actor.updateOwnedItem(this._toggleEquipped(li.data('itemid'), item));
         });
 
         // Toggle Broken Module
         html.find('.item-broken').click(async (ev) => {
-            const li = $(ev.currentTarget).parents(".item");
+            const li = $(ev.currentTarget).parents(".box-item");
             const item = this.actor.getOwnedItem(li.data('itemid'));
             await this.actor.updateOwnedItem(this._toggleBroken(li.data('itemid'), item));
         });
