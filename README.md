@@ -15,6 +15,6 @@ If you drag and ability that is not related to the specific character type to it
 *For example if you drag an Animal Power to a Robot sheet the ability will be automaticaly converted to a Module.*
 
 ## Talents - Secondary Functions:
-Both ***Talents and Secondary Function*** are represented by an Item called **Talent**.\
-- You can specify this on the Talent Item Sheet or\
-- Talents dragged to a robot sheet or created from a robot sheet will be named 'Secondary Functions'.\
+Both ***Talents and Secondary Functions*** are represented by an Item called **Talent**.
+- You can specify this on the Talent Item Sheet or
+- Talents dragged to a robot sheet or created from a robot sheet will be named 'Secondary Functions'.
