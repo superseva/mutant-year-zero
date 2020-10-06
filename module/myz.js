@@ -109,6 +109,7 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
     if (item.type == "skill" || item.type == "ability") {
         try {
             if (updateData.data.actorType != actor.data.data.creatureType) {
+                ui.notifications.warn(`ENTITY TYPE CHANGED FROM ${updateData.data.actorType} to ${actor.data.data.creatureType}`);
                 updateData.data.actorType = actor.data.data.creatureType;
             }
         } catch{
@@ -118,14 +119,9 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
 });
 
 Hooks.on("preCreateOwnedItem", (actor, item, updateData) => {
-    if (item.type == "skill") {
+    if (item.type == "skill" || item.type == "ability") {
         if (item.data.actorType != actor.data.data.creatureType) {
-            item.data.actorType = actor.data.data.creatureType;
-        }
-    }
-    if (item.type == "ability") {
-        console.warn(actor.data.data.creatureType);
-        if (item.data.actorType != actor.data.data.creatureType) {
+            ui.notifications.warn(`ENTITY TYPE CHANGED FROM ${item.data.actorType} to ${actor.data.data.creatureType}`);
             item.data.actorType = actor.data.data.creatureType;
         }
     }
