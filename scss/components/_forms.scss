@@ -11,6 +11,13 @@
     justify-content: flex-start;
     margin-bottom: 10px;
 
+    &.npc {
+        flex: 0 0 120px;
+        h1.charname {
+            height:1em;
+        }
+    }
+
     .profile-img {
         flex: 0 0 100px;
         height: 100px;
@@ -73,6 +80,20 @@
     .tox-edit-area {
         padding: 0 8px;
     }
+}
+
+.overlay {
+    position: absolute; /* Sit on top of the page content */
+    //display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 95%; /* Full height (cover the whole page) */
+    top: 5%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    //cursor: pointer; /* Add a pointer on hover */
 }
 
 /*

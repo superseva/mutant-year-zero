@@ -5,8 +5,8 @@ export default class MYZHooks {
         // set creatureType and use it for building NPCS and PCs
         // NPCs should have type=npc and ceratureType = m/a/r/h
         // PCs should have type=m/a/r/h and ceratureType = m/a/r/h
+
         await actor.update({ 'data.creatureType': actor.data.type });
-        console.warn(actor.data.data.creatureType);
 
         if (actor.data.type != "npc") {            
             const actorCoreSkills = actor.data.data.coreSkills;
@@ -31,8 +31,11 @@ export default class MYZHooks {
             await actor.createEmbeddedEntity('OwnedItem', _skillsList);
         }
         else {
-            //console.warn('THE ACTOR IS NPC');
+            console.warn('THE ACTOR IS NPC');
             //console.log(actor.data);
+            setTimeout(async function () { await actor.sheet.render(true); }, 500);
+            //await actor.sheet.close();
+            
         }
     }
 

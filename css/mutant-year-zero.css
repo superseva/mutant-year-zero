@@ -87,7 +87,6 @@ $font-secondary: 'Roboto', sans-serif;*/
   grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin: 10px 0;
   padding: 0;
 }
 
@@ -421,6 +420,16 @@ $font-secondary: 'Roboto', sans-serif;*/
   margin-bottom: 10px;
 }
 
+.mutant-year-zero .sheet-header.npc, .mutant-year-zero .actor-header.npc {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 120px;
+  flex: 0 0 120px;
+}
+
+.mutant-year-zero .sheet-header.npc h1.charname, .mutant-year-zero .actor-header.npc h1.charname {
+  height: 1em;
+}
+
 .mutant-year-zero .sheet-header .profile-img, .mutant-year-zero .actor-header .profile-img {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100px;
@@ -491,6 +500,23 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .tox .tox-edit-area {
   padding: 0 8px;
+}
+
+.mutant-year-zero .overlay {
+  position: absolute;
+  /* Sit on top of the page content */
+  width: 100%;
+  /* Full width (cover the whole page) */
+  height: 95%;
+  /* Full height (cover the whole page) */
+  top: 5%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black background with opacity */
+  z-index: 2;
+  /* Specify a stack order in case you're using a different order for other elements */
 }
 
 .mutant-year-zero .conditions .box-content {

@@ -1,13 +1,100 @@
 <form class="{{cssClass}} flexcol {{data.type}} {{data.creatureType}}" autocomplete="off">
-
-    <div>NPC SHEET - {{data.creatureType}}</div>
     {{#if (ifvalue data.creatureType 'npc')}}
-    <div>
-        <button class="crature-picker" data-creature="mutant">MUTANT</button>
-        <button class="crature-picker" data-creature="animal">ANIMAL</button>
-        <button class="crature-picker" data-creature="robot">ROBOT</button>
-        <button class="crature-picker" data-creature="human">HUMAN</button>
+    <div class="overlay">
+        <a class="crature-picker" data-creature="mutant">MUTANT</a>
+        <a class="crature-picker" data-creature="animal">ANIMAL</a>
+        <a class="crature-picker" data-creature="robot">ROBOT</a>
+        <a class="crature-picker" data-creature="human">HUMAN</a>
     </div>
     {{/if}}
+
+    <div class="actor-header {{data.type}}">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="grid grid-3col">
+                <div class="character-role flex column">
+                    <div class="flexrow">
+                        <label for="data.role.value">{{localize "MYZ.ROLE"}}:</label>
+                        <input name="data.role.value" type="text" value="{{data.role.value}}" />
+                    </div>
+                    <div class="flexrow">
+                        <label for="data.xp.value">{{localize "MYZ.XP"}}:</label><input type="text" data-type="Number" name="data.xp.value" value="{{data.xp.value}}" />
+                    </div>
+                </div>
+                <div class="flex column">
+                    <button class="button-roll">ROLL</button>
+                    <button class="button-push">PUSH</button>
+                </div>
+                <div class="flex column">
+                    <div class="box-list armor {{data.type}}">
+                        <div class="box-header">
+                            <label for="data.armor-rating.value">MYZ.ARMOR</label>
+                            <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex row" style="max-height:80px">
+        <div class="grid grid-4col align-center">
+            <div class="flexcol flex-group-center">
+                <label>{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.creatureType)}}</label>
+                <input name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
+            </div>
+            <div class="flexcol flex-group-center">
+                <label>{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.creatureType)}}</label>
+                <input name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
+            </div>
+            <div class="flexcol flex-group-center">
+                <label>{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.creatureType)}}</label>
+                <input name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
+            </div>
+            <div class="flexcol flex-group-center">
+                <label>{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.creatureType)}}</label>
+                <input name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
+            </div>
+        </div>
+    </div>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="attributes">{{localize "MYZ.ATTRIBUTES"}}</a>
+        <a class="item" data-tab="gear">{{localize "MYZ.GEAR"}}</a>
+        <a class="item" data-tab="info">{{localize "MYZ.INFO"}}</a>
+    </nav>
+
+    <div class="sheet-body">
+
+        {{!-- Attributes Tab --}}
+        <div class="tab" data-group="primary" data-tab="attributes">
+            <div class="grid grid-2col">
+                <div>
+                    <label>SKILLS</label>
+                </div>
+                <div>
+                    <label>ABILITIES</label>
+                </div>
+                <div>
+                    <label>TALENTS</label>
+                </div>
+                <div>
+                    <label>SPECIAL</label>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Gear Tab --}}
+        <div class="tab" data-group="primary" data-tab="gear">
+
+        </div>
+
+        {{!-- Info Tab --}}
+        <div class="tab" data-group="primary" data-tab="info">
+
+        </div>
+
+    </div>
 
 </form>

@@ -102,6 +102,7 @@ Hooks.once("ready", async function () {
 
 /* POPULATE CHARACTER WITH DEFAULT SKILLS */
 Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
+Hooks.on('updateActor', (actor, options, userId) => console.log(actor));
 
 /* MAKE SURE OWNED SKILLS ARE OF THE SAME TYPE AS THE ACTOR */
 Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
