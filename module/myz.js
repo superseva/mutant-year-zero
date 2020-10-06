@@ -109,7 +109,7 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
     if (item.type == "skill" || item.type == "ability") {
         if (updateData.data.hasOwnProperty('actorType')) {
             if (updateData.data.actorType != actor.data.data.creatureType) {
-                ui.notifications.warn(`ENTITY TYPE CHANGED FROM ${updateData.data.actorType} to ${actor.data.data.creatureType}`);
+                ui.notifications.warn(`${item.type} type changed from ${updateData.data.actorType}'s to ${actor.data.data.creatureType}'s`);
                 updateData.data.actorType = actor.data.data.creatureType;
             }
         }
@@ -122,7 +122,7 @@ Hooks.on("preCreateOwnedItem", (actor, item, options) => {
             item.data['actorType'] = actor.data.data.creatureType;
         } else {
             if (item.data.actorType != actor.data.data.creatureType) {
-                ui.notifications.warn(`ENTITY TYPE CHANGED FROM ${item.data.actorType} to ${actor.data.data.creatureType}`);
+                ui.notifications.warn(`${item.type} type changed from ${item.data.actorType}'s to ${actor.data.data.creatureType}'s`);
                 item.data.actorType = actor.data.data.creatureType;
             }
         }        
