@@ -2,10 +2,10 @@
 Unofficial Mutant Year Zero system for FoundryVTT 
 
 Character Types:
-MUTANTS
-ANIMALS
-ROBOTS
-HUMANS
+MUTANTS,
+ANIMALS,
+ROBOTS,
+HUMANS,
 NPC -> a shorter version of mutant/animal/robot/human
 
 Abilities:
