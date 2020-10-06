@@ -209,14 +209,14 @@ export class MYZActorSheet extends ActorSheet {
                     attribute = this.actor.data.data.attributes.strength;
                     skill = this.actor.data.items.find(i => i.name == "Fight");
                 } else {
-                    attribute = this.actor.data.data.attributes.servos;
+                    attribute = this.actor.data.data.attributes.strength;
                     skill = this.actor.data.items.find(i => i.name == "Assault");
                 }
             } else {
                 if (this.actor.data.type != 'robot') {
                     attribute = this.actor.data.data.attributes.agility;
                 } else {
-                    attribute = this.actor.data.data.attributes.stability;
+                    attribute = this.actor.data.data.attributes.agility;
                 }
                 skill = this.actor.data.items.find(i => i.name == "Shoot");
             }

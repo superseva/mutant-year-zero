@@ -4,16 +4,7 @@
         <span class="item-controls">
             <a class="item-create" data-type="chasis">+ Add</a>
         </span>
-    </div>
-    <!--{{#each actor.chasis as |chasis key|}}
-<div class="grid grid-2col align-center">
-    <span>
-        <label class="item-name">{{chasis.name}}</label>
-        <label class="item-name">{{chasis.data.location}}</label>
-    </span>
-    <label>[{{chasis.data.strength}} - {{chasis.data.agility}} - {{chasis.data.wits}} - {{chasis.data.empathy}}] {{chasis.data.armor}}</label>
-</div>
-    {{/each}}-->
+    </div>   
     {{#each actor.chasis as |chasis key|}}
     <div class="box-item chasie flex column editable-item" data-itemid="{{chasis._id}}">
 
