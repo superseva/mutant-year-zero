@@ -185,7 +185,7 @@
     }
   },
   "Item": {
-    "types": [ "weapon", "armor", "chasis", "skill", "mutation", "animal_power", "module", "contact", "talent", "secondary_function", "gear", "artifact", "critical" ],
+    "types": [ "weapon", "armor", "chasis", "skill", "ability", "mutation", "animal_power", "module", "contact", "talent", "secondary_function", "gear", "artifact", "critical" ],
     "templates": {
       "base": {
         "description": "",
@@ -210,6 +210,14 @@
       "attribute": "",
       "actorType": "mutant",
       "coreSkill": ""
+    },
+    "ability": {
+      "templates": [ "base" ],
+      "actorType": "",
+      "abilityType": "",
+      "effect": "",
+      "roleType": "",
+      "broken": false
     },
     "mutation": {
       "templates": [ "base" ],

@@ -106,21 +106,27 @@ Hooks.on('updateActor', (actor, options, userId) => console.log(actor));
 
 /* MAKE SURE OWNED SKILLS ARE OF THE SAME TYPE AS THE ACTOR */
 Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
-    if (item.type == "skill") {
+    if (item.type == "skill" || item.type == "ability") {
         try {
-            if (updateData.data.actorType != actor.data.creatureType) {
-                updateData.data.actorType = actor.data.creatureType;
+            if (updateData.data.actorType != actor.data.data.creatureType) {
+                updateData.data.actorType = actor.data.data.creatureType;
             }
         } catch{
             //console.log('PROBABLY YOU ARE NOT CHANGING ACTOR TYPE');
         }
-    }
+    } 
 });
 
 Hooks.on("preCreateOwnedItem", (actor, item, updateData) => {
     if (item.type == "skill") {
-        if (item.data.actorType != actor.data.type) {
-            item.data.actorType = actor.data.type;
+        if (item.data.actorType != actor.data.data.creatureType) {
+            item.data.actorType = actor.data.data.creatureType;
+        }
+    }
+    if (item.type == "ability") {
+        console.warn(actor.data.data.creatureType);
+        if (item.data.actorType != actor.data.data.creatureType) {
+            item.data.actorType = actor.data.data.creatureType;
         }
     }
 });
@@ -192,6 +198,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/gear.html",
         "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
         "systems/mutant-year-zero/templates/actor/partials/resource-counter.html",
+        "systems/mutant-year-zero/templates/actor/partials/abilities.html",
         "systems/mutant-year-zero/templates/actor/partials/mutations.html",
         "systems/mutant-year-zero/templates/actor/partials/talents.html",        
         "systems/mutant-year-zero/templates/actor/partials/info.html",

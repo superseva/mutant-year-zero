@@ -2,8 +2,8 @@
 {{! PARAM: sourceList: existing list of mutations/powers/contacts}}
 {{! PARAM: sourceLabel: to create a header label}}
 
-<div class="box-list mutations {{data.type}}">
-    <div class="box-item header flex row align-center space-between {{data.type}}">
+<div class="box-list {{data.creatureType}}">
+    <div class="box-item header flex row align-center space-between {{data.creatureType}}">
         <span class="item-name">{{localize sourceLabel}}</span>
         <span class="item-controls">
             <a class="item-create" data-type="{{sourceType}}">+ Add</a>
