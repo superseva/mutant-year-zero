@@ -1,10 +1,15 @@
 <form class="{{cssClass}} flexcol {{data.type}} {{data.creatureType}}" autocomplete="off">
     {{#if (ifvalue data.creatureType 'npc')}}
     <div class="overlay">
-        <a class="crature-picker" data-creature="mutant">MUTANT</a>
-        <a class="crature-picker" data-creature="animal">ANIMAL</a>
-        <a class="crature-picker" data-creature="robot">ROBOT</a>
-        <a class="crature-picker" data-creature="human">HUMAN</a>
+        <div class="flex column center flex-center pick-npc">
+            <h2>{{localize 'MYZ.PICK_NPC_TYPE'}}</h2>
+            <div class="grid grid-2col">
+                <a class="crature-picker" data-creature="mutant">{{localize 'MYZ.MUTANT'}}</a>
+                <a class="crature-picker" data-creature="animal">{{localize 'MYZ.ANIMAL'}}</a>
+                <a class="crature-picker" data-creature="robot">{{localize 'MYZ.ROBOT'}}</a>
+                <a class="crature-picker" data-creature="human">{{localize 'MYZ.HUMAN'}}</a>
+            </div>
+        </div>       
     </div>
     {{/if}}
 

@@ -438,6 +438,22 @@ $font-secondary: 'Roboto', sans-serif;*/
   vertical-align: middle;
 }
 
+.mutant-year-zero .pick-npc {
+  height: 100%;
+  background-image: url(../ui/mutant-sheet-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mutant-year-zero .pick-npc a {
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 20px 30px 20px 30px;
+  border: 1px solid #CCCCCC;
+}
+
 .mutant-year-zero .resource-label {
   font-weight: bold;
   text-transform: uppercase;

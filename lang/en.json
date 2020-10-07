@@ -82,6 +82,8 @@
   "MYZ.DICE_BASE": "Base",
   "MYZ.DICE_SKILL": "Skill",
   "MYZ.DICE_GEAR": "Gear",
-  "MYZ.MODIFIER": "Modifier"
+  "MYZ.MODIFIER": "Modifier",
+
+  "MYZ.PICK_NPC_TYPE": "PICK A NPC TYPE"
 
 }

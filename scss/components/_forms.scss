@@ -57,11 +57,7 @@
 .rollable, a {
     &:hover,
     &:focus {
-        //color: black;
-        //text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 10px black;
         text-shadow: 0 0 10px rgba(0,0,0,0.7);
-        //text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-        // text-decoration: underline;
         cursor: pointer;
     }
 }
@@ -147,5 +143,21 @@
         left: 0;
         top: -3px;
         vertical-align: middle;
+    }
+}
+
+.pick-npc {
+    height: 100%;
+    background-image: url(../ui/mutant-sheet-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    a {
+        text-transform: uppercase;
+        text-decoration: none;
+        background-color: #EEEEEE;
+        color: #333333;
+        padding: 20px 30px 20px 30px;
+        border: 1px solid #CCCCCC;
     }
 }
