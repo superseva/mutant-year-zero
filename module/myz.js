@@ -200,6 +200,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/abilities.html",
         "systems/mutant-year-zero/templates/actor/partials/talents.html",        
         "systems/mutant-year-zero/templates/actor/partials/info.html",
+        "systems/mutant-year-zero/templates/actor/partials/consumables.html",
         "systems/mutant-year-zero/templates/item/partials/header-simple.html"
     ];
     return loadTemplates(templatePaths);

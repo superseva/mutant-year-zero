@@ -322,7 +322,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .sheet-header h1.charname, .mutant-year-zero .actor-header h1.charname {
-  height: 2em;
+  height: 1.2em;
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
@@ -448,6 +448,34 @@ $font-secondary: 'Roboto', sans-serif;*/
   color: #333333;
   padding: 20px 30px 20px 30px;
   border: 1px solid #CCCCCC;
+}
+
+.mutant-year-zero input.nolabel {
+  border: none;
+  border-radius: unset;
+  border-bottom: 1px solid;
+  margin-bottom: 2px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.mutant-year-zero ::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.mutant-year-zero ::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.mutant-year-zero :-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.mutant-year-zero ::-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.mutant-year-zero ::placeholder {
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .mutant-year-zero .resource-label {

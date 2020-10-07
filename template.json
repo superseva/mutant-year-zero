@@ -3,10 +3,10 @@
     "types": ["mutant", "animal", "robot", "human", "npc" ],
     "templates": {
       "base": {
-        "role": {
-          "label": "MYZ.ROLE",
-          "value": ""
-        },
+        "role": "",
+        "specificType": "",
+        "rank": "",
+        "age": "",
         "resources": {
           "resources": {
             "grub": {

@@ -4,21 +4,30 @@
         <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
         <div class="grid grid-3col">
             <div class="character-role flex column">
-                <div class="flexrow">
-                    <label for="data.role.value">{{localize "MYZ.ROLE"}}:</label>
-                    <input name="data.role.value" type="text" value="{{data.role.value}}" />
+                <div class="flex row">
+                    <input class="nolabel" name="data.role" type="text" value="{{data.role}}" placeholder="{{localize (resolveActorType "MYZ.ROLE" "FOR" data.creatureType)}}" />
                 </div>
                 <div class="flex row">
-                    <label for="data.xp.value">{{localize "MYZ.XP"}}:</label><input type="text" data-type="Number" name="data.xp.value" value="{{data.xp.value}}" />
+                    <input class="nolabel" name="data.specificType" type="text" value="{{data.specificType}}" placeholder="{{localize (resolveActorType "MYZ.SPECIFIC_TYPE" "FOR" data.creatureType)}}" />
+                </div>
+                <div class="flex row">
+                    <input class="nolabel" name="data.rank" type="text" value="{{data.rank}}" placeholder="{{localize (resolveActorType "MYZ.RANK" "FOR" data.creatureType)}}"/>
+                </div>
+                <div class="flex row space-between">
+                    <label style="align-self: center" for="data.age">{{localize "MYZ.AGE"}}:</label>
+                    <input class="nolabel short-input" name="data.age" type="text" value="{{data.age}}" />
+                </div>
+                <div class="flex row space-between">
+                    <label style="align-self: center" for="data.xp.value">{{localize "MYZ.XP"}}:</label>
+                    <input class="nolabel short-input" type="text" data-type="Number" name="data.xp.value" value="{{data.xp.value}}" />
                 </div>
             </div>
 
-
-            <div class="flex column">
+            <div class="flexcol">
                 <button class="button-roll">{{localize 'MYZ.ROLL'}}</button>
                 <button class="button-push">{{localize 'MYZ.PUSH'}}</button>
             </div>
-            <div class="flex column">
+            <div class="flex column space-between">
                 {{> systems/mutant-year-zero/templates/actor/partials/rot.html}}
                 <div class="box-item header armor {{data.type}}">
                     <label for="data.armor-rating.value">{{localize 'MYZ.ARMOR'}}</label>

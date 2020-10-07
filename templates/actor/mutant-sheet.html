@@ -41,29 +41,7 @@
             <div class="gear-section">
                 <!--CONSUMABLES SECTION-->
                 <div class="col1">
-                    <div class="box-list consumables {{data.type}}">
-                        <div class="box-item header {{data.type}}">
-                            <span>{{localize "MYZ.CONSUMABLES"}}</span>
-                        </div>
-
-                        <div class="box-item">
-                            <label for="data.resources.grub.value">{{localize "MYZ.GRUB"}}</label>
-                            <input name="data.resources.grub.value" type="text" data-type="Number" value="{{data.resources.grub.value}}" />
-                        </div>
-                        <div class="box-item">
-                            <label for="data.resources.water.value">{{localize "MYZ.WATER"}}</label>
-                            <input name="data.resources.water.value" type="text" data-type="Number" value="{{data.resources.water.value}}" />
-                        </div>
-                        <div class="box-item">
-                            <label for="data.resources.bullets.value">{{localize "MYZ.BULLETS"}}</label>
-                            <input name="data.resources.bullets.value" type="text" data-type="Number" value="{{data.resources.bullets.value}}" />
-                        </div>
-                        <div class="box-item">
-                            <label for="data.resources.booze.value">{{localize "MYZ.BOOZE"}}</label>
-                            <input name="data.resources.booze.value" type="text" data-type="Number" value="{{data.resources.booze.value}}" />
-                        </div>
-
-                    </div>
+                    {{> systems/mutant-year-zero/templates/actor/partials/consumables.html}}
                 </div>
                 <!--WEAPON AND ARMOR SECTION-->
                 <div class="col2">

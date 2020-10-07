@@ -29,7 +29,7 @@
     }
 
     h1.charname {
-        height: 2em;
+        height: 1.2em;
         padding: 0px;
         margin: 5px 0;
         border-bottom: 0;
@@ -164,4 +164,15 @@
         padding: 20px 30px 20px 30px;
         border: 1px solid #CCCCCC;
     }
+}
+
+input.nolabel{
+    border:none;
+    border-radius:unset;
+    border-bottom:1px solid;
+    margin-bottom: 2px;
+    background-color: rgba(0,0,0,0);
+}
+::placeholder {
+    color: rgba(0,0,0,0.4);
 }
