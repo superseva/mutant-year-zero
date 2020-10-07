@@ -181,7 +181,8 @@
         "label": "MYZ.RESOURCE_POINTS",
         "value": 0,
         "max": 10
-      }
+      },
+      "special": ""
     }
   },
   "Item": {

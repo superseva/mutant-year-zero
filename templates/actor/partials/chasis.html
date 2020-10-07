@@ -1,10 +1,10 @@
+<div class="box-item header flex row align-center space-between {{data.type}}">
+    <label class="item-name">{{localize "MYZ.CHASIS"}}</label>
+    <span class="item-controls">
+        <a class="item-create" data-type="chasis">+ Add</a>
+    </span>
+</div>
 <div class="box-list chasis {{data.type}}">
-    <div class="box-item header flex row align-center space-between {{data.type}}">
-        <label class="item-name">{{localize "MYZ.CHASIS"}}</label>
-        <span class="item-controls">
-            <a class="item-create" data-type="chasis">+ Add</a>
-        </span>
-    </div>   
     {{#each actor.chasis as |chasis key|}}
     <div class="box-item chasie flex column editable-item" data-itemid="{{chasis._id}}">
 

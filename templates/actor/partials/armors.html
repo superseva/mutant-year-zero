@@ -1,14 +1,14 @@
-<div class="box-list {{data.type}}">
-    <div class="box-item physical header flex row align-center space-between {{data.type}}">
-        <label class="item-name">{{localize "MYZ.ARMOR"}}</label>
-        <div class="item-values grid center">
-            <label>{{localize 'MYZ.RATING'}}</label>
-            <span>{{localize 'MYZ.TYPE'}}</span>
-        </div>
-        <div class="item-controls">
-            <a class="item-create" data-type="armor">+ Add</a>
-        </div>
+<div class="box-item physical header flex row align-center space-between {{data.creatureType}}">
+    <label class="item-name">{{localize "MYZ.ARMOR"}}</label>
+    <div class="item-values grid center">
+        <label>{{localize 'MYZ.RATING'}}</label>
+        <span>{{localize 'MYZ.TYPE'}}</span>
     </div>
+    <div class="item-controls">
+        <a class="item-create" data-type="armor">+ Add</a>
+    </div>
+</div>
+<div class="box-list {{data.creatureType}}">    
     {{#each actor.armor as |armor key|}}
     <div class="box-item physical flex row align-center space-between editable-item" data-itemid="{{armor._id}}">
         <span class="item-name flex row align-center" data-itemid="{{armor._id}}">

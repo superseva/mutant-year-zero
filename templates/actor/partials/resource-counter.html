@@ -1,7 +1,7 @@
 <!--<div class="box-list mutation-points {{data.type}}">-->
-    <div class="box-item header flex row space-between align-center {{data.type}}">
-        <label class="item-name" for="data.resource-points.value">{{localize (resolveActorType "MYZ.RESOURCE" "POINTS" data.type )}}</label>
-        <span class="item-controls">
+    <div class="box-item header flex row space-between align-center {{data.creatureType}}" style="margin-bottom:5px;">
+        <label class="item-name" for="data.resource-points.value">{{localize (resolveActorType "MYZ.RESOURCE" "POINTS" data.creatureType )}}</label>
+        <span class="right-element">
             <input class="short-input" type="text" name="data.resource-points.value" value="{{data.resource-points.value}}" />
         </span>
     </div>

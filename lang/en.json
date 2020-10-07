@@ -39,7 +39,9 @@
 
   "MYZ.CRITICAL": "Critical",
   "MYZ.CRITICALS": "Criticals",
+  "MYZ.SPECIAL": "Special",
 
+  "MYZ.ABILITIES": "Abilities",
   "MYZ.MUTATIONS": "Mutations",
   "MYZ.ANIMAL_POWERS": "Animal Powers",
   "MYZ.MODULES": "Modules",

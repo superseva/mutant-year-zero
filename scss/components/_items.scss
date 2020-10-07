@@ -17,6 +17,7 @@
     &.header {
         color: ghostwhite;
         font-weight: 800;
+        border: 1px solid black;
 
         &.mutant {
             background-image: url("../ui/box-header-brown.jpg");
@@ -77,14 +78,13 @@
     }
 }
 
-
-
 .box-list {
     list-style: none;
     padding: 0;
-    border: 1px solid;
-    margin-bottom: 10px;
-    min-height: 120px;
+    border: 1px solid black;
+    border-top: none;
+    margin-bottom: 5px;
+    min-height: 90px;
 
     &.mutant {
         background-color: $c-brown-pale;
@@ -102,8 +102,22 @@
         background-color: $c-teal-pale;
     }
 
+    &.fixed-height {
+        height: 120px;
+        overflow: auto;
+        margin-bottom: 0;
+    }
+
     .box-item:last-child {
         border: none;
+    }
+
+    textarea {
+        box-sizing: border-box;
+        height: 115px;
+        border: none;
+        resize: none;
+        font-family: $font-primary;
     }
 }
 

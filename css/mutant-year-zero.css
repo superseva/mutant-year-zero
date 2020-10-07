@@ -422,8 +422,8 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .sheet-header.npc, .mutant-year-zero .actor-header.npc {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 120px;
-  flex: 0 0 120px;
+  -ms-flex: 0 0 110px;
+  flex: 0 0 110px;
 }
 
 .mutant-year-zero .sheet-header.npc h1.charname, .mutant-year-zero .actor-header.npc h1.charname {
@@ -461,6 +461,7 @@ $font-secondary: 'Roboto', sans-serif;*/
   -webkit-box-flex: 0;
   -ms-flex: 0;
   flex: 0;
+  margin-bottom: 5px;
 }
 
 .mutant-year-zero .sheet-body,
@@ -602,6 +603,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 .mutant-year-zero .box-item.header {
   color: ghostwhite;
   font-weight: 800;
+  border: 1px solid black;
 }
 
 .mutant-year-zero .box-item.header.mutant {
@@ -667,9 +669,10 @@ $font-secondary: 'Roboto', sans-serif;*/
 .mutant-year-zero .box-list {
   list-style: none;
   padding: 0;
-  border: 1px solid;
-  margin-bottom: 10px;
-  min-height: 120px;
+  border: 1px solid black;
+  border-top: none;
+  margin-bottom: 5px;
+  min-height: 90px;
 }
 
 .mutant-year-zero .box-list.mutant {
@@ -688,8 +691,23 @@ $font-secondary: 'Roboto', sans-serif;*/
   background-color: #e1ede9;
 }
 
+.mutant-year-zero .box-list.fixed-height {
+  height: 120px;
+  overflow: auto;
+  margin-bottom: 0;
+}
+
 .mutant-year-zero .box-list .box-item:last-child {
   border: none;
+}
+
+.mutant-year-zero .box-list textarea {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 115px;
+  border: none;
+  resize: none;
+  font-family: "Karla", sans-serif;
 }
 
 .mutant-year-zero .item-unequipped {

@@ -1,10 +1,10 @@
-<div class="box-list artifacts {{data.type}}">
-    <div class="box-item header flex row align-center space-between {{data.type}}">
-        <label class="item-name">{{localize "MYZ.ARTIFACTS"}}</label>
-        <span class="item-controls">
-            <a class="item-create" data-type="artifact">+ Add</a>
-        </span>
-    </div>
+<div class="box-item header flex row align-center space-between {{data.type}}">
+    <label class="item-name">{{localize "MYZ.ARTIFACTS"}}</label>
+    <span class="item-controls">
+        <a class="item-create" data-type="artifact">+ Add</a>
+    </span>
+</div>
+<div class="box-list artifacts {{data.type}}">    
     {{#each actor.artifacts as |artifact key|}}
     <div class="box-item gear flex row align-center space-between editable-item" data-itemid="{{artifact._id}}">
         <span class="item-name flex row align-center">

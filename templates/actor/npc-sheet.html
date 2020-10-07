@@ -12,47 +12,39 @@
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
         <div class="header-fields">
             <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
-            <div class="grid grid-3col">
-                <div class="character-role flex column">
-                    <div class="flexrow">
-                        <label for="data.role.value">{{localize "MYZ.ROLE"}}:</label>
-                        <input name="data.role.value" type="text" value="{{data.role.value}}" />
-                    </div>
-                    <div class="flexrow">
-                        <label for="data.xp.value">{{localize "MYZ.XP"}}:</label><input type="text" data-type="Number" name="data.xp.value" value="{{data.xp.value}}" />
-                    </div>
-                </div>
+            <div class="grid grid-2col">                
                 <div class="flex column">
                     <button class="button-roll">ROLL</button>
                     <button class="button-push">PUSH</button>
                 </div>
                 <div class="flex column">
-                    <div class="box-list armor {{data.type}}">
-                        <div class="box-header">
-                            <label for="data.armor-rating.value">MYZ.ARMOR</label>
+                    <div class="box-item header flex row space-between align-center armor {{data.creatureType}}">       
+                        <label class="item-name" for="data.armor-rating.value">MYZ.ARMOR</label>
+                        <span class="right-element">
                             <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
-                        </div>
+                        </span>
                     </div>
+                    {{> systems/mutant-year-zero/templates/actor/partials/resource-counter.html}}
                 </div>
             </div>
         </div>
     </div>
-    <div class="flex row" style="max-height:80px">
-        <div class="grid grid-4col align-center">
+    <div class="flex row" style="max-height:60px">
+        <div class="grid grid-4col align-center" style="width:100%">
             <div class="flexcol flex-group-center">
-                <label>{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.creatureType)}}</label>
+                <label><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.creatureType)}}</strong></label>
                 <input name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
             </div>
             <div class="flexcol flex-group-center">
-                <label>{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.creatureType)}}</label>
+                <label><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.creatureType)}}</strong></label>
                 <input name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
             </div>
             <div class="flexcol flex-group-center">
-                <label>{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.creatureType)}}</label>
+                <label><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.creatureType)}}</strong></label>
                 <input name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
             </div>
             <div class="flexcol flex-group-center">
-                <label>{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.creatureType)}}</label>
+                <label><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.creatureType)}}</strong></label>
                 <input name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
             </div>
         </div>
@@ -71,25 +63,34 @@
         <div class="tab" data-group="primary" data-tab="attributes">
             <div class="grid grid-2col">
                 <div>
-                    <label>SKILLS</label>
+                    {{!-- Skills --}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/skills.html fixedHeight='fixed-height'}}
                 </div>
                 <div>
-                    <label>ABILITIES</label>
-                    {{> systems/mutant-year-zero/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities sourceLabel='MYZ.ABILITIES'}}
+                    {{!-- Abilities --}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities sourceLabel='MYZ.ABILITIES' fixedHeight='fixed-height'}}
                 </div>
                 <div>
-                    <label>TALENTS</label>
+                    {{!-- Talents --}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/talents.html sourceType='talent' sourceList=actor.talents sourceLabel='MYZ.TALENTS' fixedHeight='fixed-height'}}
                 </div>
                 <div>
-                    <label>SPECIAL</label>
+                    <div class="box-item header flex row align-center {{data.creatureType}}">
+                        <label class="item-name">{{localize 'MYZ.SPECIAL'}}</label>
+                    </div>
+                    <div class="box-list {{data.creatureType}} fixed-height">
+                        <textarea name="data.special">{{data.special}}</textarea>
+                    </div>
+                    
                 </div>
             </div>
         </div>
 
         {{!-- Gear Tab --}}
-        <div class="tab" data-group="primary" data-tab="gear">
-
-        </div>
+    <div class="tab" data-group="primary" data-tab="gear">
+        {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}}
+        {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
+    </div>
 
         {{!-- Info Tab --}}
         <div class="tab" data-group="primary" data-tab="info">

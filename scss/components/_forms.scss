@@ -12,7 +12,7 @@
     margin-bottom: 10px;
 
     &.npc {
-        flex: 0 0 120px;
+        flex: 0 0 110px;
         h1.charname {
             height:1em;
         }
@@ -44,6 +44,7 @@
 
 .sheet-tabs {
     flex: 0;
+    margin-bottom: 5px;
 }
 
 .sheet-body,
