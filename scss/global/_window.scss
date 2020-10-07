@@ -12,14 +12,6 @@
     }*/
 }
 
-.rollable {
-  &:hover,
-  &:focus {
-    color: #000;
-    text-shadow: 0 0 10px black;
-    cursor: pointer;
-  }
-}
 
 .sheet.actor .window-content{
     background: url("../ui/mutant-sheet-bg.jpg");

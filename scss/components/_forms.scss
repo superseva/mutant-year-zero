@@ -53,6 +53,19 @@
     height: 100%;
 }
 
+
+.rollable, a {
+    &:hover,
+    &:focus {
+        //color: black;
+        //text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 10px black;
+        text-shadow: 0 0 10px rgba(0,0,0,0.7);
+        //text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        // text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
 .attribute-name{
     font-weight: 800;
     text-transform:uppercase;
@@ -84,97 +97,17 @@
 }
 
 .overlay {
-    position: absolute; /* Sit on top of the page content */
-    //display: none; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 95%; /* Full height (cover the whole page) */
+    position: absolute;
+    width: 100%;
+    height: 95%;
     top: 5%;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-    //cursor: pointer; /* Add a pointer on hover */
+    background-color: rgba(0,0,0,0.7);
+    z-index: 2;
 }
 
-/*
-.box-list {
-    border: 1px solid;
-    margin-bottom: 10px;
-    background-color: $c-brown-pale;
-
-    &.mutant {
-        background-color: $c-brown-pale;
-    }
-
-    &.animal {
-        background-color: $c-green-pale;
-    }
-
-    &.robot {
-        background-color: $c-blue-pale;
-    }
-
-    &.human {
-        background-color: $c-teal-pale;
-    }
-
-    .box-header {
-        padding: 5px;
-        color: white;
-        align-items: center;
-        background-color: $c-brown-dark;
-        background-image: url("../ui/box-header-brown.jpg");
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        &.mutant {
-            background-image: url("../ui/box-header-brown.jpg");
-        }
-
-        &.animal {
-            background-image: url("../ui/box-header-green.jpg");
-        }
-
-        &.robot {
-            background-image: url("../ui/box-header-blue.jpg");
-        }
-
-        &.human {
-            background-image: url("../ui/box-header-tile.jpg");
-        }
-
-        input {
-            background-color: $c-white;
-        }
-    }
-
-    .box-content {
-        padding: 2px;
-        min-height: 87px;
-
-        .box-item {
-            border-bottom: 1px solid $c-brown-mid;
-            padding: 2px 0;
-            align-items: center;
-
-            input[type='checkbox'] {
-                width: 15px;
-                height: 15px;
-            }
-
-            .fa-eye {
-                cursor: pointer;
-            }
-        }
-
-        .box-item:last-child {
-            border: none;
-        }
-    }
-}
-*/
 .conditions{
     .box-content{
         padding: 0 5px 0 5px;
@@ -184,7 +117,10 @@
     }
 }
 
-.viewable, .chatable, .item-create {
+.viewable, 
+.chatable, 
+.item-create, 
+.item-broken {
     cursor: pointer;
 }
 
@@ -197,10 +133,6 @@
 
 .item-create {
     text-align: right;
-}
-
-.item-broken {
-    cursor:pointer;
 }
 
 .checkbox-label {

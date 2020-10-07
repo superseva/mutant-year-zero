@@ -29,22 +29,22 @@
             </div>
         </div>
     </div>
-    <div class="flex row" style="max-height:60px">
+    <div class="flex row" style="max-height:65px">
         <div class="grid grid-4col align-center" style="width:100%">
             <div class="flexcol flex-group-center">
-                <label><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.creatureType)}}</strong></label>
+                <label class="roll-attribute rollable" data-attribute="strength" style="margin-bottom:5px;"><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.creatureType)}}</strong></label>
                 <input name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
             </div>
             <div class="flexcol flex-group-center">
-                <label><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.creatureType)}}</strong></label>
+                <label class="roll-attribute rollable" data-attribute="agility" style="margin-bottom:5px;"><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.creatureType)}}</strong></label>
                 <input name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
             </div>
             <div class="flexcol flex-group-center">
-                <label><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.creatureType)}}</strong></label>
+                <label class="roll-attribute rollable" data-attribute="wits" style="margin-bottom:5px;"><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.creatureType)}}</strong></label>
                 <input name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
             </div>
             <div class="flexcol flex-group-center">
-                <label><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.creatureType)}}</strong></label>
+                <label class="roll-attribute rollable" data-attribute="empathy" style="margin-bottom:5px;"><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.creatureType)}}</strong></label>
                 <input name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
             </div>
         </div>
@@ -93,9 +93,9 @@
     </div>
 
         {{!-- Info Tab --}}
-        <div class="tab" data-group="primary" data-tab="info">
-
-        </div>
+    <div class="tab" data-group="primary" data-tab="info">
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    </div>
 
     </div>
 

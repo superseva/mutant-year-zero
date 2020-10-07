@@ -85,6 +85,7 @@
     border-top: none;
     margin-bottom: 5px;
     min-height: 90px;
+    position: relative;
 
     &.mutant {
         background-color: $c-brown-pale;
@@ -103,64 +104,24 @@
     }
 
     &.fixed-height {
-        height: 120px;
+        height: 130px;
         overflow: auto;
         margin-bottom: 0;
+        position: relative;
+
+        textarea {
+            box-sizing: border-box;
+            height: 120px;
+            border: none;
+            resize: none;
+            font-family: $font-primary;
+        }
     }
 
     .box-item:last-child {
         border: none;
     }
-
-    textarea {
-        box-sizing: border-box;
-        height: 115px;
-        border: none;
-        resize: none;
-        font-family: $font-primary;
-    }
 }
-
-
-/*.items-list {
-    list-style: none;
-    //margin: 7px 0;
-    padding: 0;
-
-
-    .item-header {
-        font-weight: bold;
-    }
-
-
-
-    .item {
-        height: 30px;
-        line-height: 24px;
-        padding: 3px 0;
-        border-bottom: 1px solid $c-brown-mid;
-
-        .item-image {
-            flex: 0 0 24px;
-            width: 24px;
-            height: 24px;
-            margin-right: 5px;
-        }
-
-        img {
-            display: block;
-        }
-    }
-
-    .item-name {
-        margin: 0;
-    }
-
-    .item-controls {
-        flex: 0 0 86px;
-        text-align: right;
-    }
-}*/
 
 .item-unequipped {
     color: rgba(0, 0, 0, 0.2);

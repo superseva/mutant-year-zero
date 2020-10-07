@@ -187,8 +187,10 @@ export class MYZActorSheet extends ActorSheet {
         /* LISTEN CLICKS
         /* -------------------------------------------- */
 
-        // Rollable Item
-        html.find('.rollable.roll-skill').click(this._onRollSkill.bind(this));
+        // Roll Attribute
+        html.find('.roll-attribute').click(this._onRollAttribute.bind(this));
+        // Roll SKILL
+        html.find('.roll-skill').click(this._onRollSkill.bind(this));
         // Viewable Item
         html.find('.viewable').click(this._onItemView.bind(this));
         // Chatable Item
@@ -209,20 +211,16 @@ export class MYZActorSheet extends ActorSheet {
             let testName = weapon.name;
             let attribute;
             let skill;
+
             if (weapon.data.data.category === "melee") {
-                if (this.actor.data.type != 'robot') {
-                    attribute = this.actor.data.data.attributes.strength;
+                if (this.actor.data.data.creatureType != 'robot') {
                     skill = this.actor.data.items.find(i => i.name == "Fight");
                 } else {
-                    attribute = this.actor.data.data.attributes.strength;
-                    skill = this.actor.data.items.find(i => i.name == "Assault");
+                    skill = this.actor.data.items.find(i => i.name === "Assault");                  
                 }
+                attribute = this.actor.data.data.attributes.strength;
             } else {
-                if (this.actor.data.type != 'robot') {
-                    attribute = this.actor.data.data.attributes.agility;
-                } else {
-                    attribute = this.actor.data.data.attributes.agility;
-                }
+                attribute = this.actor.data.data.attributes.agility;
                 skill = this.actor.data.items.find(i => i.name == "Shoot");
             }
             //let bonus = this.parseBonus(weapon.data.data.bonus.value);
@@ -355,6 +353,21 @@ export class MYZActorSheet extends ActorSheet {
         ChatMessage.create({ content: msgText });
     }
 
+    _onRollAttribute(event) {
+        console.log('yo');
+        event.preventDefault();
+        const attName = $(event.currentTarget).data('attribute');
+        const attVal = this.actor.data.data.attributes[attName].value;        
+        RollDialog.prepareRollDialog({
+            rollName: attName,
+            diceRoller: this.diceRoller,
+            baseDefault: attVal,
+            skillDefault: 0,
+            gearDefault: 0,
+            modifierDefault: 0
+        });
+    }
+
     /**
      * Handle clickable rolls.
      * @param {Event} event   The originating click event
@@ -364,7 +377,6 @@ export class MYZActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
         const dataset = element.dataset;
-        console.log(dataset);
         if (dataset.itemid) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find(element => element._id == dataset.itemid);

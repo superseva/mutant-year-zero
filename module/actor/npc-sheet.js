@@ -8,7 +8,7 @@ export class MYZNpcSheet extends MYZActorSheet {
             classes: ["mutant-year-zero", "sheet", "actor"],
             template: "systems/mutant-year-zero/templates/actor/npc-sheet.html",
             width: 600,
-            height: 600,
+            height: 615,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
         });
     }

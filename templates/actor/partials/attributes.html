@@ -3,7 +3,7 @@
 </div>
 <div class="box-list attributes {{data.type}}">    
     <div class="box-item flex row align-center space-between">       
-            <label class="item-name attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.type)}}</label>
+            <label class="item-name attribute-name roll-attribute rollable" data-attribute="strength">{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.type)}}</label>
             <div class="item-controls flex row">
                 <input name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
                 <label style="padding-top:0.2em">&nbsp;/&nbsp;</label>
@@ -11,7 +11,7 @@
             </div>            
     </div>
     <div class="box-item flex row align-center space-between">
-        <label class="item-name attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.type)}}</label>
+        <label class="item-name attribute-name roll-attribute rollable" data-attribute="agility">{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.type)}}</label>
         <div class="item-controls flex row">
             <input name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
             <label style="padding-top:0.2em">&nbsp;/&nbsp;</label>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="box-item flex row align-center space-between">
-        <label class="item-name attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.type)}}</label>
+        <label class="item-name attribute-name roll-attribute rollable" data-attribute="wits">{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.type)}}</label>
         <div class="item-controls flex row">
             <input name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
             <label style="padding-top:0.2em">&nbsp;/&nbsp;</label>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="box-item flex row align-center space-between">
-        <label class="item-name attribute-name">{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.type)}}</label>
+        <label class="item-name attribute-name roll-attribute rollable" data-attribute="empathy">{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.type)}}</label>
         <div class="item-controls flex row">
             <input name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
             <label style="padding-top:0.2em">&nbsp;/&nbsp;</label>

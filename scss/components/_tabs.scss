@@ -25,10 +25,10 @@
     .item {
         line-height: 40px;
         font-weight: bold;
-    }
 
-    &.active {
-        text-decoration: underline;
-        text-shadow: none;
+        &.active {
+            text-decoration: underline;
+            text-shadow: none;
+        }
     }
 }

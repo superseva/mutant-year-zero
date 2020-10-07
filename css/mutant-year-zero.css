@@ -50,12 +50,6 @@ $font-secondary: 'Roboto', sans-serif;*/
   background-repeat: no-repeat;
 }
 
-.rollable:hover, .rollable:focus {
-  color: #000;
-  text-shadow: 0 0 10px black;
-  cursor: pointer;
-}
-
 .sheet.actor .window-content {
   background: url("../ui/mutant-sheet-bg.jpg");
   background-size: cover;
@@ -186,84 +180,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 /* Styles limited to mutant-year-zero sheets */
 .mutant-year-zero {
-  /*
-.box-list {
-    border: 1px solid;
-    margin-bottom: 10px;
-    background-color: $c-brown-pale;
-
-    &.mutant {
-        background-color: $c-brown-pale;
-    }
-
-    &.animal {
-        background-color: $c-green-pale;
-    }
-
-    &.robot {
-        background-color: $c-blue-pale;
-    }
-
-    &.human {
-        background-color: $c-teal-pale;
-    }
-
-    .box-header {
-        padding: 5px;
-        color: white;
-        align-items: center;
-        background-color: $c-brown-dark;
-        background-image: url("../ui/box-header-brown.jpg");
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        &.mutant {
-            background-image: url("../ui/box-header-brown.jpg");
-        }
-
-        &.animal {
-            background-image: url("../ui/box-header-green.jpg");
-        }
-
-        &.robot {
-            background-image: url("../ui/box-header-blue.jpg");
-        }
-
-        &.human {
-            background-image: url("../ui/box-header-tile.jpg");
-        }
-
-        input {
-            background-color: $c-white;
-        }
-    }
-
-    .box-content {
-        padding: 2px;
-        min-height: 87px;
-
-        .box-item {
-            border-bottom: 1px solid $c-brown-mid;
-            padding: 2px 0;
-            align-items: center;
-
-            input[type='checkbox'] {
-                width: 15px;
-                height: 15px;
-            }
-
-            .fa-eye {
-                cursor: pointer;
-            }
-        }
-
-        .box-item:last-child {
-            border: none;
-        }
-    }
-}
-*/
   /* .tabs {
    .item {
      background: rgba(0, 0, 0, 0.125);
@@ -282,45 +198,6 @@ $font-secondary: 'Roboto', sans-serif;*/
      }
    }
  }*/
-  /*.items-list {
-    list-style: none;
-    //margin: 7px 0;
-    padding: 0;
-
-
-    .item-header {
-        font-weight: bold;
-    }
-
-
-
-    .item {
-        height: 30px;
-        line-height: 24px;
-        padding: 3px 0;
-        border-bottom: 1px solid $c-brown-mid;
-
-        .item-image {
-            flex: 0 0 24px;
-            width: 24px;
-            height: 24px;
-            margin-right: 5px;
-        }
-
-        img {
-            display: block;
-        }
-    }
-
-    .item-name {
-        margin: 0;
-    }
-
-    .item-controls {
-        flex: 0 0 86px;
-        text-align: right;
-    }
-}*/
 }
 
 .mutant-year-zero .flex {
@@ -470,6 +347,11 @@ $font-secondary: 'Roboto', sans-serif;*/
   height: 100%;
 }
 
+.mutant-year-zero .rollable:hover, .mutant-year-zero .rollable:focus, .mutant-year-zero a:hover, .mutant-year-zero a:focus {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
 .mutant-year-zero .attribute-name {
   font-weight: 800;
   text-transform: uppercase;
@@ -505,19 +387,14 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .overlay {
   position: absolute;
-  /* Sit on top of the page content */
   width: 100%;
-  /* Full width (cover the whole page) */
   height: 95%;
-  /* Full height (cover the whole page) */
   top: 5%;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 2;
-  /* Specify a stack order in case you're using a different order for other elements */
 }
 
 .mutant-year-zero .conditions .box-content {
@@ -528,7 +405,10 @@ $font-secondary: 'Roboto', sans-serif;*/
   margin: 0;
 }
 
-.mutant-year-zero .viewable, .mutant-year-zero .chatable, .mutant-year-zero .item-create {
+.mutant-year-zero .viewable,
+.mutant-year-zero .chatable,
+.mutant-year-zero .item-create,
+.mutant-year-zero .item-broken {
   cursor: pointer;
 }
 
@@ -541,10 +421,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .item-create {
   text-align: right;
-}
-
-.mutant-year-zero .item-broken {
-  cursor: pointer;
 }
 
 .mutant-year-zero .checkbox-label {
@@ -578,7 +454,7 @@ $font-secondary: 'Roboto', sans-serif;*/
   font-weight: bold;
 }
 
-.mutant-year-zero .tabs.active {
+.mutant-year-zero .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
 }
@@ -673,6 +549,7 @@ $font-secondary: 'Roboto', sans-serif;*/
   border-top: none;
   margin-bottom: 5px;
   min-height: 90px;
+  position: relative;
 }
 
 .mutant-year-zero .box-list.mutant {
@@ -692,22 +569,23 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-list.fixed-height {
-  height: 120px;
+  height: 130px;
   overflow: auto;
   margin-bottom: 0;
+  position: relative;
+}
+
+.mutant-year-zero .box-list.fixed-height textarea {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 120px;
+  border: none;
+  resize: none;
+  font-family: "Karla", sans-serif;
 }
 
 .mutant-year-zero .box-list .box-item:last-child {
   border: none;
-}
-
-.mutant-year-zero .box-list textarea {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  height: 115px;
-  border: none;
-  resize: none;
-  font-family: "Karla", sans-serif;
 }
 
 .mutant-year-zero .item-unequipped {

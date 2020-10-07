@@ -12,7 +12,7 @@
 <div class="box-list {{data.creatureType}} {{fixedHeight}}">
     {{#each sourceList as |listItem index|}}
     <div class="box-item flex row align-center space-between editable-item" data-itemid="{{listItem._id}}">
-        <label class="item-name viewable" data-itemid="{{listItem._id}}">{{listItem.name}}</label>
+        <label class="item-name viewable rollable" data-itemid="{{listItem._id}}">{{listItem.name}}</label>
         <span class="item-controls">
             <a class="chatable" data-itemid="{{listItem._id}}"><i class="fas fa-comment"></i></a>
         </span>
