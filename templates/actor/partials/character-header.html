@@ -29,9 +29,11 @@
             </div>
             <div class="flex column space-between">
                 {{> systems/mutant-year-zero/templates/actor/partials/rot.html}}
-                <div class="box-item header armor {{data.type}}">
-                    <label for="data.armor-rating.value">{{localize 'MYZ.ARMOR'}}</label>
-                    <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
+                <div class="box-item header flex armor space-between align-center {{data.creatureType}}">
+                    <label class="item-name" for="data.armor-rating.value">{{localize 'MYZ.ARMOR'}}</label>
+                    <span class="right-element">
+                        <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
+                    </span>
                 </div>
             </div>
         </div>
