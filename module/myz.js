@@ -106,7 +106,7 @@ Hooks.on('updateActor', (actor, options, userId) => console.log(actor));
 
 /* MAKE SURE OWNED SKILLS ARE OF THE SAME TYPE AS THE ACTOR */
 Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
-    if (item.type == "skill" || item.type == "ability") {
+    if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
         if (updateData.data.hasOwnProperty('creatureType')) {
             if (updateData.data.creatureType != actor.data.data.creatureType) {
                 ui.notifications.warn(`${item.type} type changed from ${updateData.data.creatureType}'s to ${actor.data.data.creatureType}'s`);
@@ -117,7 +117,7 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
 });
 
 Hooks.on("preCreateOwnedItem", (actor, item, options) => {
-    if (item.type == "skill" || item.type == "ability") {
+    if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
         if (!item.data.hasOwnProperty('creatureType')) {
             item.data['creatureType'] = actor.data.data.creatureType;
         } else {
@@ -200,8 +200,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/abilities.html",
         "systems/mutant-year-zero/templates/actor/partials/talents.html",        
         "systems/mutant-year-zero/templates/actor/partials/info.html",
-        "systems/mutant-year-zero/templates/item/partials/header-simple.html",
-        "systems/mutant-year-zero/templates/item/partials/talent-template.html"
+        "systems/mutant-year-zero/templates/item/partials/header-simple.html"
     ];
     return loadTemplates(templatePaths);
 }

@@ -28,8 +28,14 @@
   "MYZ.ATTRIBUTE_WITS_ROBOT": "Processor",
   "MYZ.ATTRIBUTE_EMPATHY_ROBOT": "Network",
 
+  "MYZ.XP": "XP",
   "MYZ.ROT": "Rot",
   "MYZ.PERMA_ROT": "Perma Rot",
+  "MYZ.CONSUMABLES": "Consumables",
+  "MYZ.GRUB": "Grub",
+  "MYZ.WATER": "Water",
+  "MYZ.BULLETS": "Bullets",
+  "MYZ.BOOZE": "Booze",
 
   "MYZ.CONDITIONS": "Conditions",
   "MYZ.CONDITION_STARVING": "Starving",
@@ -58,6 +64,14 @@
   "MYZ.TALENTS": "Talents",
   "MYZ.SECONDARY_FUNCTION": "Secondary Function",
   "MYZ.SECONDARY_FUNCTIONS": "Secondary Functions",
+  "MYZ.TALENT_MUTANT": "Mutant Talent",
+  "MYZ.TALENT_ANIMAL": "Animal Talent",
+  "MYZ.TALENT_ROBOT": "Secondary Function",
+  "MYZ.TALENT_HUMAN": "Human Talent",
+
+  "MYZ.GENERAL": "General",
+  "MYZ.ROLE": "Role",
+
 
   "MYZ.BROKEN": "Borken",
   "MYZ.WEAPON": "Weapon",
@@ -87,6 +101,6 @@
   "MYZ.WEAPON_MELEE": "Melee",
   "MYZ.WEAPON_RANGED": "Range",
 
-  "MYZ.PICK_NPC_TYPE": "PICK A NPC TYPE"
+  "MYZ.PICK_NPC_TYPE": "PICK NPC TYPE"
 
 }

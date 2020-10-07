@@ -121,6 +121,17 @@
     .box-item:last-child {
         border: none;
     }
+
+    &.conditions {
+        font-size: small;
+        min-height: 0px;
+        height: 70px;
+
+        .grid {
+            grid-gap: 6px;
+            margin: 0;
+        }
+    }
 }
 
 .item-unequipped {

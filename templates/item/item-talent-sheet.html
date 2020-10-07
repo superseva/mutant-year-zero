@@ -1,8 +1,35 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} {{data.itemType}}" autocomplete="off">
     {{!-- HEADER --}}
     {{> systems/mutant-year-zero/templates/item/partials/header-simple.html}}
 
     {{!-- Sheet Body --}}
-    {{> systems/mutant-year-zero/templates/item/partials/talent-template.html}}
+    <div class="grid">
+        <label for="data.creatureType">{{localize "MYZ.TALENT_TYPE"}}</label>
+        <select name="data.creatureType">
+            {{#select data.creatureType}}
+            <option value="mutant">{{localize "MYZ.TALENT_MUTANT"}}</option>
+            <option value="animal">{{localize "MYZ.TALENT_ANIMAL"}}</option>
+            <option value="robot">{{localize "MYZ.TALENT_ROBOT"}}</option>
+            <option value="human">{{localize "MYZ.TALENT_HUMAN"}}</option>
+            {{/select}}
+        </select>
+
+        <label for="data.roleType">{{localize "MYZ.TYPE"}}</label>
+        <select name="data.roleType">
+            {{#select data.roleType}}
+            <option value="general">{{localize "MYZ.GENERAL"}}</option>
+            <option value="role">{{localize "MYZ.ROLE"}}</option>
+            {{/select}}
+        </select>
+
+        <label for="data.effect">{{localize "MYZ.EFFECT"}}</label>
+        <input name="data.effect" value="{{data.effect}}">
+    </div>
+    <h2>{{localize "MYZ.DESCRIPTION"}}</h2>
+    <section class="sheet-body">
+        <div class="tab">
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+    </section>
 
 </form>

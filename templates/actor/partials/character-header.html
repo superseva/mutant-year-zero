@@ -15,13 +15,13 @@
 
 
             <div class="flex column">
-                <button class="button-roll">ROLL</button>
-                <button class="button-push">PUSH</button>
+                <button class="button-roll">{{localize 'MYZ.ROLL'}}</button>
+                <button class="button-push">{{localize 'MYZ.PUSH'}}</button>
             </div>
             <div class="flex column">
                 {{> systems/mutant-year-zero/templates/actor/partials/rot.html}}
                 <div class="box-item header armor {{data.type}}">
-                    <label for="data.armor-rating.value">MYZ.ARMOR</label>
+                    <label for="data.armor-rating.value">{{localize 'MYZ.ARMOR'}}</label>
                     <input class="short-input" type="text" name="data.armor-rating.value" value="{{data.armor-rating.value}}" />
                 </div>
             </div>

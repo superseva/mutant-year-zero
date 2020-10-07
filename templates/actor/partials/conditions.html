@@ -1,8 +1,8 @@
 <div class="box-item header flex row align-center {{data.type}}">
     <label class="item-name">{{localize "MYZ.CONDITIONS"}}</label>
 </div>
-<div class="box-list conditions {{data.type}}">    
-    <div class="grid grid-2col box-content">
+<div class="box-list flex flex-center conditions {{data.type}}">    
+    <div class="grid grid-2col">
         {{#each data.conditions as |condition key|}}
         <div class="flex row align-center">
             <label class="checkbox-label" for="data.conditions.{{key}}.value">

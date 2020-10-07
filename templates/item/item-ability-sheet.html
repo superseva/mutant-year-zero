@@ -3,13 +3,6 @@
     {{> systems/mutant-year-zero/templates/item/partials/header-simple.html}}
     {{!-- Sheet Body --}}
     <div class="grid">
-        <label for="data.type">{{localize "MYZ.TYPE"}}</label>
-        <select name="data.type">
-            {{#select data.roleType}}
-            <option value="general">{{localize "MYZ.GENERAL"}}</option>
-            <option value="role">{{localize "MYZ.ROLE"}}</option>
-            {{/select}}
-        </select>
         <label for="data.effect">{{localize "MYZ.EFFECT"}}</label>
         <input name="data.effect" value="{{data.effect}}">
 

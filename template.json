@@ -186,7 +186,7 @@
     }
   },
   "Item": {
-    "types": [ "weapon", "armor", "chasis", "skill", "ability", "talent", "secondary_function", "gear", "artifact", "critical" ],
+    "types": [ "weapon", "armor", "chasis", "skill", "ability", "talent", "gear", "artifact", "critical" ],
     "templates": {
       "base": {
         "description": "",
@@ -219,16 +219,12 @@
       "effect": "",
       "roleType": "",
       "broken": false
-    },    
+    },
     "talent": {
       "templates": [ "base" ],
       "effect": "",
-      "type": ""
-    },
-    "secondary_function": {
-      "templates": [ "base" ],
-      "effect": "",
-      "type": ""
+      "roleType": "",
+      "creatureType": ""
     },
     "weapon": {
       "templates": [ "base", "physical", "bonus" ],
