@@ -13,9 +13,9 @@
                     <input type="text" name="data.min" value="{{data.min}}" data-dtype="Number" />
                 </div>-->
                 <div class="resource">
-                    <label class="resource-label" for="data.actorType">{{localize 'MYZ.ACTOR_TYPE'}}</label>
-                    <select name="data.actorType">
-                        {{#select data.actorType}}
+                    <label class="resource-label" for="data.creatureType">{{localize 'MYZ.ACTOR_TYPE'}}</label>
+                    <select name="data.creatureType">
+                        {{#select data.creatureType}}
                         <option value="mutant">{{localize "MYZ.MUTANT"}}</option>
                         <option value="animal">{{localize "MYZ.ANIMAL"}}</option>
                         <option value="robot">{{localize "MYZ.ROBOT"}}</option>
@@ -27,10 +27,10 @@
                     <label class="resource-label" for="data.attribute">{{localize "MYZ.ATTRIBUTES"}}</label>
                     <select name="data.attribute">
                         {{#select data.attribute}}
-                        <option value="strength">{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.actorType)}}</option>
-                        <option value="agility">{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.actorType)}}</option>
-                        <option value="wits">{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.actorType)}}</option>
-                        <option value="empathy">{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.actorType)}}</option>
+                        <option value="strength">{{localize (resolveActorType "MYZ.ATTRIBUTE" "STRENGTH" data.creatureType)}}</option>
+                        <option value="agility">{{localize (resolveActorType "MYZ.ATTRIBUTE" "AGILITY" data.creatureType)}}</option>
+                        <option value="wits">{{localize (resolveActorType "MYZ.ATTRIBUTE" "WITS" data.creatureType)}}</option>
+                        <option value="empathy">{{localize (resolveActorType "MYZ.ATTRIBUTE" "EMPATHY" data.creatureType)}}</option>
                         {{/select}}
                     </select>
                 </div>

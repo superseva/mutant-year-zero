@@ -16,7 +16,7 @@
     <div class="box-item flex row align-center space-between editable-item" data-itemid="{{listItem._id}}">
         <a class="item-name viewable" data-itemid="{{listItem._id}}">{{listItem.name}}</a>
         <span class="item-controls">
-            {{#if (ifvalue listItem.data.actorType 'robot')}}
+            {{#if (ifvalue listItem.data.creatureType 'robot')}}
             <a class="item-broken" title="{{localize 'MYZ.BROKEN'}}">
                 {{#if  listItem.data.broken}}
                 <i class="fa fa-exclamation-circle" style="color:darkred"></i>

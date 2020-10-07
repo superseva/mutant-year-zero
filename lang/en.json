@@ -84,6 +84,9 @@
   "MYZ.DICE_GEAR": "Gear",
   "MYZ.MODIFIER": "Modifier",
 
+  "MYZ.WEAPON_MELEE": "Melee",
+  "MYZ.WEAPON_RANGED": "Range",
+
   "MYZ.PICK_NPC_TYPE": "PICK A NPC TYPE"
 
 }

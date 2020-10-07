@@ -13,9 +13,9 @@
         <label for="data.effect">{{localize "MYZ.EFFECT"}}</label>
         <input name="data.effect" value="{{data.effect}}">
 
-        <label for="data.actorType">{{localize "MYZ.ABILITY_TYPE"}}</label>
-        <select name="data.actorType">
-            {{#select data.actorType}}
+        <label for="data.creatureType">{{localize "MYZ.ABILITY_TYPE"}}</label>
+        <select name="data.creatureType">
+            {{#select data.creatureType}}
             <option value="mutant">{{localize "MYZ.ABILITY_MUTANT"}}</option>
             <option value="animal">{{localize "MYZ.ABILITY_ANIMAL"}}</option>
             <option value="robot">{{localize "MYZ.ABILITY_ROBOT"}}</option>
@@ -24,7 +24,7 @@
         </select>
 
 
-        {{#if (ifvalue data.actorType 'robot')}}
+        {{#if (ifvalue data.creatureType 'robot')}}
         <div class="flexrow">
             <label>{{localize "MYZ.BROKEN"}}</label>
             <input type="checkbox" name="data.broken" {{checked data.broken}} />

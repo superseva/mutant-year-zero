@@ -209,12 +209,12 @@
       "value": 0,
       "min": 0,
       "attribute": "",
-      "actorType": "mutant",
+      "creatureType": "mutant",
       "coreSkill": ""
     },
     "ability": {
       "templates": [ "base" ],
-      "actorType": "",
+      "creatureType": "",
       "abilityType": "",
       "effect": "",
       "roleType": "",

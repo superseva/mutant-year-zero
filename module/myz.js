@@ -81,8 +81,8 @@ Hooks.once('init', async function () {
         return new Handlebars.SafeString(theString)
     });
 
-    Handlebars.registerHelper('resolveActorType', function (pre, keyName, actorType) {
-        return pre + '_' + keyName.toUpperCase() +'_'+ actorType.toUpperCase();
+    Handlebars.registerHelper('resolveActorType', function (pre, keyName, creatureType) {
+        return pre + '_' + keyName.toUpperCase() + '_' + creatureType.toUpperCase();
     });
 
     Handlebars.registerHelper('isdefined', function (value) {
@@ -107,10 +107,10 @@ Hooks.on('updateActor', (actor, options, userId) => console.log(actor));
 /* MAKE SURE OWNED SKILLS ARE OF THE SAME TYPE AS THE ACTOR */
 Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
     if (item.type == "skill" || item.type == "ability") {
-        if (updateData.data.hasOwnProperty('actorType')) {
-            if (updateData.data.actorType != actor.data.data.creatureType) {
-                ui.notifications.warn(`${item.type} type changed from ${updateData.data.actorType}'s to ${actor.data.data.creatureType}'s`);
-                updateData.data.actorType = actor.data.data.creatureType;
+        if (updateData.data.hasOwnProperty('creatureType')) {
+            if (updateData.data.creatureType != actor.data.data.creatureType) {
+                ui.notifications.warn(`${item.type} type changed from ${updateData.data.creatureType}'s to ${actor.data.data.creatureType}'s`);
+                updateData.data.creatureType = actor.data.data.creatureType;
             }
         }
     } 
@@ -118,12 +118,12 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
 
 Hooks.on("preCreateOwnedItem", (actor, item, options) => {
     if (item.type == "skill" || item.type == "ability") {
-        if (!item.data.hasOwnProperty('actorType')) {
-            item.data['actorType'] = actor.data.data.creatureType;
+        if (!item.data.hasOwnProperty('creatureType')) {
+            item.data['creatureType'] = actor.data.data.creatureType;
         } else {
-            if (item.data.actorType != actor.data.data.creatureType) {
-                ui.notifications.warn(`${item.type} type changed from ${item.data.actorType}'s to ${actor.data.data.creatureType}'s`);
-                item.data.actorType = actor.data.data.creatureType;
+            if (item.data.creatureType != actor.data.data.creatureType) {
+                ui.notifications.warn(`${item.type} type changed from ${item.data.creatureType}'s to ${actor.data.data.creatureType}'s`);
+                item.data.creatureType = actor.data.data.creatureType;
             }
         }        
     }
