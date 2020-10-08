@@ -8,11 +8,6 @@ ol{
 
 .sheet-header, .actor-header {
     flex: 0 0 120px;
-    //overflow: hidden;
-    //display: flex;
-    //flex-direction: row;
-    //flex-wrap: wrap;
-    //justify-content: flex-start;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -79,13 +74,10 @@ ol{
 
 .gear-section {
     padding-top: 10px;
-    //display: flex;
-    //flex-direction: row;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
-
     .col1 {
         grid-column: 1/ span 1;
     }
@@ -93,14 +85,6 @@ ol{
     .col2 {
         grid-column: 2/ span 4;
     }
-    /*.col1 {
-        max-width: 150px;
-        margin-right: 10px;
-    }
-
-    .col2 {
-        width: 100%;
-    }*/
 }
 
 .tox {
@@ -124,8 +108,6 @@ ol{
     background-color: rgba(0,0,0,0.7);
     z-index: 2;
 }
-
-
 
 .viewable, 
 .chatable, 
@@ -246,6 +228,19 @@ input.nolabel{
     }
 }
 
-.rot-button{
-    max-width:90px;
+.rot-box,
+.armor-box {
+    border: 1px solid;
+    border-bottom: 1px solid !important;
+    min-height: 36px !important;
+
+    img {
+        border: none;
+        width:26px;
+        height:26px;
+    }
+
+    .rot-button {
+        cursor: pointer;
+    }
 }

@@ -58,11 +58,6 @@ export class RollDialog {
                             });
                             onAfterRoll(diceRoller);
                         }
-                    },
-                    cancel: {
-                        icon: '<i class="fas fa-times"></i>',
-                        label: "Cancel",
-                        callback: () => { }
                     }
                 },
                 default: "roll",

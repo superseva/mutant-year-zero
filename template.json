@@ -32,7 +32,7 @@
           "value": ""
         },
         "description": "",
-        "armor-rating": {
+        "armorrating": {
           "label": "MYZ.ARMOR",
           "value": 0
         },
@@ -116,7 +116,7 @@
         "Manipulate",
         "Heal"
       ],
-      "resource-points": {
+      "resource_points": {
         "label": "MYZ.MUTATION_POINTS",
         "value": 0,
         "max": 10
@@ -138,7 +138,7 @@
         "Dominate",
         "Heal"
       ],
-      "resource-points": {
+      "resourcepoints": {
         "label": "MYZ.FERAL_POINTS",
         "value": 0,
         "max": 10
@@ -147,7 +147,7 @@
     "robot": {
       "templates": [ "base", "stats", "status", "resources" ],
       "coreSkills": [ "Overload", "Force", "Assault", "Infiltrate", "Move", "Shoot", "Scan", "Datamine", "Analyze", "Question", "Interact", "Repair" ],
-      "resource-points": {
+      "resource_points": {
         "label": "MYZ.ENERGY_POINTS",
         "value": 0,
         "max": 10
@@ -169,7 +169,7 @@
         "Manipulate",
         "Heal"
       ],
-      "resource-points": {
+      "resource_points": {
         "label": "MYZ.INFLUENCE_POINTS",
         "value": 0,
         "max": 10
@@ -177,7 +177,7 @@
     },
     "npc": {
       "templates": [ "base", "stats" ],
-      "resource-points": {
+      "resource_points": {
         "label": "MYZ.RESOURCE_POINTS",
         "value": 0,
         "max": 10

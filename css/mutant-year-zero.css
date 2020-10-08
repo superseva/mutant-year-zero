@@ -58,11 +58,11 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 /*ROLL DIALOG*/
 .roll-dialog {
-  background: url("../ui/mutant-sheet-bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin: -18px -8px 0 -8px;
-  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.roll-dialog .dice-row {
+  margin-bottom: 5px;
 }
 
 .roll-dialog .dice-image {
@@ -370,14 +370,6 @@ $font-secondary: 'Roboto', sans-serif;*/
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  /*.col1 {
-        max-width: 150px;
-        margin-right: 10px;
-    }
-
-    .col2 {
-        width: 100%;
-    }*/
 }
 
 .mutant-year-zero .gear-section .col1 {
@@ -542,8 +534,23 @@ $font-secondary: 'Roboto', sans-serif;*/
   grid-column: 5/ span 2;
 }
 
-.mutant-year-zero .rot-button {
-  max-width: 90px;
+.mutant-year-zero .rot-box,
+.mutant-year-zero .armor-box {
+  border: 1px solid;
+  border-bottom: 1px solid !important;
+  min-height: 36px !important;
+}
+
+.mutant-year-zero .rot-box img,
+.mutant-year-zero .armor-box img {
+  border: none;
+  width: 26px;
+  height: 26px;
+}
+
+.mutant-year-zero .rot-box .rot-button,
+.mutant-year-zero .armor-box .rot-button {
+  cursor: pointer;
 }
 
 .mutant-year-zero .resource-label {
@@ -592,7 +599,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item.header.mutant {
-  background-image: url("../ui/box-header-brown.jpg");
+  background-image: url("../ui/box-header-brown.png");
 }
 
 .mutant-year-zero .box-item.header.animal {
@@ -600,7 +607,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item.header.robot {
-  background-image: url("../ui/box-header-blue.jpg");
+  background-image: url("../ui/box-header-blue.png");
 }
 
 .mutant-year-zero .box-item.header.human {

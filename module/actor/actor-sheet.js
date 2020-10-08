@@ -197,13 +197,13 @@ export class MYZActorSheet extends ActorSheet {
         html.find('.chatable').click(this._onItemSendToChat.bind(this));
         //Roll Rot
         html.find(".roll-rot").click((event) => {
-            console.log(this.actor.data.data.rot.value);
             RollDialog.prepareRollDialog({
                 rollName: game.i18n.localize('MYZ.ROT'),
                 diceRoller: this.diceRoller,
                 baseDefault: this.actor.data.data.rot.value
             });
         });
+
         //Roll Weapon Item
         html.find(".roll-weapon").click((event) => {
             const itemId = $(event.currentTarget).data("item-id");
@@ -236,6 +236,27 @@ export class MYZActorSheet extends ActorSheet {
             });
         });
 
+        //Roll Armor
+        html.find('.armor-roll').click((event) => {
+            RollDialog.prepareRollDialog({
+                rollName: game.i18n.localize('MYZ.ARMOR'),
+                diceRoller: this.diceRoller,
+                gearDefault: this.actor.data.data.armorrating.value
+            });
+        });
+        //Roll Armor Item
+        html.find('.armor-item-roll').click((event) => {
+            const itemBox = $(event.currentTarget).parents('.box-item');
+            const itemId = itemBox.data("item-id");
+            const armorItem = this.actor.getOwnedItem(itemId);
+            let testName = armorItem.name;
+            RollDialog.prepareRollDialog({
+                rollName: testName,
+                diceRoller: this.diceRoller,
+                gearDefault: armorItem.data.data.rating.value
+            });
+        });
+
         //SET NPC creatureType
         html.find('.crature-picker').click(this._updateNPCCreatureType.bind(this));    
 
@@ -255,8 +276,8 @@ export class MYZActorSheet extends ActorSheet {
                 this._deleteOwnedItemById(t.data('item-id'));
             },
             condition: (t) => {
-                if (t[0].dataset.coreskill) {
-                    return t[0].dataset.coreskill.length < 1;
+                if (t.data('coreskill')) {
+                    return t.data('coreskill').length < 1;
                 } else {
                     return true;
                 }
@@ -294,7 +315,8 @@ export class MYZActorSheet extends ActorSheet {
 
     async _onChangeSkillValue(event) {
         event.preventDefault();
-        let _item = this.actor.items.find(element => element._id == event.currentTarget.dataset['item-id']);
+        const itemId = $(event.currentTarget).data('item-id');
+        let _item = this.actor.items.find(element => element._id == itemId);
         if (_item) {
             let update = { _id: _item._id, data: { value: $(event.currentTarget).val() } };
             await this.actor.updateEmbeddedEntity('OwnedItem', update);
@@ -376,10 +398,11 @@ export class MYZActorSheet extends ActorSheet {
     _onRollSkill(event) {
         event.preventDefault();
         const element = event.currentTarget;
-        const dataset = element.dataset;
-        if (dataset['item-id']) {
+        //const dataset = element.dataset;
+        const itemId = $(element).data('item-id');
+        if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
-            const skill = this.actor.items.find(element => element._id == dataset['item-id']);
+            const skill = this.actor.items.find(element => element._id == itemId);
             console.warn(skill);
             //let baseDice = this.actor.data.attributes[skill.data.data.attribute].value;
             let baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
