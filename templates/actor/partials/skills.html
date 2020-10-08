@@ -8,11 +8,11 @@
 </div>
 <div class="box-list skills {{data.creatureType}} {{fixedHeight}}">
     {{#each actor.skills as |skill index|}}
-    <div class="box-item flex row align-center space-between editable-item" data-itemid="{{skill._id}}" data-coreSkill="{{skill.data.coreSkill}}">
-        <a class="item-name flex row align-center roll-skill rollable" data-itemid="{{skill._id}}"><strong>{{skill.name}}</strong></a>
+    <div class="box-item flex row align-center space-between editable-item" data-item-id="{{skill._id}}" data-coreSkill="{{skill.data.coreSkill}}">
+        <a class="item-name flex row align-center roll-skill rollable" data-item-id="{{skill._id}}"><strong>{{skill.name}}</strong></a>
         <span class="item-controls grid grid-2col align-center">
             <label style="text-align: left">{{trimString3 (localize (resolveActorType "MYZ.ATTRIBUTE" skill.data.attribute ../actor.type))}} </label>
-            <input class="skill-value short-input" data-itemid="{{skill._id}}" value="{{skill.data.value}}" />
+            <input class="skill-value short-input" data-item-id="{{skill._id}}" value="{{skill.data.value}}" />
         </span>
     </div>
     {{/each}}

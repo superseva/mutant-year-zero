@@ -158,29 +158,29 @@ export class MYZActorSheet extends ActorSheet {
         // UPDATE INVENTORY ITEM
         html.find('.item-edit').click(ev => {
             const li = $(ev.currentTarget).parents(".box-item");
-            const item = this.actor.getOwnedItem(li.data("itemid"));
+            const item = this.actor.getOwnedItem(li.data("item-id"));
             item.sheet.render(true);
         });
 
         // DELETE INVENTORY ITEM
         html.find('.item-delete').click(ev => {
             const li = $(ev.currentTarget).parents(".box-item");
-            this.actor.deleteOwnedItem(li.data("itemid"));
+            this.actor.deleteOwnedItem(li.data("item-id"));
             li.slideUp(200, () => this.render(false));
         });
 
         //Toggle Equip Inventory Item
         html.find('.item-toggle').click(async (ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            const item = this.actor.getOwnedItem(li.data('itemid'));
-            await this.actor.updateOwnedItem(this._toggleEquipped(li.data('itemid'), item));
+            const item = this.actor.getOwnedItem(li.data('item-id'));
+            await this.actor.updateOwnedItem(this._toggleEquipped(li.data('item-id'), item));
         });
 
         // Toggle Broken Module
         html.find('.item-broken').click(async (ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            const item = this.actor.getOwnedItem(li.data('itemid'));
-            await this.actor.updateOwnedItem(this._toggleBroken(li.data('itemid'), item));
+            const item = this.actor.getOwnedItem(li.data('item-id'));
+            await this.actor.updateOwnedItem(this._toggleBroken(li.data('item-id'), item));
         });
 
         /* -------------------------------------------- */
@@ -206,7 +206,7 @@ export class MYZActorSheet extends ActorSheet {
         });
         //Roll Weapon Item
         html.find(".roll-weapon").click((event) => {
-            const itemId = $(event.currentTarget).data("itemid");
+            const itemId = $(event.currentTarget).data("item-id");
             const weapon = this.actor.getOwnedItem(itemId);
             let testName = weapon.name;
             let attribute;
@@ -246,13 +246,13 @@ export class MYZActorSheet extends ActorSheet {
         let menu_items = [{
             icon: '<i class="fas fa-dice-d6"></i>', name: "Edit",
             callback: (t) => {
-                this._editOwnedItemById(t[0].dataset.itemid);
+                this._editOwnedItemById(t.data('item-id'));
             }
         },
         {
             icon: '<i class="fas fa-dice-d6"></i>', name: "Delete",
             callback: (t) => {
-                this._deleteOwnedItemById(t[0].dataset.itemid);
+                this._deleteOwnedItemById(t.data('item-id'));
             },
             condition: (t) => {
                 if (t[0].dataset.coreskill) {
@@ -267,8 +267,8 @@ export class MYZActorSheet extends ActorSheet {
         // Drag events for macros.
         if (this.actor.owner) {
             let handler = ev => this._onDragItemStart(ev);
-            html.find('li.item').each((i, li) => {
-                if (li.classList.contains("inventory-header")) return;
+            html.find('li.box-item').each((i, li) => {
+                if (li.classList.contains("header")) return;
                 li.setAttribute("draggable", true);
                 li.addEventListener("dragstart", handler, false);
             });
@@ -294,7 +294,7 @@ export class MYZActorSheet extends ActorSheet {
 
     async _onChangeSkillValue(event) {
         event.preventDefault();
-        let _item = this.actor.items.find(element => element._id == event.currentTarget.dataset.itemid);
+        let _item = this.actor.items.find(element => element._id == event.currentTarget.dataset['item-id']);
         if (_item) {
             let update = { _id: _item._id, data: { value: $(event.currentTarget).val() } };
             await this.actor.updateEmbeddedEntity('OwnedItem', update);
@@ -334,13 +334,13 @@ export class MYZActorSheet extends ActorSheet {
 
     _onItemView(event) {
         event.preventDefault();
-        const item = this.actor.getOwnedItem($(event.currentTarget).data('itemid'));
+        const item = this.actor.getOwnedItem($(event.currentTarget).data('item-id'));
         item.sheet.render(true);
     }
 
     _onItemSendToChat(event) {
         event.preventDefault();
-        const item = this.actor.getOwnedItem($(event.currentTarget).data('itemid'));
+        const item = this.actor.getOwnedItem($(event.currentTarget).data('item-id'));
         if (!item)
             return;
         let msgText = "";
@@ -377,9 +377,9 @@ export class MYZActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
         const dataset = element.dataset;
-        if (dataset.itemid) {
+        if (dataset['item-id']) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
-            const skill = this.actor.items.find(element => element._id == dataset.itemid);
+            const skill = this.actor.items.find(element => element._id == dataset['item-id']);
             console.warn(skill);
             //let baseDice = this.actor.data.attributes[skill.data.data.attribute].value;
             let baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;

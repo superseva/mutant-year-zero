@@ -11,10 +11,10 @@
 </div>
 <div class="box-list {{data.creatureType}} {{fixedHeight}}">
     {{#each sourceList as |listItem index|}}
-    <div class="box-item flex row align-center space-between editable-item" data-itemid="{{listItem._id}}">
-        <label class="item-name viewable rollable" data-itemid="{{listItem._id}}">{{listItem.name}}</label>
+    <div class="box-item flex row align-center space-between editable-item" data-item-id="{{listItem._id}}">
+        <label class="item-name viewable rollable" data-item-id="{{listItem._id}}">{{listItem.name}}</label>
         <span class="item-controls">
-            <a class="chatable" data-itemid="{{listItem._id}}"><i class="fas fa-comment"></i></a>
+            <a class="chatable" data-item-id="{{listItem._id}}"><i class="fas fa-comment"></i></a>
         </span>
     </div>
     {{/each}}

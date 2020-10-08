@@ -6,9 +6,9 @@
 </div>
 <div class="box-list criticals {{data.type}}">
     {{#each actor.criticals as |critical index|}}
-    <div class="box-item critical-item editable-item flex column" data-itemid="{{critical._id}}">
+    <div class="box-item critical-item editable-item flex column" data-item-id="{{critical._id}}">
         <span class="item-name">
-            <i class="fas fa-comment chatable" data-itemid="{{critical._id}}"></i>
+            <i class="fas fa-comment chatable" data-item-id="{{critical._id}}"></i>
             <label><strong>{{critical.name}}:</strong></label>
         </span>
         <label class="item-name">{{critical.data.effect}}</label>

@@ -1,20 +1,30 @@
 .item-form {
     font-family: $font-primary;
 }
+ol{
+    margin:0;
+    list-style:none;
+}
 
 .sheet-header, .actor-header {
-    flex: 0 0 180px;
-    overflow: hidden;
+    flex: 0 0 120px;
+    //overflow: hidden;
+    //display: flex;
+    //flex-direction: row;
+    //flex-wrap: wrap;
+    //justify-content: flex-start;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-start;
+    align-items: flex-start;
     margin-bottom: 10px;
 
     &.npc {
         flex: 0 0 110px;
+
         h1.charname {
-            height:1em;
+            height: 1em;
         }
     }
 
@@ -175,4 +185,67 @@ input.nolabel{
 }
 ::placeholder {
     color: rgba(0,0,0,0.4);
+}
+
+.header-fields {
+    .row1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+        margin-bottom: 5px;
+        //grid-auto-rows: minmax(100px, auto);
+        :nth-child(1) {
+            grid-column: 1/ span 3;
+        }
+
+        :nth-child(2) {
+            grid-column: 4/ span 2;
+        }
+
+        :nth-child(3) {
+            grid-column: 6/ span 1;
+        }
+    }
+
+    .row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+        margin-bottom: 5px;
+        //grid-auto-rows: minmax(100px, auto);
+        :nth-child(1) {
+            grid-column: 1/ span 3;
+        }
+
+        :nth-child(2) {
+            grid-column: 4/ span 2;
+        }
+
+        :nth-child(3) {
+            grid-column: 6/ span 1;
+        }
+    }
+
+    .row3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+        margin-bottom: 5px;
+        //grid-auto-rows: minmax(100px, auto);
+        :nth-child(1) {
+            grid-column: 1/ span 3;
+        }
+
+        :nth-child(2) {
+            grid-column: 4/ span 1;
+        }
+
+        :nth-child(3) {
+            grid-column: 5/ span 2;
+        }
+    }
+}
+
+.rot-button{
+    max-width:90px;
 }

@@ -277,11 +277,15 @@ $font-secondary: 'Roboto', sans-serif;*/
   font-family: "Karla", sans-serif;
 }
 
+.mutant-year-zero ol {
+  margin: 0;
+  list-style: none;
+}
+
 .mutant-year-zero .sheet-header, .mutant-year-zero .actor-header {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 180px;
-  flex: 0 0 180px;
-  overflow: hidden;
+  -ms-flex: 0 0 120px;
+  flex: 0 0 120px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -289,11 +293,14 @@ $font-secondary: 'Roboto', sans-serif;*/
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
   flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 
@@ -478,6 +485,67 @@ $font-secondary: 'Roboto', sans-serif;*/
   color: rgba(0, 0, 0, 0.4);
 }
 
+.mutant-year-zero .header-fields .row1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin-bottom: 5px;
+}
+
+.mutant-year-zero .header-fields .row1 :nth-child(1) {
+  grid-column: 1/ span 3;
+}
+
+.mutant-year-zero .header-fields .row1 :nth-child(2) {
+  grid-column: 4/ span 2;
+}
+
+.mutant-year-zero .header-fields .row1 :nth-child(3) {
+  grid-column: 6/ span 1;
+}
+
+.mutant-year-zero .header-fields .row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin-bottom: 5px;
+}
+
+.mutant-year-zero .header-fields .row2 :nth-child(1) {
+  grid-column: 1/ span 3;
+}
+
+.mutant-year-zero .header-fields .row2 :nth-child(2) {
+  grid-column: 4/ span 2;
+}
+
+.mutant-year-zero .header-fields .row2 :nth-child(3) {
+  grid-column: 6/ span 1;
+}
+
+.mutant-year-zero .header-fields .row3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin-bottom: 5px;
+}
+
+.mutant-year-zero .header-fields .row3 :nth-child(1) {
+  grid-column: 1/ span 3;
+}
+
+.mutant-year-zero .header-fields .row3 :nth-child(2) {
+  grid-column: 4/ span 1;
+}
+
+.mutant-year-zero .header-fields .row3 :nth-child(3) {
+  grid-column: 5/ span 2;
+}
+
+.mutant-year-zero .rot-button {
+  max-width: 90px;
+}
+
 .mutant-year-zero .resource-label {
   font-weight: bold;
   text-transform: uppercase;
@@ -504,6 +572,7 @@ $font-secondary: 'Roboto', sans-serif;*/
   padding: 0.3em 0 0.3em 0;
   line-height: 14px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  list-style: none;
 }
 
 .mutant-year-zero .box-item.physical .item-name {

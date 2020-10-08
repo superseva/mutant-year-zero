@@ -100,6 +100,7 @@ Hooks.once("ready", async function () {
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
 });
 
+
 /* POPULATE CHARACTER WITH DEFAULT SKILLS */
 Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
 Hooks.on('updateActor', (actor, options, userId) => console.log(actor));
@@ -141,6 +142,8 @@ Hooks.on("preCreateOwnedItem", (actor, item, options) => {
  * @returns {Promise}
  */
 async function createMYZMacro(data, slot) {
+    ui.notifications.warn("DRAGGING ITEMS WILL BE IMPLEMENTED LATER");
+    return;
     if (data.type !== "Item") return;
     if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
     const item = data.data;
