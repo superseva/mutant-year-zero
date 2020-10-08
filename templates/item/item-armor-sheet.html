@@ -1,67 +1,42 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
-            <div class="grid grid-3col">
-                <div class="resource">
-                    <label for="data.weight" class="resource-label">{{localize 'MYZ.WEIGHT'}}</label>
-                    <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number" />
-                </div>
-                <div class="resource">
-                    <label for="data.cost" class="resource-label">{{localize 'MYZ.COST'}}</label>
-                    <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" />
-                </div>
-                <div class="resource">
-                    <label class="checkbox-label">
-                        {{localize 'MYZ.EQUIPPED'}}
-                        <input class="input-checkbox"
-                               type="checkbox"
-                               name="data.equipped"
-                               {{checked data.equipped}}
-                               data-dtype="Boolean" />
-                    </label>
-                </div>
-                <div class="resource">
-                    <label for="data.rating" class="resource-label">{{localize 'MYZ.RATING'}}</label>
-                    <div class="flex">
-                        <input type="text" name="data.rating.value" value="{{data.rating.value}}" />
-                        <span>/</span>
-                        <input type="text" name="data.rating.max" value="{{data.rating.max}}" />
-                    </div>
-                </div>
-                <div class="resource">
-                    <label for="data.type" class="resource-label">{{localize 'MYZ.TYPE'}}</label>
-                    <select name="data.armorType">
-                        {{#select data.armorType}}
-                        <option value="armor">{{localize "MYZ.ARMOR_BODY"}}</option>
-                        <option value="shield">{{localize "MYZ.ARMOR_SHIELD"}}</option>
-                        {{/select}}
-                    </select>
-                </div>
-                <div class="resource">                    
-                </div>
+    {{>"systems/mutant-year-zero/templates/item/partials/header-physical.html"}}
+    <div class="grid grid-3col align-end">
+        <div class="resource flex column item-attr-row">
+            <label for="data.rating" class="resource-label">{{localize 'MYZ.ARMOR_RATING'}}</label>
+            <div class="flex">
+                <input type="text" name="data.rating.value" value="{{data.rating.value}}" />
+                <span>/</span>
+                <input type="text" name="data.rating.max" value="{{data.rating.max}}" />
             </div>
         </div>
-    </header>
-
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <!--<a class="item" data-tab="attributes">Attributes</a>-->
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        {{!-- Description Tab --}}
-        <div class="tab" data-group="primary" data-tab="description">
+        <div class="resource flex column item-attr-row">
+            <label for="data.type" class="resource-label">{{localize 'MYZ.ARMOR_TYPE'}}</label>
+            <select name="data.armorType">
+                {{#select data.armorType}}
+                <option value="armor">{{localize "MYZ.ARMOR_BODY"}}</option>
+                <option value="shield">{{localize "MYZ.ARMOR_SHIELD"}}</option>
+                {{/select}}
+            </select>
+        </div>
+        <div class="resource flex column align-end item-attr-row">
+            <label for="data.equipped" class="checkbox-label">
+                {{localize 'MYZ.EQUIPPED'}}
+                <input class="input-checkbox"
+                       type="checkbox"
+                       name="data.equipped"
+                       {{checked data.equipped}}
+                       data-dtype="Boolean" />
+            </label>
+        </div>
+    </div>
+    <div class="item-attr-row">
+        <label for="data.comment" class="resource-label">{{localize 'MYZ.COMMENT'}}</label>
+        <input type="text" name="data.comment" value="{{data.comment}}" />
+    </div>
+    <h2>Description</h2>
+    <div class="info">
+        <div class="description">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
         </div>
-
-        {{!-- Attributes Tab --}}
-        <!--<div class="tab attributes" data-group="primary" data-tab="attributes">
-            {{!-- As you add new fields, add them in here! --}}
-        </div>-->
-    </section>
+    </div>
 </form>

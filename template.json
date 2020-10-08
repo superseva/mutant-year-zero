@@ -190,12 +190,12 @@
     "templates": {
       "base": {
         "description": "",
-        "comment": ""
+        "comment": "",
+        "cost": 0
       },
       "physical": {
         "quantity": 1,
-        "weight": "",
-        "cost": 0
+        "weight": ""        
       },
       "bonus": {
         "bonus": {
@@ -244,7 +244,7 @@
       "equipped": false
     },
     "chasis": {
-      "templates": [ "base" ],
+      "templates": [ "base", "physical" ],
       "location": "",
       "strength": 0,
       "agility": 0,
@@ -259,7 +259,10 @@
       "requirement": ""
     },
     "artifact": {
-      "templates": [ "base", "physical" ]
+      "templates": [ "base", "physical" ],
+      "effect": "",
+      "dev_requirement": "",
+      "dev_bonus": ""
     },
     "critical": {
       "leathal": "",

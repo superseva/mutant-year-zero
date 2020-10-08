@@ -1,35 +1,27 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
-            <div class="grid grid-3col">
-                <div class="resource">
-                    <label for="data.quantity" class="resource-label">{{localize 'MYZ.QUANTITY'}}</label>
-                    <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number" />
-                </div>
-                <div class="resource">
-                    <label for="data.weight" class="resource-label">{{localize 'MYZ.WEIGHT'}}</label>
-                    <input type="text" name="data.weight" value="{{data.weight}}" />
-                </div>
-                <div class="resource">
-                    <label for="data.cost" class="resource-label">{{localize 'MYZ.COST'}}</label>
-                    <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" />
-                </div>
-            </div>
+    {{> systems/mutant-year-zero/templates/item/partials/header-physical.html}}
+    <div class="grid item-attr-row">
+        <div class="">
+            <label class="resource-label" for="data.dev_requirement">{{localize "MYZ.DEV_REQUIREMENT"}}</label>
+            <input type="text" name="data.dev_requirement" value="{{data.dev_requirement}}">
         </div>
-    </header>
 
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-    </nav>
+        <div class="">
+            <label class="resource-label" for="data.dev_bonus">{{localize "MYZ.DEV_BONUS"}}</label>
+            <input type="text" name="data.dev_bonus" value="{{data.dev_bonus}}">
+        </div>
+    </div>
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-        {{!-- Description Tab --}}
-        <div class="tab" data-group="primary" data-tab="description">
+    <div class="item-attr-row">
+        <label class="resource-label" for="data.effect">{{localize "MYZ.EFFECT"}}</label>
+        <input type="text" name="data.effect" value="{{data.effect}}">
+    </div>
+
+
+    <h2>Description</h2>
+    <div class="info">
+        <div class="description">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
         </div>
-    </section>
+    </div>
 </form>

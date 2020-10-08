@@ -223,6 +223,10 @@ export class MYZActorSheet extends ActorSheet {
                 attribute = this.actor.data.data.attributes.agility;
                 skill = this.actor.data.items.find(i => i.name == "Shoot");
             }
+            if (!skill) {
+                ui.notifications.warn(game.i18n.localize('MYZ.NO_COMBAT_SKILL'));
+                return;
+            }
             //let bonus = this.parseBonus(weapon.data.data.bonus.value);
             RollDialog.prepareRollDialog({
                 rollName: testName,

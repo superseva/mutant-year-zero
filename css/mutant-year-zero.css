@@ -354,6 +354,12 @@ $font-secondary: 'Roboto', sans-serif;*/
   height: 100%;
 }
 
+.mutant-year-zero .info,
+.mutant-year-zero .info .description,
+.mutant-year-zero .info .description .editor {
+  height: 180px;
+}
+
 .mutant-year-zero .rollable:hover, .mutant-year-zero .rollable:focus, .mutant-year-zero a:hover, .mutant-year-zero a:focus {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   cursor: pointer;
@@ -551,6 +557,10 @@ $font-secondary: 'Roboto', sans-serif;*/
 .mutant-year-zero .rot-box .rot-button,
 .mutant-year-zero .armor-box .rot-button {
   cursor: pointer;
+}
+
+.mutant-year-zero .item-attr-row {
+  margin-bottom: 10px;
 }
 
 .mutant-year-zero .resource-label {

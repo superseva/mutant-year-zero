@@ -1,12 +1,8 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
-        </div>
-    </header>
+    {{>"systems/mutant-year-zero/templates/item/partials/header-simple.html"}}
+
     <section class="sheet-body">
-        <div class="grid grid-3col">
+        <div class="grid grid-3col item-attr-row">
             <div class="resource">
                 <label for="data.leathal" class="resource-label">{{localize 'MYZ.LEATHAL'}}</label>
                 <input type="text" name="data.leathal" value="{{data.leathal}}" />
@@ -18,10 +14,10 @@
             <div class="resource">
                 <label for="data.healingTime" class="resource-label">{{localize 'MYZ.HEALINGTIME'}}</label>
                 <input type="text" name="data.healingTime" value="{{data.healingTime}}" />
-            </div>            
+            </div>
         </div>
-        <div>
-            <div class="resource flex align-center">
+        <div class="item-attr-row">
+            <div class="resource flex column">
                 <label for="data.effect" class="resource-label">{{localize 'MYZ.EFFECT'}}</label>
                 <input type="text" name="data.effect" value="{{data.effect}}" />
             </div>

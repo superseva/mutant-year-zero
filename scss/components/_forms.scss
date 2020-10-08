@@ -58,6 +58,12 @@ ol{
     height: 100%;
 }
 
+.info,
+.info .description,
+.info .description .editor {
+    height: 180px;
+}
+
 
 .rollable, a {
     &:hover,
@@ -243,4 +249,7 @@ input.nolabel{
     .rot-button {
         cursor: pointer;
     }
+}
+.item-attr-row{
+    margin-bottom:10px;
 }

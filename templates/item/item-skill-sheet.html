@@ -1,18 +1,15 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
-            <div class="grid grid-3col">
+
+    {{>"systems/mutant-year-zero/templates/item/partials/header-simple.html"}}
+
+    <div>       
+        <div>            
+            <div class="grid grid-3col item-attr-row align-start">
                 <div class="resource">
                     <label class="resource-label" for="data.value">{{localize 'MYZ.VALUE'}}</label>
                     <input type="text" name="data.value" value="{{data.value}}" data-dtype="Number" />
                 </div>
-                <!--<div class="resource">
-                    <label class="resource-label" for="data.min">{{localize 'MYZ.MINIMUM'}}</label>
-                    <input type="text" name="data.min" value="{{data.min}}" data-dtype="Number" />
-                </div>-->
-                <div class="resource">
+                <div class="resource flex column">
                     <label class="resource-label" for="data.creatureType">{{localize 'MYZ.ACTOR_TYPE'}}</label>
                     <select name="data.creatureType">
                         {{#select data.creatureType}}
@@ -23,7 +20,7 @@
                         {{/select}}
                     </select>
                 </div>
-                <div class="resource">
+                <div class="resource flex column">
                     <label class="resource-label" for="data.attribute">{{localize "MYZ.ATTRIBUTES"}}</label>
                     <select name="data.attribute">
                         {{#select data.attribute}}
@@ -36,25 +33,11 @@
                 </div>
             </div>
         </div>
-    </header>
-
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <!--<a class="item" data-tab="attributes">Attributes</a>-->
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        {{!-- Description Tab --}}
-        <div class="tab" data-group="primary" data-tab="description">
+    </div>
+    <h2>Description</h2>
+    <div class="info">
+        <div class="description">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
         </div>
-
-        {{!-- Attributes Tab --}}
-        <!--<div class="tab attributes" data-group="primary" data-tab="attributes">-->
-            {{!-- As you add new fields, add them in here! --}}
-        <!--</div>-->
-    </section>
+    </div>
 </form>
