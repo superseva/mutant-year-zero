@@ -1,0 +1,49 @@
+<div class="myz chat-item">
+    <div class="border">
+        <h3>{{name}}</h3>
+
+        {{#if isWeapon}}
+        <h4>{{weaponCategory data.category}}</h4>
+        {{/if}}
+        {{#if isArmor}}
+        <h4>{{armorPart data.location}}</h4>
+        {{/if}}
+        {{#if isCritical}}
+        <h4>{{localize "MYZ.CRITICAL"}}</h4>
+        {{/if}}
+        {{#if isGear}}
+        <h4>{{localize "MYZ.GEAR"}}</h4>
+        {{/if}}
+        {{#if isTalent}}
+        <h4>{{localize "MYZ.TALENT"}}</h4>
+        {{/if}}
+        {{#if isAbility}}
+        <h4>{{localize "MYZ.ABILITY"}}</h4>
+        {{/if}}
+
+        {{#if img}}
+        <img src="{{img}}" title="{{name}}" />
+        {{/if}}
+
+        {{#if isCritical}}
+        <p><strong>{{localize "MYZ.LETHAL"}}:</strong> {{data.lethal}}</p>
+        <p><strong>{{localize "MYZ.TIMELIMIT"}}:</strong> {{data.timeLimit}}</p>
+        <p><strong>{{localize "MYZ.HEALINGTIME"}}:</strong> {{data.healingTime}}</p>
+        {{#if data.effect}}
+        <p>{{data.effect}}</p>
+        {{/if}}
+        {{/if}}
+
+        {{#if isGear}}
+        <p>{{data.comment}}</p>
+        {{/if}}
+
+        {{#if data.weight}}
+        <p><strong>{{localize "MYZ.WEIGHT"}}:</strong> {{data.weight}}</p>
+        {{/if}}
+        {{#if data.cost}}
+        <p><strong>{{localize "MYZ.COST"}}:</strong> {{data.cost}}</p>
+        {{/if}}
+
+    </div>
+</div>

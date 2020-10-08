@@ -357,17 +357,13 @@ export class MYZActorSheet extends ActorSheet {
 
     _onItemSendToChat(event) {
         event.preventDefault();
-        const item = this.actor.getOwnedItem($(event.currentTarget).data('item-id'));
+        const itemId = $(event.currentTarget).data('item-id');
+        console.log(itemId);
+        //return;
+        const item = this.actor.getOwnedItem(itemId);       
         if (!item)
             return;
-        let msgText = "";
-        if (item.data.type == "critical") {
-            msgText = `<h2>${item.data.name}</h2>` + item.data.data.effect;
-        } else {
-            msgText = `<h2>${item.data.name}</h2>` + item.data.data.description;
-        }
-
-        ChatMessage.create({ content: msgText });
+        item.sendToChat();        
     }
 
     _onRollAttribute(event) {

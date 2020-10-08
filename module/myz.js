@@ -72,6 +72,16 @@ Hooks.once('init', async function () {
         return outStr;
     });
 
+    Handlebars.registerHelper("weaponCategory", function (category) {
+        category = normalize(category, "melee");
+        switch (category) {
+            case "melee":
+                return game.i18n.localize("MYZ.WEAPON_MELEE");
+            case "ranged":
+                return game.i18n.localize("MYZ.WEAPON_RANGED");
+        }
+    });
+
     Handlebars.registerHelper('toLowerCase', function (str) {
         return str.toLowerCase();
     });
@@ -208,4 +218,12 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/item/partials/header-physical.html"
     ];
     return loadTemplates(templatePaths);
+}
+
+function normalize(data, defaultValue) {
+    if (data) {
+        return data.toLowerCase();
+    } else {
+        return defaultValue;
+    }
 }

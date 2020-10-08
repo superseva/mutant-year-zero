@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;500;800&family=Montserrat:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;500;800&family=Cairo:wght@400;600;700&display=swap");
 /*$font-primary: 'Roboto', sans-serif;
 $font-secondary: 'Roboto', sans-serif;*/
 /* MYZ FONT SYMBOLS*/
@@ -196,7 +196,12 @@ $font-secondary: 'Roboto', sans-serif;*/
   text-transform: uppercase;
 }
 
+.myz.chat-item h2 {
+  font-family: "Karla", sans-serif;
+}
+
 .myz.chat-item h3 {
+  font-family: "Karla", sans-serif;
   font-size: 16px;
   font-weight: bold;
   margin: 0 0 8px;
@@ -204,11 +209,26 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .myz.chat-item h4 {
-  font-family: var(--font-subheader);
+  font-family: "Karla", sans-serif;
   font-size: 14px;
   font-weight: bold;
   margin: 0 0 8px;
   text-align: center;
+}
+
+.myz.chat-item img {
+  background: -o-radial-gradient(closest-side, var(--color-highlight) 0%, transparent 100%);
+  background: radial-gradient(closest-side, var(--color-highlight) 0%, transparent 100%);
+  border: 0;
+  display: block;
+  margin: 0 auto 8px;
+  max-height: 64px;
+  width: auto;
+}
+
+.myz.chat-item p {
+  font-family: "Karla", sans-serif;
+  margin: 0 0 4px;
 }
 
 /* Styles limited to mutant-year-zero sheets */
