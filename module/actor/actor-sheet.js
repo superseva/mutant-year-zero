@@ -302,11 +302,8 @@ export class MYZActorSheet extends ActorSheet {
 
     async _updateNPCCreatureType(event) {
         let _creatureType = $(event.currentTarget).data('creature');
-        console.warn(_creatureType);
-        console.log(this.actor);
         await this.actor.update({ 'data.creatureType': _creatureType });
         this.actor.sheet.render();
-        console.log(this.actor);
     }
 
     _editOwnedItemById(_itemId) {
@@ -335,21 +332,15 @@ export class MYZActorSheet extends ActorSheet {
     async _onItemCreate(event) {
         event.preventDefault();
         const header = event.currentTarget;
-        // Get the type of item to create.
         const type = header.dataset.type;
-        // Grab any data associated with this control.
         const data = duplicate(header.dataset);
-        // Initialize a default name.
         const name = `New ${type.capitalize()}`;
-        // Prepare the item object.
         const itemData = {
             name: name,
             type: type,
             data: data
         };
-        // Remove the type from the dataset since it's in the itemData.type prop.
         delete itemData.data["type"];
-        // Finally, create the item!
         await this.actor.createOwnedItem(itemData).then((_i) => {
             const item = this.actor.getOwnedItem(_i._id);
             item.sheet.render(true);
@@ -380,7 +371,6 @@ export class MYZActorSheet extends ActorSheet {
     }
 
     _onRollAttribute(event) {
-        console.log('yo');
         event.preventDefault();
         const attName = $(event.currentTarget).data('attribute');
         const attVal = this.actor.data.data.attributes[attName].value;        
@@ -407,7 +397,6 @@ export class MYZActorSheet extends ActorSheet {
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find(element => element._id == itemId);
-            console.warn(skill);
             //let baseDice = this.actor.data.attributes[skill.data.data.attribute].value;
             let baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
 

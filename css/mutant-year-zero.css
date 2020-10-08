@@ -178,6 +178,39 @@ $font-secondary: 'Roboto', sans-serif;*/
   justify-content: space-between;
 }
 
+#chat-log .message {
+  background: white;
+}
+
+.myz.chat-item {
+  background-color: white;
+  background-image: url("../ui/mutant-sheet-bg.jpg");
+  margin: 0 -5px 0 -5px;
+}
+
+.myz.chat-item .border {
+  padding: 10px;
+}
+
+.myz.chat-item strong {
+  text-transform: uppercase;
+}
+
+.myz.chat-item h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.myz.chat-item h4 {
+  font-family: var(--font-subheader);
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
 /* Styles limited to mutant-year-zero sheets */
 .mutant-year-zero {
   /* .tabs {
@@ -613,7 +646,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item.header.animal {
-  background-image: url("../ui/box-header-green.jpg");
+  background-image: url("../ui/box-header-green.png");
 }
 
 .mutant-year-zero .box-item.header.robot {
@@ -621,7 +654,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item.header.human {
-  background-image: url("../ui/box-header-tile.jpg");
+  background-image: url("../ui/box-header-tile.png");
 }
 
 .mutant-year-zero .box-item.chasie .chasie-name {

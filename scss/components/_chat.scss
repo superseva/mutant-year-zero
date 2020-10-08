@@ -1,0 +1,31 @@
+#chat-log .message {
+    background: white;
+}
+.myz.chat-item {
+    background-color: white;
+    background-image: url('../ui/mutant-sheet-bg.jpg');
+    margin: 0 -5px 0 -5px;
+
+    .border {
+        padding: 10px;
+    }
+
+    strong {
+        text-transform: uppercase;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 0 8px;
+        text-align: center;
+    }
+
+    h4 {
+        font-family: var(--font-subheader);
+        font-size: 14px;
+        font-weight: bold;
+        margin: 0 0 8px;
+        text-align: center;
+    }
+}

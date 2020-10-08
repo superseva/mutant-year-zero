@@ -8,6 +8,7 @@
 @import 'global/window';
 @import 'global/grid';
 @import 'global/flex';
+@import 'components/chat';
 
 
 /* Styles limited to mutant-year-zero sheets */
@@ -17,4 +18,5 @@
     @import 'components/resource';
     @import 'components/tabs';
     @import 'components/items';
+    
 }
