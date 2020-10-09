@@ -58,7 +58,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 /*ROLL DIALOG*/
 .roll-dialog {
-  margin-bottom: 10px;
+  min-height: 135px;
 }
 
 .roll-dialog .dice-row {
@@ -641,6 +641,36 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .item-attr-row {
   margin-bottom: 10px;
+}
+
+.mutant-year-zero .box-encumbrance {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  border-top: 0;
+  padding: 5px;
+  color: black;
+  background-color: white;
+}
+
+.mutant-year-zero .box-encumbrance.encumbered {
+  color: white;
+  background-color: red;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  border-top: 0;
 }
 
 .mutant-year-zero .resource-label {

@@ -27,17 +27,22 @@ export class MYZActor extends Actor {
         if (data.rot.value < data.rot.min) {
             data.rot.value = data.rot.min;
         }
+
         // update encumbrance
-        console.log(this.data);
+        data.isEncumbered = "";
         data.encumbranceMax = parseInt(data.attributes.strength.value) * 2;
         let _totalWeight = 0;
         this.data.items.forEach(i => {
             if (i.data.weight) {
                 _totalWeight += Number(i.data.weight);
-            }
-            
+            }            
         });
         data.itemsWeight = _totalWeight;
+        if (_totalWeight > data.encumbranceMax) {
+            data.isEncumbered = "encumbered";
+        } else {
+            data.isEncumbered = "";
+        }
         
     }
 
