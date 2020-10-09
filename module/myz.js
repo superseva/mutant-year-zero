@@ -102,7 +102,6 @@ Hooks.once('init', async function () {
 
     Handlebars.registerHelper('resolveActorType', function (pre, keyName, creatureType) {
         let fullString = pre + '' + keyName + '' + creatureType;
-        console.log(fullString);
         return fullString.toUpperCase();
     });
 
@@ -128,6 +127,8 @@ Hooks.on('createActor', async (actor, options, userId) => MYZHooks.onCreateActor
 
 /* MAKE SURE OWNED SKILLS ARE OF THE SAME TYPE AS THE ACTOR */
 Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
+    if(!updateData.data)
+        return;
     if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
         if (updateData.data.hasOwnProperty('creatureType')) {
             if (updateData.data.creatureType != actor.data.data.creatureType) {
