@@ -105,6 +105,19 @@ Hooks.once('init', async function () {
         return fullString.toUpperCase();
     });
 
+    Handlebars.registerHelper('createLocalizationString', function () {
+        let fullString = '';
+        for (var i = 0; i < arguments.length; i++) {
+            if (typeof arguments[i] === 'string' || arguments[i] instanceof String) {
+                fullString += arguments[i];
+                if (i + 2 < arguments.length) {
+                    fullString += '_';
+                }
+            }            
+        }
+        return fullString.toUpperCase();
+    });
+
     Handlebars.registerHelper('isdefined', function (value) {
         return value !== undefined;
     });
