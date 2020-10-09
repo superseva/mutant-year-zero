@@ -64,6 +64,33 @@
         <hr>
         {{/if}}
 
+        {{#if isArtifact}}
+        <p><strong>{{localize "MYZ.DEV_BONUS"}}:</strong> {{data.dev_bonus}}</p>
+        <p><strong>{{localize "MYZ.DEV_REQUIREMENT"}}:</strong> {{data.dev_requirement}}</p>
+        <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{data.effect}}</p>
+        <hr><h4>Description:</h4>
+        {{{data.description}}}
+        <hr>
+        {{/if}}
+
+        {{#if isTalent}}
+        <p><strong>{{localize "MYZ.TALENT_TYPE"}}:</strong> {{localize (resolveActorType 'MYZ.' '' data.roleType)}}</p>
+        <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{data.effect}}</p>
+        <hr><h4>Description:</h4>
+        {{{data.description}}}
+        <hr>
+        {{/if}}
+
+        {{#if isAbility}}
+        {{#if (ifvalue 'robot' data.creatureType)}}
+        <p><strong>{{localize "MYZ.BROKEN"}}:</strong> {{data.broken}}</p>
+        {{/if}}
+        <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{data.effect}}</p>
+        <hr><h4>Description:</h4>
+        {{{data.description}}}
+        <hr>
+        {{/if}}
+
         {{#if data.weight}}
         <p><strong>{{localize "MYZ.WEIGHT"}}:</strong> {{data.weight}}</p>
         {{/if}}
