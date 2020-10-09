@@ -118,6 +118,10 @@ Hooks.once('init', async function () {
         return fullString.toUpperCase();
     });
 
+    Handlebars.registerHelper('toUpperCase', function (str) {
+        return str.toUpperCase();
+    });
+
     Handlebars.registerHelper('isdefined', function (value) {
         return value !== undefined;
     });

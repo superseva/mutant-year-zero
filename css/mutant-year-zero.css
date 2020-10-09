@@ -734,8 +734,43 @@ $font-secondary: 'Roboto', sans-serif;*/
   background-image: url("../ui/box-header-tile.png");
 }
 
-.mutant-year-zero .box-item.chasie .chasie-name {
+.mutant-year-zero .box-item.chassis .chassis-name {
   padding-left: 0.5em;
+}
+
+.mutant-year-zero .box-item.chassis .chassis-armor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: url("../ui/empty-shield-padded.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mutant-year-zero .box-item.chassis .chasis-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.mutant-year-zero .box-item.chassis .chasis-details :nth-child(1) {
+  grid-column: 1/ span 3;
+}
+
+.mutant-year-zero .box-item.chassis .chasis-details :nth-child(2) {
+  grid-column: 4/ span 1;
 }
 
 .mutant-year-zero .box-item .item-image {

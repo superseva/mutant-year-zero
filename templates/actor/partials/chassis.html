@@ -6,17 +6,21 @@
 </div>
 <div class="box-list chassis {{data.type}}">
     {{#each actor.chassis as |chassis key|}}
-    <div class="box-item chasie flex column editable-item" data-item-id="{{chassis._id}}">
-
-        <label class="item-name"><strong>{{chassis.name}}</strong></label>
-
-        <div class="chasis flex row space-between">
-            <label class="chasie-name">{{chassis.data.location}}</label>
-            <span style="padding-right:0.5em;">
-                <label>[{{chassis.data.strength}} - {{chassis.data.agility}} - {{chassis.data.wits}} - {{chassis.data.empathy}}] {{chassis.data.armor}}</label>
-            </span>
+    <div class="box-item chassis felxrow editable-item" data-item-id="{{chassis._id}}">
+        <div class="chasis-details">
+            <div class="flex column">
+                <label class="item-name" style="margin-bottom:2px;"><strong>{{chassis.name}}</strong></label>
+                <div class="chasis flex row space-between" style="margin-bottom:2px;">
+                    <label class="chassis-name">{{localize (toUpperCase (concat "MYZ." chassis.data.location))}}</label>
+                </div>
+                <span class="chassis-name">
+                    <label style="font-size:12px"><strong>Se: {{chassis.data.strength}}&nbsp;&nbsp;St: {{chassis.data.agility}}&nbsp;&nbsp;Pr: {{chassis.data.wits}}&nbsp;&nbsp;Ne: {{chassis.data.empathy}}</strong></label>
+                </span>
+            </div>
+            <div class="chassis-armor">
+                <strong>{{chassis.data.armor}}</strong>
+            </div>
         </div>
     </div>
     {{/each}}
-
 </div>
