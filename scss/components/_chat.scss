@@ -34,7 +34,24 @@
         text-align: center;
     }
 
-    img {
+    .dices-result {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content:space-between;
+        img{
+            border:0;
+            width:30px;
+            height: 30px;
+            margin: 0 2px 2px 0
+        }
+    }
+
+    i{
+        margin-left:2px;
+    }
+
+    .item-img {
         background: radial-gradient( closest-side, var(--color-highlight) 0%, transparent 100% );
         border: 0;
         display: block;

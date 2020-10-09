@@ -45,8 +45,10 @@ export class MYZItem extends Item {
         itemData.isArmor = itemData.type === "armor";
         itemData.isCritical = itemData.type === "critical";
         itemData.isGear = itemData.type === "gear";
+        itemData.isArtifact = itemData.type === "artifact";
         itemData.isTalent = itemData.type === "talent";
         itemData.isAbility = itemData.type === "ability";
+        itemData.creatureType = this.actor.data.data.creatureType;
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/item.html", itemData);
         const chatData = {
             user: game.user._id,

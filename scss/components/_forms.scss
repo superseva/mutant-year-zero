@@ -239,11 +239,13 @@ input.nolabel{
     border: 1px solid;
     border-bottom: 1px solid !important;
     min-height: 36px !important;
+    padding: 0.3em 0 0.3em 0;
+    line-height: 14px;
 
     img {
         border: none;
-        width:26px;
-        height:26px;
+        width: 26px;
+        height: 26px;
     }
 
     .rot-button {

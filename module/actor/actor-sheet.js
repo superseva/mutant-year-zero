@@ -138,7 +138,7 @@ export class MYZActorSheet extends ActorSheet {
         /* -------------------------------------------- */
 
         html.find(".button-roll").click((ev) => {
-            RollDialog.prepareRollDialog({ rollName: "Roll From Dialog", diceRoller: this.diceRoller });
+            RollDialog.prepareRollDialog({ rollName: "Custom Roll", diceRoller: this.diceRoller });
         });
 
         html.find(".button-push").click((ev) => {
@@ -267,15 +267,17 @@ export class MYZActorSheet extends ActorSheet {
         /* -------------------------------------------- */
         /* ADD LEFT CLICK CONTENT MENU
         /* -------------------------------------------- */
+        const editLabel = game.i18n.localize("MYZ.EDIT");
+        const deleteLabel = game.i18n.localize("MYZ.DELETE");
 
         let menu_items = [{
-            icon: '<i class="fas fa-dice-d6"></i>', name: "Edit",
+            icon: '<i class="fas fa-dice-d6"></i>', name: `${editLabel}`,
             callback: (t) => {
                 this._editOwnedItemById(t.data('item-id'));
             }
         },
         {
-            icon: '<i class="fas fa-dice-d6"></i>', name: "Delete",
+            icon: '<i class="fas fa-dice-d6"></i>', name: `${deleteLabel}`,
             callback: (t) => {
                 this._deleteOwnedItemById(t.data('item-id'));
             },

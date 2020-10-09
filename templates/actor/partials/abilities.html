@@ -6,7 +6,7 @@
 
 
 <div class="box-item header flex row align-center space-between {{data.creatureType}}">
-    <label class="item-name">{{localize sourceLabel}}</label>
+    <label class="item-name">{{localize (resolveActorType "MYZ.ABILITY_" "" data.creatureType)}}s</label>
     <span class="item-controls">
         <a class="item-create" data-type="{{sourceType}}">+ Add</a>
     </span>

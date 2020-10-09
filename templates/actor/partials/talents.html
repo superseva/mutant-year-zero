@@ -4,7 +4,7 @@
 {{! PARAM: fixedHeight: should it grow or have a scroll}}
 
 <div class="box-item header flex row align-center space-between {{data.creatureType}}">
-    <span class="item-name">{{localize sourceLabel}}</span>
+    <span class="item-name">{{localize (resolveActorType "MYZ.TALENT_" "" data.creatureType)}}s</span>
     <span class="item-controls">
         <a class="item-create" data-type="{{sourceType}}">+ Add</a>
     </span>

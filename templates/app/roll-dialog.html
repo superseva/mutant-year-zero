@@ -1,5 +1,5 @@
 <div class="roll-dialog">
-    <div class="grid grid-3col dice-row">
+    <div class="grid grid-2col dice-row">
         <div class="flexcol flex-group-center">
             <span>
                 <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-base-6.png" />
@@ -21,17 +21,15 @@
             </span>
             <input type="text" data-type="Number" id="{{gear.type}}" value="{{gear.value}}" />
         </div>
-        
-    </div>
-    <div class="grid grid-2col">
-        <div class="flexcol flex-group-center">
-            <label>{{localize artifact.name}}</label>
-            <input type="text" data-type="Number" id="{{artifact.type}}" value="{{artifact.value}}" />
-        </div>
         <div class="flexcol flex-group-center">
             <label>{{localize modifier.name}}</label>
             <input type="text" data-type="Number" id="{{modifier.type}}" value="{{modifier.value}}" />
         </div>
-
+    </div>
+    <div class="grid grid-2col" style="display:none">
+        <div class="flexcol flex-group-center">
+            <label>{{localize artifact.name}}</label>
+            <input type="text" data-type="Number" id="{{artifact.type}}" value="{{artifact.value}}" />
+        </div>
     </div>
 </div>

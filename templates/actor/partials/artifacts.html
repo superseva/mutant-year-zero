@@ -11,8 +11,9 @@
             <img class="item-image" src="{{artifact.img}}" />
             <label>{{artifact.name}}</label>
         </span>
-        <span class="right-element">
-            <label>W:{{artifact.data.weight}}</label>
+        <span class="item-controls">
+            <a class="chatable" data-item-id="{{artifact._id}}"><i class="fas fa-comment"></i></a>
+            <label><i class="fas fa-weight-hanging"></i>:{{artifact.data.weight}}</label>
         </span>
     </div>
     {{/each}}

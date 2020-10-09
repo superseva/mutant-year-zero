@@ -81,6 +81,15 @@ Hooks.once('init', async function () {
                 return game.i18n.localize("MYZ.WEAPON_RANGED");
         }
     });
+    Handlebars.registerHelper("armorPart", function (part) {
+        part = normalize(part, "armor");
+        switch (part) {
+            case "armor":
+                return game.i18n.localize("MYZ.ARMOR_BODY");
+            case "shield":
+                return game.i18n.localize("MYZ.ARMOR_SHIELD");
+        }
+    });
 
     Handlebars.registerHelper('toLowerCase', function (str) {
         return str.toLowerCase();
@@ -92,7 +101,9 @@ Hooks.once('init', async function () {
     });
 
     Handlebars.registerHelper('resolveActorType', function (pre, keyName, creatureType) {
-        return pre + '_' + keyName.toUpperCase() + '_' + creatureType.toUpperCase();
+        let fullString = pre + '' + keyName + '' + creatureType;
+        console.log(fullString);
+        return fullString.toUpperCase();
     });
 
     Handlebars.registerHelper('isdefined', function (value) {
