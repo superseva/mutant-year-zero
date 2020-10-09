@@ -61,6 +61,8 @@
   "MYZ.CONDITION_SLEEPLESS": "Sleepless",
   "MYZ.CONDITION_HYPOTHERMIC": "Hypothermic",
 
+  "MYZ.CHASSIS":  "Chassis",
+
   "MYZ.CRITICAL": "Critical",
   "MYZ.CRITICALS": "Criticals",
   "MYZ.SPECIAL": "Special",
@@ -117,6 +119,7 @@
   "MYZ.WEIGHT_LIGHT": "Light",
   "MYZ.WEIGHT_REGULAR": "Regular",
   "MYZ.WEIGHT_HEAVY": "Heavy",
+  "MYZ.ENCUMBRANCE": "Encumbrance",
   "MYZ.ARMOR_BODY": "Armor",
   "MYZ.ARMOR_SHIELD": "Shield",
   "MYZ.ARMOR_RATING": "Rating",

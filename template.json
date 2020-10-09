@@ -186,7 +186,7 @@
     }
   },
   "Item": {
-    "types": [ "weapon", "armor", "chasis", "skill", "ability", "talent", "gear", "artifact", "critical" ],
+    "types": [ "weapon", "armor", "chassis", "skill", "ability", "talent", "gear", "artifact", "critical" ],
     "templates": {
       "base": {
         "description": "",
@@ -243,7 +243,7 @@
       },
       "equipped": false
     },
-    "chasis": {
+    "chassis": {
       "templates": [ "base", "physical" ],
       "location": "",
       "strength": 0,

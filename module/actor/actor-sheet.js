@@ -42,7 +42,7 @@ export class MYZActorSheet extends ActorSheet {
         const contacts = [];
         const weapons = [];
         const armor = [];
-        const chasis = [];
+        const chassis = [];
         const gear = [];
         const artifacts = [];
         const criticals = [];
@@ -83,8 +83,8 @@ export class MYZActorSheet extends ActorSheet {
             else if (i.type === 'armor') {
                 armor.push(i);
             }
-            else if (i.type === 'chasis') {
-                chasis.push(i);
+            else if (i.type === 'chassis') {
+                chassis.push(i);
             }
             else if (i.type === 'gear') {
                 gear.push(i);
@@ -118,7 +118,7 @@ export class MYZActorSheet extends ActorSheet {
         actorData.modules = modules;
         actorData.weapons = weapons;
         actorData.armor = armor;
-        actorData.chasis = chasis;
+        actorData.chassis = chassis;
         actorData.gear = gear;
         actorData.artifacts = artifacts;
         actorData.criticals = criticals;

@@ -1,0 +1,22 @@
+<div class="box-item header flex row align-center space-between {{data.type}}">
+    <label class="item-name">{{localize "MYZ.CHASSIS"}}</label>
+    <span class="item-controls">
+        <a class="item-create" data-type="chassis">+ Add</a>
+    </span>
+</div>
+<div class="box-list chassis {{data.type}}">
+    {{#each actor.chassis as |chassis key|}}
+    <div class="box-item chasie flex column editable-item" data-item-id="{{chassis._id}}">
+
+        <label class="item-name"><strong>{{chassis.name}}</strong></label>
+
+        <div class="chasis flex row space-between">
+            <label class="chasie-name">{{chassis.data.location}}</label>
+            <span style="padding-right:0.5em;">
+                <label>[{{chassis.data.strength}} - {{chassis.data.agility}} - {{chassis.data.wits}} - {{chassis.data.empathy}}] {{chassis.data.armor}}</label>
+            </span>
+        </div>
+    </div>
+    {{/each}}
+
+</div>

@@ -140,6 +140,11 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
 });
 
 Hooks.on("preCreateOwnedItem", (actor, item, options) => {
+    if (item.type == "chassis" && actor.data.data.creatureType != 'robot') {
+        ui.notifications.warn(`You can't add Chassis to a non-robot character`);
+        return false;
+    }
+
     if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
         if (!item.data.hasOwnProperty('creatureType')) {
             item.data['creatureType'] = actor.data.data.creatureType;
@@ -218,7 +223,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/skills.html",
         "systems/mutant-year-zero/templates/actor/partials/weapons.html",
         "systems/mutant-year-zero/templates/actor/partials/armors.html",
-        "systems/mutant-year-zero/templates/actor/partials/chasis.html",
+        "systems/mutant-year-zero/templates/actor/partials/chassis.html",
         "systems/mutant-year-zero/templates/actor/partials/gear.html",
         "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
         "systems/mutant-year-zero/templates/actor/partials/resource-counter.html",
