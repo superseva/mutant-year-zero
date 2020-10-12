@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["mutant", "animal", "robot", "human", "npc" ],
+    "types": [ "mutant", "animal", "robot", "human", "npc" ],
     "templates": {
       "base": {
         "role": "",
@@ -8,23 +8,17 @@
         "rank": "",
         "age": "",
         "resources": {
-          "resources": {
-            "grub": {
-              "label": "MYZ.GRUB",
-              "value": 0
-            },
-            "water": {
-              "label": "MYZ.WATER",
-              "value": 0
-            },
-            "booze": {
-              "label": "MYZ.BOOZE",
-              "value": 0
-            },
-            "bullets": {
-              "label": "MYZ.BULLETS",
-              "value": 0
-            }
+          "grub": {
+            "value": 0
+          },
+          "water": {
+            "value": 0
+          },
+          "booze": {
+            "value": 0
+          },
+          "bullets": {
+            "value": 0
           }
         },
         "appearance": {
@@ -101,7 +95,7 @@
       }
     },
     "mutant": {
-      "templates": [ "base", "stats", "status", "resources" ],
+      "templates": [ "base", "stats", "status" ],
       "coreSkills": [
         "Endure",
         "Force",
@@ -123,7 +117,7 @@
       }
     },
     "animal": {
-      "templates": [ "base", "stats", "status", "resources" ],
+      "templates": [ "base", "stats", "status" ],
       "coreSkills": [
         "Endure",
         "Force",
@@ -145,7 +139,7 @@
       }
     },
     "robot": {
-      "templates": [ "base", "stats", "status", "resources" ],
+      "templates": [ "base", "stats", "status" ],
       "coreSkills": [ "Overload", "Force", "Assault", "Infiltrate", "Move", "Shoot", "Scan", "Datamine", "Analyze", "Question", "Interact", "Repair" ],
       "resource_points": {
         "label": "MYZ.ENERGY_POINTS",
@@ -154,7 +148,7 @@
       }
     },
     "human": {
-      "templates": [ "base", "stats", "status", "resources" ],
+      "templates": [ "base", "stats", "status" ],
       "coreSkills": [
         "Endure",
         "Force",
@@ -195,7 +189,7 @@
       },
       "physical": {
         "quantity": 1,
-        "weight": ""        
+        "weight": ""
       },
       "bonus": {
         "bonus": {
