@@ -40,23 +40,15 @@ export class MYZActor extends Actor {
                 _totalWeight += (_w * _q);
             }            
         });
-        //add grub and water
-        
-        if (data.resources.hasOwnProperty('resources')) {
-            console.warn('HAS RESOURCES');
-            console.warn(data.resources);
-        } else {
-            console.warn('NO RESOURCES');
-            console.warn(data.resources);
-            // add grub and water
+        //add grub, water, booze and bullets
+        try {
             _totalWeight += (parseInt(data.resources.grub.value) / 4);
             _totalWeight += (parseInt(data.resources.water.value) / 4);
-            //add booze
             _totalWeight += parseInt(data.resources.booze.value);
-            //add bullets
             _totalWeight += (parseInt(data.resources.bullets.value) / 10);
+        } catch(error){
+            console.error(error);
         }
-        
         
         data.itemsWeight = _totalWeight;
         if (_totalWeight > data.encumbranceMax) {

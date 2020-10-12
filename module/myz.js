@@ -13,6 +13,8 @@ import { MYZItemSheet } from "./item/item-sheet.js";
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
 
+import * as migrations from "./migration.js";
+
 /* ------------------------------------ */
 /* Setup MYZ system	 */
 /* ------------------------------------ */
@@ -133,6 +135,7 @@ Hooks.once('init', async function () {
 });
 
 Hooks.once("ready", async function () {
+    migrations.migrateWorld();
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
 });
