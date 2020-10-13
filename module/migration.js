@@ -36,7 +36,7 @@ export const migrateWorld = async function () {
     }
 
     // Migrate Actor Override Tokens
-    /*for (let s of game.scenes.entities) {
+    for (let s of game.scenes.entities) {
         try {
             const updateData = migrateSceneData(s.data);
             if (!isObjectEmpty(updateData)) {
@@ -47,7 +47,7 @@ export const migrateWorld = async function () {
             console.error(err);
         }
     }
-
+    /*
     // Migrate World Compendium Packs
     const packs = game.packs.filter(p => {
         return (p.metadata.package === "world") && ["Actor", "Item", "Scene"].includes(p.metadata.entity)
@@ -116,6 +116,35 @@ export const migrateItemData = function (item) {
     //_migrateRemoveDeprecated(item, updateData);
     // Return the migrated update data
     return updateData;
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
+ * Return an Object of updateData to be applied
+ * @param {Object} scene  The Scene data to Update
+ * @return {Object}       The updateData to apply
+ */
+export const migrateSceneData = function (scene) {
+    const tokens = duplicate(scene.tokens);
+    return {
+        tokens: tokens.map(t => {
+            if (!t.actorId || t.actorLink || !t.actorData.data) {
+                t.actorData = {};
+                return t;
+            }
+            const token = new Token(t);
+            if (!token.actor) {
+                t.actorId = null;
+                t.actorData = {};
+            } else if (!t.actorLink) {
+                const updateData = migrateActorData(token.data.actorData);
+                t.actorData = mergeObject(token.data.actorData, updateData);
+            }
+            return t;
+        })
+    };
 };
 
 /* -------------------------------------------- */

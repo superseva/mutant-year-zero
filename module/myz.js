@@ -142,7 +142,7 @@ Hooks.once("ready", async function () {
 
     // Determine whether a system migration is required and feasible
     const currentVersion = game.settings.get("mutant-year-zero", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = 0.3;
+    const NEEDS_MIGRATION_VERSION = 0.1;
     const COMPATIBLE_MIGRATION_VERSION = 0;
     let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
 
@@ -151,7 +151,7 @@ Hooks.once("ready", async function () {
         if (currentVersion && (currentVersion < COMPATIBLE_MIGRATION_VERSION)) {
             ui.notifications.error(`Your MYZ system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`, { permanent: true });
         }
-        migrations.migrateWorld();
+        //migrations.migrateWorld();
     }
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
@@ -194,11 +194,6 @@ Hooks.on("preCreateOwnedItem", (actor, item, options) => {
     }
 });
 
-Hooks.on('createOwnedItem', (a, b, c) => {
-    console.log(a);
-    console.log(b);
-    console.log(c);
-});
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
