@@ -111,7 +111,9 @@ function _migrateActorResources(actor, updateData) {
 }
 function _migrateActorRelationships(actor, updateData) {
     const r = game.system.model.Actor.mutant.relationships;
-    console.warn(r);
+    if (!actor.data.hasOwnProperty('relationships')) {
+        updateData[`data.relationships`] = r;
+    }    
 }
 
 
