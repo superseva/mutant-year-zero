@@ -1,5 +1,6 @@
 // Import Modules
 import { MYZ } from "./config.js";
+import { registerSystemSettings } from "./settings.js";
 import MYZHooks from "./MYZHooks.js"
 import { MYZActor } from "./actor/actor.js";
 import { MYZMutantSheet } from "./actor/mutant-sheet.js";
@@ -47,6 +48,9 @@ Hooks.once('init', async function () {
     CONFIG.Actor.entityClass = MYZActor;
     CONFIG.Item.entityClass = MYZItem;
     CONFIG.diceRoller = DiceRoller;
+
+    // Register System Settings
+    registerSystemSettings();
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
@@ -135,7 +139,22 @@ Hooks.once('init', async function () {
 });
 
 Hooks.once("ready", async function () {
-    migrations.migrateWorld();
+
+    // Determine whether a system migration is required and feasible
+    const currentVersion = game.settings.get("mutant-year-zero", "systemMigrationVersion");
+    console.warn(`currentVersion = ${currentVersion}`);
+    //return;
+    const NEEDS_MIGRATION_VERSION = 0.3;
+    const COMPATIBLE_MIGRATION_VERSION = 0;
+    let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
+
+    // Perform the migration
+    if (needMigration && game.user.isGM) {
+        if (currentVersion && (currentVersion < COMPATIBLE_MIGRATION_VERSION)) {
+            ui.notifications.error(`Your MYZ system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`, { permanent: true });
+        }
+        migrations.migrateWorld();
+    }
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
 });

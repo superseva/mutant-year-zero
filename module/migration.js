@@ -8,11 +8,13 @@ export const migrateWorld = async function () {
     // Migrate World Actors
     for (let a of game.actors.entities) {
         try {
+            console.warn('Tyring to migrate actors');
+            // console.warn('Pre actor', a.data);
             const updateData = migrateActorData(a.data);
+            console.warn('updateData', updateData, a.data);
             if (!isObjectEmpty(updateData)) {
                 console.log(`Migrating Actor entity ${a.name}`);
-                console.log(a);
-                //await a.update(updateData, { enforceTypes: false });
+                await a.update(updateData, { enforceTypes: false });
             }
         } catch (err) {
             console.error(err);
@@ -56,7 +58,7 @@ export const migrateWorld = async function () {
     */
 
     // Set the migration as complete
-    //game.settings.set("mutant-year-zero", "systemMigrationVersion", game.system.data.version);
+    game.settings.set("mutant-year-zero", "systemMigrationVersion", game.system.data.version);
     ui.notifications.info(`MYZ System Migration to version ${game.system.data.version} completed!`, { permanent: true });
 };
 
@@ -80,28 +82,30 @@ export const migrateCompendium = async function (pack) {
  * @return {Object}       The updateData to apply
  */
 export const migrateActorData = function (actor) {
-    //console.log(actor.data.resources);
-    //if ($.isEmptyObject(actor.data.resource)) {
-    //    console.warn('resource object is empty');
-    //}
-    if (actor.data.resources.hasOwnProperty('resources')) {
-        delete actor.data.resources.resources;
-        console.warn('CLEAN RESOURCE');
-    }
-    
-
-    if (Object.keys(actor.data.resources).length === 0 && actor.data.resources.constructor === Object) {
-        console.warn('resources are empty now! fill it with grub, water, booze and bullets');
-        actor.data.resources.grub = { 'value': 0 };
-        actor.data.resources.water = { 'value': 0 };
-        actor.data.resources.booze = { 'value': 0 };
-        actor.data.resources.bullets = { 'value': 0 };
-    }
-    //let updateData = cleanActorData(actor);
-    //console.log(updateData);
-    //console.log(actor.data.resources);
-    return actor;
+    const updateData = {};
+    _migrateActorResources(actor, updateData);
+    return updateData;
 };
+
+function _migrateActorResources(actor, updateData) {
+    const r = game.system.model.Actor.mutant.resources;
+    console.warn(r);
+    for (let k of Object.keys(actor.data.resources || {})) {
+        console.warn(k);
+        if (k in r) {            
+            console.warn(actor.data.resources[k]);
+            updateData[`data.resources.${k}`] = actor.data.resources[k];
+        }
+        else {
+            updateData[`data.resources.-=${k}`] = null;
+        }
+    }
+    //console.log(updateData);
+    //const r = actor.data.resources;
+    //if(r.hasOwnProperty('resources'))
+
+}
+
 
 /* -------------------------------------------- */
 
@@ -120,3 +124,28 @@ function cleanActorData(actorData) {
     // Return the scrubbed data
     return actorData;
 }
+
+/* -------------------------------------------- */
+
+
+/**
+ * A general migration to remove all fields from the data model which are flagged with a _deprecated tag
+ * @private
+ */
+const _migrateRemoveDeprecated = function (ent, updateData) {
+    const flat = flattenObject(ent.data);
+
+    // Identify objects to deprecate
+    const toDeprecate = Object.entries(flat).filter(e => e[0].endsWith("_deprecated") && (e[1] === true)).map(e => {
+        let parent = e[0].split(".");
+        parent.pop();
+        return parent.join(".");
+    });
+
+    // Remove them
+    for (let k of toDeprecate) {
+        let parts = k.split(".");
+        parts[parts.length - 1] = "-=" + parts[parts.length - 1];
+        updateData[`data.${parts.join(".")}`] = null;
+    }
+};
