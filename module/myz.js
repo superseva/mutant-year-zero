@@ -142,8 +142,6 @@ Hooks.once("ready", async function () {
 
     // Determine whether a system migration is required and feasible
     const currentVersion = game.settings.get("mutant-year-zero", "systemMigrationVersion");
-    console.warn(`currentVersion = ${currentVersion}`);
-    //return;
     const NEEDS_MIGRATION_VERSION = 0.3;
     const COMPATIBLE_MIGRATION_VERSION = 0;
     let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);

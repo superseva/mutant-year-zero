@@ -26,6 +26,12 @@
           "value": ""
         },
         "description": "",
+        "relationships": {
+          "party": "",
+          "protect": "",
+          "hate": "",
+          "dream": ""
+        },
         "armorrating": {
           "label": "MYZ.ARMOR",
           "value": 0

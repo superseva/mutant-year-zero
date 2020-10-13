@@ -11,6 +11,7 @@ export const migrateWorld = async function () {
             console.warn('Tyring to migrate actors');
             // console.warn('Pre actor', a.data);
             const updateData = migrateActorData(a.data);
+            
             console.warn('updateData', updateData, a.data);
             if (!isObjectEmpty(updateData)) {
                 console.log(`Migrating Actor entity ${a.name}`);
@@ -84,26 +85,33 @@ export const migrateCompendium = async function (pack) {
 export const migrateActorData = function (actor) {
     const updateData = {};
     _migrateActorResources(actor, updateData);
+    _migrateActorRelationships(actor, updateData);
     return updateData;
 };
 
 function _migrateActorResources(actor, updateData) {
     const r = game.system.model.Actor.mutant.resources;
-    console.warn(r);
+    //populate NPCs that have resources{}
+    for (let k of Object.keys(r)) {
+        if (!actor.data.resources.hasOwnProperty(k)) {            
+            updateData[`data.resources.${k}`] = 0;
+        }
+    }
+    // remove resources.resources and update respources.key=value
     for (let k of Object.keys(actor.data.resources || {})) {
-        console.warn(k);
+        //console.warn(k);
         if (k in r) {            
-            console.warn(actor.data.resources[k]);
+            //console.warn(actor.data.resources[k]);
             updateData[`data.resources.${k}`] = actor.data.resources[k];
         }
         else {
             updateData[`data.resources.-=${k}`] = null;
         }
-    }
-    //console.log(updateData);
-    //const r = actor.data.resources;
-    //if(r.hasOwnProperty('resources'))
-
+    }    
+}
+function _migrateActorRelationships(actor, updateData) {
+    const r = game.system.model.Actor.mutant.relationships;
+    console.warn(r);
 }
 
 
