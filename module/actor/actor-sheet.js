@@ -344,12 +344,13 @@ export class MYZActorSheet extends ActorSheet {
             data: data
         };
         delete itemData.data["type"];
-        await this.actor.createOwnedItem(itemData).then((_i) => {
-            const item = this.actor.getOwnedItem(_i._id);
-            item.sheet.render(true);
-            //return _i;
-        });
-
+        return this.actor.createOwnedItem(itemData);
+        //await this.actor.createOwnedItem(itemData).then((_i) => {
+        //    if (_i._id) {
+        //        const item = this.actor.getOwnedItem(_i._id);
+        //        item.sheet.render(true);
+        //    }
+        //});
     }
 
     _onItemView(event) {
@@ -361,8 +362,6 @@ export class MYZActorSheet extends ActorSheet {
     _onItemSendToChat(event) {
         event.preventDefault();
         const itemId = $(event.currentTarget).data('item-id');
-        console.log(itemId);
-        //return;
         const item = this.actor.getOwnedItem(itemId);       
         if (!item)
             return;

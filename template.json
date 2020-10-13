@@ -202,6 +202,10 @@
           "value": 0,
           "max": 0
         }
+      },
+      "dev": {
+        "dev_requirement": "",
+        "dev_bonus": ""
       }
     },
     "skill": {
@@ -227,7 +231,7 @@
       "creatureType": ""
     },
     "weapon": {
-      "templates": [ "base", "physical", "bonus" ],
+      "templates": [ "base", "physical", "bonus", "dev" ],
       "damage": 1,
       "range": "",
       "category": "",
@@ -235,7 +239,7 @@
       "skillBonus": 0
     },
     "armor": {
-      "templates": [ "base", "physical" ],
+      "templates": [ "base", "physical", "dev" ],
       "armorType": "armor",
       "rating": {
         "value": 1,
@@ -259,10 +263,8 @@
       "requirement": ""
     },
     "artifact": {
-      "templates": [ "base", "physical" ],
-      "effect": "",
-      "dev_requirement": "",
-      "dev_bonus": ""
+      "templates": [ "base", "physical", "dev" ],
+      "effect": ""
     },
     "critical": {
       "lethal": "",

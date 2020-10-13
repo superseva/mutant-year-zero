@@ -194,6 +194,12 @@ Hooks.on("preCreateOwnedItem", (actor, item, options) => {
     }
 });
 
+Hooks.on('createOwnedItem', (a, b, c) => {
+    console.log(a);
+    console.log(b);
+    console.log(c);
+});
+
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */

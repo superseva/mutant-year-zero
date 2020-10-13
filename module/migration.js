@@ -10,9 +10,8 @@ export const migrateWorld = async function () {
         try {
             console.warn('Tyring to migrate actors');
             // console.warn('Pre actor', a.data);
-            const updateData = migrateActorData(a.data);
-            
-            console.warn('updateData', updateData, a.data);
+            const updateData = migrateActorData(a.data);            
+            console.warn('updateActor', updateData, a.data);
             if (!isObjectEmpty(updateData)) {
                 console.log(`Migrating Actor entity ${a.name}`);
                 await a.update(updateData, { enforceTypes: false });
@@ -23,9 +22,10 @@ export const migrateWorld = async function () {
     }
 
     // Migrate World Items
-    /*for (let i of game.items.entities) {
+    for (let i of game.items.entities) {
         try {
             const updateData = migrateItemData(i.data);
+            console.warn('updateItem', updateData, i.data);
             if (!isObjectEmpty(updateData)) {
                 console.log(`Migrating Item entity ${i.name}`);
                 await i.update(updateData, { enforceTypes: false });
@@ -36,7 +36,7 @@ export const migrateWorld = async function () {
     }
 
     // Migrate Actor Override Tokens
-    for (let s of game.scenes.entities) {
+    /*for (let s of game.scenes.entities) {
         try {
             const updateData = migrateSceneData(s.data);
             if (!isObjectEmpty(updateData)) {
@@ -75,6 +75,7 @@ export const migrateWorld = async function () {
 export const migrateCompendium = async function (pack) {
 
 }
+/* -------------------------------------------- */
 
 /**
  * Migrate a single Actor entity to incorporate latest data model changes
@@ -86,22 +87,54 @@ export const migrateActorData = function (actor) {
     const updateData = {};
     _migrateActorResources(actor, updateData);
     _migrateActorRelationships(actor, updateData);
+
+    if (!actor.items) return updateData;
+    let hasItemUpdates = false;
+    const items = actor.items.map(i => {
+        // Migrate the Owned Item
+        let itemUpdate = migrateItemData(i);
+        // Update the Owned Item
+        if (!isObjectEmpty(itemUpdate)) {
+            hasItemUpdates = true;
+            return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
+        } else return i;
+    });
+    if (hasItemUpdates) updateData.items = items;
+
     return updateData;
 };
+/* -------------------------------------------- */
+
+/**
+ * Migrate a single Item entity to incorporate latest data model changes
+ * @param item
+ */
+export const migrateItemData = function (item) {
+    const updateData = {};
+    _migrateItemToArtifact(item, updateData);
+    // Remove deprecated fields
+    //_migrateRemoveDeprecated(item, updateData);
+    // Return the migrated update data
+    return updateData;
+};
+
+/* -------------------------------------------- */
+/*  Low level migration utilities
+/* -------------------------------------------- */
 
 function _migrateActorResources(actor, updateData) {
     const r = game.system.model.Actor.mutant.resources;
     //populate NPCs that have resources{}
     for (let k of Object.keys(r)) {
         if (!actor.data.resources.hasOwnProperty(k)) {            
-            updateData[`data.resources.${k}`] = 0;
+            updateData[`data.resources.${k}`] = { value: "0" };
         }
     }
     // remove resources.resources and update respources.key=value
     for (let k of Object.keys(actor.data.resources || {})) {
         //console.warn(k);
         if (k in r) {            
-            //console.warn(actor.data.resources[k]);
+            console.warn(`Actor already has this resource type`, actor.data.resources[k]);
             updateData[`data.resources.${k}`] = actor.data.resources[k];
         }
         else {
@@ -114,6 +147,16 @@ function _migrateActorRelationships(actor, updateData) {
     if (!actor.data.hasOwnProperty('relationships')) {
         updateData[`data.relationships`] = r;
     }    
+}
+
+function _migrateItemToArtifact(item, updateData) {    
+    if (item.type == 'armor' || item.type == 'weapon') {
+        console.log(item.type);
+        if (!item.data.hasOwnProperty('dev_requirement')) {
+            updateData[`data.dev_requirement`] = '';
+            updateData[`data.dev_bonus`] = 0;
+        }
+    }
 }
 
 
