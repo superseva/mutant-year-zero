@@ -151,7 +151,7 @@ Hooks.once("ready", async function () {
         if (currentVersion && (currentVersion < COMPATIBLE_MIGRATION_VERSION)) {
             ui.notifications.error(`Your MYZ system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`, { permanent: true });
         }
-        //migrations.migrateWorld();
+        migrations.migrateWorld();
     }
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
@@ -167,6 +167,7 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
     if(!updateData.data)
         return;
     if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
+        console.warn(actor);
         if (updateData.data.hasOwnProperty('creatureType')) {
             if (updateData.data.creatureType != actor.data.data.creatureType) {
                 ui.notifications.warn(`${item.type} type changed from ${updateData.data.creatureType}'s to ${actor.data.data.creatureType}'s`);

@@ -9,7 +9,6 @@ export class MYZItemSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["mutant-year-zero", "sheet", "item"],
       width: 520,
-      height: 480,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
     });
   }
@@ -55,5 +54,6 @@ export class MYZItemSheet extends ItemSheet {
     if (!this.options.editable) return;
 
     // Roll handlers, click handlers, etc. would go here.
-  }
+    }
+
 }

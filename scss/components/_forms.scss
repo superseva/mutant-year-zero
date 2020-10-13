@@ -276,3 +276,14 @@ input.nolabel{
     }
 }
 
+.effect-textarea {
+    resize: none;
+    overflow: auto;
+}
+
+.input-underline {
+    border: none;
+    border-bottom: 1px solid;
+    background-color: unset;
+}
+

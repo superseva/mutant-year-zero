@@ -7,11 +7,8 @@ export const migrateWorld = async function () {
 
     // Migrate World Actors
     for (let a of game.actors.entities) {
-        try {
-            console.warn('Tyring to migrate actors');
-            // console.warn('Pre actor', a.data);
-            const updateData = migrateActorData(a.data);            
-            console.warn('updateActor', updateData, a.data);
+        try {            
+            const updateData = migrateActorData(a.data);
             if (!isObjectEmpty(updateData)) {
                 console.log(`Migrating Actor entity ${a.name}`);
                 await a.update(updateData, { enforceTypes: false });
@@ -25,7 +22,6 @@ export const migrateWorld = async function () {
     for (let i of game.items.entities) {
         try {
             const updateData = migrateItemData(i.data);
-            console.warn('updateItem', updateData, i.data);
             if (!isObjectEmpty(updateData)) {
                 console.log(`Migrating Item entity ${i.name}`);
                 await i.update(updateData, { enforceTypes: false });
@@ -41,22 +37,21 @@ export const migrateWorld = async function () {
             const updateData = migrateSceneData(s.data);
             if (!isObjectEmpty(updateData)) {
                 console.log(`Migrating Scene entity ${s.name}`);
-                //await s.update(updateData, { enforceTypes: false });
+                await s.update(updateData, { enforceTypes: false });
             }
         } catch (err) {
             console.error(err);
         }
     }
-    /*
+
     // Migrate World Compendium Packs
     const packs = game.packs.filter(p => {
         return (p.metadata.package === "world") && ["Actor", "Item", "Scene"].includes(p.metadata.entity)
     });
     for (let p of packs) {
         console.log(`Migrating Compendium ${p.name}`);
-        //await migrateCompendium(p);
-    }
-    */
+        await migrateCompendium(p);
+    } 
 
     // Set the migration as complete
     game.settings.set("mutant-year-zero", "systemMigrationVersion", game.system.data.version);
@@ -73,8 +68,32 @@ export const migrateWorld = async function () {
  * @return {Promise}
  */
 export const migrateCompendium = async function (pack) {
+    const entity = pack.metadata.entity;
+    if (!["Actor", "Item", "Scene"].includes(entity)) return;
 
-}
+    // Begin by requesting server-side data model migration and get the migrated content
+    await pack.migrate();
+    const content = await pack.getContent();
+
+    // Iterate over compendium entries - applying fine-tuned migration functions
+    for (let ent of content) {
+        try {
+            let updateData = null;
+            if (entity === "Item") updateData = migrateItemData(ent.data);
+            else if (entity === "Actor") updateData = migrateActorData(ent.data);
+            else if (entity === "Scene") updateData = migrateSceneData(ent.data);
+            if (!isObjectEmpty(updateData)) {
+                expandObject(updateData);
+                updateData["_id"] = ent._id;
+                await pack.updateEntity(updateData);
+                console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
+};
 /* -------------------------------------------- */
 
 /**

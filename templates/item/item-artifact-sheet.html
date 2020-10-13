@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     {{> systems/mutant-year-zero/templates/item/partials/header-physical.html}}
     <div class="grid item-attr-row">
-        <div class="">
+        <div>
             <label class="resource-label" for="data.dev_requirement">{{localize "MYZ.DEV_REQUIREMENT"}}</label>
             <input type="text" name="data.dev_requirement" value="{{data.dev_requirement}}">
         </div>
@@ -13,7 +13,7 @@
 
     <div class="item-attr-row">
         <label class="resource-label" for="data.effect">{{localize "MYZ.EFFECT"}}</label>
-        <input type="text" name="data.effect" value="{{data.effect}}">
+        <textarea class="effect-textarea" rows="4" name="data.effect">{{data.effect}}</textarea>
     </div>
 
 

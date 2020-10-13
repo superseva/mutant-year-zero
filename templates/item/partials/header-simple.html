@@ -2,5 +2,72 @@
     <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="header-fields">
         <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+        {{#if (ifvalue item.type "ability")}}
+        <div class="grid grid-3col item-attr-row">
+            <div class="flex column">
+                <label class="resource-label" for="data.creatureType">{{localize "MYZ.ABILITY_TYPE"}}</label>
+                <select name="data.creatureType">
+                    {{#select data.creatureType}}
+                    <option value="mutant">{{localize "MYZ.ABILITY_MUTANT"}}</option>
+                    <option value="animal">{{localize "MYZ.ABILITY_ANIMAL"}}</option>
+                    <option value="robot">{{localize "MYZ.ABILITY_ROBOT"}}</option>
+                    <option value="human">{{localize "MYZ.ABILITY_HUMAN"}}</option>
+                    {{/select}}
+                </select>
+            </div>
+            <div class="flex column">
+                {{#if (ifvalue data.creatureType 'robot')}}
+                <label class="resource-label">{{localize "MYZ.BROKEN"}}</label>
+                <input type="checkbox" name="data.broken" {{checked data.broken}} />
+                {{/if}}
+            </div>
+            <div></div>
+        </div>
+        {{/if}}
+
+        {{#if (ifvalue item.type "talent")}}
+        <div class="grid grid-3col item-attr-row">
+            <div class="flex column">
+                <label class="resource-label" for="data.creatureType">{{localize "MYZ.TALENT_TYPE"}}</label>
+                <select name="data.creatureType">
+                    {{#select data.creatureType}}
+                    <option value="mutant">{{localize "MYZ.TALENT_MUTANT"}}</option>
+                    <option value="animal">{{localize "MYZ.TALENT_ANIMAL"}}</option>
+                    <option value="robot">{{localize "MYZ.TALENT_ROBOT"}}</option>
+                    <option value="human">{{localize "MYZ.TALENT_HUMAN"}}</option>
+                    {{/select}}
+                </select>
+            </div>
+            <div class="flex column">
+
+                <label class="resource-label" for="data.roleType">{{localize "MYZ.TALENT_SOURCE"}}</label>
+                <select name="data.roleType">
+                    {{#select data.roleType}}
+                    <option value="general">{{localize "MYZ.GENERAL"}}</option>
+                    <option value="role">{{localize "MYZ.ROLE"}}</option>
+                    {{/select}}
+                </select>
+            </div>
+            <div></div>
+        </div>
+        {{/if}}
+
+        {{#if (ifvalue item.type "critical")}}
+        <div class="grid grid-3col item-attr-row">
+            <div class="resource">
+                <label for="data.lethal" class="resource-label">{{localize 'MYZ.LETHAL'}}</label>
+                <input type="text" name="data.lethal" value="{{data.lethal}}" />
+            </div>
+            <div class="resource">
+                <label for="data.timeLimit" class="resource-label">{{localize 'MYZ.TIMELIMIT'}}</label>
+                <input type="text" name="data.timeLimit" value="{{data.timeLimit}}" />
+            </div>
+            <div class="resource">
+                <label for="data.healingTime" class="resource-label">{{localize 'MYZ.HEALINGTIME'}}</label>
+                <input type="text" name="data.healingTime" value="{{data.healingTime}}" />
+            </div>
+        </div>
+        {{/if}}
+
     </div>
 </header>

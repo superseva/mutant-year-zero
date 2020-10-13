@@ -673,6 +673,17 @@ $font-secondary: 'Roboto', sans-serif;*/
   border-top: 0;
 }
 
+.mutant-year-zero .effect-textarea {
+  resize: none;
+  overflow: auto;
+}
+
+.mutant-year-zero .input-underline {
+  border: none;
+  border-bottom: 1px solid;
+  background-color: unset;
+}
+
 .mutant-year-zero .resource-label {
   font-weight: bold;
   text-transform: uppercase;
