@@ -95,11 +95,7 @@ Hooks.once('init', async function () {
             case "shield":
                 return game.i18n.localize("MYZ.ARMOR_SHIELD");
         }
-    });
-
-    Handlebars.registerHelper('toLowerCase', function (str) {
-        return str.toLowerCase();
-    });
+    });    
 
     Handlebars.registerHelper('trimString3', function (passedString) {
         var theString = passedString.substring(0, 3);
@@ -122,6 +118,10 @@ Hooks.once('init', async function () {
             }            
         }
         return fullString.toUpperCase();
+    });
+
+    Handlebars.registerHelper('toLowerCase', function (str) {
+        return str.toLowerCase();
     });
 
     Handlebars.registerHelper('toUpperCase', function (str) {

@@ -16,9 +16,15 @@
     <div class="actor-header {{data.type}}">
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
         <div class="header-fields">
-            <h1 class="charname" style="margin-top:0px; margin-bottom:10px;"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="npc-name-rank">
+                <h1 class="charname npc-name" style="margin-top:0px; margin-bottom:10px;"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+                <div class="flex row npc-rank align-center">
+                    <label for="data.rank">{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}:&nbsp;</label>
+                    <input class="input-underline" type="text" placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}" name="data.rank" value="{{data.rank}}" />
+                </div>
+                
+            </div>
             <div class="grid grid-2col">
-
                 <button class="button-roll">{{localize 'MYZ.ROLL'}}</button>
                 <div class="box-item armor-box flex row space-between align-center armor {{data.creatureType}}">
                     <label class="item-name armor-roll rollable" for="data.armorrating.value">{{localize 'MYZ.ARMOR'}}</label>

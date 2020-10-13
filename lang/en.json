@@ -20,7 +20,7 @@
   "MYZ.SPECIFIC_TYPE_FOR_ANIMAL": "Animal/Specie",
   "MYZ.SPECIFIC_TYPE_FOR_ROBOT": "Personality",
   "MYZ.SPECIFIC_TYPE_FOR_HUMAN": "House",
-  "MYZ.RANK_FOR_MUTANT": " ",
+  "MYZ.RANK_FOR_MUTANT": "Rank",
   "MYZ.RANK_FOR_ANIMAL": "Rank",
   "MYZ.RANK_FOR_ROBOT": "Hierarchy",
   "MYZ.RANK_FOR_HUMAN": "Reputation",

@@ -287,3 +287,21 @@ input.nolabel{
     background-color: unset;
 }
 
+.npc-name-rank {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .npc-name {
+        flex: 2;
+    }
+
+    .npc-rank {
+        margin-left:1em;
+        flex: 1;
+        input{
+            text-align:center;
+        }
+    }
+}
+
