@@ -136,6 +136,14 @@ Hooks.once('init', async function () {
         return condition == value;
     });
 
+    Handlebars.registerHelper('greaterThan', function (val1, val2) {
+        return val1 > val2;
+    });
+
+    Handlebars.registerHelper('substract', function (val1, val2) {
+        return val1 - val2;
+    });
+
 });
 
 Hooks.once("ready", async function () {

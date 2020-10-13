@@ -4,6 +4,7 @@ export class DiceRoller {
     lastType = "";
     lastRollName = "";
     lastDamage = 0;
+    baseDamage = 0;
 
     /**
      * @param  {string} rollName   Display name for the roll
@@ -36,10 +37,13 @@ export class DiceRoller {
         }
         let computedDamage = damage;
         if (damage) {
+            this.baseDamage = damage;
             if (damage > 0) {
                 computedDamage = computedDamage - 1;
-            }            
+            }
             this.lastDamage = computedDamage;
+        } else {
+            this.baseDamage = 0;
         }
         this.sendRollToChat(false);
     }
@@ -128,6 +132,7 @@ export class DiceRoller {
         let numberOfSuccesses = this.countSuccesses();
         let numberOfFailures = this.countFailures();
         let numberOfGearFailures = this.countGearFailures();
+        //let damage = numberOfSuccesses + this.lastDamage;        
         let rollData = {
             name: this.lastRollName,
             isPushed: isPushed,
@@ -135,7 +140,7 @@ export class DiceRoller {
             successes: numberOfSuccesses,
             failures: numberOfFailures,
             gearfailures: numberOfGearFailures,
-            damage: numberOfSuccesses + this.lastDamage,
+            damage: this.baseDamage,
             dices: this.dices
         };
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", rollData);
