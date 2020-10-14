@@ -32,6 +32,7 @@ export const migrateWorld = async function () {
     }
 
     // Migrate Actor Override Tokens
+    /*
     for (let s of game.scenes.entities) {
         try {
             const updateData = migrateSceneData(s.data);
@@ -42,7 +43,7 @@ export const migrateWorld = async function () {
         } catch (err) {
             console.error(err);
         }
-    }
+    }*/
 
     // Migrate World Compendium Packs
     const packs = game.packs.filter(p => {

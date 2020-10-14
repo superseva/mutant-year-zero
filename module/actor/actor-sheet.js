@@ -139,7 +139,6 @@ export class MYZActorSheet extends ActorSheet {
 
         html.find(".button-roll").click((ev) => {
             RollDialog.prepareRollDialog({ rollName: "Custom Roll", diceRoller: this.diceRoller });
-            console.log(this.actor);
         });
 
         html.find(".button-push").click((ev) => {

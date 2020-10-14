@@ -31,11 +31,7 @@ export default class MYZHooks {
             await actor.createEmbeddedEntity('OwnedItem', _skillsList);
         }
         else {
-            console.warn('THE ACTOR IS NPC');
-            //console.log(actor.data);
-            setTimeout(async function () { await actor.sheet.render(true); }, 500);
-            //await actor.sheet.close();
-            
+            setTimeout(async function () { await actor.sheet.render(true); }, 500);            
         }
     }
 

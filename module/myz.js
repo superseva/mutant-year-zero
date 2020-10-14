@@ -39,7 +39,7 @@ Hooks.once('init', async function () {
      * @type {String}
      */
     CONFIG.Combat.initiative = {
-        formula: "1d6 + @attributes.agility.value + (@attributes.agility.value/10)",
+        formula: "1d6 + (@attributes.agility.value/10)",
         decimals: 1
     };
 
@@ -150,7 +150,7 @@ Hooks.once("ready", async function () {
 
     // Determine whether a system migration is required and feasible
     const currentVersion = game.settings.get("mutant-year-zero", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = 0.1;
+    const NEEDS_MIGRATION_VERSION = 0.5;
     const COMPATIBLE_MIGRATION_VERSION = 0;
     let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
 
@@ -175,7 +175,6 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
     if(!updateData.data)
         return;
     if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
-        console.warn(actor);
         if (updateData.data.hasOwnProperty('creatureType')) {
             if (updateData.data.creatureType != actor.data.data.creatureType) {
                 ui.notifications.warn(`${item.type} type changed from ${updateData.data.creatureType}'s to ${actor.data.data.creatureType}'s`);
