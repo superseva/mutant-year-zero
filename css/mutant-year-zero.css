@@ -833,6 +833,10 @@ $font-secondary: 'Roboto', sans-serif;*/
   padding-left: 0.5em;
 }
 
+.mutant-year-zero .box-item .item-name.broken {
+  color: darkred;
+}
+
 .mutant-year-zero .box-item .item-values {
   -ms-flex-preferred-size: 30%;
   flex-basis: 30%;

@@ -11,7 +11,7 @@
 <div class="box-list {{data.creatureType}}">    
     {{#each actor.armor as |armor key|}}
     <div class="box-item physical flex row align-center space-between editable-item" data-item-id="{{armor._id}}">
-        <span class="item-name flex row align-center" data-item-id="{{armor._id}}">
+        <span class="item-name flex row align-center {{#if (isBroken armor)}}broken{{/if}}" data-item-id="{{armor._id}}">
             <img class="item-image" src="{{armor.img}}" />
             <a class="rollable armor-item-roll">{{armor.name}}</a>
         </span>

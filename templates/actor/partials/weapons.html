@@ -11,7 +11,7 @@
 <ol class="box-list {{data.creatureType}}">    
     {{#each actor.weapons as |weapon key|}}
     <li class="box-item physical flex row align-center space-between editable-item weapon" data-item-id="{{weapon._id}}">
-        <span class="item-name flex row align-center roll-weapon rollable"  data-item-id="{{weapon._id}}">
+        <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken weapon)}}broken{{/if}}"  data-item-id="{{weapon._id}}">
             <img class="item-image" src="{{weapon.img}}" />
             <a>{{weapon.name}}</a>
         </span>

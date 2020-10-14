@@ -95,7 +95,26 @@ Hooks.once('init', async function () {
             case "shield":
                 return game.i18n.localize("MYZ.ARMOR_SHIELD");
         }
-    });    
+    });
+
+    Handlebars.registerHelper("isBroken", function (item) {
+        let bonus = 0;
+        let max = 0;
+        if (item.type == 'weapon') {
+            bonus = item.data.bonus.value;
+            max = item.data.bonus.max;
+        } else if (item.type == 'armor') {
+            bonus = item.data.rating.value;
+            max = item.data.rating.max;
+        } else {
+            return false;
+        }
+        if (parseInt(max, 10) > 0 && parseInt(bonus, 10) === 0) {
+            return "broken";
+        } else {
+            return "";
+        }
+    });
 
     Handlebars.registerHelper('trimString3', function (passedString) {
         var theString = passedString.substring(0, 3);

@@ -83,6 +83,9 @@
     .item-name {
         flex-basis: 60%;
         padding-left: 0.5em;
+        &.broken{
+            color:darkred;
+        }
     }
 
     .item-values {
