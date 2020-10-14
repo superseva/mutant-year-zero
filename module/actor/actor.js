@@ -29,12 +29,22 @@ export class MYZActor extends Actor {
         }
 
         //update armor
-        let armor = actorData.items.find(i => i.type == 'armor' && i.data.equipped);
-        if (armor) {
-            actorData.data.armorrating.value = armor.data.rating.value;
-        }
-        else {
-            actorData.data.armorrating.value = 0;
+        if (actorData.data.creatureType != 'robot') {
+            let armor = actorData.items.find(i => i.type == 'armor' && i.data.equipped);
+            if (armor) {
+                actorData.data.armorrating.value = armor.data.rating.value;
+            }
+            else {
+                actorData.data.armorrating.value = 0;
+            }
+        } else {
+            let chassisArmorTotal = 0;
+            let chassie = actorData.items.forEach(i => {
+                if (i.type == 'chassis' && i.data.equipped) {
+                    chassisArmorTotal += parseInt(i.data.armor);
+                }
+            });
+            actorData.data.armorrating.value = chassisArmorTotal;
         }
 
         // update encumbrance

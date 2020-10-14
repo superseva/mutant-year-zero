@@ -289,6 +289,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/weapons.html",
         "systems/mutant-year-zero/templates/actor/partials/armors.html",
         "systems/mutant-year-zero/templates/actor/partials/chassis.html",
+        "systems/mutant-year-zero/templates/actor/partials/chassis-1row.html",
         "systems/mutant-year-zero/templates/actor/partials/gear.html",
         "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
         "systems/mutant-year-zero/templates/actor/partials/resource-counter.html",

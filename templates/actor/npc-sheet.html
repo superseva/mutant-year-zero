@@ -116,10 +116,15 @@
         </div>
 
         {{!-- Gear Tab --}}
-        <div class="tab" data-group="primary" data-tab="gear">
-            {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}}
-            {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
-        </div>
+    <div class="tab" data-group="primary" data-tab="gear">
+        {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}}
+        {{#if (ifvalue data.creatureType 'robot')}}
+        {{> systems/mutant-year-zero/templates/actor/partials/chassis-1row.html}}
+        {{/if}}
+        {{#unless (ifvalue data.creatureType 'robot')}}
+        {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
+        {{/unless}}
+    </div>
 
         {{!-- Info Tab --}}
         <div class="tab" data-group="primary" data-tab="info">

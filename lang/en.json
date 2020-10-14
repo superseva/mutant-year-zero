@@ -28,6 +28,7 @@
   "MYZ.RANK_FOR_HUMAN": "Reputation",
   "MYZ.AGE": "Age",
 
+  "MYZ.STATS": "Stats",
   "MYZ.ATTRIBUTES": "Attributes",
   "MYZ.ATTRIBUTE_STRENGTH_MUTANT": "Strength",
   "MYZ.ATTRIBUTE_AGILITY_MUTANT": "Agility",
@@ -63,7 +64,7 @@
   "MYZ.CONDITION_SLEEPLESS": "Sleepless",
   "MYZ.CONDITION_HYPOTHERMIC": "Hypothermic",
 
-  "MYZ.CHASSIS":  "Chassis",
+  "MYZ.CHASSIS": "Chassis",
 
   "MYZ.CRITICAL": "Critical",
   "MYZ.CRITICALS": "Criticals",

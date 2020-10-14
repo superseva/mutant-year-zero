@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="grid grid-3col item-attr-row">
+    <div class="grid grid-4col item-attr-row">
         <div class="flex column">
             <label class="resource-label" for="data.location">{{localize 'MYZ.LOCATION'}}</label>
             <select name="data.location">
@@ -40,6 +40,16 @@
         <div>
             <label class="resource-label" for="data.modules">{{localize 'MYZ.NUMBER_OF_MODULES'}}</label>
             <input type="text" name="data.modules" value="{{data.modules}}" data-type="Number" />
+        </div>
+        <div class="resource flex column align-center">
+            <label for="data.equipped" class="checkbox-label resource-label">
+                {{localize 'MYZ.EQUIPPED'}}
+                <input class="input-checkbox"
+                       type="checkbox"
+                       name="data.equipped"
+                       {{checked data.equipped}}
+                       data-dtype="Boolean" />
+            </label>
         </div>
     </div>
 
