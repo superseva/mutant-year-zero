@@ -4,9 +4,9 @@
         <a class="item-create" data-type="chassis">+ Add</a>
     </span>
 </div>
-<div class="box-list chassis {{data.type}}">
+<ol class="box-list chassis {{data.type}}">
     {{#each actor.chassis as |chassis key|}}
-    <div class="box-item chassis felxrow editable-item" data-item-id="{{chassis._id}}">
+    <li class="box-item chassis felxrow editable-item" data-item-id="{{chassis._id}}">
         <div class="chasis-details">
             <div class="flex column">
                 <label class="item-name" style="margin-bottom:2px;"><strong>{{chassis.name}}</strong></label>
@@ -21,6 +21,6 @@
                 <strong>{{chassis.data.armor}}</strong>
             </div>
         </div>
-    </div>
+    </li>
     {{/each}}
-</div>
+</ol>

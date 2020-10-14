@@ -29,18 +29,13 @@ export class MYZActor extends Actor {
         }
 
         //update armor
-        console.warn(actorData);
         let armor = actorData.items.find(i => i.type == 'armor' && i.data.equipped);
-        console.warn(armor)
-        if(armor)
+        if (armor) {
             actorData.data.armorrating.value = armor.data.rating.value;
-        else
+        }
+        else {
             actorData.data.armorrating.value = 0;
-        //actorData.items.forEach(i => {
-        //    if (i.type == 'armor' && i.data.equipped) {
-
-        //    }
-        //});
+        }
 
         // update encumbrance
         data.isEncumbered = "";

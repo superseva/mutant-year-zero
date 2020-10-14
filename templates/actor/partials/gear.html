@@ -4,9 +4,9 @@
         <a class="item-create" data-type="gear">+ Add</a>
     </span>
 </div>
-<div class="box-list gear {{data.type}}">
+<ol class="box-list gear {{data.type}}">
     {{#each actor.gear as |gear key|}}
-    <div class="box-item gear flex row align-center space-between editable-item" data-item-id="{{gear._id}}">
+    <li class="box-item gear flex row align-center space-between editable-item" data-item-id="{{gear._id}}">
         <span class="item-name flex row align-center">
             <img class="item-image" src="{{gear.img}}" />
             <label>{{gear.name}}</label>
@@ -15,6 +15,6 @@
             <a class="chatable" data-item-id="{{gear._id}}"><i class="fas fa-comment"></i></a>
             <label><i class="fas fa-weight-hanging"></i>:{{gear.data.weight}}</label>
         </span>
-    </div>
+    </li>
     {{/each}}
-</div>
+</ol>
