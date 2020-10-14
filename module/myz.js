@@ -234,7 +234,7 @@ Hooks.on("preCreateOwnedItem", (actor, item, options) => {
  * @returns {Promise}
  */
 async function createMYZMacro(data, slot) {
-    //ui.notifications.warn("DRAGGING ITEMS WILL BE IMPLEMENTED LATER");
+    //ui.notifications.warn("DRAGGING ITEMS WILL BE IMPLEMENTED IN THE FUTURE");
     return;
     if (data.type !== "Item") return;
     if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
