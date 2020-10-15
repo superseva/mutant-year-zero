@@ -18,3 +18,7 @@ If you drag and ability that is not related to the specific character type to it
 Both ***Talents and Secondary Functions*** are represented by an Item called **Talent**.
 - You can specify this on the Talent Item Sheet or
 - Talents dragged to a robot sheet or created from a robot sheet will be named 'Secondary Functions'.
+
+## Updates:
+v0.6\
+https://github.com/superseva/mutant-year-zero/releases/tag/v0.6
