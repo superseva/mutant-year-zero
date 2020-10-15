@@ -1,35 +1,35 @@
 {
-  "name": "mutant-year-zero",
-  "title": "Mutant Year Zero",
-  "description": "The Mutant Year Zero system for FoundryVTT!",
-  "version": "0.6",
-  "minimumCoreVersion": "0.6.5",
-  "compatibleCoreVersion": "0.6.6",
-  "templateVersion": 1,
-  "author": "HappySteve",
-  "esmodules": ["module/myz.js"],
-  "styles": ["css/mutant-year-zero.css"],
-  "scripts": [],
-  "packs": [
-    {
-      "name": "core-skills",
-      "label": "Core Skills",
-      "system": "mutant-year-zero",
-      "path": "./packs/core-skills.db",
-      "entity": "Item"
-    }
-  ],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    }
-  ],
-  "gridDistance": 1,
-  "gridUnits": "m",
-  "url": "https://github.com/superseva/mutant-year-zero",
-  "manifest": "https://raw.githubusercontent.com/superseva/mutant-year-zero/master/system.json",
-  "download": "https://github.com/superseva/mutant-year-zero/archive/master.zip",
-  "license": "LICENSE.txt"
+    "name": "mutant-year-zero",
+    "title": "Mutant Year Zero",
+    "description": "The Mutant Year Zero system for FoundryVTT!",
+    "version": "0.6",
+    "minimumCoreVersion": "0.6.5",
+    "compatibleCoreVersion": "0.6.6",
+    "templateVersion": 1,
+    "author": "HappySteve",
+    "esmodules": ["module/myz.js"],
+    "styles": ["css/mutant-year-zero.css"],
+    "scripts": [],
+    "packs": [
+        {
+            "name": "core-skills",
+            "label": "Core Skills",
+            "system": "mutant-year-zero",
+            "path": "./packs/core-skills.db",
+            "entity": "Item"
+        }
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "gridDistance": 1,
+    "gridUnits": "m",
+    "url": "https://github.com/superseva/mutant-year-zero",
+    "manifest": "https://raw.githubusercontent.com/superseva/mutant-year-zero/master/system.json",
+    "download": "https://github.com/superseva/mutant-year-zero/archive/master.zip",
+    "license": "LICENSE.txt"
 }
