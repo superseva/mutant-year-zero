@@ -30,6 +30,12 @@ export class DiceRoller {
         this.rollDice(base, "base", 6, 0);
         this.rollDice(computedSkill, computedSkillType, 6, 0);
         this.rollDice(gear, "gear", 6, 0);
+        /*if (DiceTerm !== undefined) {
+            let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;
+            console.warn(rollFormula);
+            let dsnRoll = new Roll(rollFormula);
+            dsnRoll.roll().toMessage();
+        }*/
         if (artifacts) {
             artifacts.forEach((artifact) => {
                 this.rollDice(artifact.dice, "artifact", artifact.face);
@@ -54,8 +60,14 @@ export class DiceRoller {
     push() {
         this.dices.forEach((dice) => {
             if ((dice.value < 6 && dice.value > 1 && dice.type !== "skill") || (dice.value < 6 && ["artifact", "skill"].includes(dice.type))) {
-                let die = new Die(dice.face);
-                die.roll(1);
+                let die;
+                if (DiceTerm !== undefined) {
+                    die = new Die({ faces: dice.face, number: 1 });
+                    die.evaluate();
+                } else {
+                    die = new Die(dice.face);
+                    die.roll(1);
+                }
                 dice.value = die.total;
                 let successAndWeight = this.getSuccessAndWeight(dice.value, dice.type);
                 dice.success = successAndWeight.success;
@@ -78,10 +90,18 @@ export class DiceRoller {
      * @param  {number} automaticSuccess For mutations
      */
     rollDice(numberOfDice, typeOfDice, numberOfFaces, automaticSuccess) {
+        //console.warn(`LETS ROLL ! ${numberOfDice}, ${typeOfDice}, ${numberOfFaces}, ${automaticSuccess}`);
         if (numberOfDice > 0) {
-            let die = new Die(numberOfFaces);
-            die.roll(numberOfDice);
-            die.results.forEach((result) => {
+            let die;
+            if (DiceTerm !== undefined) {
+                die = new Die({ faces: numberOfFaces, number: numberOfDice });
+                die.evaluate();
+            } else {
+                die = new Die(numberOfFaces);
+                die.roll(numberOfDice);
+            }
+            die.rolls.forEach((roll) => {
+                let result = roll.result !== undefined ? roll.result : roll.roll;
                 if (automaticSuccess > 0) {
                     result = numberOfFaces;
                     automaticSuccess -= 1;
