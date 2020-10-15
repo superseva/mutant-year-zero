@@ -48,6 +48,20 @@
         <hr>
         {{/if}}
 
+        {{#if isChassis}}        
+        <p><strong>{{localize "MYZ.LOCATION"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' data.location))}}</p>
+        <p><strong>{{localize "MYZ.ATTRIBUTE_STRENGTH_ROBOT"}}:</strong> {{data.strength}}</p>
+        <p><strong>{{localize "MYZ.ATTRIBUTE_AGILITY_ROBOT"}}:</strong> {{data.agility}}</p>
+        <p><strong>{{localize "MYZ.ATTRIBUTE_WITS_ROBOT"}}:</strong> {{data.wits}}</p>
+        <p><strong>{{localize "MYZ.ATTRIBUTE_EMPATHY_ROBOT"}}:</strong> {{data.empathy}}</p>
+        <p><strong>{{localize "MYZ.ARMOR"}}:</strong> {{data.armor}}</p>
+        <p><strong>{{localize "MYZ.NUMBER_OF_MODULES"}}:</strong> {{data.modules}}</p>        
+        <p><strong>{{localize "MYZ.EQUIPPED"}}:</strong> {{data.equipped}}</p>
+        <hr><h4>Description:</h4>
+        {{{data.description}}}
+        <hr>
+        {{/if}}
+
         {{#if isCritical}}
         <p><strong>{{localize "MYZ.LETHAL"}}:</strong> {{data.lethal}}</p>
         <p><strong>{{localize "MYZ.TIMELIMIT"}}:</strong> {{data.timeLimit}}</p>

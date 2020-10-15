@@ -2,16 +2,15 @@
   "name": "mutant-year-zero",
   "title": "Mutant Year Zero",
   "description": "The Mutant Year Zero system for FoundryVTT!",
-  "version": "0.5",
+  "version": "0.51",
   "minimumCoreVersion": "0.6.5",
   "compatibleCoreVersion": "0.6.6",
   "templateVersion": 1,
   "author": "HappySteve",
-  "esmodules": [ "module/myz.js" ],
-  "styles": [ "css/mutant-year-zero.css" ],
+  "esmodules": ["module/myz.js"],
+  "styles": ["css/mutant-year-zero.css"],
   "scripts": [],
   "packs": [
-
     {
       "name": "core-skills",
       "label": "Core Skills",
