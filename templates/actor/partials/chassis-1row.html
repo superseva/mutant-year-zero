@@ -13,7 +13,7 @@
     <li class="box-item physical flex row align-center space-between editable-item" data-item-id="{{chassis._id}}">
         <span class="item-name flex row align-center {{#if (isBroken chassis)}}broken{{/if}}" data-item-id="{{chassis._id}}">
             <img class="item-image" src="{{chassis.img}}" />
-            <a class="rollable armor-item-roll">{{chassis.name}}</a>
+            <label class="">{{chassis.name}}</label>
         </span>
         <div class="item-values grid center">
             <label>{{chassis.data.armor}}</label>
