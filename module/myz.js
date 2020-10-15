@@ -233,6 +233,10 @@ Hooks.on("preCreateOwnedItem", (actor, item, options) => {
     ui.notifications.warn(`You can't add Chassis to a non-robot character`);
     return false;
   }
+  if (item.type == "armor" && actor.data.data.creatureType == "robot") {
+    ui.notifications.warn(`You can't add Armor to a robot character`);
+    return false;
+  }
 
   if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
     if (!item.data.hasOwnProperty("creatureType")) {
