@@ -1,5 +1,4 @@
 export class MYZ {
-
     /*
     static ActorTypes = {
         mutant: { value: "mutant", label:"MYZ.MUTANT"},
@@ -27,4 +26,4 @@ export class MYZ {
         }
     }
     */
-} 
+}

@@ -1,5 +1,4 @@
 export const registerSystemSettings = function () {
-
     /**
      * Track the system version upon which point a migration was last applied
      */
@@ -8,6 +7,6 @@ export const registerSystemSettings = function () {
         scope: "world",
         config: false,
         type: Number,
-        default: 0
+        default: 0,
     });
-}
+};

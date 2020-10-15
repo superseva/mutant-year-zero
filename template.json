@@ -1,276 +1,237 @@
 {
-  "Actor": {
-    "types": [ "mutant", "animal", "robot", "human", "npc" ],
-    "templates": {
-      "base": {
-        "role": "",
-        "specificType": "",
-        "rank": "",
-        "age": "",
-        "resources": {
-          "grub": {
-            "value": 0
-          },
-          "water": {
-            "value": 0
-          },
-          "booze": {
-            "value": 0
-          },
-          "bullets": {
-            "value": 0
-          }
+    "Actor": {
+        "types": ["mutant", "animal", "robot", "human", "npc"],
+        "templates": {
+            "base": {
+                "role": "",
+                "specificType": "",
+                "rank": "",
+                "age": "",
+                "resources": {
+                    "grub": {
+                        "value": 0
+                    },
+                    "water": {
+                        "value": 0
+                    },
+                    "booze": {
+                        "value": 0
+                    },
+                    "bullets": {
+                        "value": 0
+                    }
+                },
+                "appearance": {
+                    "label": "MYZ.APPEARANCE",
+                    "value": ""
+                },
+                "description": "",
+                "relationships": {
+                    "party": "",
+                    "protect": "",
+                    "hate": "",
+                    "dream": ""
+                },
+                "armorrating": {
+                    "label": "MYZ.ARMOR",
+                    "value": 0
+                },
+                "rot": {
+                    "label": "MYZ.ROT",
+                    "min": 0,
+                    "value": 0
+                },
+                "xp": {
+                    "label": "MYZ.EXPERIENCE",
+                    "value": 0
+                },
+                "crit": {
+                    "label": "MYZ.CRITICAL",
+                    "value": ""
+                },
+                "creatureType": ""
+            },
+            "stats": {
+                "attributes": {
+                    "strength": {
+                        "label": "MYZ.ATTRIBUTE_STRENGTH",
+                        "value": 4,
+                        "min": 0,
+                        "max": 4
+                    },
+                    "agility": {
+                        "label": "MYZ.ATTRIBUTE_AGILITY",
+                        "value": 4,
+                        "min": 0,
+                        "max": 4
+                    },
+                    "wits": {
+                        "label": "MYZ.ATTRIBUTE_WITS",
+                        "value": 4,
+                        "min": 0,
+                        "max": 4
+                    },
+                    "empathy": {
+                        "label": "MYZ.ATTRIBUTE_EMPATHY",
+                        "value": 4,
+                        "min": 0,
+                        "max": 4
+                    }
+                }
+            },
+            "status": {
+                "conditions": {
+                    "starving": {
+                        "label": "MYZ.CONDITION_STARVING",
+                        "value": false
+                    },
+                    "dehydrated": {
+                        "label": "MYZ.CONDITION_DEHYDRATED",
+                        "value": false
+                    },
+                    "sleepless": {
+                        "label": "MYZ.CONDITION_SLEEPLESS",
+                        "value": false
+                    },
+                    "hypothermic": {
+                        "label": "MYZ.CONDITION_HYPOTHERMIC",
+                        "value": false
+                    }
+                }
+            }
         },
-        "appearance": {
-          "label": "MYZ.APPEARANCE",
-          "value": ""
+        "mutant": {
+            "templates": ["base", "stats", "status"],
+            "coreSkills": ["Endure", "Force", "Fight", "Sneak", "Move", "Shoot", "Scout", "Comprehend", "Know the Zone", "Sense Emotion", "Manipulate", "Heal"],
+            "resource_points": {
+                "label": "MYZ.MUTATION_POINTS",
+                "value": 0,
+                "max": 10
+            }
         },
-        "description": "",
-        "relationships": {
-          "party": "",
-          "protect": "",
-          "hate": "",
-          "dream": ""
+        "animal": {
+            "templates": ["base", "stats", "status"],
+            "coreSkills": ["Endure", "Force", "Fight", "Sneak", "Move", "Shoot", "Scout", "Comprehend", "Know the Zone", "Sense Emotion", "Dominate", "Heal"],
+            "resourcepoints": {
+                "label": "MYZ.FERAL_POINTS",
+                "value": 0,
+                "max": 10
+            }
         },
-        "armorrating": {
-          "label": "MYZ.ARMOR",
-          "value": 0
+        "robot": {
+            "templates": ["base", "stats", "status"],
+            "coreSkills": ["Overload", "Force", "Assault", "Infiltrate", "Move", "Shoot", "Scan", "Datamine", "Analyze", "Question", "Interact", "Repair"],
+            "resource_points": {
+                "label": "MYZ.ENERGY_POINTS",
+                "value": 0,
+                "max": 10
+            }
         },
-        "rot": {
-          "label": "MYZ.ROT",
-          "min": 0,
-          "value": 0
+        "human": {
+            "templates": ["base", "stats", "status"],
+            "coreSkills": ["Endure", "Force", "Fight", "Sneak", "Move", "Shoot", "Scout", "Comprehend", "Know the Zone", "Sense Emotion", "Manipulate", "Heal"],
+            "resource_points": {
+                "label": "MYZ.INFLUENCE_POINTS",
+                "value": 0,
+                "max": 10
+            }
         },
-        "xp": {
-          "label": "MYZ.EXPERIENCE",
-          "value": 0
-        },
-        "crit": {
-          "label": "MYZ.CRITICAL",
-          "value": ""
-        },
-        "creatureType": ""
-      },
-      "stats": {
-        "attributes": {
-          "strength": {
-            "label": "MYZ.ATTRIBUTE_STRENGTH",
-            "value": 4,
-            "min": 0,
-            "max": 4
-          },
-          "agility": {
-            "label": "MYZ.ATTRIBUTE_AGILITY",
-            "value": 4,
-            "min": 0,
-            "max": 4
-          },
-          "wits": {
-            "label": "MYZ.ATTRIBUTE_WITS",
-            "value": 4,
-            "min": 0,
-            "max": 4
-          },
-          "empathy": {
-            "label": "MYZ.ATTRIBUTE_EMPATHY",
-            "value": 4,
-            "min": 0,
-            "max": 4
-          }
+        "npc": {
+            "templates": ["base", "stats"],
+            "resource_points": {
+                "label": "MYZ.RESOURCE_POINTS",
+                "value": 0,
+                "max": 10
+            },
+            "special": ""
         }
-      },
-      "status": {
-        "conditions": {
-          "starving": {
-            "label": "MYZ.CONDITION_STARVING",
-            "value": false
-          },
-          "dehydrated": {
-            "label": "MYZ.CONDITION_DEHYDRATED",
-            "value": false
-          },
-          "sleepless": {
-            "label": "MYZ.CONDITION_SLEEPLESS",
-            "value": false
-          },
-          "hypothermic": {
-            "label": "MYZ.CONDITION_HYPOTHERMIC",
-            "value": false
-          }
+    },
+    "Item": {
+        "types": ["weapon", "armor", "chassis", "skill", "ability", "talent", "gear", "artifact", "critical"],
+        "templates": {
+            "base": {
+                "description": "",
+                "comment": "",
+                "cost": 0
+            },
+            "physical": {
+                "quantity": 1,
+                "weight": ""
+            },
+            "bonus": {
+                "bonus": {
+                    "value": 0,
+                    "max": 0
+                }
+            },
+            "dev": {
+                "dev_requirement": "",
+                "dev_bonus": ""
+            }
+        },
+        "skill": {
+            "templates": ["base"],
+            "value": 0,
+            "min": 0,
+            "attribute": "",
+            "creatureType": "mutant",
+            "coreSkill": ""
+        },
+        "ability": {
+            "templates": ["base"],
+            "creatureType": "",
+            "abilityType": "",
+            "effect": "",
+            "roleType": "",
+            "broken": false
+        },
+        "talent": {
+            "templates": ["base"],
+            "effect": "",
+            "roleType": "",
+            "creatureType": ""
+        },
+        "weapon": {
+            "templates": ["base", "physical", "bonus", "dev"],
+            "damage": 1,
+            "range": "",
+            "category": "",
+            "artifactBonus": 0,
+            "skillBonus": 0
+        },
+        "armor": {
+            "templates": ["base", "physical", "dev"],
+            "armorType": "armor",
+            "rating": {
+                "value": 1,
+                "max": 1
+            },
+            "equipped": true
+        },
+        "chassis": {
+            "templates": ["base", "physical"],
+            "location": "",
+            "strength": 0,
+            "agility": 0,
+            "wits": 0,
+            "empathy": 0,
+            "modules": 0,
+            "armor": 0,
+            "equipped": true
+        },
+        "gear": {
+            "templates": ["base", "physical"],
+            "requirement": ""
+        },
+        "artifact": {
+            "templates": ["base", "physical", "dev"],
+            "effect": ""
+        },
+        "critical": {
+            "lethal": "",
+            "timeLimit": "",
+            "healingTime": "",
+            "effect": ""
         }
-      }
-    },
-    "mutant": {
-      "templates": [ "base", "stats", "status" ],
-      "coreSkills": [
-        "Endure",
-        "Force",
-        "Fight",
-        "Sneak",
-        "Move",
-        "Shoot",
-        "Scout",
-        "Comprehend",
-        "Know the Zone",
-        "Sense Emotion",
-        "Manipulate",
-        "Heal"
-      ],
-      "resource_points": {
-        "label": "MYZ.MUTATION_POINTS",
-        "value": 0,
-        "max": 10
-      }
-    },
-    "animal": {
-      "templates": [ "base", "stats", "status" ],
-      "coreSkills": [
-        "Endure",
-        "Force",
-        "Fight",
-        "Sneak",
-        "Move",
-        "Shoot",
-        "Scout",
-        "Comprehend",
-        "Know the Zone",
-        "Sense Emotion",
-        "Dominate",
-        "Heal"
-      ],
-      "resourcepoints": {
-        "label": "MYZ.FERAL_POINTS",
-        "value": 0,
-        "max": 10
-      }
-    },
-    "robot": {
-      "templates": [ "base", "stats", "status" ],
-      "coreSkills": [ "Overload", "Force", "Assault", "Infiltrate", "Move", "Shoot", "Scan", "Datamine", "Analyze", "Question", "Interact", "Repair" ],
-      "resource_points": {
-        "label": "MYZ.ENERGY_POINTS",
-        "value": 0,
-        "max": 10
-      }
-    },
-    "human": {
-      "templates": [ "base", "stats", "status" ],
-      "coreSkills": [
-        "Endure",
-        "Force",
-        "Fight",
-        "Sneak",
-        "Move",
-        "Shoot",
-        "Scout",
-        "Comprehend",
-        "Know the Zone",
-        "Sense Emotion",
-        "Manipulate",
-        "Heal"
-      ],
-      "resource_points": {
-        "label": "MYZ.INFLUENCE_POINTS",
-        "value": 0,
-        "max": 10
-      }
-    },
-    "npc": {
-      "templates": [ "base", "stats" ],
-      "resource_points": {
-        "label": "MYZ.RESOURCE_POINTS",
-        "value": 0,
-        "max": 10
-      },
-      "special": ""
     }
-  },
-  "Item": {
-    "types": [ "weapon", "armor", "chassis", "skill", "ability", "talent", "gear", "artifact", "critical" ],
-    "templates": {
-      "base": {
-        "description": "",
-        "comment": "",
-        "cost": 0
-      },
-      "physical": {
-        "quantity": 1,
-        "weight": ""
-      },
-      "bonus": {
-        "bonus": {
-          "value": 0,
-          "max": 0
-        }
-      },
-      "dev": {
-        "dev_requirement": "",
-        "dev_bonus": ""
-      }
-    },
-    "skill": {
-      "templates": [ "base" ],
-      "value": 0,
-      "min": 0,
-      "attribute": "",
-      "creatureType": "mutant",
-      "coreSkill": ""
-    },
-    "ability": {
-      "templates": [ "base" ],
-      "creatureType": "",
-      "abilityType": "",
-      "effect": "",
-      "roleType": "",
-      "broken": false
-    },
-    "talent": {
-      "templates": [ "base" ],
-      "effect": "",
-      "roleType": "",
-      "creatureType": ""
-    },
-    "weapon": {
-      "templates": [ "base", "physical", "bonus", "dev" ],
-      "damage": 1,
-      "range": "",
-      "category": "",
-      "artifactBonus": 0,
-      "skillBonus": 0
-    },
-    "armor": {
-      "templates": [ "base", "physical", "dev" ],
-      "armorType": "armor",
-      "rating": {
-        "value": 1,
-        "max": 1
-      },
-      "equipped": true
-    },
-    "chassis": {
-      "templates": [ "base", "physical" ],
-      "location": "",
-      "strength": 0,
-      "agility": 0,
-      "wits": 0,
-      "empathy": 0,
-      "modules": 0,
-      "armor": 0,
-      "equipped": true
-    },
-    "gear": {
-      "templates": [ "base", "physical" ],
-      "requirement": ""
-    },
-    "artifact": {
-      "templates": [ "base", "physical", "dev" ],
-      "effect": ""
-    },
-    "critical": {
-      "lethal": "",
-      "timeLimit": "",
-      "healingTime": "",
-      "effect": ""
-    }
-  }
 }

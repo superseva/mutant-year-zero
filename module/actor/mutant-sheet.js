@@ -1,7 +1,6 @@
 import { MYZActorSheet } from "./actor-sheet.js";
 
 export class MYZMutantSheet extends MYZActorSheet {
-
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -9,7 +8,7 @@ export class MYZMutantSheet extends MYZActorSheet {
             template: "systems/mutant-year-zero/templates/actor/mutant-sheet.html",
             width: 720,
             height: 700,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }
 }

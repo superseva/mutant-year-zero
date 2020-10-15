@@ -1,7 +1,6 @@
 import { MYZActorSheet } from "./actor-sheet.js";
 
 export class MYZNpcSheet extends MYZActorSheet {
-
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -9,7 +8,7 @@ export class MYZNpcSheet extends MYZActorSheet {
             template: "systems/mutant-year-zero/templates/actor/npc-sheet.html",
             width: 600,
             height: 615,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }
 }

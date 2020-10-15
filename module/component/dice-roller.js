@@ -15,7 +15,7 @@ export class DiceRoller {
      * @param  {number} modifier   Increase/decrease amount of skill dice
      * @param  {number} [damage=0] Weapon damage
      */
-    roll({ rollName="Roll Name", base =0, skill =0, gear= 0, artifacts= null, modifier= 0, damage= null } = {}) {
+    roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, artifacts = null, modifier = 0, damage = null } = {}) {
         this.dices = [];
         this.lastType = "skill";
         this.lastRollName = rollName;
@@ -31,7 +31,7 @@ export class DiceRoller {
         this.rollDice(computedSkill, computedSkillType, 6, 0);
         this.rollDice(gear, "gear", 6, 0);
         if (artifacts) {
-            artifacts.forEach(artifact => {
+            artifacts.forEach((artifact) => {
                 this.rollDice(artifact.dice, "artifact", artifact.face);
             });
         }
@@ -71,7 +71,7 @@ export class DiceRoller {
 
     /**
      * Roll a set of dice
-     * 
+     *
      * @param  {number} numberOfDice     How many dice to roll
      * @param  {string} typeOfDice       Base/skill/gear
      * @param  {number} numberOfFaces    What dice to roll
@@ -101,7 +101,7 @@ export class DiceRoller {
     /**
      * Retrieves amount of successes from a single die
      * and weight for ordering during display
-     * 
+     *
      * @param  {number} diceValue
      * @param  {string} diceType
      */
@@ -112,8 +112,7 @@ export class DiceRoller {
             } else {
                 return { success: 1, weight: 1 };
             }
-        }      
-        else if (diceValue === 1 && diceType !== "skill-penalty" && diceType !== "skill") {
+        } else if (diceValue === 1 && diceType !== "skill-penalty" && diceType !== "skill") {
             return { success: 0, weight: -2 };
         } else {
             return { success: 0, weight: 0 };
@@ -122,7 +121,7 @@ export class DiceRoller {
 
     /**
      * Display roll in chat
-     * 
+     *
      * @param  {boolean} isPushed Whether roll was pushed
      */
     async sendRollToChat(isPushed) {
@@ -132,7 +131,7 @@ export class DiceRoller {
         let numberOfSuccesses = this.countSuccesses();
         let numberOfFailures = this.countFailures();
         let numberOfGearFailures = this.countGearFailures();
-        //let damage = numberOfSuccesses + this.lastDamage;        
+        //let damage = numberOfSuccesses + this.lastDamage;
         let rollData = {
             name: this.lastRollName,
             isPushed: isPushed,
@@ -141,7 +140,7 @@ export class DiceRoller {
             failures: numberOfFailures,
             gearfailures: numberOfGearFailures,
             damage: this.baseDamage,
-            dices: this.dices
+            dices: this.dices,
         };
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", rollData);
         let chatData = {
@@ -162,7 +161,7 @@ export class DiceRoller {
      */
     countSuccesses() {
         let result = 0;
-        this.dices.forEach(dice => {
+        this.dices.forEach((dice) => {
             result = result + dice.success;
         });
         return result;
@@ -173,7 +172,7 @@ export class DiceRoller {
      */
     countFailures() {
         let result = 0;
-        this.dices.forEach(dice => {
+        this.dices.forEach((dice) => {
             if (dice.value === 1 && dice.type === "base") {
                 result++;
             }
@@ -186,12 +185,11 @@ export class DiceRoller {
      */
     countGearFailures() {
         let result = 0;
-        this.dices.forEach(dice => {
+        this.dices.forEach((dice) => {
             if (dice.value === 1 && dice.type === "gear") {
                 result++;
             }
         });
         return result;
     }
-
 }

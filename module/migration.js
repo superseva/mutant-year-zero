@@ -3,11 +3,14 @@
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function () {
-    ui.notifications.info(`Applying MYZ System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, { permanent: true });
+    ui.notifications.info(
+        `Applying MYZ System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`,
+        { permanent: true }
+    );
 
     // Migrate World Actors
     for (let a of game.actors.entities) {
-        try {            
+        try {
             const updateData = migrateActorData(a.data);
             if (!isObjectEmpty(updateData)) {
                 console.log(`Migrating Actor entity ${a.name}`);
@@ -46,13 +49,13 @@ export const migrateWorld = async function () {
     }*/
 
     // Migrate World Compendium Packs
-    const packs = game.packs.filter(p => {
-        return (p.metadata.package === "world") && ["Actor", "Item", "Scene"].includes(p.metadata.entity)
+    const packs = game.packs.filter((p) => {
+        return p.metadata.package === "world" && ["Actor", "Item", "Scene"].includes(p.metadata.entity);
     });
     for (let p of packs) {
         console.log(`Migrating Compendium ${p.name}`);
         await migrateCompendium(p);
-    } 
+    }
 
     // Set the migration as complete
     game.settings.set("mutant-year-zero", "systemMigrationVersion", game.system.data.version);
@@ -110,7 +113,7 @@ export const migrateActorData = function (actor) {
 
     if (!actor.items) return updateData;
     let hasItemUpdates = false;
-    const items = actor.items.map(i => {
+    const items = actor.items.map((i) => {
         // Migrate the Owned Item
         let itemUpdate = migrateItemData(i);
         // Update the Owned Item
@@ -149,7 +152,7 @@ export const migrateItemData = function (item) {
 export const migrateSceneData = function (scene) {
     const tokens = duplicate(scene.tokens);
     return {
-        tokens: tokens.map(t => {
+        tokens: tokens.map((t) => {
             if (!t.actorId || t.actorLink || !t.actorData.data) {
                 t.actorData = {};
                 return t;
@@ -163,7 +166,7 @@ export const migrateSceneData = function (scene) {
                 t.actorData = mergeObject(token.data.actorData, updateData);
             }
             return t;
-        })
+        }),
     };
 };
 
@@ -175,42 +178,39 @@ function _migrateActorResources(actor, updateData) {
     const r = game.system.model.Actor.mutant.resources;
     //populate NPCs that have resources{}
     for (let k of Object.keys(r)) {
-        if (!actor.data.resources.hasOwnProperty(k)) {            
+        if (!actor.data.resources.hasOwnProperty(k)) {
             updateData[`data.resources.${k}`] = { value: "0" };
         }
     }
     // remove resources.resources and update respources.key=value
     for (let k of Object.keys(actor.data.resources || {})) {
         //console.warn(k);
-        if (k in r) {            
+        if (k in r) {
             console.warn(`Actor already has this resource type`, actor.data.resources[k]);
             updateData[`data.resources.${k}`] = actor.data.resources[k];
-        }
-        else {
+        } else {
             updateData[`data.resources.-=${k}`] = null;
         }
-    }    
+    }
 }
 function _migrateActorRelationships(actor, updateData) {
     const r = game.system.model.Actor.mutant.relationships;
-    if (!actor.data.hasOwnProperty('relationships')) {
+    if (!actor.data.hasOwnProperty("relationships")) {
         updateData[`data.relationships`] = r;
-    }    
+    }
 }
 
-function _migrateItemToArtifact(item, updateData) {    
-    if (item.type == 'armor' || item.type == 'weapon') {
+function _migrateItemToArtifact(item, updateData) {
+    if (item.type == "armor" || item.type == "weapon") {
         console.log(item.type);
-        if (!item.data.hasOwnProperty('dev_requirement')) {
-            updateData[`data.dev_requirement`] = '';
+        if (!item.data.hasOwnProperty("dev_requirement")) {
+            updateData[`data.dev_requirement`] = "";
             updateData[`data.dev_bonus`] = 0;
         }
     }
 }
 
-
 /* -------------------------------------------- */
-
 
 /**
  * Scrub an Actor's system data, removing all keys which are not explicitly defined in the system template
@@ -218,17 +218,15 @@ function _migrateItemToArtifact(item, updateData) {
  * @return {Object}             The scrubbed Actor data
  */
 function cleanActorData(actorData) {
-
     // Scrub system data
     const model = game.system.model.Actor[actorData.type];
     actorData.data = filterObject(actorData.data, model);
-   
+
     // Return the scrubbed data
     return actorData;
 }
 
 /* -------------------------------------------- */
-
 
 /**
  * A general migration to remove all fields from the data model which are flagged with a _deprecated tag
@@ -238,11 +236,13 @@ const _migrateRemoveDeprecated = function (ent, updateData) {
     const flat = flattenObject(ent.data);
 
     // Identify objects to deprecate
-    const toDeprecate = Object.entries(flat).filter(e => e[0].endsWith("_deprecated") && (e[1] === true)).map(e => {
-        let parent = e[0].split(".");
-        parent.pop();
-        return parent.join(".");
-    });
+    const toDeprecate = Object.entries(flat)
+        .filter((e) => e[0].endsWith("_deprecated") && e[1] === true)
+        .map((e) => {
+            let parent = e[0].split(".");
+            parent.pop();
+            return parent.join(".");
+        });
 
     // Remove them
     for (let k of toDeprecate) {
