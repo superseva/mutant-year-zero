@@ -61,7 +61,7 @@ export class DiceRoller {
         this.dices.forEach((dice) => {
             if ((dice.value < 6 && dice.value > 1 && dice.type !== "skill") || (dice.value < 6 && ["artifact", "skill"].includes(dice.type))) {
                 let die;
-                if (DiceTerm !== undefined) {
+                if (CONFIG.is07x) {
                     die = new Die({ faces: dice.face, number: 1 });
                     die.evaluate();
                 } else {
@@ -93,7 +93,7 @@ export class DiceRoller {
         //console.warn(`LETS ROLL ! ${numberOfDice}, ${typeOfDice}, ${numberOfFaces}, ${automaticSuccess}`);
         if (numberOfDice > 0) {
             let die;
-            if (DiceTerm !== undefined) {
+            if (CONFIG.is07x) {
                 die = new Die({ faces: numberOfFaces, number: numberOfDice });
                 die.evaluate();
             } else {

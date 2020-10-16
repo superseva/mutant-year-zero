@@ -36,7 +36,6 @@ Hooks.once("init", async function () {
         DiceRoller,
         RollDialog,
     };
-
     /**
      * Set an initiative formula for the system
      * @type {String}
@@ -51,7 +50,10 @@ Hooks.once("init", async function () {
     CONFIG.Actor.entityClass = MYZActor;
     CONFIG.Item.entityClass = MYZItem;
     CONFIG.diceRoller = DiceRoller;
-    if (DiceTerm !== undefined) {
+
+    CONFIG.is07x = Number(`${game.data.version.split(".")[0]}.${game.data.version.split(".")[1]}`) > 0.6;
+
+    if (CONFIG.is07x) {
         CONFIG.Dice.terms["b"] = MYZDieBase;
         CONFIG.Dice.terms["s"] = MYZDieSkill;
         CONFIG.Dice.terms["g"] = MYZDieGear;
@@ -249,7 +251,7 @@ Hooks.on("preCreateOwnedItem", (actor, item, options) => {
 /* -------------------------------------------- */
 /*  DsN Hooks                                   */
 /* -------------------------------------------- */
-if (DiceTerm !== undefined) {
+if (CONFIG.is07x) {
     Hooks.on("diceSoNiceRollComplete", (chatMessageID) => {});
 
     Hooks.once("diceSoNiceReady", (dice3d) => {
