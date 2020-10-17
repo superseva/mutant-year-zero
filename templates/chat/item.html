@@ -89,20 +89,14 @@
 
         {{#if isTalent}}
         <p><strong>{{localize "MYZ.TALENT_TYPE"}}:</strong> {{localize (resolveActorType 'MYZ.' '' data.roleType)}}</p>
-        <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{data.effect}}</p>
-        <hr><h4>Description:</h4>
         {{{data.description}}}
-        <hr>
         {{/if}}
 
         {{#if isAbility}}
         {{#if (ifvalue 'robot' data.creatureType)}}
         <p><strong>{{localize "MYZ.BROKEN"}}:</strong> {{data.broken}}</p>
         {{/if}}
-        <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{data.effect}}</p>
-        <hr><h4>Description:</h4>
         {{{data.description}}}
-        <hr>
         {{/if}}
 
         {{#if data.weight}}

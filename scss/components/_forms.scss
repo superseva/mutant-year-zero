@@ -13,7 +13,7 @@ ol {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: flex-start !important;
     margin-bottom: 10px;
 
     &.npc {
@@ -64,6 +64,13 @@ ol {
 .info .description .editor {
     height: 180px;
 }
+
+.info-mid,
+.info-mid .description,
+.info-mid .description .editor {
+    height: 280px;
+}
+
 .info-high,
 .info-high .description,
 .info-high .description .editor {

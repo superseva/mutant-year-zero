@@ -377,9 +377,9 @@ $font-secondary: 'Roboto', sans-serif;*/
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
+  -webkit-box-align: start !important;
+  -ms-flex-align: start !important;
+  align-items: flex-start !important;
   margin-bottom: 10px;
 }
 
@@ -443,6 +443,12 @@ $font-secondary: 'Roboto', sans-serif;*/
 .mutant-year-zero .info .description,
 .mutant-year-zero .info .description .editor {
   height: 180px;
+}
+
+.mutant-year-zero .info-mid,
+.mutant-year-zero .info-mid .description,
+.mutant-year-zero .info-mid .description .editor {
+  height: 280px;
 }
 
 .mutant-year-zero .info-high,
