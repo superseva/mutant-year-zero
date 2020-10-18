@@ -259,18 +259,18 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
         name: "yellow",
         description: "Yellow",
         category: "Colors",
-        foreground: ["#e3e300"],
-        background: ["#e3e300"],
-        outline: "black",
+        foreground: "#b1990f",
+        background: "#b1990f",
+        outline: "#b1990f",
         texture: "none",
     });
     dice3d.addColorset({
         name: "green",
         description: "Green",
         category: "Colors",
-        foreground: ["#00a308"],
-        background: ["#00a308"],
-        outline: "black",
+        foreground: "#00810a",
+        background: "#00810a",
+        outline: "#00810a",
         texture: "none",
     });
 
