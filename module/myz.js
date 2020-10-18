@@ -251,71 +251,70 @@ Hooks.on("preCreateOwnedItem", (actor, item, options) => {
 /* -------------------------------------------- */
 /*  DsN Hooks                                   */
 /* -------------------------------------------- */
-if (CONFIG.is07x) {
-    Hooks.on("diceSoNiceRollComplete", (chatMessageID) => {});
 
-    Hooks.once("diceSoNiceReady", (dice3d) => {
-        dice3d.addColorset({
-            name: "yellow",
-            description: "Yellow",
-            category: "Colors",
-            foreground: ["#e3e300"],
-            background: ["#e3e300"],
-            outline: "black",
-            texture: "none",
-        });
-        dice3d.addColorset({
-            name: "green",
-            description: "Green",
-            category: "Colors",
-            foreground: ["#00a308"],
-            background: ["#00a308"],
-            outline: "black",
-            texture: "none",
-        });
+Hooks.on("diceSoNiceRollComplete", (chatMessageID) => {});
 
-        dice3d.addSystem({ id: "mutant-year-zero", name: "Mutant Year Zero" }, true);
-        dice3d.addDicePreset({
-            type: "db",
-            labels: [
-                "systems/mutant-year-zero/ui/dice/b1.png",
-                "systems/mutant-year-zero/ui/dice/b2.png",
-                "systems/mutant-year-zero/ui/dice/b3.png",
-                "systems/mutant-year-zero/ui/dice/b4.png",
-                "systems/mutant-year-zero/ui/dice/b5.png",
-                "systems/mutant-year-zero/ui/dice/b6.png",
-            ],
-            colorset: "yellow",
-            system: "mutant-year-zero",
-        });
-        dice3d.addDicePreset({
-            type: "ds",
-            labels: [
-                "systems/mutant-year-zero/ui/dice/s1.png",
-                "systems/mutant-year-zero/ui/dice/s2.png",
-                "systems/mutant-year-zero/ui/dice/s3.png",
-                "systems/mutant-year-zero/ui/dice/s4.png",
-                "systems/mutant-year-zero/ui/dice/s5.png",
-                "systems/mutant-year-zero/ui/dice/s6.png",
-            ],
-            colorset: "green",
-            system: "mutant-year-zero",
-        });
-        dice3d.addDicePreset({
-            type: "dg",
-            labels: [
-                "systems/mutant-year-zero/ui/dice/g1.png",
-                "systems/mutant-year-zero/ui/dice/g2.png",
-                "systems/mutant-year-zero/ui/dice/g3.png",
-                "systems/mutant-year-zero/ui/dice/g4.png",
-                "systems/mutant-year-zero/ui/dice/g5.png",
-                "systems/mutant-year-zero/ui/dice/g6.png",
-            ],
-            colorset: "black",
-            system: "mutant-year-zero",
-        });
+Hooks.once("diceSoNiceReady", (dice3d) => {
+    dice3d.addColorset({
+        name: "yellow",
+        description: "Yellow",
+        category: "Colors",
+        foreground: ["#e3e300"],
+        background: ["#e3e300"],
+        outline: "black",
+        texture: "none",
     });
-}
+    dice3d.addColorset({
+        name: "green",
+        description: "Green",
+        category: "Colors",
+        foreground: ["#00a308"],
+        background: ["#00a308"],
+        outline: "black",
+        texture: "none",
+    });
+
+    dice3d.addSystem({ id: "mutant-year-zero", name: "Mutant Year Zero" }, true);
+    dice3d.addDicePreset({
+        type: "db",
+        labels: [
+            "systems/mutant-year-zero/ui/dice/b1.png",
+            "systems/mutant-year-zero/ui/dice/b2.png",
+            "systems/mutant-year-zero/ui/dice/b3.png",
+            "systems/mutant-year-zero/ui/dice/b4.png",
+            "systems/mutant-year-zero/ui/dice/b5.png",
+            "systems/mutant-year-zero/ui/dice/b6.png",
+        ],
+        colorset: "yellow",
+        system: "mutant-year-zero",
+    });
+    dice3d.addDicePreset({
+        type: "ds",
+        labels: [
+            "systems/mutant-year-zero/ui/dice/s1.png",
+            "systems/mutant-year-zero/ui/dice/s2.png",
+            "systems/mutant-year-zero/ui/dice/s3.png",
+            "systems/mutant-year-zero/ui/dice/s4.png",
+            "systems/mutant-year-zero/ui/dice/s5.png",
+            "systems/mutant-year-zero/ui/dice/s6.png",
+        ],
+        colorset: "green",
+        system: "mutant-year-zero",
+    });
+    dice3d.addDicePreset({
+        type: "dg",
+        labels: [
+            "systems/mutant-year-zero/ui/dice/g1.png",
+            "systems/mutant-year-zero/ui/dice/g2.png",
+            "systems/mutant-year-zero/ui/dice/g3.png",
+            "systems/mutant-year-zero/ui/dice/g4.png",
+            "systems/mutant-year-zero/ui/dice/g5.png",
+            "systems/mutant-year-zero/ui/dice/g6.png",
+        ],
+        colorset: "black",
+        system: "mutant-year-zero",
+    });
+});
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
