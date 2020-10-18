@@ -16,6 +16,7 @@ export class DiceRoller {
      * @param  {number} [damage=0] Weapon damage
      */
     roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, artifacts = null, modifier = 0, damage = null } = {}) {
+        console.log("ALO");
         this.dices = [];
         this.lastType = "skill";
         this.lastRollName = rollName;
@@ -27,20 +28,27 @@ export class DiceRoller {
             computedSkill = -computedSkill;
             computedSkillType = "skill-penalty";
         }
-        this.rollDice(base, "base", 6, 0);
-        this.rollDice(computedSkill, computedSkillType, 6, 0);
-        this.rollDice(gear, "gear", 6, 0);
+
+        let rollFormula = `${base}db + ${Math.abs(computedSkill)}ds + ${gear}dg`;
+        console.warn(rollFormula);
+        let dsnRoll = new Roll(rollFormula);
+        dsnRoll.roll().toMessage();
+        return;
+
+        // this.rollDice(base, "base", 6, 0);
+        // this.rollDice(computedSkill, computedSkillType, 6, 0);
+        // this.rollDice(gear, "gear", 6, 0);
         /*if (DiceTerm !== undefined) {
             let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;
             console.warn(rollFormula);
             let dsnRoll = new Roll(rollFormula);
             dsnRoll.roll().toMessage();
         }*/
-        if (artifacts) {
-            artifacts.forEach((artifact) => {
-                this.rollDice(artifact.dice, "artifact", artifact.face);
-            });
-        }
+        // if (artifacts) {
+        //     artifacts.forEach((artifact) => {
+        //         this.rollDice(artifact.dice, "artifact", artifact.face);
+        //     });
+        // }
         let computedDamage = damage;
         if (damage) {
             this.baseDamage = damage;
