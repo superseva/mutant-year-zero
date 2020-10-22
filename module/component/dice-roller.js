@@ -5,6 +5,9 @@ export class DiceRoller {
     lastRollName = "";
     lastDamage = 0;
     baseDamage = 0;
+    computedSkillType = "";
+    diceWithResult = [];
+    diceWithNoResult = [];
 
     /**
      * @param  {string} rollName   Display name for the roll
@@ -17,30 +20,24 @@ export class DiceRoller {
      */
     roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, artifacts = null, modifier = 0, damage = null } = {}) {
         this.dices = [];
+        this.diceWithResult = [];
+        this.diceWithNoResult = [];
         this.lastType = "skill";
         this.lastRollName = rollName;
         let computedSkill = skill + modifier;
-        let computedSkillType;
         if (computedSkill > 0) {
-            computedSkillType = "skill";
+            this.computedSkillType = "skill";
         } else {
             computedSkill = -computedSkill;
-            computedSkillType = "skill-penalty";
+            this.computedSkillType = "skill-penalty";
         }
-        this.rollDice(base, "base", 6, 0);
-        this.rollDice(computedSkill, computedSkillType, 6, 0);
-        this.rollDice(gear, "gear", 6, 0);
-        /*if (DiceTerm !== undefined) {
-            let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;
-            console.warn(rollFormula);
-            let dsnRoll = new Roll(rollFormula);
-            dsnRoll.roll().toMessage();
-        }*/
-        if (artifacts) {
-            artifacts.forEach((artifact) => {
-                this.rollDice(artifact.dice, "artifact", artifact.face);
-            });
-        }
+
+        let rollFormula = `${base}db + ${Math.abs(computedSkill)}ds + ${gear}dg`;
+        let roll = new Roll(rollFormula);
+        roll.roll();
+
+        this.parseResults(roll);
+
         let computedDamage = damage;
         if (damage) {
             this.baseDamage = damage;
@@ -51,71 +48,66 @@ export class DiceRoller {
         } else {
             this.baseDamage = 0;
         }
-        this.sendRollToChat(false);
+        this.sendRollToChat(false, roll);
     }
 
     /**
      * Push the last roll
      */
     push() {
-        this.dices.forEach((dice) => {
-            if ((dice.value < 6 && dice.value > 1 && dice.type !== "skill") || (dice.value < 6 && ["artifact", "skill"].includes(dice.type))) {
-                let die;
-                if (CONFIG.is07x) {
-                    die = new Die({ faces: dice.face, number: 1 });
-                    die.evaluate();
-                } else {
-                    die = new Die(dice.face);
-                    die.roll(1);
-                }
-                dice.value = die.total;
-                let successAndWeight = this.getSuccessAndWeight(dice.value, dice.type);
-                dice.success = successAndWeight.success;
-                dice.weight = successAndWeight.weight;
-            }
-        });
-        if (this.lastType === "spell") {
-            this.sendRollSpellToChat(true);
-        } else {
-            this.sendRollToChat(true);
-        }
+        const base = this.diceWithNoResult.filter((d) => d.diceType === "base").length;
+        const skill = this.diceWithNoResult.filter((d) => d.diceType === "skill").length;
+        const gear = this.diceWithNoResult.filter((d) => d.diceType === "gear").length;
+        let rollFormula = `${base}db + ${Math.abs(skill)}ds + ${gear}dg`;
+        this.diceWithNoResult = [];
+        let roll = new Roll(rollFormula);
+        roll.roll();
+        this.parseResults(roll);
+        this.sendRollToChat(true, roll);
     }
 
     /**
-     * Roll a set of dice
      *
-     * @param  {number} numberOfDice     How many dice to roll
-     * @param  {string} typeOfDice       Base/skill/gear
-     * @param  {number} numberOfFaces    What dice to roll
-     * @param  {number} automaticSuccess For mutations
+     * @param {Roll} _roll
      */
-    rollDice(numberOfDice, typeOfDice, numberOfFaces, automaticSuccess) {
-        //console.warn(`LETS ROLL ! ${numberOfDice}, ${typeOfDice}, ${numberOfFaces}, ${automaticSuccess}`);
-        if (numberOfDice > 0) {
-            let die;
-            if (CONFIG.is07x) {
-                die = new Die({ faces: numberOfFaces, number: numberOfDice });
-                die.evaluate();
-            } else {
-                die = new Die(numberOfFaces);
-                die.roll(numberOfDice);
-            }
-            die.rolls.forEach((roll) => {
-                let result = roll.result !== undefined ? roll.result : roll.roll;
-                if (automaticSuccess > 0) {
-                    result = numberOfFaces;
-                    automaticSuccess -= 1;
+    parseResults(_roll) {
+        _roll.dice.forEach((d) => {
+            d.results.forEach((r) => {
+                let successAndWeight = this.getSuccessAndWeight(r.result, this.mapDiceType(d.constructor.name));
+                if (r.result == 6 || (r.result == 1 && d.constructor.name != "MYZDieSkill")) {
+                    this.diceWithResult.push({
+                        diceType: this.mapDiceType(d.constructor.name),
+                        value: r.result,
+                        success: successAndWeight.success,
+                        weight: successAndWeight.weight,
+                    });
+                } else {
+                    this.diceWithNoResult.push({
+                        diceType: this.mapDiceType(d.constructor.name),
+                        value: r.result,
+                        success: successAndWeight.success,
+                        weight: successAndWeight.weight,
+                    });
                 }
-                let successAndWeight = this.getSuccessAndWeight(result, typeOfDice);
-                this.dices.push({
-                    value: result,
-                    type: typeOfDice,
-                    success: successAndWeight.success,
-                    weight: successAndWeight.weight,
-                    face: numberOfFaces,
-                });
             });
+        });
+    }
+    mapDiceType(dT) {
+        let dType = "";
+        switch (dT) {
+            case "MYZDieBase":
+                dType = "base";
+                break;
+            case "MYZDieSkill":
+                dType = "skill";
+                break;
+            case "MYZDieGear":
+                dType = "gear";
+                break;
+            default:
+                dType = null;
         }
+        return dType;
     }
 
     /**
@@ -127,7 +119,7 @@ export class DiceRoller {
      */
     getSuccessAndWeight(diceValue, diceType) {
         if (diceValue === 6) {
-            if (diceType === "skill-penalty") {
+            if (diceType === "skill" && this.computedSkillType === "skill-penalty") {
                 return { success: -1, weight: -1 };
             } else {
                 return { success: 1, weight: 1 };
@@ -144,14 +136,14 @@ export class DiceRoller {
      *
      * @param  {boolean} isPushed Whether roll was pushed
      */
-    async sendRollToChat(isPushed) {
+    async sendRollToChat(isPushed, _roll) {
+        this.dices = this.diceWithResult.concat(this.diceWithNoResult);
         this.dices.sort(function (a, b) {
             return b.weight - a.weight;
         });
         let numberOfSuccesses = this.countSuccesses();
         let numberOfFailures = this.countFailures();
         let numberOfGearFailures = this.countGearFailures();
-        //let damage = numberOfSuccesses + this.lastDamage;
         let rollData = {
             name: this.lastRollName,
             isPushed: isPushed,
@@ -167,6 +159,8 @@ export class DiceRoller {
             user: game.user._id,
             rollMode: game.settings.get("core", "rollMode"),
             content: html,
+            type: CHAT_MESSAGE_TYPES.ROLL,
+            roll: _roll,
         };
         if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
             chatData.whisper = ChatMessage.getWhisperRecipients("GM");
@@ -193,7 +187,7 @@ export class DiceRoller {
     countFailures() {
         let result = 0;
         this.dices.forEach((dice) => {
-            if (dice.value === 1 && dice.type === "base") {
+            if (dice.value === 1 && dice.diceType === "base") {
                 result++;
             }
         });
@@ -206,7 +200,7 @@ export class DiceRoller {
     countGearFailures() {
         let result = 0;
         this.dices.forEach((dice) => {
-            if (dice.value === 1 && dice.type === "gear") {
+            if (dice.value === 1 && dice.diceType === "gear") {
                 result++;
             }
         });

@@ -182,6 +182,18 @@ $font-secondary: 'Roboto', sans-serif;*/
   background: white;
 }
 
+.dice-tooltip .dice-rolls .roll.max {
+  /* color: #18520b; */
+  -webkit-filter: none;
+  filter: none;
+}
+
+.dice-tooltip .dice-rolls .roll.min {
+  /* color: #18520b; */
+  -webkit-filter: none;
+  filter: none;
+}
+
 .myz.chat-item {
   background-color: white;
   background-image: url("../ui/mutant-sheet-bg.jpg");
