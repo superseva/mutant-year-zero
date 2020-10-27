@@ -2,6 +2,11 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.8
+
+-   When you create a new character its info tab will now be prepopulated with a Relationship Table. You can use this table to keep track of your relationships, things you hate or need to protect as well as your Big Dream. Just edit it as a normal text field. Or you can just delete the table if you don;t need it since it is just a part of an info text.
+    ![InfoTable](./RealtionshipsInfo.jpg)
+
 ## v0.7
 
 -   updated for Foundry vesion 0.7.5
