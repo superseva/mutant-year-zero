@@ -49,7 +49,9 @@ Hooks.once("init", async function () {
     CONFIG.MYZ = MYZ;
     CONFIG.Actor.entityClass = MYZActor;
     CONFIG.Item.entityClass = MYZItem;
-    CONFIG.diceRoller = DiceRoller;
+    //CONFIG.diceRoller = DiceRoller;
+
+    CONFIG.roller = new DiceRoller();
 
     CONFIG.is07x = Number(`${game.data.version.split(".")[0]}.${game.data.version.split(".")[1]}`) > 0.6;
 
