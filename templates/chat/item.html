@@ -99,6 +99,17 @@
         {{{data.description}}}
         {{/if}}
 
+        {{#if isProject}}
+        <p><strong>{{localize "MYZ.COMPLETED"}}:</strong> {{data.completed}}</p>
+        <p><strong>{{localize "MYZ.SKILLS"}}:</strong> {{data.skills}}</p>
+        <p><strong>{{localize "MYZ.WORK_POINTS"}}:</strong> {{data.work_points}}</p>
+        <p><strong>{{localize "MYZ.DEV_BONUS"}}:</strong> {{data.DEV_Bonus}}</p>
+        <p><strong>{{localize "MYZ.DEV_REQUIREMENT"}}:</strong> {{data.DEV_Requirement}}</p>
+        <p><strong>{{localize "MYZ.SPECIAL"}}:</strong> {{data.special}}</p>
+        <hr><h4>Description:</h4>
+        {{{data.description}}}
+        {{/if}}
+
         {{#if data.weight}}
         <p><strong>{{localize "MYZ.WEIGHT"}}:</strong> {{data.weight}}</p>
         {{/if}}

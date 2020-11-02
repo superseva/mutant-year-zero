@@ -713,6 +713,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .input-underline {
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid;
   background-color: unset;
 }
@@ -745,6 +746,131 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .npc-name-rank .npc-rank input {
   text-align: center;
+}
+
+.mutant-year-zero .ark-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 160px;
+  flex: 0 0 160px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.mutant-year-zero .ark-header img {
+  width: 120px;
+  height: 120px;
+  margin-right: 10px;
+}
+
+.mutant-year-zero .ark-header h1.charname {
+  height: 1.2em;
+  padding: 0px;
+  margin: 5px 0;
+  border-bottom: 0;
+}
+
+.mutant-year-zero .ark-header h1.charname input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.mutant-year-zero .ark-header .header-fields {
+  margin-right: 5px;
+}
+
+.mutant-year-zero .ark-header .dev-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 5px;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  border: 1px solid #333333;
+}
+
+.mutant-year-zero .ark-header .dev-box div:nth-child(even) {
+  background: #f0eeeb;
+}
+
+.mutant-year-zero .ark-header .dev-box .title-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 32px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #2e2c2a;
+  color: blanchedalmond;
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 5px;
+}
+
+.mutant-year-zero .ark-header .dev-box .resource {
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.mutant-year-zero .ark-header .dev-box .resource input {
+  max-width: 3em;
+  text-align: center;
+}
+
+.mutant-year-zero .projects-box .projects-box-header {
+  padding: 5px !important;
+  background-color: #2e2c2a;
+  color: blanchedalmond;
+}
+
+.mutant-year-zero .projects-box .project {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.mutant-year-zero .boss-box {
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #7e7e7e;
+}
+
+.mutant-year-zero .boss-box .boss-name {
+  font-weight: bold;
+}
+
+.mutant-year-zero .boss-box textarea {
+  resize: vertical;
+  min-height: 5.5em;
+  border-color: #cccccc;
+}
+
+.mutant-year-zero .uppercase {
+  text-transform: uppercase;
+}
+
+.mutant-year-zero .margin-bottom {
+  margin-bottom: 5px;
+}
+
+.mutant-year-zero .size12 {
+  font-size: 12px;
+  line-height: 14px;
 }
 
 .mutant-year-zero .resource-label {

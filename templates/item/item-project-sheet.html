@@ -1,0 +1,32 @@
+<form class="{{cssClass}} {{data.itemType}}" autocomplete="off">
+    {{!-- HEADER --}}
+    {{> systems/mutant-year-zero/templates/item/partials/header-simple.html}}
+    {{!-- Sheet Body --}}
+    <div class="flexrow margin align-center">
+        <label for="data.skills">{{localize 'MYZ.SKILLS'}}</label>
+        <input type="text" name="data.skills" value="{{data.skills}}">
+    </div>
+    <div class="flexrow margin align-center">
+        <label for="data.work_points">{{localize 'MYZ.WORK_POINTS'}}</label>
+        <input type="text" name="data.work_points" value="{{data.work_points}}">
+    </div>
+    <div class="flexrow margin align-center">
+        <label for="data.DEV_Requirement">{{localize 'MYZ.DEV_REQUIREMENT'}}</label>
+        <input type="text" name="data.DEV_Requirement" value="{{data.DEV_Requirement}}" style="flex: 2;">
+    </div>
+    <div class="flexrow margin align-center">
+        <label for="data.DEV_Bonus">{{localize 'MYZ.DEV_BONUS'}}</label>
+        <input type="text" name="data.DEV_Bonus" value="{{data.DEV_Bonus}}" style="flex: 2;">
+    </div>
+    <div class="margin">
+        <label for="data.special" class="uppercase">{{localize 'MYZ.SPECIAL'}}</label>
+        <textarea name="data.special" style="resize: vertical;">{{data.special}}</textarea>
+    </div>
+
+    <h2>Description</h2>
+    <div class="info">
+        <div class="description">
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+    </div>
+</form>

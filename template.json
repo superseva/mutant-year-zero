@@ -1,6 +1,6 @@
 {
     "Actor": {
-        "types": ["mutant", "animal", "robot", "human", "npc"],
+        "types": ["mutant", "animal", "robot", "human", "npc", "ark"],
         "templates": {
             "base": {
                 "role": "",
@@ -144,10 +144,68 @@
                 "max": 10
             },
             "special": ""
+        },
+        "ark": {
+            "ark_type": "",
+            "coordinates": "",
+            "description": "",
+            "population": "",
+            "water_source": "",
+            "season": "",
+            "dev_levels": {
+                "food": {
+                    "value": 0,
+                    "max": 0
+                },
+                "culture": {
+                    "value": 0,
+                    "max": 0
+                },
+                "technology": {
+                    "value": 0,
+                    "max": 0
+                },
+                "warfare": {
+                    "value": 0,
+                    "max": 0
+                }
+            },
+            "bosses": {
+                "boss1": {
+                    "name": "",
+                    "type": "",
+                    "description": ""
+                },
+                "boss2": {
+                    "name": "",
+                    "type": "",
+                    "description": ""
+                },
+                "boss3": {
+                    "name": "",
+                    "type": "",
+                    "description": ""
+                },
+                "boss4": {
+                    "name": "",
+                    "type": "",
+                    "description": ""
+                },
+                "boss5": {
+                    "name": "",
+                    "type": "",
+                    "description": ""
+                },
+                "boss6": {
+                    "name": "",
+                    "type": "",
+                    "description": ""
+                }
+            }
         }
     },
     "Item": {
-        "types": ["weapon", "armor", "chassis", "skill", "ability", "talent", "gear", "artifact", "critical"],
+        "types": ["weapon", "armor", "chassis", "skill", "ability", "talent", "gear", "artifact", "critical", "project"],
         "templates": {
             "base": {
                 "description": "",
@@ -232,6 +290,20 @@
             "timeLimit": "",
             "healingTime": "",
             "effect": ""
+        },
+        "project": {
+            "comment": "",
+            "skills": "",
+            "work_points": "",
+            "DEV_Requirement": "",
+            "DEV_Bonus": "",
+            "special": "",
+            "completed": false,
+            "value": 0,
+            "food": 0,
+            "culture": 0,
+            "technology": 0,
+            "warfare": 0
         }
     }
 }
