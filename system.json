@@ -2,7 +2,7 @@
     "name": "mutant-year-zero",
     "title": "Mutant Year Zero",
     "description": "The Mutant Year Zero system for FoundryVTT!",
-    "version": "0.8",
+    "version": "0.9",
     "minimumCoreVersion": "0.7.5",
     "compatibleCoreVersion": "0.7.5",
     "templateVersion": 1,
@@ -17,6 +17,13 @@
             "system": "mutant-year-zero",
             "path": "./packs/core-skills.db",
             "entity": "Item"
+        },
+        {
+            "name": "myz-macros",
+            "label": "MYZ macors",
+            "system": "mutant-year-zero",
+            "path": "./packs/myz-macros.db",
+            "entity": "Macro"
         }
     ],
     "languages": [

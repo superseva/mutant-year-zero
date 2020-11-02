@@ -14,6 +14,9 @@ export default class MYZHooks {
         await actor.update(updateData, { renderSheet: true });
         //await actor.update({ "data.creatureType": actor.data.type });
 
+        //IF ACTOR IS ARK DON'T DO ANYTHING ELSE
+        if (actor.data.type == "ark") return;
+
         if (actor.data.type != "npc") {
             const actorCoreSkills = actor.data.data.coreSkills;
             // Check if skill allready exists by some chance

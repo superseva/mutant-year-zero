@@ -12,7 +12,10 @@ export class MYZActor extends Actor {
         const data = actorData.data;
         const flags = actorData.flags;
         data.type = actorData.type;
-        this._prepareMutantData(actorData);
+
+        if (this.data.type != "ark") {
+            this._prepareMutantData(actorData);
+        }
     }
 
     /**

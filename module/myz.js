@@ -8,6 +8,7 @@ import { MYZAnimalSheet } from "./actor/animal-sheet.js";
 import { MYZRobotSheet } from "./actor/robot-sheet.js";
 import { MYZHumanSheet } from "./actor/human-sheet.js";
 import { MYZNpcSheet } from "./actor/npc-sheet.js";
+import { MYZArkSheet } from "./actor/ark-sheet.js";
 import { MYZItem } from "./item/item.js";
 import { MYZItemSheet } from "./item/item-sheet.js";
 import { MYZDieBase } from "./MYZDice.js";
@@ -32,6 +33,7 @@ Hooks.once("init", async function () {
         MYZRobotSheet,
         MYZHumanSheet,
         MYZNpcSheet,
+        MYZArkSheet,
         rollItemMacro,
         DiceRoller,
         RollDialog,
@@ -49,7 +51,9 @@ Hooks.once("init", async function () {
     CONFIG.MYZ = MYZ;
     CONFIG.Actor.entityClass = MYZActor;
     CONFIG.Item.entityClass = MYZItem;
-    CONFIG.diceRoller = DiceRoller;
+    //CONFIG.diceRoller = DiceRoller;
+
+    CONFIG.roller = new DiceRoller();
 
     CONFIG.is07x = Number(`${game.data.version.split(".")[0]}.${game.data.version.split(".")[1]}`) > 0.6;
 
@@ -82,6 +86,10 @@ Hooks.once("init", async function () {
     });
     Actors.registerSheet("mutant-year-zero", MYZNpcSheet, {
         types: ["npc"],
+        makeDefault: true,
+    });
+    Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
+        types: ["ark"],
         makeDefault: true,
     });
     Items.unregisterSheet("core", ItemSheet);
@@ -227,6 +235,10 @@ Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
 });
 
 Hooks.on("preCreateOwnedItem", (actor, item, options) => {
+    if (item.type == "project" && actor.data.type != "ark") {
+        ui.notifications.warn(`You can add Project only to Ark`);
+        return false;
+    }
     if (item.type == "chassis" && actor.data.data.creatureType != "robot") {
         ui.notifications.warn(`You can't add Chassis to a non-robot character`);
         return false;
