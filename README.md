@@ -7,6 +7,7 @@ Unofficial Mutant Year Zero system for FoundryVTT
 **ROBOTS**,\
 **HUMANS**,\
 **NPC** -> a shorter version of a mutant/animal/robot/human
+**ARK**
 
 ## Abilities:
 ***Mutations, animal powers, modules and contacts*** are all represented by an Item called **ability**.\
