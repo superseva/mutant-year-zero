@@ -6,7 +6,7 @@ Unofficial Mutant Year Zero system for FoundryVTT
 **ANIMALS**,\
 **ROBOTS**,\
 **HUMANS**,\
-**NPC** -> a shorter version of a mutant/animal/robot/human
+**NPC** -> a shorter version of a mutant/animal/robot/human \
 **ARK**
 
 ## Abilities:
