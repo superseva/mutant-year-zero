@@ -168,5 +168,16 @@
     "MYZ.PICK_NPC_TYPE": "PICK NPC TYPE",
     "MYZ.NO_COMBAT_SKILL": "No Combat skill found [Fight, Assault or Shoot]",
     "MYZ.EDIT": "Edit",
-    "MYZ.DELETE": "Delete"
+    "MYZ.DELETE": "Delete",
+
+    "MYZ.TYPE": "Type",
+    "MYZ.COORDINATES": "Coordinates",
+    "MYZ.POPULATION": "Population",
+    "MYZ.WATER_SOURCE": "Water Source",
+    "MYZ.SEASON": "Season",
+    "MYZ.DEV_LEVELS": "Dev Levels",
+    "MYZ.FOOD": "Food",
+    "MYZ.CULTURE": "Culture",
+    "MYZ.TECHNOLOGY": "Technology",
+    "MYZ.WARFARE": "Warfare"
 }
