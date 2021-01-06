@@ -7,7 +7,7 @@ export class MYZRobotSheet extends MYZActorSheet {
             classes: ["mutant-year-zero", "sheet", "actor"],
             template: "systems/mutant-year-zero/templates/actor/robot-sheet.html",
             width: 720,
-            height: 700,
+            height: 720,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }

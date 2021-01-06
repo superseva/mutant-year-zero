@@ -7,7 +7,7 @@ export class MYZAnimalSheet extends MYZActorSheet {
             classes: ["mutant-year-zero", "sheet", "actor"],
             template: "systems/mutant-year-zero/templates/actor/animal-sheet.html",
             width: 720,
-            height: 700,
+            height: 720,
             tabs: [
                 {
                     navSelector: ".sheet-tabs",
