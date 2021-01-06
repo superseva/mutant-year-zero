@@ -303,7 +303,8 @@
             "food": 0,
             "culture": 0,
             "technology": 0,
-            "warfare": 0
+            "warfare": 0,
+            "description": ""
         }
     }
 }

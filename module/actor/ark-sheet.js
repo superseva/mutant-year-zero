@@ -56,6 +56,7 @@ export class MYZArkSheet extends ActorSheet {
         html.find(".item-edit").click((ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
             const item = this.actor.getOwnedItem(li.data("item-id"));
+            console.log(item);
             item.sheet.render(true);
         });
 
