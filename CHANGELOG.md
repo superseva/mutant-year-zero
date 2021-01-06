@@ -2,6 +2,12 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.91
+
+-   Added couple of missing translation keys for ARK.
+-   Fixed bug with project-description not showing. It might not work with previously created projects.
+
+
 ## v0.9
 
 -   Added ARK actor sheet.
