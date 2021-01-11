@@ -49,7 +49,7 @@ export class RollDialog {
                 buttons: {
                     roll: {
                         icon: '<i class="fas fa-check"></i>',
-                        label: "Roll",
+                        label: `${game.i18n.localize("MYZ.ROLL")}`,
                         callback: (html) => {
                             let base = html.find("#base")[0].value;
                             let skill = html.find("#skill")[0].value;

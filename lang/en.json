@@ -181,5 +181,24 @@
     "MYZ.TECHNOLOGY": "Technology",
     "MYZ.WARFARE": "Warfare",
 
-    "MYZ.CUSTOM_ROLL": "Custom Roll"
+    "MYZ.CUSTOM_ROLL": "Custom Roll",
+    "MYZ.ADD": "Add",
+
+    "ITEM.TypeWeapon": "Weapon",
+    "ITEM.TypeArmor": "Armor",
+    "ITEM.TypeChassis": "Chassis",
+    "ITEM.TypeSkill": "Skill",
+    "ITEM.TypeAbility": "Ability",
+    "ITEM.TypeTalent": "Talent",
+    "ITEM.TypeGear": "Gear",
+    "ITEM.TypeArtifact": "Artifact",
+    "ITEM.TypeCritical": "Critical",
+    "ITEM.TypeProject": "Project",
+
+    "ACTOR.TypeMutant": "Mutant",
+    "ACTOR.TypeAnimal": "Animal",
+    "ACTOR.TypeRobot": "Robot",
+    "ACTOR.TypeHuman": "Human",
+    "ACTOR.TypeNpc": "NPC",
+    "ACTOR.TypeArk": "Ark"
 }
