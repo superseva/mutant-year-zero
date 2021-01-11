@@ -121,8 +121,9 @@ export class MYZActorSheet extends ActorSheet {
         /* -------------------------------------------- */
 
         html.find(".button-roll").click((ev) => {
+            let rollName = "MYZ.CUSTOM_ROLL";
             RollDialog.prepareRollDialog({
-                rollName: "Custom Roll",
+                rollName: rollName,
                 diceRoller: this.diceRoller,
             });
         });
@@ -363,8 +364,9 @@ export class MYZActorSheet extends ActorSheet {
         event.preventDefault();
         const attName = $(event.currentTarget).data("attribute");
         const attVal = this.actor.data.data.attributes[attName].value;
+        let rollName = `MYZ.ATTRIBUTE_${attName.toUpperCase()}_${this.actor.data.data.creatureType.toUpperCase()}`;
         RollDialog.prepareRollDialog({
-            rollName: attName,
+            rollName: rollName,
             diceRoller: this.diceRoller,
             baseDefault: attVal,
             skillDefault: 0,

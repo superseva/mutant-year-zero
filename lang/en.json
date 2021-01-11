@@ -179,5 +179,7 @@
     "MYZ.FOOD": "Food",
     "MYZ.CULTURE": "Culture",
     "MYZ.TECHNOLOGY": "Technology",
-    "MYZ.WARFARE": "Warfare"
+    "MYZ.WARFARE": "Warfare",
+
+    "MYZ.CUSTOM_ROLL": "Custom Roll"
 }
