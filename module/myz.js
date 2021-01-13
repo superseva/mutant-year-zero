@@ -213,6 +213,8 @@ Hooks.once("ready", async function () {
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
 });
 
+/* SET CHARACTER TYPE */
+Hooks.on("preCreateActor", async (data, options, userId) => MYZHooks.onPrecreateActor(data, options, userId));
 /* POPULATE CHARACTER WITH DEFAULT SKILLS */
 Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
 
