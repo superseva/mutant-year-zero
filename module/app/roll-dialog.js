@@ -44,12 +44,12 @@ export class RollDialog {
         const htmlContent = await renderTemplate("systems/mutant-year-zero/templates/app/roll-dialog.html", htmlData);
         return new Promise((resolve) => {
             let d = new Dialog({
-                title: "Roll : " + rollName,
+                title: `${game.i18n.localize("MYZ.ROLL")} : ${game.i18n.localize(rollName)}`,
                 content: htmlContent,
                 buttons: {
                     roll: {
                         icon: '<i class="fas fa-check"></i>',
-                        label: "Roll",
+                        label: `${game.i18n.localize("MYZ.ROLL")}`,
                         callback: (html) => {
                             let base = html.find("#base")[0].value;
                             let skill = html.find("#skill")[0].value;
