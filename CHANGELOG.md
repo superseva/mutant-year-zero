@@ -2,11 +2,14 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.92
+
+-   Added Portuguese BR language sheet translation
+
 ## v0.91
 
 -   Added couple of missing translation keys for ARK.
 -   Fixed bug with project-description not showing. It might not work with previously created projects.
-
 
 ## v0.9
 
