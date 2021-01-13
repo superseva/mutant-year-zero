@@ -154,11 +154,6 @@ Hooks.once("init", async function () {
         return new Handlebars.SafeString(theString);
     });
 
-    Handlebars.registerHelper("resolveActorType", function (pre, keyName, creatureType) {
-        let fullString = pre + "" + keyName + "" + creatureType;
-        return fullString.toUpperCase();
-    });
-
     Handlebars.registerHelper("createLocalizationString", function () {
         let fullString = "";
         for (var i = 0; i < arguments.length; i++) {

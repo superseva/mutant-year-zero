@@ -17,12 +17,19 @@
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
         <div class="header-fields">
             <div class="npc-name-rank">
-                <h1 class="charname npc-name" style="margin-top:0px; margin-bottom:10px;"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+                <h1 class="charname npc-name" style="margin-top: 0px; margin-bottom: 10px">
+                    <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+                </h1>
                 <div class="flex row npc-rank align-center">
                     <label for="data.rank">{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}:&nbsp;</label>
-                    <input class="input-underline" type="text" placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}" name="data.rank" value="{{data.rank}}" />
+                    <input
+                        class="input-underline"
+                        type="text"
+                        placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}"
+                        name="data.rank"
+                        value="{{data.rank}}"
+                    />
                 </div>
-                
             </div>
             <div class="grid grid-2col">
                 <button class="button-roll">{{localize 'MYZ.ROLL'}}</button>
@@ -34,7 +41,9 @@
                 </div>
                 <button class="button-push">{{localize 'MYZ.PUSH'}}</button>
                 <div class="box-item header flex row space-between align-center {{data.creatureType}}">
-                    <label class="item-name" for="data.resource_points.value">{{localize (resolveActorType "MYZ.RESOURCE_" "POINTS_" data.creatureType )}}</label>
+                    <label class="item-name" for="data.resource_points.value"
+                        >{{localize (toUpperCase (concat "MYZ.RESOURCE_" "POINTS_" data.creatureType ))}}</label
+                    >
                     <span class="right-element">
                         <input class="short-input" type="text" name="data.resource_points.value" value="{{data.resource_points.value}}" />
                     </span>
@@ -42,10 +51,12 @@
             </div>
         </div>
     </div>
-    <div class="flex row" style="max-height:65px">
-        <div class="grid grid-4col align-center" style="width:100%">
+    <div class="flex row" style="max-height: 65px">
+        <div class="grid grid-4col align-center" style="width: 100%">
             <div class="flexcol flex-group-center">
-                <label class="roll-attribute rollable" data-attribute="strength" style="margin-bottom:5px;"><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE_" "STRENGTH_" data.creatureType)}}</strong></label>
+                <label class="roll-attribute rollable" data-attribute="strength" style="margin-bottom: 5px"
+                    ><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "STRENGTH_" data.creatureType))}}</strong></label
+                >
                 <span>
                     <input type="text" name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
@@ -53,7 +64,9 @@
                 </span>
             </div>
             <div class="flexcol flex-group-center">
-                <label class="roll-attribute rollable" data-attribute="agility" style="margin-bottom:5px;"><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE_" "AGILITY_" data.creatureType)}}</strong></label>
+                <label class="roll-attribute rollable" data-attribute="agility" style="margin-bottom: 5px"
+                    ><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "AGILITY_" data.creatureType))}}</strong></label
+                >
                 <span>
                     <input type="text" name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
@@ -61,7 +74,9 @@
                 </span>
             </div>
             <div class="flexcol flex-group-center">
-                <label class="roll-attribute rollable" data-attribute="wits" style="margin-bottom:5px;"><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE_" "WITS_" data.creatureType)}}</strong></label>
+                <label class="roll-attribute rollable" data-attribute="wits" style="margin-bottom: 5px"
+                    ><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "WITS_" data.creatureType))}}</strong></label
+                >
                 <span>
                     <input type="text" name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
@@ -69,7 +84,9 @@
                 </span>
             </div>
             <div class="flexcol flex-group-center">
-                <label class="roll-attribute rollable" data-attribute="empathy" style="margin-bottom:5px;"><strong>{{localize (resolveActorType "MYZ.ATTRIBUTE_" "EMPATHY_" data.creatureType)}}</strong></label>
+                <label class="roll-attribute rollable" data-attribute="empathy" style="margin-bottom: 5px"
+                    ><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "EMPATHY_" data.creatureType))}}</strong></label
+                >
                 <span>
                     <input type="text" name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
@@ -87,21 +104,17 @@
     </nav>
 
     <div class="sheet-body">
-
         {{!-- Attributes Tab --}}
         <div class="tab" data-group="primary" data-tab="attributes">
             <div class="grid grid-2col">
+                <div>{{!-- Skills --}} {{> systems/mutant-year-zero/templates/actor/partials/skills.html fixedHeight='fixed-height'}}</div>
                 <div>
-                    {{!-- Skills --}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/skills.html fixedHeight='fixed-height'}}
+                    {{!-- Abilities --}} {{> systems/mutant-year-zero/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities
+                    sourceLabel='MYZ.ABILITIES' fixedHeight='fixed-height'}}
                 </div>
                 <div>
-                    {{!-- Abilities --}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities sourceLabel='MYZ.ABILITIES' fixedHeight='fixed-height'}}
-                </div>
-                <div>
-                    {{!-- Talents --}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/talents.html sourceType='talent' sourceList=actor.talents sourceLabel='MYZ.TALENTS' fixedHeight='fixed-height'}}
+                    {{!-- Talents --}} {{> systems/mutant-year-zero/templates/actor/partials/talents.html sourceType='talent' sourceList=actor.talents
+                    sourceLabel='MYZ.TALENTS' fixedHeight='fixed-height'}}
                 </div>
                 <div>
                     <div class="box-item header flex row align-center {{data.creatureType}}">
@@ -110,27 +123,20 @@
                     <div class="box-list {{data.creatureType}} fixed-height">
                         <textarea name="data.special">{{data.special}}</textarea>
                     </div>
-
                 </div>
             </div>
         </div>
 
         {{!-- Gear Tab --}}
-    <div class="tab" data-group="primary" data-tab="gear">
-        {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}}
-        {{#if (ifvalue data.creatureType 'robot')}}
-        {{> systems/mutant-year-zero/templates/actor/partials/chassis-1row.html}}
-        {{/if}}
-        {{#unless (ifvalue data.creatureType 'robot')}}
-        {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
-        {{/unless}}
-    </div>
+        <div class="tab" data-group="primary" data-tab="gear">
+            {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}} {{#if (ifvalue data.creatureType 'robot')}} {{>
+            systems/mutant-year-zero/templates/actor/partials/chassis-1row.html}} {{/if}} {{#unless (ifvalue data.creatureType 'robot')}} {{>
+            systems/mutant-year-zero/templates/actor/partials/armors.html}} {{/unless}}
+        </div>
 
         {{!-- Info Tab --}}
         <div class="tab" data-group="primary" data-tab="info">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
         </div>
-
     </div>
-
 </form>

@@ -4,118 +4,87 @@
 
         {{#if isWeapon}}
         <h4>{{weaponCategory data.category}}</h4>
-        {{/if}}
-        {{#if isArmor}}
+        {{/if}} {{#if isArmor}}
         <h4>{{armorPart data.armorType}}</h4>
-        {{/if}}
-        {{#if isCritical}}
+        {{/if}} {{#if isCritical}}
         <h4>{{localize "MYZ.CRITICAL"}}</h4>
-        {{/if}}
-        {{#if isGear}}
+        {{/if}} {{#if isGear}}
         <h4>{{localize "MYZ.GEAR"}}</h4>
-        {{/if}}
-        {{#if isArtifact}}
+        {{/if}} {{#if isArtifact}}
         <h4>{{localize "MYZ.ARTIFACT"}}</h4>
-        {{/if}}
-        {{#if isTalent}}
-        <h4>{{localize (resolveActorType "MYZ.TALENT_" "" data.creatureType)}}</h4>
-        {{/if}}
-        {{#if isAbility}}
-        <h4>{{localize (resolveActorType "MYZ.ABILITY_" "" data.creatureType)}}</h4>
-        {{/if}}
-
-        {{#if img}}
+        {{/if}} {{#if isTalent}}
+        <h4>{{localize (toUpperCase (concat 'MYZ.TALENT_' data.creatureType))}}</h4>
+        {{/if}} {{#if isAbility}}
+        <h4>{{localize (toUpperCase (concat 'MYZ.ABILITY_' data.creatureType))}}</h4>
+        {{/if}} {{#if img}}
         <img class="item-img" src="{{img}}" title="{{name}}" />
-        {{/if}}
-
-
-        {{#if isWeapon}}
+        {{/if}} {{#if isWeapon}}
         <p><strong>{{localize "MYZ.DAMAGE"}}:</strong> {{data.damage}}</p>
         <p><strong>{{localize "MYZ.BONUS"}}:</strong> {{data.bonus.value}} / {{data.bonus.max}}</p>
         <p><strong>{{localize "MYZ.RANGE"}}:</strong> {{data.range}}</p>
         <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{data.comment}}</p>
-        <hr><h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
+        <hr />
+        <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
         {{{data.description}}}
-        <hr>
-        {{/if}}
-
-        {{#if isArmor}}
+        <hr />
+        {{/if}} {{#if isArmor}}
         <p><strong>{{localize "MYZ.ARMOR_RATING"}}:</strong> {{data.rating.value}} / {{data.rating.max}}</p>
         <p><strong>{{localize "MYZ.EQUIPPED"}}:</strong> {{data.equipped}}</p>
         <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{data.comment}}</p>
-        <hr><h4>Description:</h4>
+        <hr />
+        <h4>Description:</h4>
         {{{data.description}}}
-        <hr>
-        {{/if}}
-
-        {{#if isChassis}}        
+        <hr />
+        {{/if}} {{#if isChassis}}
         <p><strong>{{localize "MYZ.LOCATION"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' data.location))}}</p>
         <p><strong>{{localize "MYZ.ATTRIBUTE_STRENGTH_ROBOT"}}:</strong> {{data.strength}}</p>
         <p><strong>{{localize "MYZ.ATTRIBUTE_AGILITY_ROBOT"}}:</strong> {{data.agility}}</p>
         <p><strong>{{localize "MYZ.ATTRIBUTE_WITS_ROBOT"}}:</strong> {{data.wits}}</p>
         <p><strong>{{localize "MYZ.ATTRIBUTE_EMPATHY_ROBOT"}}:</strong> {{data.empathy}}</p>
         <p><strong>{{localize "MYZ.ARMOR"}}:</strong> {{data.armor}}</p>
-        <p><strong>{{localize "MYZ.NUMBER_OF_MODULES"}}:</strong> {{data.modules}}</p>        
+        <p><strong>{{localize "MYZ.NUMBER_OF_MODULES"}}:</strong> {{data.modules}}</p>
         <p><strong>{{localize "MYZ.EQUIPPED"}}:</strong> {{data.equipped}}</p>
-        <hr><h4>Description:</h4>
+        <hr />
+        <h4>Description:</h4>
         {{{data.description}}}
-        <hr>
-        {{/if}}
-
-        {{#if isCritical}}
+        <hr />
+        {{/if}} {{#if isCritical}}
         <p><strong>{{localize "MYZ.LETHAL"}}:</strong> {{data.lethal}}</p>
         <p><strong>{{localize "MYZ.TIMELIMIT"}}:</strong> {{data.timeLimit}}</p>
         <p><strong>{{localize "MYZ.HEALINGTIME"}}:</strong> {{data.healingTime}}</p>
         {{#if data.effect}}
         <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{data.effect}}</p>
-        {{/if}}
-        {{/if}}
-
-        {{#if isGear}}
+        {{/if}} {{/if}} {{#if isGear}}
         <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{data.comment}}</p>
-        <hr><h4>Description:</h4>
+        <hr />
+        <h4>Description:</h4>
         {{{data.description}}}
-        <hr>
-        {{/if}}
-
-        {{#if isArtifact}}
+        <hr />
+        {{/if}} {{#if isArtifact}}
         <p><strong>{{localize "MYZ.DEV_BONUS"}}:</strong> {{data.dev_bonus}}</p>
         <p><strong>{{localize "MYZ.DEV_REQUIREMENT"}}:</strong> {{data.dev_requirement}}</p>
         <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{data.effect}}</p>
-        <hr><h4>Description:</h4>
+        <hr />
+        <h4>Description:</h4>
         {{{data.description}}}
-        <hr>
-        {{/if}}
-
-        {{#if isTalent}}
-        <p><strong>{{localize "MYZ.TALENT_TYPE"}}:</strong> {{localize (resolveActorType 'MYZ.' '' data.roleType)}}</p>
-        {{{data.description}}}
-        {{/if}}
-
-        {{#if isAbility}}
-        {{#if (ifvalue 'robot' data.creatureType)}}
+        <hr />
+        {{/if}} {{#if isTalent}}
+        <p><strong>{{localize "MYZ.TALENT_TYPE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' data.roleType))}}</p>
+        {{{data.description}}} {{/if}} {{#if isAbility}} {{#if (ifvalue 'robot' data.creatureType)}}
         <p><strong>{{localize "MYZ.BROKEN"}}:</strong> {{data.broken}}</p>
-        {{/if}}
-        {{{data.description}}}
-        {{/if}}
-
-        {{#if isProject}}
+        {{/if}} {{{data.description}}} {{/if}} {{#if isProject}}
         <p><strong>{{localize "MYZ.COMPLETED"}}:</strong> {{data.completed}}</p>
         <p><strong>{{localize "MYZ.SKILLS"}}:</strong> {{data.skills}}</p>
         <p><strong>{{localize "MYZ.WORK_POINTS"}}:</strong> {{data.work_points}}</p>
         <p><strong>{{localize "MYZ.DEV_BONUS"}}:</strong> {{data.DEV_Bonus}}</p>
         <p><strong>{{localize "MYZ.DEV_REQUIREMENT"}}:</strong> {{data.DEV_Requirement}}</p>
         <p><strong>{{localize "MYZ.SPECIAL"}}:</strong> {{data.special}}</p>
-        <hr><h4>Description:</h4>
-        {{{data.description}}}
-        {{/if}}
-
-        {{#if data.weight}}
+        <hr />
+        <h4>Description:</h4>
+        {{{data.description}}} {{/if}} {{#if data.weight}}
         <p><strong>{{localize "MYZ.WEIGHT"}}:</strong> {{data.weight}}</p>
-        {{/if}}
-        {{#if data.cost}}
+        {{/if}} {{#if data.cost}}
         <p><strong>{{localize "MYZ.COST"}}:</strong> {{data.cost}}</p>
         {{/if}}
-
     </div>
 </div>
