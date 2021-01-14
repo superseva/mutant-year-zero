@@ -1,5 +1,5 @@
-<div class="box-item header flex row space-between align-center {{data.creatureType}}" style="margin-bottom:5px;">
-    <label class="item-name" for="data.resource_points.value">{{localize (resolveActorType "MYZ.RESOURCE_" "POINTS_" data.creatureType )}}</label>
+<div class="box-item header flex row space-between align-center {{data.creatureType}}" style="margin-bottom: 5px">
+    <label class="item-name" for="data.resource_points.value">{{localize (toUpperCase (concat 'MYZ.RESOURCE_POINTS_' data.creatureType ))}}</label>
     <span class="right-element">
         <input class="short-input" type="text" name="data.resource_points.value" value="{{data.resource_points.value}}" />
     </span>

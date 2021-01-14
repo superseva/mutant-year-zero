@@ -2,6 +2,12 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.93
+
+-   Relationship table in NPC description removed by default.
+-   Fixed some small bugs related to skill creation and foundry 7.8 and greater
+-   Added Deutsch (de) language sheet translation
+
 ## v0.92
 
 -   Added Portuguese BR language sheet translation

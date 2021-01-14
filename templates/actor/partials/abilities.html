@@ -1,25 +1,21 @@
-{{! PARAM: sourceType: to create a new item type in the list}}
-{{! PARAM: sourceList: existing list of mutations/powers/contacts}}
-{{! PARAM: sourceLabel: to create a header label}}
-{{! PARAM: fixedHeight: should it grow or have a scroll}}
-
-
+{{! PARAM: sourceType: to create a new item type in the list}} {{! PARAM: sourceList: existing list of mutations/powers/contacts}} {{! PARAM: sourceLabel: to
+create a header label}} {{! PARAM: fixedHeight: should it grow or have a scroll}}
 
 <div class="box-item header flex row align-center space-between {{data.creatureType}}">
-    <label class="item-name">{{localize (resolveActorType "MYZ.ABILITY_" "" data.creatureType)}}s</label>
+    <label class="item-name">{{localize (toUpperCase (concat "MYZ.ABILITY_" data.creatureType))}}s</label>
     <span class="item-controls">
         <a class="item-create" data-type="{{sourceType}}">+ Add</a>
     </span>
 </div>
-<div class="box-list abilities {{data.creatureType}} {{fixedHeight}}">    
+<div class="box-list abilities {{data.creatureType}} {{fixedHeight}}">
     {{#each sourceList as |listItem index|}}
     <div class="box-item flex row align-center space-between editable-item" data-item-id="{{listItem._id}}">
         <a class="item-name viewable" data-item-id="{{listItem._id}}">{{listItem.name}}</a>
         <span class="item-controls">
             {{#if (ifvalue listItem.data.creatureType 'robot')}}
             <a class="item-broken" title="{{localize 'MYZ.BROKEN'}}">
-                {{#if  listItem.data.broken}}
-                <i class="fa fa-exclamation-circle" style="color:darkred"></i>
+                {{#if listItem.data.broken}}
+                <i class="fa fa-exclamation-circle" style="color: darkred"></i>
                 {{else}}
                 <i class="fa fa-check-circle"></i>
                 {{/if}}

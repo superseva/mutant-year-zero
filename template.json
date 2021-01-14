@@ -246,7 +246,7 @@
         "talent": {
             "templates": ["base"],
             "effect": "",
-            "roleType": "",
+            "roleType": "general",
             "creatureType": ""
         },
         "weapon": {

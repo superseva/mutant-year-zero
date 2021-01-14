@@ -154,11 +154,6 @@ Hooks.once("init", async function () {
         return new Handlebars.SafeString(theString);
     });
 
-    Handlebars.registerHelper("resolveActorType", function (pre, keyName, creatureType) {
-        let fullString = pre + "" + keyName + "" + creatureType;
-        return fullString.toUpperCase();
-    });
-
     Handlebars.registerHelper("createLocalizationString", function () {
         let fullString = "";
         for (var i = 0; i < arguments.length; i++) {
@@ -218,6 +213,8 @@ Hooks.once("ready", async function () {
     Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
 });
 
+/* SET CHARACTER TYPE */
+Hooks.on("preCreateActor", async (data, options, userId) => MYZHooks.onPrecreateActor(data, options, userId));
 /* POPULATE CHARACTER WITH DEFAULT SKILLS */
 Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
 

@@ -1,10 +1,8 @@
-{{! PARAM: sourceType: to create a new item type in the list}}
-{{! PARAM: sourceList: existing list of mutations/powers/contacts}}
-{{! PARAM: sourceLabel: to create a header label}}
-{{! PARAM: fixedHeight: should it grow or have a scroll}}
+{{! PARAM: sourceType: to create a new item type in the list}} {{! PARAM: sourceList: existing list of mutations/powers/contacts}} {{! PARAM: sourceLabel: to
+create a header label}} {{! PARAM: fixedHeight: should it grow or have a scroll}}
 
 <div class="box-item header flex row align-center space-between {{data.creatureType}}">
-    <span class="item-name">{{localize (resolveActorType "MYZ.TALENT_" "" data.creatureType)}}s</span>
+    <span class="item-name">{{localize (toUpperCase (concat 'MYZ.TALENT_' data.creatureType))}}s</span>
     <span class="item-controls">
         <a class="item-create" data-type="{{sourceType}}">+ Add</a>
     </span>
@@ -18,5 +16,4 @@
         </span>
     </div>
     {{/each}}
-
 </div>
