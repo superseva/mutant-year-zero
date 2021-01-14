@@ -14,6 +14,9 @@ export default class MYZHooks {
         if (actor.data.type != "npc") {
             updateData["token.actorLink"] = true;
         }
+        if (actor.data.type == "npc") {
+            updateData["data.description"] = "";
+        }
         await actor.update(updateData, { renderSheet: true });
 
         //IF ACTOR IS ARK DON'T DO ANYTHING ELSE
