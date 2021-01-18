@@ -2,6 +2,12 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.94
+
+-   Fixed bug with weapon.range value
+-   Fixed bug with armor not translating in the inventory list
+-   translations updated
+
 ## v0.93
 
 -   Relationship table in NPC description removed by default.
