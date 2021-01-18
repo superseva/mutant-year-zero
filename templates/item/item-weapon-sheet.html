@@ -1,5 +1,4 @@
 <form class="{{cssClass}}" autocomplete="off">
-
     {{>"systems/mutant-year-zero/templates/item/partials/header-physical.html"}}
 
     <div>
@@ -12,11 +11,11 @@
                 <label for="data.range" class="resource-label">{{localize 'MYZ.RANGE'}}</label>
                 <select name="data.range">
                     {{#select data.range}}
-                    <option value="{{localize "MYZ.RANGE_ARM"}}">{{localize "MYZ.RANGE_ARM"}}</option>
-                    <option value="{{localize "MYZ.RANGE_NEAR"}}">{{localize "MYZ.RANGE_NEAR"}}</option>
-                    <option value="{{localize "MYZ.RANGE_SHORT"}}">{{localize "MYZ.RANGE_SHORT"}}</option>
-                    <option value="{{localize "MYZ.RANGE_LONG"}}">{{localize "MYZ.RANGE_LONG"}}</option>
-                    <option value="{{localize "MYZ.RANGE_DISTANT"}}">{{localize "MYZ.RANGE_DISTANT"}}</option>
+                    <option value="range_arm">{{localize "MYZ.RANGE_ARM"}}</option>
+                    <option value="range_near">{{localize "MYZ.RANGE_NEAR"}}</option>
+                    <option value="range_short">{{localize "MYZ.RANGE_SHORT"}}</option>
+                    <option value="range_long">{{localize "MYZ.RANGE_LONG"}}</option>
+                    <option value="range_distant">{{localize "MYZ.RANGE_DISTANT"}}</option>
                     {{/select}}
                 </select>
             </div>
@@ -41,11 +40,11 @@
         <div class="grid item-attr-row">
             <div class="">
                 <label class="resource-label" for="data.dev_requirement">{{localize "MYZ.DEV_REQUIREMENT"}}</label>
-                <input class="input-underline" type="text" name="data.dev_requirement" value="{{data.dev_requirement}}">
+                <input class="input-underline" type="text" name="data.dev_requirement" value="{{data.dev_requirement}}" />
             </div>
             <div class="">
                 <label class="resource-label" for="data.dev_bonus">{{localize "MYZ.DEV_BONUS"}}</label>
-                <input class="input-underline" type="text" name="data.dev_bonus" value="{{data.dev_bonus}}">
+                <input class="input-underline" type="text" name="data.dev_bonus" value="{{data.dev_bonus}}" />
             </div>
         </div>
         <div class="item-attr-row">
@@ -56,9 +55,6 @@
 
     <h2>Description</h2>
     <div class="info">
-        <div class="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-        </div>
+        <div class="description">{{editor content=data.description target="data.description" button=true owner=owner editable=editable}}</div>
     </div>
-
 </form>

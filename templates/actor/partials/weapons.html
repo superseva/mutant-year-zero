@@ -8,16 +8,16 @@
         <a class="item-create" data-type="weapon">+ Add</a>
     </div>
 </div>
-<ol class="box-list {{data.creatureType}}">    
+<ol class="box-list {{data.creatureType}}">
     {{#each actor.weapons as |weapon key|}}
     <li class="box-item physical flex row align-center space-between editable-item weapon" data-item-id="{{weapon._id}}">
-        <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken weapon)}}broken{{/if}}"  data-item-id="{{weapon._id}}">
+        <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken weapon)}}broken{{/if}}" data-item-id="{{weapon._id}}">
             <img class="item-image" src="{{weapon.img}}" />
             <a>{{weapon.name}}</a>
         </span>
         <div class="item-values grid center">
             <label>{{weapon.data.damage}}</label>
-            <label>{{weapon.data.range}}</label>
+            <label>{{localize (toUpperCase (concat "MYZ." weapon.data.range))}}</label>
         </div>
         <div class="item-controls">
             <a class="chatable" data-item-id="{{weapon._id}}"><i class="fas fa-comment"></i></a>

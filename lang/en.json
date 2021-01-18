@@ -125,6 +125,7 @@
     "MYZ.ENCUMBRANCE": "Encumbrance",
     "MYZ.ARMOR_BODY": "Armor",
     "MYZ.ARMOR_SHIELD": "Shield",
+    "MYZ.SHIELD": "Shield",
     "MYZ.ARMOR_RATING": "Rating",
     "MYZ.ARMOR_TYPE": "Type",
     "MYZ.EQUIPPED": "Equiped",
