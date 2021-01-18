@@ -252,7 +252,7 @@
         "weapon": {
             "templates": ["base", "physical", "bonus", "dev"],
             "damage": 1,
-            "range": "",
+            "range": "range_arm",
             "category": "",
             "artifactBonus": 0,
             "skillBonus": 0
