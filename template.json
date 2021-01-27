@@ -102,7 +102,7 @@
         },
         "mutant": {
             "templates": ["base", "stats", "status"],
-            "coreSkills": ["Endure", "Force", "Fight", "Sneak", "Move", "Shoot", "Scout", "Comprehend", "Know the Zone", "Sense Emotion", "Manipulate", "Heal"],
+            "coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "MANIPULATE", "HEAL"],
             "resource_points": {
                 "label": "MYZ.MUTATION_POINTS",
                 "value": 0,
@@ -111,7 +111,7 @@
         },
         "animal": {
             "templates": ["base", "stats", "status"],
-            "coreSkills": ["Endure", "Force", "Fight", "Sneak", "Move", "Shoot", "Scout", "Comprehend", "Know the Zone", "Sense Emotion", "Dominate", "Heal"],
+            "coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "DOMINATE", "HEAL"],
             "resourcepoints": {
                 "label": "MYZ.FERAL_POINTS",
                 "value": 0,
@@ -120,7 +120,7 @@
         },
         "robot": {
             "templates": ["base", "stats", "status"],
-            "coreSkills": ["Overload", "Force", "Assault", "Infiltrate", "Move", "Shoot", "Scan", "Datamine", "Analyze", "Question", "Interact", "Repair"],
+            "coreSkills": ["OVERLOAD", "FORCE", "ASSAULT", "INFILTRATE", "MOVE", "SHOOT", "SCAN", "DATAMINE", "ANALYZE", "QUESTION", "INTERACT", "REPAIR"],
             "resource_points": {
                 "label": "MYZ.ENERGY_POINTS",
                 "value": 0,
@@ -129,7 +129,7 @@
         },
         "human": {
             "templates": ["base", "stats", "status"],
-            "coreSkills": ["Endure", "Force", "Fight", "Sneak", "Move", "Shoot", "Scout", "Comprehend", "Know the Zone", "Sense Emotion", "Manipulate", "Heal"],
+            "coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "MANIPULATE", "HEAL"],
             "resource_points": {
                 "label": "MYZ.INFLUENCE_POINTS",
                 "value": 0,
@@ -233,7 +233,8 @@
             "min": 0,
             "attribute": "",
             "creatureType": "mutant",
-            "coreSkill": ""
+            "coreSkill": "",
+            "skillKey":""
         },
         "ability": {
             "templates": ["base"],

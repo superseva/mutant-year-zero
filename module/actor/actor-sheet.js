@@ -201,20 +201,20 @@ export class MYZActorSheet extends ActorSheet {
 
             if (weapon.data.data.category === "melee") {
                 if (this.actor.data.data.creatureType != "robot") {
-                    skill = this.actor.data.items.find((i) => i.name == "Fight");
+                    skill = this.actor.data.items.find((i) => i.data.skillKey == "FIGHT");
                 } else {
-                    skill = this.actor.data.items.find((i) => i.name === "Assault");
+                    skill = this.actor.data.items.find((i) => i.data.skillKey === "ASSAULT");
                 }
                 attribute = this.actor.data.data.attributes.strength;
             } else {
                 attribute = this.actor.data.data.attributes.agility;
-                skill = this.actor.data.items.find((i) => i.name == "Shoot");
+                skill = this.actor.data.items.find((i) => i.data.skillKey == "SHOOT");
             }
             if (!skill) {
                 ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
                 return;
             }
-            //let bonus = this.parseBonus(weapon.data.data.bonus.value);
+            
             RollDialog.prepareRollDialog({
                 rollName: testName,
                 diceRoller: this.diceRoller,
