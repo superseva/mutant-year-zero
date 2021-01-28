@@ -15,6 +15,12 @@
         }
     }
 
+    &.resource{
+        .item-name {
+            flex-basis: 60%;
+        }
+    }
+
     &.header {
         color: ghostwhite;
         font-weight: 800;
@@ -81,7 +87,7 @@
     }
 
     .item-name {
-        flex-basis: 60%;
+        flex-basis: 70%;
         padding-left: 0.5em;
         &.broken{
             color:darkred;

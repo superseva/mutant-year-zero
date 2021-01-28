@@ -110,6 +110,7 @@ export const migrateActorData = function (actor) {
     const updateData = {};
     //_migrateActorResources(actor, updateData);
     _migrateActorRelationships(actor, updateData);
+    _addKnowNatureToNPC(actor, updateData);
 
     if (!actor.items) return updateData;
     let hasItemUpdates = false;
@@ -203,7 +204,7 @@ function _migrateActorRelationships(actor, updateData) {
 
 function _migrateItemToArtifact(item, updateData) {
     if (item.type == "armor" || item.type == "weapon") {
-        console.log(item.type);
+        //console.log(item.type);
         if (!item.data.hasOwnProperty("dev_requirement")) {
             updateData[`data.dev_requirement`] = "";
             updateData[`data.dev_bonus`] = 0;
@@ -224,6 +225,15 @@ function _migrateSkillKey(item, updateData) {
             console.log(`${item.name} adding skillKey ${mapSkillKey(item.name)}`);
             updateData[`data.skillKey`] = mapSkillKey(item.name);
         }        
+    }
+}
+
+// ! ADDING KNOW NATURE
+function _addKnowNatureToNPC(actor, updateData){
+    if(actor.type=="npc"){        
+        if(!actor.data.hasOwnProperty('knowNature')){
+            updateData['data.knowNature'] = 0;
+        }
     }
 }
 

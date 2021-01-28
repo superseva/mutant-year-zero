@@ -269,6 +269,20 @@ input.nolabel {
     margin-bottom: 10px;
 }
 
+.know-nature{
+    background-image: url(../ui/know-nature-circle.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    max-width: 70px;
+    input{
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        font-size: 22px;
+    }
+    
+}
+
 .box-encumbrance {
     display: flex;
     flex-direction: row;
@@ -405,8 +419,20 @@ input.nolabel {
     text-transform: uppercase;
 }
 
+.margin-top {
+    margin-top: 5px;
+}
+
+.margin-right {
+    margin-right: 5px;
+}
+
 .margin-bottom {
     margin-bottom: 5px;
+}
+
+.margin-left {
+    margin-left: 5px;
 }
 
 .size12 {

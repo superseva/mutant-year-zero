@@ -22,31 +22,34 @@
                 </h1>
                 <div class="flex row npc-rank align-center">
                     <label for="data.rank">{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}:&nbsp;</label>
-                    <input
-                        class="input-underline"
-                        type="text"
-                        placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}"
-                        name="data.rank"
-                        value="{{data.rank}}"
-                    />
+                    <input class="input-underline" type="text" placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}" name="data.rank" value="{{data.rank}}" />
                 </div>
             </div>
-            <div class="grid grid-2col">
-                <button class="button-roll">{{localize 'MYZ.ROLL'}}</button>
-                <div class="box-item armor-box flex row space-between align-center armor {{data.creatureType}}">
-                    <label class="item-name armor-roll rollable" for="data.armorrating.value">{{localize 'MYZ.ARMOR'}}</label>
-                    <span class="right-element">
-                        <input class="short-input" type="text" name="data.armorrating.value" value="{{data.armorrating.value}}" />
-                    </span>
+            <div class="flexrow">
+
+                <div class="flex flex-center know-nature margin-right">
+                    <input type="number" class="short-input" name="data.knowNature" value="{{data.knowNature}}">
                 </div>
-                <button class="button-push">{{localize 'MYZ.PUSH'}}</button>
-                <div class="box-item header flex row space-between align-center {{data.creatureType}}">
-                    <label class="item-name" for="data.resource_points.value"
-                        >{{localize (toUpperCase (concat "MYZ.RESOURCE_" "POINTS_" data.creatureType ))}}</label
-                    >
-                    <span class="right-element">
-                        <input class="short-input" type="text" name="data.resource_points.value" value="{{data.resource_points.value}}" />
-                    </span>
+
+                <div class="flex column margin-right">
+                    <div class="box-item armor-box flex row space-between align-center armor margin-bottom  {{data.creatureType}}">
+                        <label class="item-name armor-roll rollable" for="data.armorrating.value">{{localize 'MYZ.ARMOR'}}</label>
+                        <span class="right-element">
+                            <input class="short-input" type="text" name="data.armorrating.value" value="{{data.armorrating.value}}" />
+                        </span>
+                    </div>
+
+                    <div class="box-item header flex row space-between align-center {{data.creatureType}}">
+                        <label class="item-name" for="data.resource_points.value">{{localize (toUpperCase (concat "MYZ.RESOURCE_" "POINTS_" data.creatureType ))}}</label>
+                        <span class="right-element">
+                            <input class="short-input" type="text" name="data.resource_points.value" value="{{data.resource_points.value}}" />
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flexcol space-between" style="padding:4px">
+                    <button class="button-roll margin-bottom">{{localize 'MYZ.ROLL'}}</button>
+                    <button class="button-push">{{localize 'MYZ.PUSH'}}</button>
                 </div>
             </div>
         </div>
@@ -54,9 +57,7 @@
     <div class="flex row" style="max-height: 65px">
         <div class="grid grid-4col align-center" style="width: 100%">
             <div class="flexcol flex-group-center">
-                <label class="roll-attribute rollable" data-attribute="strength" style="margin-bottom: 5px"
-                    ><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "STRENGTH_" data.creatureType))}}</strong></label
-                >
+                <label class="roll-attribute rollable" data-attribute="strength" style="margin-bottom: 5px"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "STRENGTH_" data.creatureType))}}</strong></label>
                 <span>
                     <input type="text" name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
@@ -64,9 +65,7 @@
                 </span>
             </div>
             <div class="flexcol flex-group-center">
-                <label class="roll-attribute rollable" data-attribute="agility" style="margin-bottom: 5px"
-                    ><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "AGILITY_" data.creatureType))}}</strong></label
-                >
+                <label class="roll-attribute rollable" data-attribute="agility" style="margin-bottom: 5px"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "AGILITY_" data.creatureType))}}</strong></label>
                 <span>
                     <input type="text" name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
@@ -74,9 +73,7 @@
                 </span>
             </div>
             <div class="flexcol flex-group-center">
-                <label class="roll-attribute rollable" data-attribute="wits" style="margin-bottom: 5px"
-                    ><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "WITS_" data.creatureType))}}</strong></label
-                >
+                <label class="roll-attribute rollable" data-attribute="wits" style="margin-bottom: 5px"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "WITS_" data.creatureType))}}</strong></label>
                 <span>
                     <input type="text" name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
@@ -84,9 +81,7 @@
                 </span>
             </div>
             <div class="flexcol flex-group-center">
-                <label class="roll-attribute rollable" data-attribute="empathy" style="margin-bottom: 5px"
-                    ><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "EMPATHY_" data.creatureType))}}</strong></label
-                >
+                <label class="roll-attribute rollable" data-attribute="empathy" style="margin-bottom: 5px"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "EMPATHY_" data.creatureType))}}</strong></label>
                 <span>
                     <input type="text" name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
