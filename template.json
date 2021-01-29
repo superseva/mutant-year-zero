@@ -298,6 +298,7 @@
             "skills": "",
             "work_points": "",
             "DEV_Requirement": "",
+            "other_requirements":"",
             "DEV_Bonus": "",
             "special": "",
             "completed": false,
