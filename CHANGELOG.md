@@ -2,6 +2,11 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.95
+-   Added "skillKey" property to skills that is important for future updates.
+-   Added "Know Nature" property for NPCs
+-   Added "Other Requirements" to the Ark Project
+
 ## v0.94
 
 -   Fixed bug with weapon.range value
