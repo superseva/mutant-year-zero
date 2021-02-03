@@ -108,8 +108,9 @@ export const migrateCompendium = async function (pack) {
  */
 export const migrateActorData = function (actor) {
     const updateData = {};
-    _migrateActorResources(actor, updateData);
+    //_migrateActorResources(actor, updateData);
     _migrateActorRelationships(actor, updateData);
+    _addKnowNatureToNPC(actor, updateData);
 
     if (!actor.items) return updateData;
     let hasItemUpdates = false;
@@ -135,6 +136,7 @@ export const migrateActorData = function (actor) {
 export const migrateItemData = function (item) {
     const updateData = {};
     _migrateItemToArtifact(item, updateData);
+    _migrateSkillKey(item, updateData);
     // Remove deprecated fields
     //_migrateRemoveDeprecated(item, updateData);
     // Return the migrated update data
@@ -202,12 +204,118 @@ function _migrateActorRelationships(actor, updateData) {
 
 function _migrateItemToArtifact(item, updateData) {
     if (item.type == "armor" || item.type == "weapon") {
-        console.log(item.type);
+        //console.log(item.type);
         if (!item.data.hasOwnProperty("dev_requirement")) {
             updateData[`data.dev_requirement`] = "";
             updateData[`data.dev_bonus`] = 0;
         }
     }
+}
+
+// ! ADDING SKILL KEY TO A SKILL
+function _migrateSkillKey(item, updateData) {
+    if (item.type == "skill") {
+        //console.log(`${item.name} TO KEY>> ${mapSkillKey(item.name)}`);
+        if(item.data.hasOwnProperty("skillKey")){
+            if(item.data.skillKey!= mapSkillKey(item.name)){
+                updateData[`data.skillKey`] = mapSkillKey(item.name);
+            }
+        }
+        if (!item.data.hasOwnProperty("skillKey")) {
+            console.log(`${item.name} adding skillKey ${mapSkillKey(item.name)}`);
+            updateData[`data.skillKey`] = mapSkillKey(item.name);
+        }        
+    }
+}
+
+// ! ADDING KNOW NATURE
+function _addKnowNatureToNPC(actor, updateData){
+    if(actor.type=="npc"){        
+        if(!actor.data.hasOwnProperty('knowNature')){
+            updateData['data.knowNature'] = 0;
+        }
+    }
+}
+
+/* -------------------------------------------- */
+/**
+ * Map Skill Key To Skill Name
+ * @param {Object} skillName    The data object for an Actor
+ */
+function mapSkillKey(skillName){
+    let skillKey = "";
+    switch(skillName){
+        case "Endure":
+            skillKey = "ENDURE";
+        break;
+        case "Force":
+            skillKey = "FORCE";
+        break;
+        case "Fight":
+            skillKey = "FIGHT";
+        break;
+        case "Sneak":
+            skillKey = "SNEAK";
+        break;
+        case "Move":
+            skillKey = "MOVE";
+        break;
+        case "Shoot":
+            skillKey = "SHOOT";
+        break;
+        case "Scout":
+            skillKey = "SCOUT";
+        break;
+        case "Comprehend":
+            skillKey = "COMPREHEND";
+        break;
+        case "Know the Zone":
+            skillKey = "KNOWTHEZONE";
+        break;
+        case "Sense Emotion":
+            skillKey = "SENSEEMOTION";
+        break;
+        case "Manipulate":
+            skillKey = "MANIPULATE";
+        break;        
+        case "Heal":
+            skillKey = "HEAL";
+        break;
+        case "Dominate":
+            skillKey = "DOMINATE";
+        break;
+        case "Overload":
+            skillKey = "OVERLOAD";
+        break;
+        case "Assault":
+            skillKey = "ASSAULT";
+        break;
+        case "Infiltrate":
+            skillKey = "INFILTRATE";
+        break;
+        case "Scan":
+            skillKey = "SCAN";
+        break;
+        case "Datamine":
+            skillKey = "DATAMINE";
+        break;
+        case "Analyze":
+            skillKey = "ANALYZE";
+        break;
+        case "Question":
+            skillKey = "QUESTION";
+        break;
+        case "Interact":
+            skillKey = "INTERACT";
+        break;
+        case "Repair":
+            skillKey = "REPAIR";
+        break;
+        default:
+            skillKey = "";
+            
+    }
+    return skillKey;
 }
 
 /* -------------------------------------------- */

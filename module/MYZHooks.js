@@ -5,7 +5,7 @@ export default class MYZHooks {
         // set creatureType and use it for building NPCS and PCs
         // NPCs should have type=npc and ceratureType = m/a/r/h
         // PCs should have type=m/a/r/h and ceratureType = m/a/r/h
-        console.warn(actor.data);
+        //console.warn(actor.data);
 
         let updateData = {};
         updateData["data.creatureType"] = actor.data.type;
@@ -25,13 +25,13 @@ export default class MYZHooks {
         if (actor.data.type != "npc") {
             const actorCoreSkills = actor.data.data.coreSkills;
             // Check if skill allready exists by some chance
-            const existingSkills = actor.items.filter((i) => i.type === ItemType.Skill).map((i) => i.name);
+            const existingSkills = actor.items.filter((i) => i.type === ItemType.Skill).map((i) => i.data.skillKey);
             const skillsToAdd = actorCoreSkills.filter((s) => !existingSkills.includes(s));
             // Load Core Skills Compendium skills
             const skillIndex = await game.packs.get("mutant-year-zero.core-skills").getContent();
 
             // Filter skillIndex array to include only skills for Actor Type.
-            let _skillsList = skillIndex.filter((i) => skillsToAdd.includes(i.data.name));
+            let _skillsList = skillIndex.filter((i) => skillsToAdd.includes(i.data.data.skillKey));
             // Add ACTOR TYPE and CORE to each skill in _skillsList before you assign it to the actor;
             _skillsList.forEach((s) => {
                 s._data.data["creatureType"] = actor.data.type;

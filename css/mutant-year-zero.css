@@ -676,6 +676,20 @@ $font-secondary: 'Roboto', sans-serif;*/
   margin-bottom: 10px;
 }
 
+.mutant-year-zero .know-nature {
+  background-image: url(../ui/know-nature-circle.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  max-width: 70px;
+}
+
+.mutant-year-zero .know-nature input {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 22px;
+}
+
 .mutant-year-zero .box-encumbrance {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -864,8 +878,20 @@ $font-secondary: 'Roboto', sans-serif;*/
   text-transform: uppercase;
 }
 
+.mutant-year-zero .margin-top {
+  margin-top: 5px;
+}
+
+.mutant-year-zero .margin-right {
+  margin-right: 5px;
+}
+
 .mutant-year-zero .margin-bottom {
   margin-bottom: 5px;
+}
+
+.mutant-year-zero .margin-left {
+  margin-left: 5px;
 }
 
 .mutant-year-zero .size12 {
@@ -910,6 +936,11 @@ $font-secondary: 'Roboto', sans-serif;*/
 .mutant-year-zero .box-item.physical .item-controls {
   -ms-flex-preferred-size: 20%;
   flex-basis: 20%;
+}
+
+.mutant-year-zero .box-item.resource .item-name {
+  -ms-flex-preferred-size: 60%;
+  flex-basis: 60%;
 }
 
 .mutant-year-zero .box-item.header {
@@ -987,8 +1018,8 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item .item-name {
-  -ms-flex-preferred-size: 60%;
-  flex-basis: 60%;
+  -ms-flex-preferred-size: 70%;
+  flex-basis: 70%;
   padding-left: 0.5em;
 }
 
