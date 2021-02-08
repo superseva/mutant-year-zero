@@ -154,7 +154,7 @@ export class DiceRoller {
             damage: this.baseDamage,
             dices: this.dices,
         };
-        const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", rollData);
+        const html = await renderTemplate("systems/mutant-year-zero-test/templates/chat/roll.html", rollData);
         let chatData = {
             user: game.user._id,
             rollMode: game.settings.get("core", "rollMode"),

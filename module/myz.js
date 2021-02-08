@@ -68,32 +68,32 @@ Hooks.once("init", async function () {
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("mutant-year-zero", MYZMutantSheet, {
+    Actors.registerSheet("mutant-year-zero-test", MYZMutantSheet, {
         types: ["mutant"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZAnimalSheet, {
+    Actors.registerSheet("mutant-year-zero-test", MYZAnimalSheet, {
         types: ["animal"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZRobotSheet, {
+    Actors.registerSheet("mutant-year-zero-test", MYZRobotSheet, {
         types: ["robot"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZHumanSheet, {
+    Actors.registerSheet("mutant-year-zero-test", MYZHumanSheet, {
         types: ["human"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZNpcSheet, {
+    Actors.registerSheet("mutant-year-zero-test", MYZNpcSheet, {
         types: ["npc"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
+    Actors.registerSheet("mutant-year-zero-test", MYZArkSheet, {
         types: ["ark"],
         makeDefault: true,
     });
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
+    Items.registerSheet("mutant-year-zero-test", MYZItemSheet, { makeDefault: true });
 
     /* -------------------------------------------- */
     /*  HANDLEBARS HELPERS      */
@@ -194,7 +194,7 @@ Hooks.once("init", async function () {
 
 Hooks.once("ready", async function () {
     // Determine whether a system migration is required and feasible
-    const currentVersion = game.settings.get("mutant-year-zero", "systemMigrationVersion");
+    const currentVersion = game.settings.get("mutant-year-zero-test", "systemMigrationVersion");
     const NEEDS_MIGRATION_VERSION = 0.95;
     const COMPATIBLE_MIGRATION_VERSION = 0.5;
     let needMigration = currentVersion < NEEDS_MIGRATION_VERSION || currentVersion === null;
@@ -283,45 +283,45 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
         texture: "none",
     });
 
-    dice3d.addSystem({ id: "mutant-year-zero", name: "Mutant Year Zero" }, true);
+    dice3d.addSystem({ id: "mutant-year-zero-test", name: "Mutant Year Zero" }, true);
     dice3d.addDicePreset({
         type: "db",
         labels: [
-            "systems/mutant-year-zero/ui/dice/b1.png",
-            "systems/mutant-year-zero/ui/dice/b2.png",
-            "systems/mutant-year-zero/ui/dice/b3.png",
-            "systems/mutant-year-zero/ui/dice/b4.png",
-            "systems/mutant-year-zero/ui/dice/b5.png",
-            "systems/mutant-year-zero/ui/dice/b6.png",
+            "systems/mutant-year-zero-test/ui/dice/b1.png",
+            "systems/mutant-year-zero-test/ui/dice/b2.png",
+            "systems/mutant-year-zero-test/ui/dice/b3.png",
+            "systems/mutant-year-zero-test/ui/dice/b4.png",
+            "systems/mutant-year-zero-test/ui/dice/b5.png",
+            "systems/mutant-year-zero-test/ui/dice/b6.png",
         ],
         colorset: "yellow",
-        system: "mutant-year-zero",
+        system: "mutant-year-zero-test",
     });
     dice3d.addDicePreset({
         type: "ds",
         labels: [
-            "systems/mutant-year-zero/ui/dice/s1.png",
-            "systems/mutant-year-zero/ui/dice/s2.png",
-            "systems/mutant-year-zero/ui/dice/s3.png",
-            "systems/mutant-year-zero/ui/dice/s4.png",
-            "systems/mutant-year-zero/ui/dice/s5.png",
-            "systems/mutant-year-zero/ui/dice/s6.png",
+            "systems/mutant-year-zero-test/ui/dice/s1.png",
+            "systems/mutant-year-zero-test/ui/dice/s2.png",
+            "systems/mutant-year-zero-test/ui/dice/s3.png",
+            "systems/mutant-year-zero-test/ui/dice/s4.png",
+            "systems/mutant-year-zero-test/ui/dice/s5.png",
+            "systems/mutant-year-zero-test/ui/dice/s6.png",
         ],
         colorset: "green",
-        system: "mutant-year-zero",
+        system: "mutant-year-zero-test",
     });
     dice3d.addDicePreset({
         type: "dg",
         labels: [
-            "systems/mutant-year-zero/ui/dice/g1.png",
-            "systems/mutant-year-zero/ui/dice/g2.png",
-            "systems/mutant-year-zero/ui/dice/g3.png",
-            "systems/mutant-year-zero/ui/dice/g4.png",
-            "systems/mutant-year-zero/ui/dice/g5.png",
-            "systems/mutant-year-zero/ui/dice/g6.png",
+            "systems/mutant-year-zero-test/ui/dice/g1.png",
+            "systems/mutant-year-zero-test/ui/dice/g2.png",
+            "systems/mutant-year-zero-test/ui/dice/g3.png",
+            "systems/mutant-year-zero-test/ui/dice/g4.png",
+            "systems/mutant-year-zero-test/ui/dice/g5.png",
+            "systems/mutant-year-zero-test/ui/dice/g6.png",
         ],
         colorset: "black",
-        system: "mutant-year-zero",
+        system: "mutant-year-zero-test",
     });
 });
 
@@ -344,7 +344,7 @@ async function createMYZMacro(data, slot) {
     const item = data.data;
 
     // Create the macro command
-    const command = `game.mutant-year-zero.rollItemMacro("${item.name}");`;
+    const command = `game.mutant-year-zero-test.rollItemMacro("${item.name}");`;
     let macro = game.macros.entities.find((m) => m.name === item.name && m.command === command);
     if (!macro) {
         macro = await Macro.create({
@@ -352,7 +352,7 @@ async function createMYZMacro(data, slot) {
             type: "script",
             img: item.img,
             command: command,
-            flags: { "mutant-year-zero.itemMacro": true },
+            flags: { "mutant-year-zero-test.itemMacro": true },
         });
     }
     game.user.assignHotbarMacro(macro, slot);
@@ -383,26 +383,26 @@ function rollItemMacro(itemName) {
 
 function _preloadHandlebarsTemplates() {
     const templatePaths = [
-        "systems/mutant-year-zero/templates/actor/partials/character-header.html",
-        "systems/mutant-year-zero/templates/actor/partials/attributes.html",
-        "systems/mutant-year-zero/templates/actor/partials/conditions.html",
-        "systems/mutant-year-zero/templates/actor/partials/criticals.html",
-        "systems/mutant-year-zero/templates/actor/partials/rot.html",
-        "systems/mutant-year-zero/templates/actor/partials/skills.html",
-        "systems/mutant-year-zero/templates/actor/partials/weapons.html",
-        "systems/mutant-year-zero/templates/actor/partials/armors.html",
-        "systems/mutant-year-zero/templates/actor/partials/chassis.html",
-        "systems/mutant-year-zero/templates/actor/partials/chassis-1row.html",
-        "systems/mutant-year-zero/templates/actor/partials/gear.html",
-        "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
-        "systems/mutant-year-zero/templates/actor/partials/resource-counter.html",
-        "systems/mutant-year-zero/templates/actor/partials/abilities.html",
-        "systems/mutant-year-zero/templates/actor/partials/talents.html",
-        "systems/mutant-year-zero/templates/actor/partials/info.html",
-        "systems/mutant-year-zero/templates/actor/partials/consumables.html",
-        "systems/mutant-year-zero/templates/actor/partials/encumbrance.html",
-        "systems/mutant-year-zero/templates/item/partials/header-simple.html",
-        "systems/mutant-year-zero/templates/item/partials/header-physical.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/character-header.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/attributes.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/conditions.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/criticals.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/rot.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/skills.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/weapons.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/armors.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/chassis.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/chassis-1row.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/gear.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/artifacts.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/resource-counter.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/abilities.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/talents.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/info.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/consumables.html",
+        "systems/mutant-year-zero-test/templates/actor/partials/encumbrance.html",
+        "systems/mutant-year-zero-test/templates/item/partials/header-simple.html",
+        "systems/mutant-year-zero-test/templates/item/partials/header-physical.html",
     ];
     return loadTemplates(templatePaths);
 }

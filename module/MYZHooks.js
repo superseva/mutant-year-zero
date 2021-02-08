@@ -28,7 +28,7 @@ export default class MYZHooks {
             const existingSkills = actor.items.filter((i) => i.type === ItemType.Skill).map((i) => i.data.skillKey);
             const skillsToAdd = actorCoreSkills.filter((s) => !existingSkills.includes(s));
             // Load Core Skills Compendium skills
-            const skillIndex = await game.packs.get("mutant-year-zero.core-skills").getContent();
+            const skillIndex = await game.packs.get("mutant-year-zero-test.core-skills").getContent();
 
             // Filter skillIndex array to include only skills for Actor Type.
             let _skillsList = skillIndex.filter((i) => skillsToAdd.includes(i.data.data.skillKey));

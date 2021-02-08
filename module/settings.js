@@ -2,7 +2,7 @@ export const registerSystemSettings = function () {
     /**
      * Track the system version upon which point a migration was last applied
      */
-    game.settings.register("mutant-year-zero", "systemMigrationVersion", {
+    game.settings.register("mutant-year-zero-test", "systemMigrationVersion", {
         name: "System Migration Version",
         scope: "world",
         config: false,
