@@ -1,6 +1,6 @@
 {
     "name": "mutant-year-zero-test",
-    "title": "Mutant Year Zero Developpement Branch",
+    "title": "Mutant Year Zero Development Branch",
     "description": "The Mutant Year Zero system for FoundryVTT!",
     "version": "0.95",
     "minimumCoreVersion": "0.7.5",
@@ -8,7 +8,7 @@
     "templateVersion": 1,
     "author": "HappySteve",
     "esmodules": ["module/myz.js"],
-    "styles": ["css/mutant-year-zero-test.css"],
+    "styles": ["css/mutant-year-zero.css"],
     "scripts": [],
     "packs": [
         {
