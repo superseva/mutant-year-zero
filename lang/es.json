@@ -1,1 +1,20 @@
-{}
+{
+    "MYZ.MUTANT": "Mutante",
+    "MYZ.ANIMAL": "Animal",
+    "MYZ.ROBOT": "Robot",
+    "MYZ.HUMAN": "Humano",
+    "MYZ.ROLL": "Tirada",
+    "MYZ.PUSH": "Forzar",
+    "MYZ.INFO": "Información",
+    "MYZ.ROLE_FOR_MUTANT": "Rol",
+    "MYZ.ROLE_FOR_ANIMAL": "Rol",
+    "MYZ.SPECIFIC_TYPE_FOR_MUTANT": "Mutante",
+    "MYZ.SPECIFIC_TYPE_FOR_ROBOT": "Personalidad",
+    "MYZ.RANK_FOR_MUTANT": "Rango",
+    "MYZ.SPECIFIC_TYPE_FOR_ANIMAL": "Tipo de Animal y Especie",
+    "MYZ.RANK_FOR_ANIMAL": "Rango",
+    "MYZ.STATS": "Valores",
+    "MYZ.ATTRIBUTES": "Características",
+    "MYZ.ACTOR_TYPE": "Tipo",
+    "MYZ.ROLE_FOR_HUMAN": "Profesión"
+}
