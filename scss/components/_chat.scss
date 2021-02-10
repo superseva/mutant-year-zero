@@ -1,5 +1,6 @@
 #chat-log .message {
-    background: white;
+    /*background: white;*/
+    background-image: url("../ui/mutant-sheet-bg.jpg");
 }
 .dice-tooltip .dice-rolls .roll.max {
     /* color: #18520b; */
@@ -10,12 +11,17 @@
     filter: none;
 }
 .myz.chat-item {
-    background-color: white;
-    background-image: url("../ui/mutant-sheet-bg.jpg");
-    margin: 0 -5px 0 -5px;
+    /*background-color: white;
+    background-image: url("../ui/mutant-sheet-bg.jpg");*/
+    margin: 0 0px 0 0px;
 
     .border {
         padding: 10px;
+    }
+
+    .pushaction{
+        align-items: center;
+        font-size: 2em;
     }
 
     strong {

@@ -18,5 +18,12 @@
             <img src="systems/mutant-year-zero-test/ui/dice-{{dice.diceType}}-{{dice.value}}.png" />
             {{/each}}
         </div>
+        {{#unless isPushed}}
+        <div>
+        <a class="pushaction" title="{{localize "MYZ.PUSH"}}">
+        <i class="fas fa-radiation-alt"></i>
+        </a>
+        </div>
+        {{/unless}}
     </div>
 </div>
