@@ -1,29 +1,34 @@
-<div class="myz chat-item">
-    <div class="border">
-        {{#if isPushed}}
-        <h3>{{name}} - {{localize "PUSHED"}}</h3>
-        {{else}}
-        <h3>{{localize name}}</h3>
-        {{/if}}
-        <h4>{{successes}}<i class="myz-radioactive"></i> | {{failures}}<i class="myz-biohazard"></i> | {{gearfailures}}<i class="myz-explosion"></i></h4>
-        {{#if (greaterThan damage 0)}} {{#if (greaterThan successes 0)}}
-        <h4 style="text-align: left">
-            {{localize "DAMAGE"}} {{damage}} <span style="font-weight: 400">({{localize 'MYZ.STUNTS'}} {{substract successes 1}})</span>
-        </h4>
-        {{/if}} {{#unless (greaterThan successes 0)}}
-        <h4 style="text-align: left">{{localize "DAMAGE"}} 0 <span style="font-weight: 400">({{localize 'MYZ.STUNTS'}} 0)</span></h4>
-        {{/unless}} {{/if}}
-        <div class="dices-result">
-            {{#each dices as |dice|}}
-            <img src="systems/mutant-year-zero-test/ui/dice-{{dice.diceType}}-{{dice.value}}.png" />
-            {{/each}}
+<div class="myz chat-item" data-user-id="{{owner}}">
+    {{#if isPushed}}
+    <h3>{{name}} - {{localize "PUSHED"}}</h3>
+    {{else}}
+    <h3>{{localize name}}</h3>
+    {{/if}}
+    <div class="dices-result">
+        {{#each dices as |dice|}}
+        <div><img src="systems/mutant-year-zero-test/ui/test/dice-{{dice.diceType}}-{{dice.value}}.png" /></div>
+        {{/each}}
+    </div>
+    <hr/>
+    <div class="result_container"> 
+        <div class="sumup">
+            {{successes}}<i class="myz-radioactive"></i> | {{failures}}<i class="myz-biohazard"></i> | {{gearfailures}}<i class="myz-explosion"></i>
         </div>
         {{#unless isPushed}}
-        <div>
-        <a class="pushaction" title="{{localize "MYZ.PUSH"}}">
-        <i class="fas fa-radiation-alt"></i>
-        </a>
+        <div class="pushaction-container">
+            <a class="pushaction" title="{{localize "MYZ.PUSH"}}" data-name="{{name}}">
+                <i class="fas fa-radiation-alt"></i>
+            </a>
         </div>
         {{/unless}}
+        <div class="damage">
+            {{#if (greaterThan damage 0)}} {{#if (greaterThan successes 0)}}
+            <h4>
+            D {{damage}} <span style="font-weight: 400">(S {{substract successes 1}})</span>
+            </h4>
+            {{/if}} {{#unless (greaterThan successes 0)}}
+            <h4 style="text-align: left">D 0 <span style="font-weight: 400">(S 0)</span></h4>
+            {{/unless}} {{/if}}
+        </div>
     </div>
 </div>

@@ -14,3 +14,4 @@ npm-debug.log
 
 #Private files
 .NH_*
+tsconfig.json

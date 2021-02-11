@@ -153,6 +153,7 @@ export class DiceRoller {
             gearfailures: numberOfGearFailures,
             damage: this.baseDamage,
             dices: this.dices,
+            owner : game.user.id
         };
         const html = await renderTemplate("systems/mutant-year-zero-test/templates/chat/roll.html", rollData);
         let chatData = {
