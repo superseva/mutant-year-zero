@@ -2,7 +2,7 @@
     "name": "mutant-year-zero-test",
     "title": "Mutant Year Zero Development Branch",
     "description": "The Mutant Year Zero system for FoundryVTT!",
-    "version": "0.95",
+    "version": "0.96",
     "minimumCoreVersion": "0.7.5",
     "compatibleCoreVersion": "0.7.9",
     "templateVersion": 1,
@@ -31,6 +31,11 @@
             "lang": "en",
             "name": "English",
             "path": "lang/en.json"
+        },
+        {
+            "lang": "fr",
+            "name": "French",
+            "path": "lang/fr.json"
         },
         {
             "lang": "pt-br",
