@@ -50,6 +50,15 @@ export class DiceRoller {
         }
         this.sendRollToChat(false, roll);
     }
+    
+    /**
+     * Reset stored informations for last roll
+     */
+    resetDices(){
+        this.dices = [];
+        this.diceWithResult = [];
+        this.diceWithNoResult = [];
+    }
 
     /**
      * Push the last roll
@@ -92,6 +101,7 @@ export class DiceRoller {
             });
         });
     }
+
     mapDiceType(dT) {
         let dType = "";
         switch (dT) {
@@ -153,8 +163,9 @@ export class DiceRoller {
             gearfailures: numberOfGearFailures,
             damage: this.baseDamage,
             dices: this.dices,
+            owner : game.user.id
         };
-        const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", rollData);
+        const html = await renderTemplate("systems/mutant-year-zero-test/templates/chat/roll.html", rollData);
         let chatData = {
             user: game.user._id,
             rollMode: game.settings.get("core", "rollMode"),

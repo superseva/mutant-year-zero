@@ -1,6 +1,7 @@
 # IDE
 .idea/
 .vs/
+.vscode/
 
 # Node Modules
 node_modules/
@@ -10,3 +11,7 @@ npm-debug.log
 *.7z
 *.zip
 *.rar
+
+#Private files
+.NH_*
+tsconfig.json

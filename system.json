@@ -1,6 +1,6 @@
 {
-    "name": "mutant-year-zero",
-    "title": "Mutant Year Zero",
+    "name": "mutant-year-zero-test",
+    "title": "Mutant Year Zero Development Branch",
     "description": "The Mutant Year Zero system for FoundryVTT!",
     "version": "0.95",
     "minimumCoreVersion": "0.7.5",
@@ -14,14 +14,14 @@
         {
             "name": "core-skills",
             "label": "Core Skills",
-            "system": "mutant-year-zero",
+            "system": "mutant-year-zero-test",
             "path": "./packs/core-skills.db",
             "entity": "Item"
         },
         {
             "name": "myz-macros",
             "label": "MYZ macors",
-            "system": "mutant-year-zero",
+            "system": "mutant-year-zero-test",
             "path": "./packs/myz-macros.db",
             "entity": "Macro"
         }
@@ -50,8 +50,8 @@
     ],
     "gridDistance": 1,
     "gridUnits": "m",
-    "url": "https://github.com/superseva/mutant-year-zero",
-    "manifest": "https://github.com/superseva/mutant-year-zero/releases/download/v0.95/system.json",
-    "download": "https://github.com/superseva/mutant-year-zero/releases/download/v0.95/mutant-year-zero.zip",
+    "url": "https://github.com/superseva/mutant-year-zero-test",
+    "manifest": "https://github.com/superseva/mutant-year-zero-test/releases/download/v0.95/system.json",
+    "download": "https://github.com/superseva/mutant-year-zero-test/releases/download/v0.95/mutant-year-zero-test.zip",
     "license": "LICENSE.txt"
 }

@@ -1,5 +1,5 @@
 {
-    "name": "mutant-year-zero",
+    "name": "mutant-year-zero-test",
     "version": "1.0.0",
     "description": "CSS compiler for the Mutant Year Zero system",
     "scripts": {
@@ -20,6 +20,7 @@
         "gulp-sourcemaps": "^2.6.5"
     },
     "devDependencies": {
+        "foundry-vtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types",
         "gulp": "^4.0.2"
     }
 }
