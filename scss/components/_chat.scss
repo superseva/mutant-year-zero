@@ -34,6 +34,11 @@
         font-size: 1.25em;
     }
 
+    .pushed {
+        font-size: 1.25em;
+        margin-left: 0px;
+    }
+
     strong {
         text-transform: uppercase;
     }
@@ -57,7 +62,7 @@
         margin: 0 0 0px;
         text-align: center;
     }
-
+ 
     .dices-result {
         display: flex;
         flex-direction: row;

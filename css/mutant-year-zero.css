@@ -236,6 +236,11 @@ $font-secondary: 'Roboto', sans-serif;*/
   font-size: 1.25em;
 }
 
+.myz.chat-item .pushed {
+  font-size: 1.25em;
+  margin-left: 0px;
+}
+
 .myz.chat-item strong {
   text-transform: uppercase;
 }

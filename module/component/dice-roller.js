@@ -50,6 +50,15 @@ export class DiceRoller {
         }
         this.sendRollToChat(false, roll);
     }
+    
+    /**
+     * Reset stored informations for last roll
+     */
+    resetDices(){
+        this.dices = [];
+        this.diceWithResult = [];
+        this.diceWithNoResult = [];
+    }
 
     /**
      * Push the last roll
@@ -92,6 +101,7 @@ export class DiceRoller {
             });
         });
     }
+
     mapDiceType(dT) {
         let dType = "";
         switch (dT) {

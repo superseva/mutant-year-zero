@@ -1,34 +1,32 @@
-<div class="myz chat-item" data-user-id="{{owner}}">
-    {{#if isPushed}}
-    <h3>{{name}} - {{localize "PUSHED"}}</h3>
-    {{else}}
-    <h3>{{localize name}}</h3>
-    {{/if}}
+<div class="myz chat-item" data-user-id="{{ owner }}">
+    <h3>{{ localize name }}</h3>
     <div class="dices-result">
         {{#each dices as |dice|}}
-        <div><img src="systems/mutant-year-zero-test/ui/test/dice-{{dice.diceType}}-{{dice.value}}.png" /></div>
+            <div><img src="systems/mutant-year-zero-test/ui/test/dice-{{ dice.diceType }}-{{ dice.value }}.png"/></div>
         {{/each}}
     </div>
     <hr/>
-    <div class="result_container"> 
+    <div class="result_container">
         <div class="sumup">
-            {{successes}}<i class="myz-radioactive"></i> | {{failures}}<i class="myz-biohazard"></i> | {{gearfailures}}<i class="myz-explosion"></i>
+            {{ successes }}<i class="myz-radioactive"></i>
+            |
+            {{ failures }}<i class="myz-biohazard"></i>
+            |
+            {{ gearfailures }}<i class="myz-explosion"></i>
         </div>
-        {{#unless isPushed}}
         <div class="pushaction-container">
-            <a class="pushaction" title="{{localize "MYZ.PUSH"}}" data-name="{{name}}">
-                <i class="fas fa-radiation-alt"></i>
-            </a>
+            {{#if isPushed}}
+                <i class="myz-radioactive pushed" title="{{ localize "MYZ.PUSHED" }}"></i>
+            {{else}}
+                <a class="pushaction hidefromnotowner" title="{{ localize "MYZ.PUSH" }}" data-name="{{ name }}">
+                    <i class="fas fa-dice"></i>
+                </a>
+            {{/if}}
         </div>
-        {{/unless}}
         <div class="damage">
-            {{#if (greaterThan damage 0)}} {{#if (greaterThan successes 0)}}
-            <h4>
-            D {{damage}} <span style="font-weight: 400">(S {{substract successes 1}})</span>
-            </h4>
-            {{/if}} {{#unless (greaterThan successes 0)}}
-            <h4 style="text-align: left">D 0 <span style="font-weight: 400">(S 0)</span></h4>
-            {{/unless}} {{/if}}
+                {{#if (greaterThan successes 0)}}
+                    D{{#if (greaterThan damage 0)}}{{damage}}{{else}}-{{/if}}/S{{ substract successes 1 }}{{else}}D-/S-
+                {{/if}}
         </div>
     </div>
 </div>
