@@ -30,6 +30,7 @@
     "MYZ.AGE": "Age",
 
     "MYZ.STATS": "Stats",
+    "MYZ.ATTRIBUTE": "Attribute",
     "MYZ.ATTRIBUTES": "Attributes",
     "MYZ.ATTRIBUTE_STRENGTH_MUTANT": "Strength",
     "MYZ.ATTRIBUTE_AGILITY_MUTANT": "Agility",
@@ -134,7 +135,7 @@
     "MYZ.HEAD": "Head",
     "MYZ.TORSO": "Torso",
     "MYZ.UNDERCARRIAGE": "Undercarriage",
-    "MYZ.NUMBER_OF_MODULES": "Num. of Modules",
+    "MYZ.NUMBER_OF_MODULES": "# of Modules",
     "MYZ.ABILITY_TYPE": "Ability Type",
     "MYZ.EFFECT": "Effect",
     "MYZ.TALENT_TYPE": "Talent Type",

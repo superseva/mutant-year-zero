@@ -969,8 +969,8 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item.physical .item-controls {
-  -ms-flex-preferred-size: 20%;
-  flex-basis: 20%;
+  -ms-flex-preferred-size: 80px;
+  flex-basis: 80px;
 }
 
 .mutant-year-zero .box-item.resource .item-name {
@@ -1081,6 +1081,35 @@ $font-secondary: 'Roboto', sans-serif;*/
 .mutant-year-zero .box-item .grid {
   margin: 0;
   grid-gap: 1px;
+}
+
+.mutant-year-zero .box-item #context-menu {
+  left: unset;
+  right: 0;
+  min-width: unset;
+  width: unset;
+}
+
+.mutant-year-zero .box-item #context-menu li.context-item {
+  line-height: 26px;
+}
+
+.mutant-year-zero .box-item #context-menu .context-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mutant-year-zero .box-item .expand-down {
+  top: 3px !important;
+  right: 3px !important;
+  bottom: 0 !important;
+}
+
+.mutant-year-zero .box-item .expand-up {
+  top: 3px !important;
+  right: 3px !important;
+  bottom: 0 !important;
 }
 
 .mutant-year-zero .box-list {

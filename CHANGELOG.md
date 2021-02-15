@@ -2,6 +2,11 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.97
+-   Skills can now also be posted to chat due to restyling of right click context menu.
+-   Showing weapon bonus in actor's wepon list.
+-   Fixed a bug for custom chat roll commands. (example: /r 2dbcs6+2dscs6+2dgcs6)
+
 ## v0.96
 -   Added French translation.
 

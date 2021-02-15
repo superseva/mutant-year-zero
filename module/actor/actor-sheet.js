@@ -256,18 +256,26 @@ export class MYZActorSheet extends ActorSheet {
         /* -------------------------------------------- */
         const editLabel = game.i18n.localize("MYZ.EDIT");
         const deleteLabel = game.i18n.localize("MYZ.DELETE");
+        const postLabel = game.i18n.localize("MYZ.POST");
 
         let menu_items = [
             {
-                icon: '<i class="fas fa-dice-d6"></i>',
-                name: `${editLabel}`,
+                icon: '<i class="fas fa-comment"></i>',
+                name: '',
+                callback: (t) => {
+                    this._onPostItem(t.data("item-id"));
+                },
+            },
+            {
+                icon: '<i class="fas fa-edit"></i>',
+                name: '',
                 callback: (t) => {
                     this._editOwnedItemById(t.data("item-id"));
                 },
             },
             {
-                icon: '<i class="fas fa-dice-d6"></i>',
-                name: `${deleteLabel}`,
+                icon: '<i class="fas fa-trash"></i>',
+                name: '',
                 callback: (t) => {
                     this._deleteOwnedItemById(t.data("item-id"));
                 },
@@ -355,8 +363,14 @@ export class MYZActorSheet extends ActorSheet {
     _onItemSendToChat(event) {
         event.preventDefault();
         const itemId = $(event.currentTarget).data("item-id");
-        const item = this.actor.getOwnedItem(itemId);
-        if (!item) return;
+        this._onPostItem(itemId);
+        //const item = this.actor.getOwnedItem(itemId);
+        //if (!item) return;
+        //item.sendToChat();
+    }
+
+    _onPostItem(_itemId){
+        const item = this.actor.getOwnedItem(_itemId);
         item.sendToChat();
     }
 
