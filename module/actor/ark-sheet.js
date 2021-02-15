@@ -6,8 +6,8 @@ export class MYZArkSheet extends ActorSheet {
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ["mutant-year-zero", "sheet", "actor"],
-            template: "systems/mutant-year-zero/templates/actor/ark-sheet.html",
+            classes: ["mutant-year-zero-test", "sheet", "actor"],
+            template: "systems/mutant-year-zero-test/templates/actor/ark-sheet.html",
             width: 720,
             height: 700,
             tabs: [

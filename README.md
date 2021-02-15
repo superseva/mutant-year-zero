@@ -1,4 +1,4 @@
-# mutant-year-zero
+# mutant-year-zero-test
 Unofficial Mutant Year Zero system for FoundryVTT 
 
 ## Character Types:
@@ -22,4 +22,4 @@ Both ***Talents and Secondary Functions*** are represented by an Item called **T
 
 ## Updates:
 v0.6\
-https://github.com/superseva/mutant-year-zero/releases/tag/v0.6
+https://github.com/superseva/mutant-year-zero-test/releases/tag/v0.6

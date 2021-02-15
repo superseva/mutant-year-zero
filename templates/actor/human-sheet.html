@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol {{data.type}}" autocomplete="off">
 
     {{!-- Character Header --}}
-    {{> systems/mutant-year-zero/templates/actor/partials/character-header.html}}
+    {{> systems/mutant-year-zero-test/templates/actor/partials/character-header.html}}
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
@@ -17,20 +17,20 @@
             <div class="grid grid-3col">
                 <!--LEFT SECTION-->
                 <div class="col1">
-                    {{> systems/mutant-year-zero/templates/actor/partials/attributes.html}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/conditions.html}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/criticals.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/attributes.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/conditions.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/criticals.html}}
 
                 </div>
                 <!--MID SECTION-->
                 <div class="col2">
-                    {{> systems/mutant-year-zero/templates/actor/partials/skills.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/skills.html}}
                 </div>
                 <!--RIGHT SECTION-->
                 <div class="col3">
-                    {{> systems/mutant-year-zero/templates/actor/partials/resource-counter.html}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities sourceLabel='MYZ.CONTACTS'}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/talents.html sourceType='talent' sourceList=actor.talents sourceLabel='MYZ.TALENTS'}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/resource-counter.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities sourceLabel='MYZ.CONTACTS'}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/talents.html sourceType='talent' sourceList=actor.talents sourceLabel='MYZ.TALENTS'}}
                 </div>
             </div>
         </div>
@@ -41,19 +41,19 @@
             <div class="gear-section">
                 <!--CONSUMABLES SECTION-->
                 <div class="col1">
-                    {{> systems/mutant-year-zero/templates/actor/partials/consumables.html}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/encumbrance.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/consumables.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/encumbrance.html}}
                 </div>
                 <!--WEAPON AND ARMOR SECTION-->
                 <div class="col2">
-                    {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/weapons.html}}
+                    {{> systems/mutant-year-zero-test/templates/actor/partials/armors.html}}
                     <div class="gear-row grid grid-2col">
                         <div>
-                            {{> systems/mutant-year-zero/templates/actor/partials/gear.html}}
+                            {{> systems/mutant-year-zero-test/templates/actor/partials/gear.html}}
                         </div>
                         <div>
-                            {{> systems/mutant-year-zero/templates/actor/partials/artifacts.html}}
+                            {{> systems/mutant-year-zero-test/templates/actor/partials/artifacts.html}}
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
         </div>
 
         {{!-- Info Tab --}}
-        {{> systems/mutant-year-zero/templates/actor/partials/info.html}}
+        {{> systems/mutant-year-zero-test/templates/actor/partials/info.html}}
 
 </form>
 
