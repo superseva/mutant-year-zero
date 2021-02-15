@@ -20,11 +20,18 @@
         },
         {
             "name": "myz-macros",
-            "label": "MYZ macors",
+            "label": "MYZ macros",
             "system": "mutant-year-zero-test",
             "path": "./packs/myz-macros.db",
             "entity": "Macro"
-        }
+        },
+        {
+            "name": "myz-weapons",
+            "label": "Weapons",
+            "system": "mutant-year-zero-test",
+            "path": "./packs/myz-weapons.db",
+            "entity": "Item"
+        },
     ],
     "languages": [
         {
