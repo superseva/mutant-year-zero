@@ -41,7 +41,7 @@ export class RollDialog {
             modifier: { name: "MYZ.MODIFIER", type: "modifier", value: modifierDefault },
         };
 
-        const htmlContent = await renderTemplate("systems/mutant-year-zero-test/templates/app/roll-dialog.html", htmlData);
+        const htmlContent = await renderTemplate("systems/mutant-year-zero/templates/app/roll-dialog.html", htmlData);
         return new Promise((resolve) => {
             let d = new Dialog({
                 title: `${game.i18n.localize("MYZ.ROLL")} : ${game.i18n.localize(rollName)}`,

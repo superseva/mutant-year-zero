@@ -6,7 +6,7 @@ export class MYZItemSheet extends ItemSheet {
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ["mutant-year-zero-test", "sheet", "item"],
+            classes: ["mutant-year-zero", "sheet", "item"],
             width: 520,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
@@ -14,7 +14,7 @@ export class MYZItemSheet extends ItemSheet {
 
     /** @override */
     get template() {
-        const path = "systems/mutant-year-zero-test/templates/item";
+        const path = "systems/mutant-year-zero/templates/item";
         // Return a single sheet for all item types.
         // return `${path}/item-sheet.html`;
 

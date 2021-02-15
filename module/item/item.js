@@ -52,7 +52,7 @@ export class MYZItem extends Item {
         itemData.isProject = itemData.type === "project";
         itemData.isSkill = itemData.type === "skill";
         itemData.creatureType = this.actor.data.data.creatureType;
-        const html = await renderTemplate("systems/mutant-year-zero-test/templates/chat/item.html", itemData);
+        const html = await renderTemplate("systems/mutant-year-zero/templates/chat/item.html", itemData);
         const chatData = {
             user: game.user._id,
             rollMode: game.settings.get("core", "rollMode"),

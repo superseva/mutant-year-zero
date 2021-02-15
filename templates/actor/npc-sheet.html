@@ -102,13 +102,13 @@
         {{!-- Attributes Tab --}}
         <div class="tab" data-group="primary" data-tab="attributes">
             <div class="grid grid-2col">
-                <div>{{!-- Skills --}} {{> systems/mutant-year-zero-test/templates/actor/partials/skills.html fixedHeight='fixed-height'}}</div>
+                <div>{{!-- Skills --}} {{> systems/mutant-year-zero/templates/actor/partials/skills.html fixedHeight='fixed-height'}}</div>
                 <div>
-                    {{!-- Abilities --}} {{> systems/mutant-year-zero-test/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities
+                    {{!-- Abilities --}} {{> systems/mutant-year-zero/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities
                     sourceLabel='MYZ.ABILITIES' fixedHeight='fixed-height'}}
                 </div>
                 <div>
-                    {{!-- Talents --}} {{> systems/mutant-year-zero-test/templates/actor/partials/talents.html sourceType='talent' sourceList=actor.talents
+                    {{!-- Talents --}} {{> systems/mutant-year-zero/templates/actor/partials/talents.html sourceType='talent' sourceList=actor.talents
                     sourceLabel='MYZ.TALENTS' fixedHeight='fixed-height'}}
                 </div>
                 <div>
@@ -124,9 +124,9 @@
 
         {{!-- Gear Tab --}}
         <div class="tab" data-group="primary" data-tab="gear">
-            {{> systems/mutant-year-zero-test/templates/actor/partials/weapons.html}} {{#if (ifvalue data.creatureType 'robot')}} {{>
-            systems/mutant-year-zero-test/templates/actor/partials/chassis-1row.html}} {{/if}} {{#unless (ifvalue data.creatureType 'robot')}} {{>
-            systems/mutant-year-zero-test/templates/actor/partials/armors.html}} {{/unless}}
+            {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}} {{#if (ifvalue data.creatureType 'robot')}} {{>
+            systems/mutant-year-zero/templates/actor/partials/chassis-1row.html}} {{/if}} {{#unless (ifvalue data.creatureType 'robot')}} {{>
+            systems/mutant-year-zero/templates/actor/partials/armors.html}} {{/unless}}
         </div>
 
         {{!-- Info Tab --}}

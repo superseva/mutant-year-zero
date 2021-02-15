@@ -1,5 +1,5 @@
 {
-    "name": "mutant-year-zero-test",
+    "name": "mutant-year-zero",
     "version": "1.0.0",
     "description": "CSS compiler for the Mutant Year Zero system",
     "scripts": {
