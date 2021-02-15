@@ -7,12 +7,7 @@ export class MYZDieBase extends Die {
     /* -------------------------------------------- */
 
     /** @override */
-    static DENOMINATION = "b";
-
-    /** @override */
-    get total() {
-        return this.results.length;
-    }
+    static DENOMINATION = "b";    
 
     /* -------------------------------------------- */
 
@@ -37,12 +32,7 @@ export class MYZDieSkill extends Die {
     /* -------------------------------------------- */
 
     /** @override */
-    static DENOMINATION = "s";
-
-    /** @override */
-    get total() {
-        return this.results.length;
-    }
+    static DENOMINATION = "s";    
 
     /* -------------------------------------------- */
 
@@ -67,12 +57,7 @@ export class MYZDieGear extends Die {
     /* -------------------------------------------- */
 
     /** @override */
-    static DENOMINATION = "g";
-
-    /** @override */
-    get total() {
-        return this.results.length;
-    }
+    static DENOMINATION = "g";    
 
     /* -------------------------------------------- */
 

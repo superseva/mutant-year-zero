@@ -21,7 +21,7 @@
         {{/if}} {{#if isWeapon}}
         <p><strong>{{localize "MYZ.DAMAGE"}}:</strong> {{data.damage}}</p>
         <p><strong>{{localize "MYZ.BONUS"}}:</strong> {{data.bonus.value}} / {{data.bonus.max}}</p>
-        <p><strong>{{localize "MYZ.RANGE"}}:</strong> {{data.range}}</p>
+        <p><strong>{{localize "MYZ.RANGE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' data.range))}}</p>
         <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{data.comment}}</p>
         <hr />
         <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
@@ -68,9 +68,15 @@
         <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
         {{{data.description}}}
         <hr />
-        {{/if}} {{#if isTalent}}
+        {{/if}}
+        {{#if isSkill}}
+        <p><strong>{{localize "MYZ.ATTRIBUTE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_' data.attribute '_' data.creatureType))}}</p>
+        <p><strong>{{localize "MYZ.VALUE"}}:</strong> {{data.value}}</p>
+        {{{data.description}}} {{/if}}
+        {{#if isTalent}}
         <p><strong>{{localize "MYZ.TALENT_TYPE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' data.roleType))}}</p>
-        {{{data.description}}} {{/if}} {{#if isAbility}} {{#if (ifvalue 'robot' data.creatureType)}}
+        {{{data.description}}} {{/if}}
+        {{#if isAbility}} {{#if (ifvalue 'robot' data.creatureType)}}
         <p><strong>{{localize "MYZ.BROKEN"}}:</strong> {{data.broken}}</p>
         {{/if}} {{{data.description}}} {{/if}} {{#if isProject}}
         <p><strong>{{localize "MYZ.COMPLETED"}}:</strong> {{data.completed}}</p>
