@@ -50,6 +50,7 @@ export class MYZItem extends Item {
         itemData.isTalent = itemData.type === "talent";
         itemData.isAbility = itemData.type === "ability";
         itemData.isProject = itemData.type === "project";
+        itemData.isSkill = itemData.type === "skill";
         itemData.creatureType = this.actor.data.data.creatureType;
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/item.html", itemData);
         const chatData = {
@@ -57,8 +58,8 @@ export class MYZItem extends Item {
             rollMode: game.settings.get("core", "rollMode"),
             content: html,
         };
-        if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
-            chatData.whisper = ChatMessage.getWhisperIDs("GM");
+        if (["gmroll", "blindroll"].includes(chatData.rollMode)) {            
+            chatData.whisper = ChatMessage.getWhisperRecipients("GM");
         } else if (chatData.rollMode === "selfroll") {
             chatData.whisper = [game.user];
         }

@@ -3,7 +3,7 @@
     padding: 0.3em 0 0.3em 0;
     line-height: 14px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
-    list-style: none;
+    list-style: none;   
 
     &.physical {
         .item-name {
@@ -11,7 +11,7 @@
         }
 
         .item-controls {
-            flex-basis: 20%;
+            flex-basis: 80px;
         }
     }
 
@@ -111,6 +111,29 @@
     .grid {
         margin: 0;
         grid-gap: 1px;
+    }
+
+    #context-menu {
+        left: unset;
+        right: 0;
+        min-width: unset;
+        width: unset;
+        li.context-item {
+            line-height: 26px;
+        }
+        .context-items {
+            display: flex;
+        }
+    }
+    .expand-down {
+        top: 3px !important;
+        right: 3px !important;
+        bottom: 0 !important;
+    }
+    .expand-up {
+        top: 3px !important;
+        right: 3px !important;
+        bottom: 0 !important;
     }
 }
 
