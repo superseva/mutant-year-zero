@@ -1,4 +1,4 @@
-# Mutant-Year-Zero
+# mutant-year-zero
 Unofficial Mutant Year Zero system for FoundryVTT 
 
 ## Character Types:

@@ -1,0 +1,23 @@
+{
+	"name": "{{Name}}",
+	"type": "weapon",
+	"img":"{{Img}}",
+	"data": {
+		"description": "{{Description}}",
+		"comment": "{{Comment}}",
+		"cost": {{Cost}},
+		"quantity": {{Quantity}},
+		"weight": "{{Weight}}",
+		"bonus": {
+			"value": {{BonusValue}},
+			"max": {{BonusMax}}
+			},
+		"dev_requirement": {{DevReq}},
+		"dev_bonus": {{DevBonus}},
+		"damage": {{Damage}},
+		"range": "{{Range}}",
+        "category": "{{Category}}",
+        "artifactBonus": {{ArtifactBonus}},
+        "skillBonus": {{SkillBonus}}
+	}
+}

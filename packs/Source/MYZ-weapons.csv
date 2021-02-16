@@ -1,0 +1,19 @@
+Origin,Name,BonusValue,BonusMax,Description,Comment,Cost,Quantity,Weight,DevReq,DevBonus,Damage,Range,Category,ArtifactBonus,SkillBonus,Img
+MYZ,Unarmed,0,0,,,0,1,0,0,0,1,range_arm,melee,0,0,icons/equipment/hand/gauntlet-tooled-leather-brown.webp
+MYZ,Blunt Instrument,1,1,,,0,1,1,0,0,1,range_arm,melee,0,0,icons/weapons/clubs/club-simple-black.webp
+MYZ,Bicycle Chain,1,1,,,0,1,1,0,0,1,range_near,melee,0,0,icons/commodities/metal/chain-steel.webp
+MYZ,Brass Knuckles,1,1,,Jury-Rigged,0,1,0.5,0,0,1,range_arm,melee,0,0,icons/weapons/fist/fist-knuckles-spiked-stone.webp
+MYZ,Scrap Knife,1,1,,Jury-Rigged ,0,1,1,0,0,2,range_arm,melee,0,0,icons/weapons/daggers/knife-green.webp
+MYZ,Baseball Bat,2,2,,Can be found in the Zone,0,1,1,0,0,1,range_arm,melee,0,0,icons/weapons/clubs/club-baton-blue.webp
+MYZ,Bat with spikes,2,2,,Jury-Rigged,0,1,1,0,0,2,range_arm,melee,0,0,icons/weapons/clubs/club-barbed.webp
+MYZ,Machete,2,2,,Jury-Rigged,0,1,1,0,0,2,range_arm,melee,0,0,icons/weapons/swords/scimitar-bone.webp
+MYZ,Scrap Spear,1,1,,Jury-Rigged,0,1,1,0,0,2,range_near,melee,0,0,icons/weapons/polearms/glaive-simple-hooked.webp
+MYZ,Scrap Axe,1,1,,Jury-Rigged ,0,1,2,0,0,3,range_arm,melee,0,0,icons/weapons/axes/axe-battle-broad-stone.webp
+MYZ,Thrown Rock,0,0,,,0,1,0,0,0,1,range_short,ranged,0,0,icons/commodities/stone/boulder-black.webp
+MYZ,Slingshot,1,1,,Jury-Rigged ,0,1,1,0,0,1,range_short,ranged,0,0,icons/weapons/slings/slingshot-wood.webp
+MYZ,Bow,1,1,,Jury-Rigged ,0,1,1,0,0,1,range_long,ranged,0,0,icons/weapons/bows/longbow-leather-green.webp
+MYZ,Scrap Pistol,1,1,,Jury-Rigged ,0,1,1,0,0,2,range_short,ranged,0,0,icons/weapons/guns/gun-pistol-brass.webp
+MYZ,Scrap Derringer,1,1,,Jury-Rigged ,0,1,0.5,0,0,1,range_near,ranged,0,0,icons/weapons/guns/gun-pistol-brown.webp
+MYZ,Scrap Rifle,1,1,,Jury-Rigged ,0,1,1,0,0,2,range_long,ranged,0,0,icons/weapons/guns/rifle-brown.webp
+MYZ,Flamethrower,1,1,,Jury-Rigged ,0,1,2,0,0,2,range_near,ranged,0,0,icons/weapons/guns/gun-blunderbuss-bronze.webp
+MYZ,Scrap Cannon,1,1,,Jury-Rigged. Can't be carried,0,1,2,0,0,4,range_long,ranged,0,0,icons/weapons/guns/gun-worn-steel.webp

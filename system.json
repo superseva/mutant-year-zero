@@ -1,6 +1,6 @@
 {
     "name": "mutant-year-zero",
-    "title": "Mutant Year Zero",
+    "title": "Mutant Year Zero Development Branch",
     "description": "The Mutant Year Zero system for FoundryVTT!",
     "version": "0.97",
     "minimumCoreVersion": "0.7.5",
@@ -20,10 +20,17 @@
         },
         {
             "name": "myz-macros",
-            "label": "MYZ macors",
+            "label": "MYZ macros",
             "system": "mutant-year-zero",
             "path": "./packs/myz-macros.db",
             "entity": "Macro"
+        },
+        {
+            "name": "myz-weapons",
+            "label": "Weapons",
+            "system": "mutant-year-zero",
+            "path": "./packs/myz-weapons.db",
+            "entity": "Item"
         }
     ],
     "languages": [
@@ -61,7 +68,7 @@
     "gridDistance": 1,
     "gridUnits": "m",
     "url": "https://github.com/superseva/mutant-year-zero",
-    "manifest": "https://github.com/superseva/mutant-year-zero/releases/download/v0.97/system.json",
-    "download": "https://github.com/superseva/mutant-year-zero/releases/download/v0.97/mutant-year-zero.zip",
+    "manifest": "https://github.com/superseva/mutant-year-zero/releases/download/0.97/system.json",
+    "download": "https://github.com/superseva/mutant-year-zero/releases/download/0.97/mutant-year-zero.zip",
     "license": "LICENSE.txt"
 }

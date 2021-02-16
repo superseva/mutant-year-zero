@@ -18,6 +18,8 @@ import { MYZDieGear } from "./MYZDice.js";
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
 
+import * as Chat from "./MYZChat.js" 
+
 import * as migrations from "./migration.js";
 
 /* ------------------------------------ */
@@ -414,3 +416,8 @@ function normalize(data, defaultValue) {
         return defaultValue;
     }
 }
+
+/* Hook on Chat message event */
+Hooks.on("renderChatLog",(app,html,data)=> Chat.addChatLogListeners(app,html,data));
+Hooks.on("renderChatMessage",(app,html,data)=> Chat.addChatMessageListeners(app,html,data));
+
