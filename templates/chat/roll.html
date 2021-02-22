@@ -11,7 +11,7 @@
             {{localize "MYZ.DAMAGE"}} {{damage}} <span style="font-weight: 400">({{localize 'MYZ.STUNTS'}} {{substract successes 1}})</span>
         </h4>
         {{/if}} {{#unless (greaterThan successes 0)}}
-        <h4 style="text-align: left">{{localize "DAMAGE"}} 0 <span style="font-weight: 400">({{localize 'MYZ.STUNTS'}} 0)</span></h4>
+        <h4 style="text-align: left">{{localize "MYZ.DAMAGE"}} 0 <span style="font-weight: 400">({{localize 'MYZ.STUNTS'}} 0)</span></h4>
         {{/unless}} {{/if}}
         <div class="dices-result">
             {{#each dices as |dice|}}
