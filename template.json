@@ -57,25 +57,25 @@
                         "label": "MYZ.ATTRIBUTE_STRENGTH",
                         "value": 0,
                         "min": 0,
-                        "max": 5
+                        "max": 0
                     },
                     "agility": {
                         "label": "MYZ.ATTRIBUTE_AGILITY",
                         "value": 0,
                         "min": 0,
-                        "max": 5
+                        "max": 0
                     },
                     "wits": {
                         "label": "MYZ.ATTRIBUTE_WITS",
                         "value": 0,
                         "min": 0,
-                        "max": 5
+                        "max": 0
                     },
                     "empathy": {
                         "label": "MYZ.ATTRIBUTE_EMPATHY",
                         "value": 0,
                         "min": 0,
-                        "max": 5
+                        "max": 0
                     }
                 }
             },
