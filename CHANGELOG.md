@@ -2,6 +2,12 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.98
+-   Skills on character sheets now use translation key to display their name in selected language.
+-   Language JSONs are sorted alphabeticaly for easier update.
+-   Attribute values are defaulted to 0 on character creation (previously 4).
+
+
 ## v0.97
 -   Skills can now also be posted to chat due to restyling of right click context menu.
 -   Showing weapon bonus in actor's wepon list.
