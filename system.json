@@ -2,7 +2,7 @@
     "name": "mutant-year-zero",
     "title": "Mutant Year Zero",
     "description": "The Mutant Year Zero system for FoundryVTT!",
-    "version": "0.98",
+    "version": "0.99",
     "minimumCoreVersion": "0.7.5",
     "compatibleCoreVersion": "0.7.9",
     "templateVersion": 1,
@@ -61,7 +61,7 @@
     "gridDistance": 1,
     "gridUnits": "m",
     "url": "https://github.com/superseva/mutant-year-zero",
-    "manifest": "https://github.com/superseva/mutant-year-zero/releases/download/v0.98/system.json",
-    "download": "https://github.com/superseva/mutant-year-zero/releases/download/v0.98/mutant-year-zero.zip",
+    "manifest": "https://github.com/superseva/mutant-year-zero/releases/download/v0.99/system.json",
+    "download": "https://github.com/superseva/mutant-year-zero/releases/download/v0.99/mutant-year-zero.zip",
     "license": "LICENSE.txt"
 }

@@ -212,7 +212,11 @@ export class MYZActorSheet extends ActorSheet {
             }
             if (!skill) {
                 ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
-                return;
+                skill = {
+                    data:{
+                        value:0
+                    }
+                };
             }
             
             RollDialog.prepareRollDialog({
@@ -397,16 +401,21 @@ export class MYZActorSheet extends ActorSheet {
     _onRollSkill(event) {
         event.preventDefault();
         const element = event.currentTarget;
-        //const dataset = element.dataset;
         const itemId = $(element).data("item-id");
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find((element) => element._id == itemId);
-            //let baseDice = this.actor.data.attributes[skill.data.data.attribute].value;
             let baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
+            // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
+            let skillName = "";
+            if(skill.data.data.skillKey==""){
+                skillName = skill.data.name;
+            }else{
+                skillName = game.i18n.localize(`MYZ.SKILL_${skill.data.data.skillKey}`);
+            }
 
             RollDialog.prepareRollDialog({
-                rollName: skill.data.name,
+                rollName: skillName,
                 diceRoller: this.diceRoller,
                 baseDefault: baseDice,
                 skillDefault: skill.data.data.value,
