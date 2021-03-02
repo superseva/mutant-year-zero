@@ -2,6 +2,11 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v0.99
+-   Fixed BUG with translation string when pushing attribute
+-   Added translated name to the skill roll in a chat message.
+-   Allows NPC to roll weapon without having fight/shoot skill
+
 ## v0.98
 -   Skills on character sheets now use translation key to display their name in selected language.
 -   Language JSONs are sorted alphabeticaly for easier update.
