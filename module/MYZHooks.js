@@ -30,32 +30,33 @@ export default class MYZHooks {
             // Load Core Skills Compendium skills
             let skillIndex = await game.packs.get("mutant-year-zero.core-skills").getContent();
             // TRY TO GET THE OFFICIAL SKILL CONTENT IF IT IS PRESENT
+            const errMsgOfficialSkills = 'No official skill compendium found, reverting to the free content.';
             if(actor.data.data.creatureType=='mutant'){
                 try{
                     skillIndex = await game.packs.get("myz-core-book.skills-mutant").getContent();
                 }catch(e){
-                    console.warn(e);
+                    console.log(errMsgOfficialSkills);
                 }                
             }
             if(actor.data.data.creatureType=='animal'){
                 try{
                     skillIndex = await game.packs.get("myz-core-book.skills-animal").getContent();
                 }catch(e){
-                    console.warn(e);
+                    console.log(errMsgOfficialSkills);
                 }                
             }
             if(actor.data.data.creatureType=='robot'){
                 try{
                     skillIndex = await game.packs.get("myz-core-book.skills-robot").getContent();
                 }catch(e){
-                    console.warn(e);
+                    console.log(errMsgOfficialSkills);
                 }                
             }
             if(actor.data.data.creatureType=='human'){
                 try{
                     skillIndex = await game.packs.get("myz-core-book.skills-human").getContent();
-                }catch(e){
-                    console.warn(e);
+                }catch(errMsgOfficialSkills){
+                    console.log(e);
                 }                
             }
 
