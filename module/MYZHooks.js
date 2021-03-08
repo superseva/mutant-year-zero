@@ -28,7 +28,36 @@ export default class MYZHooks {
             const existingSkills = actor.items.filter((i) => i.type === ItemType.Skill).map((i) => i.data.skillKey);
             const skillsToAdd = actorCoreSkills.filter((s) => !existingSkills.includes(s));
             // Load Core Skills Compendium skills
-            const skillIndex = await game.packs.get("mutant-year-zero.core-skills").getContent();
+            let skillIndex = await game.packs.get("mutant-year-zero.core-skills").getContent();
+            // TRY TO GET THE OFFICIAL SKILL CONTENT IF IT IS PRESENT
+            if(actor.data.data.creatureType=='mutant'){
+                try{
+                    skillIndex = await game.packs.get("myz-core-book.skills-mutant").getContent();
+                }catch(e){
+                    console.warn(e);
+                }                
+            }
+            if(actor.data.data.creatureType=='animal'){
+                try{
+                    skillIndex = await game.packs.get("myz-core-book.skills-animal").getContent();
+                }catch(e){
+                    console.warn(e);
+                }                
+            }
+            if(actor.data.data.creatureType=='robot'){
+                try{
+                    skillIndex = await game.packs.get("myz-core-book.skills-robot").getContent();
+                }catch(e){
+                    console.warn(e);
+                }                
+            }
+            if(actor.data.data.creatureType=='human'){
+                try{
+                    skillIndex = await game.packs.get("myz-core-book.skills-human").getContent();
+                }catch(e){
+                    console.warn(e);
+                }                
+            }
 
             // Filter skillIndex array to include only skills for Actor Type.
             let _skillsList = skillIndex.filter((i) => skillsToAdd.includes(i.data.data.skillKey));
@@ -39,8 +68,7 @@ export default class MYZHooks {
                 s._data.data["coreSkill"] = true;
                 //s.data.data["coreSkill"] = true;
             });
-            console.warn(_skillsList);
-
+            //console.warn(_skillsList);
             await actor.createEmbeddedEntity("OwnedItem", _skillsList);
         } else {
             setTimeout(async function () {
