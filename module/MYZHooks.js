@@ -55,8 +55,8 @@ export default class MYZHooks {
             if(actor.data.data.creatureType=='human'){
                 try{
                     skillIndex = await game.packs.get("myz-core-book.skills-human").getContent();
-                }catch(errMsgOfficialSkills){
-                    console.log(e);
+                }catch(e){
+                    console.log(errMsgOfficialSkills);
                 }                
             }
 
