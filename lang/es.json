@@ -203,5 +203,15 @@
     "MYZ.WEIGHT_TINY": "Pequeño",
     "MYZ.WEIGHTLESS": "Sin peso",
     "MYZ.WORK_POINTS": "Puntos de Trabajo",
-    "MYZ.XP": "EXP"
+    "MYZ.XP": "EXP",
+    "MYZ.ATTRIBUTE": "Característica",
+    "MYZ.SKILL_COMMAND": "Dar Órdenes",
+    "MYZ.SKILL_INSPIRE": "Inspirar",
+    "MYZ.SKILL_INTIMIDATE": "Intimidar",
+    "MYZ.SKILL_JURYRIG": "Hacer un Apaño",
+    "MYZ.SKILL_MAKEADEAL": "Hacer un Trato",
+    "MYZ.SKILL_SHAKEITOFF": "Sácatelo de la Cabeza",
+    "MYZ.SKILL_SICADOG": "Soltar al Perro",
+    "MYZ.PUSHED": "Forzado",
+    "MYZ.SKILL_FINDTHEPATH": "Encontrar el Camino"
 }
