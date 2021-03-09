@@ -211,7 +211,7 @@
             "base": {
                 "description": "",
                 "comment": "",
-                "cost": 0
+                "cost": "0"
             },
             "physical": {
                 "quantity": 1,
