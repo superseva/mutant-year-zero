@@ -8,14 +8,18 @@ export default class MYZHooks {
         //console.warn(actor.data);
 
         let updateData = {};
-        updateData["data.creatureType"] = actor.data.type;
+        console.warn(actor);
+        //updateData["data.creatureType"] = actor.data.type;
         updateData["token.disposition"] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
         updateData["token.vision"] = true;
         if (actor.data.type != "npc") {
+            updateData["data.creatureType"] = actor.data.type;
             updateData["token.actorLink"] = true;
         }
         if (actor.data.type == "npc") {
-            updateData["data.description"] = "";
+            if(actor.data.data.creatureType=="")
+                updateData["data.creatureType"] = actor.data.type;
+            //updateData["data.description"] = "";
         }
         await actor.update(updateData, { renderSheet: true });
 
@@ -72,9 +76,9 @@ export default class MYZHooks {
             //console.warn(_skillsList);
             await actor.createEmbeddedEntity("OwnedItem", _skillsList);
         } else {
-            setTimeout(async function () {
-                await actor.sheet.render(true);
-            }, 500);
+            //setTimeout(async function () {
+                //await actor.sheet.render(true);
+            //}, 500);
         }
     }
 }
