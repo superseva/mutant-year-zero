@@ -37,28 +37,28 @@ export default class MYZHooks {
             const errMsgOfficialSkills = 'No official skill compendium found, reverting to the free content.';
             if(actor.data.data.creatureType=='mutant'){
                 try{
-                    skillIndex = await game.packs.get("myz-core-book.skills-mutant").getContent();
+                    skillIndex = await game.packs.get("myz-core-book.items").getContent();
                 }catch(e){
                     console.log(errMsgOfficialSkills);
                 }                
             }
             if(actor.data.data.creatureType=='animal'){
                 try{
-                    skillIndex = await game.packs.get("myz-core-book.skills-animal").getContent();
+                    skillIndex = await game.packs.get("myz-animal.items").getContent();
                 }catch(e){
                     console.log(errMsgOfficialSkills);
                 }                
             }
             if(actor.data.data.creatureType=='robot'){
                 try{
-                    skillIndex = await game.packs.get("myz-core-book.skills-robot").getContent();
+                    skillIndex = await game.packs.get("myz-mechatron.items").getContent();
                 }catch(e){
                     console.log(errMsgOfficialSkills);
                 }                
             }
             if(actor.data.data.creatureType=='human'){
                 try{
-                    skillIndex = await game.packs.get("myz-core-book.skills-human").getContent();
+                    skillIndex = await game.packs.get("myz-elisium.items").getContent();
                 }catch(e){
                     console.log(errMsgOfficialSkills);
                 }                
