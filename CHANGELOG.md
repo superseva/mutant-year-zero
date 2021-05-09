@@ -2,6 +2,13 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v1.0
+!!! Last 0.7x update !!!
+You can skip this update. Use it if you need one of these:
+-   Added INTIMIDATE skill
+-   Updated FR language transl.
+-   Patched for the Official Book
+
 ## v0.99
 -   Fixed BUG with translation string when pushing attribute
 -   Added translated name to the skill roll in a chat message.
