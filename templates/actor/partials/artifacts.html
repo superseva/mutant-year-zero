@@ -4,8 +4,8 @@
         <a class="item-create" data-type="artifact">+ Add</a>
     </span>
 </div>
-<ol class="box-list artifacts {{data.type}}">    
-    {{#each actor.artifacts as |artifact key|}}
+<ol class="box-list artifacts {{data.type}}">
+    {{#each artifacts as |artifact key|}}
     <li class="box-item gear flex row align-center space-between editable-item" data-item-id="{{artifact._id}}">
         <span class="item-name flex row align-center">
             <img class="item-image" src="{{artifact.img}}" />

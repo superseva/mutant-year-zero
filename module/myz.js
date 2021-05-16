@@ -241,54 +241,16 @@ Hooks.once("ready", async function () {
 });
 
 /* SET CHARACTER TYPE */
-Hooks.on("preCreateActor", async (data, options, userId) => MYZHooks.onPrecreateActor(data, options, userId));
 /* POPULATE CHARACTER WITH DEFAULT SKILLS */
 Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
-
-/* MAKE SURE OWNED SKILLS ARE OF THE SAME TYPE AS THE ACTOR */
-Hooks.on("preUpdateOwnedItem", (actor, item, updateData) => {
-    if (!updateData.data) return;
-    if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
-        if (updateData.data.hasOwnProperty("creatureType")) {
-            if (updateData.data.creatureType != actor.data.data.creatureType) {
-                ui.notifications.warn(`${item.type} type changed from ${updateData.data.creatureType}'s to ${actor.data.data.creatureType}'s`);
-                updateData.data.creatureType = actor.data.data.creatureType;
-            }
-        }
-    }
-});
-
-Hooks.on("preCreateOwnedItem", (actor, item, options) => {
-    if (item.type == "project" && actor.data.type != "ark") {
-        ui.notifications.warn(`You can add Project only to Ark`);
-        return false;
-    }
-    if (item.type == "chassis" && actor.data.data.creatureType != "robot") {
-        ui.notifications.warn(`You can't add Chassis to a non-robot character`);
-        return false;
-    }
-    if (item.type == "armor" && actor.data.data.creatureType == "robot") {
-        ui.notifications.warn(`You can't add Armor to a robot character`);
-        return false;
-    }
-
-    if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
-        if (!item.data.hasOwnProperty("creatureType")) {
-            item.data["creatureType"] = actor.data.data.creatureType;
-        } else {
-            if (item.data.creatureType != actor.data.data.creatureType) {
-                ui.notifications.warn(`${item.type} type changed from ${item.data.creatureType}'s to ${actor.data.data.creatureType}'s`);
-                item.data.creatureType = actor.data.data.creatureType;
-            }
-        }
-    }
-});
+Hooks.on("preCreateItem", (item, updateData, options) => { MYZHooks.onPreCreateItem(item, updateData, options); });
+Hooks.on("preUpdateItem", (item, updateData, option, _id) => { MYZHooks.onUpdateOwnedItem(item, updateData, option, _id); });
 
 /* -------------------------------------------- */
 /*  DsN Hooks                                   */
 /* -------------------------------------------- */
 
-Hooks.on("diceSoNiceRollComplete", (chatMessageID) => {});
+Hooks.on("diceSoNiceRollComplete", (chatMessageID) => { });
 
 Hooks.once("diceSoNiceReady", (dice3d) => {
     dice3d.addColorset({

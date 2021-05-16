@@ -12,12 +12,10 @@ export class MYZActorSheet extends ActorSheet {
 
     /** @override */
     getData() {
-        const data = super.getData();
-        data.dtypes = ["String", "Number", "Boolean"];
-        // Prepare items.
-        //if (this.actor.data.type == 'mutant') {
+        const superData = super.getData();
+        const data = superData.data;
+        // Prepare item lists.
         this._prepareCharacterItems(data);
-        //}
         return data;
     }
 
@@ -27,8 +25,6 @@ export class MYZActorSheet extends ActorSheet {
      * @return {undefined}
      */
     _prepareCharacterItems(sheetData) {
-        const actorData = sheetData.actor;
-
         // Initialize containers.
         const skills = [];
         const talents = [];
@@ -91,20 +87,20 @@ export class MYZActorSheet extends ActorSheet {
         skills.sort((a, b) => sortedBy[a.data.attribute] - sortedBy[b.data.attribute]);
 
         // Assign and return
-        actorData.skills = skills;
-        actorData.talents = talents;
-        actorData.secondary_functions = secondary_functions;
-        actorData.abilities = abilities;
-        actorData.mutations = mutations;
-        actorData.animal_powers = animal_powers;
-        actorData.contacts = contacts;
-        actorData.modules = modules;
-        actorData.weapons = weapons;
-        actorData.armor = armor;
-        actorData.chassis = chassis;
-        actorData.gear = gear;
-        actorData.artifacts = artifacts;
-        actorData.criticals = criticals;
+        sheetData.skills = skills;
+        sheetData.talents = talents;
+        sheetData.secondary_functions = secondary_functions;
+        sheetData.abilities = abilities;
+        sheetData.mutations = mutations;
+        sheetData.animal_powers = animal_powers;
+        sheetData.contacts = contacts;
+        sheetData.modules = modules;
+        sheetData.weapons = weapons;
+        sheetData.armor = armor;
+        sheetData.chassis = chassis;
+        sheetData.gear = gear;
+        sheetData.artifacts = artifacts;
+        sheetData.criticals = criticals;
     }
 
     /* -------------------------------------------- */
@@ -145,29 +141,29 @@ export class MYZActorSheet extends ActorSheet {
         // UPDATE INVENTORY ITEM
         html.find(".item-edit").click((ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            const item = this.actor.getOwnedItem(li.data("item-id"));
+            const item = this.actor.items.get(li.data("item-id"));
             item.sheet.render(true);
         });
 
         // DELETE INVENTORY ITEM
         html.find(".item-delete").click((ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            this.actor.deleteOwnedItem(li.data("item-id"));
+            this._deleteOwnedItemById(li.data("item-id"));
             li.slideUp(200, () => this.render(false));
         });
 
         //Toggle Equip Inventory Item
         html.find(".item-toggle").click(async (ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            const item = this.actor.getOwnedItem(li.data("item-id"));
-            await this.actor.updateOwnedItem(this._toggleEquipped(li.data("item-id"), item));
+            const item = this.actor.items.get(li.data("item-id"));
+            await this.actor.updateEmbeddedDocuments("Item", [this._toggleEquipped(li.data("item-id"), item)]);
         });
 
         // Toggle Broken Module
         html.find(".item-broken").click(async (ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            const item = this.actor.getOwnedItem(li.data("item-id"));
-            await this.actor.updateOwnedItem(this._toggleBroken(li.data("item-id"), item));
+            const item = this.actor.items.get(li.data("item-id"));
+            await this.actor.updateEmbeddedDocuments("Item", [this._toggleBroken(li.data("item-id"), item)]);
         });
 
         /* -------------------------------------------- */
@@ -194,7 +190,7 @@ export class MYZActorSheet extends ActorSheet {
         //Roll Weapon Item
         html.find(".roll-weapon").click((event) => {
             const itemId = $(event.currentTarget).data("item-id");
-            const weapon = this.actor.getOwnedItem(itemId);
+            const weapon = this.actor.items.get(itemId);
             let testName = weapon.name;
             let attribute;
             let skill;
@@ -213,12 +209,12 @@ export class MYZActorSheet extends ActorSheet {
             if (!skill) {
                 ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
                 skill = {
-                    data:{
-                        value:0
+                    data: {
+                        value: 0
                     }
                 };
             }
-            
+
             RollDialog.prepareRollDialog({
                 rollName: testName,
                 diceRoller: this.diceRoller,
@@ -243,7 +239,7 @@ export class MYZActorSheet extends ActorSheet {
         html.find(".armor-item-roll").click((event) => {
             const itemBox = $(event.currentTarget).parents(".box-item");
             const itemId = itemBox.data("item-id");
-            const armorItem = this.actor.getOwnedItem(itemId);
+            const armorItem = this.actor.items.get(itemId);
             let testName = armorItem.name;
             RollDialog.prepareRollDialog({
                 rollName: testName,
@@ -295,7 +291,7 @@ export class MYZActorSheet extends ActorSheet {
         new ContextMenu(html.find(".editable-item"), null, menu_items);
 
         // Drag events for macros.
-        if (this.actor.owner) {
+        if (this.actor.isOwner) {
             let handler = (ev) => this._onDragItemStart(ev);
             html.find("li.box-item").each((i, li) => {
                 if (li.classList.contains("header")) return;
@@ -312,23 +308,25 @@ export class MYZActorSheet extends ActorSheet {
     }
 
     _editOwnedItemById(_itemId) {
-        const item = this.actor.getOwnedItem(_itemId);
+        const item = this.actor.items.get(_itemId);
         item.sheet.render(true);
     }
     _deleteOwnedItemById(_itemId) {
-        this.actor.deleteOwnedItem(_itemId);
+        this.actor.deleteEmbeddedDocuments("Item", [_itemId]);
     }
 
     async _onChangeSkillValue(event) {
         event.preventDefault();
         const itemId = $(event.currentTarget).data("item-id");
-        let _item = this.actor.items.find((element) => element._id == itemId);
+        let _item = this.actor.items.find((element) => element.id == itemId);
         if (_item) {
             let update = {
-                _id: _item._id,
+                _id: _item.id,
                 data: { value: $(event.currentTarget).val() },
             };
-            await this.actor.updateEmbeddedEntity("OwnedItem", update);
+
+            await this.actor.updateEmbeddedDocuments("Item", [update]);
+            //await this.actor.updateEmbeddedEntity("OwnedItem", update);
         }
     }
 
@@ -349,18 +347,12 @@ export class MYZActorSheet extends ActorSheet {
             data: data,
         };
         delete itemData.data["type"];
-        return this.actor.createOwnedItem(itemData);
-        //await this.actor.createOwnedItem(itemData).then((_i) => {
-        //    if (_i._id) {
-        //        const item = this.actor.getOwnedItem(_i._id);
-        //        item.sheet.render(true);
-        //    }
-        //});
+        return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
     _onItemView(event) {
         event.preventDefault();
-        const item = this.actor.getOwnedItem($(event.currentTarget).data("item-id"));
+        const item = this.actor.items.get($(event.currentTarget).data("item-id"));
         item.sheet.render(true);
     }
 
@@ -368,13 +360,10 @@ export class MYZActorSheet extends ActorSheet {
         event.preventDefault();
         const itemId = $(event.currentTarget).data("item-id");
         this._onPostItem(itemId);
-        //const item = this.actor.getOwnedItem(itemId);
-        //if (!item) return;
-        //item.sendToChat();
     }
 
-    _onPostItem(_itemId){
-        const item = this.actor.getOwnedItem(_itemId);
+    _onPostItem(_itemId) {
+        const item = this.actor.items.get(_itemId);
         item.sendToChat();
     }
 
@@ -408,9 +397,9 @@ export class MYZActorSheet extends ActorSheet {
             let baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
             // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
             let skillName = "";
-            if(skill.data.data.skillKey==""){
+            if (skill.data.data.skillKey == "") {
                 skillName = skill.data.name;
-            }else{
+            } else {
                 skillName = game.i18n.localize(`MYZ.SKILL_${skill.data.data.skillKey}`);
             }
 

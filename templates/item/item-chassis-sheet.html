@@ -44,11 +44,7 @@
         <div class="resource flex column align-center">
             <label for="data.equipped" class="checkbox-label resource-label">
                 {{localize 'MYZ.EQUIPPED'}}
-                <input class="input-checkbox"
-                       type="checkbox"
-                       name="data.equipped"
-                       {{checked data.equipped}}
-                       data-dtype="Boolean" />
+                <input class="input-checkbox" type="checkbox" name="data.equipped" {{checked data.equipped}} data-dtype="Boolean" />
             </label>
         </div>
     </div>
@@ -57,7 +53,7 @@
     <h2>Description</h2>
     <div class="info">
         <div class="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor content=data.description target="data.description" button=true owner=owner editable=true}}
         </div>
     </div>
 
