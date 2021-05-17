@@ -1,10 +1,6 @@
 <form class="{{cssClass}} {{data.itemType}}" autocomplete="off">
     {{!-- HEADER --}} {{> systems/mutant-year-zero/templates/item/partials/header-simple.html}} {{!-- Sheet Body --}}
 
-    <!-- <div class="item-attr-row">
-        <label class="resource-label" for="data.effect">{{localize "MYZ.EFFECT"}}</label>
-        <textarea class="effect-textarea" rows="4" name="data.effect">{{data.effect}}</textarea>
-    </div> -->
     <h2>{{localize 'MYZ.DESCRIPTION'}}</h2>
     <div class="info-mid">
         <div class="description">{{editor content=data.description target="data.description" button=true owner=owner editable=true}}</div>

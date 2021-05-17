@@ -34,7 +34,7 @@ export class DiceRoller {
 
         let rollFormula = `${base}db + ${Math.abs(computedSkill)}ds + ${gear}dg`;
         let roll = new Roll(rollFormula);
-        roll.roll();
+        roll.evaluate({ async: false });
 
         this.parseResults(roll);
 
@@ -156,10 +156,10 @@ export class DiceRoller {
         };
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", rollData);
         let chatData = {
-            user: game.user._id,
+            user: game.user.id,
             rollMode: game.settings.get("core", "rollMode"),
             content: html,
-            type: CHAT_MESSAGE_TYPES.ROLL,
+            type: CONST.CHAT_MESSAGE_TYPES.ROLL,
             roll: _roll,
         };
         if (["gmroll", "blindroll"].includes(chatData.rollMode)) {

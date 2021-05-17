@@ -393,7 +393,7 @@ export class MYZActorSheet extends ActorSheet {
         const itemId = $(element).data("item-id");
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
-            const skill = this.actor.items.find((element) => element._id == itemId);
+            const skill = this.actor.items.find((element) => element.id == itemId);
             let baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
             // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
             let skillName = "";
