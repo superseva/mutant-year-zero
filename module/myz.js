@@ -49,8 +49,8 @@ Hooks.once("init", async function () {
 
     // Define custom Entity classes
     CONFIG.MYZ = MYZ;
-    CONFIG.Actor.entityClass = MYZActor;
-    CONFIG.Item.entityClass = MYZItem;
+    CONFIG.Actor.documentClass = MYZActor;
+    CONFIG.Item.documentClass = MYZItem;
     //CONFIG.diceRoller = DiceRoller;
 
     CONFIG.roller = new DiceRoller();
