@@ -104,11 +104,18 @@ export default class MYZHooks {
 
         if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
             if (!updateData.data.hasOwnProperty("creatureType")) {
-                updateData.data["creatureType"] = item.actor.data.data.creatureType;
+                item.data.update({
+                    data: {
+                        creatureType: item.actor.data.data.creatureType
+                    }
+                });
             } else {
                 if (updateData.data.creatureType != item.actor.data.data.creatureType) {
-                    //ui.notifications.warn(`${item.type} type changed from ${item.data.creatureType}'s to ${item.actor.data.data.creatureType}'s`);
-                    updateData.data.creatureType = item.actor.data.data.creatureType;
+                    item.data.update({
+                        data: {
+                            creatureType: item.actor.data.data.creatureType
+                        }
+                    });
                 }
             }
         }
