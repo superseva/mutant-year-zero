@@ -90,13 +90,8 @@ export class MYZArkSheet extends ActorSheet {
             data: data,
         };
         delete itemData.data["type"];
-        return this.actor.createEmbeddedDocuments("Item", [itemData]);
-        //await this.actor.createOwnedItem(itemData).then((_i) => {
-        //    if (_i._id) {
-        //        const item = this.actor.getOwnedItem(_i._id);
-        //        item.sheet.render(true);
-        //    }
-        //});
+        await this.actor.createEmbeddedDocuments("Item", [itemData]);
+
     }
 
     _onItemSendToChat(event) {
