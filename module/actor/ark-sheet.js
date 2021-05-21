@@ -22,27 +22,23 @@ export class MYZArkSheet extends ActorSheet {
 
     /** @override */
     getData() {
-        const data = super.getData();
+        const superData = super.getData();
+        const data = superData.data;
         data.dtypes = ["String", "Number", "Boolean"];
         this._prepareArkProjects(data);
         return data;
     }
 
     _prepareArkProjects(sheetData) {
-        const actorData = sheetData.actor;
-
         let projects = [];
-
         for (let i of sheetData.items) {
-            let item = i.data;
             i.img = i.img || DEFAULT_TOKEN;
             // Append to gear.
             if (i.type === "project") {
                 projects.push(i);
             }
         }
-
-        actorData.projects = projects;
+        sheetData.projects = projects;
     }
 
     /** @override */
@@ -50,27 +46,27 @@ export class MYZArkSheet extends ActorSheet {
         super.activateListeners(html);
 
         /* ADD INVENTORY ITEM */
-        html.find(".item-create").click(this._onItemCreate.bind(this));
+        html.find(".item-create").click(this._onAddProject.bind(this));
 
         // UPDATE INVENTORY ITEM
         html.find(".item-edit").click((ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            const item = this.actor.getOwnedItem(li.data("item-id"));
+            const item = this.actor.items.get(li.data("item-id"));
             item.sheet.render(true);
         });
 
         // DELETE INVENTORY ITEM
         html.find(".item-delete").click((ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            this.actor.deleteOwnedItem(li.data("item-id"));
+            this.actor.deleteEmbeddedDocuments("Item", [li.data("item-id")]);
             li.slideUp(200, () => this.render(false));
         });
 
         //Toggle Equip Inventory Item
         html.find(".item-toggle").click(async (ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
-            const item = this.actor.getOwnedItem(li.data("item-id"));
-            await this.actor.updateOwnedItem(this._toggleCompleted(li.data("item-id"), item));
+            const item = this.actor.items.get(li.data("item-id"));
+            await this.actor.updateEmbeddedDocuments("Item", [this._toggleCompleted(li.data("item-id"), item)]);
         });
 
         // Chatable Item
@@ -82,7 +78,7 @@ export class MYZArkSheet extends ActorSheet {
      * @param {Event} event   The originating click event
      * @private
      */
-    async _onItemCreate(event) {
+    async _onAddProject(event) {
         event.preventDefault();
         const header = event.currentTarget;
         const type = header.dataset.type;
@@ -94,7 +90,7 @@ export class MYZArkSheet extends ActorSheet {
             data: data,
         };
         delete itemData.data["type"];
-        return this.actor.createOwnedItem(itemData);
+        return this.actor.createEmbeddedDocuments("Item", [itemData]);
         //await this.actor.createOwnedItem(itemData).then((_i) => {
         //    if (_i._id) {
         //        const item = this.actor.getOwnedItem(_i._id);
@@ -106,7 +102,7 @@ export class MYZArkSheet extends ActorSheet {
     _onItemSendToChat(event) {
         event.preventDefault();
         const itemId = $(event.currentTarget).data("item-id");
-        const item = this.actor.getOwnedItem(itemId);
+        const item = this.actor.items.get(itemId);
         if (!item) return;
         item.sendToChat();
     }

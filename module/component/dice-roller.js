@@ -18,7 +18,7 @@ export class DiceRoller {
      * @param  {number} modifier   Increase/decrease amount of skill dice
      * @param  {number} [damage=0] Weapon damage
      */
-    roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, artifacts = null, modifier = 0, damage = null } = {}) {
+    async roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, artifacts = null, modifier = 0, damage = null } = {}) {
         this.dices = [];
         this.diceWithResult = [];
         this.diceWithNoResult = [];
@@ -34,7 +34,7 @@ export class DiceRoller {
 
         let rollFormula = `${base}db + ${Math.abs(computedSkill)}ds + ${gear}dg`;
         let roll = new Roll(rollFormula);
-        roll.evaluate({ async: false });
+        await roll.evaluate({ async: true });
 
         this.parseResults(roll);
 
@@ -54,14 +54,14 @@ export class DiceRoller {
     /**
      * Push the last roll
      */
-    push() {
+    async push() {
         const base = this.diceWithNoResult.filter((d) => d.diceType === "base").length;
         const skill = this.diceWithNoResult.filter((d) => d.diceType === "skill").length;
         const gear = this.diceWithNoResult.filter((d) => d.diceType === "gear").length;
         let rollFormula = `${base}db + ${Math.abs(skill)}ds + ${gear}dg`;
         this.diceWithNoResult = [];
         let roll = new Roll(rollFormula);
-        roll.roll();
+        await roll.evaluate({ async: false });
         this.parseResults(roll);
         this.sendRollToChat(true, roll);
     }

@@ -32,10 +32,11 @@ export class MYZItem extends Item {
         itemData.isAbility = itemData.type === "ability";
         itemData.isProject = itemData.type === "project";
         itemData.isSkill = itemData.type === "skill";
-        itemData.creatureType = this.actor.data.data.creatureType;
+        if (this.parent)
+            itemData.creatureType = this.actor.data.data.creatureType;
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/item.html", itemData);
         const chatData = {
-            user: game.user._id,
+            user: game.user.id,
             rollMode: game.settings.get("core", "rollMode"),
             content: html,
         };
