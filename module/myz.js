@@ -207,7 +207,6 @@ Hooks.once("init", async function () {
     });
 
     Handlebars.registerHelper("ifvalue", function (condition, value) {
-        console.log("IF VALUE", condition, value, condition == value);
         return condition == value;
     });
 

@@ -30,7 +30,8 @@ export class MYZActor extends Actor {
 
         //update armor
         if (actorData.data.creatureType != "robot") {
-            let armor = actorData.items.find((i) => i.type == "armor" && i.data.equipped);
+            //console.warn(actorData.items);
+            let armor = actorData.items._source.find((i) => i.type == "armor" && i.data.equipped);
             if (armor) {
                 actorData.data.armorrating.value = armor.data.rating.value;
             } else {
@@ -38,7 +39,7 @@ export class MYZActor extends Actor {
             }
         } else {
             let chassisArmorTotal = 0;
-            let chassie = actorData.items.forEach((i) => {
+            let chassie = actorData.items._source.forEach((i) => {
                 if (i.type == "chassis" && i.data.equipped) {
                     chassisArmorTotal += parseInt(i.data.armor);
                 }

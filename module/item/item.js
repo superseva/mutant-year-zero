@@ -3,6 +3,17 @@
  * @extends {Item}
  */
 export class MYZItem extends Item {
+
+    async _preCreate(createData, options, userId) {
+        await super._preCreate(createData, options, userId);
+        let _itemImg = '';
+        if (this.data.document.parent && (this.data.type == 'ability' || this.data.type == 'talent')) {
+            _itemImg = `systems/mutant-year-zero/assets/ico/${this.data.type}_${this.data.document.parent.data.data.creatureType}.svg`;
+        } else {
+            _itemImg = `systems/mutant-year-zero/assets/ico/${this.data.type}.svg`;
+        }
+        this.data.update({ img: _itemImg });
+    }
     /**
      * Augment the basic Item data model with additional dynamic data.
      */
