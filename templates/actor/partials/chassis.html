@@ -7,19 +7,19 @@
 <ol class="box-list chassis {{data.type}}">
     {{#each chassis as |chassis key|}}
 
-    <li class="box-item chassis felxrow editable-item {{#if (ifvalue chassis.data.equipped false)}}chassis-unequipped{{/if}}" data-item-id="{{chassis._id}}">
+    <li class="box-item chassis felxrow editable-item" data-item-id="{{chassis._id}}">
         <div class="chasis-details">
             <div class="flex column">
-                <label class="item-name" style="margin-bottom:2px;{{#if (ifvalue chassis.data.equipped false)}}text-decoration: line-through;{{/if}}"><strong>{{chassis.name}}</strong></label>
+                <label class="item-name" style="margin-bottom:2px;"><strong>{{chassis.name}}</strong></label>
                 <div class="chasis flex row space-between" style="font-size: 12px; margin-bottom:2px;">
                     <label class="chassis-name">{{localize (toUpperCase (concat "MYZ." chassis.data.location))}}</label>
                 </div>
                 <span class="chassis-name">
-                    <label style="font-size:12px; {{#if (ifvalue chassis.data.equipped false)}}text-decoration: line-through;{{/if}}"><strong>Se: {{chassis.data.strength}}&nbsp;&nbsp;St: {{chassis.data.agility}}&nbsp;&nbsp;Pr: {{chassis.data.wits}}&nbsp;&nbsp;Ne: {{chassis.data.empathy}}</strong></label>
+                    <label style="font-size:12px;"><strong>Se: {{chassis.data.strength}}&nbsp;&nbsp;St: {{chassis.data.agility}}&nbsp;&nbsp;Pr: {{chassis.data.wits}}&nbsp;&nbsp;Ne: {{chassis.data.empathy}}</strong></label>
                 </span>
             </div>
             <div class="chassis-armor">
-                <strong style="{{#if (ifvalue chassis.data.equipped false)}}text-decoration: line-through;{{/if}}">{{chassis.data.armor}}</strong>
+                <strong>{{chassis.data.armor}}</strong>
             </div>
         </div>
     </li>
