@@ -5,7 +5,7 @@
     </span>-->
 </div>
 <ol class="box-list chassis {{data.type}}">
-    {{#each actor.chassis as |chassis key|}}
+    {{#each chassis as |chassis key|}}
     {{#if (ifvalue chassis.data.equipped true)}}
     <li class="box-item chassis felxrow editable-item" data-item-id="{{chassis._id}}">
         <div class="chasis-details">

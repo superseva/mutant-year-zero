@@ -3,38 +3,30 @@
  * @extends {Item}
  */
 export class MYZItem extends Item {
+
+    async _preCreate(createData, options, userId) {
+        await super._preCreate(createData, options, userId);
+        let _itemImg = '';
+        if (this.data.document.parent && (this.data.type == 'ability' || this.data.type == 'talent')) {
+            _itemImg = `systems/mutant-year-zero/assets/ico/${this.data.type}_${this.data.document.parent.data.data.creatureType}.svg`;
+        } else {
+            _itemImg = `systems/mutant-year-zero/assets/ico/${this.data.type}.svg`;
+        }
+        this.data.update({ img: _itemImg });
+    }
     /**
      * Augment the basic Item data model with additional dynamic data.
      */
     prepareData() {
         super.prepareData();
-
         // Get the Item's data
         const itemData = this.data;
-        const actorData = this.actor ? this.actor.data : {};
+        //const actorData = this.actor ? this.actor.data : {};
         const data = itemData.data;
         data.itemType = itemData.type;
         data.default_attributes = CONFIG.MYZ.attributes;
     }
 
-    /**
-     * Handle clickable rolls.
-     * @param {Event} event   The originating click event
-     * @private
-     */
-    /*async roll() {
-        const token = this.actor.token;
-        const item = this.data;
-        const actorData = this.actor ? this.actor.data.data : {};
-        const itemData = item.data;
-
-        let roll = new Roll('d20+@abilities.str.mod', actorData);
-        let label = `Rolling ${item.name}`;
-        roll.roll().toMessage({
-            speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-            flavor: label
-        });
-    }*/
 
     async sendToChat() {
         const itemData = duplicate(this.data);
@@ -51,14 +43,15 @@ export class MYZItem extends Item {
         itemData.isAbility = itemData.type === "ability";
         itemData.isProject = itemData.type === "project";
         itemData.isSkill = itemData.type === "skill";
-        itemData.creatureType = this.actor.data.data.creatureType;
+        if (this.parent)
+            itemData.creatureType = this.actor.data.data.creatureType;
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/item.html", itemData);
         const chatData = {
-            user: game.user._id,
+            user: game.user.id,
             rollMode: game.settings.get("core", "rollMode"),
             content: html,
         };
-        if (["gmroll", "blindroll"].includes(chatData.rollMode)) {            
+        if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
             chatData.whisper = ChatMessage.getWhisperRecipients("GM");
         } else if (chatData.rollMode === "selfroll") {
             chatData.whisper = [game.user];

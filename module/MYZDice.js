@@ -7,12 +7,12 @@ export class MYZDieBase extends Die {
     /* -------------------------------------------- */
 
     /** @override */
-    static DENOMINATION = "b";    
+    static DENOMINATION = "b";
 
     /* -------------------------------------------- */
 
     /** @override */
-    static getResultLabel(result) {
+    getResultLabel(result) {
         return {
             1: '<img src="systems/mutant-year-zero/ui/dice/b1.png" />',
             2: '<img src="systems/mutant-year-zero/ui/dice/b2.png" />',
@@ -20,7 +20,7 @@ export class MYZDieBase extends Die {
             4: '<img src="systems/mutant-year-zero/ui/dice/b4.png" />',
             5: '<img src="systems/mutant-year-zero/ui/dice/b5.png" />',
             6: '<img src="systems/mutant-year-zero/ui/dice/b6.png" />',
-        }[result];
+        }[result.result];
     }
 }
 
@@ -32,12 +32,12 @@ export class MYZDieSkill extends Die {
     /* -------------------------------------------- */
 
     /** @override */
-    static DENOMINATION = "s";    
+    static DENOMINATION = "s";
 
     /* -------------------------------------------- */
 
     /** @override */
-    static getResultLabel(result) {
+    getResultLabel(result) {
         return {
             1: '<img src="systems/mutant-year-zero/ui/dice/s1.png" />',
             2: '<img src="systems/mutant-year-zero/ui/dice/s2.png" />',
@@ -45,7 +45,7 @@ export class MYZDieSkill extends Die {
             4: '<img src="systems/mutant-year-zero/ui/dice/s4.png" />',
             5: '<img src="systems/mutant-year-zero/ui/dice/s5.png" />',
             6: '<img src="systems/mutant-year-zero/ui/dice/s6.png" />',
-        }[result];
+        }[result.result];
     }
 }
 
@@ -57,12 +57,12 @@ export class MYZDieGear extends Die {
     /* -------------------------------------------- */
 
     /** @override */
-    static DENOMINATION = "g";    
+    static DENOMINATION = "g";
 
     /* -------------------------------------------- */
 
     /** @override */
-    static getResultLabel(result) {
+    getResultLabel(result) {
         return {
             1: '<img src="systems/mutant-year-zero/ui/dice/g1.png" />',
             2: '<img src="systems/mutant-year-zero/ui/dice/g2.png" />',
@@ -70,6 +70,6 @@ export class MYZDieGear extends Die {
             4: '<img src="systems/mutant-year-zero/ui/dice/g4.png" />',
             5: '<img src="systems/mutant-year-zero/ui/dice/g5.png" />',
             6: '<img src="systems/mutant-year-zero/ui/dice/g6.png" />',
-        }[result];
+        }[result.result];
     }
 }

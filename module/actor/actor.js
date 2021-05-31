@@ -30,7 +30,8 @@ export class MYZActor extends Actor {
 
         //update armor
         if (actorData.data.creatureType != "robot") {
-            let armor = actorData.items.find((i) => i.type == "armor" && i.data.equipped);
+            //console.warn(actorData.items);
+            let armor = actorData.items._source.find((i) => i.type == "armor" && i.data.equipped);
             if (armor) {
                 actorData.data.armorrating.value = armor.data.rating.value;
             } else {
@@ -38,7 +39,7 @@ export class MYZActor extends Actor {
             }
         } else {
             let chassisArmorTotal = 0;
-            let chassie = actorData.items.forEach((i) => {
+            let chassie = actorData.items._source.forEach((i) => {
                 if (i.type == "chassis" && i.data.equipped) {
                     chassisArmorTotal += parseInt(i.data.armor);
                 }
@@ -51,13 +52,11 @@ export class MYZActor extends Actor {
         data.encumbranceMax = parseInt(data.attributes.strength.max) * 2;
         let _totalWeight = 0;
         // add items
-        this.data.items.forEach((i) => {
-            if (i.data.weight) {
-                let _q = parseInt(i.data.quantity);
-                let _w = Number(i.data.weight);
-                _totalWeight += _w * _q;
-            }
-        });
+        let weightedItems = this.data.items.filter(_itm => _itm.data.data.weight > 0);
+        var itemsWeight = weightedItems.reduce(function (accumulator, i) {
+            return accumulator + (parseInt(i.data.data.quantity) * Number(i.data.data.weight));
+        }, 0);
+        _totalWeight += Number(itemsWeight);
         //add grub, water, booze and bullets
         try {
             _totalWeight += parseInt(data.resources.grub.value) / 4;

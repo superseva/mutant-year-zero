@@ -2,6 +2,10 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v1.1
+Switching to Foundry 0.8.6
+
+
 ## v1.0
 !!! Last 0.7x update !!!
 You can skip this update. Use it if you need one of these:

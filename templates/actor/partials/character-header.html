@@ -1,18 +1,12 @@
 <div class="actor-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" />
     <div class="header-fields">
         <div class="row1 align-center">
             <div>
-                <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+                <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="Name" /></h1>
             </div>
             <div class="flex row">
-                <input
-                    class="nolabel"
-                    name="data.role"
-                    type="text"
-                    value="{{data.role}}"
-                    placeholder="{{localize (toUpperCase (concat 'MYZ.ROLE_FOR_' data.creatureType))}}"
-                />
+                <input class="nolabel" name="data.role" type="text" value="{{data.role}}" placeholder="{{localize (toUpperCase (concat 'MYZ.ROLE_FOR_' data.creatureType))}}" />
             </div>
             <div class="flex row space-between">
                 <label style="align-self: center" for="data.xp.value">{{localize "MYZ.XP"}}:</label>
@@ -21,23 +15,11 @@
         </div>
         <div class="row2 align-center">
             <div>
-                <input
-                    class="nolabel"
-                    name="data.rank"
-                    type="text"
-                    value="{{data.rank}}"
-                    placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_'
-                data.creatureType))}}"
-                />
+                <input class="nolabel" name="data.rank" type="text" value="{{data.rank}}" placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_'
+                data.creatureType))}}" />
             </div>
             <div>
-                <input
-                    class="nolabel"
-                    name="data.specificType"
-                    type="text"
-                    value="{{data.specificType}}"
-                    placeholder="{{localize (toUpperCase (concat 'MYZ.SPECIFIC_TYPE_FOR_' data.creatureType))}}"
-                />
+                <input class="nolabel" name="data.specificType" type="text" value="{{data.specificType}}" placeholder="{{localize (toUpperCase (concat 'MYZ.SPECIFIC_TYPE_FOR_' data.creatureType))}}" />
             </div>
             <div class="flex row space-between">
                 <label style="align-self: center" for="data.age">{{localize "MYZ.AGE"}}:</label>

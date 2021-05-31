@@ -27,7 +27,8 @@ export class MYZItemSheet extends ItemSheet {
 
     /** @override */
     getData() {
-        const data = super.getData();
+        const superData = super.getData();
+        const data = superData.data;
         return data;
     }
 
@@ -52,5 +53,22 @@ export class MYZItemSheet extends ItemSheet {
         if (!this.options.editable) return;
 
         // Roll handlers, click handlers, etc. would go here.
+    }
+
+
+
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+        return [{
+            label: "",
+            class: "header-chat-button",
+            icon: "fas fa-comment",
+            onclick: ev => this._onChatButton(ev)
+        }].concat(buttons);
+
+    }
+
+    _onChatButton(ev) {
+        console.log(this.object.sendToChat());
     }
 }

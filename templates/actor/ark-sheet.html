@@ -1,9 +1,9 @@
 <form class="{{cssClass}} flexcol {{data.type}}" autocomplete="off">
     <div class="ark-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" />
         <div class="header-fields">
             <div>
-                <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+                <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="Name" /></h1>
                 <div class="flexrow align-center">
                     <label for="data.ark_type">{{localize 'MYZ.TYPE'}}:&nbsp;</label>
                     <input type="text" class="input-underline" name="data.ark_type" value="{{data.ark_type}}" />
@@ -65,7 +65,7 @@
                     <div style="flex: 1; text-align: center">{{localize 'MYZ.COMPLETED'}}</div>
                     <a style="text-align: right; padding-right: 5px" class="item-create" data-type="project">+ Add</a>
                 </li>
-                {{#each actor.projects as |item id|}}
+                {{#each projects as |item id|}}
                 <li class="box-item align-center project" data-item-id="{{item._id}}" style="padding-left: 5px">
                     <div class="flexrow margin-bottom">
                         <label style="flex: 2"><strong>{{item.name}}</strong></label>
@@ -96,105 +96,33 @@
         <div class="tab" data-group="primary" data-tab="bosses">
             <div class="grid">
                 <div class="boss-box">
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom boss-name"
-                        name="data.bosses.boss1.name"
-                        value="{{data.bosses.boss1.name}}"
-                        placeholder="{{localize 'MYZ.BOSS_NAME'}}"
-                    />
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom"
-                        name="data.bosses.boss1.type"
-                        value="{{data.bosses.boss1.type}}"
-                        placeholder="{{localize 'MYZ.BOSS_TYPE'}}"
-                    />
+                    <input type="text" class="blank input-underline margin-bottom boss-name" name="data.bosses.boss1.name" value="{{data.bosses.boss1.name}}" placeholder="{{localize 'MYZ.BOSS_NAME'}}" />
+                    <input type="text" class="blank input-underline margin-bottom" name="data.bosses.boss1.type" value="{{data.bosses.boss1.type}}" placeholder="{{localize 'MYZ.BOSS_TYPE'}}" />
                     <textarea name="data.bosses.boss1.description" placeholder="{{localize 'MYZ.DESCRIPTION'}}">{{data.bosses.boss1.description}}</textarea>
                 </div>
                 <div class="boss-box">
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom boss-name"
-                        name="data.bosses.boss2.name"
-                        value="{{data.bosses.boss2.name}}"
-                        placeholder="{{localize 'MYZ.BOSS_NAME'}}"
-                    />
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom"
-                        name="data.bosses.boss2.type"
-                        value="{{data.bosses.boss2.type}}"
-                        placeholder="{{localize 'MYZ.BOSS_TYPE'}}"
-                    />
+                    <input type="text" class="blank input-underline margin-bottom boss-name" name="data.bosses.boss2.name" value="{{data.bosses.boss2.name}}" placeholder="{{localize 'MYZ.BOSS_NAME'}}" />
+                    <input type="text" class="blank input-underline margin-bottom" name="data.bosses.boss2.type" value="{{data.bosses.boss2.type}}" placeholder="{{localize 'MYZ.BOSS_TYPE'}}" />
                     <textarea name="data.bosses.boss2.description" placeholder="{{localize 'MYZ.DESCRIPTION'}}">{{data.bosses.boss2.description}}</textarea>
                 </div>
                 <div class="boss-box">
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom boss-name"
-                        name="data.bosses.boss3.name"
-                        value="{{data.bosses.boss3.name}}"
-                        placeholder="{{localize 'MYZ.BOSS_NAME'}}"
-                    />
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom"
-                        name="data.bosses.boss3.type"
-                        value="{{data.bosses.boss3.type}}"
-                        placeholder="{{localize 'MYZ.BOSS_TYPE'}}"
-                    />
+                    <input type="text" class="blank input-underline margin-bottom boss-name" name="data.bosses.boss3.name" value="{{data.bosses.boss3.name}}" placeholder="{{localize 'MYZ.BOSS_NAME'}}" />
+                    <input type="text" class="blank input-underline margin-bottom" name="data.bosses.boss3.type" value="{{data.bosses.boss3.type}}" placeholder="{{localize 'MYZ.BOSS_TYPE'}}" />
                     <textarea name="data.bosses.boss3.description" placeholder="{{localize 'MYZ.DESCRIPTION'}}">{{data.bosses.boss3.description}}</textarea>
                 </div>
                 <div class="boss-box">
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom boss-name"
-                        name="data.bosses.boss4.name"
-                        value="{{data.bosses.boss4.name}}"
-                        placeholder="{{localize 'MYZ.BOSS_NAME'}}"
-                    />
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom"
-                        name="data.bosses.boss4.type"
-                        value="{{data.bosses.boss4.type}}"
-                        placeholder="{{localize 'MYZ.BOSS_TYPE'}}"
-                    />
+                    <input type="text" class="blank input-underline margin-bottom boss-name" name="data.bosses.boss4.name" value="{{data.bosses.boss4.name}}" placeholder="{{localize 'MYZ.BOSS_NAME'}}" />
+                    <input type="text" class="blank input-underline margin-bottom" name="data.bosses.boss4.type" value="{{data.bosses.boss4.type}}" placeholder="{{localize 'MYZ.BOSS_TYPE'}}" />
                     <textarea name="data.bosses.boss4.description" placeholder="{{localize 'MYZ.DESCRIPTION'}}">{{data.bosses.boss4.description}}</textarea>
                 </div>
                 <div class="boss-box">
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom boss-name"
-                        name="data.bosses.boss5.name"
-                        value="{{data.bosses.boss5.name}}"
-                        placeholder="{{localize 'MYZ.BOSS_NAME'}}"
-                    />
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom"
-                        name="data.bosses.boss5.type"
-                        value="{{data.bosses.boss5.type}}"
-                        placeholder="{{localize 'MYZ.BOSS_TYPE'}}"
-                    />
+                    <input type="text" class="blank input-underline margin-bottom boss-name" name="data.bosses.boss5.name" value="{{data.bosses.boss5.name}}" placeholder="{{localize 'MYZ.BOSS_NAME'}}" />
+                    <input type="text" class="blank input-underline margin-bottom" name="data.bosses.boss5.type" value="{{data.bosses.boss5.type}}" placeholder="{{localize 'MYZ.BOSS_TYPE'}}" />
                     <textarea name="data.bosses.boss5.description" placeholder="{{localize 'MYZ.DESCRIPTION'}}">{{data.bosses.boss5.description}}</textarea>
                 </div>
                 <div class="boss-box">
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom boss-name"
-                        name="data.bosses.boss6.name"
-                        value="{{data.bosses.boss6.name}}"
-                        placeholder="{{localize 'MYZ.BOSS_NAME'}}"
-                    />
-                    <input
-                        type="text"
-                        class="blank input-underline margin-bottom"
-                        name="data.bosses.boss6.type"
-                        value="{{data.bosses.boss6.type}}"
-                        placeholder="{{localize 'MYZ.BOSS_TYPE'}}"
-                    />
+                    <input type="text" class="blank input-underline margin-bottom boss-name" name="data.bosses.boss6.name" value="{{data.bosses.boss6.name}}" placeholder="{{localize 'MYZ.BOSS_NAME'}}" />
+                    <input type="text" class="blank input-underline margin-bottom" name="data.bosses.boss6.type" value="{{data.bosses.boss6.type}}" placeholder="{{localize 'MYZ.BOSS_TYPE'}}" />
                     <textarea name="data.bosses.boss6.description" placeholder="{{localize 'MYZ.DESCRIPTION'}}">{{data.bosses.boss6.description}}</textarea>
                 </div>
             </div>

@@ -14,11 +14,11 @@
     {{/if}}
 
     <div class="actor-header {{data.type}}">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" />
         <div class="header-fields">
             <div class="npc-name-rank">
                 <h1 class="charname npc-name" style="margin-top: 0px; margin-bottom: 10px">
-                    <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+                    <input name="name" type="text" value="{{name}}" placeholder="Name" />
                 </h1>
                 <div class="flex row npc-rank align-center">
                     <label for="data.rank">{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' data.creatureType))}}:&nbsp;</label>
@@ -104,11 +104,11 @@
             <div class="grid grid-2col">
                 <div>{{!-- Skills --}} {{> systems/mutant-year-zero/templates/actor/partials/skills.html fixedHeight='fixed-height'}}</div>
                 <div>
-                    {{!-- Abilities --}} {{> systems/mutant-year-zero/templates/actor/partials/abilities.html sourceType='ability' sourceList=actor.abilities
+                    {{!-- Abilities --}} {{> systems/mutant-year-zero/templates/actor/partials/abilities.html sourceType='ability' sourceList=abilities
                     sourceLabel='MYZ.ABILITIES' fixedHeight='fixed-height'}}
                 </div>
                 <div>
-                    {{!-- Talents --}} {{> systems/mutant-year-zero/templates/actor/partials/talents.html sourceType='talent' sourceList=actor.talents
+                    {{!-- Talents --}} {{> systems/mutant-year-zero/templates/actor/partials/talents.html sourceType='talent' sourceList=talents
                     sourceLabel='MYZ.TALENTS' fixedHeight='fixed-height'}}
                 </div>
                 <div>
@@ -131,7 +131,7 @@
 
         {{!-- Info Tab --}}
         <div class="tab" data-group="primary" data-tab="info">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor content=data.description target="data.description" button=true owner=owner editable=true}}
         </div>
     </div>
 </form>
