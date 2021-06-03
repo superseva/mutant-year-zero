@@ -293,14 +293,14 @@ export class MYZActorSheet extends ActorSheet {
         new ContextMenu(html.find(".editable-item"), null, menu_items);
 
         // Drag events for macros.
-        if (this.actor.isOwner) {
+        /*if (this.actor.isOwner) {
             let handler = (ev) => this._onDragItemStart(ev);
             html.find("li.box-item").each((i, li) => {
                 if (li.classList.contains("header")) return;
                 li.setAttribute("draggable", true);
                 li.addEventListener("dragstart", handler, false);
             });
-        }
+        }*/
     }
 
     async _updateNPCCreatureType(event) {
@@ -313,8 +313,8 @@ export class MYZActorSheet extends ActorSheet {
         const item = this.actor.items.get(_itemId);
         item.sheet.render(true);
     }
-    _deleteOwnedItemById(_itemId) {
-        this.actor.deleteEmbeddedDocuments("Item", [_itemId]);
+    async _deleteOwnedItemById(_itemId) {
+        await this.actor.deleteEmbeddedDocuments("Item", [_itemId]);
     }
 
     async _onChangeSkillValue(event) {
