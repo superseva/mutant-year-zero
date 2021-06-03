@@ -2,9 +2,11 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v1.2
+Fixed the bug where weapon roll wouldn't include a skill value
+
 ## v1.1
 Switching to Foundry 0.8.6
-
 
 ## v1.0
 !!! Last 0.7x update !!!
