@@ -197,20 +197,22 @@ export class MYZActorSheet extends ActorSheet {
 
             if (weapon.data.data.category === "melee") {
                 if (this.actor.data.data.creatureType != "robot") {
-                    skill = this.actor.data.items.find((i) => i.data.skillKey == "FIGHT");
+                    skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey == "FIGHT");
                 } else {
-                    skill = this.actor.data.items.find((i) => i.data.skillKey === "ASSAULT");
+                    skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey === "ASSAULT");
                 }
                 attribute = this.actor.data.data.attributes.strength;
             } else {
                 attribute = this.actor.data.data.attributes.agility;
-                skill = this.actor.data.items.find((i) => i.data.skillKey == "SHOOT");
+                skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey == "SHOOT");
             }
             if (!skill) {
                 ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
                 skill = {
                     data: {
-                        value: 0
+                        data: {
+                            value: 0
+                        }
                     }
                 };
             }
@@ -219,7 +221,7 @@ export class MYZActorSheet extends ActorSheet {
                 rollName: testName,
                 diceRoller: this.diceRoller,
                 baseDefault: attribute.value,
-                skillDefault: skill.data.value,
+                skillDefault: skill.data.data.value,
                 gearDefault: weapon.data.data.bonus.value,
                 modifierDefault: weapon.data.data.skillBonus,
                 artifactDefault: weapon.data.data.artifactBonus || 0,
