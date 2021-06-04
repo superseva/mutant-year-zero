@@ -2,6 +2,9 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v1.3
+Fixed the bug where item image will not respect the customly assigned image
+
 ## v1.2
 Fixed the bug where weapon roll wouldn't include a skill value
 
