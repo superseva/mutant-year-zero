@@ -3,7 +3,7 @@
 Unofficial Mutant Year Zero system for FoundryVTT
 
 ## v1.4
-Fixing small bugs and updates
+Fixing small bugs and updates. Updating core-skills with the rest of the specialized skills
 
 ## v1.3
 Fixed the bug where item image will not respect the customly assigned image
