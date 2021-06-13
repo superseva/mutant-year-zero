@@ -2,6 +2,9 @@
 
 Unofficial Mutant Year Zero system for FoundryVTT
 
+## v1.4
+Fixing small bugs and updates
+
 ## v1.3
 Fixed the bug where item image will not respect the customly assigned image
 
