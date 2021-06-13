@@ -3,7 +3,9 @@
 Unofficial Mutant Year Zero system for FoundryVTT
 
 ## v1.4
-Fixing small bugs and updates. Updating core-skills with the rest of the specialized skills
+-   Added All Skills to the core-skills pack. Every Mutant, Animal, Robot and Human skill
+-   Added translation for the rest of the skill to lang file
+-   Fixing small bugs and updates.
 
 ## v1.3
 Fixed the bug where item image will not respect the customly assigned image
