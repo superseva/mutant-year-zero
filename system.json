@@ -1,67 +1,67 @@
 {
-    "name": "mutant-year-zero",
-    "title": "Mutant Year Zero",
-    "description": "The Mutant Year Zero system for FoundryVTT!",
-    "version": "1.4",
-    "minimumCoreVersion": "0.8.6",
-    "compatibleCoreVersion": "0.8.6",
-    "templateVersion": 1,
-    "author": "HappySteve",
-    "esmodules": ["module/myz.js"],
-    "styles": ["css/mutant-year-zero.css"],
-    "scripts": [],
-    "packs": [
-        {
-            "name": "core-skills",
-            "label": "Core Skills",
-            "system": "mutant-year-zero",
-            "path": "./packs/core-skills.db",
-            "entity": "Item"
-        },
-        {
-            "name": "myz-macros",
-            "label": "MYZ macors",
-            "system": "mutant-year-zero",
-            "path": "./packs/myz-macros.db",
-            "entity": "Macro"
-        }
-    ],
-    "languages": [
-        {
-            "lang": "en",
-            "name": "English",
-            "path": "lang/en.json"
-        },
-        {
-            "lang": "fr",
-            "name": "French",
-            "path": "lang/fr.json"
-        },
-        {
-            "lang": "pt-br",
-            "name": "Portugues (Brasil)",
-            "path": "lang/pt-br.json"
-        },
-        {
-            "lang": "pt-BR",
-            "name": "Português do Brasil",
-            "path": "lang/pt-br.json"
-        },
-        {
-            "lang": "de",
-            "name": "Deutsch",
-            "path": "lang/de.json"
-        },
-        {
-            "lang": "es",
-            "name": "Spanish",
-            "path": "lang/es.json"
-        }
-    ],
-    "gridDistance": 1,
-    "gridUnits": "m",
-    "url": "https://github.com/superseva/mutant-year-zero",
-    "manifest": "https://raw.githubusercontent.com/superseva/mutant-year-zero/master/system.json",
-    "download": "https://github.com/superseva/mutant-year-zero/releases/download/v1.4/mutant-year-zero.zip",
-    "license": "LICENSE.txt"
+	"name": "mutant-year-zero",
+	"title": "Mutant Year Zero",
+	"description": "The Mutant Year Zero system for FoundryVTT!",
+	"version": "1.5",
+	"minimumCoreVersion": "0.8.6",
+	"compatibleCoreVersion": "0.8.8",
+	"templateVersion": 1,
+	"author": "HappySteve",
+	"esmodules": ["module/myz.js"],
+	"styles": ["css/mutant-year-zero.css"],
+	"scripts": [],
+	"packs": [
+		{
+			"name": "core-skills",
+			"label": "Core Skills",
+			"system": "mutant-year-zero",
+			"path": "./packs/core-skills.db",
+			"entity": "Item"
+		},
+		{
+			"name": "myz-macros",
+			"label": "MYZ macors",
+			"system": "mutant-year-zero",
+			"path": "./packs/myz-macros.db",
+			"entity": "Macro"
+		}
+	],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		},
+		{
+			"lang": "fr",
+			"name": "French",
+			"path": "lang/fr.json"
+		},
+		{
+			"lang": "pt-br",
+			"name": "Portugues (Brasil)",
+			"path": "lang/pt-br.json"
+		},
+		{
+			"lang": "pt-BR",
+			"name": "Português do Brasil",
+			"path": "lang/pt-br.json"
+		},
+		{
+			"lang": "de",
+			"name": "Deutsch",
+			"path": "lang/de.json"
+		},
+		{
+			"lang": "es",
+			"name": "Spanish",
+			"path": "lang/es.json"
+		}
+	],
+	"gridDistance": 1,
+	"gridUnits": "m",
+	"url": "https://github.com/superseva/mutant-year-zero",
+	"manifest": "https://raw.githubusercontent.com/superseva/mutant-year-zero/master/system.json",
+	"download": "https://github.com/superseva/mutant-year-zero/releases/download/v1.4/mutant-year-zero.zip",
+	"license": "LICENSE.txt"
 }
