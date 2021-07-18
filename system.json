@@ -33,6 +33,11 @@
 			"path": "lang/en.json"
 		},
 		{
+			"lang": "se",
+			"name": "Swedish",
+			"path": "lang/se.json"
+		},
+		{
 			"lang": "fr",
 			"name": "French",
 			"path": "lang/fr.json"

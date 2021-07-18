@@ -1,6 +1,6 @@
 # Mutant-Year-Zero
 
-Mutant Year Zero system for FoundryVTT
+The Mutant Year Zero system for FoundryVTT.
 
 ## Character Types:
 
@@ -22,5 +22,5 @@ _For example if you drag an Animal Power to a Robot sheet the ability will be au
 
 Both **_Talents and Secondary Functions_** are represented by an Item called **Talent**.
 
--   You can specify this on the Talent Item Sheet or
+-   You can specify the type of the talent on the Talent Item Sheet or
 -   Talents dragged to a robot sheet or created from a robot sheet will be named 'Secondary Functions'.

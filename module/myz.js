@@ -176,6 +176,19 @@ Hooks.once("init", async function () {
         }
     });
 
+    Handlebars.registerHelper("math", function (lvalue, operator, rvalue, options) {
+        lvalue = parseFloat(lvalue);
+        rvalue = parseFloat(rvalue);
+
+        return {
+            "+": lvalue + rvalue,
+            "-": lvalue - rvalue,
+            "*": lvalue * rvalue,
+            "/": lvalue / rvalue,
+            "%": lvalue % rvalue
+        }[operator];
+    });
+
     Handlebars.registerHelper("trimString3", function (passedString) {
         var theString = passedString.substring(0, 3);
         return new Handlebars.SafeString(theString);

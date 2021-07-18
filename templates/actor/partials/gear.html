@@ -9,11 +9,13 @@
     <li class="box-item gear flex row align-center space-between editable-item" data-item-id="{{gear._id}}">
         <span class="item-name flex row align-center">
             <img class="item-image" src="{{gear.img}}" />
-            <label>{{gear.name}}</label>
+            <label>{{gear.name}} x &nbsp;</label>
+            <input type="number" class="owned-item-value num-value-1rem" value="{{gear.data.quantity}}" data-item-id="{{gear._id}}" data-linked-value="data.quantity">
         </span>
         <span class="item-controls">
             <a class="chatable" data-item-id="{{gear._id}}"><i class="fas fa-comment"></i></a>
-            <label><i class="fas fa-weight-hanging"></i>:{{gear.data.weight}}</label>
+            <label><i class="fas fa-weight-hanging"></i>:{{math gear.data.quantity "*" gear.data.weight}}</label>
+            <!-- <label><i class="fas fa-weight-hanging"></i>:{{gear.data.weight}}</label> -->
         </span>
     </li>
     {{/each}}

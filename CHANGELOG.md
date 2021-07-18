@@ -1,10 +1,15 @@
 # CHANGELOG
 
-Unofficial Mutant Year Zero system for FoundryVTT
+The Mutant Year Zero system for FoundryVTT
 
 ## v1.5
 
 -   Charater sheet header Armor Value styling. Removed text input to avoid confusion. Armor is autocalculated based on the equipped armor item.
+-   Added possibility to change the current Armor Rating and current Weapon Bonus directly from the list of actor's items.
+-   Added Quantity field to the Gear list so you can quickly change it without the need to open/edit item. Calculated weight is also displayed.
+-   Changed some of the inputs to be of numerical type so you can use Mouse Wheel on them to increase/descrease their value.
+-   Added a "Red Style" to the actor's attributes if the current value is lower than the max value. This indicate that they have Trauma on that Atribute.
+-   Added Swedish Language
 
 ## v1.4
 

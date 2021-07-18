@@ -137,11 +137,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   text-align: center;
   padding: 5px;
@@ -149,32 +145,22 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .flex-group-left {
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
   text-align: left;
 }
 
 .flex-group-right {
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
   justify-content: flex-end;
   text-align: right;
 }
 
 .flex-center {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
 }
 
 .flex-between {
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -184,13 +170,11 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .dice-tooltip .dice-rolls .roll.max {
   /* color: #18520b; */
-  -webkit-filter: none;
   filter: none;
 }
 
 .dice-tooltip .dice-rolls .roll.min {
   /* color: #18520b; */
-  -webkit-filter: none;
   filter: none;
 }
 
@@ -229,16 +213,9 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .myz.chat-item .dices-result {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -ms-flex-line-pack: justify;
   align-content: space-between;
 }
 
@@ -254,7 +231,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .myz.chat-item .item-img {
-  background: -o-radial-gradient(closest-side, var(--color-highlight) 0%, transparent 100%);
   background: radial-gradient(closest-side, var(--color-highlight) 0%, transparent 100%);
   border: 0;
   display: block;
@@ -291,22 +267,14 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .mutant-year-zero .row {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
 }
 
 .mutant-year-zero .column {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -316,13 +284,10 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .wrap {
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
 .mutant-year-zero .half {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 50%;
   flex: 0 0 50%;
 }
 
@@ -335,31 +300,22 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .grow {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 .mutant-year-zero .align-center {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
 .mutant-year-zero .align-end {
-  -webkit-box-align: end;
-  -ms-flex-align: end;
   align-items: flex-end;
 }
 
 .mutant-year-zero .space-around {
-  -ms-flex-pack: distribute;
   justify-content: space-around;
 }
 
 .mutant-year-zero .space-between {
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -374,31 +330,17 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .sheet-header,
 .mutant-year-zero .actor-header {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 120px;
   flex: 0 0 120px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
-  -webkit-box-align: start !important;
-  -ms-flex-align: start !important;
   align-items: flex-start !important;
   margin-bottom: 10px;
 }
 
 .mutant-year-zero .sheet-header.npc,
 .mutant-year-zero .actor-header.npc {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 110px;
   flex: 0 0 110px;
 }
 
@@ -409,8 +351,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .sheet-header .profile-img,
 .mutant-year-zero .actor-header .profile-img {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 100px;
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
@@ -418,8 +358,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .sheet-header .header-fields,
 .mutant-year-zero .actor-header .header-fields {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -439,8 +377,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .sheet-tabs {
-  -webkit-box-flex: 0;
-  -ms-flex: 0;
   flex: 0;
   margin-bottom: 5px;
 }
@@ -531,6 +467,15 @@ $font-secondary: 'Roboto', sans-serif;*/
   color: black;
 }
 
+.mutant-year-zero .num-value-1rem {
+  max-width: 1.2em;
+  max-height: 1.2rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: black;
+  padding: 0;
+}
+
 .mutant-year-zero .item-create {
   text-align: right;
 }
@@ -572,22 +517,6 @@ $font-secondary: 'Roboto', sans-serif;*/
   border-bottom: 1px solid;
   margin-bottom: 2px;
   background-color: rgba(0, 0, 0, 0);
-}
-
-.mutant-year-zero ::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.mutant-year-zero ::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.mutant-year-zero :-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.mutant-year-zero ::-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.4);
 }
 
 .mutant-year-zero ::placeholder {
@@ -691,20 +620,10 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-encumbrance {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.7);
   border-top: 0;
@@ -733,28 +652,17 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .npc-name-rank {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
 .mutant-year-zero .npc-name-rank .npc-name {
-  -webkit-box-flex: 2;
-  -ms-flex: 2;
   flex: 2;
 }
 
 .mutant-year-zero .npc-name-rank .npc-rank {
   margin-left: 1em;
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -763,15 +671,8 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .ark-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 160px;
   flex: 0 0 160px;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
 }
 
@@ -799,16 +700,9 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .ark-header .dev-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   margin: 5px;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   border: 1px solid #333333;
 }
@@ -818,12 +712,8 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .ark-header .dev-box .title-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   min-height: 32px;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   background-color: #2e2c2a;
   color: blanchedalmond;
@@ -834,11 +724,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .ark-header .dev-box .resource {
   padding: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -929,17 +815,14 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item.physical .item-name {
-  -ms-flex-preferred-size: 45%;
   flex-basis: 45%;
 }
 
 .mutant-year-zero .box-item.physical .item-controls {
-  -ms-flex-preferred-size: 80px;
   flex-basis: 80px;
 }
 
 .mutant-year-zero .box-item.resource .item-name {
-  -ms-flex-preferred-size: 60%;
   flex-basis: 60%;
 }
 
@@ -970,20 +853,10 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item.chassis .chassis-armor {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   background-image: url("../ui/empty-shield-padded.svg");
   background-size: contain;
@@ -1005,8 +878,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item .item-image {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 24px;
   flex: 0 0 24px;
   width: 24px;
   height: 24px;
@@ -1018,7 +889,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item .item-name {
-  -ms-flex-preferred-size: 70%;
   flex-basis: 70%;
   padding-left: 0.5em;
 }
@@ -1028,13 +898,11 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item .item-values {
-  -ms-flex-preferred-size: 30%;
   flex-basis: 30%;
 }
 
 .mutant-year-zero .box-item .item-controls {
   text-align: right;
-  -ms-flex-preferred-size: 30%;
   flex-basis: 30%;
   padding-right: 0.5em;
 }
@@ -1060,8 +928,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-item #context-menu .context-items {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -1111,7 +977,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .box-list.fixed-height textarea {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 120px;
   border: none;
@@ -1137,3 +1002,4 @@ $font-secondary: 'Roboto', sans-serif;*/
 .mutant-year-zero .item-unequipped {
   color: rgba(0, 0, 0, 0.2);
 }
+/*# sourceMappingURL=mutant-year-zero.css.map */
