@@ -17,7 +17,11 @@
             <a>{{weapon.name}}</a>
         </span>
         <div class="item-values grid grid-3col center">
-            <label class="flex flex-center">{{weapon.data.bonus.value}} / {{weapon.data.bonus.max}}</label>
+            <span>
+                <input type="number" class="owned-item-value num-value-1rem" value="{{weapon.data.bonus.value}}" data-linked-value="data.bonus.value" data-item-id="{{weapon._id}}">
+                <label>/{{weapon.data.bonus.max}}</label>
+            </span>
+            <!-- <label class="flex flex-center">{{weapon.data.bonus.value}} / {{weapon.data.bonus.max}}</label> -->
             <label class="flex flex-center">{{weapon.data.damage}}</label>
             <label class="flex flex-center">{{localize (toUpperCase (concat "MYZ." weapon.data.range))}}</label>
         </div>

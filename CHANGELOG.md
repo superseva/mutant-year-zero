@@ -1,48 +1,68 @@
 # CHANGELOG
 
-Unofficial Mutant Year Zero system for FoundryVTT
+The Mutant Year Zero system for FoundryVTT
+
+## v1.5
+
+-   Charater sheet header Armor Value styling. Removed text input to avoid confusion. Armor is autocalculated based on the equipped armor item.
+-   Added possibility to change the current Armor Rating and current Weapon Bonus directly from the list of actor's items.
+-   Added Quantity field to the Gear list so you can quickly change it without the need to open/edit item. Calculated weight is also displayed.
+-   Changed some of the inputs to be of numerical type so you can use Mouse Wheel on them to increase/descrease their value.
+-   Added a "Red Style" to the actor's attributes if the current value is lower than the max value. This indicate that they have Trauma on that Atribute.
+-   Removed the initial cration of the relationship table from all actors except Mutant Type.
+-   Added Swedish Language
 
 ## v1.4
+
 -   Added All Skills to the core-skills pack. Every Mutant, Animal, Robot and Human skill
 -   Added translation for the rest of the skill to lang file
 -   Fixing small bugs and updates.
 
 ## v1.3
+
 Fixed the bug where item image will not respect the customly assigned image
 
 ## v1.2
+
 Fixed the bug where weapon roll wouldn't include a skill value
 
 ## v1.1
+
 Switching to Foundry 0.8.6
 
 ## v1.0
+
 !!! Last 0.7x update !!!
 You can skip this update. Use it if you need one of these:
+
 -   Added INTIMIDATE skill
 -   Updated FR language transl.
 -   Patched for the Official Book
 
 ## v0.99
+
 -   Fixed BUG with translation string when pushing attribute
 -   Added translated name to the skill roll in a chat message.
 -   Allows NPC to roll weapon without having fight/shoot skill
 
 ## v0.98
+
 -   Skills on character sheets now use translation key to display their name in selected language.
 -   Language JSONs are sorted alphabeticaly for easier update.
 -   Attribute values are defaulted to 0 on character creation (previously 4).
 
-
 ## v0.97
+
 -   Skills can now also be posted to chat due to restyling of right click context menu.
 -   Showing weapon bonus in actor's wepon list.
 -   Fixed a bug for custom chat roll commands. (example: /r 2dbcs6+2dscs6+2dgcs6)
 
 ## v0.96
+
 -   Added French translation.
 
 ## v0.95
+
 -   Added "skillKey" property to skills that is important for future updates.
 -   Added "Know Nature" property for NPCs
 -   Added "Other Requirements" to the Ark Project

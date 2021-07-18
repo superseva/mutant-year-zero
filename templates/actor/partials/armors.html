@@ -1,6 +1,6 @@
 <div class="box-item physical header flex row align-center space-between {{data.creatureType}}">
     <label class="item-name">{{localize "MYZ.ARMOR"}}</label>
-    <div class="item-values grid center">
+    <div class="item-values flexrow center">
         <label>{{localize 'MYZ.ARMOR_RATING'}}</label>
         <span>{{localize 'MYZ.ARMOR_TYPE'}}</span>
     </div>
@@ -15,9 +15,12 @@
             <img class="item-image" src="{{armor.img}}" />
             <a class="rollable armor-item-roll">{{armor.name}}</a>
         </span>
-        <div class="item-values grid center">
-            <label>{{armor.data.rating.value}}/{{armor.data.rating.max}}</label>
-            <label>{{localize (toUpperCase (concat "MYZ." armor.data.armorType))}}</label>
+        <div class="item-values flexrow center">
+            <span>
+                <input type="number" class="owned-item-value num-value-1rem" value="{{armor.data.rating.value}}" data-linked-value="data.rating.value" data-item-id="{{armor._id}}">
+                <label>/{{armor.data.rating.max}}</label>
+            </span>
+            <label style="align-self: center;">{{localize (toUpperCase (concat "MYZ." armor.data.armorType))}}</label>
         </div>
         <div class="item-controls">
             <a class="chatable" data-item-id="{{armor._id}}"><i class="fas fa-comment"></i></a>

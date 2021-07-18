@@ -166,6 +166,9 @@ export class MYZActorSheet extends ActorSheet {
             await this.actor.updateEmbeddedDocuments("Item", [this._toggleBroken(li.data("item-id"), item)]);
         });
 
+        /* CHANGE ITEM VALUE */
+        html.find(".owned-item-value").change(this._onChangeOwnedItemValue.bind(this));
+
         /* -------------------------------------------- */
         /* LISTEN CLICKS
         /* -------------------------------------------- */
@@ -328,7 +331,17 @@ export class MYZActorSheet extends ActorSheet {
             };
 
             await this.actor.updateEmbeddedDocuments("Item", [update]);
-            //await this.actor.updateEmbeddedEntity("OwnedItem", update);
+        }
+    }
+
+    async _onChangeOwnedItemValue(event) {
+        event.preventDefault();
+        const itemId = $(event.currentTarget).data("item-id");
+        let _item = this.actor.items.find((element) => element.id == itemId);
+        let valueToChange = $(event.currentTarget).data("linked-value").toString();
+        let newValue = $(event.currentTarget).val();
+        if (_item) {
+            await _item.update({ [valueToChange]: newValue });
         }
     }
 

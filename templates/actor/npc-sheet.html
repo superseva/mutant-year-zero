@@ -35,14 +35,14 @@
                     <div class="box-item armor-box flex row space-between align-center armor margin-bottom  {{data.creatureType}}">
                         <label class="item-name armor-roll rollable" for="data.armorrating.value">{{localize 'MYZ.ARMOR'}}</label>
                         <span class="right-element">
-                            <input class="short-input" type="text" name="data.armorrating.value" value="{{data.armorrating.value}}" />
+                            <div class="armor-roll" style="cursor:pointer; padding: 5px 0 0 0; text-align: center; width:22px; min-height:26px; background-image: url(systems/mutant-year-zero/ui/grey-shield.png); background-position: center; background-repeat: no-repeat;">{{data.armorrating.value}}</div>
                         </span>
                     </div>
 
                     <div class="box-item header flex row space-between align-center {{data.creatureType}}">
                         <label class="item-name" for="data.resource_points.value">{{localize (toUpperCase (concat "MYZ.RESOURCE_" "POINTS_" data.creatureType ))}}</label>
                         <span class="right-element">
-                            <input class="short-input" type="text" name="data.resource_points.value" value="{{data.resource_points.value}}" />
+                            <input class="short-input" type="number" name="data.resource_points.value" value="{{data.resource_points.value}}" />
                         </span>
                     </div>
                 </div>
@@ -59,33 +59,33 @@
             <div class="flexcol flex-group-center">
                 <label class="roll-attribute rollable" data-attribute="strength" style="margin-bottom: 5px"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "STRENGTH_" data.creatureType))}}</strong></label>
                 <span>
-                    <input type="text" name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
+                    <input type="number" name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
-                    <input type="text" name="data.attributes.strength.max" value="{{data.attributes.strength.max}}" class="short-input" />
+                    <input type="number" name="data.attributes.strength.max" value="{{data.attributes.strength.max}}" class="short-input" />
                 </span>
             </div>
             <div class="flexcol flex-group-center">
                 <label class="roll-attribute rollable" data-attribute="agility" style="margin-bottom: 5px"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "AGILITY_" data.creatureType))}}</strong></label>
                 <span>
-                    <input type="text" name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
+                    <input type="number" name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
-                    <input type="text" name="data.attributes.agility.max" value="{{data.attributes.agility.max}}" class="short-input" />
+                    <input type="number" name="data.attributes.agility.max" value="{{data.attributes.agility.max}}" class="short-input" />
                 </span>
             </div>
             <div class="flexcol flex-group-center">
                 <label class="roll-attribute rollable" data-attribute="wits" style="margin-bottom: 5px"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "WITS_" data.creatureType))}}</strong></label>
                 <span>
-                    <input type="text" name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
+                    <input type="number" name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
-                    <input type="text" name="data.attributes.wits.max" value="{{data.attributes.wits.max}}" class="short-input" />
+                    <input type="number" name="data.attributes.wits.max" value="{{data.attributes.wits.max}}" class="short-input" />
                 </span>
             </div>
             <div class="flexcol flex-group-center">
                 <label class="roll-attribute rollable" data-attribute="empathy" style="margin-bottom: 5px"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "EMPATHY_" data.creatureType))}}</strong></label>
                 <span>
-                    <input type="text" name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
+                    <input type="number" name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
                     <label>&nbsp;/&nbsp;</label>
-                    <input type="text" name="data.attributes.empathy.max" value="{{data.attributes.empathy.max}}" class="short-input" />
+                    <input type="number" name="data.attributes.empathy.max" value="{{data.attributes.empathy.max}}" class="short-input" />
                 </span>
             </div>
         </div>
