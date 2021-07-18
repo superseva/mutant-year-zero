@@ -1,313 +1,317 @@
 {
-    "Actor": {
-        "types": ["mutant", "animal", "robot", "human", "npc", "ark"],
-        "templates": {
-            "base": {
-                "role": "",
-                "specificType": "",
-                "rank": "",
-                "age": "",
-                "resources": {
-                    "grub": {
-                        "value": 0
-                    },
-                    "water": {
-                        "value": 0
-                    },
-                    "booze": {
-                        "value": 0
-                    },
-                    "bullets": {
-                        "value": 0
-                    }
-                },
-                "appearance": {
-                    "label": "MYZ.APPEARANCE",
-                    "value": ""
-                },
-                "description": "<table style=\"width: 100%; height: 90px;\" border=\"1\">\n<tbody>\n<tr style=\"height: 17px;\">\n<th style=\"width: 395px; height: 17px; text-align: left; vertical-align: middle; background-color: #12807c;\"><span style=\"background-color: #12807c; color: #ecf0f1;\">RELATIONSHIPS</span></th>\n<th style=\"width: 136px; height: 17px; text-align: left; vertical-align: middle; background-color: #12807c;\"><span style=\"background-color: #12807c; color: #ecf0f1;\">BUDDY</span></th>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 395px; height: 17px;\">PC</td>\n<td style=\"width: 136px; height: 17px; background-color: #2dc26b;\"><span style=\"color: #000000;\">-</span></td>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 395px; height: 17px;\">PC</td>\n<td style=\"width: 136px; height: 17px;\">-</td>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 395px; height: 17px;\">PC</td>\n<td style=\"width: 136px; height: 17px;\">-</td>\n</tr>\n<tr style=\"height: 22px;\">\n<td style=\"width: 395px; height: 22px;\">PC</td>\n<td style=\"width: 136px; height: 22px;\">-</td>\n</tr>\n</tbody>\n</table>\n<table style=\"height: 51px; width: 100%;\" border=\"1\">\n<tbody>\n<tr style=\"height: 17px;\">\n<td style=\"width: 534px; height: 17px; background-color: #ecf0f1;\"><strong>I Hate:</strong></td>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 534px; height: 17px; background-color: #ecf0f1;\"><strong>I Need to Protect:</strong></td>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 534px; height: 17px; background-color: #ecf0f1;\"><strong>My Big Dream:</strong></td>\n</tr>\n</tbody>\n</table>\n<p>&nbsp;</p>",
-                "relationships": {
-                    "party": "",
-                    "protect": "",
-                    "hate": "",
-                    "dream": ""
-                },
-                "armorrating": {
-                    "label": "MYZ.ARMOR",
-                    "value": 0
-                },
-                "rot": {
-                    "label": "MYZ.ROT",
-                    "min": 0,
-                    "value": 0
-                },
-                "xp": {
-                    "label": "MYZ.EXPERIENCE",
-                    "value": 0
-                },
-                "crit": {
-                    "label": "MYZ.CRITICAL",
-                    "value": ""
-                },
-                "creatureType": ""
-            },
-            "stats": {
-                "attributes": {
-                    "strength": {
-                        "label": "MYZ.ATTRIBUTE_STRENGTH",
-                        "value": 0,
-                        "min": 0,
-                        "max": 0
-                    },
-                    "agility": {
-                        "label": "MYZ.ATTRIBUTE_AGILITY",
-                        "value": 0,
-                        "min": 0,
-                        "max": 0
-                    },
-                    "wits": {
-                        "label": "MYZ.ATTRIBUTE_WITS",
-                        "value": 0,
-                        "min": 0,
-                        "max": 0
-                    },
-                    "empathy": {
-                        "label": "MYZ.ATTRIBUTE_EMPATHY",
-                        "value": 0,
-                        "min": 0,
-                        "max": 0
-                    }
-                }
-            },
-            "status": {
-                "conditions": {
-                    "starving": {
-                        "label": "MYZ.CONDITION_STARVING",
-                        "value": false
-                    },
-                    "dehydrated": {
-                        "label": "MYZ.CONDITION_DEHYDRATED",
-                        "value": false
-                    },
-                    "sleepless": {
-                        "label": "MYZ.CONDITION_SLEEPLESS",
-                        "value": false
-                    },
-                    "hypothermic": {
-                        "label": "MYZ.CONDITION_HYPOTHERMIC",
-                        "value": false
-                    }
-                }
-            }
-        },
-        "mutant": {
-            "templates": ["base", "stats", "status"],
-            "coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "MANIPULATE", "HEAL"],
-            "resource_points": {
-                "label": "MYZ.MUTATION_POINTS",
-                "value": 0,
-                "max": 10
-            }
-        },
-        "animal": {
-            "templates": ["base", "stats", "status"],
-            "coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "DOMINATE", "HEAL"],
-            "resourcepoints": {
-                "label": "MYZ.FERAL_POINTS",
-                "value": 0,
-                "max": 10
-            }
-        },
-        "robot": {
-            "templates": ["base", "stats", "status"],
-            "coreSkills": ["OVERLOAD", "FORCE", "ASSAULT", "INFILTRATE", "MOVE", "SHOOT", "SCAN", "DATAMINE", "ANALYZE", "QUESTION", "INTERACT", "REPAIR"],
-            "resource_points": {
-                "label": "MYZ.ENERGY_POINTS",
-                "value": 0,
-                "max": 10
-            }
-        },
-        "human": {
-            "templates": ["base", "stats", "status"],
-            "coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "MANIPULATE", "HEAL"],
-            "resource_points": {
-                "label": "MYZ.INFLUENCE_POINTS",
-                "value": 0,
-                "max": 10
-            }
-        },
-        "npc": {
-            "templates": ["base", "stats"],
-            "resource_points": {
-                "label": "MYZ.RESOURCE_POINTS",
-                "value": 0,
-                "max": 10
-            },
-            "knowNature":0,
-            "special": ""
-        },
-        "ark": {
-            "ark_type": "",
-            "coordinates": "",
-            "description": "",
-            "population": "",
-            "water_source": "",
-            "season": "",
-            "dev_levels": {
-                "food": {
-                    "value": 0,
-                    "max": 0
-                },
-                "culture": {
-                    "value": 0,
-                    "max": 0
-                },
-                "technology": {
-                    "value": 0,
-                    "max": 0
-                },
-                "warfare": {
-                    "value": 0,
-                    "max": 0
-                }
-            },
-            "bosses": {
-                "boss1": {
-                    "name": "",
-                    "type": "",
-                    "description": ""
-                },
-                "boss2": {
-                    "name": "",
-                    "type": "",
-                    "description": ""
-                },
-                "boss3": {
-                    "name": "",
-                    "type": "",
-                    "description": ""
-                },
-                "boss4": {
-                    "name": "",
-                    "type": "",
-                    "description": ""
-                },
-                "boss5": {
-                    "name": "",
-                    "type": "",
-                    "description": ""
-                },
-                "boss6": {
-                    "name": "",
-                    "type": "",
-                    "description": ""
-                }
-            }
-        }
-    },
-    "Item": {
-        "types": ["weapon", "armor", "chassis", "skill", "ability", "talent", "gear", "artifact", "critical", "project"],
-        "templates": {
-            "base": {
-                "description": "",
-                "comment": "",
-                "cost": "0"
-            },
-            "physical": {
-                "quantity": 1,
-                "weight": ""
-            },
-            "bonus": {
-                "bonus": {
-                    "value": 0,
-                    "max": 0
-                }
-            },
-            "dev": {
-                "dev_requirement": "",
-                "dev_bonus": ""
-            }
-        },
-        "skill": {
-            "templates": ["base"],
-            "value": 0,
-            "min": 0,
-            "attribute": "",
-            "creatureType": "mutant",
-            "coreSkill": "",
-            "skillKey":""
-        },
-        "ability": {
-            "templates": ["base"],
-            "creatureType": "",
-            "abilityType": "",
-            "effect": "",
-            "roleType": "",
-            "broken": false
-        },
-        "talent": {
-            "templates": ["base"],
-            "effect": "",
-            "roleType": "general",
-            "creatureType": ""
-        },
-        "weapon": {
-            "templates": ["base", "physical", "bonus", "dev"],
-            "damage": 1,
-            "range": "range_arm",
-            "category": "",
-            "artifactBonus": 0,
-            "skillBonus": 0
-        },
-        "armor": {
-            "templates": ["base", "physical", "dev"],
-            "armorType": "armor",
-            "rating": {
-                "value": 1,
-                "max": 1
-            },
-            "equipped": true
-        },
-        "chassis": {
-            "templates": ["base", "physical"],
-            "location": "",
-            "strength": 0,
-            "agility": 0,
-            "wits": 0,
-            "empathy": 0,
-            "modules": 0,
-            "armor": 0,
-            "equipped": true
-        },
-        "gear": {
-            "templates": ["base", "physical"],
-            "requirement": ""
-        },
-        "artifact": {
-            "templates": ["base", "physical", "dev"],
-            "effect": ""
-        },
-        "critical": {
-            "lethal": "",
-            "timeLimit": "",
-            "healingTime": "",
-            "effect": ""
-        },
-        "project": {
-            "comment": "",
-            "skills": "",
-            "work_points": "",
-            "DEV_Requirement": "",
-            "other_requirements":"",
-            "DEV_Bonus": "",
-            "special": "",
-            "completed": false,
-            "value": 0,
-            "food": 0,
-            "culture": 0,
-            "technology": 0,
-            "warfare": 0,
-            "description": ""
-        }
-    }
+	"Actor": {
+		"types": ["mutant", "animal", "robot", "human", "npc", "ark"],
+		"templates": {
+			"base": {
+				"role": "",
+				"specificType": "",
+				"rank": "",
+				"age": "",
+				"resources": {
+					"grub": {
+						"value": 0
+					},
+					"water": {
+						"value": 0
+					},
+					"booze": {
+						"value": 0
+					},
+					"bullets": {
+						"value": 0
+					}
+				},
+				"appearance": {
+					"label": "MYZ.APPEARANCE",
+					"value": ""
+				},
+				"relationships": {
+					"party": "",
+					"protect": "",
+					"hate": "",
+					"dream": ""
+				},
+				"armorrating": {
+					"label": "MYZ.ARMOR",
+					"value": 0
+				},
+				"rot": {
+					"label": "MYZ.ROT",
+					"min": 0,
+					"value": 0
+				},
+				"xp": {
+					"label": "MYZ.EXPERIENCE",
+					"value": 0
+				},
+				"crit": {
+					"label": "MYZ.CRITICAL",
+					"value": ""
+				},
+				"creatureType": ""
+			},
+			"stats": {
+				"attributes": {
+					"strength": {
+						"label": "MYZ.ATTRIBUTE_STRENGTH",
+						"value": 0,
+						"min": 0,
+						"max": 0
+					},
+					"agility": {
+						"label": "MYZ.ATTRIBUTE_AGILITY",
+						"value": 0,
+						"min": 0,
+						"max": 0
+					},
+					"wits": {
+						"label": "MYZ.ATTRIBUTE_WITS",
+						"value": 0,
+						"min": 0,
+						"max": 0
+					},
+					"empathy": {
+						"label": "MYZ.ATTRIBUTE_EMPATHY",
+						"value": 0,
+						"min": 0,
+						"max": 0
+					}
+				}
+			},
+			"status": {
+				"conditions": {
+					"starving": {
+						"label": "MYZ.CONDITION_STARVING",
+						"value": false
+					},
+					"dehydrated": {
+						"label": "MYZ.CONDITION_DEHYDRATED",
+						"value": false
+					},
+					"sleepless": {
+						"label": "MYZ.CONDITION_SLEEPLESS",
+						"value": false
+					},
+					"hypothermic": {
+						"label": "MYZ.CONDITION_HYPOTHERMIC",
+						"value": false
+					}
+				}
+			}
+		},
+		"mutant": {
+			"templates": ["base", "stats", "status"],
+			"description": "<table style=\"width: 100%; height: 90px;\" border=\"1\">\n<tbody>\n<tr style=\"height: 17px;\">\n<th style=\"width: 395px; height: 17px; text-align: left; vertical-align: middle; background-color: #12807c;\"><span style=\"background-color: #12807c; color: #ecf0f1;\">RELATIONSHIPS</span></th>\n<th style=\"width: 136px; height: 17px; text-align: left; vertical-align: middle; background-color: #12807c;\"><span style=\"background-color: #12807c; color: #ecf0f1;\">BUDDY</span></th>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 395px; height: 17px;\">PC</td>\n<td style=\"width: 136px; height: 17px; background-color: #2dc26b;\"><span style=\"color: #000000;\">-</span></td>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 395px; height: 17px;\">PC</td>\n<td style=\"width: 136px; height: 17px;\">-</td>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 395px; height: 17px;\">PC</td>\n<td style=\"width: 136px; height: 17px;\">-</td>\n</tr>\n<tr style=\"height: 22px;\">\n<td style=\"width: 395px; height: 22px;\">PC</td>\n<td style=\"width: 136px; height: 22px;\">-</td>\n</tr>\n</tbody>\n</table>\n<table style=\"height: 51px; width: 100%;\" border=\"1\">\n<tbody>\n<tr style=\"height: 17px;\">\n<td style=\"width: 534px; height: 17px; background-color: #ecf0f1;\"><strong>I Hate:</strong></td>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 534px; height: 17px; background-color: #ecf0f1;\"><strong>I Need to Protect:</strong></td>\n</tr>\n<tr style=\"height: 17px;\">\n<td style=\"width: 534px; height: 17px; background-color: #ecf0f1;\"><strong>My Big Dream:</strong></td>\n</tr>\n</tbody>\n</table>\n<p>&nbsp;</p>",
+			"coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "MANIPULATE", "HEAL"],
+			"resource_points": {
+				"label": "MYZ.MUTATION_POINTS",
+				"value": 0,
+				"max": 10
+			}
+		},
+		"animal": {
+			"templates": ["base", "stats", "status"],
+			"description": "",
+			"coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "DOMINATE", "HEAL"],
+			"resourcepoints": {
+				"label": "MYZ.FERAL_POINTS",
+				"value": 0,
+				"max": 10
+			}
+		},
+		"robot": {
+			"templates": ["base", "stats", "status"],
+			"description": "",
+			"coreSkills": ["OVERLOAD", "FORCE", "ASSAULT", "INFILTRATE", "MOVE", "SHOOT", "SCAN", "DATAMINE", "ANALYZE", "QUESTION", "INTERACT", "REPAIR"],
+			"resource_points": {
+				"label": "MYZ.ENERGY_POINTS",
+				"value": 0,
+				"max": 10
+			}
+		},
+		"human": {
+			"templates": ["base", "stats", "status"],
+			"description": "",
+			"coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "MANIPULATE", "HEAL"],
+			"resource_points": {
+				"label": "MYZ.INFLUENCE_POINTS",
+				"value": 0,
+				"max": 10
+			}
+		},
+		"npc": {
+			"templates": ["base", "stats"],
+			"description": "",
+			"resource_points": {
+				"label": "MYZ.RESOURCE_POINTS",
+				"value": 0,
+				"max": 10
+			},
+			"knowNature": 0,
+			"special": ""
+		},
+		"ark": {
+			"ark_type": "",
+			"coordinates": "",
+			"description": "",
+			"population": "",
+			"water_source": "",
+			"season": "",
+			"dev_levels": {
+				"food": {
+					"value": 0,
+					"max": 0
+				},
+				"culture": {
+					"value": 0,
+					"max": 0
+				},
+				"technology": {
+					"value": 0,
+					"max": 0
+				},
+				"warfare": {
+					"value": 0,
+					"max": 0
+				}
+			},
+			"bosses": {
+				"boss1": {
+					"name": "",
+					"type": "",
+					"description": ""
+				},
+				"boss2": {
+					"name": "",
+					"type": "",
+					"description": ""
+				},
+				"boss3": {
+					"name": "",
+					"type": "",
+					"description": ""
+				},
+				"boss4": {
+					"name": "",
+					"type": "",
+					"description": ""
+				},
+				"boss5": {
+					"name": "",
+					"type": "",
+					"description": ""
+				},
+				"boss6": {
+					"name": "",
+					"type": "",
+					"description": ""
+				}
+			}
+		}
+	},
+	"Item": {
+		"types": ["weapon", "armor", "chassis", "skill", "ability", "talent", "gear", "artifact", "critical", "project"],
+		"templates": {
+			"base": {
+				"description": "",
+				"comment": "",
+				"cost": "0"
+			},
+			"physical": {
+				"quantity": 1,
+				"weight": ""
+			},
+			"bonus": {
+				"bonus": {
+					"value": 0,
+					"max": 0
+				}
+			},
+			"dev": {
+				"dev_requirement": "",
+				"dev_bonus": ""
+			}
+		},
+		"skill": {
+			"templates": ["base"],
+			"value": 0,
+			"min": 0,
+			"attribute": "",
+			"creatureType": "mutant",
+			"coreSkill": "",
+			"skillKey": ""
+		},
+		"ability": {
+			"templates": ["base"],
+			"creatureType": "",
+			"abilityType": "",
+			"effect": "",
+			"roleType": "",
+			"broken": false
+		},
+		"talent": {
+			"templates": ["base"],
+			"effect": "",
+			"roleType": "general",
+			"creatureType": ""
+		},
+		"weapon": {
+			"templates": ["base", "physical", "bonus", "dev"],
+			"damage": 1,
+			"range": "range_arm",
+			"category": "",
+			"artifactBonus": 0,
+			"skillBonus": 0
+		},
+		"armor": {
+			"templates": ["base", "physical", "dev"],
+			"armorType": "armor",
+			"rating": {
+				"value": 1,
+				"max": 1
+			},
+			"equipped": true
+		},
+		"chassis": {
+			"templates": ["base", "physical"],
+			"location": "",
+			"strength": 0,
+			"agility": 0,
+			"wits": 0,
+			"empathy": 0,
+			"modules": 0,
+			"armor": 0,
+			"equipped": true
+		},
+		"gear": {
+			"templates": ["base", "physical"],
+			"requirement": ""
+		},
+		"artifact": {
+			"templates": ["base", "physical", "dev"],
+			"effect": ""
+		},
+		"critical": {
+			"lethal": "",
+			"timeLimit": "",
+			"healingTime": "",
+			"effect": ""
+		},
+		"project": {
+			"comment": "",
+			"skills": "",
+			"work_points": "",
+			"DEV_Requirement": "",
+			"other_requirements": "",
+			"DEV_Bonus": "",
+			"special": "",
+			"completed": false,
+			"value": 0,
+			"food": 0,
+			"culture": 0,
+			"technology": 0,
+			"warfare": 0,
+			"description": ""
+		}
+	}
 }

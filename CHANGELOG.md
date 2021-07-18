@@ -9,6 +9,7 @@ The Mutant Year Zero system for FoundryVTT
 -   Added Quantity field to the Gear list so you can quickly change it without the need to open/edit item. Calculated weight is also displayed.
 -   Changed some of the inputs to be of numerical type so you can use Mouse Wheel on them to increase/descrease their value.
 -   Added a "Red Style" to the actor's attributes if the current value is lower than the max value. This indicate that they have Trauma on that Atribute.
+-   Removed the initial cration of the relationship table from all actors except Mutant Type.
 -   Added Swedish Language
 
 ## v1.4
