@@ -125,7 +125,7 @@ export class MYZActorSheet extends ActorSheet {
         });
 
         html.find(".button-push").click((ev) => {
-            this.diceRoller.push();
+            this.diceRoller.push({ actor: this.actor });
         });
 
         /* -------------------------------------------- */
@@ -222,6 +222,8 @@ export class MYZActorSheet extends ActorSheet {
 
             RollDialog.prepareRollDialog({
                 rollName: testName,
+                attributeName: skill.data.data.attribute,
+                itemId,
                 diceRoller: this.diceRoller,
                 baseDefault: attribute.value,
                 skillDefault: skill.data.data.value,
@@ -389,6 +391,7 @@ export class MYZActorSheet extends ActorSheet {
         let rollName = `MYZ.ATTRIBUTE_${attName.toUpperCase()}_${this.actor.data.data.creatureType.toUpperCase()}`;
         RollDialog.prepareRollDialog({
             rollName: rollName,
+            attributeName: attName,
             diceRoller: this.diceRoller,
             baseDefault: attVal,
             skillDefault: 0,
@@ -409,7 +412,8 @@ export class MYZActorSheet extends ActorSheet {
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find((element) => element.id == itemId);
-            let baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
+            const attName = skill.data.data.attribute;
+            let baseDice = this.actor.data.data.attributes[attName].value;
             // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
             let skillName = "";
             if (skill.data.data.skillKey == "") {
@@ -420,6 +424,7 @@ export class MYZActorSheet extends ActorSheet {
 
             RollDialog.prepareRollDialog({
                 rollName: skillName,
+                attributeName: attName,
                 diceRoller: this.diceRoller,
                 baseDefault: baseDice,
                 skillDefault: skill.data.data.value,
