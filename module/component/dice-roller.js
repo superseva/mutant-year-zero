@@ -10,6 +10,8 @@ export class DiceRoller {
     diceWithNoResult = [];
     attribute = null;
     itemId = null;
+    traumaCount = 0;
+    gearDamageCount = 0;
 
     /**
      * @param  {string} rollName   Display name for the roll
@@ -77,7 +79,7 @@ export class DiceRoller {
         ) {
             const updateData = {};
             const actorData = actor.data.data;
-            const baneCount = this.countFailures();
+            const baneCount = this.countFailures() - this.traumaCount;
             if (baneCount > 0) {
                 // Decreases the attribute.
                 const attributes = actorData.attributes || {};
@@ -98,6 +100,7 @@ export class DiceRoller {
                         updateData[`data.resource_points.value`] = newVal;
                     }
                 }
+                this.traumaCount += baneCount;
             }
             if (!foundry.utils.isObjectEmpty(updateData)) {
                 actor.update(updateData);
@@ -107,7 +110,7 @@ export class DiceRoller {
         // Applies pushed roll effect to the gear.
         if (actor && this.itemId && game.settings.get("mutant-year-zero", "applyPushGearDamage")) {
             const item = actor.items.get(this.itemId);
-            const baneCount = this.countGearFailures();
+            const baneCount = this.countGearFailures() - this.gearDamageCount;
             if (item && baneCount > 0) {
                 const bonus = item.data.data.bonus;
                 if (bonus) {
@@ -116,6 +119,7 @@ export class DiceRoller {
                     if (newVal !== value) {
                         item.update({ 'data.bonus.value': newVal });
                     }
+                    this.gearDamageCount += baneCount;
                 }
             }
         }
@@ -271,6 +275,8 @@ export class DiceRoller {
     preparePushData(attribute = null, itemId = null) {
         this.attribute = attribute;
         this.itemId = itemId;
+        this.traumaCount = 0;
+        this.gearDamageCount = 0;
         // console.warn("DiceRoller | preparePushData:", attribute, itemId);
         return this;
     }
