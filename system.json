@@ -2,7 +2,7 @@
 	"name": "mutant-year-zero",
 	"title": "Mutant Year Zero",
 	"description": "The Mutant Year Zero system for FoundryVTT!",
-	"version": "1.5",
+	"version": "1.6",
 	"minimumCoreVersion": "0.8.6",
 	"compatibleCoreVersion": "0.8.8",
 	"templateVersion": 1,
