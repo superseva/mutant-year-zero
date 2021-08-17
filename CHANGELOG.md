@@ -2,6 +2,9 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v1.6
+-   Added the option for attribute/gear decreasement on a push result of 'one'. Thanks to Stefouch for making this addition.
+
 ## v1.5
 
 -   Charater sheet header Armor Value styling. Removed text input to avoid confusion. Armor is autocalculated based on the equipped armor item.
