@@ -8,6 +8,10 @@ export class DiceRoller {
     computedSkillType = "";
     diceWithResult = [];
     diceWithNoResult = [];
+    attribute = null;
+    itemId = null;
+    traumaCount = 0;
+    gearDamageCount = 0;
 
     /**
      * @param  {string} rollName   Display name for the roll
@@ -53,8 +57,9 @@ export class DiceRoller {
 
     /**
      * Push the last roll
+     * @param {Actor} [actor] The Actor that pushed the roll.
      */
-    async push() {
+    async push({ actor } = {}) {
         const base = this.diceWithNoResult.filter((d) => d.diceType === "base").length;
         const skill = this.diceWithNoResult.filter((d) => d.diceType === "skill").length;
         const gear = this.diceWithNoResult.filter((d) => d.diceType === "gear").length;
@@ -64,6 +69,60 @@ export class DiceRoller {
         await roll.evaluate({ async: false });
         this.parseResults(roll);
         this.sendRollToChat(true, roll);
+
+        // Applies pushed roll effects to the actor.
+        if (
+            actor &&
+            this.attribute &&
+            ['mutant', 'animal', 'robot', 'human', 'npc'].includes(actor.type) &&
+            game.settings.get("mutant-year-zero", "applyPushTrauma")
+        ) {
+            const updateData = {};
+            const actorData = actor.data.data;
+            const baneCount = this.countFailures() - this.traumaCount;
+            if (baneCount > 0) {
+                // Decreases the attribute.
+                const attributes = actorData.attributes || {};
+                const attribute = attributes[this.attribute];
+                if (attribute?.value > 0) {
+                    const { value, min } = attribute;
+                    const newVal = Math.max(min, value - baneCount);
+                    if (newVal !== value) {
+                        updateData[`data.attributes.${this.attribute}.value`] = newVal;
+                    }
+                }
+                // Adds Resources Points
+                const resPts = actorData['resource_points'] ?? { value: 0, max: 10 };
+                if (resPts) {
+                    const { value, max } = resPts;
+                    const newVal = Math.min(max, value + baneCount);
+                    if (newVal !== value) {
+                        updateData[`data.resource_points.value`] = newVal;
+                    }
+                }
+                this.traumaCount += baneCount;
+            }
+            if (!foundry.utils.isObjectEmpty(updateData)) {
+                actor.update(updateData);
+            }
+        }
+
+        // Applies pushed roll effect to the gear.
+        if (actor && this.itemId && game.settings.get("mutant-year-zero", "applyPushGearDamage")) {
+            const item = actor.items.get(this.itemId);
+            const baneCount = this.countGearFailures() - this.gearDamageCount;
+            if (item && baneCount > 0) {
+                const bonus = item.data.data.bonus;
+                if (bonus) {
+                    const { value } = bonus;
+                    const newVal = Math.max(0, value - baneCount);
+                    if (newVal !== value) {
+                        item.update({ 'data.bonus.value': newVal });
+                    }
+                    this.gearDamageCount += baneCount;
+                }
+            }
+        }
     }
 
     /**
@@ -205,5 +264,20 @@ export class DiceRoller {
             }
         });
         return result;
+    }
+
+    /**
+     * Prepares push data for the dice roller.
+     * @param {string} [attribute] The key of the used attribute
+     * @param {string} [itemId]    The ID of the used item
+     * @returns {DiceRoller} this dice roller
+     */
+    preparePushData(attribute = null, itemId = null) {
+        this.attribute = attribute;
+        this.itemId = itemId;
+        this.traumaCount = 0;
+        this.gearDamageCount = 0;
+        // console.warn("DiceRoller | preparePushData:", attribute, itemId);
+        return this;
     }
 }

@@ -113,7 +113,7 @@
 			"templates": ["base", "stats", "status"],
 			"description": "",
 			"coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "DOMINATE", "HEAL"],
-			"resourcepoints": {
+			"resource_points": {
 				"label": "MYZ.FERAL_POINTS",
 				"value": 0,
 				"max": 10

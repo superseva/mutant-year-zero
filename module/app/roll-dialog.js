@@ -5,6 +5,8 @@ export class RollDialog {
      * Display roll dialog and execute the roll.
      *
      * @param  {string}        rollName
+     * @param  {string}       [attributeName]  The key of the used attribute (for push data)
+     * @param  {string}       [itemId]         The ID of the used item (for push data)
      * @param  {object|number} baseDefault     {name: "somename", value: 5} | 5
      * @param  {object|number} skillDefault    {name: "somename", value: 5} | 5
      * @param  {number}        gearDefault
@@ -17,6 +19,8 @@ export class RollDialog {
     //static prepareRollDialog(rollName, baseDefault, skillDefault, gearDefault, artifactDefault, modifierDefault, damage, diceRoller, onAfterRoll) {
     static async prepareRollDialog({
         rollName = "",
+        attributeName = null,
+        itemId = null,
         baseDefault = 0,
         skillDefault = 0,
         gearDefault = 0,
@@ -56,6 +60,7 @@ export class RollDialog {
                             let gear = html.find("#gear")[0].value;
                             let artifact = this.parseArtifact(html.find("#artifact")[0].value);
                             let modifier = html.find("#modifier")[0].value;
+                            diceRoller.preparePushData(attributeName, itemId);
                             diceRoller.roll({
                                 rollName: rollName,
                                 base: parseInt(base, 10),

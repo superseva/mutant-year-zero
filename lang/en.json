@@ -232,5 +232,9 @@
 	"MYZ.WEIGHT_TINY": "Tiny",
 	"MYZ.WEIGHTLESS": "Weightless",
 	"MYZ.WORK_POINTS": "Work Points",
-	"MYZ.XP": "XP"
+	"MYZ.XP": "XP",
+	"SETTINGS.ApplyPushTraumaN": "Apply Push Trauma",
+	"SETTINGS.ApplyPushTraumaH": "Whether to apply trauma from banes on pushed rolls.",
+	"SETTINGS.ApplyPushGearDamageN": "Apply Push Gear Damage",
+	"SETTINGS.ApplyPushGearDamageH": "Whether to apply gear damage from banes on pushed rolls."
 }
