@@ -18,7 +18,7 @@ import { MYZDieGear } from "./MYZDice.js";
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
 
-import * as migrations from "./migration.js";
+//import * as migrations from "./migration.js";
 
 /* ------------------------------------ */
 /* Setup MYZ system	 */
@@ -247,10 +247,14 @@ Hooks.once("ready", async function () {
                 { permanent: true }
             );
         }
-        migrations.migrateWorld();
+        // UNCOMMENT import * as migrations from "./migration.js";
+        // CALL migrations.migrateWorld(); in future if you need migration and delete two lines bellow since they are contained in the migrations.migrateWorld();     
+        //migrations.migrateWorld();
+        game.settings.set("mutant-year-zero", "systemMigrationVersion", game.system.data.version);
+        ui.notifications.info(`MYZ System Migration to version ${game.system.data.version} completed!`, { permanent: true });
     }
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-    Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
+    //Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
 });
 
 /* SET CHARACTER TYPE */

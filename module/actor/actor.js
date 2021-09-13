@@ -62,7 +62,7 @@ export class MYZActor extends Actor {
             _totalWeight += parseInt(data.resources.grub.value) / 4;
             _totalWeight += parseInt(data.resources.water.value) / 4;
             _totalWeight += parseInt(data.resources.booze.value);
-            _totalWeight += parseInt(data.resources.bullets.value) / 10;
+            _totalWeight += parseInt(data.resources.bullets.value) / 20;
         } catch (error) {
             console.error(error);
         }

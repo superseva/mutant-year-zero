@@ -7,7 +7,7 @@ export const migrateWorld = async function () {
         `Applying MYZ System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`,
         { permanent: true }
     );
-
+    /*
     // Migrate World Actors
     for (let a of game.actors.entities) {
         try {
@@ -34,20 +34,6 @@ export const migrateWorld = async function () {
         }
     }
 
-    // Migrate Actor Override Tokens
-    /*
-    for (let s of game.scenes.entities) {
-        try {
-            const updateData = migrateSceneData(s.data);
-            if (!isObjectEmpty(updateData)) {
-                console.log(`Migrating Scene entity ${s.name}`);
-                await s.update(updateData, { enforceTypes: false });
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    }*/
-
     // Migrate World Compendium Packs
     const packs = game.packs.filter((p) => {
         return p.metadata.package === "world" && ["Actor", "Item", "Scene"].includes(p.metadata.entity);
@@ -56,10 +42,11 @@ export const migrateWorld = async function () {
         console.log(`Migrating Compendium ${p.name}`);
         await migrateCompendium(p);
     }
-
+    
     // Set the migration as complete
     game.settings.set("mutant-year-zero", "systemMigrationVersion", game.system.data.version);
     ui.notifications.info(`MYZ System Migration to version ${game.system.data.version} completed!`, { permanent: true });
+    */
 };
 
 /* -------------------------------------------- */
@@ -216,22 +203,22 @@ function _migrateItemToArtifact(item, updateData) {
 function _migrateSkillKey(item, updateData) {
     if (item.type == "skill") {
         //console.log(`${item.name} TO KEY>> ${mapSkillKey(item.name)}`);
-        if(item.data.hasOwnProperty("skillKey")){
-            if(item.data.skillKey!= mapSkillKey(item.name)){
+        if (item.data.hasOwnProperty("skillKey")) {
+            if (item.data.skillKey != mapSkillKey(item.name)) {
                 updateData[`data.skillKey`] = mapSkillKey(item.name);
             }
         }
         if (!item.data.hasOwnProperty("skillKey")) {
             console.log(`${item.name} adding skillKey ${mapSkillKey(item.name)}`);
             updateData[`data.skillKey`] = mapSkillKey(item.name);
-        }        
+        }
     }
 }
 
 // ! ADDING KNOW NATURE
-function _addKnowNatureToNPC(actor, updateData){
-    if(actor.type=="npc"){        
-        if(!actor.data.hasOwnProperty('knowNature')){
+function _addKnowNatureToNPC(actor, updateData) {
+    if (actor.type == "npc") {
+        if (!actor.data.hasOwnProperty('knowNature')) {
             updateData['data.knowNature'] = 0;
         }
     }
@@ -242,78 +229,78 @@ function _addKnowNatureToNPC(actor, updateData){
  * Map Skill Key To Skill Name
  * @param {Object} skillName    The data object for an Actor
  */
-function mapSkillKey(skillName){
+function mapSkillKey(skillName) {
     let skillKey = "";
-    switch(skillName){
+    switch (skillName) {
         case "Endure":
             skillKey = "ENDURE";
-        break;
+            break;
         case "Force":
             skillKey = "FORCE";
-        break;
+            break;
         case "Fight":
             skillKey = "FIGHT";
-        break;
+            break;
         case "Sneak":
             skillKey = "SNEAK";
-        break;
+            break;
         case "Move":
             skillKey = "MOVE";
-        break;
+            break;
         case "Shoot":
             skillKey = "SHOOT";
-        break;
+            break;
         case "Scout":
             skillKey = "SCOUT";
-        break;
+            break;
         case "Comprehend":
             skillKey = "COMPREHEND";
-        break;
+            break;
         case "Know the Zone":
             skillKey = "KNOWTHEZONE";
-        break;
+            break;
         case "Sense Emotion":
             skillKey = "SENSEEMOTION";
-        break;
+            break;
         case "Manipulate":
             skillKey = "MANIPULATE";
-        break;        
+            break;
         case "Heal":
             skillKey = "HEAL";
-        break;
+            break;
         case "Dominate":
             skillKey = "DOMINATE";
-        break;
+            break;
         case "Overload":
             skillKey = "OVERLOAD";
-        break;
+            break;
         case "Assault":
             skillKey = "ASSAULT";
-        break;
+            break;
         case "Infiltrate":
             skillKey = "INFILTRATE";
-        break;
+            break;
         case "Scan":
             skillKey = "SCAN";
-        break;
+            break;
         case "Datamine":
             skillKey = "DATAMINE";
-        break;
+            break;
         case "Analyze":
             skillKey = "ANALYZE";
-        break;
+            break;
         case "Question":
             skillKey = "QUESTION";
-        break;
+            break;
         case "Interact":
             skillKey = "INTERACT";
-        break;
+            break;
         case "Repair":
             skillKey = "REPAIR";
-        break;
+            break;
         default:
             skillKey = "";
-            
+
     }
     return skillKey;
 }
