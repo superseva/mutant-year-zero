@@ -4,7 +4,7 @@
 	"description": "The Mutant Year Zero system for FoundryVTT!",
 	"version": "1.7",
 	"minimumCoreVersion": "0.8.6",
-	"compatibleCoreVersion": "0.8.8",
+	"compatibleCoreVersion": "0.8.9",
 	"templateVersion": 1,
 	"author": "HappySteve",
 	"esmodules": ["module/myz.js"],
