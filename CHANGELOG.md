@@ -2,6 +2,9 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v1.7
+-   Bug Fix: Ammo weight fixed so that 20 bullets weight as a regular item (instead of 10 bullets)
+
 ## v1.6
 -   Added the option for attribute/gear decreasement on a push result of 'one'. Thanks to Stefouch for making this addition.
 
