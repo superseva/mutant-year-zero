@@ -2,7 +2,7 @@
 
 The Mutant Year Zero system for FoundryVTT
 
-## v1.7
+## v1.8
 -   Bug Fix: Ammo weight fixed so that 20 bullets weight as a regular item (instead of 10 bullets)
 
 ## v1.6
