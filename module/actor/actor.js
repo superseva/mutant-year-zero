@@ -50,11 +50,17 @@ export class MYZActor extends Actor {
         // update encumbrance
         data.isEncumbered = "";
         data.encumbranceMax = parseInt(data.attributes.strength.max) * 2;
-        const items = Array.from(data.items.values())
-        const findPackMuleTalent = items.filter(item => (item.data.type === 'talent' && item.data.name === 'Pack Mule'))
-        if (findPackMuleTalent.length === 1) {
-            data.encumbranceMax *= 2;
+
+        // Pack Mule talent
+        if ('items' in this.data) {
+              const items = Array.from(this.data.items.values())
+              const findPackMuleTalent = items.filter(item => (item.data.type === 'talent' && item.data.name === 'Pack Mule'))
+              if (findPackMuleTalent.length === 1) {
+                console.log('pack mule fix')
+                data.encumbranceMax *= 2;
+              }
         }
+
         let _totalWeight = 0;
         // add items
         let weightedItems = this.data.items.filter(_itm => _itm.data.data.weight > 0);
