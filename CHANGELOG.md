@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v1.9
+
+- Fixed the Influence and Energy resource points increasement on a pushed roll. They are not increasing anymore.
+- Added Foundry Effect tab to Mutants, Humans, Robots and Animal characters. You can modify core data by using this. For example data.encumbranceBonus | Add | 2 will increase your encumbrance limit by two. You should look at the template.json to see all the data you can modify.
+
 ## v1.8
 
 - Thanks to Trulija/Hruhek for adding a "Pack Mule" Talent improvement
