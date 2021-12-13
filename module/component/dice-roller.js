@@ -71,12 +71,16 @@ export class DiceRoller {
         this.sendRollToChat(true, roll);
 
         // Applies pushed roll effects to the actor.
+
+
+
         if (
             actor &&
             this.attribute &&
             ['mutant', 'animal', 'robot', 'human', 'npc'].includes(actor.type) &&
             game.settings.get("mutant-year-zero", "applyPushTrauma")
         ) {
+
             const updateData = {};
             const actorData = actor.data.data;
             const baneCount = this.countFailures() - this.traumaCount;
@@ -91,13 +95,15 @@ export class DiceRoller {
                         updateData[`data.attributes.${this.attribute}.value`] = newVal;
                     }
                 }
-                // Adds Resources Points
-                const resPts = actorData['resource_points'] ?? { value: 0, max: 10 };
-                if (resPts) {
-                    const { value, max } = resPts;
-                    const newVal = Math.min(max, value + baneCount);
-                    if (newVal !== value) {
-                        updateData[`data.resource_points.value`] = newVal;
+                // Adds Resources Points only to Mutants and Animals
+                if (['mutant', 'animal'].includes(actor.type) || ['mutant', 'animal'].includes(actor.data.data.creatureType)) {
+                    const resPts = actorData['resource_points'] ?? { value: 0, max: 10 };
+                    if (resPts) {
+                        const { value, max } = resPts;
+                        const newVal = Math.min(max, value + baneCount);
+                        if (newVal !== value) {
+                            updateData[`data.resource_points.value`] = newVal;
+                        }
                     }
                 }
                 this.traumaCount += baneCount;
