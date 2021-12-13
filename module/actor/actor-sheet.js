@@ -1,5 +1,6 @@
 import { DiceRoller } from "../component/dice-roller.js";
 import { RollDialog } from "../app/roll-dialog.js";
+import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs'
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -14,6 +15,8 @@ export class MYZActorSheet extends ActorSheet {
     getData() {
         const superData = super.getData();
         const data = superData.data;
+
+        data.effects = prepareActiveEffectCategories(this.actor.effects)
         // Prepare item lists.
         this._prepareCharacterItems(data);
         return data;
@@ -111,6 +114,11 @@ export class MYZActorSheet extends ActorSheet {
 
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
+
+        // * Active Effect management
+        html
+            .find('.effect-control')
+            .click((ev) => onManageActiveEffect(ev, this.actor))
 
         /* -------------------------------------------- */
         /* ROLL & PUSH BUTTONS
