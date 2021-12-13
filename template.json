@@ -48,7 +48,8 @@
 					"label": "MYZ.CRITICAL",
 					"value": ""
 				},
-				"creatureType": ""
+				"creatureType": "",
+				"encumbranceBonus":0
 			},
 			"stats": {
 				"attributes": {
