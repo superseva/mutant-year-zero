@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v9.0.0
+
+- Bumping the manifest version to 9.0.0 due to the new Foundry version v9
+
 ## v1.9
 
 - Fixed the Influence and Energy resource points increasement on a pushed roll. They are not increasing anymore.
