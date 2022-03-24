@@ -113,7 +113,7 @@
 		"animal": {
 			"templates": ["base", "stats", "status"],
 			"description": "",
-			"coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWTHEZONE", "SENSEEMOTION", "DOMINATE", "HEAL"],
+			"coreSkills": ["ENDURE", "FORCE", "FIGHT", "SNEAK", "MOVE", "SHOOT", "SCOUT", "COMPREHEND", "KNOWNATURE", "SENSEEMOTION", "DOMINATE", "HEAL"],
 			"resource_points": {
 				"label": "MYZ.FERAL_POINTS",
 				"value": 0,

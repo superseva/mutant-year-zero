@@ -38,7 +38,7 @@ export default class MYZHooks {
             }
             if (actor.data.data.creatureType == 'animal') {
                 try {
-                    skillIndex = await game.packs.get("myz-animal.myzga-items").getDocuments();
+                    skillIndex = await game.packs.get("myz-genlab-alpha.myzga-items").getDocuments();
                 } catch (e) {
                     console.log(errMsgOfficialSkills);
                 }
