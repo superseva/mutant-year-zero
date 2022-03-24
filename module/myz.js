@@ -55,13 +55,9 @@ Hooks.once("init", async function () {
 
     CONFIG.roller = new DiceRoller();
 
-    CONFIG.is07x = Number(`${game.data.version.split(".")[0]}.${game.data.version.split(".")[1]}`) > 0.6;
-
-    if (CONFIG.is07x) {
-        CONFIG.Dice.terms["b"] = MYZDieBase;
-        CONFIG.Dice.terms["s"] = MYZDieSkill;
-        CONFIG.Dice.terms["g"] = MYZDieGear;
-    }
+    CONFIG.Dice.terms["b"] = MYZDieBase;
+    CONFIG.Dice.terms["s"] = MYZDieSkill;
+    CONFIG.Dice.terms["g"] = MYZDieGear;
 
     // Register System Settings
     registerSystemSettings();
@@ -120,6 +116,7 @@ Hooks.once("init", async function () {
                 return game.i18n.localize("MYZ.WEAPON_RANGED");
         }
     });
+    
     Handlebars.registerHelper("armorPart", function (part) {
         part = normalize(part, "armor");
         switch (part) {
