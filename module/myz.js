@@ -227,6 +227,18 @@ Hooks.once("init", async function () {
     Handlebars.registerHelper("substract", function (val1, val2) {
         return val1 - val2;
     });
+
+    Handlebars.registerHelper("getAbilitiesTypeName", function (val) {
+        if(val=="mutant"){
+            return "MYZ.MUTATIONS"
+        }else if(val=="animal"){
+            return "MYZ.ANIMAL_POWERS"
+        }else if(val=="robot"){
+            return "MYZ.MODULES"
+        }else if(val=="human"){
+            return "MYZ.CONTACTS"
+        }else{ return ""}
+    });
 });
 
 Hooks.once("ready", async function () {
