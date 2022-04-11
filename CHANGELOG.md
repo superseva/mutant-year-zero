@@ -2,6 +2,13 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v9.0.1
+
+- This version is required for the official GENLAB ALPHA Module
+- Added "Know The nature" Skill
+- Calculation of maximum encumbrance affected by the "Scrounger" talent
+
+
 ## v9.0.0
 
 - Bumping the manifest version to 9.0.0 due to the new Foundry version v9
