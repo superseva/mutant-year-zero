@@ -218,7 +218,7 @@ export class MYZActorSheet extends ActorSheet {
                 skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey == "SHOOT");
             }
             if (!skill) {
-                ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
+                //ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
                 skill = {
                     data: {
                         data: {
