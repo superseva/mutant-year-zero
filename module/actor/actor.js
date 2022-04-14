@@ -50,6 +50,12 @@ export class MYZActor extends Actor {
         // update encumbrance
         data.isEncumbered = "";
         data.encumbranceMax = parseInt(data.attributes.strength.max) * 2;
+        
+        // Check for SCROUNGER Animal Talent and replace Str with Wits
+        const findScroungerTalent = this.data.items.filter(item => (item.data.type === 'talent' && item.data.name === 'Scrounger'))
+        if(findScroungerTalent.length === 1)
+            data.encumbranceMax = parseInt(data.attributes.wits.max) * 2;
+
         // Pack Mule talent
         if ('items' in this.data) {
             const items = Array.from(this.data.items.values())

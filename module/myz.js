@@ -55,13 +55,9 @@ Hooks.once("init", async function () {
 
     CONFIG.roller = new DiceRoller();
 
-    CONFIG.is07x = Number(`${game.data.version.split(".")[0]}.${game.data.version.split(".")[1]}`) > 0.6;
-
-    if (CONFIG.is07x) {
-        CONFIG.Dice.terms["b"] = MYZDieBase;
-        CONFIG.Dice.terms["s"] = MYZDieSkill;
-        CONFIG.Dice.terms["g"] = MYZDieGear;
-    }
+    CONFIG.Dice.terms["b"] = MYZDieBase;
+    CONFIG.Dice.terms["s"] = MYZDieSkill;
+    CONFIG.Dice.terms["g"] = MYZDieGear;
 
     // Register System Settings
     registerSystemSettings();
@@ -120,6 +116,7 @@ Hooks.once("init", async function () {
                 return game.i18n.localize("MYZ.WEAPON_RANGED");
         }
     });
+    
     Handlebars.registerHelper("armorPart", function (part) {
         part = normalize(part, "armor");
         switch (part) {
@@ -229,6 +226,18 @@ Hooks.once("init", async function () {
 
     Handlebars.registerHelper("substract", function (val1, val2) {
         return val1 - val2;
+    });
+
+    Handlebars.registerHelper("getAbilitiesTypeName", function (val) {
+        if(val=="mutant"){
+            return "MYZ.MUTATIONS"
+        }else if(val=="animal"){
+            return "MYZ.ANIMAL_POWERS"
+        }else if(val=="robot"){
+            return "MYZ.MODULES"
+        }else if(val=="human"){
+            return "MYZ.CONTACTS"
+        }else{ return ""}
     });
 });
 
