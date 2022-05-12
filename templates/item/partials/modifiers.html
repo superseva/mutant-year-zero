@@ -1,27 +1,27 @@
 <div class="tab" data-group="primary" data-tab="modifiers" style="height:350px">
     <div>
-        <h3 style="text-transform:uppercase">{{localize 'MYZ.ATTRIBUTES'}}</h3>
-        <div class="grid" style="grid-column-gap: 4rem;">
+        <h3 style="text-transform:uppercase; text-align: center; font-weight: 900;">{{localize 'MYZ.BASE_DICE'}}</h3>
+        <div>
             <div class="flex space-between">
-                <p>{{localize 'MYZ.ATTRIBUTE_STRENGTH_MUTANT'}}</p>
+                <p>{{localize 'MYZ.ATTRIBUTE_STRENGTH_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_STRENGTH_ROBOT'}}</p>
                 <input class="short-input" type="number" name="data.modifiers.strength" value="{{data.modifiers.strength}}">
             </div>
             <div class="flex space-between">
-                <p>{{localize 'MYZ.ATTRIBUTE_AGILITY_MUTANT'}}</p>
+                <p>{{localize 'MYZ.ATTRIBUTE_AGILITY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_AGILITY_ROBOT'}}</p>
                 <input class="short-input" type="number" name="data.modifiers.agility" value="{{data.modifiers.agility}}">
             </div>
             <div class="flex space-between">
-                <p>{{localize 'MYZ.ATTRIBUTE_WITS_MUTANT'}}</p>
+                <p>{{localize 'MYZ.ATTRIBUTE_WITS_MUTANT'}}  / {{localize 'MYZ.ATTRIBUTE_WITS_ROBOT'}}</p>
                 <input class="short-input" type="number" name="data.modifiers.wits" value="{{data.modifiers.wits}}">
             </div>
             <div class="flex space-between">
-                <p>{{localize 'MYZ.ATTRIBUTE_EMPATHY_MUTANT'}}</p>
+                <p>{{localize 'MYZ.ATTRIBUTE_EMPATHY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ANIMAL'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ROBOT'}}</p>
                 <input class="short-input" type="number" name="data.modifiers.empathy" value="{{data.modifiers.empathy}}">
             </div>
         </div>
     </div>
     <div>
-        <h3 style="text-transform:uppercase">{{localize 'MYZ.SKILLS'}}</h3>
+        <h3 style="text-transform:uppercase; text-align: center; font-weight: 900;">{{localize 'MYZ.SKILL_DICE'}}</h3>
         <div class="grid" style="grid-column-gap: 4rem;">
             <div class="flex space-between">
                 <p>{{localize 'MYZ.SKILL_ENDURE'}}</p>
@@ -114,6 +114,103 @@
             <div class="flex space-between">
                 <p>{{localize 'MYZ.SKILL_REPAIR'}}</p>
                 <input class="short-input" type="number" name="data.modifiers.REPAIR" value="{{data.modifiers.REPAIR}}">
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3 style="text-transform:uppercase; text-align: center; font-weight: 900;">{{localize 'MYZ.GEAR_DICE'}}</h3>
+        <div class="grid" style="grid-column-gap: 4rem;">
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_ENDURE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.ENDURE" value="{{data.gearModifiers.ENDURE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_FORCE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.FORCE" value="{{data.gearModifiers.FORCE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_FIGHT'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.FIGHT" value="{{data.gearModifiers.FIGHT}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_SNEAK'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.SNEAK" value="{{data.gearModifiers.SNEAK}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_MOVE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.MOVE" value="{{data.gearModifiers.MOVE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_SHOOT'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.SHOOT" value="{{data.gearModifiers.SHOOT}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_SCOUT'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.SCOUT" value="{{data.gearModifiers.SCOUT}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_COMPREHEND'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.COMPREHEND" value="{{data.gearModifiers.COMPREHEND}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_KNOWTHEZONE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.KNOWTHEZONE" value="{{data.gearModifiers.KNOWTHEZONE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_SENSEEMOTION'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.SENSEEMOTION" value="{{data.gearModifiers.SENSEEMOTION}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_MANIPULATE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.MANIPULATE" value="{{data.gearModifiers.MANIPULATE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_HEAL'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.HEAL" value="{{data.gearModifiers.HEAL}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_KNOWNATURE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.KNOWNATURE" value="{{data.gearModifiers.KNOWNATURE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_DOMINATE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.DOMINATE" value="{{data.gearModifiers.DOMINATE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_OVERLOAD'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.OVERLOAD" value="{{data.gearModifiers.OVERLOAD}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_ASSAULT'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.ASSAULT" value="{{data.gearModifiers.ASSAULT}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_INFILTRATE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.INFILTRATE" value="{{data.gearModifiers.INFILTRATE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_SCAN'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.SCAN" value="{{data.gearModifiers.SCAN}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_DATAMINE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.DATAMINE" value="{{data.gearModifiers.DATAMINE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_ANALYZE'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.ANALYZE" value="{{data.gearModifiers.ANALYZE}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_QUESTION'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.QUESTION" value="{{data.gearModifiers.QUESTION}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_INTERACT'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.INTERACT" value="{{data.gearModifiers.INTERACT}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.SKILL_REPAIR'}}</p>
+                <input class="short-input" type="number" name="data.gearModifiers.REPAIR" value="{{data.gearModifiers.REPAIR}}">
             </div>
         </div>
     </div>

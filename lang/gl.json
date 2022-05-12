@@ -1,1 +1,9 @@
-{}
+{
+  "MYZ": {
+    "BASE_DICE": "Base Dice",
+    "DETAILS": "Details",
+    "GEAR_DICE": "GEAR DICE",
+    "MODIFIERS": "Modifiers",
+    "SKILL_DICE": "SKILL DICE"
+  }
+}

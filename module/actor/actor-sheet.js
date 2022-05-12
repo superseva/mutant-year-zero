@@ -422,6 +422,24 @@ export class MYZActorSheet extends ActorSheet {
             const skill = this.actor.items.find((element) => element.id == itemId);
             const attName = skill.data.data.attribute;
             let baseDice = this.actor.data.data.attributes[attName].value;
+            console.warn(skill.data.data.attribute)
+            // Apply any modifiers from items or crits
+            // SKILL MODIFIERS            
+            const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
+            const itemsThatModifySkill = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.skillKey]!=0)
+            const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.skillKey]; }, 0);
+            const skillDiceTotal = parseInt(skill.data.data.value) + parseInt(skillDiceModifier)
+            // ATTRIBUTE MODIFIERS  
+            const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.attribute]!=0)
+            const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.attribute]; }, 0);
+            const baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier)
+            // GEAR MODIFIERS  
+            const itmGMap = this.actor.items.filter(itm=>itm.data.data.gearModifiers!=undefined)
+            const itemsThatModifyGear = itmGMap.filter(i=>i.data.data.gearModifiers[skill.data.data.skillKey]!=0)
+            const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) { return acc + obj.data.data.gearModifiers[skill.data.data.skillKey]; }, 0);
+            const gearDiceTotal = parseInt(gearDiceModifier)
+
+
             // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
             let skillName = "";
             if (skill.data.data.skillKey == "") {
@@ -429,14 +447,15 @@ export class MYZActorSheet extends ActorSheet {
             } else {
                 skillName = game.i18n.localize(`MYZ.SKILL_${skill.data.data.skillKey}`);
             }
+            
 
             RollDialog.prepareRollDialog({
                 rollName: skillName,
                 attributeName: attName,
                 diceRoller: this.diceRoller,
-                baseDefault: baseDice,
-                skillDefault: skill.data.data.value,
-                gearDefault: 0,
+                baseDefault: baseDiceTotal,
+                skillDefault: skillDiceTotal,
+                gearDefault: gearDiceTotal,
                 modifierDefault: 0,
             });
         }
