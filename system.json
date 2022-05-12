@@ -2,7 +2,7 @@
   "name": "mutant-year-zero",
   "title": "Mutant Year Zero",
   "description": "The Mutant Year Zero system for FoundryVTT!",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "minimumCoreVersion": "9",
   "compatibleCoreVersion": "9",
   "templateVersion": 1,
@@ -24,7 +24,7 @@
     },
     {
       "name": "myz-macros",
-      "label": "MYZ macors",
+      "label": "MYZ macros",
       "system": "mutant-year-zero",
       "path": "./packs/myz-macros.db",
       "entity": "Macro"
@@ -71,6 +71,6 @@
   "gridUnits": "m",
   "url": "https://github.com/superseva/mutant-year-zero",
   "manifest": "https://github.com/superseva/mutant-year-zero/releases/latest/download/system.json",
-  "download": "https://github.com/superseva/mutant-year-zero/releases/download/v9.0.1/mutant-year-zero.zip",
+  "download": "https://github.com/superseva/mutant-year-zero/releases/download/v9.0.2/mutant-year-zero.zip",
   "license": "LICENSE.txt"
 }
