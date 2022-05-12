@@ -27,6 +27,7 @@ export class MYZItem extends Item {
         const data = itemData.data;
         data.itemType = itemData.type;
         data.default_attributes = CONFIG.MYZ.attributes;
+        data.skillKeysList = CONFIG.MYZ.SKILLKEYS;
     }
 
 

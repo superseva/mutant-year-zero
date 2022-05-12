@@ -19,8 +19,11 @@
     "BASE_DICE": "Base Dice",
     "DETAILS": "Details",
     "GEAR_DICE": "GEAR DICE",
+    "GEAR_DICE_MODIFIER": "Gear Dice Modifier",
     "MODIFIERS": "Modifiers",
-    "SKILL_DICE": "SKILL DICE"
+    "SKILL_DICE": "SKILL DICE",
+    "SKILL_DICE_MODIFIER": "Skill Dice Modifier",
+    "SKILL_NAME": "Skill Name"
   },
   "MYZ.ABILITIES": "Fertigkeiten",
   "MYZ.ABILITY_ANIMAL": "Tierkräfte",

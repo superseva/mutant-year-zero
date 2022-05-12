@@ -260,10 +260,35 @@
 					"ANALYZE":0,
 					"QUESTION":0,
 					"INTERACT":0,
-					"REPAIR":0					
-				}
-			},
-			"modifiers-gear-group":{
+					"REPAIR":0,
+					"INTIMIDATE":0,
+					"JURYRIG":0,
+					"FINDTHEPATH":0,
+					"MAKEADEAL":0,
+					"SICADOG":0,
+					"INSPIRE":0,
+					"COMMAND":0,
+					"SHAKEITOFF":0,
+					"BREWPOTION":0,
+					"HUNT":0,
+					"MEASUREENEMY":0,
+					"SCRY":0,
+					"SCAVENGE":0,
+					"TARGET":0,
+					"CLEAN":0,
+					"MANIPULATEPROGRAM":0,
+					"COORDINATE":0,
+					"MANUFACTURE":0,
+					"CALCULATE":0,
+					"RECYCLE":0,
+					"PROTECT":0,
+					"INVESTIGATE":0,
+					"COMMANDOFFICER":0,
+					"PROSECUTE":0,
+					"ENLIGHTEN":0,
+					"PRESSON":0,
+					"TINKER":0
+				},
 				"gearModifiers":{
 					"strength":0,
 					"agility":0,
@@ -291,7 +316,34 @@
 					"ANALYZE":0,
 					"QUESTION":0,
 					"INTERACT":0,
-					"REPAIR":0					
+					"REPAIR":0,
+					"INTIMIDATE":0,
+					"JURYRIG":0,
+					"FINDTHEPATH":0,
+					"MAKEADEAL":0,
+					"SICADOG":0,
+					"INSPIRE":0,
+					"COMMAND":0,
+					"SHAKEITOFF":0,
+					"BREWPOTION":0,
+					"HUNT":0,
+					"MEASUREENEMY":0,
+					"SCRY":0,
+					"SCAVENGE":0,
+					"TARGET":0,
+					"CLEAN":0,
+					"MANIPULATEPROGRAM":0,
+					"COORDINATE":0,
+					"MANUFACTURE":0,
+					"CALCULATE":0,
+					"RECYCLE":0,
+					"PROTECT":0,
+					"INVESTIGATE":0,
+					"COMMANDOFFICER":0,
+					"PROSECUTE":0,
+					"ENLIGHTEN":0,
+					"PRESSON":0,
+					"TINKER":0					
 				}
 			}
 		},
@@ -327,7 +379,7 @@
 			"skillBonus": 0
 		},
 		"armor": {
-			"templates": ["base", "physical", "dev", "modifiers-group", "modifiers-gear-group"],
+			"templates": ["base", "physical", "dev", "modifiers-group"],
 			"armorType": "armor",
 			"rating": {
 				"value": 1,
@@ -347,7 +399,7 @@
 			"equipped": true
 		},
 		"gear": {
-			"templates": ["base", "physical"],
+			"templates": ["base", "physical", "modifiers-group"],
 			"requirement": ""
 		},
 		"artifact": {
