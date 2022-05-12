@@ -357,7 +357,7 @@
 			"skillKey": ""
 		},
 		"ability": {
-			"templates": ["base"],
+			"templates": ["base", "modifiers-group"],
 			"creatureType": "",
 			"abilityType": "",
 			"effect": "",
@@ -365,13 +365,13 @@
 			"broken": false
 		},
 		"talent": {
-			"templates": ["base"],
+			"templates": ["base", "modifiers-group"],
 			"effect": "",
 			"roleType": "general",
 			"creatureType": ""
 		},
 		"weapon": {
-			"templates": ["base", "physical", "bonus", "dev"],
+			"templates": ["base", "physical", "bonus", "dev", "modifiers-group"],
 			"damage": 1,
 			"range": "range_arm",
 			"category": "",
@@ -388,7 +388,7 @@
 			"equipped": true
 		},
 		"chassis": {
-			"templates": ["base", "physical"],
+			"templates": ["base", "physical", "modifiers-group"],
 			"location": "",
 			"strength": 0,
 			"agility": 0,
@@ -403,7 +403,7 @@
 			"requirement": ""
 		},
 		"artifact": {
-			"templates": ["base", "physical", "dev"],
+			"templates": ["base", "physical", "dev", "modifiers-group"],
 			"effect": ""
 		},
 		"critical": {
