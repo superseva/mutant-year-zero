@@ -24,7 +24,7 @@
     },
     {
       "name": "myz-macros",
-      "label": "MYZ macros",
+      "label": "MYZ Macros",
       "system": "mutant-year-zero",
       "path": "./packs/myz-macros.db",
       "entity": "Macro"
