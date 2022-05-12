@@ -231,6 +231,35 @@
 			"dev": {
 				"dev_requirement": "",
 				"dev_bonus": ""
+			},
+			"modifiers":{
+				"strength":0,
+				"agility":0,
+				"wits":0,
+				"empathy":0,
+				"ENDURE":0, 
+				"FORCE":0, 
+				"FIGHT":0, 
+				"SNEAK":0, 
+				"MOVE":0, 
+				"SHOOT":0, 
+				"SCOUT":0, 
+				"COMPREHEND":0, 
+				"KNOWTHEZONE":0,
+				"SENSEEMOTION":0, 
+				"MANIPULATE":0, 
+				"HEAL":0,
+				"KNOWNATURE":0,
+				"DOMINATE":0,
+				"OVERLOAD":0,
+				"ASSAULT":0,
+				"INFILTRATE":0,
+				"SCAN":0,
+				"DATAMINE":0,
+				"ANALYZE":0,
+				"QUESTION":0,
+				"INTERACT":0,
+				"REPAIR":0
 			}
 		},
 		"skill": {
@@ -293,6 +322,7 @@
 			"effect": ""
 		},
 		"critical": {
+			"templates": ["modifiers"],
 			"lethal": "",
 			"timeLimit": "",
 			"healingTime": "",
