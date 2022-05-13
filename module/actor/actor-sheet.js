@@ -412,11 +412,17 @@ export class MYZActorSheet extends ActorSheet {
         const attName = $(event.currentTarget).data("attribute");
         const attVal = this.actor.data.data.attributes[attName].value;
         let rollName = `MYZ.ATTRIBUTE_${attName.toUpperCase()}_${this.actor.data.data.creatureType.toUpperCase()}`;
+
+        const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
+        const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[attName]!=0)
+        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[attName]; }, 0);
+        let baseDiceTotal = parseInt(attVal) + parseInt(baseDiceModifier)
+
         RollDialog.prepareRollDialog({
             rollName: rollName,
             attributeName: attName,
             diceRoller: this.diceRoller,
-            baseDefault: attVal,
+            baseDefault: baseDiceTotal,
             skillDefault: 0,
             gearDefault: 0,
             modifierDefault: 0,
@@ -436,24 +442,9 @@ export class MYZActorSheet extends ActorSheet {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find((element) => element.id == itemId);
             const attName = skill.data.data.attribute;
-           // let baseDice = this.actor.data.data.attributes[attName].value;
+            // let baseDice = this.actor.data.data.attributes[attName].value;
             // Apply any modifiers from items or crits
-            const diceTotals = this._getRollModifiers(skill)
-            // // SKILL MODIFIERS            
-            // const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
-            // const itemsThatModifySkill = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.skillKey]!=0)
-            // const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.skillKey]; }, 0);
-            // const skillDiceTotal = parseInt(skill.data.data.value) + parseInt(skillDiceModifier)
-            // // ATTRIBUTE MODIFIERS  
-            // const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.attribute]!=0)
-            // const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.attribute]; }, 0);
-            // const baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier)
-            // // GEAR MODIFIERS  
-            // const itmGMap = this.actor.items.filter(itm=>itm.data.data.gearModifiers!=undefined)
-            // const itemsThatModifyGear = itmGMap.filter(i=>i.data.data.gearModifiers[skill.data.data.skillKey]!=0)
-            // const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) { return acc + obj.data.data.gearModifiers[skill.data.data.skillKey]; }, 0);
-            // const gearDiceTotal = parseInt(gearDiceModifier)
-
+            const diceTotals = this._getRollModifiers(skill);
 
             // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
             let skillName = "";
