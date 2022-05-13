@@ -86,7 +86,7 @@ export default class MYZHooks {
         }
     }
 
-    static async onPreCreateItem(item, updateData, options) {
+    static onPreCreateItem(item, updateData, options) {
         // CREATING OWNED ITEM
         if (!item.parent) return;
         if (item.type == "project" && item.actor.data.type != "ark") {
@@ -99,6 +99,10 @@ export default class MYZHooks {
         }
         if (item.type == "armor" && item.actor.data.data.creatureType == "robot") {
             ui.notifications.warn(`You can't add Armor to a robot character`);
+            return false;
+        }
+        if (item.type == "critical" && item.actor.data.data.creatureType == "robot") {
+            ui.notifications.warn(`You can't assign Criticals to a robot character`);
             return false;
         }
 

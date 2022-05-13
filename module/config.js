@@ -1,29 +1,53 @@
-export class MYZ {
-    /*
-    static ActorTypes = {
-        mutant: { value: "mutant", label:"MYZ.MUTANT"},
-        animal: { value: "animal", label: "MYZ.ANIMAL" },
-        robot: { value: "robot", label: "MYZ.ROBOT" },
-        human: { value: "human", label: "MYZ.HUMAN" }
-    }
-    
+export class MYZ {   
 
-    static attributes = {
-        strength: "MYZ.ATTRIBUTE_STRENGTH",
-        agility: "MYZ.ATTRIBUTE_AGILITY",
-        wits: "MYZ.ATTRIBUTE_WITS",
-        empathy: "MYZ.ATTRIBUTE_EMPATHY"
-    }    
-
-    static talentTypes = {
-        general: {
-            lablel: "MYZ.TALENT_GENERAL",
-            value:"general"
-        },
-        other: {
-            lablel: "MYZ.TALENT_OTHER",
-            value: "other"
-        }
-    }
-    */
+    static SKILLKEYS = ["ANALYZE",
+        "ASSAULT",
+        "BREWPOTION",
+        "CALCULATE",
+        "CLEAN",
+        "COMMAND",
+        "COMMANDOFFICER",
+        "COMPREHEND",
+        "COORDINATE",
+        "DATAMINE",
+        "DOMINATE",
+        "ENDURE",
+        "ENLIGHTEN",
+        "FIGHT",
+        "FINDTHEPATH",
+        "FORCE",
+        "HEAL",
+        "HUNT",
+        "INFILTRATE",
+        "INSPIRE",
+        "INTERACT",
+        "INTIMIDATE",
+        "INVESTIGATE",
+        "JURYRIG",
+        "KNOWNATURE",
+        "KNOWTHEZONE",
+        "MAKEADEAL",
+        "MANIPULATE",
+        "MANIPULATEPROGRAM",
+        "MANUFACTURE",
+        "MEASUREENEMY",
+        "MOVE",
+        "OVERLOAD",
+        "PRESSON",
+        "PROSECUTE",
+        "PROTECT",
+        "QUESTION",
+        "RECYCLE",
+        "REPAIR",
+        "SCAN",
+        "SCAVENGE",
+        "SCOUT",
+        "SCRY",
+        "SENSEEMOTION",
+        "SHAKEITOFF",
+        "SHOOT",
+        "SICADOG",
+        "SNEAK",
+        "TARGET",
+        "TINKER"]
 }

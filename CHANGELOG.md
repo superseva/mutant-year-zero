@@ -2,6 +2,13 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v9.0.2
+
+- Items now have the Tab for the skill and attribute modifiers.
+- Fixed bug where you could add crit to a robot character
+- Added crit box to Mutant, Animal and Human NPCs
+
+
 ## v9.0.1
 
 - This version is minimum required version for the official GENLAB ALPHA Module

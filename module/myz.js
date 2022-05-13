@@ -269,7 +269,8 @@ Hooks.once("ready", async function () {
 /* SET CHARACTER TYPE */
 /* POPULATE CHARACTER WITH DEFAULT SKILLS */
 Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
-Hooks.on("preCreateItem", (item, updateData, options) => { MYZHooks.onPreCreateItem(item, updateData, options); });
+//Hooks.on("preCreateItem", (item, updateData, options) => { MYZHooks.onPreCreateItem(item, updateData, options); });
+Hooks.on("preCreateItem", MYZHooks.onPreCreateItem);
 Hooks.on("preUpdateItem", (item, updateData, option, _id) => { MYZHooks.onUpdateOwnedItem(item, updateData, option, _id); });
 
 /* -------------------------------------------- */
@@ -416,9 +417,13 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/info.html",
         "systems/mutant-year-zero/templates/actor/partials/consumables.html",
         "systems/mutant-year-zero/templates/actor/partials/encumbrance.html",
+        "systems/mutant-year-zero/templates/actor/partials/actor-effects.html",
+        "systems/mutant-year-zero/templates/actor/partials/special.html",
         "systems/mutant-year-zero/templates/item/partials/header-simple.html",
         "systems/mutant-year-zero/templates/item/partials/header-physical.html",
-        "systems/mutant-year-zero/templates/actor/partials/actor-effects.html"
+        "systems/mutant-year-zero/templates/item/partials/tabs.html",
+        "systems/mutant-year-zero/templates/item/partials/modifiers.html"
+        
     ];
     return loadTemplates(templatePaths);
 }

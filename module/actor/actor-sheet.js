@@ -183,12 +183,16 @@ export class MYZActorSheet extends ActorSheet {
 
         // Roll Attribute
         html.find(".roll-attribute").click(this._onRollAttribute.bind(this));
-        // Roll SKILL
+        
+        // Roll Skill
         html.find(".roll-skill").click(this._onRollSkill.bind(this));
+        
         // Viewable Item
         html.find(".viewable").click(this._onItemView.bind(this));
+        
         // Chatable Item
         html.find(".chatable").click(this._onItemSendToChat.bind(this));
+        
         //Roll Rot
         html.find(".roll-rot").click((event) => {
             RollDialog.prepareRollDialog({
@@ -203,8 +207,9 @@ export class MYZActorSheet extends ActorSheet {
             const itemId = $(event.currentTarget).data("item-id");
             const weapon = this.actor.items.get(itemId);
             let testName = weapon.name;
-            let attribute;
+            //let attribute;
             let skill;
+            
 
             if (weapon.data.data.category === "melee") {
                 if (this.actor.data.data.creatureType != "robot") {
@@ -212,9 +217,9 @@ export class MYZActorSheet extends ActorSheet {
                 } else {
                     skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey === "ASSAULT");
                 }
-                attribute = this.actor.data.data.attributes.strength;
+                //attribute = this.actor.data.data.attributes.strength;
             } else {
-                attribute = this.actor.data.data.attributes.agility;
+                //attribute = this.actor.data.data.attributes.agility;
                 skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey == "SHOOT");
             }
             if (!skill) {
@@ -226,16 +231,30 @@ export class MYZActorSheet extends ActorSheet {
                         }
                     }
                 };
+                if (weapon.data.data.category === "melee") {
+                    skill.data.data.skillKey = this.actor.data.data.creatureType != "robot"? "FIGHT":"ASSAULT"
+                    skill.data.data.attribute = "strength";
+                }else{
+                    skill.data.data.skillKey = "SHOOT"
+                    skill.data.data.attribute = "agility";
+                }
             }
+
+           // console.warn(skill)
+          //  console.warn(attribute)
+
+            const diceTotals = this._getRollModifiers(skill)
+            diceTotals.gearDiceTotal += parseInt(weapon.data.data.bonus.value);
+            diceTotals.gearDiceTotal = Math.max(0, diceTotals.gearDiceTotal)
 
             RollDialog.prepareRollDialog({
                 rollName: testName,
                 attributeName: skill.data.data.attribute,
                 itemId,
                 diceRoller: this.diceRoller,
-                baseDefault: attribute.value,
-                skillDefault: skill.data.data.value,
-                gearDefault: weapon.data.data.bonus.value,
+                baseDefault: diceTotals.baseDiceTotal,
+                skillDefault: diceTotals.skillDiceTotal,
+                gearDefault: diceTotals.gearDiceTotal,
                 modifierDefault: weapon.data.data.skillBonus,
                 artifactDefault: weapon.data.data.artifactBonus || 0,
                 damage: weapon.data.data.damage,
@@ -250,6 +269,7 @@ export class MYZActorSheet extends ActorSheet {
                 gearDefault: this.actor.data.data.armorrating.value,
             });
         });
+
         //Roll Armor Item
         html.find(".armor-item-roll").click((event) => {
             const itemBox = $(event.currentTarget).parents(".box-item");
@@ -326,6 +346,7 @@ export class MYZActorSheet extends ActorSheet {
         const item = this.actor.items.get(_itemId);
         item.sheet.render(true);
     }
+    
     async _deleteOwnedItemById(_itemId) {
         await this.actor.deleteEmbeddedDocuments("Item", [_itemId]);
     }
@@ -397,11 +418,17 @@ export class MYZActorSheet extends ActorSheet {
         const attName = $(event.currentTarget).data("attribute");
         const attVal = this.actor.data.data.attributes[attName].value;
         let rollName = `MYZ.ATTRIBUTE_${attName.toUpperCase()}_${this.actor.data.data.creatureType.toUpperCase()}`;
+
+        const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
+        const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[attName]!=0)
+        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[attName]; }, 0);
+        let baseDiceTotal = parseInt(attVal) + parseInt(baseDiceModifier)
+
         RollDialog.prepareRollDialog({
             rollName: rollName,
             attributeName: attName,
             diceRoller: this.diceRoller,
-            baseDefault: attVal,
+            baseDefault: baseDiceTotal,
             skillDefault: 0,
             gearDefault: 0,
             modifierDefault: 0,
@@ -421,7 +448,10 @@ export class MYZActorSheet extends ActorSheet {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find((element) => element.id == itemId);
             const attName = skill.data.data.attribute;
-            let baseDice = this.actor.data.data.attributes[attName].value;
+            // let baseDice = this.actor.data.data.attributes[attName].value;
+            // Apply any modifiers from items or crits
+            const diceTotals = this._getRollModifiers(skill);
+
             // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
             let skillName = "";
             if (skill.data.data.skillKey == "") {
@@ -429,14 +459,15 @@ export class MYZActorSheet extends ActorSheet {
             } else {
                 skillName = game.i18n.localize(`MYZ.SKILL_${skill.data.data.skillKey}`);
             }
+            
 
             RollDialog.prepareRollDialog({
                 rollName: skillName,
                 attributeName: attName,
                 diceRoller: this.diceRoller,
-                baseDefault: baseDice,
-                skillDefault: skill.data.data.value,
-                gearDefault: 0,
+                baseDefault: diceTotals.baseDiceTotal,
+                skillDefault: diceTotals.skillDiceTotal,
+                gearDefault: diceTotals.gearDiceTotal,
                 modifierDefault: 0,
             });
         }
@@ -460,5 +491,32 @@ export class MYZActorSheet extends ActorSheet {
                 broken: !item.data.data.broken,
             },
         };
+    }
+
+    _getRollModifiers(skill){
+        const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
+        const itemsThatModifySkill = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.skillKey]!=0)
+        const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.skillKey]; }, 0);
+        let skillDiceTotal = parseInt(skill.data.data.value) + parseInt(skillDiceModifier)
+        // ATTRIBUTE MODIFIERS  
+        const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.attribute]!=0)
+        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.attribute]; }, 0);
+        const baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
+        let baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier)
+        // GEAR MODIFIERS  
+        const itmGMap = this.actor.items.filter(itm=>itm.data.data.gearModifiers!=undefined)
+        const itemsThatModifyGear = itmGMap.filter(i=>i.data.data.gearModifiers[skill.data.data.skillKey]!=0)
+        const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) { return acc + obj.data.data.gearModifiers[skill.data.data.skillKey]; }, 0);
+        let gearDiceTotal = parseInt(gearDiceModifier)
+
+        //skillDiceTotal = isNaN(skillDiceTotal)?0:skillDiceTotal
+        //baseDiceTotal =  Math.max(0, baseDiceTotal)
+        //gearDiceTotal = Math.max(0, gearDiceTotal)
+
+        return {
+            skillDiceTotal:skillDiceTotal,
+            baseDiceTotal:baseDiceTotal,
+            gearDiceTotal:gearDiceTotal
+        }
     }
 }

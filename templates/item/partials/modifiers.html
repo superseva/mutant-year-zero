@@ -1,0 +1,40 @@
+<div class="tab" data-group="primary" data-tab="modifiers" style="height:350px">
+
+    <div>
+        <h3 style="text-transform:uppercase; text-align: center; font-weight: 900;">{{localize 'MYZ.BASE_DICE'}}</h3>
+        <div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.ATTRIBUTE_STRENGTH_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_STRENGTH_ROBOT'}}</p>
+                <input class="short-input" type="number" name="data.modifiers.strength" value="{{data.modifiers.strength}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.ATTRIBUTE_AGILITY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_AGILITY_ROBOT'}}</p>
+                <input class="short-input" type="number" name="data.modifiers.agility" value="{{data.modifiers.agility}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.ATTRIBUTE_WITS_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_WITS_ROBOT'}}</p>
+                <input class="short-input" type="number" name="data.modifiers.wits" value="{{data.modifiers.wits}}">
+            </div>
+            <div class="flex space-between">
+                <p>{{localize 'MYZ.ATTRIBUTE_EMPATHY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ANIMAL'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ROBOT'}}</p>
+                <input class="short-input" type="number" name="data.modifiers.empathy" value="{{data.modifiers.empathy}}">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3 style="text-transform:uppercase; text-align: center; font-weight: 900; padding-top: 10px;">{{localize 'MYZ.SKILL_DICE'}} & {{localize 'MYZ.GEAR_DICE'}}</h3>
+        <div class="grid grid-3col">
+            <p>{{localize 'MYZ.SKILL_NAME'}}</p>
+            <span style="display: flex; justify-content: center;"><p>{{localize 'MYZ.SKILL_DICE_MODIFIER'}}</p></span>
+            <span style="display: flex; justify-content: center;"><p>{{localize 'MYZ.GEAR_DICE_MODIFIER'}}</p></span>
+        </div>
+        {{#each data.skillKeysList as |key index|}}
+        <div class="grid grid-3col" >
+            <span><p>{{localize (concat 'MYZ.SKILL_' key)}}</p></span>
+            <span style="display: flex; justify-content: center;"><input class="short-input" type="number" name="data.modifiers.{{key}}" value="{{lookup ../data.modifiers key}}"></span>
+            <span style="display: flex; justify-content: center;"><input class="short-input" type="number" name="data.gearModifiers.{{key}}" value="{{lookup ../data.gearModifiers key}}"></span>
+        </div>
+        {{/each}}
+    </div>
+</div>

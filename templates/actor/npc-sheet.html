@@ -112,21 +112,26 @@
                     sourceLabel='MYZ.TALENTS' fixedHeight='fixed-height'}}
                 </div>
                 <div>
-                    <div class="box-item header flex row align-center {{data.creatureType}}">
-                        <label class="item-name">{{localize 'MYZ.SPECIAL'}}</label>
-                    </div>
-                    <div class="box-list {{data.creatureType}} fixed-height">
-                        <textarea name="data.special">{{data.special}}</textarea>
-                    </div>
+                    {{#ifCond data.creatureType '==' 'robot'}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/special.html}}
+                    {{/ifCond}}
+
+                    {{#ifCond data.creatureType '!==' 'robot'}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/criticals.html fixedHeight='fixed-height'}}
+                    {{/ifCond}}
                 </div>
             </div>
         </div>
 
         {{!-- Gear Tab --}}
         <div class="tab" data-group="primary" data-tab="gear">
-            {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}} {{#if (ifvalue data.creatureType 'robot')}} {{>
-            systems/mutant-year-zero/templates/actor/partials/chassis-1row.html}} {{/if}} {{#unless (ifvalue data.creatureType 'robot')}} {{>
-            systems/mutant-year-zero/templates/actor/partials/armors.html}} {{/unless}}
+            {{> systems/mutant-year-zero/templates/actor/partials/weapons.html}} 
+            {{#if (ifvalue data.creatureType 'robot')}} 
+            {{> systems/mutant-year-zero/templates/actor/partials/chassis-1row.html}}
+            {{/if}} 
+            {{#unless (ifvalue data.creatureType 'robot')}} 
+            {{> systems/mutant-year-zero/templates/actor/partials/armors.html}}
+            {{/unless}}
         </div>
 
         {{!-- Info Tab --}}
