@@ -203,8 +203,9 @@ export class MYZActorSheet extends ActorSheet {
             const itemId = $(event.currentTarget).data("item-id");
             const weapon = this.actor.items.get(itemId);
             let testName = weapon.name;
-            let attribute;
+            //let attribute;
             let skill;
+            
 
             if (weapon.data.data.category === "melee") {
                 if (this.actor.data.data.creatureType != "robot") {
@@ -212,9 +213,9 @@ export class MYZActorSheet extends ActorSheet {
                 } else {
                     skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey === "ASSAULT");
                 }
-                attribute = this.actor.data.data.attributes.strength;
+                //attribute = this.actor.data.data.attributes.strength;
             } else {
-                attribute = this.actor.data.data.attributes.agility;
+                //attribute = this.actor.data.data.attributes.agility;
                 skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey == "SHOOT");
             }
             if (!skill) {
@@ -226,11 +227,21 @@ export class MYZActorSheet extends ActorSheet {
                         }
                     }
                 };
+                if (weapon.data.data.category === "melee") {
+                    skill.data.data.skillKey = this.actor.data.data.creatureType != "robot"? "FIGHT":"ASSAULT"
+                    skill.data.data.attribute = "strength";
+                }else{
+                    skill.data.data.skillKey = "SHOOT"
+                    skill.data.data.attribute = "agility";
+                }
             }
 
-            const diceTotals = this._getRollModifiers(skill, attribute.value)
-            console.warn(diceTotals)
+           // console.warn(skill)
+          //  console.warn(attribute)
+
+            const diceTotals = this._getRollModifiers(skill)
             diceTotals.gearDiceTotal += parseInt(weapon.data.data.bonus.value);
+            diceTotals.gearDiceTotal = Math.max(0, diceTotals.gearDiceTotal)
 
             RollDialog.prepareRollDialog({
                 rollName: testName,
@@ -425,9 +436,9 @@ export class MYZActorSheet extends ActorSheet {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find((element) => element.id == itemId);
             const attName = skill.data.data.attribute;
-            let baseDice = this.actor.data.data.attributes[attName].value;
+           // let baseDice = this.actor.data.data.attributes[attName].value;
             // Apply any modifiers from items or crits
-            const diceTotals = this._getRollModifiers(skill, baseDice)
+            const diceTotals = this._getRollModifiers(skill)
             // // SKILL MODIFIERS            
             // const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
             // const itemsThatModifySkill = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.skillKey]!=0)
@@ -485,20 +496,26 @@ export class MYZActorSheet extends ActorSheet {
         };
     }
 
-    _getRollModifiers(skill, baseDice){
+    _getRollModifiers(skill){
         const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
-            const itemsThatModifySkill = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.skillKey]!=0)
-            const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.skillKey]; }, 0);
-            const skillDiceTotal = parseInt(skill.data.data.value) + parseInt(skillDiceModifier)
-            // ATTRIBUTE MODIFIERS  
-            const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.attribute]!=0)
-            const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.attribute]; }, 0);
-            const baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier)
-            // GEAR MODIFIERS  
-            const itmGMap = this.actor.items.filter(itm=>itm.data.data.gearModifiers!=undefined)
-            const itemsThatModifyGear = itmGMap.filter(i=>i.data.data.gearModifiers[skill.data.data.skillKey]!=0)
-            const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) { return acc + obj.data.data.gearModifiers[skill.data.data.skillKey]; }, 0);
-            const gearDiceTotal = parseInt(gearDiceModifier)
+        const itemsThatModifySkill = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.skillKey]!=0)
+        const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.skillKey]; }, 0);
+        let skillDiceTotal = parseInt(skill.data.data.value) + parseInt(skillDiceModifier)
+        // ATTRIBUTE MODIFIERS  
+        const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.attribute]!=0)
+        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.attribute]; }, 0);
+        const baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
+        let baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier)
+        // GEAR MODIFIERS  
+        const itmGMap = this.actor.items.filter(itm=>itm.data.data.gearModifiers!=undefined)
+        const itemsThatModifyGear = itmGMap.filter(i=>i.data.data.gearModifiers[skill.data.data.skillKey]!=0)
+        const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) { return acc + obj.data.data.gearModifiers[skill.data.data.skillKey]; }, 0);
+        let gearDiceTotal = parseInt(gearDiceModifier)
+
+        //skillDiceTotal = isNaN(skillDiceTotal)?0:skillDiceTotal
+        //baseDiceTotal =  Math.max(0, baseDiceTotal)
+        //gearDiceTotal = Math.max(0, gearDiceTotal)
+
         return {
             skillDiceTotal:skillDiceTotal,
             baseDiceTotal:baseDiceTotal,
