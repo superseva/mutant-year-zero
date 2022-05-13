@@ -183,12 +183,16 @@ export class MYZActorSheet extends ActorSheet {
 
         // Roll Attribute
         html.find(".roll-attribute").click(this._onRollAttribute.bind(this));
-        // Roll SKILL
+        
+        // Roll Skill
         html.find(".roll-skill").click(this._onRollSkill.bind(this));
+        
         // Viewable Item
         html.find(".viewable").click(this._onItemView.bind(this));
+        
         // Chatable Item
         html.find(".chatable").click(this._onItemSendToChat.bind(this));
+        
         //Roll Rot
         html.find(".roll-rot").click((event) => {
             RollDialog.prepareRollDialog({
@@ -265,6 +269,7 @@ export class MYZActorSheet extends ActorSheet {
                 gearDefault: this.actor.data.data.armorrating.value,
             });
         });
+
         //Roll Armor Item
         html.find(".armor-item-roll").click((event) => {
             const itemBox = $(event.currentTarget).parents(".box-item");
@@ -341,6 +346,7 @@ export class MYZActorSheet extends ActorSheet {
         const item = this.actor.items.get(_itemId);
         item.sheet.render(true);
     }
+    
     async _deleteOwnedItemById(_itemId) {
         await this.actor.deleteEmbeddedDocuments("Item", [_itemId]);
     }
