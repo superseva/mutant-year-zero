@@ -8,89 +8,80 @@ export class MYZActor extends Actor {
      */
     prepareData() {
         super.prepareData();
-        const actorData = this.data;
-        const data = actorData.data;
-        const flags = actorData.flags;
-        data.type = actorData.type;
-
         if (this.data.type != "ark") {
-            this._prepareMutantData(actorData);
+            this._prepareMutantData();
         }
     }
 
     /**
      * Prepare Character type specific data
      */
-    _prepareMutantData(actorData) {
-        const data = actorData.data;
-        // update ROT
-        if (data.rot.value < data.rot.min) {
-            data.rot.value = data.rot.min;
+    _prepareMutantData() {
+        // Update ROT
+        if (this.system.rot.value < this.system.rot.min) {
+            this.system.rot.value = this.system.rot.min;
         }
 
-        //update armor
-        if (actorData.data.creatureType != "robot") {
-            //console.warn(actorData.items);
-            let armor = actorData.items._source.find((i) => i.type == "armor" && i.data.equipped);
+        // Update armor
+        if (this.system.creatureType != "robot") {
+            let armor = this.items._source.find((i) => i.type == "armor" && i.data.equipped);
             if (armor) {
-                actorData.data.armorrating.value = armor.data.rating.value;
+                this.system.armorrating.value = armor.data.rating.value;
             } else {
-                actorData.data.armorrating.value = 0;
+                this.system.armorrating.value = 0;
             }
         } else {
             let chassisArmorTotal = 0;
-            let chassie = actorData.items._source.forEach((i) => {
-                if (i.type == "chassis" && i.data.equipped) {
-                    chassisArmorTotal += parseInt(i.data.armor);
+            this.items._source.forEach((i) => {
+                if (i.type == "chassis" && i.system.equipped) {
+                    chassisArmorTotal += parseInt(i.system.armor);
                 }
             });
-            actorData.data.armorrating.value = chassisArmorTotal;
+            this.system.armorrating.value = chassisArmorTotal;
         }
 
-        // update encumbrance
-        data.isEncumbered = "";
-        data.encumbranceMax = parseInt(data.attributes.strength.max) * 2;
+        // Update encumbrance
+        this.system.isEncumbered = "";
+        this.system.encumbranceMax = parseInt(this.system.attributes.strength.max) * 2;
         
         // Check for SCROUNGER Animal Talent and replace Str with Wits
-        const findScroungerTalent = this.data.items.filter(item => (item.data.type === 'talent' && item.data.name === 'Scrounger'))
+        const findScroungerTalent = this.items.filter(item => (item.type === 'talent' && item.name === 'Scrounger'))
         if(findScroungerTalent.length === 1)
-            data.encumbranceMax = parseInt(data.attributes.wits.max) * 2;
+            this.system.encumbranceMax = parseInt(this.system.attributes.wits.max) * 2;
 
         // Pack Mule talent
-        if ('items' in this.data) {
-            const items = Array.from(this.data.items.values())
-            const findPackMuleTalent = items.filter(item => (item.data.type === 'talent' && item.data.name === 'Pack Mule'))
+        if ('items' in this) {
+            const items = Array.from(this.items.values())
+            const findPackMuleTalent = items.filter(item => (item.type === 'talent' && item.name === 'Pack Mule'))
             if (findPackMuleTalent.length === 1) {
                 console.log('pack mule fix')
-                data.encumbranceMax *= 2;
+                this.system.encumbranceMax *= 2;
             }
         }
-        let encumbranceBonus = (data.encumbranceBonus) ? data.encumbranceBonus : 0;
-        data.encumbranceMax += encumbranceBonus;
-
-
+        let encumbranceBonus = (this.system.encumbranceBonus) ? this.system.encumbranceBonus : 0;
+        this.system.encumbranceMax += encumbranceBonus;
         let _totalWeight = 0;
         // add items
-        let weightedItems = this.data.items.filter(_itm => _itm.data.data.weight > 0);
+        let weightedItems = this.items.filter(_itm => _itm.system.weight > 0);
         var itemsWeight = weightedItems.reduce(function (accumulator, i) {
-            return accumulator + (parseInt(i.data.data.quantity) * Number(i.data.data.weight));
+            return accumulator + (parseInt(i.system.quantity) * Number(i.system.weight));
         }, 0);
         _totalWeight += Number(itemsWeight);
         //add grub, water, booze and bullets
         try {
-            _totalWeight += parseInt(data.resources.grub.value) / 4;
-            _totalWeight += parseInt(data.resources.water.value) / 4;
-            _totalWeight += parseInt(data.resources.booze.value);
-            _totalWeight += parseInt(data.resources.bullets.value) / 20;
+            _totalWeight += parseInt(this.system.resources.grub.value) / 4;
+            _totalWeight += parseInt(this.system.resources.water.value) / 4;
+            _totalWeight += parseInt(this.system.resources.booze.value);
+            _totalWeight += parseInt(this.system.resources.bullets.value) / 20;
         } catch (error) {
             console.error(error);
         }
 
-        data.itemsWeight = _totalWeight;
-        if (_totalWeight > data.encumbranceMax) {
-            data.isEncumbered = "encumbered";
+        this.system.itemsWeight = _totalWeight;
+        if (_totalWeight > this.system.encumbranceMax) {
+            this.system.isEncumbered = "encumbered";
         } else {
-            data.isEncumbered = "";
+            this.system.isEncumbered = "";
         }
     }
 }

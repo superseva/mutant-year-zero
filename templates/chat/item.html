@@ -3,7 +3,7 @@
         <h3>{{name}}</h3>
 
         {{#if isWeapon}}
-        <h4>{{weaponCategory data.category}}</h4>
+        <h4>{{weaponCategory category}}</h4>
         {{/if}} {{#if isArmor}}
         <h4>{{armorPart data.armorType}}</h4>
         {{/if}} {{#if isCritical}}
@@ -19,13 +19,13 @@
         {{/if}} {{#if img}}
         <img class="item-img" src="{{img}}" title="{{name}}" />
         {{/if}} {{#if isWeapon}}
-        <p><strong>{{localize "MYZ.DAMAGE"}}:</strong> {{data.damage}}</p>
-        <p><strong>{{localize "MYZ.BONUS"}}:</strong> {{data.bonus.value}} / {{data.bonus.max}}</p>
-        <p><strong>{{localize "MYZ.RANGE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' data.range))}}</p>
-        <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{data.comment}}</p>
+        <p><strong>{{localize "MYZ.DAMAGE"}}:</strong> {{damage}}</p>
+        <p><strong>{{localize "MYZ.BONUS"}}:</strong> {{bonus.value}} / {{bonus.max}}</p>
+        <p><strong>{{localize "MYZ.RANGE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' range))}}</p>
+        <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{comment}}</p>
         <hr />
         <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
-        {{{data.description}}}
+        {{{description}}}
         <hr />
         {{/if}} {{#if isArmor}}
         <p><strong>{{localize "MYZ.ARMOR_RATING"}}:</strong> {{data.rating.value}} / {{data.rating.max}}</p>

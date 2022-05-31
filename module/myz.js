@@ -259,8 +259,8 @@ Hooks.once("ready", async function () {
         // UNCOMMENT import * as migrations from "./migration.js";
         // CALL migrations.migrateWorld(); in future if you need migration and delete two lines bellow since they are contained in the migrations.migrateWorld();     
         //migrations.migrateWorld();
-        game.settings.set("mutant-year-zero", "systemMigrationVersion", game.system.data.version);
-        ui.notifications.info(`MYZ System Migration to version ${game.system.data.version} completed!`, { permanent: true });
+        game.settings.set("mutant-year-zero", "systemMigrationVersion", game.system.version);
+        ui.notifications.info(`MYZ System Migration to version ${game.system.version} completed!`, { permanent: true });
     }
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
     //Hooks.on("hotbarDrop", (bar, data, slot) => createMYZMacro(data, slot));
@@ -269,9 +269,8 @@ Hooks.once("ready", async function () {
 /* SET CHARACTER TYPE */
 /* POPULATE CHARACTER WITH DEFAULT SKILLS */
 Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
-//Hooks.on("preCreateItem", (item, updateData, options) => { MYZHooks.onPreCreateItem(item, updateData, options); });
 Hooks.on("preCreateItem", MYZHooks.onPreCreateItem);
-Hooks.on("preUpdateItem", (item, updateData, option, _id) => { MYZHooks.onUpdateOwnedItem(item, updateData, option, _id); });
+Hooks.on("preUpdateItem", MYZHooks.onUpdateOwnedItem);
 
 /* -------------------------------------------- */
 /*  DsN Hooks                                   */
