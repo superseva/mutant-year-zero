@@ -227,11 +227,16 @@ export class MYZActorSheet extends ActorSheet {
             }
             if (!skill) {
                 //ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
+                // skill = {
+                //     data: {
+                //         data: {
+                //             value: 0
+                //         }
+                //     }
+                // };
                 skill = {
-                    data: {
-                        data: {
-                            value: 0
-                        }
+                    system: {                       
+                        value: 0                        
                     }
                 };
                 if (weapon.system.category === "melee") {
@@ -359,9 +364,13 @@ export class MYZActorSheet extends ActorSheet {
         const itemId = $(event.currentTarget).data("item-id");
         let _item = this.actor.items.find((element) => element.id == itemId);
         if (_item) {
+            // let update = {
+            //     _id: _item.id,
+            //     data: { value: $(event.currentTarget).val() },
+            // };
             let update = {
                 _id: _item.id,
-                data: { value: $(event.currentTarget).val() },
+                system: { value: $(event.currentTarget).val() },
             };
 
             await this.actor.updateEmbeddedDocuments("Item", [update]);
@@ -480,7 +489,7 @@ export class MYZActorSheet extends ActorSheet {
     _toggleEquipped(id, item) {
         return {
             _id: id,
-            data: {
+            system: {
                 equipped: !item.system.equipped,
             },
         };
@@ -490,7 +499,7 @@ export class MYZActorSheet extends ActorSheet {
     _toggleBroken(id, item) {
         return {
             _id: id,
-            data: {
+            system: {
                 broken: !item.system.broken,
             },
         };

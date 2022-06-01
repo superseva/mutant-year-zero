@@ -5,13 +5,13 @@
         <div>
             <div class="grid grid-3col item-attr-row align-start">
                 <div class="resource">
-                    <label class="resource-label" for="data.value">{{localize 'MYZ.VALUE'}}</label>
-                    <input type="text" name="data.value" value="{{data.value}}" data-dtype="Number" />
+                    <label class="resource-label" for="system.value">{{localize 'MYZ.VALUE'}}</label>
+                    <input type="text" name="system.value" value="{{system.value}}" data-dtype="Number" />
                 </div>
                 <div class="resource flex column">
-                    <label class="resource-label" for="data.creatureType">{{localize 'MYZ.ACTOR_TYPE'}}</label>
-                    <select name="data.creatureType">
-                        {{#select data.creatureType}}
+                    <label class="resource-label" for="system.creatureType">{{localize 'MYZ.ACTOR_TYPE'}}</label>
+                    <select name="system.creatureType">
+                        {{#select system.creatureType}}
                         <option value="mutant">{{localize "MYZ.MUTANT"}}</option>
                         <option value="animal">{{localize "MYZ.ANIMAL"}}</option>
                         <option value="robot">{{localize "MYZ.ROBOT"}}</option>
@@ -20,13 +20,13 @@
                     </select>
                 </div>
                 <div class="resource flex column">
-                    <label class="resource-label" for="data.attribute">{{localize "MYZ.ATTRIBUTES"}}</label>
-                    <select name="data.attribute">
-                        {{#select data.attribute}}
-                        <option value="strength">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_STRENGTH_' data.creatureType))}}</option>
-                        <option value="agility">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_AGILITY_' data.creatureType))}}</option>
-                        <option value="wits">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_WITS_' data.creatureType))}}</option>
-                        <option value="empathy">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_EMPATHY_' data.creatureType))}}</option>
+                    <label class="resource-label" for="system.attribute">{{localize "MYZ.ATTRIBUTES"}}</label>
+                    <select name="system.attribute">
+                        {{#select system.attribute}}
+                        <option value="strength">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_STRENGTH_' system.creatureType))}}</option>
+                        <option value="agility">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_AGILITY_' system.creatureType))}}</option>
+                        <option value="wits">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_WITS_' system.creatureType))}}</option>
+                        <option value="empathy">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_EMPATHY_' system.creatureType))}}</option>
                         {{/select}}
                     </select>
                 </div>
@@ -35,6 +35,6 @@
     </div>
     <h2>Description</h2>
     <div class="info-high">
-        <div class="description">{{editor content=data.description target="data.description" button=true owner=owner editable=true}}</div>
+        <div class="description">{{editor content=system.description target="system.description" button=true owner=owner editable=true}}</div>
     </div>
 </form>

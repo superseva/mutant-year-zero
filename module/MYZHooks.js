@@ -13,7 +13,7 @@ export default class MYZHooks {
         }
         if (actor.type == "npc") {
             if (actor.system.creatureType == "")
-                updateData["system.creatureType"] = actor.data.type;
+                updateData["system.creatureType"] = actor.type;
         }
         await actor.update(updateData, { renderSheet: true });
 
@@ -63,9 +63,10 @@ export default class MYZHooks {
             // Add ACTOR TYPE and CORE to each skill in _skillsList before you assign it to the actor;
             let _sl = [];
             _skillsList.forEach((s) => {
-                s._source.data["creatureType"] = actor.data.type;
-                s._source.data["coreSkill"] = true;
-                _sl.push(s.data);
+                console.log(s)
+                s.system["creatureType"] = actor.type;
+                s.system["coreSkill"] = true;
+                _sl.push(s);
             });
             await actor.createEmbeddedDocuments("Item", _sl);
         }

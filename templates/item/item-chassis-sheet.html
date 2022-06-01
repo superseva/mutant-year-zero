@@ -9,28 +9,28 @@
             {{!-- Attributes Tab --}}
             <div class="grid grid-4col item-attr-row">
                 <div class="flex column flex-group-center">
-                    <label class="resource-label" for="data.strength">{{localize 'MYZ.ATTRIBUTE_STRENGTH_ROBOT'}}</label>
-                    <input type="number" class="short-input" name="data.strength" value="{{data.strength}}" data-type="Number" />
+                    <label class="resource-label" for="system.strength">{{localize 'MYZ.ATTRIBUTE_STRENGTH_ROBOT'}}</label>
+                    <input type="number" class="short-input" name="system.strength" value="{{system.strength}}" data-type="Number" />
                 </div>
                 <div class="flex column flex-group-center">
-                    <label class="resource-label" for="data.agility">{{localize 'MYZ.ATTRIBUTE_AGILITY_ROBOT'}}</label>
-                    <input type="number" class="short-input" name="data.agility" value="{{data.agility}}" data-type="Number" />
+                    <label class="resource-label" for="system.agility">{{localize 'MYZ.ATTRIBUTE_AGILITY_ROBOT'}}</label>
+                    <input type="number" class="short-input" name="system.agility" value="{{system.agility}}" data-type="Number" />
                 </div>
                 <div class="flex column flex-group-center">
-                    <label class="resource-label" for="data.wits">{{localize 'MYZ.ATTRIBUTE_WITS_ROBOT'}}</label>
-                    <input type="number" class="short-input" name="data.wits" value="{{data.wits}}" data-type="Number" />
+                    <label class="resource-label" for="system.wits">{{localize 'MYZ.ATTRIBUTE_WITS_ROBOT'}}</label>
+                    <input type="number" class="short-input" name="system.wits" value="{{system.wits}}" data-type="Number" />
                 </div>
                 <div class="flex column flex-group-center">
-                    <label class="resource-label" for="data.empathy">{{localize 'MYZ.ATTRIBUTE_EMPATHY_ROBOT'}}</label>
-                    <input type="number" class="short-input" name="data.empathy" value="{{data.empathy}}" data-type="Number" />
+                    <label class="resource-label" for="system.empathy">{{localize 'MYZ.ATTRIBUTE_EMPATHY_ROBOT'}}</label>
+                    <input type="number" class="short-input" name="system.empathy" value="{{system.empathy}}" data-type="Number" />
                 </div>
             </div>
 
             <div class="grid grid-4col item-attr-row">
                 <div class="flex column">
-                    <label class="resource-label" for="data.location">{{localize 'MYZ.LOCATION'}}</label>
-                    <select name="data.location">
-                        {{#select data.location }}
+                    <label class="resource-label" for="system.location">{{localize 'MYZ.LOCATION'}}</label>
+                    <select name="system.location">
+                        {{#select system.location }}
                         <option value="head">{{localize 'MYZ.HEAD'}}</option>
                         <option value="torso">{{localize 'MYZ.TORSO'}}</option>
                         <option value="undercarriage">{{localize 'MYZ.UNDERCARRIAGE'}}</option>
@@ -38,17 +38,17 @@
                     </select>
                 </div>
                 <div>
-                    <label class="resource-label" for="data.armor">{{localize 'MYZ.ARMOR'}}</label>
-                    <input type="text" name="data.armor" value="{{data.armor}}" data-type="Number" />
+                    <label class="resource-label" for="system.armor">{{localize 'MYZ.ARMOR'}}</label>
+                    <input type="text" name="system.armor" value="{{system.armor}}" data-type="Number" />
                 </div>
                 <div>
-                    <label class="resource-label" for="data.modules">{{localize 'MYZ.NUMBER_OF_MODULES'}}</label>
-                    <input type="text" name="data.modules" value="{{data.modules}}" data-type="Number" />
+                    <label class="resource-label" for="system.modules">{{localize 'MYZ.NUMBER_OF_MODULES'}}</label>
+                    <input type="text" name="system.modules" value="{{system.modules}}" data-type="Number" />
                 </div>
                 <div class="resource flex column align-center">
-                    <label for="data.equipped" class="checkbox-label resource-label">
+                    <label for="system.equipped" class="checkbox-label resource-label">
                         {{localize 'MYZ.EQUIPPED'}}
-                        <input class="input-checkbox" type="checkbox" name="data.equipped" {{checked data.equipped}} data-dtype="Boolean" />
+                        <input class="input-checkbox" type="checkbox" name="system.equipped" {{checked system.equipped}} data-dtype="Boolean" />
                     </label>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <h2>Description</h2>
             <div class="info">
                 <div class="description">
-                    {{editor content=data.description target="data.description" button=true owner=owner editable=true}}
+                    {{editor content=system.description target="system.description" button=true owner=owner editable=true}}
                 </div>
             </div>
         </div>
