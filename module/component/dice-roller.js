@@ -82,7 +82,7 @@ export class DiceRoller {
         ) {
 
             const updateData = {};
-            const actorData = actor.data.data;
+            const actorData = actor.system;
             const baneCount = this.countFailures() - this.traumaCount;
             if (baneCount > 0) {
                 // Decreases the attribute.
@@ -92,24 +92,24 @@ export class DiceRoller {
                     const { value, min } = attribute;
                     const newVal = Math.max(min, value - baneCount);
                     if (newVal !== value) {
-                        updateData[`data.attributes.${this.attribute}.value`] = newVal;
+                        updateData[`system.attributes.${this.attribute}.value`] = newVal; // ? CHECK THIS ? Maybe no system needed
                     }
                 }
                 // Adds Resources Points only to Mutants and Animals
-                if (['mutant', 'animal'].includes(actor.type) || ['mutant', 'animal'].includes(actor.data.data.creatureType)) {
+                if (['mutant', 'animal'].includes(actor.type) || ['mutant', 'animal'].includes(actor.system.creatureType)) {
                     const resPts = actorData['resource_points'] ?? { value: 0, max: 10 };
                     if (resPts) {
                         const { value, max } = resPts;
                         const newVal = Math.min(max, value + baneCount);
                         if (newVal !== value) {
-                            updateData[`data.resource_points.value`] = newVal;
+                            updateData[`system.resource_points.value`] = newVal; // ? CHECK THIS ? Maybe no system needed
                         }
                     }
                 }
                 this.traumaCount += baneCount;
             }
-            if (!foundry.utils.isObjectEmpty(updateData)) {
-                actor.update(updateData);
+            if (!foundry.utils.isEmpty(updateData)) {
+                await actor.update(updateData);
             }
         }
 
@@ -118,12 +118,12 @@ export class DiceRoller {
             const item = actor.items.get(this.itemId);
             const baneCount = this.countGearFailures() - this.gearDamageCount;
             if (item && baneCount > 0) {
-                const bonus = item.data.data.bonus;
+                const bonus = item.system.bonus;
                 if (bonus) {
                     const { value } = bonus;
                     const newVal = Math.max(0, value - baneCount);
                     if (newVal !== value) {
-                        item.update({ 'data.bonus.value': newVal });
+                        item.update({ 'system.bonus.value': newVal });
                     }
                     this.gearDamageCount += baneCount;
                 }
