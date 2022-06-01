@@ -1,6 +1,7 @@
 # IDE
 .idea/
 .vs/
+.app/
 
 # Node Modules
 node_modules/
