@@ -17,7 +17,7 @@ export class MYZItem extends Item {
         }
     }
     /**
-     * Augment the basic Item data model with additional dynamic data.
+     * Augment the basic Item values model with additional dynamic values.
      */
     prepareData() {
         super.prepareData();

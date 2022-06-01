@@ -4,7 +4,7 @@
  */
 export class MYZActor extends Actor {
     /**
-     * Augment the basic actor data with additional dynamic data.
+     * Augment the basic actor values with additional dynamic values.
      */
     prepareData() {
         super.prepareData();
