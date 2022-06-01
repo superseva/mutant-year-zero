@@ -5,7 +5,6 @@
 export class MYZItem extends Item {
 
     async _preCreate(createData, options, userId) {
-        console.log(this)
         await super._preCreate(createData, options, userId);
         if (this.img == 'icons/svg/item-bag.svg') {
             let _itemImg = '';
@@ -32,7 +31,6 @@ export class MYZItem extends Item {
         const itemData = duplicate(this.system);
         itemData.name = this.name;
         itemData.img = this.img;
-
         itemData.isWeapon = this.type === "weapon";
         itemData.isArmor = this.type === "armor";
         itemData.isChassis = this.type === "chassis";
