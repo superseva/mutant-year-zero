@@ -107,7 +107,7 @@ export class MYZArkSheet extends ActorSheet {
         return {
             _id: id,
             data: {
-                completed: !item.data.data.completed,
+                completed: !item.system.completed,
             },
         };
     }
