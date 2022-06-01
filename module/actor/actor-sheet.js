@@ -14,11 +14,14 @@ export class MYZActorSheet extends ActorSheet {
     /** @override */
     getData() {
         const superData = super.getData();
+        //console.log(this)
         const data = superData.data;
 
         data.effects = prepareActiveEffectCategories(this.actor.effects)
         // Prepare item lists.
         this._prepareCharacterItems(data);
+        console.log("data ----------------------------------------------------------------")
+        console.log(data)
         return data;
     }
 

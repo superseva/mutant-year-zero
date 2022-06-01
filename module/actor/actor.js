@@ -8,7 +8,7 @@ export class MYZActor extends Actor {
      */
     prepareData() {
         super.prepareData();
-        if (this.data.type != "ark") {
+        if (this.type != "ark") {
             this._prepareMutantData();
         }
     }

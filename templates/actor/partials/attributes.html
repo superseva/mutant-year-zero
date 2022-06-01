@@ -1,13 +1,13 @@
-<div class="box-item header flex row align-center {{data.type}}">
+<div class="box-item header flex row align-center {{system.creatureType}}">
     <label class="item-name">{{localize "MYZ.ATTRIBUTES"}}</label>
 </div>
-<div class="box-list attributes {{data.type}}">
+<div class="box-list attributes {{system.creatureType}}">
     <div class="box-item flex row align-center space-between" {{#ifCond data.attributes.strength.value '<' data.attributes.strength.max}}style="background-color:#ff000080" {{/ifCond}}>
         <label class="item-name attribute-name roll-attribute rollable" data-attribute="strength">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_STRENGTH_" data.creatureType))}}</label>
         <div class="item-controls flex row">
-            <input type="number" name="data.attributes.strength.value" value="{{data.attributes.strength.value}}" class="short-input" />
+            <input type="number" name="system.attributes.strength.value" value="{{system.attributes.strength.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
-            <input type="number" name="data.attributes.strength.max" value="{{data.attributes.strength.max}}" class="short-input" />
+            <input type="number" name="system.attributes.strength.max" value="{{system.attributes.strength.max}}" class="short-input" />
         </div>
     </div>
     <div class="box-item flex row align-center space-between" {{#ifCond data.attributes.agility.value '<' data.attributes.agility.max}}style="background-color:#ff000080" {{/ifCond}}>
