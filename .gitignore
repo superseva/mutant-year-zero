@@ -1,7 +1,6 @@
 # IDE
 .idea/
 .vs/
-.app/
 
 # Node Modules
 node_modules/
@@ -11,3 +10,5 @@ npm-debug.log
 *.7z
 *.zip
 *.rar
+
+foundry.js
