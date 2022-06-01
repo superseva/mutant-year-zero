@@ -1,4 +1,4 @@
-<div class="box-item physical header flex row align-center space-between {{data.creatureType}}">
+<div class="box-item physical header flex row align-center space-between {{system.creatureType}}">
     <label class="item-name">{{localize "MYZ.WEAPONS"}}</label>
     <div class="item-values grid grid-3col center">
         <label>{{localize 'MYZ.BONUS'}}</label>
@@ -9,7 +9,7 @@
         <a class="item-create" data-type="weapon">+ Add</a>
     </div>
 </div>
-<ol class="box-list {{data.creatureType}}">
+<ol class="box-list {{system.creatureType}}">
     {{#each weapons as |weapon key|}}
     <li class="box-item physical flex row align-center space-between editable-item weapon" data-item-id="{{weapon._id}}">
         <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken weapon)}}broken{{/if}}" data-item-id="{{weapon._id}}">
@@ -18,12 +18,12 @@
         </span>
         <div class="item-values grid grid-3col center">
             <span>
-                <input type="number" class="owned-item-value num-value-1rem" value="{{weapon.data.bonus.value}}" data-linked-value="data.bonus.value" data-item-id="{{weapon._id}}">
-                <label>/{{weapon.data.bonus.max}}</label>
+                <input type="number" class="owned-item-value num-value-1rem" value="{{weapon.system.bonus.value}}" data-linked-value="system.bonus.value" data-item-id="{{weapon._id}}">
+                <label>/{{weapon.system.bonus.max}}</label>
             </span>
-            <!-- <label class="flex flex-center">{{weapon.data.bonus.value}} / {{weapon.data.bonus.max}}</label> -->
-            <label class="flex flex-center">{{weapon.data.damage}}</label>
-            <label class="flex flex-center">{{localize (toUpperCase (concat "MYZ." weapon.data.range))}}</label>
+            <!-- <label class="flex flex-center">{{weapon.system.bonus.value}} / {{weapon.system.bonus.max}}</label> -->
+            <label class="flex flex-center">{{weapon.system.damage}}</label>
+            <label class="flex flex-center">{{localize (toUpperCase (concat "MYZ." weapon.system.range))}}</label>
         </div>
         <div class="item-controls">
             <a class="chatable" data-item-id="{{weapon._id}}"><i class="fas fa-comment"></i></a>

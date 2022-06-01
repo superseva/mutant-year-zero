@@ -2,36 +2,36 @@
     <label class="item-name">{{localize "MYZ.ATTRIBUTES"}}</label>
 </div>
 <div class="box-list attributes {{system.creatureType}}">
-    <div class="box-item flex row align-center space-between" {{#ifCond data.attributes.strength.value '<' data.attributes.strength.max}}style="background-color:#ff000080" {{/ifCond}}>
-        <label class="item-name attribute-name roll-attribute rollable" data-attribute="strength">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_STRENGTH_" data.creatureType))}}</label>
+    <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.strength.value '<' system.attributes.strength.max}}style="background-color:#ff000080" {{/ifCond}}>
+        <label class="item-name attribute-name roll-attribute rollable" data-attribute="strength">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_STRENGTH_" system.creatureType))}}</label>
         <div class="item-controls flex row">
             <input type="number" name="system.attributes.strength.value" value="{{system.attributes.strength.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
             <input type="number" name="system.attributes.strength.max" value="{{system.attributes.strength.max}}" class="short-input" />
         </div>
     </div>
-    <div class="box-item flex row align-center space-between" {{#ifCond data.attributes.agility.value '<' data.attributes.agility.max}}style="background-color:#ff000080" {{/ifCond}}>
-        <label class="item-name attribute-name roll-attribute rollable" data-attribute="agility">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_AGILITY_" data.creatureType))}}</label>
+    <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.agility.value '<' system.attributes.agility.max}}style="background-color:#ff000080" {{/ifCond}}>
+        <label class="item-name attribute-name roll-attribute rollable" data-attribute="agility">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_AGILITY_" system.creatureType))}}</label>
         <div class="item-controls flex row">
-            <input type="number" name="data.attributes.agility.value" value="{{data.attributes.agility.value}}" class="short-input" />
+            <input type="number" name="system.attributes.agility.value" value="{{system.attributes.agility.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
-            <input type="number" name="data.attributes.agility.max" value="{{data.attributes.agility.max}}" class="short-input" />
+            <input type="number" name="system.attributes.agility.max" value="{{system.attributes.agility.max}}" class="short-input" />
         </div>
     </div>
-    <div class="box-item flex row align-center space-between" {{#ifCond data.attributes.wits.value '<' data.attributes.wits.max}}style="background-color:#ff000080" {{/ifCond}}>
-        <label class="item-name attribute-name roll-attribute rollable" data-attribute="wits">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_WITS_" data.creatureType))}}</label>
+    <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.wits.value '<' dasystemta.attributes.wits.max}}style="background-color:#ff000080" {{/ifCond}}>
+        <label class="item-name attribute-name roll-attribute rollable" data-attribute="wits">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_WITS_" system.creatureType))}}</label>
         <div class="item-controls flex row">
-            <input type="number" name="data.attributes.wits.value" value="{{data.attributes.wits.value}}" class="short-input" />
+            <input type="number" name="system.attributes.wits.value" value="{{system.attributes.wits.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
-            <input type="number" name="data.attributes.wits.max" value="{{data.attributes.wits.max}}" class="short-input" />
+            <input type="number" name="system.attributes.wits.max" value="{{system.attributes.wits.max}}" class="short-input" />
         </div>
     </div>
-    <div class="box-item flex row align-center space-between" {{#ifCond data.attributes.empathy.value '<' data.attributes.empathy.max}}style="background-color:#ff000080" {{/ifCond}}>
-        <label class="item-name attribute-name roll-attribute rollable" data-attribute="empathy">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_EMPATHY_" data.creatureType))}}</label>
+    <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.empathy.value '<' system.attributes.empathy.max}}style="background-color:#ff000080" {{/ifCond}}>
+        <label class="item-name attribute-name roll-attribute rollable" data-attribute="empathy">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_EMPATHY_" system.creatureType))}}</label>
         <div class="item-controls flex row">
-            <input type="number" name="data.attributes.empathy.value" value="{{data.attributes.empathy.value}}" class="short-input" />
+            <input type="number" name="system.attributes.empathy.value" value="{{system.attributes.empathy.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
-            <input type="number" name="data.attributes.empathy.max" value="{{data.attributes.empathy.max}}" class="short-input" />
+            <input type="number" name="system.attributes.empathy.max" value="{{system.attributes.empathy.max}}" class="short-input" />
         </div>
     </div>
 </div>
