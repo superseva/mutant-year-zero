@@ -24,9 +24,10 @@ export class MYZActor extends Actor {
 
         // Update armor
         if (this.system.creatureType != "robot") {
-            let armor = this.items._source.find((i) => i.type == "armor" && i.data.equipped);
+            let armor = this.items._source.find((i) => i.type == "armor" && i.system.equipped);
             if (armor) {
-                this.system.armorrating.value = armor.data.rating.value;
+                console.log(armor)
+                this.system.armorrating.value = armor.system.rating.value;
             } else {
                 this.system.armorrating.value = 0;
             }
