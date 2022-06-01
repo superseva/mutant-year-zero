@@ -50,6 +50,7 @@ export function prepareActiveEffectCategories(effects) {
       effects: []
     }
   };
+  return categories;
 
   // Iterate over active effects, classifying them into categories
   for (let e of effects) {

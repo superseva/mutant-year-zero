@@ -131,11 +131,11 @@ Hooks.once("init", async function () {
         let bonus = 0;
         let max = 0;
         if (item.type == "weapon") {
-            bonus = item.data.bonus.value;
-            max = item.data.bonus.max;
+            bonus = item.system.bonus.value;
+            max = item.system.bonus.max;
         } else if (item.type == "armor") {
-            bonus = item.data.rating.value;
-            max = item.data.rating.max;
+            bonus = item.system.rating.value;
+            max = item.system.rating.max;
         } else {
             return false;
         }
