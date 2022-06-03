@@ -12,10 +12,10 @@ export class MYZActorSheet extends ActorSheet {
     /* -------------------------------------------- */
 
     /** @override */
-    getData() {
+    async getData() {
         const superData = super.getData();
         const data = superData.data;
-        data.effects =  prepareActiveEffectCategories(this.object.effects)
+        data.effects =  prepareActiveEffectCategories(this.object.effects);
         // Prepare item lists.
         this._prepareCharacterItems(data);
         return data;
