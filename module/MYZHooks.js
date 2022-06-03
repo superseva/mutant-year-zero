@@ -62,8 +62,7 @@ export default class MYZHooks {
             let _skillsList = skillIndex.filter((i) => skillsToAdd.includes(i.system.skillKey));
             // Add ACTOR TYPE and CORE to each skill in _skillsList before you assign it to the actor;
             let _sl = [];
-            _skillsList.forEach((s) => {
-                console.log(s)
+            _skillsList.forEach((s) => {                
                 s.system["creatureType"] = actor.type;
                 s.system["coreSkill"] = true;
                 _sl.push(s);
