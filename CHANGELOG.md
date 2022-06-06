@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v9.0.3
+
+- Updated French Translation
+
 ## v9.0.2
 
 - Items now have the Tab for the skill and attribute modifiers.
