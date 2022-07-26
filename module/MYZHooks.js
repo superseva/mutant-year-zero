@@ -23,7 +23,7 @@ export default class MYZHooks {
         if (actor.type != "npc") {
             const actorCoreSkills = actor.system.coreSkills;
             // Check if skill allready exists by some chance
-            const existingSkills = actor.items.filter((i) => i.type === ItemType.Skill).map((i) => i.skillKey);
+            const existingSkills = actor.items.filter((i) => i.type === 'skill').map((i) => i.skillKey);
             const skillsToAdd = actorCoreSkills.filter((s) => !existingSkills.includes(s));
             // Load Core Skills Compendium skills
             let skillIndex = await game.packs.get("mutant-year-zero.core-skills").getDocuments();
@@ -68,7 +68,7 @@ export default class MYZHooks {
                 _sl.push(s);
             });
             await actor.createEmbeddedDocuments("Item", _sl);
-        }
+        }        
     }
 
     static onUpdateOwnedItem(item, updateData, option, _id) {
@@ -101,7 +101,6 @@ export default class MYZHooks {
             ui.notifications.warn(`You can't assign Criticals to a robot character`);
             return false;
         }
-
         if (item.type == "skill" || item.type == "ability" || item.type == "talent") {           
             item.updateSource({"system.creatureType": item.actor.system.creatureType})
         }
