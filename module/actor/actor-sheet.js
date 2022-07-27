@@ -12,12 +12,17 @@ export class MYZActorSheet extends ActorSheet {
     /* -------------------------------------------- */
 
     /** @override */
-    async getData() {
-        const superData = super.getData();
+    async getData(options) {
+        const superData = await super.getData(options);
         const data = superData.data;
         data.effects =  prepareActiveEffectCategories(this.object.effects);
         // Prepare item lists.
         this._prepareCharacterItems(data);
+
+        data.descriptionHTML = await TextEditor.enrichHTML(data.system.description, {
+            secrets: this.actor.isOwner,
+            async: true
+          });
         return data;
     }
 

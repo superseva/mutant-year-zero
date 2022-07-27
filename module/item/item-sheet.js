@@ -26,10 +26,13 @@ export class MYZItemSheet extends ItemSheet {
     /* -------------------------------------------- */
 
     /** @override */
-    getData() {
-        const superData = super.getData();
+    async getData(options) {
+        const superData = await super.getData(options);
         const data = superData.data;
-        
+        data.descriptionHTML = await TextEditor.enrichHTML(data.system.description, {
+            secrets: this.item.isOwner,
+            async: true
+          });
         return data;
     }
 
