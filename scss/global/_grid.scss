@@ -79,6 +79,9 @@
 }
 
 .grid-odd-raw-color-shift{
+  div{
+    align-items: center;
+  }
 	div:nth-child(odd){
 		background-color: #0000000c;
 	}
