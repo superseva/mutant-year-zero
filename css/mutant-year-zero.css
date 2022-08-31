@@ -154,6 +154,10 @@ $font-secondary: 'Roboto', sans-serif;*/
   text-align: right;
 }
 
+.grid-odd-raw-color-shift div:nth-child(odd) {
+  background-color: #0000000c;
+}
+
 .flex-center {
   align-items: center;
   justify-content: center;
