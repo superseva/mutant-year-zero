@@ -13,17 +13,31 @@ export class MYZActorSheet extends ActorSheet {
 
     /** @override */
     async getData(options) {
-        const superData = await super.getData(options);
-        const data = superData.data;
-        data.effects =  prepareActiveEffectCategories(this.object.effects);
-        // Prepare item lists.
-        this._prepareCharacterItems(data);
-
-        data.descriptionHTML = await TextEditor.enrichHTML(data.system.description, {
+        const source = this.actor.toObject();
+        const actorData = this.actor.toObject(false);
+        const context = {
+            actor: actorData,
+            source: source.system,
+            system: actorData.system,
+            items: actorData.items,
+            effects: prepareActiveEffectCategories(this.actor.effects),      
+            owner: this.actor.isOwner,
+            limited: this.actor.limited,
+            options: this.options,
+            editable: this.isEditable,
+            type: this.actor.type,      
+            isCharacter: this.actor.type === "character",
+            isNPC: this.actor.type === "npc",
+            isVehicle: this.actor.type === "vehicle",
+            rollData: this.actor.getRollData.bind(this.actor)
+        }
+        context.effects = prepareActiveEffectCategories(this.actor.effects);
+        this._prepareCharacterItems(context);
+        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
             secrets: this.actor.isOwner,
             async: true
           });
-        return data;
+        return context;
     }
 
     /**
@@ -31,7 +45,7 @@ export class MYZActorSheet extends ActorSheet {
      * @param {Object} actorData The actor to prepare.
      * @return {undefined}
      */
-    _prepareCharacterItems(sheetData) {
+    _prepareCharacterItems(context) {
         // Initialize containers.
         const skills = [];
         const talents = [];
@@ -50,7 +64,7 @@ export class MYZActorSheet extends ActorSheet {
 
         // Iterate through items, allocating to containers
         // let totalWeight = 0;
-        for (let i of sheetData.items) {
+        for (let i of context.items) {
            // let item = i.data;
             i.img = i.img || DEFAULT_TOKEN;
             // Append to gear.
@@ -94,20 +108,20 @@ export class MYZActorSheet extends ActorSheet {
         skills.sort((a, b) => sortedBy[a.system.attribute] - sortedBy[b.system.attribute]);
 
         // Assign and return
-        sheetData.skills = skills;
-        sheetData.talents = talents;
-        sheetData.secondary_functions = secondary_functions;
-        sheetData.abilities = abilities;
-        sheetData.mutations = mutations;
-        sheetData.animal_powers = animal_powers;
-        sheetData.contacts = contacts;
-        sheetData.modules = modules;
-        sheetData.weapons = weapons;
-        sheetData.armor = armor;
-        sheetData.chassis = chassis;
-        sheetData.gear = gear;
-        sheetData.artifacts = artifacts;
-        sheetData.criticals = criticals;
+        context.skills = skills;
+        context.talents = talents;
+        context.secondary_functions = secondary_functions;
+        context.abilities = abilities;
+        context.mutations = mutations;
+        context.animal_powers = animal_powers;
+        context.contacts = contacts;
+        context.modules = modules;
+        context.weapons = weapons;
+        context.armor = armor;
+        context.chassis = chassis;
+        context.gear = gear;
+        context.artifacts = artifacts;
+        context.criticals = criticals;
     }
 
     /* -------------------------------------------- */
@@ -456,10 +470,11 @@ export class MYZActorSheet extends ActorSheet {
     _onRollSkill(event) {
         event.preventDefault();
         const element = event.currentTarget;
-        const itemId = $(element).data("item-id");
+        const itemId = $(element).data("item-id");        
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find((element) => element.id == itemId);
+            console.warn(skill)
             const attName = skill.system.attribute;
             // let baseDice = this.actor.system.attributes[attName].value;
             // Apply any modifiers from items or crits
@@ -507,6 +522,7 @@ export class MYZActorSheet extends ActorSheet {
     }
 
     _getRollModifiers(skill){
+        // SKILL MODIFIERS 
         const itmMap = this.actor.items.filter(itm=>itm.system.modifiers!=undefined)
         const itemsThatModifySkill = itmMap.filter(i=>i.system.modifiers[skill.system.skillKey]!=0)
         const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.system.modifiers[skill.system.skillKey]; }, 0);

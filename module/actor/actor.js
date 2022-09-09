@@ -8,11 +8,15 @@ export class MYZActor extends Actor {
      */
     prepareData() {
         super.prepareData();
+        
+    }
+
+    // @override
+    prepareDerivedData() {
         if (this.type != "ark") {
             this._prepareMutantData();
         }
     }
-
     /**
      * Prepare Character type specific data
      */

@@ -27,13 +27,30 @@ export class MYZItemSheet extends ItemSheet {
 
     /** @override */
     async getData(options) {
-        const superData = await super.getData(options);
-        const data = superData.data;
-        data.descriptionHTML = await TextEditor.enrichHTML(data.system.description, {
-            secrets: this.item.isOwner,
-            async: true
+        const context = await super.getData();
+        const item = context.item;
+        const source = item.toObject();
+
+        foundry.utils.mergeObject(context, {
+            source: source.system,
+            system: item.system,      
+            isEmbedded: item.isEmbedded,
+            type: item.type,      
+            flags: item.flags,
+            descriptionHTML: await TextEditor.enrichHTML(item.system.description, {
+              secrets: item.isOwner,
+              async: true
+            })
           });
-        return data;
+
+        // Retrieve the roll data for TinyMCE editors.
+        context.rollData = {};
+        let actor = this.object?.parent ?? null;
+        if (actor) {
+            context.rollData = actor.getRollData();
+        }
+        
+        return context;
     }
 
     /* -------------------------------------------- */
