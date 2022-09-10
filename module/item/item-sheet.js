@@ -90,6 +90,6 @@ export class MYZItemSheet extends ItemSheet {
     }
 
     _onChatButton(ev) {
-        console.log(this.object.sendToChat());
+        //console.log(this.object.sendToChat());
     }
 }

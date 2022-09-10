@@ -473,8 +473,7 @@ export class MYZActorSheet extends ActorSheet {
         const itemId = $(element).data("item-id");        
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
-            const skill = this.actor.items.find((element) => element.id == itemId);
-            console.warn(skill)
+            const skill = this.actor.items.find((element) => element.id == itemId);            
             const attName = skill.system.attribute;
             // let baseDice = this.actor.system.attributes[attName].value;
             // Apply any modifiers from items or crits

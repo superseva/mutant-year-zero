@@ -58,7 +58,7 @@ export class MYZActor extends Actor {
             const items = Array.from(this.items.values())
             const findPackMuleTalent = items.filter(item => (item.type === 'talent' && item.name === 'Pack Mule'))
             if (findPackMuleTalent.length === 1) {
-                console.log('pack mule fix')
+                //console.log('pack mule fix')
                 this.system.encumbranceMax *= 2;
             }
         }
