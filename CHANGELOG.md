@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v10.0.0
+
+- System is now compatible with Foundry v10.
+
+
 ## v9.0.2
 
 - Items now have the Tab for the skill and attribute modifiers.
