@@ -2,6 +2,7 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+
 ## v10.0.0
 
 - System is now compatible with Foundry v10.
