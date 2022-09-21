@@ -1,12 +1,18 @@
 {
-  "name": "mutant-year-zero",
+  "id": "mutant-year-zero",
   "title": "Mutant Year Zero",
-  "description": "The Mutant Year Zero system for FoundryVTT!",
-  "version": "9.0.3",
-  "minimumCoreVersion": "9",
-  "compatibleCoreVersion": "9",
+  "description": "The Official Mutant Year Zero system for FoundryVTT!",
+  "version": "10.0.0",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10",
+    "maximum": "10"
+  },
   "templateVersion": 1,
-  "author": "HappySteve",
+  "authors": [{
+    "name": "HappySteve",
+    "discord": "shteff#8724"
+  }],
   "esmodules": [
     "module/myz.js"
   ],
@@ -20,14 +26,14 @@
       "label": "Core Skills",
       "system": "mutant-year-zero",
       "path": "./packs/core-skills.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "myz-macros",
       "label": "MYZ Macros",
       "system": "mutant-year-zero",
       "path": "./packs/myz-macros.db",
-      "entity": "Macro"
+      "type": "Macro"
     }
   ],
   "languages": [
@@ -71,6 +77,6 @@
   "gridUnits": "m",
   "url": "https://github.com/superseva/mutant-year-zero",
   "manifest": "https://github.com/superseva/mutant-year-zero/releases/latest/download/system.json",
-  "download": "https://github.com/superseva/mutant-year-zero/releases/download/v9.0.3/mutant-year-zero.zip",
+  "download": "https://github.com/superseva/mutant-year-zero/releases/download/v10.0.0/mutant-year-zero.zip",
   "license": "LICENSE.txt"
 }

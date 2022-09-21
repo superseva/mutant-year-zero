@@ -12,14 +12,32 @@ export class MYZActorSheet extends ActorSheet {
     /* -------------------------------------------- */
 
     /** @override */
-    getData() {
-        const superData = super.getData();
-        const data = superData.data;
-
-        data.effects = prepareActiveEffectCategories(this.actor.effects)
-        // Prepare item lists.
-        this._prepareCharacterItems(data);
-        return data;
+    async getData(options) {
+        const source = this.actor.toObject();
+        const actorData = this.actor.toObject(false);
+        const context = {
+            actor: actorData,
+            source: source.system,
+            system: actorData.system,
+            items: actorData.items,
+            effects: prepareActiveEffectCategories(this.actor.effects),      
+            owner: this.actor.isOwner,
+            limited: this.actor.limited,
+            options: this.options,
+            editable: this.isEditable,
+            type: this.actor.type,      
+            isCharacter: this.actor.type === "character",
+            isNPC: this.actor.type === "npc",
+            isVehicle: this.actor.type === "vehicle",
+            rollData: this.actor.getRollData.bind(this.actor)
+        }
+        context.effects = prepareActiveEffectCategories(this.actor.effects);
+        this._prepareCharacterItems(context);
+        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
+            secrets: this.actor.isOwner,
+            async: true
+          });
+        return context;
     }
 
     /**
@@ -27,7 +45,7 @@ export class MYZActorSheet extends ActorSheet {
      * @param {Object} actorData The actor to prepare.
      * @return {undefined}
      */
-    _prepareCharacterItems(sheetData) {
+    _prepareCharacterItems(context) {
         // Initialize containers.
         const skills = [];
         const talents = [];
@@ -46,8 +64,8 @@ export class MYZActorSheet extends ActorSheet {
 
         // Iterate through items, allocating to containers
         // let totalWeight = 0;
-        for (let i of sheetData.items) {
-            let item = i.data;
+        for (let i of context.items) {
+           // let item = i.data;
             i.img = i.img || DEFAULT_TOKEN;
             // Append to gear.
             if (i.type === "skill") {
@@ -87,23 +105,23 @@ export class MYZActorSheet extends ActorSheet {
             wits: 2,
             empathy: 3,
         };
-        skills.sort((a, b) => sortedBy[a.data.attribute] - sortedBy[b.data.attribute]);
+        skills.sort((a, b) => sortedBy[a.system.attribute] - sortedBy[b.system.attribute]);
 
         // Assign and return
-        sheetData.skills = skills;
-        sheetData.talents = talents;
-        sheetData.secondary_functions = secondary_functions;
-        sheetData.abilities = abilities;
-        sheetData.mutations = mutations;
-        sheetData.animal_powers = animal_powers;
-        sheetData.contacts = contacts;
-        sheetData.modules = modules;
-        sheetData.weapons = weapons;
-        sheetData.armor = armor;
-        sheetData.chassis = chassis;
-        sheetData.gear = gear;
-        sheetData.artifacts = artifacts;
-        sheetData.criticals = criticals;
+        context.skills = skills;
+        context.talents = talents;
+        context.secondary_functions = secondary_functions;
+        context.abilities = abilities;
+        context.mutations = mutations;
+        context.animal_powers = animal_powers;
+        context.contacts = contacts;
+        context.modules = modules;
+        context.weapons = weapons;
+        context.armor = armor;
+        context.chassis = chassis;
+        context.gear = gear;
+        context.artifacts = artifacts;
+        context.criticals = criticals;
     }
 
     /* -------------------------------------------- */
@@ -198,7 +216,7 @@ export class MYZActorSheet extends ActorSheet {
             RollDialog.prepareRollDialog({
                 rollName: game.i18n.localize("MYZ.ROT"),
                 diceRoller: this.diceRoller,
-                baseDefault: this.actor.data.data.rot.value,
+                baseDefault: this.actor.system.rot.value,
             });
         });
 
@@ -211,32 +229,37 @@ export class MYZActorSheet extends ActorSheet {
             let skill;
             
 
-            if (weapon.data.data.category === "melee") {
-                if (this.actor.data.data.creatureType != "robot") {
-                    skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey == "FIGHT");
+            if (weapon.system.category === "melee") {
+                if (this.actor.system.creatureType != "robot") {
+                    skill = this.actor.items.contents.find((i) => i.system.skillKey == "FIGHT");
                 } else {
-                    skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey === "ASSAULT");
+                    skill = this.actor.items.contents.find((i) => i.system.skillKey === "ASSAULT");
                 }
-                //attribute = this.actor.data.data.attributes.strength;
+                //attribute = this.actor.system.attributes.strength;
             } else {
-                //attribute = this.actor.data.data.attributes.agility;
-                skill = this.actor.data.items.contents.find((i) => i.data.data.skillKey == "SHOOT");
+                //attribute = this.actor.system.attributes.agility;
+                skill = this.actor.items.contents.find((i) => i.system.skillKey == "SHOOT");
             }
             if (!skill) {
                 //ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
+                // skill = {
+                //     data: {
+                //         data: {
+                //             value: 0
+                //         }
+                //     }
+                // };
                 skill = {
-                    data: {
-                        data: {
-                            value: 0
-                        }
+                    system: {                       
+                        value: 0                        
                     }
                 };
-                if (weapon.data.data.category === "melee") {
-                    skill.data.data.skillKey = this.actor.data.data.creatureType != "robot"? "FIGHT":"ASSAULT"
-                    skill.data.data.attribute = "strength";
+                if (weapon.system.category === "melee") {
+                    skill.system.skillKey = this.actor.system.creatureType != "robot"? "FIGHT":"ASSAULT"
+                    skill.system.attribute = "strength";
                 }else{
-                    skill.data.data.skillKey = "SHOOT"
-                    skill.data.data.attribute = "agility";
+                    skill.system.skillKey = "SHOOT"
+                    skill.system.attribute = "agility";
                 }
             }
 
@@ -244,20 +267,20 @@ export class MYZActorSheet extends ActorSheet {
           //  console.warn(attribute)
 
             const diceTotals = this._getRollModifiers(skill)
-            diceTotals.gearDiceTotal += parseInt(weapon.data.data.bonus.value);
+            diceTotals.gearDiceTotal += parseInt(weapon.system.bonus.value);
             diceTotals.gearDiceTotal = Math.max(0, diceTotals.gearDiceTotal)
 
             RollDialog.prepareRollDialog({
                 rollName: testName,
-                attributeName: skill.data.data.attribute,
+                attributeName: skill.system.attribute,
                 itemId,
                 diceRoller: this.diceRoller,
                 baseDefault: diceTotals.baseDiceTotal,
                 skillDefault: diceTotals.skillDiceTotal,
                 gearDefault: diceTotals.gearDiceTotal,
-                modifierDefault: weapon.data.data.skillBonus,
-                artifactDefault: weapon.data.data.artifactBonus || 0,
-                damage: weapon.data.data.damage,
+                modifierDefault: weapon.system.skillBonus,
+                artifactDefault: weapon.system.artifactBonus || 0,
+                damage: weapon.system.damage,
             });
         });
 
@@ -266,7 +289,7 @@ export class MYZActorSheet extends ActorSheet {
             RollDialog.prepareRollDialog({
                 rollName: game.i18n.localize("MYZ.ARMOR"),
                 diceRoller: this.diceRoller,
-                gearDefault: this.actor.data.data.armorrating.value,
+                gearDefault: this.actor.system.armorrating.value,
             });
         });
 
@@ -279,7 +302,7 @@ export class MYZActorSheet extends ActorSheet {
             RollDialog.prepareRollDialog({
                 rollName: testName,
                 diceRoller: this.diceRoller,
-                gearDefault: armorItem.data.data.rating.value,
+                gearDefault: armorItem.system.rating.value,
             });
         });
 
@@ -338,7 +361,7 @@ export class MYZActorSheet extends ActorSheet {
 
     async _updateNPCCreatureType(event) {
         let _creatureType = $(event.currentTarget).data("creature");
-        await this.actor.update({ "data.creatureType": _creatureType });
+        await this.actor.update({ "system.creatureType": _creatureType });
         this.actor.sheet.render();
     }
 
@@ -356,9 +379,13 @@ export class MYZActorSheet extends ActorSheet {
         const itemId = $(event.currentTarget).data("item-id");
         let _item = this.actor.items.find((element) => element.id == itemId);
         if (_item) {
+            // let update = {
+            //     _id: _item.id,
+            //     data: { value: $(event.currentTarget).val() },
+            // };
             let update = {
                 _id: _item.id,
-                data: { value: $(event.currentTarget).val() },
+                system: { value: $(event.currentTarget).val() },
             };
 
             await this.actor.updateEmbeddedDocuments("Item", [update]);
@@ -416,12 +443,12 @@ export class MYZActorSheet extends ActorSheet {
     _onRollAttribute(event) {
         event.preventDefault();
         const attName = $(event.currentTarget).data("attribute");
-        const attVal = this.actor.data.data.attributes[attName].value;
-        let rollName = `MYZ.ATTRIBUTE_${attName.toUpperCase()}_${this.actor.data.data.creatureType.toUpperCase()}`;
+        const attVal = this.actor.system.attributes[attName].value;
+        let rollName = `MYZ.ATTRIBUTE_${attName.toUpperCase()}_${this.actor.system.creatureType.toUpperCase()}`;
 
-        const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
-        const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[attName]!=0)
-        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[attName]; }, 0);
+        const itmMap = this.actor.items.filter(itm=>itm.system.modifiers!=undefined)
+        const itemsThatModifyAttribute = itmMap.filter(i=>i.system.modifiers[attName]!=0)
+        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.system.modifiers[attName]; }, 0);
         let baseDiceTotal = parseInt(attVal) + parseInt(baseDiceModifier)
 
         RollDialog.prepareRollDialog({
@@ -443,21 +470,21 @@ export class MYZActorSheet extends ActorSheet {
     _onRollSkill(event) {
         event.preventDefault();
         const element = event.currentTarget;
-        const itemId = $(element).data("item-id");
+        const itemId = $(element).data("item-id");        
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
-            const skill = this.actor.items.find((element) => element.id == itemId);
-            const attName = skill.data.data.attribute;
-            // let baseDice = this.actor.data.data.attributes[attName].value;
+            const skill = this.actor.items.find((element) => element.id == itemId);            
+            const attName = skill.system.attribute;
+            // let baseDice = this.actor.system.attributes[attName].value;
             // Apply any modifiers from items or crits
             const diceTotals = this._getRollModifiers(skill);
 
             // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
             let skillName = "";
-            if (skill.data.data.skillKey == "") {
-                skillName = skill.data.name;
+            if (skill.system.skillKey == "") {
+                skillName = skill.name;
             } else {
-                skillName = game.i18n.localize(`MYZ.SKILL_${skill.data.data.skillKey}`);
+                skillName = game.i18n.localize(`MYZ.SKILL_${skill.system.skillKey}`);
             }
             
 
@@ -477,8 +504,8 @@ export class MYZActorSheet extends ActorSheet {
     _toggleEquipped(id, item) {
         return {
             _id: id,
-            data: {
-                equipped: !item.data.data.equipped,
+            system: {
+                equipped: !item.system.equipped,
             },
         };
     }
@@ -487,26 +514,27 @@ export class MYZActorSheet extends ActorSheet {
     _toggleBroken(id, item) {
         return {
             _id: id,
-            data: {
-                broken: !item.data.data.broken,
+            system: {
+                broken: !item.system.broken,
             },
         };
     }
 
     _getRollModifiers(skill){
-        const itmMap = this.actor.items.filter(itm=>itm.data.data.modifiers!=undefined)
-        const itemsThatModifySkill = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.skillKey]!=0)
-        const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.skillKey]; }, 0);
-        let skillDiceTotal = parseInt(skill.data.data.value) + parseInt(skillDiceModifier)
+        // SKILL MODIFIERS 
+        const itmMap = this.actor.items.filter(itm=>itm.system.modifiers!=undefined)
+        const itemsThatModifySkill = itmMap.filter(i=>i.system.modifiers[skill.system.skillKey]!=0)
+        const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.system.modifiers[skill.system.skillKey]; }, 0);
+        let skillDiceTotal = parseInt(skill.system.value) + parseInt(skillDiceModifier)
         // ATTRIBUTE MODIFIERS  
-        const itemsThatModifyAttribute = itmMap.filter(i=>i.data.data.modifiers[skill.data.data.attribute]!=0)
-        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.data.data.modifiers[skill.data.data.attribute]; }, 0);
-        const baseDice = this.actor.data.data.attributes[skill.data.data.attribute].value;
+        const itemsThatModifyAttribute = itmMap.filter(i=>i.system.modifiers[skill.system.attribute]!=0)
+        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.system.modifiers[skill.system.attribute]; }, 0);
+        const baseDice = this.actor.system.attributes[skill.system.attribute].value;
         let baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier)
         // GEAR MODIFIERS  
-        const itmGMap = this.actor.items.filter(itm=>itm.data.data.gearModifiers!=undefined)
-        const itemsThatModifyGear = itmGMap.filter(i=>i.data.data.gearModifiers[skill.data.data.skillKey]!=0)
-        const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) { return acc + obj.data.data.gearModifiers[skill.data.data.skillKey]; }, 0);
+        const itmGMap = this.actor.items.filter(itm=>itm.system.gearModifiers!=undefined)
+        const itemsThatModifyGear = itmGMap.filter(i=>i.system.gearModifiers[skill.system.skillKey]!=0)
+        const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) { return acc + obj.system.gearModifiers[skill.system.skillKey]; }, 0);
         let gearDiceTotal = parseInt(gearDiceModifier)
 
         //skillDiceTotal = isNaN(skillDiceTotal)?0:skillDiceTotal

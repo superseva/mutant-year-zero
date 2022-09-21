@@ -1,127 +1,109 @@
 export default class MYZHooks {
 
-    static async onCreateActor(actor, options, userId) {
+    static async onCreateActor(actor, options, userId) {        
         // Set creatureType and use it for building NPCS and PCs
         // NPCs should have type=npc and ceratureType = mutant/animal/robot/human
-        // PCs should have mutant/animal/robot/human and ceratureType = mutant/animal/robot/human
+        // PCs should have type=mutant/animal/robot/human and ceratureType = mutant/animal/robot/human
         let updateData = {};
         updateData["token.disposition"] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
         updateData["token.vision"] = true;
-        if (actor.data.type != "npc") {
-            updateData["data.creatureType"] = actor.data.type;
+        if (actor.type != "npc") {
+            updateData["system.creatureType"] = actor.type;
             updateData["token.actorLink"] = true;
         }
-        if (actor.data.type == "npc") {
-            if (actor.data.data.creatureType == "")
-                updateData["data.creatureType"] = actor.data.type;
+        if (actor.type == "npc") {
+            if (actor.system.creatureType == "")
+                updateData["system.creatureType"] = actor.type;
         }
         await actor.update(updateData, { renderSheet: true });
 
         //IF ACTOR IS ARK DON'T DO ANYTHING ELSE
-        if (actor.data.type == "ark") return;
+        if (actor.type == "ark") return;
 
-        if (actor.data.type != "npc") {
-            const actorCoreSkills = actor.data.data.coreSkills;
+        if (actor.type != "npc") {
+            const actorCoreSkills = actor.system.coreSkills;
             // Check if skill allready exists by some chance
-            const existingSkills = actor.items.filter((i) => i.type === ItemType.Skill).map((i) => i.data.skillKey);
+            const existingSkills = actor.items.filter((i) => i.type === 'skill').map((i) => i.skillKey);
             const skillsToAdd = actorCoreSkills.filter((s) => !existingSkills.includes(s));
             // Load Core Skills Compendium skills
             let skillIndex = await game.packs.get("mutant-year-zero.core-skills").getDocuments();
             // TRY TO GET THE OFFICIAL SKILL CONTENT IF IT IS PRESENT
             const errMsgOfficialSkills = 'No official skill compendium found, reverting to the free content.';
-            if (actor.data.data.creatureType == 'mutant') {
+            if (actor.system.creatureType == 'mutant') {
                 try {
-                    skillIndex = await game.packs.get("myz-core-book.myzcb-items").getDocuments();
+                    //skillIndex = await game.packs.get("myz-core-book.myzcb-items").getDocuments();
+                    skillIndex = await game.packs.get("myz-core-book.myz-corebook-skills").getDocuments();
                 } catch (e) {
                     console.log(errMsgOfficialSkills);
                 }
             }
-            if (actor.data.data.creatureType == 'animal') {
+            if (actor.system.creatureType == 'animal') {
                 try {
                     skillIndex = await game.packs.get("myz-genlab-alpha.myz-genlab-skills").getDocuments();
                 } catch (e) {
                     console.log(errMsgOfficialSkills);
                 }
             }
-            if (actor.data.data.creatureType == 'robot') {
+            if (actor.system.creatureType == 'robot') {
                 try {
-                    skillIndex = await game.packs.get("myz-mechatron.myzme-items").getDocuments();
+                    skillIndex = await game.packs.get("myz-mechatron.myz-mechatron-items").getDocuments();
                 } catch (e) {
                     console.log(errMsgOfficialSkills);
                 }
             }
-            if (actor.data.data.creatureType == 'human') {
+            if (actor.system.creatureType == 'human') {
                 try {
-                    skillIndex = await game.packs.get("myz-elisium.myzel-items").getDocuments();
+                    skillIndex = await game.packs.get("myz-elisium.myz-elisium-items").getDocuments();
                 } catch (e) {
                     console.log(errMsgOfficialSkills);
                 }
             }
 
             // Filter skillIndex array to include only skills for Actor Type.
-            let _skillsList = skillIndex.filter((i) => skillsToAdd.includes(i.data.data.skillKey));
+            let _skillsList = skillIndex.filter((i) => skillsToAdd.includes(i.system.skillKey));
             // Add ACTOR TYPE and CORE to each skill in _skillsList before you assign it to the actor;
             let _sl = [];
-            _skillsList.forEach((s) => {
-                s.data._source.data["creatureType"] = actor.data.type;
-                s.data._source.data["coreSkill"] = true;
-                _sl.push(s.data);
+            _skillsList.forEach((s) => {                
+                s.system["creatureType"] = actor.type;
+                s.system["coreSkill"] = true;
+                _sl.push(s);
             });
             await actor.createEmbeddedDocuments("Item", _sl);
-        }
+        }        
     }
 
-    static async onUpdateOwnedItem(item, updateData, option, _id) {
-        // UPDATING OWNED ITEM
+    static onUpdateOwnedItem(item, updateData, option, _id) {
+        // UPDATING OWNED ITEM        
         if (!item.parent) return;
-        if (!updateData.data) return;
+        
         // ! MAKE SURE OWNED SKILLS/ABILITIES/TALENTS ARE OF THE SAME TYPE AS THE ACTOR
-        if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
-            if (updateData.data.hasOwnProperty("creatureType")) {
-                if (updateData.data.creatureType != item.actor.data.data.creatureType) {
-                    //ui.notifications.warn(`${item.type} type changed from ${updateData.data.creatureType}'s to ${item.actor.data.data.creatureType}'s`);
-                    updateData.data.creatureType = item.actor.data.data.creatureType;
-                }
-            }
+        if (item.type == "skill" || item.type == "ability" || item.type == "talent") {            
+            updateData.system.creatureType = item.actor.system.creatureType;                   
         }
     }
 
     static onPreCreateItem(item, updateData, options) {
         // CREATING OWNED ITEM
         if (!item.parent) return;
-        if (item.type == "project" && item.actor.data.type != "ark") {
+
+        if (item.type == "project" && item.actor.type != "ark") {
             ui.notifications.warn(`You can add Project only to Ark`);
             return false;
         }
-        if (item.type == "chassis" && item.actor.data.data.creatureType != "robot") {
+        if (item.type == "chassis" && item.actor.system.creatureType != "robot") {
             ui.notifications.warn(`You can't add Chassis to a non-robot character`);
             return false;
         }
-        if (item.type == "armor" && item.actor.data.data.creatureType == "robot") {
+        if (item.type == "armor" && item.actor.system.creatureType == "robot") {
             ui.notifications.warn(`You can't add Armor to a robot character`);
             return false;
         }
-        if (item.type == "critical" && item.actor.data.data.creatureType == "robot") {
+        if (item.type == "critical" && item.actor.system.creatureType == "robot") {
             ui.notifications.warn(`You can't assign Criticals to a robot character`);
             return false;
         }
-
-        if (item.type == "skill" || item.type == "ability" || item.type == "talent") {
-            if (!updateData.data.hasOwnProperty("creatureType")) {
-                item.data.update({
-                    data: {
-                        creatureType: item.actor.data.data.creatureType
-                    }
-                });
-            } else {
-                if (updateData.data.creatureType != item.actor.data.data.creatureType) {
-                    item.data.update({
-                        data: {
-                            creatureType: item.actor.data.data.creatureType
-                        }
-                    });
-                }
-            }
+        if (item.type == "skill" || item.type == "ability" || item.type == "talent") {           
+            item.updateSource({"system.creatureType": item.actor.system.creatureType})
         }
     }
 }

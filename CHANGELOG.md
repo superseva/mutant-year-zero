@@ -2,9 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
-## v9.0.3
 
-- Updated French Translation
+## v10.0.0
+
+- System is now compatible with Foundry v10.
+
 
 ## v9.0.2
 

@@ -1,13 +1,13 @@
 {{! PARAM: sourceType: to create a new item type in the list}} {{! PARAM: sourceList: existing list of mutations/powers/contacts}} {{! PARAM: sourceLabel: to
 create a header label}} {{! PARAM: fixedHeight: should it grow or have a scroll}}
 
-<div class="box-item header flex row align-center space-between {{data.creatureType}}">
-    <span class="item-name">{{localize (toUpperCase (concat 'MYZ.TALENT_' data.creatureType))}}s</span>
+<div class="box-item header flex row align-center space-between {{system.creatureType}}">
+    <span class="item-name">{{localize (toUpperCase (concat 'MYZ.TALENT_' system.creatureType))}}s</span>
     <span class="item-controls">
         <a class="item-create" data-type="{{sourceType}}">+ Add</a>
     </span>
 </div>
-<div class="box-list {{data.creatureType}} {{fixedHeight}}">
+<div class="box-list {{system.creatureType}} {{fixedHeight}}">
     {{#each sourceList as |listItem index|}}
     <div class="box-item flex row align-center space-between editable-item" data-item-id="{{listItem._id}}">
         <label class="item-name viewable rollable" data-item-id="{{listItem._id}}">{{listItem.name}}</label>

@@ -10,3 +10,5 @@ npm-debug.log
 *.7z
 *.zip
 *.rar
+
+foundry.js

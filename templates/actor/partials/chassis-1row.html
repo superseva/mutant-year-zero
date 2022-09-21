@@ -1,4 +1,4 @@
-<div class="box-item physical header flex row align-center space-between {{data.creatureType}}">
+<div class="box-item physical header flex row align-center space-between {{system.creatureType}}">
     <label class="item-name">{{localize "MYZ.CHASSIS"}}</label>
     <div class="item-values grid center">
         <label>{{localize 'MYZ.ARMOR'}}</label>
@@ -8,7 +8,7 @@
         <a class="item-create" data-type="chassis">+ Add</a>
     </div>
 </div>
-<ol class="box-list {{data.creatureType}}">
+<ol class="box-list {{system.creatureType}}">
     {{#each chassis as |chassis key|}}
     <li class="box-item physical flex row align-center space-between editable-item" data-item-id="{{chassis._id}}">
         <span class="item-name flex row align-center {{#if (isBroken chassis)}}broken{{/if}}" data-item-id="{{chassis._id}}">
@@ -16,12 +16,12 @@
             <label class="">{{chassis.name}}</label>
         </span>
         <div class="item-values grid center">
-            <label>{{chassis.data.armor}}</label>
-            <label style="font-size:12px"><strong>{{chassis.data.strength}}&nbsp;-&nbsp;{{chassis.data.agility}}&nbsp;-&nbsp; {{chassis.data.wits}}&nbsp;-&nbsp;{{chassis.data.empathy}}</strong></label>
+            <label>{{chassis.system.armor}}</label>
+            <label style="font-size:12px"><strong>{{chassis.system.strength}}&nbsp;-&nbsp;{{chassis.system.agility}}&nbsp;-&nbsp; {{chassis.system.wits}}&nbsp;-&nbsp;{{chassis.system.empathy}}</strong></label>
         </div>
         <div class="item-controls">
             <a class="chatable" data-item-id="{{chassis._id}}"><i class="fas fa-comment"></i></a>
-            <a class="item-control item-toggle {{#unless chassis.data.equipped}}item-unequipped{{/unless}}" title='{{localize "MYZ.EQUIPPED"}}'>
+            <a class="item-control item-toggle {{#unless chassis.system.equipped}}item-unequipped{{/unless}}" title='{{localize "MYZ.EQUIPPED"}}'>
                 <i class="fas fa-tshirt"></i>
             </a>
             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>

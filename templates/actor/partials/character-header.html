@@ -1,36 +1,36 @@
 <div class="actor-header">
-    <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}" />
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
     <div class="header-fields">
         <div class="row1 align-center">
             <div>
-                <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="Name" /></h1>
+                <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
             </div>
             <div class="flex row">
-                <input class="nolabel" name="data.role" type="text" value="{{data.role}}" placeholder="{{localize (toUpperCase (concat 'MYZ.ROLE_FOR_' data.creatureType))}}" />
+                <input class="nolabel" name="system.role" type="text" value="{{system.role}}" placeholder="{{localize (toUpperCase (concat 'MYZ.ROLE_FOR_' system.creatureType))}}" />
             </div>
             <div class="flex row space-between">
-                <label style="align-self: center" for="data.xp.value">{{localize "MYZ.XP"}}:</label>
-                <input class="nolabel short-input" type="text" data-type="Number" name="data.xp.value" value="{{data.xp.value}}" />
+                <label style="align-self: center" for="system.xp.value">{{localize "MYZ.XP"}}:</label>
+                <input class="nolabel short-input" type="text" data-type="Number" name="system.xp.value" value="{{system.xp.value}}" />
             </div>
         </div>
         <div class="row2 align-center">
             <div>
-                <input class="nolabel" name="data.rank" type="text" value="{{data.rank}}" placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_'
-                data.creatureType))}}" />
+                <input class="nolabel" name="system.rank" type="text" value="{{system.rank}}" placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_'
+                system.creatureType))}}" />
             </div>
             <div>
-                <input class="nolabel" name="data.specificType" type="text" value="{{data.specificType}}" placeholder="{{localize (toUpperCase (concat 'MYZ.SPECIFIC_TYPE_FOR_' data.creatureType))}}" />
+                <input class="nolabel" name="system.specificType" type="text" value="{{system.specificType}}" placeholder="{{localize (toUpperCase (concat 'MYZ.SPECIFIC_TYPE_FOR_' system.creatureType))}}" />
             </div>
             <div class="flex row space-between">
-                <label style="align-self: center" for="data.age">{{localize "MYZ.AGE"}}:</label>
-                <input class="nolabel short-input" name="data.age" type="text" data-type="Number" value="{{data.age}}" />
+                <label style="align-self: center" for="system.age">{{localize "MYZ.AGE"}}:</label>
+                <input class="nolabel short-input" name="system.age" type="text" data-type="Number" value="{{system.age}}" />
             </div>
         </div>
         <div class="row3 align-center">
             {{> systems/mutant-year-zero/templates/actor/partials/rot.html}}
-            <div class="box-item armor-box flex armor space-between align-center {{data.creatureType}}">
-                <label class="item-name armor-roll rollable" for="data.armorrating.value">{{localize 'MYZ.ARMOR'}}</label>
-                <div class="right-element armor-roll" style="cursor:pointer; padding: 5px 0 0 0; text-align: center; width:100%; min-height:26px; background-image: url(systems/mutant-year-zero/ui/grey-shield.png); background-position: center; background-repeat: no-repeat;">{{data.armorrating.value}}</div>
+            <div class="box-item armor-box flex armor space-between align-center {{system.creatureType}}">
+                <label class="item-name armor-roll rollable" for="system.armorrating.value">{{localize 'MYZ.ARMOR'}}</label>
+                <div class="right-element armor-roll" style="cursor:pointer; padding: 5px 0 0 0; text-align: center; width:100%; min-height:26px; background-image: url(systems/mutant-year-zero/ui/grey-shield.png); background-position: center; background-repeat: no-repeat;">{{system.armorrating.value}}</div>
             </div>
             <div class="flex row">
                 <button class="button-roll">{{localize 'MYZ.ROLL'}}</button>
