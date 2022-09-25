@@ -10,13 +10,12 @@ export class RollDialog {
      * @param  {object|number} baseDefault     {name: "somename", value: 5} | 5
      * @param  {object|number} skillDefault    {name: "somename", value: 5} | 5
      * @param  {number}        gearDefault
-     * @param  {string}        artifactDefault
      * @param  {number}        modifierDefault
      * @param  {number}        damage
      * @param  {DiceRoller}    diceRoller
      * @param  {callback}      [onAfterRoll]
      */
-    //static prepareRollDialog(rollName, baseDefault, skillDefault, gearDefault, artifactDefault, modifierDefault, damage, diceRoller, onAfterRoll) {
+    //static prepareRollDialog(rollName, baseDefault, skillDefault, gearDefault, modifierDefault, damage, diceRoller, onAfterRoll) {
     static async prepareRollDialog({
         rollName = "",
         attributeName = null,
@@ -24,11 +23,11 @@ export class RollDialog {
         baseDefault = 0,
         skillDefault = 0,
         gearDefault = 0,
-        artifactDefault = 0,
         modifierDefault = 0,
         damage = 0,
         diceRoller = null,
         onAfterRoll = null,
+        applyedModifiers = null
     } = {}) {
         if (!diceRoller) {
             throw new Error("DiceRoller object must be passed to prepareRollDialog()");
@@ -41,8 +40,8 @@ export class RollDialog {
             base: { name: "MYZ.DICE_BASE", type: "base", value: baseDefault },
             skill: { name: "MYZ.DICE_SKILL", type: "skill", value: skillDefault },
             gear: { name: "MYZ.DICE_GEAR", type: "gear", value: gearDefault },
-            artifact: { name: "MYZ.ARTIFACTS", type: "artifact", value: artifactDefault },
             modifier: { name: "MYZ.MODIFIER", type: "modifier", value: modifierDefault },
+            applyedModifiers: applyedModifiers
         };
 
         const htmlContent = await renderTemplate("systems/mutant-year-zero/templates/app/roll-dialog.html", htmlData);
@@ -58,7 +57,6 @@ export class RollDialog {
                             let base = html.find("#base")[0].value;
                             let skill = html.find("#skill")[0].value;
                             let gear = html.find("#gear")[0].value;
-                            let artifact = this.parseArtifact(html.find("#artifact")[0].value);
                             let modifier = html.find("#modifier")[0].value;
                             diceRoller.preparePushData(attributeName, itemId);
                             diceRoller.roll({
@@ -66,7 +64,6 @@ export class RollDialog {
                                 base: parseInt(base, 10),
                                 skill: parseInt(skill, 10),
                                 gear: parseInt(gear, 10),
-                                artifact: artifact,
                                 modifier: parseInt(modifier, 10),
                                 damage: parseInt(damage, 10),
                             });
@@ -81,18 +78,4 @@ export class RollDialog {
         });
     }
 
-    /**
-     * Parse artifact dice string
-     *
-     * @param  {string} artifact
-     */
-    static parseArtifact(artifact) {
-        let regex = /([0-9]*)d([0-9]*)/g;
-        let regexMatch;
-        let artifacts = [];
-        while ((regexMatch = regex.exec(artifact))) {
-            artifacts.push({ dice: +regexMatch[1] || 1, face: +regexMatch[2] });
-        }
-        return artifacts;
-    }
 }

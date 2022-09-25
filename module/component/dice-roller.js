@@ -18,11 +18,10 @@ export class DiceRoller {
      * @param  {number} base       Number of Base dice
      * @param  {number} skill      Number of Skill dice
      * @param  {number} gear       Number of Gear dice
-     * @param  {Array}  artifacts  Array of artifact dice objects: [{dice: number of dice, face: number of faces}]
      * @param  {number} modifier   Increase/decrease amount of skill dice
      * @param  {number} [damage=0] Weapon damage
      */
-    async roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, artifacts = null, modifier = 0, damage = null } = {}) {
+    async roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, modifier = 0, damage = null } = {}) {
         this.dices = [];
         this.diceWithResult = [];
         this.diceWithNoResult = [];
