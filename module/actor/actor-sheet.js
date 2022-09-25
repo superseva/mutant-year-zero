@@ -20,12 +20,12 @@ export class MYZActorSheet extends ActorSheet {
             source: source.system,
             system: actorData.system,
             items: actorData.items,
-            effects: prepareActiveEffectCategories(this.actor.effects),      
+            effects: prepareActiveEffectCategories(this.actor.effects),
             owner: this.actor.isOwner,
             limited: this.actor.limited,
             options: this.options,
             editable: this.isEditable,
-            type: this.actor.type,      
+            type: this.actor.type,
             isCharacter: this.actor.type === "character",
             isNPC: this.actor.type === "npc",
             isVehicle: this.actor.type === "vehicle",
@@ -36,7 +36,7 @@ export class MYZActorSheet extends ActorSheet {
         context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
             secrets: this.actor.isOwner,
             async: true
-          });
+        });
         return context;
     }
 
@@ -65,7 +65,7 @@ export class MYZActorSheet extends ActorSheet {
         // Iterate through items, allocating to containers
         // let totalWeight = 0;
         for (let i of context.items) {
-           // let item = i.data;
+            // let item = i.data;
             i.img = i.img || DEFAULT_TOKEN;
             // Append to gear.
             if (i.type === "skill") {
@@ -201,16 +201,16 @@ export class MYZActorSheet extends ActorSheet {
 
         // Roll Attribute
         html.find(".roll-attribute").click(this._onRollAttribute.bind(this));
-        
+
         // Roll Skill
         html.find(".roll-skill").click(this._onRollSkill.bind(this));
-        
+
         // Viewable Item
         html.find(".viewable").click(this._onItemView.bind(this));
-        
+
         // Chatable Item
         html.find(".chatable").click(this._onItemSendToChat.bind(this));
-        
+
         //Roll Rot
         html.find(".roll-rot").click((event) => {
             RollDialog.prepareRollDialog({
@@ -225,50 +225,36 @@ export class MYZActorSheet extends ActorSheet {
             const itemId = $(event.currentTarget).data("item-id");
             const weapon = this.actor.items.get(itemId);
             let testName = weapon.name;
-            //let attribute;
             let skill;
-            
-
             if (weapon.system.category === "melee") {
                 if (this.actor.system.creatureType != "robot") {
                     skill = this.actor.items.contents.find((i) => i.system.skillKey == "FIGHT");
                 } else {
                     skill = this.actor.items.contents.find((i) => i.system.skillKey === "ASSAULT");
                 }
-                //attribute = this.actor.system.attributes.strength;
             } else {
-                //attribute = this.actor.system.attributes.agility;
                 skill = this.actor.items.contents.find((i) => i.system.skillKey == "SHOOT");
             }
             if (!skill) {
-                //ui.notifications.warn(game.i18n.localize("MYZ.NO_COMBAT_SKILL"));
-                // skill = {
-                //     data: {
-                //         data: {
-                //             value: 0
-                //         }
-                //     }
-                // };
                 skill = {
-                    system: {                       
-                        value: 0                        
+                    system: {
+                        value: 0
                     }
                 };
                 if (weapon.system.category === "melee") {
-                    skill.system.skillKey = this.actor.system.creatureType != "robot"? "FIGHT":"ASSAULT"
+                    skill.system.skillKey = this.actor.system.creatureType != "robot" ? "FIGHT" : "ASSAULT"
                     skill.system.attribute = "strength";
-                }else{
+                } else {
                     skill.system.skillKey = "SHOOT"
                     skill.system.attribute = "agility";
                 }
             }
 
-           // console.warn(skill)
-          //  console.warn(attribute)
-
             const diceTotals = this._getRollModifiers(skill)
             diceTotals.gearDiceTotal += parseInt(weapon.system.bonus.value);
             diceTotals.gearDiceTotal = Math.max(0, diceTotals.gearDiceTotal)
+
+            const applyedModifiersInfo = this._getModifiersInfo(diceTotals)
 
             RollDialog.prepareRollDialog({
                 rollName: testName,
@@ -281,6 +267,7 @@ export class MYZActorSheet extends ActorSheet {
                 modifierDefault: weapon.system.skillBonus,
                 artifactDefault: weapon.system.artifactBonus || 0,
                 damage: weapon.system.damage,
+                applyedModifiers: applyedModifiersInfo
             });
         });
 
@@ -369,7 +356,7 @@ export class MYZActorSheet extends ActorSheet {
         const item = this.actor.items.get(_itemId);
         item.sheet.render(true);
     }
-    
+
     async _deleteOwnedItemById(_itemId) {
         await this.actor.deleteEmbeddedDocuments("Item", [_itemId]);
     }
@@ -446,10 +433,23 @@ export class MYZActorSheet extends ActorSheet {
         const attVal = this.actor.system.attributes[attName].value;
         let rollName = `MYZ.ATTRIBUTE_${attName.toUpperCase()}_${this.actor.system.creatureType.toUpperCase()}`;
 
-        const itmMap = this.actor.items.filter(itm=>itm.system.modifiers!=undefined)
-        const itemsThatModifyAttribute = itmMap.filter(i=>i.system.modifiers[attName]!=0)
-        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.system.modifiers[attName]; }, 0);
+        const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
+        const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[attName] != 0)
+        let modifiersToAttributes = []
+        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) {
+            modifiersToAttributes.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[attName] })
+            return acc + obj.system.modifiers[attName];
+        }, 0);
         let baseDiceTotal = parseInt(attVal) + parseInt(baseDiceModifier)
+
+        const applyedModifiersInfo = this._getModifiersInfo({
+            skillDiceTotal: 0,
+            baseDiceTotal: baseDiceTotal,
+            gearDiceTotal: 0,
+            modifiersToSkill: [],
+            modifiersToAttributes: modifiersToAttributes,
+            modifiersToGear: []
+        })
 
         RollDialog.prepareRollDialog({
             rollName: rollName,
@@ -459,6 +459,7 @@ export class MYZActorSheet extends ActorSheet {
             skillDefault: 0,
             gearDefault: 0,
             modifierDefault: 0,
+            applyedModifiers: applyedModifiersInfo
         });
     }
 
@@ -470,14 +471,14 @@ export class MYZActorSheet extends ActorSheet {
     _onRollSkill(event) {
         event.preventDefault();
         const element = event.currentTarget;
-        const itemId = $(element).data("item-id");        
+        const itemId = $(element).data("item-id");
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
-            const skill = this.actor.items.find((element) => element.id == itemId);            
+            const skill = this.actor.items.find((element) => element.id == itemId);
             const attName = skill.system.attribute;
-            // let baseDice = this.actor.system.attributes[attName].value;
             // Apply any modifiers from items or crits
             const diceTotals = this._getRollModifiers(skill);
+            diceTotals.gearDiceTotal = Math.max(0, diceTotals.gearDiceTotal)
 
             // SEE IF WE CAN USE SKILL KEY TO TRANSLATE THE NAME
             let skillName = "";
@@ -486,7 +487,8 @@ export class MYZActorSheet extends ActorSheet {
             } else {
                 skillName = game.i18n.localize(`MYZ.SKILL_${skill.system.skillKey}`);
             }
-            
+
+            const applyedModifiersInfo = this._getModifiersInfo(diceTotals)
 
             RollDialog.prepareRollDialog({
                 rollName: skillName,
@@ -496,6 +498,7 @@ export class MYZActorSheet extends ActorSheet {
                 skillDefault: diceTotals.skillDiceTotal,
                 gearDefault: diceTotals.gearDiceTotal,
                 modifierDefault: 0,
+                applyedModifiers: applyedModifiersInfo
             });
         }
     }
@@ -520,31 +523,72 @@ export class MYZActorSheet extends ActorSheet {
         };
     }
 
-    _getRollModifiers(skill){
+    _getRollModifiers(skill) {
         // SKILL MODIFIERS 
-        const itmMap = this.actor.items.filter(itm=>itm.system.modifiers!=undefined)
-        const itemsThatModifySkill = itmMap.filter(i=>i.system.modifiers[skill.system.skillKey]!=0)
-        const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) { return acc + obj.system.modifiers[skill.system.skillKey]; }, 0);
+        const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
+        const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != 0)
+        let modifiersToSkill = []
+        const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) {
+            modifiersToSkill.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[skill.system.skillKey] })
+            return acc + obj.system.modifiers[skill.system.skillKey];
+        }, 0);
         let skillDiceTotal = parseInt(skill.system.value) + parseInt(skillDiceModifier)
         // ATTRIBUTE MODIFIERS  
-        const itemsThatModifyAttribute = itmMap.filter(i=>i.system.modifiers[skill.system.attribute]!=0)
-        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) { return acc + obj.system.modifiers[skill.system.attribute]; }, 0);
+        const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[skill.system.attribute] != 0)
+        let modifiersToAttributes = []
+        const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) {
+            modifiersToAttributes.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[skill.system.attribute] })
+            return acc + obj.system.modifiers[skill.system.attribute];
+        }, 0);
         const baseDice = this.actor.system.attributes[skill.system.attribute].value;
         let baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier)
         // GEAR MODIFIERS  
-        const itmGMap = this.actor.items.filter(itm=>itm.system.gearModifiers!=undefined)
-        const itemsThatModifyGear = itmGMap.filter(i=>i.system.gearModifiers[skill.system.skillKey]!=0)
-        const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) { return acc + obj.system.gearModifiers[skill.system.skillKey]; }, 0);
+        const itmGMap = this.actor.items.filter(itm => itm.system.gearModifiers != undefined)
+        const itemsThatModifyGear = itmGMap.filter(i => i.system.gearModifiers[skill.system.skillKey] != 0)
+        let modifiersToGear = []
+        const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) {
+            modifiersToGear.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.gearModifiers[skill.system.skillKey] })
+            return acc + obj.system.gearModifiers[skill.system.skillKey];
+        }, 0);
         let gearDiceTotal = parseInt(gearDiceModifier)
 
-        //skillDiceTotal = isNaN(skillDiceTotal)?0:skillDiceTotal
-        //baseDiceTotal =  Math.max(0, baseDiceTotal)
-        //gearDiceTotal = Math.max(0, gearDiceTotal)
-
         return {
-            skillDiceTotal:skillDiceTotal,
-            baseDiceTotal:baseDiceTotal,
-            gearDiceTotal:gearDiceTotal
+            skillDiceTotal: skillDiceTotal,
+            baseDiceTotal: baseDiceTotal,
+            gearDiceTotal: gearDiceTotal,
+            modifiersToSkill: modifiersToSkill,
+            modifiersToAttributes: modifiersToAttributes,
+            modifiersToGear: modifiersToGear
         }
+    }
+
+    // Return a string describing applyed modifiers
+    _getModifiersInfo(diceTotals) {
+        let modifiersToSkillInfo = ""
+        const modifiersToSkillTotal = diceTotals.modifiersToSkill.reduce(function (acc, obj) {
+            modifiersToSkillInfo += `<p style='font-size:0.75rem'>${obj.name}: ${obj.value}</p>`
+            return acc + obj.value
+        }, 0)
+
+        let modifiersToAttributesInfo = ""
+        const modifiersToAttributesTotal = diceTotals.modifiersToAttributes.reduce(function (acc, obj) {
+            modifiersToAttributesInfo += `<p style='font-size:0.75rem'>${obj.name}: ${obj.value}</p>`
+            return acc + obj.value
+        }, 0)
+
+        let modifiersToGearInfo = ""
+        const modifiersToGearTotal = diceTotals.modifiersToGear.reduce(function (acc, obj) {
+            modifiersToGearInfo += `<p style='font-size:0.75rem'>${obj.name}: ${obj.value}</p>`
+            return acc + obj.value
+        }, 0)
+
+        let applyedModifiers = {
+            info: `<p>Applyed Modifiers</p><p>Attribute: ${modifiersToAttributesTotal}</p><p>Skill: ${modifiersToSkillTotal}</p><p>Gear: ${modifiersToGearTotal}</p>`,
+            modifiersToSkillInfo: modifiersToSkillInfo,
+            modifiersToAttributesInfo: modifiersToAttributesInfo,
+            modifiersToGearInfo: modifiersToGearInfo
+        }
+
+        return applyedModifiers;
     }
 }

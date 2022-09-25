@@ -1,35 +1,45 @@
 <div class="roll-dialog">
-    <div class="grid grid-2col dice-row">
+    <div class="grid grid-3col dice-row">
         <div class="flexcol flex-group-center">
             <span>
                 <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-base-6.png" />
-                <label for="base-input">{{localize base.name}}</label>
+                <label for="base-input">{{localize base.name}} </label>
+                {{#ifCond applyedModifiers.modifiersToAttributesInfo '!=' ""}}
+                <em style="color: rgb(104, 0, 0);"><i class="fa-regular fa-circle-question" data-tooltip="{{{applyedModifiers.modifiersToAttributesInfo}}}" data-tooltip-direction="UP"></i></em>
+                {{/ifCond}}
             </span>
             <input type="number" name="base-input" data-type="Number" id="{{base.type}}" value="{{base.value}}" />
         </div>
         <div class="flexcol flex-group-center">
             <span>
                 <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-skill-6.png" />
-                <label>{{localize skill.name}}</label>
+                <label>{{localize skill.name}} </label>
+                {{#ifCond applyedModifiers.modifiersToSkillInfo '!=' ""}}
+                <em style="color: rgb(104, 0, 0);"><i class="fa-regular fa-circle-question" data-tooltip="{{{applyedModifiers.modifiersToSkillInfo}}}" data-tooltip-direction="UP"></i></em>
+                {{/ifCond}}
             </span>
             <input type="number" data-type="Number" id="{{skill.type}}" value="{{skill.value}}" />
         </div>
         <div class="flexcol flex-group-center">
             <span>
                 <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-gear-6.png" />
-                <label>{{localize gear.name}}</label>
+                <label>{{localize gear.name}} </label>
+                {{#ifCond applyedModifiers.modifiersToGearInfo '!=' ""}}
+                <em style="color: rgb(104, 0, 0);"><i class="fa-regular fa-circle-question" data-tooltip="{{{applyedModifiers.modifiersToGearInfo}}}" data-tooltip-direction="UP"></i></em>
+                {{/ifCond}}
             </span>
             <input type="number" data-type="Number" id="{{gear.type}}" value="{{gear.value}}" />
         </div>
-        <div class="flexcol flex-group-center">
-            <label>{{localize modifier.name}}</label>
-            <input type="number" data-type="Number" id="{{modifier.type}}" value="{{modifier.value}}" />
-        </div>
+        
     </div>
-    <div class="grid grid-2col" style="display: none">
-        <div class="flexcol flex-group-center">
-            <label>{{localize artifact.name}}</label>
-            <input type="number" data-type="Number" id="{{artifact.type}}" value="{{artifact.value}}" />
-        </div>
+
+    <div class="flexcol flex-group-center" style="display: none">
+        <label>{{localize modifier.name}}</label>
+        <input type="number" data-type="Number" id="{{modifier.type}}" value="{{modifier.value}}" />
     </div>
+
+    <div style="display: none; text-align: center; margin-bottom:5px" >
+        <em>Applyed Modifiers <i class="fa-regular fa-circle-question" data-tooltip="{{{applyedModifiers.info}}}" data-tooltip-direction="UP"></i></em>
+    </div>
+
 </div>
