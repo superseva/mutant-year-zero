@@ -8,69 +8,81 @@
     "verified": "10",
     "maximum": "10"
   },
-  "templateVersion": 1,
-  "authors": [{
-    "name": "HappySteve",
-    "discord": "shteff#8724"
-  }],
+  "authors": [
+    {
+      "name": "HappySteve",
+      "discord": "shteff#8724",
+      "flags": {}
+    }
+  ],
   "esmodules": [
     "module/myz.js"
   ],
   "styles": [
     "css/mutant-year-zero.css"
   ],
-  "scripts": [],
   "packs": [
     {
       "name": "core-skills",
       "label": "Core Skills",
       "system": "mutant-year-zero",
-      "path": "./packs/core-skills.db",
-      "type": "Item"
+      "path": "packs/core-skills.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "myz-macros",
       "label": "MYZ Macros",
       "system": "mutant-year-zero",
-      "path": "./packs/myz-macros.db",
-      "type": "Macro"
+      "path": "packs/myz-macros.db",
+      "type": "Macro",
+      "private": false,
+      "flags": {}
     }
   ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "lang/en.json",
+      "flags": {}
     },
     {
       "lang": "se",
       "name": "Swedish",
-      "path": "lang/se.json"
+      "path": "lang/se.json",
+      "flags": {}
     },
     {
       "lang": "fr",
       "name": "French",
-      "path": "lang/fr.json"
+      "path": "lang/fr.json",
+      "flags": {}
     },
     {
       "lang": "pt-br",
       "name": "Portugues (Brasil)",
-      "path": "lang/pt-br.json"
+      "path": "lang/pt-br.json",
+      "flags": {}
     },
     {
       "lang": "pt-BR",
       "name": "Português do Brasil",
-      "path": "lang/pt-br.json"
+      "path": "lang/pt-br.json",
+      "flags": {}
     },
     {
       "lang": "de",
       "name": "Deutsch",
-      "path": "lang/de.json"
+      "path": "lang/de.json",
+      "flags": {}
     },
     {
       "lang": "es",
       "name": "Spanish",
-      "path": "lang/es.json"
+      "path": "lang/es.json",
+      "flags": {}
     }
   ],
   "gridDistance": 1,
