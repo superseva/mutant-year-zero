@@ -9,6 +9,7 @@ import { MYZRobotSheet } from "./actor/robot-sheet.js";
 import { MYZHumanSheet } from "./actor/human-sheet.js";
 import { MYZNpcSheet } from "./actor/npc-sheet.js";
 import { MYZArkSheet } from "./actor/ark-sheet.js";
+import {MYZVehicleSheet} from "./actor/vehicle-sheet.js";
 import { MYZItem } from "./item/item.js";
 import { MYZItemSheet } from "./item/item-sheet.js";
 import { MYZDieBase } from "./MYZDice.js";
@@ -34,6 +35,7 @@ Hooks.once("init", async function () {
         MYZHumanSheet,
         MYZNpcSheet,
         MYZArkSheet,
+        MYZVehicleSheet,
         rollItemMacro,
         DiceRoller,
         RollDialog,
@@ -86,6 +88,10 @@ Hooks.once("init", async function () {
     });
     Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
         types: ["ark"],
+        makeDefault: true,
+    });
+    Actors.registerSheet("mutant-year-zero", MYZVehicleSheet, {
+        types: ["vehicle"],
         makeDefault: true,
     });
     Items.unregisterSheet("core", ItemSheet);

@@ -12,9 +12,14 @@ export class MYZActor extends Actor {
     }
 
     // @override
-    prepareDerivedData() {
-        if (this.type != "ark") {
+    //prepareDerivedData() { 
+    prepareBaseData(){
+        const characterTypes = ["mutant", "animal", "robot", "human", "npc"]
+        if (characterTypes.includes(this.type)) {
             this._prepareMutantData();
+        }       
+        if (this.type == "vehicle") {
+            this._prepareVehicleData();
         }
     }
     /**
@@ -88,4 +93,13 @@ export class MYZActor extends Actor {
             this.system.isEncumbered = "";
         }
     }
+
+    // ! VEHICLE METHODS
+    /**
+     * Prepare Vehicle type specific data
+     */
+    _prepareVehicleData(){
+        //console.warn('ITS VEHICLE')
+    }
+
 }
