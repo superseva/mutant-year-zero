@@ -49,5 +49,17 @@ import { RollDialog } from "../app/roll-dialog.js";
     /** @override */
     activateListeners(html) {
         super.activateListeners(html);
+
+        // LISTEN FOR DRIVER ACTOR DROP
+        html.find(".drop-zone-for-driver").on('drop', this._onDropDriverActor.bind(this));
+
     }
+
+    async _onDropDriverActor(event){
+        event.preventDefault();
+        event.stopPropagation();
+        const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+        await this.actor.update({"system.driver.uuid":data.uuid})
+    }
+    
  }

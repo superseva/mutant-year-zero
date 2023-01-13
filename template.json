@@ -228,10 +228,9 @@
 				"current":0
 			},
 			"driver":{
-				"_id":"",
-				"_uuid":""
+				"uuid":""
 			},
-			"occupants":0,
+			"occupants":[],
 			"cost":0
 		}
 	},
