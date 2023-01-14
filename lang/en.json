@@ -5,6 +5,7 @@
   "ACTOR.TypeMutant": "Mutant",
   "ACTOR.TypeNpc": "NPC",
   "ACTOR.TypeRobot": "Robot",
+  "ACTOR.TypeVehicle": "Vehicle",
   "ITEM.TypeAbility": "Ability",
   "ITEM.TypeArmor": "Armor",
   "ITEM.TypeArtifact": "Artifact",
@@ -23,7 +24,15 @@
     "MODIFIERS": "Modifiers",
     "SKILL_DICE": "SKILL DICE",
     "SKILL_DICE_MODIFIER": "Skill Dice Modifier",
-    "SKILL_NAME": "Skill Name"
+    "SKILL_NAME": "Skill Name",
+    "VEHICLE":{
+      "OCCUPANTS":"Occupants",
+      "OCCUPANTS_COUNT": "Occupants #",
+      "RESILIENCE":"Resilience",
+      "ARMOR":"Armor",
+      "FUEL":"Fuel",
+      "MOVE_BONUS":"Gear Bonus"
+    }
   },
   "MYZ.ABILITIES": "Abilities",
   "MYZ.ABILITY_ANIMAL": "Animal Power",
@@ -96,6 +105,7 @@
   "MYZ.DICE_BASE": "Base",
   "MYZ.DICE_GEAR": "Gear",
   "MYZ.DICE_SKILL": "Skill",
+  "MYZ.DRAG_OCCUPANTS_HERE":"Drag The Occupants Here",
   "MYZ.EDIT": "Edit",
   "MYZ.EFFECT": "Effect",
   "MYZ.EffectCreate": "Create",
@@ -141,6 +151,7 @@
   "MYZ.RANK_FOR_HUMAN": "Reputation",
   "MYZ.RANK_FOR_MUTANT": "Rank",
   "MYZ.RANK_FOR_ROBOT": "Hierarchy",
+  "MYZ.REMOVEALL":"Remove All",
   "MYZ.REQUIREMENT": "Requirement",
   "MYZ.RESOURCE_POINTS_ANIMAL": "Feral Points",
   "MYZ.RESOURCE_POINTS_HUMAN": "Influence Points",

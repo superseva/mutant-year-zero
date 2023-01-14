@@ -426,6 +426,21 @@ input.nolabel {
 	}
 }
 
+.drop-zone-for-occupants{	
+	//min-height: 350px;
+	flex-wrap: wrap;
+	.occupant{
+		background-color: #eeeeee;
+		.occupant-image{
+			width:50px;
+			cursor: pointer;
+		}
+		.occupant-delete{
+			cursor: pointer;
+		}
+	}
+}
+
 
 
 .uppercase {

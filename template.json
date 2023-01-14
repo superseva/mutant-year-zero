@@ -1,6 +1,6 @@
 {
 	"Actor": {
-		"types": ["mutant", "animal", "robot", "human", "npc", "ark"],
+		"types": ["mutant", "animal", "robot", "human", "npc", "ark", "vehicle"],
 		"templates": {
 			"base": {
 				"role": "",
@@ -208,6 +208,31 @@
 					"description": ""
 				}
 			}
+		},
+		"vehicle":{
+			"movementBonus":{
+				"max":0,
+				"current":0
+			},
+			"fuel":{
+				"max":0,
+				"current":0,
+				"type":""
+			},
+			"resilience":{
+				"max":0,
+				"current":0
+			},
+			"vehicleArmor":{
+				"max":0,
+				"current":0
+			},
+			"driver":{
+				"uuid":""
+			},
+			"occupantsCount":1,
+			"occupants":[],
+			"cost":0
 		}
 	},
 	"Item": {
