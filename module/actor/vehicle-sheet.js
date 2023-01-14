@@ -157,7 +157,6 @@ export class MYZVehicleSheet extends ActorSheet {
     }
 
     async _addOccupant(occupantUuid) {
-        //console.warn(`there is free space... adding occupant ${occupantUuid}`);
         const occupants = [...this.actor.system.occupants, occupantUuid]
         await this.actor.update({ "system.occupants": occupants })
     }
