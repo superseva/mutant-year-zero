@@ -769,8 +769,6 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .drop-zone-for-occupants {
-  background-color: pink;
-  min-height: 300px;
   flex-wrap: wrap;
 }
 

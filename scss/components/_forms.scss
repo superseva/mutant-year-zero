@@ -426,9 +426,8 @@ input.nolabel {
 	}
 }
 
-.drop-zone-for-occupants{
-	background-color: pink;
-	min-height: 300px;
+.drop-zone-for-occupants{	
+	//min-height: 350px;
 	flex-wrap: wrap;
 	.occupant{
 		background-color: #eeeeee;

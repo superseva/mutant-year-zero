@@ -12,8 +12,8 @@ export class MYZVehicleSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ["mutant-year-zero", "sheet", "actor"],
             template: "systems/mutant-year-zero/templates/actor/vehicle-sheet.html",
-            width: 720,
-            height: 720,
+            width: 600,
+            height: 680,
             tabs: [
                 {
                     navSelector: ".sheet-tabs",
@@ -43,7 +43,8 @@ export class MYZVehicleSheet extends ActorSheet {
             rollData: this.actor.getRollData.bind(this.actor)
         }
 
-        await this._prepareOccupants(context)
+        await this._prepareOccupants(context);
+        this._prepareItems(context)
 
         return context;
     }
@@ -62,7 +63,41 @@ export class MYZVehicleSheet extends ActorSheet {
                 occupants.push(occupant)
             }
         }
-        context.occupants = occupants
+        context.occupants = occupants;
+        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
+            secrets: this.actor.isOwner,
+            async: true
+        });
+    }
+
+    _prepareItems(context){
+        const weapons = [];
+        const armor = [];
+        const chassis = [];
+        const gear = [];
+        const artifacts = [];
+        for (let i of context.items) {
+            // let item = i.data;
+            i.img = i.img || DEFAULT_TOKEN;
+            // Append to gear.
+            if (i.type === "weapon") {
+                weapons.push(i);
+            } else if (i.type === "armor") {
+                armor.push(i);
+            } else if (i.type === "chassis") {
+                chassis.push(i);
+            } else if (i.type === "gear") {
+                gear.push(i);
+            } else if (i.type === "artifact") {
+                artifacts.push(i);
+            }
+        }
+        // context.weapons = weapons;
+        // context.armor = armor;
+        // context.chassis = chassis;
+        // context.gear = gear;
+        // context.artifacts = artifacts;
+        context.itemsOnVehicle = [...weapons, ...armor, ...chassis, ...gear, ...artifacts];
     }
 
     /** @override */
@@ -75,23 +110,48 @@ export class MYZVehicleSheet extends ActorSheet {
         // html.find(".occupant-delete").on('click', async function(ev){
         //     await this._removeAllOccupants(ev)
         // }.bind(this));
-        html.find(".occupant-image").click((ev) => {
+        html.find(".occupant-image, .occupant-name").click((ev) => {
             const li = $(ev.currentTarget).parents(".occupant");
             const _actor = game.actors.get(li.data("id"));
             _actor.sheet.render(true);
         })
+
+        // UPDATE INVENTORY ITEM
+        html.find(".item-edit, .item-link").click((ev) => {
+            const li = $(ev.currentTarget).parents(".box-item");
+            this._editOwnedItemById(li.data("item-id"));
+        });
+
+        // DELETE INVENTORY ITEM
+        html.find(".item-delete").click((ev) => {
+            const li = $(ev.currentTarget).parents(".box-item");
+            this._deleteOwnedItemById(li.data("item-id"));
+            li.slideUp(200, () => this.render(false));
+        });
+
+        // SEND TO CHAT
+        html.find(".chatable").click(this._onItemSendToChat.bind(this));
+
+        // CHANGE ITEM VALUE
+         html.find(".owned-item-value").change(this._onChangeOwnedItemValue.bind(this));
     }
 
     async _onDropOccupantActor(event) {
-        event.preventDefault();
+        event.preventDefault();        
         const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+        let occupantActor = await fromUuid(data.uuid);        
+        if(occupantActor?.type == "vehicle" || occupantActor?.type=="ark"){
+            ui.notifications.warn("You can't add vehicle or ark actors");
+            return false;
+        }
+        
         if (this.actor.system.occupants.length < this.actor.system.occupantsCount) {
             if (!this.actor.system.occupants.includes(data.uuid))
                 this._addOccupant(data.uuid)
             else
-                console.warn('there is already occupant with this uuid')
+                ui.notifications.warn("There is already occupant with this id");
         } else {
-            console.warn('there is no free space')
+            ui.notifications.warn("There is no free space");
         }
         await this.actor.update({ "system.driver.uuid": data.uuid })
     }
@@ -116,6 +176,37 @@ export class MYZVehicleSheet extends ActorSheet {
             occupants.splice(index, 1);
         }
         await this.actor.update({ "system.occupants": occupants })
+    }
+
+    async _onChangeOwnedItemValue(event) {
+        event.preventDefault();
+        const itemId = $(event.currentTarget).data("item-id");
+        let _item = this.actor.items.find((element) => element.id == itemId);
+        let valueToChange = $(event.currentTarget).data("linked-value").toString();
+        let newValue = $(event.currentTarget).val();
+        if (_item) {
+            await _item.update({ [valueToChange]: newValue });
+        }
+    }
+
+    _editOwnedItemById(_itemId) {
+        const item = this.actor.items.get(_itemId);
+        item.sheet.render(true);
+    }
+
+    _onItemSendToChat(event) {
+        event.preventDefault();
+        const itemId = $(event.currentTarget).data("item-id");
+        this._onPostItem(itemId);
+    }
+
+    _onPostItem(_itemId) {
+        const item = this.actor.items.get(_itemId);
+        item.sendToChat();
+    }
+
+    async _deleteOwnedItemById(_itemId) {
+        await this.actor.deleteEmbeddedDocuments("Item", [_itemId]);
     }
 
 }
