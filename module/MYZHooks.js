@@ -18,7 +18,7 @@ export default class MYZHooks {
         await actor.update(updateData, { renderSheet: true });
 
         //IF ACTOR IS ARK DON'T DO ANYTHING ELSE
-        if (actor.type == "ark") return;
+        if (actor.type == "ark" || actor.type == "vehicle") return;
 
         if (actor.type != "npc") {
             const actorCoreSkills = actor.system.coreSkills;

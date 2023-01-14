@@ -6,7 +6,7 @@ import { RollDialog } from "../app/roll-dialog.js";
  */
  export class MYZVehicleSheet extends ActorSheet {
 
-    diceRoller = new DiceRoller();
+    //diceRoller = new DiceRoller();
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -18,7 +18,7 @@ import { RollDialog } from "../app/roll-dialog.js";
                 {
                     navSelector: ".sheet-tabs",
                     contentSelector: ".sheet-body",
-                    initial: "description",
+                    initial: "occupants",
                 },
             ],
         });
@@ -43,23 +43,82 @@ import { RollDialog } from "../app/roll-dialog.js";
             isVehicle: this.actor.type === "vehicle",
             rollData: this.actor.getRollData.bind(this.actor)
         }
+
+        await this._prepareOccupants(context)
+
         return context;
+    }
+
+    async _prepareOccupants(context){
+        let occupants = []
+        for await(const entry of this.actor.system.occupants){
+            let occupantActor = await fromUuid(entry);        
+            if(occupantActor){
+                let occupant = {
+                    name:occupantActor.name,
+                    id:occupantActor._id,
+                    uuid: entry,
+                    img: occupantActor.img
+                }
+                occupants.push(occupant)
+            }
+        }
+        context.occupants = occupants
     }
 
     /** @override */
     activateListeners(html) {
         super.activateListeners(html);
-
         // LISTEN FOR DRIVER ACTOR DROP
-        html.find(".drop-zone-for-driver").on('drop', this._onDropDriverActor.bind(this));
+        html.find(".drop-zone-for-occupants").on('drop', this._onDropOccupantActor.bind(this));
+        html.find(".remove-all-occupants").click(this._removeAllOccupants.bind(this));
+        html.find(".occupant-delete").click(this._removeOccupant.bind(this));
+        // html.find(".occupant-delete").on('click', async function(ev){
+        //     await this._removeAllOccupants(ev)
+        // }.bind(this));
+        html.find(".occupant-image").click((ev)=>{
+            const li = $(ev.currentTarget).parents(".occupant");
+            const _actor = game.actors.get(li.data("id"));
+            _actor.sheet.render(true);
+        })
 
     }
 
-    async _onDropDriverActor(event){
+    async _onDropOccupantActor(event){
         event.preventDefault();
-        event.stopPropagation();
         const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
+        if(this.actor.system.occupants.length<this.actor.system.occupantsCount){
+            if(!this.actor.system.occupants.includes(data.uuid))
+                this._addOccupant(data.uuid)
+            else
+                console.warn('there is already occupant with this uuid')
+        }else{
+            console.warn('there is no free space')
+        }
         await this.actor.update({"system.driver.uuid":data.uuid})
+    }    
+
+    async _addOccupant(occupantUuid){
+        console.warn(`there is free space... adding occupant ${occupantUuid}`);
+        const occupant = await fromUuid(occupantUuid);        
+        const occupants = [...this.actor.system.occupants, occupantUuid]
+        await this.actor.update({"system.occupants":occupants})
+    }
+
+    async _removeAllOccupants(){
+        const occupants = []
+        await this.actor.update({"system.occupants":occupants})
+    }
+
+    async _removeOccupant(ev){
+        const li = $(ev.currentTarget).parents(".occupant");
+        const uuid = li.data("uuid");
+        let occupants = [...this.actor.system.occupants]
+        const index = occupants.indexOf(uuid);
+        if (index !== -1) {
+            occupants.splice(index, 1);
+        }
+        await this.actor.update({"system.occupants":occupants})
     }
     
  }

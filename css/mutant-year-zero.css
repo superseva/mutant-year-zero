@@ -768,6 +768,25 @@ $font-secondary: 'Roboto', sans-serif;*/
   border-color: #cccccc;
 }
 
+.mutant-year-zero .drop-zone-for-occupants {
+  background-color: pink;
+  min-height: 300px;
+  flex-wrap: wrap;
+}
+
+.mutant-year-zero .drop-zone-for-occupants .occupant {
+  background-color: #eeeeee;
+}
+
+.mutant-year-zero .drop-zone-for-occupants .occupant .occupant-image {
+  width: 50px;
+  cursor: pointer;
+}
+
+.mutant-year-zero .drop-zone-for-occupants .occupant .occupant-delete {
+  cursor: pointer;
+}
+
 .mutant-year-zero .uppercase {
   text-transform: uppercase;
 }

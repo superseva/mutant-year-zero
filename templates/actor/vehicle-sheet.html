@@ -1,10 +1,83 @@
 <form class="{{cssClass}} flexcol {{system.type}}" autocomplete="off">
-    <div class="vehicle-header">
+    <div class="actor-header">
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
-        <div>
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
-        </div>
-        <div class="drop-zone-for-driver" style="width: 400px; height:400px; background-color:black"></div>
+        <div class="header-fields">
+            <div class="flex row align-center space-between" style="margin-bottom: 1rem;">
+                <div>
+                    <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+                </div>                
+                <div class="flex row">
+                    <label style="align-self: center" >{{localize "MYZ.VEHICLE.OCCUPANTS_COUNT"}}:</label>
+                    <input class="nolabel short-input" type="number" data-type="Number" name="system.occupantsCount" value="{{system.occupantsCount}}" />
+                </div>
+                <div class="flex row">
+                    <label style="align-self: center" >{{localize "MYZ.COST"}}:</label>
+                    <input class="nolabel short-input" type="number" data-type="Number" name="system.cost" value="{{system.cost}}" />
+                </div>
+            </div>
+
+            <div class="grid">
+                <div>
+                    <div class="flex row ">
+                        <label style="align-self: center" >{{localize "MYZ.VEHICLE.MOVE_BONUS"}}:</label>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.movementBonus.current" value="{{system.movementBonus.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.movementBonus.max" value="{{system.movementBonus.max}}" />
+                    </div>  
+                    <div class="flex row ">
+                        <label style="align-self: center" >{{localize "MYZ.VEHICLE.FUEL"}}:</label>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.fuel.current" value="{{system.fuel.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.fuel.max" value="{{system.fuel.max}}" />
+                    </div>    
+                </div>
+                <div>
+                    <div class="flex row ">
+                        <label style="align-self: center" >{{localize "MYZ.VEHICLE.ARMOR"}}:</label>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.vehicleArmor.current" value="{{system.vehicleArmor.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.vehicleArmor.max" value="{{system.vehicleArmor.max}}" />
+                    </div>
+                    <div class="flex row ">
+                        <label style="align-self: center" >{{localize "MYZ.VEHICLE.RESILIENCE"}}:</label>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.current" value="{{system.resilience.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.max" value="{{system.resilience.max}}" />
+                    </div>
+                </div>
+                              
+                
+            </div>
+            
+            
+        </div>        
     </div>
 
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="occupants">{{localize "MYZ.VEHICLE.OCCUPANTS"}}</a>
+        <a class="item" data-tab="info">{{localize "MYZ.INFO"}}</a>
+    </nav>
+
+    <div class="sheet-body">
+        <div class="tab" data-group="primary" data-tab="occupants" style="background-color:rgb(224, 224, 224)">
+            <div class="flex column">
+                <h2>{{localize "MYZ.VEHICLE.OCCUPANTS"}} <span class="remove-all-occupants">Remove All</span></h2>
+                <div class="drop-zone-for-occupants flex column">
+                    {{#each occupants}}
+                    <div class="flex row occupant" data-uuid="{{this.uuid}}" data-id="{{this.id}}">
+                        <img class="occupant-image" src="{{this.img}}" title="{{this.name}}" />
+                        <p class="occupant-name">{{this.name}}</p>
+                        <i class="fas fa-trash fa-fw occupant-delete"></i>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="" style="background-color: white; width:100%; height:30%">
+            <h2>{{localize "MYZ.GEAR"}}</h2>
+            </div>
+        </div>
+        <div class="drop-zone-for-gear tab" data-group="primary" data-tab="info" style="height:160px; background-color:rgb(80, 80, 80)"></div>
+    </div>
+    
 </form>

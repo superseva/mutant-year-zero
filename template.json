@@ -223,13 +223,14 @@
 				"max":0,
 				"current":0
 			},
-			"armor":{
+			"vehicleArmor":{
 				"max":0,
 				"current":0
 			},
 			"driver":{
 				"uuid":""
 			},
+			"occupantsCount":1,
 			"occupants":[],
 			"cost":0
 		}

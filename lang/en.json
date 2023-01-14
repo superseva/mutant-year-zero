@@ -5,6 +5,7 @@
   "ACTOR.TypeMutant": "Mutant",
   "ACTOR.TypeNpc": "NPC",
   "ACTOR.TypeRobot": "Robot",
+  "ACTOR.TypeVehicle": "Vehicle",
   "ITEM.TypeAbility": "Ability",
   "ITEM.TypeArmor": "Armor",
   "ITEM.TypeArtifact": "Artifact",
@@ -23,7 +24,15 @@
     "MODIFIERS": "Modifiers",
     "SKILL_DICE": "SKILL DICE",
     "SKILL_DICE_MODIFIER": "Skill Dice Modifier",
-    "SKILL_NAME": "Skill Name"
+    "SKILL_NAME": "Skill Name",
+    "VEHICLE":{
+      "OCCUPANTS":"Occupants",
+      "OCCUPANTS_COUNT": "Occupants #",
+      "RESILIENCE":"Resilience",
+      "ARMOR":"Armor",
+      "FUEL":"Fuel",
+      "MOVE_BONUS":"Gear Bonus"
+    }
   },
   "MYZ.ABILITIES": "Abilities",
   "MYZ.ABILITY_ANIMAL": "Animal Power",
