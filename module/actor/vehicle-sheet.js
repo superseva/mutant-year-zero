@@ -4,7 +4,7 @@ import { RollDialog } from "../app/roll-dialog.js";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
- export class MYZVehicleSheet extends ActorSheet {
+export class MYZVehicleSheet extends ActorSheet {
 
     //diceRoller = new DiceRoller();
 
@@ -24,8 +24,7 @@ import { RollDialog } from "../app/roll-dialog.js";
         });
     }
 
-    
-   async getData(options) {        
+    async getData(options) {
         const source = this.actor.toObject();
         const actorData = this.actor.toObject(false);
         const context = {
@@ -49,14 +48,14 @@ import { RollDialog } from "../app/roll-dialog.js";
         return context;
     }
 
-    async _prepareOccupants(context){
+    async _prepareOccupants(context) {
         let occupants = []
-        for await(const entry of this.actor.system.occupants){
-            let occupantActor = await fromUuid(entry);        
-            if(occupantActor){
+        for await (const entry of this.actor.system.occupants) {
+            let occupantActor = await fromUuid(entry);
+            if (occupantActor) {
                 let occupant = {
-                    name:occupantActor.name,
-                    id:occupantActor._id,
+                    name: occupantActor.name,
+                    id: occupantActor._id,
                     uuid: entry,
                     img: occupantActor.img
                 }
@@ -76,41 +75,39 @@ import { RollDialog } from "../app/roll-dialog.js";
         // html.find(".occupant-delete").on('click', async function(ev){
         //     await this._removeAllOccupants(ev)
         // }.bind(this));
-        html.find(".occupant-image").click((ev)=>{
+        html.find(".occupant-image").click((ev) => {
             const li = $(ev.currentTarget).parents(".occupant");
             const _actor = game.actors.get(li.data("id"));
             _actor.sheet.render(true);
         })
-
     }
 
-    async _onDropOccupantActor(event){
+    async _onDropOccupantActor(event) {
         event.preventDefault();
         const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
-        if(this.actor.system.occupants.length<this.actor.system.occupantsCount){
-            if(!this.actor.system.occupants.includes(data.uuid))
+        if (this.actor.system.occupants.length < this.actor.system.occupantsCount) {
+            if (!this.actor.system.occupants.includes(data.uuid))
                 this._addOccupant(data.uuid)
             else
                 console.warn('there is already occupant with this uuid')
-        }else{
+        } else {
             console.warn('there is no free space')
         }
-        await this.actor.update({"system.driver.uuid":data.uuid})
-    }    
+        await this.actor.update({ "system.driver.uuid": data.uuid })
+    }
 
-    async _addOccupant(occupantUuid){
-        console.warn(`there is free space... adding occupant ${occupantUuid}`);
-        const occupant = await fromUuid(occupantUuid);        
+    async _addOccupant(occupantUuid) {
+        //console.warn(`there is free space... adding occupant ${occupantUuid}`);
         const occupants = [...this.actor.system.occupants, occupantUuid]
-        await this.actor.update({"system.occupants":occupants})
+        await this.actor.update({ "system.occupants": occupants })
     }
 
-    async _removeAllOccupants(){
+    async _removeAllOccupants() {
         const occupants = []
-        await this.actor.update({"system.occupants":occupants})
+        await this.actor.update({ "system.occupants": occupants })
     }
 
-    async _removeOccupant(ev){
+    async _removeOccupant(ev) {
         const li = $(ev.currentTarget).parents(".occupant");
         const uuid = li.data("uuid");
         let occupants = [...this.actor.system.occupants]
@@ -118,7 +115,7 @@ import { RollDialog } from "../app/roll-dialog.js";
         if (index !== -1) {
             occupants.splice(index, 1);
         }
-        await this.actor.update({"system.occupants":occupants})
+        await this.actor.update({ "system.occupants": occupants })
     }
-    
- }
+
+}
