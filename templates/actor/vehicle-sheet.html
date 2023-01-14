@@ -94,10 +94,10 @@
                             <a class="item-link">{{gear.name}} x &nbsp;</a>                            
                             <input type="number" class="owned-item-value num-value-1rem" value="{{gear.system.quantity}}" data-item-id="{{gear._id}}" data-linked-value="system.quantity">
                             {{#ifCond gear.type '==' 'weapon'}}
-                            <div style="padding: 0 1rem;">
-                            <label style="margin-right: 1rem;">{{localize 'MYZ.BONUS'}}: {{gear.system.bonus.value}}</label>
-                            <label style="margin-right: 1rem;">{{localize 'MYZ.DAMAGE'}}:{{gear.system.damage}} </label>
-                            <label>{{localize (toUpperCase (concat "MYZ." gear.system.range))}}</label>                 
+                            <div style="padding: 0 0.5rem;" class="flex align-center space-between">
+                                <label style="margin-right: 0.5rem;">{{localize 'MYZ.BONUS'}}: {{gear.system.bonus.value}}</label>
+                                <label style="margin-right: 0.5rem;">{{localize 'MYZ.DAMAGE'}}: {{gear.system.damage}} </label>
+                                <label>{{localize (toUpperCase (concat "MYZ." gear.system.range))}}</label>                 
                             </div>
                             {{/ifCond}}
                         </span>
