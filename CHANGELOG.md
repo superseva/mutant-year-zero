@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v10.0.2
+
+- Added Vehicle actor type
+
 ## v10.0.1
 
 - Improved the Roller Window to display all the applied modifiers that come from criticals, abilities, talents and gear.
