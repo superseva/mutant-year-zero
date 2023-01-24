@@ -24,7 +24,7 @@
     "MODIFIERS": "Modificateurs",
     "SKILL_DICE": "Dés de compétence",
     "SKILL_DICE_MODIFIER": "Modificateur de compétence",
-    "SKILL_NAME": "Nom de compétence"
+    "SKILL_NAME": "Nom de compétence",
     "VEHICLE": {
       "OCCUPANTS":"Passagers",
       "OCCUPANTS_COUNT": "Passagers #",
