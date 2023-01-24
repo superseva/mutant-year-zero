@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v10.0.3
+
+- Fixed WITS red mark bug
+- Removed *maximum* Foundry version for the system
+
 ## v10.0.2
 
 - Added Vehicle actor type

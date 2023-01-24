@@ -18,7 +18,7 @@
             <input type="number" name="system.attributes.agility.max" value="{{system.attributes.agility.max}}" class="short-input" />
         </div>
     </div>
-    <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.wits.value '<' dasystemta.attributes.wits.max}}style="background-color:#ff000080" {{/ifCond}}>
+    <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.wits.value '<' system.attributes.wits.max}}style="background-color:#ff000080" {{/ifCond}}>
         <label class="item-name attribute-name roll-attribute rollable" data-attribute="wits">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_WITS_" system.creatureType))}}</label>
         <div class="item-controls flex row">
             <input type="number" name="system.attributes.wits.value" value="{{system.attributes.wits.value}}" class="short-input" />
