@@ -122,6 +122,22 @@ export class MYZActorSheet extends ActorSheet {
         context.gear = gear;
         context.artifacts = artifacts;
         context.criticals = criticals;
+
+        // pack inventory for NPCs
+        if(context.actor.type=="npc"){
+            context.npcInventory = [...gear, ...artifacts]
+            if(context.system.creatureType=="mutant"){
+                context.npcInventory = [...context.npcInventory, ...chassis]
+            }else if(context.system.creatureType=="robot"){
+                context.npcInventory = [...context.npcInventory, ...armor]
+            }
+            else if(context.system.creatureType=="animal"){
+                context.npcInventory = [...context.npcInventory, ...chassis]
+            }
+            else if(context.system.creatureType=="human"){
+                context.npcInventory = [...context.npcInventory, ...chassis]
+            }
+        }        
     }
 
     /* -------------------------------------------- */

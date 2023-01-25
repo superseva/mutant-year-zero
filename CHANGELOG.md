@@ -4,6 +4,11 @@ The Mutant Year Zero system for FoundryVTT
 
 ## v10.0.3
 
+- Added Inventory to NPCs
+
+
+## v10.0.3
+
 - Fixed WITS red mark bug
 - Removed *maximum* Foundry version for the system
 
