@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## v10.0.4
+
+- All Armor that is on the character and is "equipped" is adding towards the total armor rating. Shields are not taken in to the account and should be rolled separately.
+
 ## v10.0.3
 
 - Added Inventory to NPCs
