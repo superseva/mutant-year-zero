@@ -31,12 +31,21 @@ export class MYZActor extends Actor {
             this.system.rot.value = this.system.rot.min;
         }
 
+        
+
         // Update armor
-        if (this.system.creatureType != "robot") {
-            let armor = this.items._source.find((i) => i.type == "armor" && i.system.equipped);
-            if (armor) {
-                this.system.armorrating.value = parseInt(armor.system.rating.value);
-            } else {
+        if (this.system.creatureType != "robot") {           
+            // let armor = this.items._source.find((i) => i.type == "armor" && i.system.equipped);
+            // if (armor) {
+            //     this.system.armorrating.value = parseInt(armor.system.rating.value);
+            // } else {
+            //     this.system.armorrating.value = 0;
+            // }
+            let equippedArmor = this.items.filter(i=>i.type=="armor" && i.system.equipped && i.system.armorType == "armor");
+            if(equippedArmor.length){
+                let equippedArmorTotal = equippedArmor.reduce(function (acc, obj) { return parseInt(acc) + parseInt(obj.system.rating.value); }, 0);
+                this.system.armorrating.value = parseInt(equippedArmorTotal);
+            }else{
                 this.system.armorrating.value = 0;
             }
         } else {

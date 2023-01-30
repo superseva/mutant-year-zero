@@ -424,6 +424,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/actor/partials/encumbrance.html",
         "systems/mutant-year-zero/templates/actor/partials/actor-effects.html",
         "systems/mutant-year-zero/templates/actor/partials/special.html",
+        "systems/mutant-year-zero/templates/actor/partials/npc-inventory.html",
         "systems/mutant-year-zero/templates/item/partials/header-simple.html",
         "systems/mutant-year-zero/templates/item/partials/header-physical.html",
         "systems/mutant-year-zero/templates/item/partials/tabs.html",

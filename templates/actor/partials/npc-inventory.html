@@ -1,0 +1,19 @@
+<div class="box-item header flex row align-center space-between {{system.creatureType}}">
+    <label class="item-name">{{localize "MYZ.MISCELLANEOUS"}}</label>
+    <span class="item-controls">       
+    </span>
+</div>
+<ol class="box-list gear {{system.creatureType}}">
+    {{#each npcInventory as |item key|}}
+    <li class="box-item gear flex row align-center space-between editable-item" data-item-id="{{item._id}}">
+        <span class="item-name flex row align-center">
+            <img class="item-image" src="{{item.img}}" />
+            <label>{{item.name}} x &nbsp;</label>
+            <input type="number" class="owned-item-value num-value-1rem" value="{{item.system.quantity}}" data-item-id="{{item._id}}" data-linked-value="system.quantity">
+        </span>
+        <span class="item-controls">
+            <a class="chatable" data-item-id="{{item._id}}"><i class="fas fa-comment"></i></a>
+        </span>
+    </li>
+    {{/each}}
+</ol>
