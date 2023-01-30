@@ -457,6 +457,7 @@ export class MYZActorSheet extends ActorSheet {
             return acc + obj.system.modifiers[attName];
         }, 0);
         let baseDiceTotal = parseInt(attVal) + parseInt(baseDiceModifier)
+        if(baseDiceTotal<0) baseDiceTotal = 0;
 
         const applyedModifiersInfo = this._getModifiersInfo({
             skillDiceTotal: 0,
@@ -544,20 +545,17 @@ export class MYZActorSheet extends ActorSheet {
 
     _getRollModifiers(skill) {
         // SKILL MODIFIERS
-        console.warn(skill.system.skillKey)
         let skillDiceTotal = parseInt(skill.system.value);     
         const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
         const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != 0)
         let modifiersToSkill = []
         if(skill.system.skillKey!=""){ 
-        const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) {
-            modifiersToSkill.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[skill.system.skillKey] })
-            return acc + obj.system.modifiers[skill.system.skillKey];
-        }, 0);
-        
+            const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) {
+                modifiersToSkill.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[skill.system.skillKey] })
+                return acc + obj.system.modifiers[skill.system.skillKey];
+            }, 0);        
             skillDiceTotal += parseInt(skillDiceModifier)
         }
-        console.warn(modifiersToSkill)
         // ATTRIBUTE MODIFIERS  
         const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[skill.system.attribute] != 0)
         let modifiersToAttributes = []
@@ -566,7 +564,8 @@ export class MYZActorSheet extends ActorSheet {
             return acc + obj.system.modifiers[skill.system.attribute];
         }, 0);
         const baseDice = this.actor.system.attributes[skill.system.attribute].value;
-        let baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier)
+        let baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier);
+        if(baseDiceTotal<0) baseDiceTotal = 0;
         // GEAR MODIFIERS  
         const itmGMap = this.actor.items.filter(itm => itm.system.gearModifiers != undefined)
         const itemsThatModifyGear = itmGMap.filter(i => i.system.gearModifiers[skill.system.skillKey] != 0)
