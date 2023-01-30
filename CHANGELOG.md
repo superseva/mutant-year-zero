@@ -2,14 +2,14 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+
 ## v10.0.4
 
-- All Armor that is on the character and is "equipped" is adding towards the total armor rating. Shields are not taken in to the account and should be rolled separately.
-
-## v10.0.3
-
 - Added Inventory to NPCs
-
+- Changed: Now all the armor that is on the character and is "equipped" is addied towards the total armor rating. Shields are not taken in to the account and should be rolled separately.
+- Updated FR and DE translations
+- Added color styling to help identify the modifiers in the items (green for positive, red for negative)
+- Bug fixed: Custom skill value not being rolled.
 
 ## v10.0.3
 

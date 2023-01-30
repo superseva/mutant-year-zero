@@ -5,19 +5,19 @@
         <div>
             <div class="flex space-between">
                 <p>{{localize 'MYZ.ATTRIBUTE_STRENGTH_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_STRENGTH_ROBOT'}}</p>
-                <input class="short-input" type="number" name="system.modifiers.strength" value="{{system.modifiers.strength}}">
+                <input class="short-input" type="number" name="system.modifiers.strength" value="{{system.modifiers.strength}}" style="{{#ifCond system.modifiers.strength '>' 0}}background-color:#026300;color:white;{{/ifCond}}{{#ifCond system.modifiers.strength '<' 0}}background-color:#800000;color:white;{{/ifCond}}">
             </div>
             <div class="flex space-between">
                 <p>{{localize 'MYZ.ATTRIBUTE_AGILITY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_AGILITY_ROBOT'}}</p>
-                <input class="short-input" type="number" name="system.modifiers.agility" value="{{system.modifiers.agility}}">
+                <input class="short-input" type="number" name="system.modifiers.agility" value="{{system.modifiers.agility}}" style="{{#ifCond system.modifiers.agility '>' 0}}background-color:#026300;color:white;{{/ifCond}}{{#ifCond system.modifiers.agility '<' 0}}background-color:#800000;color:white;{{/ifCond}}">
             </div>
             <div class="flex space-between">
                 <p>{{localize 'MYZ.ATTRIBUTE_WITS_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_WITS_ROBOT'}}</p>
-                <input class="short-input" type="number" name="system.modifiers.wits" value="{{system.modifiers.wits}}">
+                <input class="short-input" type="number" name="system.modifiers.wits" value="{{system.modifiers.wits}}" style="{{#ifCond system.modifiers.wits '>' 0}}background-color:#026300;color:white;{{/ifCond}}{{#ifCond system.modifiers.wits '<' 0}}background-color:#800000;color:white;{{/ifCond}}">
             </div>
             <div class="flex space-between">
                 <p>{{localize 'MYZ.ATTRIBUTE_EMPATHY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ANIMAL'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ROBOT'}}</p>
-                <input class="short-input" type="number" name="system.modifiers.empathy" value="{{system.modifiers.empathy}}">
+                <input class="short-input" type="number" name="system.modifiers.empathy" value="{{system.modifiers.empathy}}" style="{{#ifCond system.modifiers.empathy '>' 0}}background-color:#026300;color:white;{{/ifCond}}{{#ifCond system.modifiers.empathy '<' 0}}background-color:#800000;color:white;{{/ifCond}}">
             </div>
         </div>
     </div>
@@ -32,8 +32,8 @@
         {{#each system.skillKeysList as |key index|}}
         <div class="grid grid-3col" >
             <span><p>{{localize (concat 'MYZ.SKILL_' key)}}</p></span>
-            <span style="display: flex; justify-content: center;"><input class="short-input" type="number" name="system.modifiers.{{key}}" value="{{lookup ../system.modifiers key}}"></span>
-            <span style="display: flex; justify-content: center;"><input class="short-input" type="number" name="system.gearModifiers.{{key}}" value="{{lookup ../system.gearModifiers key}}"></span>
+            <span style="display: flex; justify-content: center;"><input class="short-input" type="number" name="system.modifiers.{{key}}" value="{{lookup ../system.modifiers key}}" style="{{#ifCond (lookup ../system.modifiers key) '>' 0}}background-color:#026300;color:white;{{/ifCond}}{{#ifCond (lookup ../system.modifiers key) '<' 0}}background-color:#800000;color:white;{{/ifCond}}"></span>
+            <span style="display: flex; justify-content: center;"><input class="short-input" type="number" name="system.gearModifiers.{{key}}" value="{{lookup ../system.gearModifiers key}}" style="{{#ifCond (lookup ../system.gearModifiers key) '>' 0}}background-color:#026300;color:white;{{/ifCond}}{{#ifCond (lookup ../system.gearModifiers key) '<' 0}}background-color:#800000;color:white;{{/ifCond}}"></span>
         </div>
         {{/each}}
     </div>

@@ -140,13 +140,13 @@ export class MYZVehicleSheet extends ActorSheet {
         event.preventDefault();        
         const data = JSON.parse(event.originalEvent.dataTransfer.getData('text/plain'));
         if(data.type=="Item"){
-            event.stopPropagination()
+            //event.stopPropagination()
             return false;
         }
         let occupantActor = await fromUuid(data.uuid);        
         if(occupantActor?.type == "vehicle" || occupantActor?.type=="ark"){
             ui.notifications.warn("You can't add vehicle or ark actors");
-            event.stopPropagination()
+            //event.stopPropagination()
             return false;
         }
         
