@@ -46,14 +46,14 @@ export default class MYZHooks {
             }
             if (actor.system.creatureType == 'robot') {
                 try {
-                    skillIndex = await game.packs.get("myz-mechatron.myz-mechatron-items").getDocuments();
+                    skillIndex = await game.packs.get("myz-mechatron.myz-mechatron-programs").getDocuments();
                 } catch (e) {
                     console.log(errMsgOfficialSkills);
                 }
             }
             if (actor.system.creatureType == 'human') {
                 try {
-                    skillIndex = await game.packs.get("myz-elisium.myz-elisium-items").getDocuments();
+                    skillIndex = await game.packs.get("myz-elysium.myz-elysium-skills").getDocuments();
                 } catch (e) {
                     console.log(errMsgOfficialSkills);
                 }
