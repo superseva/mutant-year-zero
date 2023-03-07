@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 11.0.0
+
+- Foundry 11 updates
+
 ## 10.0.5
 
 - Fixed the skill origin for Mechatron on crating new robot character.
