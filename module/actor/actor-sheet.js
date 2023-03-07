@@ -167,6 +167,7 @@ export class MYZActorSheet extends ActorSheet {
         });
 
         html.find(".button-push").click((ev) => {
+            ev.preventDefault();
             this.diceRoller.push({ actor: this.actor });
         });
 
