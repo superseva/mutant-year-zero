@@ -528,8 +528,6 @@ export class MYZActorSheet extends ActorSheet {
         if (itemId) {
             //FIND OWNED SKILL ITEM AND CREARE ROLL DIALOG
             const skill = this.actor.items.find((element) => element.id == itemId);
-
-            console.warn(skill)
             const attName = skill.system.attribute;
             // Apply any modifiers from items or crits
             const diceTotals = this._getRollModifiers(skill);
@@ -544,7 +542,7 @@ export class MYZActorSheet extends ActorSheet {
             }
 
             const applyedModifiersInfo = this._getModifiersInfo(diceTotals);
-            console.warn(applyedModifiersInfo)
+            //console.warn(applyedModifiersInfo)
 
             RollDialog.prepareRollDialog({
                 rollName: skillName,

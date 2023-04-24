@@ -202,7 +202,6 @@ export class DiceRoller {
      */
     async sendRollToChat(isPushed, _roll) {
         this.dices = this.diceWithResult.concat(this.diceWithNoResult);
-        console.warn(this.dices)
         this.dices.sort(function (a, b) {
             return b.weight - a.weight;
         });
