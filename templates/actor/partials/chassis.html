@@ -6,6 +6,7 @@
 </div>
 <ol class="box-list chassis {{system.creatureType}}">
     {{#each chassis as |chassis key|}}
+    {{#unless chassis.system.stashed}}
     {{#if (ifvalue chassis.system.equipped true)}}
     <li class="box-item chassis felxrow editable-item" data-item-id="{{chassis._id}}">
         <div class="chasis-details">
@@ -24,5 +25,6 @@
         </div>
     </li>
     {{/if}}
+    {{/unless}}
     {{/each}}
 </ol>

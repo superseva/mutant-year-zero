@@ -2,6 +2,16 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 10.0.6
+
+- Added tracker for the Grub with Rot
+- Added tracker for the Water with Rot
+- Make items stashable (not counted in encumbrance)
+- Redo edit/delete/chat/equip icons. Leave only one edit icon and a un-stash icon. Right click item to edit/delete/chat/stash
+- Booze can be set to a decimal to represent doses. (10 doses per 1 bottle)
+- Fixed Skill sorting by group and then alphabeticaly on sheets
+- Fixed representation of the negative skill success dice in the chat roll (to be red instead of green)
+
 ## 10.0.5
 
 - Fixed the skill origin for Mechatron on crating new robot character.

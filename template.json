@@ -11,7 +11,13 @@
 					"grub": {
 						"value": 0
 					},
+					"grubRot": {
+						"value": 0
+					},
 					"water": {
+						"value": 0
+					},
+					"waterRot": {
 						"value": 0
 					},
 					"booze": {
@@ -245,7 +251,8 @@
 			},
 			"physical": {
 				"quantity": 1,
-				"weight": ""
+				"weight": "",
+				"stashed":false
 			},
 			"bonus": {
 				"bonus": {

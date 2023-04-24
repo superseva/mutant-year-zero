@@ -6,16 +6,20 @@
 </div>
 <ol class="box-list gear {{system.creatureType}}">
     {{#each gear as |gear key|}}
-    <li class="box-item gear flex row align-center space-between editable-item" data-item-id="{{gear._id}}">
+    <li class="box-item gear flex row align-center space-between editable-item" data-physical="1" data-item-id="{{gear._id}}">
         <span class="item-name flex row align-center">
             <img class="item-image" src="{{gear.img}}" />
-            <label>{{gear.name}} x &nbsp;</label>
+            <label>{{gear.name}} &nbsp;</label>
             <input type="number" class="owned-item-value num-value-1rem" value="{{gear.system.quantity}}" data-item-id="{{gear._id}}" data-linked-value="system.quantity">
         </span>
         <span class="item-controls">
-            <a class="chatable" data-item-id="{{gear._id}}"><i class="fas fa-comment"></i></a>
+            <!-- <a class="chatable" data-item-id="{{gear._id}}"><i class="fas fa-comment"></i></a> -->
             <label><i class="fas fa-weight-hanging"></i>:{{math gear.system.quantity "*" gear.system.weight}}</label>
             <!-- <label><i class="fas fa-weight-hanging"></i>:{{gear.system.weight}}</label> -->
+            {{#if gear.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
+                <i class="fa-regular fa-box"></i>
+            </a>{{/if}}
+            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
         </span>
     </li>
     {{/each}}

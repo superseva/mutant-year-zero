@@ -105,7 +105,15 @@ export class MYZActorSheet extends ActorSheet {
             wits: 2,
             empathy: 3,
         };
+        // sort skills by attribute
         skills.sort((a, b) => sortedBy[a.system.attribute] - sortedBy[b.system.attribute]);
+
+        // sort skills alphabeticaly in attribute groups
+        skills.sort((a, b)=> {
+            if (a.system.attribute === b.system.attribute){
+              return a.system.skillKey < b.system.skillKey ? -1 : 1
+            } 
+          })
 
         // Assign and return
         context.skills = skills;
@@ -199,6 +207,13 @@ export class MYZActorSheet extends ActorSheet {
             const li = $(ev.currentTarget).parents(".box-item");
             const item = this.actor.items.get(li.data("item-id"));
             await this.actor.updateEmbeddedDocuments("Item", [this._toggleEquipped(li.data("item-id"), item)]);
+        });
+
+        //Toggle Stash Item
+        html.find(".item-stash-toggle").click(async (ev) => {
+            const li = $(ev.currentTarget).parents(".box-item");
+            const item = this.actor.items.get(li.data("item-id"));
+            await this.actor.updateEmbeddedDocuments("Item", [this._toggleStashed(li.data("item-id"), item)]);
         });
 
         // Toggle Broken Module
@@ -321,35 +336,56 @@ export class MYZActorSheet extends ActorSheet {
 
         let menu_items = [
             {
-                icon: '<i class="fas fa-comment"></i>',
+                icon: '<i class="fas fa-comment" title="to chat"></i>',
                 name: '',
                 callback: (t) => {
                     this._onPostItem(t.data("item-id"));
                 },
             },
             {
-                icon: '<i class="fas fa-edit"></i>',
+                icon: '<i class="fas fa-edit" title="edit"></i>',
                 name: '',
                 callback: (t) => {
                     this._editOwnedItemById(t.data("item-id"));
                 },
             },
             {
-                icon: '<i class="fas fa-trash"></i>',
+                icon: '<i class="fa-regular fa-box" title="stash"></i>',
                 name: '',
-                callback: (t) => {
-                    this._deleteOwnedItemById(t.data("item-id"));
+                callback:async (t) => {
+                    //this._editOwnedItemById(t.data("item-id"));
+                    const item = this.actor.items.get(t.data("item-id"));
+                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleStashed(t.data("item-id"), item)]);
                 },
                 condition: (t) => {
-                    if (t.data("coreskill")) {
-                        return t.data("coreskill").length < 1;
-                    } else {
+                    if (t.data("physical")=="1") {
                         return true;
+                    } else {
+                        return false;
                     }
                 },
             },
+            {
+                icon: '<i class="fas fa-trash" title="delete"></i>',
+                name: '',
+                callback: (t) => {
+                    this._deleteOwnedItemById(t.data("item-id"));
+                }
+            },
         ];
         new ContextMenu(html.find(".editable-item"), null, menu_items);
+
+        new ContextMenu(html.find(".editable-armor"), null, [            
+            {
+                icon: '<i class="fa-solid fa-shirt" title="toggle equip"></i>',
+                name: '',
+                callback: async (t) => {
+                    const item = this.actor.items.get(t.data("item-id"));
+                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleEquipped(t.data("item-id"), item)]);
+                }
+            },
+            ...menu_items
+        ]);
 
         // Drag events for macros.
         /*if (this.actor.isOwner) {
@@ -523,12 +559,23 @@ export class MYZActorSheet extends ActorSheet {
         }
     }
 
-    //Toggle Equipment
+    //Toggle Equiping Armor
     _toggleEquipped(id, item) {
         return {
             _id: id,
             system: {
                 equipped: !item.system.equipped,
+            },
+        };
+    }
+
+
+    //Toggle Stahsing
+    _toggleStashed(id, item) {
+        return {
+            _id: id,
+            system: {
+                stashed: !item.system.stashed,
             },
         };
     }

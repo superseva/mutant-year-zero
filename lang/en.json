@@ -81,6 +81,7 @@
   "MYZ.BULLETS": "Bullets",
   "MYZ.CATEGORY": "category",
   "MYZ.CHASSIS": "Chassis",
+  "MYZ.CLEAN":"Clean",
   "MYZ.COMMENT": "Comment",
   "MYZ.COMPLETED": "Completed",
   "MYZ.CONDITION_DEHYDRATED": "Dehydrated",
@@ -252,6 +253,7 @@
   "MYZ.TORSO": "Torso",
   "MYZ.TYPE": "Type",
   "MYZ.UNDERCARRIAGE": "Undercarriage",
+  "MYZ.UN_STASH_ITEM":"Take from stash",
   "MYZ.VALUE": "Value",
   "MYZ.WARFARE": "Warfare",
   "MYZ.WATER": "Water",
@@ -272,4 +274,5 @@
   "SETTINGS.ApplyPushGearDamageN": "Apply Push Gear Damage",
   "SETTINGS.ApplyPushTraumaH": "Whether to apply trauma from banes on pushed rolls.",
   "SETTINGS.ApplyPushTraumaN": "Apply Push Trauma"
+
 }

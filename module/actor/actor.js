@@ -41,7 +41,7 @@ export class MYZActor extends Actor {
             // } else {
             //     this.system.armorrating.value = 0;
             // }
-            let equippedArmor = this.items.filter(i=>i.type=="armor" && i.system.equipped && i.system.armorType == "armor");
+            let equippedArmor = this.items.filter(i=>i.type=="armor" && !i.system.stashed && i.system.equipped && i.system.armorType == "armor");
             if(equippedArmor.length){
                 let equippedArmorTotal = equippedArmor.reduce(function (acc, obj) { return parseInt(acc) + parseInt(obj.system.rating.value); }, 0);
                 this.system.armorrating.value = parseInt(equippedArmorTotal);
@@ -51,7 +51,7 @@ export class MYZActor extends Actor {
         } else {
             let chassisArmorTotal = 0;
             this.items._source.forEach((i) => {
-                if (i.type == "chassis" && i.system.equipped) {
+                if (i.type == "chassis" && i.system.equipped && !i.system.stashed) {
                     chassisArmorTotal += parseInt(i.system.armor);
                 }
             });
@@ -80,7 +80,8 @@ export class MYZActor extends Actor {
         this.system.encumbranceMax += encumbranceBonus;
         let _totalWeight = 0;
         // add items
-        let weightedItems = this.items.filter(_itm => _itm.system.weight > 0);
+        let physicalItems = this.items.filter(i=>i.system.weight!=undefined);
+        let weightedItems = physicalItems.filter(_itm => _itm.system.weight > 0 && !_itm.system.stashed);
         var itemsWeight = weightedItems.reduce(function (accumulator, i) {
             return accumulator + (parseInt(i.system.quantity) * Number(i.system.weight));
         }, 0);
@@ -88,13 +89,15 @@ export class MYZActor extends Actor {
         //add grub, water, booze and bullets
         try {
             _totalWeight += parseInt(this.system.resources.grub.value) / 4;
+            _totalWeight += parseInt(this.system.resources.grubRot.value) / 4;
             _totalWeight += parseInt(this.system.resources.water.value) / 4;
-            _totalWeight += parseInt(this.system.resources.booze.value);
+            _totalWeight += parseInt(this.system.resources.waterRot.value) / 4;
+            _totalWeight += parseFloat(this.system.resources.booze.value);
             _totalWeight += parseInt(this.system.resources.bullets.value) / 20;
         } catch (error) {
             console.error(error);
         }
-
+        _totalWeight = Math.round((_totalWeight + Number.EPSILON) * 100) / 100
         this.system.itemsWeight = _totalWeight;
         if (_totalWeight > this.system.encumbranceMax) {
             this.system.isEncumbered = "encumbered";
