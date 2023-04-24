@@ -141,6 +141,24 @@ a {
 	background-color: white;
 	color: black;
 }
+.short-input-2em {
+	max-width: 2em;
+	text-align: center;
+	background-color: white;
+	color: black;
+	padding: 0 0;
+	margin-right: 0.5em;	
+	background-color: white;
+	
+	&.rot{
+		background:url(../assets/ico/biohazard-grey.svg) no-repeat left top;
+		background-size: cover;
+		background-color: white;
+		//color: white;
+		font-weight: 500;
+		border: dotted 1px black;
+	}
+}
 .num-value-1rem {
 	max-width: 1.2em;
 	max-height: 1.2rem;

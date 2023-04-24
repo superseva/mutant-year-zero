@@ -89,6 +89,7 @@
     .item-name {
         flex-basis: 70%;
         padding-left: 0.5em;
+        //overflow: hidden;
         &.broken{
             color:darkred;
         }
