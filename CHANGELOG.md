@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 10.0.61
+
+- Fixed skill duplication bug when there is a GM Assistant logged in.
+
 ## 10.0.6
 
 - Added tracker for the contaminated Grub with Rot

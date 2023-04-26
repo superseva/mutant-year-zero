@@ -4,6 +4,8 @@ export default class MYZHooks {
         // Set creatureType and use it for building NPCS and PCs
         // NPCs should have type=npc and ceratureType = mutant/animal/robot/human
         // PCs should have type=mutant/animal/robot/human and ceratureType = mutant/animal/robot/human
+        if(game.user.id!== userId)
+            return; 
         let updateData = {};
         updateData["token.disposition"] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
         updateData["token.vision"] = true;
