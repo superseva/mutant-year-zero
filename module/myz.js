@@ -61,6 +61,26 @@ Hooks.once("init", async function () {
     CONFIG.Dice.terms["s"] = MYZDieSkill;
     CONFIG.Dice.terms["g"] = MYZDieGear;
 
+    CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
+        {
+          pattern : /@myz\[(.+?)\]/gm,
+          enricher : async (match, options) => {
+              const span = document.createElement("span");
+              span.style.fontFamily = "myz"
+              if(match[1]=="s"){
+                span.innerHTML = `A`
+              }
+              else if(match[1]=="f"){
+                span.innerHTML = `B`
+              }
+              else if(match[1]=="g"){
+                span.innerHTML = `C`
+              }                    
+              return span;
+          }
+        }
+      ])
+
     // Register System Settings
     registerSystemSettings();
 
@@ -247,6 +267,15 @@ Hooks.once("init", async function () {
     });
 });
 
+// LOAD STUNTS
+Hooks.on("init", async function(){
+    const stuntJSON = "systems/mutant-year-zero/assets/stunts.json"
+    const jsonFile = await fetch(stuntJSON)
+    const content = await jsonFile.json();
+    CONFIG.MYZ.STUNTS = content;
+})
+
+// CHECK MIGRATIOM
 Hooks.once("ready", async function () {
     // Determine whether a system migration is required and feasible
     const currentVersion = game.settings.get("mutant-year-zero", "systemMigrationVersion");
@@ -277,6 +306,12 @@ Hooks.once("ready", async function () {
 Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor(actor, options, userId));
 Hooks.on("preCreateItem", MYZHooks.onPreCreateItem);
 Hooks.on("preUpdateItem", MYZHooks.onUpdateOwnedItem);
+
+Hooks.on("renderChatMessage", (message, html, data)=>{
+    html.find('.stunts-trigger').click((ev)=>{
+        $(ev.currentTarget).siblings('.stunts').toggle(200)
+    });
+})
 
 /* -------------------------------------------- */
 /*  DsN Hooks                                   */

@@ -18,5 +18,11 @@
             <img src="systems/mutant-year-zero/ui/dice-{{dice.diceType}}{{#ifCond dice.success '==' -1}}-penalty{{/ifCond}}-{{dice.value}}.png" title="{{dice.success}}"/>
             {{/each}}
         </div>
+        {{# if skillItem}}
+        <div>
+            <a class="stunts-trigger" style="display: flex; flex-direction: row; justify-content: flex-end; margin-top: 0.75em;">Stunts</a>
+            <div class="stunts" style="display: none">{{{stuntText}}}</div>
+        </div>
+        {{/if}}
     </div>
 </div>

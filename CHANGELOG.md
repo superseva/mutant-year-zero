@@ -2,7 +2,12 @@
 
 The Mutant Year Zero system for FoundryVTT
 
-## 10.0.61
+## 10.0.8
+
+- Added text enricher for success/fail/gear symbols. @myz[s] , @myz[f], @myz[g].
+- Added stunts to the skill rolls in the chat.
+
+## 10.0.7
 
 - Fixed skill duplication bug when there is a GM Assistant logged in.
 
