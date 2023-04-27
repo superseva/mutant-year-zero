@@ -12,6 +12,8 @@ export class DiceRoller {
     itemId = null;
     traumaCount = 0;
     gearDamageCount = 0;
+    actor = null;
+    skillItem = null
 
     /**
      * @param  {string} rollName   Display name for the roll
@@ -21,12 +23,14 @@ export class DiceRoller {
      * @param  {number} modifier   Increase/decrease amount of skill dice
      * @param  {number} [damage=0] Weapon damage
      */
-    async roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, modifier = 0, damage = null } = {}) {
+    async roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, modifier = 0, damage = null, actor = null, skillItem = null } = {}) {
         this.dices = [];
         this.diceWithResult = [];
         this.diceWithNoResult = [];
         this.lastType = "skill";
         this.lastRollName = rollName;
+        this.skillItem = skillItem;
+        this.actor = actor;
         let computedSkill = skill + modifier;
         if (computedSkill > 0) {
             this.computedSkillType = "skill";
@@ -70,9 +74,6 @@ export class DiceRoller {
         this.sendRollToChat(true, roll);
 
         // Applies pushed roll effects to the actor.
-
-
-
         if (
             actor &&
             this.attribute &&
@@ -208,6 +209,9 @@ export class DiceRoller {
         let numberOfSuccesses = this.countSuccesses();
         let numberOfFailures = this.countFailures();
         let numberOfGearFailures = this.countGearFailures();
+        let stuntText = this.actor? CONFIG.MYZ.STUNTS[this.skillItem.system.skillKey][this.actor.system.creatureType] : ""
+
+
         let rollData = {
             name: this.lastRollName,
             isPushed: isPushed,
@@ -217,6 +221,9 @@ export class DiceRoller {
             gearfailures: numberOfGearFailures,
             damage: this.baseDamage,
             dices: this.dices,
+            actor: this.actor,
+            skillItem: this.skillItem,
+            stuntText: stuntText
         };
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", rollData);
         let chatData = {

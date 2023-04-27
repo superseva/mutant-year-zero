@@ -27,7 +27,9 @@ export class RollDialog {
         damage = 0,
         diceRoller = null,
         onAfterRoll = null,
-        applyedModifiers = null
+        applyedModifiers = null,
+        actor = null,
+        skillItem = null
     } = {}) {
         if (!diceRoller) {
             throw new Error("DiceRoller object must be passed to prepareRollDialog()");
@@ -66,6 +68,8 @@ export class RollDialog {
                                 gear: parseInt(gear, 10),
                                 modifier: parseInt(modifier, 10),
                                 damage: parseInt(damage, 10),
+                                actor: actor,
+                                skillItem: skillItem
                             });
                             onAfterRoll(diceRoller);
                         },

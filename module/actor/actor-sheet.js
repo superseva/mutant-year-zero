@@ -298,7 +298,9 @@ export class MYZActorSheet extends ActorSheet {
                 modifierDefault: weapon.system.skillBonus,
                 artifactDefault: weapon.system.artifactBonus || 0,
                 damage: weapon.system.damage,
-                applyedModifiers: applyedModifiersInfo
+                applyedModifiers: applyedModifiersInfo,
+                actor: this.actor,
+                skillItem: skill
             });
         });
 
@@ -552,7 +554,9 @@ export class MYZActorSheet extends ActorSheet {
                 skillDefault: diceTotals.skillDiceTotal,
                 gearDefault: diceTotals.gearDiceTotal,
                 modifierDefault: 0,
-                applyedModifiers: applyedModifiersInfo
+                applyedModifiers: applyedModifiersInfo,
+                actor: this.actor,
+                skillItem: skill
             });
         }
     }

@@ -1,0 +1,302 @@
+{
+    "ANALYZE":{
+        "mutant":"",
+        "animal":"",
+        "robot":"<p><strong>Stunts</strong>: Every extra @myz[s] rolled gives you the answer to one of these questions about the creature or phenomenon &ndash; you choose which:</p> <ul> <li>How can it hurt me?</li> <li>How can I hurt it?</li> </ul>",
+        "human":""
+    },
+    "ASSAULT":{
+        "mutant":"",
+        "animal":"",
+        "robot":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, choose one of these stunts:</p> <ul> <li>You inflict 1 more point of damage. You can choose this stunt multiple times, if you roll several extra @myz[s].</li> <li>You increase your initiative score by 2 @UUID[JournalEntry.69a8eX7RYT2miumj.JournalEntryPage.XwrY5Vccy8IIZNlR]{(page 79)}, taking effect next turn.</li> <li>You knock or pull a weapon or other held object from your opponent. Your target&rsquo;s initiative score is also decreased one point. Picking up an object from the ground requires a maneuver in conflict @UUID[JournalEntry.69a8eX7RYT2miumj.JournalEntryPage.CxJEAdzjRWCUOsdd]{(page 80)}.</li> <li>Your opponent falls to the ground or is pushed back, for example through a doorway or over a cliff. Getting up from the ground requires a maneuver.</li> <li>You hold your opponent in a grapple, by clinging onto it or pushing it down into the ground @UUID[JournalEntry.69a8eX7RYT2miumj.JournalEntryPage.yGC8ZJDOnzPcVoUQ#grappling]{(see page 85)}.</li> </ul>",
+        "human":""
+    },
+    "BREWPOTION":{
+        "mutant":"",
+        "animal":"No Stunts",
+        "robot":"",
+        "human":""
+    },
+    "CALCULATE":{
+        "mutant":"",
+        "animal":"",
+        "robot":"No Stunts",
+        "human":""
+    },
+    "CLEAN":{
+        "mutant":"",
+        "animal":"",
+        "robot": "No Stunts",
+        "human":""
+    },
+    "COMMAND":{
+        "mutant":"No Stunts",
+        "animal":"",
+        "robot": "",
+        "human":""
+    },
+    "COMMANDOFFICER":{
+        "mutant":"",
+        "animal":"",
+        "robot": "",
+        "human":"<p><strong>Stunt</strong>: For each @myz[s] you roll beyond to the first, the person you Command receives an additional +1 bonus on the roll to fulfill the order.</p>"
+    },
+    "COMPREHEND":{
+        "mutant":"<p><strong>Stunt</strong>: For every @myz[s] rolled beyond the first, you can teach someone else how to use the artifact.</p>",
+        "animal":"<p><strong>Stunt</strong>: Every extra @myz[s] rolled allows you to teach someone else how to use the artifact.</p>",
+        "robot":"",
+        "human":"<p><strong>Stunts</strong>: For every @myz[s] rolled beyond the first, you can teach someone else how to use the artifact.</p>"
+    },
+    "COORDINATE":{
+        "mutant":"<p><strong>Stunt</strong>: For every @myz[s] you roll, you can help a friend (PC or NPC) in the same situation as you. He can keep moving, and doesn’t have to roll himself. You can even choose this stunt when you only roll one @myz[s] – that means you help you friend while sacrificing yourself.</p>",
+        "animal":"",
+        "robot": "<p><strong>Stunts</strong>: Everyone in the team receives a positive modification equal to the number of @myz[s] you rolled &ndash; but only if they stick to the plan. You cannot Coordinate yourself.<br>The bonus only applies to one action each, and only if everyone sticks to the plan &ndash; as soon as anyone deviates from the plan in the least, this individual and all others in the team who have not yet performed their action lose the Coordinate bonus.</p>",
+        "human":""
+    },
+    "DATAMINE":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunt</strong>: For every extra @myz[s] you roll after the first, you get the answer to another, related, question.</p>",
+        "human":""
+    },
+    "DOMINATE":{
+        "mutant":"",
+        "animal":"<p><strong>Stunt</strong>: Extra @myz[s] mean you sow fear and doubt in your opponent&rsquo;s heart. He suffers one point of doubt (@UUID[JournalEntry.AO27Uwzen1vnIMpK.JournalEntryPage.P3TQrVTls3ZHRvcn#doubt]{page 78}) for every additional @myz[s] you roll after the first one. If he is broken by doubt, he does what you want without getting the option to fight you.</p>",
+        "robot": "",
+        "human":""
+    },
+    "ENDURE":{
+        "mutant":"<p><strong>Stunt</strong>: For every @myz[s] you roll, you can help a friend (PC or NPC) in the same situation as you. He can keep moving, and doesn’t have to roll himself. You can even choose this stunt when you only roll one @myz[s] – that means you help you friend while sacrificing yourself.</p>",
+        "animal":"<p><strong>Stunt</strong>: Every extra @myz[s] rolled allows you to help a friend (PC or NPC) in the same situation as you. He can keep moving, and doesn&rsquo;t have to roll himself. You can even choose this stunt when you only roll one @myz[s] &ndash; that means you help your friend while sacrificing yourself.</p>",
+        "robot": "",
+        "human":"<p><strong>Stunt</strong>: For each @myz[s] you roll in addition to the first, you can help a friend (PC or NPC) in the same trouble you are facing. He succeeds without having to roll the dice. You can choose this stunt even if you only rolled a single @myz[s] &ndash; you will then help your friend succeed at your own expense.</p>"
+    },
+    "ENLIGHTEN":{
+        "mutant":"",
+        "animal":"",
+        "robot": "",
+        "human":"<p><strong>Stunt</strong>: Unlike other skills, rolling additional @myz[s] provides no bonus because this would immediately reveal whether the roll was a success.</p>"
+    },
+    "FIGHT":{
+        "mutant":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, choose one of these stunts:</p> <ul> <li>You inflict one more point of damage. You can choose this stunt multiple times, if you roll several @myz[s].</li> <li>You subdue or tire your enemy. He suffers one point of fatigue (@UUID[JournalEntry.qlW4AKuIr7ruAAko.JournalEntryPage.EcNUTcVJoZrbs11V]{page 88}).</li> <li>You increase your initiative score by 2 (@UUID[JournalEntry.qlW4AKuIr7ruAAko.JournalEntryPage.tMfXjv0KeMXE9RMn]{page 80}), taking effect next turn.</li> <li>You knock or pull a weapon or other object from your opponent. You choose which. During a conflict, picking up a dropped object counts as a maneuver (@UUID[JournalEntry.qlW4AKuIr7ruAAko.JournalEntryPage.LgY1k9dQaWKFJXR8]{page 80}).</li> <li>Your opponent falls to the ground or is pushed back, for example through a doorway or over a cliff.</li> <li>You hold the opponent in a @UUID[JournalEntry.qlW4AKuIr7ruAAko.JournalEntryPage.BOvWoJtj4smlidiB#grappling]{grapple}. He needs to successfully Fight you to break free, and can&rsquo;t perform any other action (or any maneuver) until he has done so &ndash; or until you are broken or let him go.</li> </ul>",
+        "animal":"<p><strong>Stunts</strong>: Every extra @myz[s] rolled allows you to choose one of these stunts:</p> <ul> <li>You inflict one more point of damage. You can choose this stunt multiple times, if you roll several extra @myz[s].</li> <li>You subdue or tire your enemy. He suffers one point of fatigue (@UUID[JournalEntry.AO27Uwzen1vnIMpK.JournalEntryPage.P3TQrVTls3ZHRvcn#fatigue]{page 78}).</li> <li>You increase your initiative score by 2 (@UUID[JournalEntry.AO27Uwzen1vnIMpK.JournalEntryPage.IaOlZSBomLctXhZW]{page 69}), taking effect next turn.</li> <li>You knock or pull a weapon or other object from your opponent. Your target&rsquo;s initiative score is also decreased one point.</li> <li>Your opponent falls to the ground or is pushed back, for example through a doorway or over a cliff.</li> <li>You hold your opponent in a grapple, by clinging onto him or pushing him down into the ground (see @UUID[JournalEntry.AO27Uwzen1vnIMpK.JournalEntryPage.2vnhpihLHNlUIMKK#grappling]{page 75}).</li> </ul>",
+        "robot": "",
+        "human":"<p><strong>Stunt</strong>:  For each additional @myz[s] rolled, you can choose one of the following effects:</p> <ul> <li>You inflict one additional point of damage. You can select this effect multiple times.</li> <li>You subdue or tire your enemy. He suffers one point of fatigue (@UUID[JournalEntry.NUO4DjG5KMdDchUV.JournalEntryPage.iVecOoP546OQqeVE#fatigue]{page 76}).</li> <li>You increase your initiative score by 2 (@UUID[JournalEntry.NUO4DjG5KMdDchUV.JournalEntryPage.S3llfsa5hdbbyzBZ#initiative-roll]{page 67}), starting next turn.</li> <li>You knock or pull a weapon or other object from your opponent&rsquo;s grasp. You choose which. During a conflict, picking up a dropped object counts as a maneuver (@UUID[JournalEntry.NUO4DjG5KMdDchUV.JournalEntryPage.P7W01aVyQMKrY8hh]{page 68}).</li> <li>Your opponent falls to the ground or is pushed back, for example through a doorway or down a shaft.</li> <li>You hold the opponent in a grapple. He needs to successfully Fight you to break free and can&rsquo;t perform any other action (or maneuver) until he has done so &ndash; or until you are Broken or let him go.</li> </ul>"
+    },
+    "FINDTHEPATH":{
+        "mutant":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll beyond the first, you get to choose one stunt. Each stunt can only be chosen once per roll:</p> <ul> <li>You find an artifact in the sector, if it&rsquo;s there to be found. You still might have to struggle to get your hands on it.</li> <li>You can assess the general level of Rot in the sector (@UUID[JournalEntry.nYRuNaHGYAWMrvZo.JournalEntryPage.tQRJEQ6CIIuKt8hv]{page 125}).</li> <li>You find D6 bullets, still live.</li> <li>You find D6 rations of grub contaminated by the Rot. It can be edible plants or leftovers from the Old Age. A Zone cook (@UUID[Item.LF296PTBrBc3MDa0]{page 67}) can cook the Rot out of the food.</li> <li>You find D6 rations of Rot-free water (rotwater is usually plentiful).</li> <li>The exploration of the sector only takes half the time (@UUID[JournalEntry.nYRuNaHGYAWMrvZo.JournalEntryPage.GxQG0LMBAfhGZ0TN#exploring-a-sector]{page 122}).</li> <li>You rush through the sector in a quarter of the time it would take to explore it. You avoid all threats, but the sector does not count as having been explored and you find no artifacts, grub or water in it.</li> </ul>",
+        "animal":"",
+        "robot": "",
+        "human":""
+    },
+    "FORCE":{
+        "mutant":"<p><strong>Stunts</strong>: If you roll extra @myz[s] beyond the first, choose one of these stunts:</p> <ul> <li>You push or throw the object with great force. One target of your choice within Arm&rsquo;s Length suffers damage equal to the number of extra @myz[s].</li> <li>If applicable in the situation, you find or reveal a hidden passage or object. The GM decides what it is.</li> </ul>",
+        "animal":"<p><strong> Stunts</strong>: Every extra @myz[s] rolled beyond the first allows you to choose one of these stunts:</p> <ul> <li>You push or throw the object with great force. One target of your choice within Arm&rsquo;s Length suffers damage equal to the number of extra @myz[s].</li> <li>If applicable in the situation, you find or reveal a hidden passage or object. The GM decides what it is.</li> </ul>",
+        "robot": "<p><strong>Stunts</strong>: For each extra @myz[s] you roll, you may choose one of these effects:</p> <ul> <li>You push or throw the object with great power. A target of your choice within a few meters distance suffers damage equal to the number of extra @myz[s].</li> <li>If applicable in the situation, you find or reveal a hidden passage or object. The GM decides what it is.</li> </ul>",
+        "human":"<p><br><strong>Stunt</strong>: For each additional @myz[s] rolled beyond the first, you can choose one of the following effects:</p> <ul> <li>You push or throw the object with great force. An enemy within Arm&rsquo;s Length range will receive an amount of damage equal to the amount of extra @myz[s]. </li> <li>If it is reasonable within the scene, you find a hidden passage or a hidden object. The GM determines exactly what it is.</li> </ul>"
+    },
+    "HEAL":{
+        "mutant":"<p><strong>Stunt</strong>: If you successfully Heal a broken person, he gets back to his feet and immediately recovers a number of attribute points equal to the number of @myz[s] you rolled.</p>",
+        "animal":"<p><strong>Stunt</strong>: If you successfully Heal a broken person, he gets back to his feet and immediately recovers a number of attribute points equal to the number of @myz[s] you rolled.</p>",
+        "robot": "",
+        "human":"<p><strong>Stunt</strong>: If you successfully Heal a broken person, he gets back to his feet and immediately recovers a number of attribute points equal to the number of @myz[s] you rolled.</p>"
+    },
+    "HUNT":{
+        "mutant":"",
+        "animal":"No Stunts",
+        "robot": "",
+        "human":""
+    },
+    "INFILTRATE":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunt</strong>: When setting up a sneak attack, you get a +1 modification to your first attack for every extra @myz[s] rolled after the first.</p>",
+        "human":""
+    },
+    "INSPIRE":{
+        "mutant":"No Stunts",
+        "animal":"",
+        "robot": "",
+        "human":""
+    },
+    "INTERACT":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunt</strong>: If you roll extra @myz[s] - that is, more @myz[s] than you need to win the roll &ndash; your reasoning is so superior that your opponent realizes that it has severe system errors. It will then take 1 point of damage against its Network score for every extra @myz[s] you spend on this.</p>",
+        "human":""
+    },
+    "INTIMIDATE":{
+        "mutant":"<p><strong>Stunt</strong>: Additional @myz[s] mean you strike fear into your opponent&rsquo;s heart. He suffers one point of doubt (@UUID[JournalEntry.qlW4AKuIr7ruAAko.JournalEntryPage.EcNUTcVJoZrbs11V]{page 88}) for every additional @myz[s] you roll on top of the first one.</p>",
+        "animal":"",
+        "robot": "",
+        "human":""
+    },
+    "INVESTIGATE":{
+        "mutant":"",
+        "animal":"",
+        "robot": "",
+        "human":"<p><strong>Stunt</strong>: For each additional @myz[s] rolled, you can ask the GM an additional question.</p>"
+    },
+    "JURYRIG":{
+        "mutant":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll beyond the first, you get to choose one stunt. Some examples:</p> <ul> <li>The device is durable and can be used more than once. It breaks down according to the normal gear rules (@UUID[JournalEntry.hBBRiFOTppOE1sCg.JournalEntryPage.nuSpRABG1CVfOblx]{page 46}).</li> <li>The device&rsquo;s Gear Bonus is increased by one.</li> <li>If it&rsquo;s a weapon, its weapon damage is increased by one.</li> <li>A gun gets an extra barrel and can be fired a second time before you need to reload. You can choose this stunt several times for a multi-barrel gun.</li> <li>The Armor/Protection Rating of an armor or a Rot suit is increased by one. You can choose this stunt multiple times.</li> <li>The Blast Power of an explosive charge is increased by 3. You can choose this stunt multiple times.</li> <li>You fit deadly shrapnel to an explosive charge, increasing the weapon damage to 2 (@UUID[JournalEntry.qlW4AKuIr7ruAAko.JournalEntryPage.MnBACSw00VksjSmT]{page 94}).</li> <li>A scrap raft can carry twice as many people.</li> </ul>",
+        "animal":"",
+        "robot": "",
+        "human":""
+    },
+    "KNOWNATURE":{
+        "mutant":"",
+        "animal":"<p><strong>Stunts</strong>: Every extra @myz[s] rolled gives you the answer to one of these questions about the creature or phenomenon &ndash; you choose which:</p> <ul> <li>How can it hurt me?</li> <li>How can I hurt it?</li> </ul>",
+        "robot": "",
+        "human":""
+    },
+    "KNOWTHEZONE":{
+        "mutant":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, you get the answer to one of these questions about the creature or phenomenon:</p> <ul> <li>How can it hurt me?</li> <li>How can I hurt it?</li> </ul>",
+        "animal":"",
+        "robot": "",
+        "human":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, you get the answer to one of these questions about the creature or phenomenon:</p> <ul> <li>How can it hurt me?</li> <li>How can I hurt it?</li> </ul>"
+    },
+    "MAKEADEAL":{
+        "mutant":"<p>If you succeed, choose one option for every @myz[s] you roll:</p> <ul> <li>You gain D6 bullets.</li> <li>You gain D6 rations of grub.</li> <li>You gain 2D6 rations of Rot-free water.</li> <li>You gain 2D6 doses of booze.</li> <li>You get dirt on someone. The GM decides on who, and what the information is, but you are free to make suggestions.</li> </ul>",
+        "animal":"",
+        "robot": "",
+        "human":""
+    },
+    "MANIPULATE":{
+        "mutant":"<p><strong>Stunts</strong>: Extra @myz[s] on your roll mean you sow fear and doubt in your opponent&rsquo;s heart. He suffers one point of doubt (page 88) for every additional @myz[s] you roll after the first one. If he is broken by doubt, he does what you want without demanding a return favor.</p>",
+        "animal":"",
+        "robot": "",
+        "human":"<p><strong>Stunts</strong>: Rolling extra @myz[s] means you sow fear and doubt in your opponent&rsquo;s heart. He suffers one point of doubt (@UUID[JournalEntry.NUO4DjG5KMdDchUV.JournalEntryPage.iVecOoP546OQqeVE#doubt]{see page 76}) for every additional @myz[s] you roll after the first one. If he is broken by doubt, he does what you want without demanding a favor in return.</p>"
+    },
+    "MANIPULATEPROGRAM":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunts</strong>: For every extra @myz[s] you roll, you may choose one of the following effects:</p> <ul> <li>You seduce your opponent. He takes 1 point of doubt (see Mutant: Year Zero) and is helpless against your charms. If broken by doubt, he falls completely for you and does whatever you want, without demanding anything in return.</li> <li>You confuse your opponent. He suffers 1 point of confusion. If broken by confusion, he has totally lost his bearings and does whatever you want, without demanding anything in return.</li> </ul>",
+        "human":""
+    },
+    "MANUFACTURE":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunts</strong>: For every extra @myz[s] you roll beyond the first, you get to choose one stunt. Some examples include:</p> <ul> <li>The device is durable and can be used more than once.</li> <li>The item&rsquo;s Gear Bonus is increased by 1.</li> <li>If it&rsquo;s a weapon, its weapon damage is increased by 1.</li> <li>The range of a weapon is increased from Short to Long.</li> <li>An energy weapon is fitted with a crank and a small generator. After each shot, it must be wound up again (an action, no roll required) before it can be fired again.</li> <li>A gun gets an extra barrel and can be fired a second time before you have to reload (@UUID[JournalEntry.69a8eX7RYT2miumj.JournalEntryPage.VBozlMvdmnPfaJMa#reloading]{page 86}).</li> <li>The Blast Power of an explosive charge is increased by 3. Can be chosen multiple times.</li> <li>An explosive charge is fitted with a pressure trigger, pin or a timer.</li> <li>The device is elegant, lean and light. A heavy item becomes normal and a normal item becomes light.</li> <li>The device becomes easy to mount on a robot. The roll for Repair gets +1.</li> </ul>",
+        "human":""
+    },
+    "MEASUREENEMY":{
+        "mutant":"",
+        "animal":"<p><strong>Stunts</strong>: Every extra @myz[s] rolled allows you to choose one of these stunts. All of them can be chosen multiple times.</p> <ul> <li>You detect your enemy&rsquo;s weakness. You get a +1 modification to all attacks against the enemy during this fight.</li> <li>You strike fear in your enemy. He suffers one level of doubt. This stunt does not work against monsters.</li> <li>You predict your enemy&rsquo;s moves. You get a +1 to your initiative roll at the beginning of the conflict.</li> </ul> <p>The stunts above only apply to one enemy at a time, and only during one conflict. If you want to Measure another enemy before the conflict starts you lose the effects of the stunt against the first enemy. You cannot roll multiple times for stunts against the same enemy before the conflict begins.</p>",
+        "robot": "",
+        "human":""
+    },
+    "MOVE":{
+        "mutant":"<p><strong>Stunt</strong>: For every @myz[s] you roll, you can help a friend (PC or NPC) in the same spot of trouble as you. He makes it out, and doesn&rsquo;t have to roll himself. You can even choose this stunt when you only roll one @myz[s] &ndash; that means you help you friend while sacrificing yourself.</p>",
+        "animal":"<p><strong>Stunt</strong>: Every extra @myz[s] rolled allows you to help a friend (PC or NPC) in the same spot of trouble as you. He makes it out and doesn&rsquo;t have to roll himself. You can even choose this stunt when you only roll one @myz[s] &ndash; that means you help your friend while sacrificing yourself.</p>",
+        "robot": "<p><strong>Stunt</strong>: Every extra @myz[s] rolled allows you to help another PC or any NPC in the same spot of trouble as you. This individual makes it out and doesn&rsquo;t have to roll itself. You can even choose this stunt when you only roll one @myz[s] &ndash; that means you help your friend while sacrificing yourself.</p>",
+        "human":"<p><strong>Stunt</strong>: For every @myz[s] you roll, you can help a friend (PC or NPC) in the same spot of trouble as you. He makes it out and doesn&rsquo;t have to roll himself. You can even choose this stunt when you only roll one @myz[s] &ndash; that means you help your friend while sacrificing yourself.</p>"
+    },
+    "OVERLOAD":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunt</strong>: For each additional @myz[s] you roll, you may help one PC or NPC in the same situation as you. It can keep moving and does not have to roll for itself. You may even choose this bonus effect when you roll only one @myz[s]. That means you help a friend while sacrificing yourself.</p>",
+        "human":""
+    },
+    "PRESSON":{
+        "mutant":"",
+        "animal":"",
+        "robot": "",
+        "human":"No Stunt"
+    },
+    "PROSECUTE":{
+        "mutant":"",
+        "animal":"",
+        "robot": "",
+        "human":"No Stunt"
+    },
+    "PROTECT":{
+        "mutant":"",
+        "animal":"",
+        "robot": "No Stunts",
+        "human":""
+    },
+    "QUESTION":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunt</strong>: For every extra @myz[s] you roll beyond the first, you may ask your opponent one question that he must answer truthfully. This effect only applies to other robots &ndash; not to humans (or human mutants) who have tried to Manipulate you.</p>",
+        "human":""
+    },
+    "RECYCLE":{
+        "mutant":"",
+        "animal":"",
+        "robot": "No Stunts",
+        "human":""
+    },
+    "REPAIR":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunt</strong>: You restore as many attribute points as the number of @myz[s] you roll. You also need to spend the same amount of Energy Points (EP). You can roll multiple times, until the attribute score is fully restored, you fail a roll, or run out of EP.</p>",
+        "human":""
+    },
+    "SCAN":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunts</strong>: Every extra @myz[s] rolled gives you the answer to one of these questions about the object you are Scanning:</p> <ul> <li>Is it coming for me?</li> <li>Are there more of them close by?</li> <li>How do I get in/past/away?</li> </ul>",
+        "human":""
+    },
+    "SCAVENGE":{
+        "mutant":"",
+        "animal":"No Stunts",
+        "robot": "",
+        "human":""
+    },
+    "SCOUT":{
+        "mutant":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, you get to know the answer to one of these questions:</p> <ul> <li>Is it coming for me?</li> <li>Are there more of them close by?</li> <li>How do I get in/past/away?</li> </ul>",
+        "animal":"<p><strong>Stunts</strong>: Every extra @myz[s] rolled gives you the answer to one of these questions about the object you are Scouting:</p> <ul> <li>Is it coming for me?</li> <li>Are there more of them close by?</li> <li>How do I get in/past/away?</li> </ul>",
+        "robot": "",
+        "human":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, you get to know the answer to one of these questions:</p> <ul> <li>Is it coming for me?</li> <li>Are there more of them close by?</li> <li>How do I get in/past/away?</li> </ul>"
+    },
+    "SCRY":{
+        "mutant":"",
+        "animal":"No Stunts",
+        "robot": "",
+        "human":""
+    },
+    "SENSEEMOTION":{
+        "mutant":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, you get the answer to one of these yes/no questions about the NPC:</p> <ul> <li>Is he telling the truth?</li> <li>Does he want to hurt me?</li> <li>Does he want something from me?</li> </ul>",
+        "animal":"<p><strong>Stunts</strong>: Every extra @myz[s] rolled gives you the answer to one of these questions about the NPC &ndash; you choose which:</p> <ul> <li>Is he speaking the truth?</li> <li>Does he want to hurt me?</li> <li>Does he want something from me?</li> </ul>",
+        "robot": "",
+        "human":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, you get the answer to one of these yes/no questions about the NPC:</p> <ul> <li>Is he telling the truth?</li> <li>Does he want to hurt me?</li> <li>Does he want something from me?</li> </ul>"
+    },
+    "SHAKEITOFF":{
+        "mutant":"No Stunts",
+        "animal":"",
+        "robot": "",
+        "human":""
+    },
+    "SHOOT":{
+        "mutant":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, choose one of these stunts:</p> <ul> <li>You inflict one more point of damage. You can choose this stunt multiple times, if you roll several @myz[s].</li> <li>You pin down your enemy. He suffers one point of fatigue (@UUID[JournalEntry.qlW4AKuIr7ruAAko.JournalEntryPage.EcNUTcVJoZrbs11V]{page 88}).</li> <li>You increase your initiative score by 2 (@UUID[JournalEntry.qlW4AKuIr7ruAAko.JournalEntryPage.tMfXjv0KeMXE9RMn]{page 80}), effective as of the next turn.</li> <li>Your target drops a weapon or another hand-held object. You choose which.</li> <li>Your opponent falls to the ground or is pushed back, for example through a doorway or over a cliff.</li> </ul>",
+        "animal":"<p>Stunts: Every extra @myz[s] rolled allows you to choose one of these stunts:</p> <ul> <li>You inflict one more point of damage. You can choose this stunt multiple times, if you roll several extra @myz[s].</li> <li>You pin down your enemy. He suffers one point of fatigue (@UUID[JournalEntry.AO27Uwzen1vnIMpK.JournalEntryPage.P3TQrVTls3ZHRvcn#fatigue]{page 78}).</li> <li>You increase your initiative score by 2 (@UUID[JournalEntry.AO27Uwzen1vnIMpK.JournalEntryPage.IaOlZSBomLctXhZW]{page 69}), effective as of the next turn. </li> <li>Your target drops a weapon or another handheld object. Your target&rsquo;s initiative score is also decreased one point.</li> <li>Your opponent falls to the ground or is pushed back, for example through a doorway or over a cliff.</li> </ul>",
+        "robot": "<p><strong>Stunts</strong>: For every extra @myz[s] you roll after the first, you can choose one of the following stunts:</p> <ul> <li>You inflict 1 more point of damage. You can choose this stunt multiple times, if you roll several extra @myz[s].</li> <li>You increase your initiative score by 2 (@UUID[JournalEntry.69a8eX7RYT2miumj.JournalEntryPage.XwrY5Vccy8IIZNlR]{TURNS AND INITIATIVE}), effective as of the next turn.</li> <li>Your target drops a weapon or another object held in its hand or pincer. Your target&rsquo;s initiative score is also decreased one point. Picking up an object from the ground requires a maneuver in conflict @UUID[JournalEntry.69a8eX7RYT2miumj.JournalEntryPage.CxJEAdzjRWCUOsdd]{(page 80)}.</li> <li>Your opponent falls to the ground or is pushed back, for example through a doorway or over a cliff. Getting up from the ground requires a maneuver.</li> </ul>",
+        "human":"<p><strong>Stunts</strong>: For every extra @myz[s] you roll, choose one of these stunts:</p> <ul> <li>You inflict one more point of damage. You can choose this stunt multiple times, if you roll several extra @myz[s].</li> <li>You pin down your enemy. He suffers one point of fatigue (see @UUID[JournalEntry.NUO4DjG5KMdDchUV.JournalEntryPage.iVecOoP546OQqeVE#fatigue]{page 76}).</li> <li>You increase your initiative score by 2 (see @UUID[JournalEntry.NUO4DjG5KMdDchUV.JournalEntryPage.S3llfsa5hdbbyzBZ]{page 67}), starting next turn.</li> <li>Your target drops a weapon or another handheld object. You choose which.</li> <li>Your opponent falls to the ground or is pushed back, for example through a doorway or down a shaft.</li> </ul>"
+    },
+    "SICADOG":{
+        "mutant":"No Stunts",
+        "animal":"",
+        "robot": "",
+        "human":""
+    },
+    "SNEAK":{
+        "mutant":"<p><strong>Stunt</strong>: When setting up a sneak attack, you get a +1 modification to your first attack for every extra @myz[s] rolled after the first.</p>",
+        "animal":"<p><strong>Stunt</strong>: When setting up a sneak attack, you get a +1 modification to your first attack for every extra @myz[s] rolled after the first.</p>",
+        "robot": "",
+        "human":"<p><strong>Stunt</strong>: When setting up a sneak attack, you get a +1 modification to your first attack for every extra @myz[s] rolled after the first.</p>"
+    },
+    "TARGET":{
+        "mutant":"",
+        "animal":"",
+        "robot": "<p><strong>Stunts</strong>: For every extra @myz[s] you roll after the first, choose one of these effects:</p> <ul> <li>You get an additional +1 to all attacks against your target (can be selected several times).</li> <li>Your initiative score is increased by 1.</li> <li>You deal 1 extra point of damage in all of your attacks that hit the Target.</li> </ul>",
+        "human":""
+    },
+    "TINKER":{
+        "mutant":"",
+        "animal":"",
+        "robot": "",
+        "human":"<p><strong>Stunt</strong>: For each additional @myz[s] you roll, you gain an unexpected side effect. You may suggest what it is, but the GM has the last word. The bonus effect must be less significant than the original objective.</p>"
+    }
+}

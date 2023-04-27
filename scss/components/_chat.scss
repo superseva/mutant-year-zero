@@ -72,4 +72,24 @@
         font-family: $font-primary;
         margin: 0 0 4px;
     }
+    .stunts{
+        ul{
+            li{
+                margin-bottom: 0.5em;
+            }
+        }
+        a{
+            &.entity-link, &.content-link{
+                background:unset;
+                font-family: inherit;
+                border:unset;
+                border-bottom: 1px solid;
+                border-color:#a67060;
+                padding: 0;
+                i{
+                    color:#a67060;
+                }
+            }    
+        }
+    }
 }
