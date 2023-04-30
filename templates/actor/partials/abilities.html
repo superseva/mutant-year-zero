@@ -4,7 +4,7 @@ create a header label - DEPRICAATED}} {{! PARAM: fixedHeight: should it grow or 
 <div class="box-item header flex row align-center space-between {{system.creatureType}}">
     <label class="item-name">{{localize (getAbilitiesTypeName system.creatureType)}}</label>
     <span class="item-controls">
-        <a class="item-create" data-type="{{sourceType}}">+ Add</a>
+        <a class="item-create" data-type="{{sourceType}}">{{localize "MYZ.Add"}}</a>
     </span>
 </div>
 <div class="box-list abilities {{system.creatureType}} {{fixedHeight}}">
@@ -21,7 +21,7 @@ create a header label - DEPRICAATED}} {{! PARAM: fixedHeight: should it grow or 
                 {{/if}}
             </a>
             {{/if}}
-            <a class="chatable" data-item-id="{{listItem._id}}"><i class="fas fa-comment"></i></a>
+            <a class="chatable" data-item-id="{{listItem._id}}" title="{{localize 'MYZ.TOCHAT'}}"><i class="fas fa-comment"></i></a>
         </span>
     </div>
     {{/each}}

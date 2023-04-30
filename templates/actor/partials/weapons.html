@@ -6,7 +6,7 @@
         <label>{{localize 'MYZ.RANGE'}}</label>
     </div>
     <div class="item-controls">
-        <a class="item-create" data-type="weapon">+ Add</a>
+        <a class="item-create" data-type="weapon">{{localize "MYZ.Add"}}</a>
     </div>
 </div>
 <ol class="box-list {{system.creatureType}}">
@@ -27,12 +27,12 @@
         </div>
         <div class="item-controls">
             <!-- <a class="chatable" data-item-id="{{weapon._id}}"><i class="fas fa-comment"></i></a> -->
-            <!-- <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a> -->
+            <!-- <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a> -->
             <!-- <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a> -->
             {{#if weapon.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
                 <i class="fa-regular fa-box"></i>
             </a>{{/if}}
-            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a>
         </div>
     </li>
     {{/each}}

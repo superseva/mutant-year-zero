@@ -5,7 +5,7 @@
         <span>{{localize 'MYZ.STATS'}}</span>
     </div>
     <div class="item-controls">
-        <a class="item-create" data-type="chassis">+ Add</a>
+        <a class="item-create" data-type="chassis">{{localize "MYZ.Add"}}</a>
     </div>
 </div>
 <ol class="box-list {{system.creatureType}}">
@@ -24,7 +24,7 @@
             <!-- <a class="item-control item-toggle {{#unless chassis.system.equipped}}item-unequipped{{/unless}}" title='{{localize "MYZ.EQUIPPED"}}'>
                 <i class="fas fa-tshirt"></i>
             </a> -->
-            <!-- <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a> -->
+            <!-- <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a> -->
             <!-- <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a> -->
             {{#unless chassis.system.stashed}}<a class="item-control item-toggle {{#unless chassis.system.equipped}}item-unequipped{{/unless}}" title='{{localize "MYZ.EQUIPPED"}}'>
                 <i class="fas fa-tshirt"></i>
@@ -32,7 +32,7 @@
             {{#if chassis.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
                 <i class="fa-regular fa-box"></i>
             </a>{{/if}}
-            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a>
         </div>
     </li>
     {{/each}}

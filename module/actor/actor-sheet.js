@@ -334,25 +334,27 @@ export class MYZActorSheet extends ActorSheet {
         /* -------------------------------------------- */
         const editLabel = game.i18n.localize("MYZ.EDIT");
         const deleteLabel = game.i18n.localize("MYZ.DELETE");
-        const postLabel = game.i18n.localize("MYZ.POST");
+        const toChatLabel = game.i18n.localize("MYZ.TOCHAT");
+        const stashLabel = game.i18n.localize("MYZ.STASH");
+        const equipLabel = game.i18n.localize("MYZ.EQUIP");
 
         let menu_items = [
             {
-                icon: '<i class="fas fa-comment" title="to chat"></i>',
+                icon: `<i class="fas fa-comment" title="${toChatLabel}"></i>`,
                 name: '',
                 callback: (t) => {
                     this._onPostItem(t.data("item-id"));
                 },
             },
             {
-                icon: '<i class="fas fa-edit" title="edit"></i>',
+                icon: `<i class="fas fa-edit" title="${editLabel}"></i>`,
                 name: '',
                 callback: (t) => {
                     this._editOwnedItemById(t.data("item-id"));
                 },
             },
             {
-                icon: '<i class="fa-regular fa-box" title="stash"></i>',
+                icon: `<i class="fa-regular fa-box" title="${stashLabel}"></i>`,
                 name: '',
                 callback:async (t) => {
                     //this._editOwnedItemById(t.data("item-id"));
@@ -368,7 +370,7 @@ export class MYZActorSheet extends ActorSheet {
                 },
             },
             {
-                icon: '<i class="fas fa-trash" title="delete"></i>',
+                icon: `<i class="fas fa-trash" title="${deleteLabel}"></i>`,
                 name: '',
                 callback: (t) => {
                     this._deleteOwnedItemById(t.data("item-id"));
@@ -379,7 +381,7 @@ export class MYZActorSheet extends ActorSheet {
 
         new ContextMenu(html.find(".editable-armor"), null, [            
             {
-                icon: '<i class="fa-solid fa-shirt" title="toggle equip"></i>',
+                icon: `<i class="fa-solid fa-shirt" title="${equipLabel}"></i>`,
                 name: '',
                 callback: async (t) => {
                     const item = this.actor.items.get(t.data("item-id"));
