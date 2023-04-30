@@ -2,9 +2,16 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+
+## 10.0.9
+
+- Added translation for "Add, edit, stash and delete".
+- Added setting for choosing the stunts translation file.
+- Bug Fix for manually created skills since no stunts for that skill existed.
+
 ## 10.0.8
 
-- Added text enricher for success/fail/gear symbols. @myz[s] , @myz[f], @myz[g].
+- Added text enricher for success/fail/gear symbols. You can now write @myz[s] , @myz[f], @myz[g] to represent MYZ symbols in your journals, chat and any other html text on the sheet.
 - Added stunts to the skill rolls in the chat.
 
 ## 10.0.7

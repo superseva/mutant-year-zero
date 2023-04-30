@@ -11,6 +11,11 @@ The Mutant Year Zero system for FoundryVTT.
 **NPC** -> a shorter version of a mutant/animal/robot/human \
 **ARK**
 
+## Skills:
+
+**To add more skill to the character sheet you should drag them from the _SKILL_ compendium on to the character sheet. Only create your own custom skills if they are not present in the compendium or official content since the ones that come with the system/official content have _skill_key_ property that alows them to have _stunts_ and to have _modifier_ aplied.\
+
+
 ## Abilities:
 
 **_Mutations, animal powers, modules and contacts_** are all represented by an Item called **ability**.\

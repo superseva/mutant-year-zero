@@ -5,7 +5,7 @@
         <span>{{localize 'MYZ.ARMOR_TYPE'}}</span>
     </div>
     <div class="item-controls">
-        <a class="item-create" data-type="armor">+ Add</a>
+        <a class="item-create" data-type="armor">{{localize "MYZ.Add"}}</a>
     </div>
 </div>
 <ol class="box-list {{system.creatureType}}">
@@ -24,13 +24,13 @@
         </div>
         <div class="item-controls">
             <!-- <a class="chatable" data-item-id="{{armor._id}}"><i class="fas fa-comment"></i></a> -->
-            {{#unless armor.system.stashed}}<a class="item-control item-toggle {{#unless armor.system.equipped}}item-unequipped{{/unless}}" title='{{localize "MYZ.EQUIPPED"}}'>
+            {{#unless armor.system.stashed}}<a class="item-control item-toggle {{#unless armor.system.equipped}}item-unequipped{{/unless}}" title='{{localize "MYZ.EQUIP"}}'>
                 <i class="fas fa-tshirt"></i>
             </a>{{/unless}}
             {{#if armor.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
                 <i class="fa-regular fa-box"></i>
             </a>{{/if}}
-            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a>
             <!-- <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a> -->
         </div>
     </li>

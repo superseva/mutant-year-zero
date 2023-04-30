@@ -209,8 +209,8 @@ export class DiceRoller {
         let numberOfSuccesses = this.countSuccesses();
         let numberOfFailures = this.countFailures();
         let numberOfGearFailures = this.countGearFailures();
-        let stuntText = this.actor? CONFIG.MYZ.STUNTS[this.skillItem.system.skillKey][this.actor.system.creatureType] : ""
-
+        let stuntText = ""
+        try{stuntText = this.actor? CONFIG.MYZ.STUNTS[this.skillItem.system.skillKey][this.actor.system.creatureType] : ""}catch(error){}
 
         let rollData = {
             name: this.lastRollName,

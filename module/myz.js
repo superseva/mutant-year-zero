@@ -269,7 +269,7 @@ Hooks.once("init", async function () {
 
 // LOAD STUNTS
 Hooks.on("init", async function(){
-    const stuntJSON = "systems/mutant-year-zero/assets/stunts.json"
+    const stuntJSON = game.settings.get('mutant-year-zero','stuntsJSON')
     const jsonFile = await fetch(stuntJSON)
     const content = await jsonFile.json();
     CONFIG.MYZ.STUNTS = content;
