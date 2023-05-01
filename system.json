@@ -90,5 +90,5 @@
   "url": "https://github.com/superseva/mutant-year-zero",
   "manifest": "https://github.com/superseva/mutant-year-zero/releases/latest/download/system.json",
   "download": "https://github.com/superseva/mutant-year-zero/releases/download/v10.0.9/mutant-year-zero.zip",
-  "license": "LICENSE.txt"
+  "license": "LICENSE"
 }
