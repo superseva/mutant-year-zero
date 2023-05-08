@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 10.0.10
+
+- Fixed Ark Sheet
+- Updated FR translation
 
 ## 10.0.9
 
