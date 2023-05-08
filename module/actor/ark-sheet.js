@@ -21,12 +21,30 @@ export class MYZArkSheet extends ActorSheet {
     }
 
     /** @override */
-    getData() {
-        const superData = super.getData();
-        const data = superData.data;
-        data.dtypes = ["String", "Number", "Boolean"];
-        this._prepareArkProjects(data);
-        return data;
+    async getData(options) {
+        //const superData = super.getData();
+        //const data = superData.data;
+        //data.dtypes = ["String", "Number", "Boolean"];
+        const source = this.actor.toObject();
+        const actorData = this.actor.toObject(false);
+        const context = {
+            actor: actorData,
+            source: source.system,
+            system: actorData.system,
+            items: actorData.items,
+            owner: this.actor.isOwner,
+            limited: this.actor.limited,
+            options: this.options,
+            editable: this.isEditable,
+            type: this.actor.type
+        }
+
+        this._prepareArkProjects(context);
+        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
+            secrets: this.actor.isOwner,
+            async: true
+        });
+        return context;
     }
 
     _prepareArkProjects(sheetData) {
