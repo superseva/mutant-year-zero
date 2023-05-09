@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 10.0.11
+
+- Fixed duplication of skills when duplicating a character
+- Added 1/4 (quarter) as a weight option
+
 ## 10.0.10
 
 - Fixed Ark Sheet
