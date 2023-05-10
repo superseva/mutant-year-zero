@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 10.0.12
+
+- Fixed duplication of skills when duplicating a character
+- Updated FR translation
+
 ## 10.0.11
 
 - Fixed duplication of skills when duplicating a character
