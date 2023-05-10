@@ -116,7 +116,7 @@
   "MYZ.EffectToggle": "Toggle",
   "MYZ.ENCUMBRANCE": "Encumbrance",
   "MYZ.EQUIP": "Equip",
-  "MYZ.EQUIPPED": "Equiped",
+  "MYZ.EQUIPPED": "Equipped",
   "MYZ.FOOD": "Food",
   "MYZ.GEAR": "Gear",
   "MYZ.GENERAL": "General",
@@ -278,5 +278,4 @@
   "SETTINGS.ApplyPushGearDamageN": "Apply Push Gear Damage",
   "SETTINGS.ApplyPushTraumaH": "Whether to apply trauma from banes on pushed rolls.",
   "SETTINGS.ApplyPushTraumaN": "Apply Push Trauma"
-
 }
