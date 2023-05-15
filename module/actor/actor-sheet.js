@@ -244,10 +244,11 @@ export class MYZActorSheet extends ActorSheet {
 
         //Roll Rot
         html.find(".roll-rot").click((event) => {
+            let rotTotal = parseInt(this.actor.system.rot.value) + parseInt(this.actor.system.rot.permanent);
             RollDialog.prepareRollDialog({
                 rollName: game.i18n.localize("MYZ.ROT"),
                 diceRoller: this.diceRoller,
-                baseDefault: this.actor.system.rot.value,
+                baseDefault: rotTotal,
             });
         });
 

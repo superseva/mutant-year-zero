@@ -44,7 +44,8 @@
 				"rot": {
 					"label": "MYZ.ROT",
 					"min": 0,
-					"value": 0
+					"value": 0,
+					"permanent":0
 				},
 				"xp": {
 					"label": "MYZ.EXPERIENCE",

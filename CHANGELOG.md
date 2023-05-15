@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 10.0.13
+
+- Decoupled the rot field and the permanent rot field. You can now reduce the Rot lower than perma. rot.
+
 ## 10.0.12
 
 - Fixed duplication of skills when duplicating a character
