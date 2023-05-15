@@ -27,11 +27,9 @@ export class MYZActor extends Actor {
      */
     _prepareMutantData() {
         // Update ROT
-        if (this.system.rot.value < this.system.rot.min) {
-            this.system.rot.value = this.system.rot.min;
-        }
-
-        
+        // if (this.system.rot.value < this.system.rot.min) {
+        //     this.system.rot.value = this.system.rot.min;
+        // }       
 
         // Update armor
         if (this.system.creatureType != "robot") {           

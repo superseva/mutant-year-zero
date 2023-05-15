@@ -1,11 +1,11 @@
 <div class="box-item rot-box flex row space-between align-center {{system.type}}">
     <span>
         <label class="roll-rot rollable" style="padding-left: 0.5em;" for="system.rot.value">{{localize 'MYZ.ROT'}}</label>
-        <input class="short-input rot" type="text" data-type="Number" name="system.rot.value" value="{{system.rot.value}}" min="{{system.rot.min}}" />
+        <input class="short-input rot" type="number" data-type="Number" name="system.rot.value" value="{{system.rot.value}}" min="0" />
     </span>
     <span>
         <label for="system.rot.value">{{localize 'MYZ.PERMA_ROT'}}</label>
-        <input class="short-input rot-perma" type="text" data-type="Number" name="system.rot.min" value="{{system.rot.min}}" min="0" />
+        <input class="short-input rot-perma" type="number" data-type="Number" name="system.rot.permanent" value="{{system.rot.permanent}}" min="0" />
     </span>
     <span class="right-element rot-button roll-rot rollable"><img src="systems/mutant-year-zero/ui/dice-base-1.png" /></span>
 </div>
