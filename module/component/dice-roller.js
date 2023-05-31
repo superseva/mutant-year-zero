@@ -109,6 +109,7 @@ export class DiceRoller {
                 this.traumaCount += baneCount;
             }
             if (!foundry.utils.isEmpty(updateData)) {
+                console.warn(updateData)
                 await actor.update(updateData);
             }
         }
@@ -123,7 +124,7 @@ export class DiceRoller {
                     const { value } = bonus;
                     const newVal = Math.max(0, value - baneCount);
                     if (newVal !== value) {
-                        item.update({ 'system.bonus.value': newVal });
+                        await item.update({ 'system.bonus.value': newVal });
                     }
                     this.gearDamageCount += baneCount;
                 }

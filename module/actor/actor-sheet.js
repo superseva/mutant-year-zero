@@ -167,6 +167,7 @@ export class MYZActorSheet extends ActorSheet {
         /* -------------------------------------------- */
 
         html.find(".button-roll").click((ev) => {
+            ev.preventDefault();
             let rollName = "MYZ.CUSTOM_ROLL";
             RollDialog.prepareRollDialog({
                 rollName: rollName,
@@ -175,6 +176,7 @@ export class MYZActorSheet extends ActorSheet {
         });
 
         html.find(".button-push").click((ev) => {
+            ev.preventDefault();
             this.diceRoller.push({ actor: this.actor });
         });
 
@@ -358,7 +360,6 @@ export class MYZActorSheet extends ActorSheet {
                 icon: `<i class="fa-regular fa-box" title="${stashLabel}"></i>`,
                 name: '',
                 callback:async (t) => {
-                    //this._editOwnedItemById(t.data("item-id"));
                     const item = this.actor.items.get(t.data("item-id"));
                     await this.actor.updateEmbeddedDocuments("Item", [this._toggleStashed(t.data("item-id"), item)]);
                 },
@@ -378,9 +379,15 @@ export class MYZActorSheet extends ActorSheet {
                 }
             },
         ];
-        new ContextMenu(html.find(".editable-item"), null, menu_items);
 
-        new ContextMenu(html.find(".editable-armor"), null, [            
+        new ContextMenu(html, ".editable-item", menu_items);
+        //new ContextMenu(html.find(".editable-item"),  menu_items);
+
+        // html.find(".editable-item").on( "contextmenu", function() {
+        //     alert( "Handler for `contextmenu` called." );
+        //   } );
+
+        new ContextMenu(html, ".editable-armor", [            
             {
                 icon: `<i class="fa-solid fa-shirt" title="${equipLabel}"></i>`,
                 name: '',
@@ -391,6 +398,8 @@ export class MYZActorSheet extends ActorSheet {
             },
             ...menu_items
         ]);
+
+
 
         // Drag events for macros.
         /*if (this.actor.isOwner) {
