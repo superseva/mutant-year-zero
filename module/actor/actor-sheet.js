@@ -167,6 +167,7 @@ export class MYZActorSheet extends ActorSheet {
         /* -------------------------------------------- */
 
         html.find(".button-roll").click((ev) => {
+            console.log(this.actor)
             ev.preventDefault();
             let rollName = "MYZ.CUSTOM_ROLL";
             RollDialog.prepareRollDialog({

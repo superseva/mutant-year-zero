@@ -353,6 +353,10 @@ $font-secondary: 'Roboto', sans-serif;*/
   list-style: none;
 }
 
+.mutant-year-zero input[type="checkbox"]:checked, .mutant-year-zero input[type="radio"]:checked {
+  accent-color: #fff100;
+}
+
 .mutant-year-zero .sheet-header,
 .mutant-year-zero .actor-header {
   flex: 0 0 120px;
@@ -503,9 +507,8 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .short-input-2em.rot {
-  background: url(../assets/ico/biohazard-grey.svg) no-repeat left top;
   background-size: cover;
-  background-color: white;
+  background-color: #f3f100;
   font-weight: 500;
   border: dotted 1px black;
 }

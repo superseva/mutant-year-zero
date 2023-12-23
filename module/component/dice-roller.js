@@ -92,7 +92,7 @@ export class DiceRoller {
                     const { value, min } = attribute;
                     const newVal = Math.max(min, value - baneCount);
                     if (newVal !== value) {
-                        updateData[`system.attributes.${this.attribute}.value`] = newVal; // ? CHECK THIS ? Maybe no system needed
+                        updateData[`system.attributes.${this.attribute}.value`] = newVal;
                     }
                 }
                 // Adds Resources Points only to Mutants and Animals
@@ -102,7 +102,7 @@ export class DiceRoller {
                         const { value, max } = resPts;
                         const newVal = Math.min(max, value + baneCount);
                         if (newVal !== value) {
-                            updateData[`system.resource_points.value`] = newVal; // ? CHECK THIS ? Maybe no system needed
+                            updateData[`system.resource_points.value`] = newVal;
                         }
                     }
                 }

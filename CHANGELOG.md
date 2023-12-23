@@ -4,7 +4,7 @@ The Mutant Year Zero system for FoundryVTT
 
 ## 11.0.2
 
-- 
+- Mark Artifacts in item lists
 
 ## 11.0.1
 

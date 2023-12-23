@@ -172,6 +172,13 @@ Hooks.once("init", async function () {
         }
     });
 
+    Handlebars.registerHelper("isArtifact", function (item) {     
+        if (item.system.dev_requirement != "" || item.system.dev_bonus != "") {
+            return true;            
+        }
+        return false;
+    });
+
     Handlebars.registerHelper("ifCond", function (v1, operator, v2, options) {
         switch (operator) {
             case "==":
