@@ -30,28 +30,29 @@
             <div class="title-box">{{localize 'MYZ.DEV_LEVELS'}}</div>
             <div class="flexrow resource">
                 <label for="system.dev_levels.food.value">{{localize 'MYZ.FOOD'}}</label>
-                <input type="number" name="system.dev_levels.food.value" value="{{system.dev_levels.food.value}}" />
+                <input type="number" name="system.dev_levels.food.value" value="{{system.dev_levels.food.value}}" disabled />
             </div>
             <div class="flexrow resource">
                 <label for="system.dev_levels.culture.value">{{localize 'MYZ.CULTURE'}}</label>
-                <input type="number" name="system.dev_levels.culture.value" value="{{system.dev_levels.culture.value}}" />
+                <input type="number" name="system.dev_levels.culture.value" value="{{system.dev_levels.culture.value}}" disabled />
             </div>
             <div class="flexrow resource">
                 <label for="system.dev_levels.technology.value">{{localize 'MYZ.TECHNOLOGY'}}</label>
-                <input type="number" name="system.dev_levels.technology.value" value="{{system.dev_levels.technology.value}}" />
+                <input type="number" name="system.dev_levels.technology.value" value="{{system.dev_levels.technology.value}}" disabled />
             </div>
             <div class="flexrow resource">
                 <label for="system.dev_levels.warfare.value">{{localize 'MYZ.WARFARE'}}</label>
-                <input type="number" name="system.dev_levels.warfare.value" value="{{system.dev_levels.warfare.value}}" />
+                <input type="number" name="system.dev_levels.warfare.value" value="{{system.dev_levels.warfare.value}}" disabled />
             </div>
         </div>
     </div>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="projects">{{localize "MYZ.PROJECTS"}}</a>
+        <a class="item" data-tab="projects">{{localize "MYZ.PROJECTS"}}</a>        
+        <a class="item" data-tab="artifacts">{{localize "MYZ.ARTIFACTS"}}</a>
         <a class="item" data-tab="bosses">{{localize "MYZ.BOSSES"}}</a>
-        <a class="item" data-tab="info">{{localize "MYZ.INFO"}}</a>
+        <a class="item" data-tab="info">{{localize "MYZ.INFO"}}</a>        
     </nav>
 
     <div class="sheet-body">
@@ -68,13 +69,13 @@
                 {{#each projects as |item id|}}
                 <li class="box-item align-center project" data-item-id="{{item._id}}" style="padding-left: 5px">
                     <div class="flexrow margin-bottom">
-                        <label style="flex: 2"><strong>{{item.name}}</strong></label>
+                        <label style="flex: 2;"><span {{#if item.system.completed}} style='background-color:green; color:white; padding: 0 0.2rem;'{{/if}}><strong>{{item.name}}</strong></span></label>
                         <label style="flex: 2">{{item.system.skills}}</label>
                         <label style="flex: 2">{{item.system.work_points}}</label>
-                        <div style="flex: 1; text-align: center">
-                            <a class="item-control item-toggle {{#unless item.system.completed}}item-completed{{/unless}}" title='{{localize "MYZ.COMPLETED"}}'>
+                        <div style="flex: 1; text-align: center">                            
+                            <a class="item-control item-toggle {{#if item.system.completed}}item-completed{{/if}}" title='{{localize "MYZ.COMPLETED"}}'>
                                 {{#if item.system.completed}}
-                                <i class="far fa-check-square"></i>
+                                <i class="far fa-check-square" style="background-color: chartreuse;"></i>
                                 {{/if}} {{#unless item.system.completed}}<i class="far fa-square"></i>{{/unless}}
                             </a>
                         </div>
@@ -84,8 +85,15 @@
                             <a class="item-control item-delete" title="{{localize 'MYZ.DELETE'}}"><i class="fas fa-trash"></i></a>
                         </div>
                     </div>
-                    <div class="flexrow" style="background-color: #f0eeeb">
-                        <label class="size12"> {{localize 'MYZ.DEV_BONUS'}} : {{item.system.DEV_Bonus}} </label>
+                    <div class="flexcol item-info">
+                        <label class="size12"><strong>{{localize 'MYZ.DEV_BONUS'}} :</strong> {{item.system.DEV_Bonus}}</label>
+                        <label class="size12"><strong>{{localize 'MYZ.DEV_REQUIREMENT'}} :</strong> {{item.system.DEV_Requirement}}</label>
+                    </div>
+                    <div class="flexrow item-info">
+                        <label class="size12"><strong>{{localize 'MYZ.FOOD'}} :</strong> {{item.system.food}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.CULTURE'}} :</strong> {{item.system.culture}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.TECHNOLOGY'}} :</strong> {{item.system.technology}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.WARFARE'}} :</strong> {{item.system.warfare}} </label>
                     </div>
                 </li>
                 {{/each}}
@@ -128,6 +136,38 @@
             </div>
         </div>
 
-        {{!-- Info Tab --}} {{> systems/mutant-year-zero/templates/actor/partials/info.html}}
+        {{!-- Artifact Tab --}}
+        <div class="tab " data-group="primary" data-tab="artifacts">
+            <ol class="box-list projects-box" style="border-top: 1px solid; height: 100%">
+                <li class="flexrow box-item align-center projects-box-header">
+                    <label style="flex: 2">{{localize 'MYZ.NAME'}}</label>
+                    <label style="flex: 2">{{localize 'MYZ.DEV_REQUIREMENT'}}</label>
+                    <label style="flex: 2">{{localize 'MYZ.DEV_BONUS'}}</label>
+                    <a style="text-align: right; padding-right: 5px" class="item-create" data-type="artifact">{{localize "MYZ.Add"}}</a>
+                </li>
+                {{#each vault as |item id|}}
+                <li class="box-item align-center" data-item-id="{{item._id}}" style="padding-left: 5px">
+                    <div class="flexrow margin-bottom">
+                        <label style="flex: 2"><strong>{{item.name}}</strong></label>
+                        <label style="flex: 2" class="size12">{{item.system.dev_requirement}} </label>
+                        <label style="flex: 2" class="size12">{{item.system.dev_bonus}} </label>
+                        <div class="item-controls" style="flex: 1">
+                            <a class="chatable" data-item-id="{{item._id}}" title="{{localize 'MYZ.TOCHAT'}}"><i class="fas fa-comment"></i></a>
+                            <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a>
+                            <a class="item-control item-delete" title="{{localize 'MYZ.DELETE'}}"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                    <div class="flexrow item-info">
+                        <label class="size12"><strong>{{localize 'MYZ.FOOD'}} :</strong> {{item.system.food}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.CULTURE'}} :</strong> {{item.system.culture}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.TECHNOLOGY'}} :</strong> {{item.system.technology}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.WARFARE'}} :</strong> {{item.system.warfare}} </label>
+                    </div>
+                </li>
+                {{/each}}
+            </ol>            
+        </div>
+        {{!-- Info Tab --}}
+        {{> systems/mutant-year-zero/templates/actor/partials/info.html}}
     </div>
 </form>

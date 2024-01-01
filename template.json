@@ -263,7 +263,11 @@
 			},
 			"dev": {
 				"dev_requirement": "",
-				"dev_bonus": ""
+				"dev_bonus": "",
+				"food":0,
+				"culture":0,
+				"technology":0,
+				"warfare":0
 			},
 			"modifiers-group":{
 				"modifiers":{

@@ -24,8 +24,10 @@
 
     .item {
         line-height: 40px;
-        font-weight: bold;
+        //font-weight: bold;
         line-height: 23px;
+        font-family: 'BigNoodleTitling';
+        font-size: 1.3rem;
 
         &.active {
             text-decoration: underline;

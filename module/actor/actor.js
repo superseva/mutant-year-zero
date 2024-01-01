@@ -21,6 +21,10 @@ export class MYZActor extends Actor {
         if (this.type == "vehicle") {
             this._prepareVehicleData();
         }
+
+        if (this.type == "ark") {
+            this._prepareArkData();
+        }
     }
     /**
      * Prepare Character type specific data
@@ -102,6 +106,23 @@ export class MYZActor extends Actor {
         } else {
             this.system.isEncumbered = "";
         }
+    }
+
+
+    // ! ARK METHODS
+    /**
+     * Prepare Ark type specific data
+     */
+     _prepareArkData(){
+        const devItems = this.items.filter(i=> i.system.food!=undefined||i.system.culture!=undefined||i.system.technology!=undefined||i.system.warfare!=undefined); 
+        let food = devItems.reduce((total, item)=> total + item.system.food, 0);
+        let culture = devItems.reduce((total, item)=> total + item.system.culture, 0);
+        let technology = devItems.reduce((total, item)=> total + item.system.technology, 0);
+        let warfare = devItems.reduce((total, item)=> total + item.system.warfare, 0);
+        this.system.dev_levels.food.value = parseFloat(food);
+        this.system.dev_levels.culture.value = parseFloat(culture);
+        this.system.dev_levels.technology.value = parseFloat(technology);
+        this.system.dev_levels.warfare.value = parseFloat(warfare);
     }
 
     // ! VEHICLE METHODS

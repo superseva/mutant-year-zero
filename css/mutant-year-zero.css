@@ -32,6 +32,13 @@ $font-secondary: 'Roboto', sans-serif;*/
   content: '\0043';
 }
 
+@font-face {
+  font-family: 'BigNoodleTitling';
+  src: url("../fonts/big_noodle_titling.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*BROWNS*/
 /*GREENS*/
 /*BLUES*/
@@ -861,8 +868,9 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .tabs .item {
   line-height: 40px;
-  font-weight: bold;
   line-height: 23px;
+  font-family: 'BigNoodleTitling';
+  font-size: 1.3rem;
 }
 
 .mutant-year-zero .tabs .item.active {
@@ -1005,6 +1013,11 @@ $font-secondary: 'Roboto', sans-serif;*/
   top: 3px !important;
   right: 3px !important;
   bottom: 0 !important;
+}
+
+.mutant-year-zero .box-item .item-info {
+  background-color: #f0eeeb;
+  padding: 0.2rem 0;
 }
 
 .mutant-year-zero .box-list {

@@ -57,6 +57,8 @@ export class MYZArkSheet extends ActorSheet {
             }
         }
         sheetData.projects = projects;
+        // filter items that are not projects.
+        sheetData.vault = sheetData.items.filter(i=>i.type!="project")
     }
 
     /** @override */

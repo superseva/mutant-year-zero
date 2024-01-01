@@ -36,3 +36,10 @@ $font-secondary: 'Karla', sans-serif;
 .myz-explosion:before {
     content: '\0043';
 }
+
+@font-face {
+    font-family: 'BigNoodleTitling';
+    src: url('../fonts/big_noodle_titling.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
