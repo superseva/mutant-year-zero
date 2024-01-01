@@ -32,6 +32,13 @@ $font-secondary: 'Roboto', sans-serif;*/
   content: '\0043';
 }
 
+@font-face {
+  font-family: 'BigNoodleTitling';
+  src: url("../fonts/big_noodle_titling.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*BROWNS*/
 /*GREENS*/
 /*BLUES*/
@@ -353,6 +360,10 @@ $font-secondary: 'Roboto', sans-serif;*/
   list-style: none;
 }
 
+.mutant-year-zero input[type="checkbox"]:checked, .mutant-year-zero input[type="radio"]:checked {
+  accent-color: #fff100;
+}
+
 .mutant-year-zero .sheet-header,
 .mutant-year-zero .actor-header {
   flex: 0 0 120px;
@@ -503,9 +514,8 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 
 .mutant-year-zero .short-input-2em.rot {
-  background: url(../assets/ico/biohazard-grey.svg) no-repeat left top;
   background-size: cover;
-  background-color: white;
+  background-color: #f3f100;
   font-weight: 500;
   border: dotted 1px black;
 }
@@ -858,8 +868,9 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .tabs .item {
   line-height: 40px;
-  font-weight: bold;
   line-height: 23px;
+  font-family: 'BigNoodleTitling';
+  font-size: 1.3rem;
 }
 
 .mutant-year-zero .tabs .item.active {
@@ -1002,6 +1013,11 @@ $font-secondary: 'Roboto', sans-serif;*/
   top: 3px !important;
   right: 3px !important;
   bottom: 0 !important;
+}
+
+.mutant-year-zero .box-item .item-info {
+  background-color: #f0eeeb;
+  padding: 0.2rem 0;
 }
 
 .mutant-year-zero .box-list {

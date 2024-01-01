@@ -6,6 +6,10 @@ ol {
 	list-style: none;
 }
 
+input[type="checkbox"]:checked, input[type="radio"]:checked {
+    accent-color: #fff100;
+}
+
 .sheet-header,
 .actor-header {
 	flex: 0 0 120px;
@@ -151,9 +155,9 @@ a {
 	background-color: white;
 	
 	&.rot{
-		background:url(../assets/ico/biohazard-grey.svg) no-repeat left top;
+		//background:url(../assets/ico/biohazard-grey.svg) no-repeat left top;
 		background-size: cover;
-		background-color: white;
+		background-color: #f3f100;
 		//color: white;
 		font-weight: 500;
 		border: dotted 1px black;

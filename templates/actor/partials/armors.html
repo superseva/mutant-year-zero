@@ -13,7 +13,8 @@
     <li class="box-item physical flex row align-center space-between editable-armor" data-physical="1" data-item-id="{{armor._id}}">
         <span class="item-name flex row align-center {{#if (isBroken armor)}}broken{{/if}}" data-item-id="{{armor._id}}">
             <img class="item-image" src="{{armor.img}}" />
-            <a class="rollable armor-item-roll">{{armor.name}}</a>                        
+            <a class="rollable armor-item-roll">{{armor.name}}</a>
+            {{#if (isArtifact armor)}} <img class="item-image" src="systems/mutant-year-zero/assets/ico/trophy.svg" style="border:none" />{{/if}}                        
         </span>
         <div class="item-values flexrow center">
             <span>

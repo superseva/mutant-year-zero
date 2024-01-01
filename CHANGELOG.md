@@ -2,6 +2,14 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 11.0.2
+
+- Weapons and Armor now feature an icon identifying them as artifacts in the character's item list. They require populated Dev fields to be recognized as artifacts.
+- List of Artifacts in the Ark
+- Artifacts, Weapons, Armor, and Projects now have individual fields for each Dev type [food, culture, technology, warfare]. These should correspond to the results of the Dev roll and be numerical.
+- Automatically calculate the Ark's development levels.
+
+
 ## 11.0.1
 
 - Updated for Foundry V11
