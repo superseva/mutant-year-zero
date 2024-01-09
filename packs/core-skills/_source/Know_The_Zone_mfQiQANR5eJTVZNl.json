@@ -1,0 +1,24 @@
+{
+  "_id": "mfQiQANR5eJTVZNl",
+  "name": "Know The Zone",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "wits",
+    "creatureType": "mutant",
+    "coreSkill": "",
+    "skillKey": "KNOWTHEZONE"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!mfQiQANR5eJTVZNl"
+}

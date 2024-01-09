@@ -463,7 +463,10 @@ input.nolabel {
 	}
 }
 
-
+.button-roll, .button-push{
+	img{vertical-align: middle; border: none; max-width: 1rem; margin-right: 0.2rem;}
+	span{vertical-align: middle; font-size: 1rem;}
+}
 
 .uppercase {
 	text-transform: uppercase;

@@ -1,0 +1,24 @@
+{
+  "_id": "2m2kKy5Y5borKc3b",
+  "name": "Investigate",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "wits",
+    "creatureType": "human",
+    "coreSkill": "",
+    "skillKey": "INVESTIGATE"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!2m2kKy5Y5borKc3b"
+}

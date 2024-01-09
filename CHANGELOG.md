@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 11.0.3
+
+- Roll window improvement (all modifiers visible in the dialog)
+
 ## 11.0.2
 
 - Weapons and Armor now feature an icon identifying them as artifacts in the character's item list. They require populated Dev fields to be recognized as artifacts.

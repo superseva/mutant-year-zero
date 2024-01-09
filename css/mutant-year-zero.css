@@ -82,6 +82,13 @@ $font-secondary: 'Roboto', sans-serif;*/
   text-transform: capitalize;
 }
 
+.roll-dialog ul.roll-bonus-list {
+  list-style: none;
+  padding: 5px;
+  border: 1px solid #999;
+  font-size: 0.7rem;
+}
+
 .grid,
 .grid-2col {
   display: grid;
@@ -828,6 +835,18 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .drop-zone-for-occupants .occupant .occupant-delete {
   cursor: pointer;
+}
+
+.mutant-year-zero .button-roll img, .mutant-year-zero .button-push img {
+  vertical-align: middle;
+  border: none;
+  max-width: 1rem;
+  margin-right: 0.2rem;
+}
+
+.mutant-year-zero .button-roll span, .mutant-year-zero .button-push span {
+  vertical-align: middle;
+  font-size: 1rem;
 }
 
 .mutant-year-zero .uppercase {

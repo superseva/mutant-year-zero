@@ -7,42 +7,56 @@ export class RollDialog {
      * @param  {string}        rollName
      * @param  {string}       [attributeName]  The key of the used attribute (for push data)
      * @param  {string}       [itemId]         The ID of the used item (for push data)
-     * @param  {object|number} baseDefault     {name: "somename", value: 5} | 5
-     * @param  {object|number} skillDefault    {name: "somename", value: 5} | 5
-     * @param  {number}        gearDefault
+     * @param  {object|number} base
+     * @param  {object|number} skill
+     * @param  {number}        gear
      * @param  {number}        modifierDefault
      * @param  {number}        damage
      * @param  {DiceRoller}    diceRoller
      * @param  {callback}      [onAfterRoll]
      */
-    //static prepareRollDialog(rollName, baseDefault, skillDefault, gearDefault, modifierDefault, damage, diceRoller, onAfterRoll) {
     static async prepareRollDialog({
         rollName = "",
         attributeName = null,
         itemId = null,
-        baseDefault = 0,
-        skillDefault = 0,
-        gearDefault = 0,
+        base =  {default:0, total: 0},
+        skill = {default:0, total: 0},
+        gear = {default:0, total: 0},        
         modifierDefault = 0,
         damage = 0,
         diceRoller = null,
         onAfterRoll = null,
         applyedModifiers = null,
         actor = null,
-        skillItem = null
-    } = {}) {
+        skillItem = null} = {}) {
         if (!diceRoller) {
             throw new Error("DiceRoller object must be passed to prepareRollDialog()");
         }
         onAfterRoll = onAfterRoll || function () {};
-        //if (typeof baseDefault !== 'object') baseDefault = { name: "Base", value: baseDefault };
-        // if (typeof skillDefault !== 'object') skillDefault = { name: "Skill", value: skillDefault };
 
         let htmlData = {
-            base: { name: "MYZ.DICE_BASE", type: "base", value: baseDefault },
-            skill: { name: "MYZ.DICE_SKILL", type: "skill", value: skillDefault },
-            gear: { name: "MYZ.DICE_GEAR", type: "gear", value: gearDefault },
-            modifier: { name: "MYZ.MODIFIER", type: "modifier", value: modifierDefault },
+            base: { 
+                name: "MYZ.DICE_BASE", 
+                type: "base", 
+                total: base.total, 
+                default: base.default, 
+                modifiers: base.modifiers },
+            skill: { 
+                name: "MYZ.DICE_SKILL",
+                type: "skill", 
+                total: skill.total, 
+                default: skill.default, 
+                modifiers: skill.modifiers },
+            gear: { 
+                name: "MYZ.DICE_GEAR", 
+                type: "gear", 
+                total: gear.total, 
+                default: gear.default, 
+                modifiers: gear.modifiers },
+            modifier: { 
+                name: "MYZ.MODIFIER", 
+                type: "modifier", 
+                value: modifierDefault },
             applyedModifiers: applyedModifiers
         };
 

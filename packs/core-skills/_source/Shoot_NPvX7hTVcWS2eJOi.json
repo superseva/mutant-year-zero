@@ -1,0 +1,24 @@
+{
+  "_id": "NPvX7hTVcWS2eJOi",
+  "name": "Shoot",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "agility",
+    "creatureType": "mutant",
+    "coreSkill": "",
+    "skillKey": "SHOOT"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!NPvX7hTVcWS2eJOi"
+}

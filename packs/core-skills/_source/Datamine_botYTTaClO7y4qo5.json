@@ -1,0 +1,24 @@
+{
+  "_id": "botYTTaClO7y4qo5",
+  "name": "Datamine",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "wits",
+    "creatureType": "robot",
+    "coreSkill": "",
+    "skillKey": "DATAMINE"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!botYTTaClO7y4qo5"
+}

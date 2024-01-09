@@ -1,0 +1,24 @@
+{
+  "_id": "3HANeFrL6PCm4c4N",
+  "name": "Hunt",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "agility",
+    "creatureType": "animal",
+    "coreSkill": "",
+    "skillKey": "HUNT"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!3HANeFrL6PCm4c4N"
+}
