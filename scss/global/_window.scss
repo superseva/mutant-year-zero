@@ -12,7 +12,6 @@
     }*/
 }
 
-
 .sheet.actor .window-content{
     background: url("../ui/mutant-sheet-bg.jpg");
     background-size:cover;
@@ -35,5 +34,12 @@
 
     label {
         text-transform: capitalize;
+    }
+
+    ul.roll-bonus-list{
+        list-style: none;
+        padding: 5px;
+        border: 1px solid #999;        
+        font-size: 0.7rem;
     }
 }

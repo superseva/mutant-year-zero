@@ -3,34 +3,59 @@
         <div class="flexcol flex-group-center">
             <span>
                 <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-base-6.png" />
-                <label for="base-input">{{localize base.name}} </label>
-                {{#ifCond applyedModifiers.modifiersToAttributesInfo '!=' ""}}
-                <em style="color: rgb(104, 0, 0);"><i class="fa-regular fa-circle-question" data-tooltip="{{{applyedModifiers.modifiersToAttributesInfo}}}" data-tooltip-direction="UP"></i></em>
-                {{/ifCond}}
+                <label for="base-input">{{localize base.name}}</label>
             </span>
-            <input type="number" name="base-input" data-type="Number" id="{{base.type}}" value="{{base.value}}" />
+            <input type="number" name="base-input" data-type="Number" id="{{base.type}}" value="{{base.total}}" />
         </div>
         <div class="flexcol flex-group-center">
             <span>
                 <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-skill-6.png" />
-                <label>{{localize skill.name}} </label>
-                {{#ifCond applyedModifiers.modifiersToSkillInfo '!=' ""}}
-                <em style="color: rgb(104, 0, 0);"><i class="fa-regular fa-circle-question" data-tooltip="{{{applyedModifiers.modifiersToSkillInfo}}}" data-tooltip-direction="UP"></i></em>
-                {{/ifCond}}
+                <label>{{localize skill.name}}</label>
             </span>
-            <input type="number" data-type="Number" id="{{skill.type}}" value="{{skill.value}}" />
+            <input type="number" data-type="Number" id="{{skill.type}}" value="{{skill.total}}" />
         </div>
         <div class="flexcol flex-group-center">
             <span>
                 <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-gear-6.png" />
-                <label>{{localize gear.name}} </label>
-                {{#ifCond applyedModifiers.modifiersToGearInfo '!=' ""}}
-                <em style="color: rgb(104, 0, 0);"><i class="fa-regular fa-circle-question" data-tooltip="{{{applyedModifiers.modifiersToGearInfo}}}" data-tooltip-direction="UP"></i></em>
-                {{/ifCond}}
+                <label>{{localize gear.name}}</label>
             </span>
-            <input type="number" data-type="Number" id="{{gear.type}}" value="{{gear.value}}" />
+            <input type="number" data-type="Number" id="{{gear.type}}" value="{{gear.total}}" />
+        </div>        
+    </div>
+
+    <div class="roll-bonus">
+        <div class="grid grid-3col dice-row">
+            <div>
+                {{#ifCond base.modifiers.length '>' 0}}
+                <ul class="roll-bonus-list">
+                    <li><em>{{localize 'MYZ.DEFAULT'}}: {{base.default}}</em></li>
+                    {{#each base.modifiers as |item key|}}
+                    <li><em>{{item.name}}: {{item.value}}</em></li>
+                    {{/each}}
+            </ul>
+            {{/ifCond}}
+            </div>
+            <div>
+                {{#ifCond skill.modifiers.length '>' 0}}
+                <ul class="roll-bonus-list">
+                    <li><em>{{localize 'MYZ.DEFAULT'}}: {{skill.default}}</em></li>
+                    {{#each skill.modifiers as |item key|}}
+                    <li><em>{{item.name}}: {{item.value}}</em></li>
+                    {{/each}}               
+                </ul>
+                {{/ifCond}}
+            </div>
+            <div>
+                {{#ifCond gear.modifiers.length '>' 0}}
+                <ul class="roll-bonus-list">
+                    <li><em>{{localize 'MYZ.DEFAULT'}}: {{gear.default}}</em></li>
+                    {{#each gear.modifiers as |item key|}}
+                    <li><em>{{item.name}}: {{item.value}}</em></li>
+                    {{/each}}               
+                </ul>
+                {{/ifCond}}
+            </div>
         </div>
-        
     </div>
 
     <div class="flexcol flex-group-center" style="display: none">

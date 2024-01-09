@@ -109,7 +109,6 @@ export class DiceRoller {
                 this.traumaCount += baneCount;
             }
             if (!foundry.utils.isEmpty(updateData)) {
-                console.warn(updateData)
                 await actor.update(updateData);
             }
         }
@@ -290,7 +289,6 @@ export class DiceRoller {
         this.itemId = itemId;
         this.traumaCount = 0;
         this.gearDamageCount = 0;
-        // console.warn("DiceRoller | preparePushData:", attribute, itemId);
         return this;
     }
 }

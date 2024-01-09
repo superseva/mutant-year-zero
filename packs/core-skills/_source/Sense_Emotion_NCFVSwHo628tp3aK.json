@@ -1,0 +1,24 @@
+{
+  "_id": "NCFVSwHo628tp3aK",
+  "name": "Sense Emotion",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "empathy",
+    "creatureType": "mutant",
+    "coreSkill": "",
+    "skillKey": "SENSEEMOTION"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!NCFVSwHo628tp3aK"
+}

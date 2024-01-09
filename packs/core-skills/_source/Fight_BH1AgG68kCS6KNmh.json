@@ -1,0 +1,24 @@
+{
+  "_id": "BH1AgG68kCS6KNmh",
+  "name": "Fight",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "strength",
+    "creatureType": "mutant",
+    "coreSkill": "",
+    "skillKey": "FIGHT"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!BH1AgG68kCS6KNmh"
+}

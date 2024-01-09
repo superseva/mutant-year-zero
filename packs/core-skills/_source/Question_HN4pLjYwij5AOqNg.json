@@ -1,0 +1,24 @@
+{
+  "_id": "HN4pLjYwij5AOqNg",
+  "name": "Question",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "empathy",
+    "creatureType": "robot",
+    "coreSkill": "",
+    "skillKey": "QUESTION"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!HN4pLjYwij5AOqNg"
+}

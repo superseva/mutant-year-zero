@@ -1,0 +1,24 @@
+{
+  "_id": "jwqKm5BDz2H5weuV",
+  "name": "Command",
+  "permission": {
+    "default": 0,
+    "YhtrHIeOTmwXvYSJ": 3
+  },
+  "type": "skill",
+  "data": {
+    "description": "",
+    "comment": "",
+    "cost": "0",
+    "value": 0,
+    "min": 0,
+    "attribute": "empathy",
+    "creatureType": "human",
+    "coreSkill": "",
+    "skillKey": "COMMANDOFFICER"
+  },
+  "flags": {},
+  "img": "systems/mutant-year-zero/assets/ico/skill.svg",
+  "effects": [],
+  "_key": "!items!jwqKm5BDz2H5weuV"
+}

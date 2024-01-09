@@ -75,9 +75,7 @@ export class MYZItemSheet extends ItemSheet {
 
         // Roll handlers, click handlers, etc. would go here.
     }
-
-
-
+    
     _getHeaderButtons() {
         let buttons = super._getHeaderButtons();
         return [{
