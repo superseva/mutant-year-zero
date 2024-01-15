@@ -1,6 +1,6 @@
 {
 	"Actor": {
-		"types": ["mutant", "animal", "robot", "human", "npc", "ark", "vehicle"],
+		"types": ["mutant", "animal", "robot", "human", "npc", "ark", "vehicle","spaceship"],
 		"templates": {
 			"base": {
 				"role": "",
@@ -240,6 +240,34 @@
 			"occupantsCount":1,
 			"occupants":[],
 			"cost":0
+		},
+		"spaceship":{
+			"hull":{
+				"max":0, "value":0
+			},
+			"sensors":{
+				"max":0, "value":0
+			},
+			"engine":{
+				"max":0, "value":0
+			},
+			"lifeSupport":{
+				"max":0, "value":0
+			},
+			"crew":{
+				"passengers":0, "items":0,"description":""
+			},
+			"cargo":{
+				"max":0, "value":0,"description":""
+			},
+			"supplies":{
+				"max":0, "value":0,"description":""
+			},
+			"resilience":{"max":0, "value":0},
+			"comment":"",
+			"description": "",
+			"occupantsCount":1,
+			"occupants":[]
 		}
 	},
 	"Item": {

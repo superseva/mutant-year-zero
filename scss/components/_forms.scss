@@ -12,13 +12,14 @@ input[type="checkbox"]:checked, input[type="radio"]:checked {
 
 .sheet-header,
 .actor-header {
-	flex: 0 0 120px;
+	//flex: 0 0 120px;
+	flex: 0;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: flex-start !important;
-	margin-bottom: 10px;
+	//margin-bottom: 10px;
 
 	&.npc {
 		flex: 0 0 110px;
@@ -462,6 +463,35 @@ input.nolabel {
 		}
 	}
 }
+
+/*SPACESHIP*/
+.ship-skill-list{
+	font-size: 0.7rem;
+}
+.resource-row-header{
+	padding: 0 0.5rem;
+	background-color: $c-blue-dark;
+	color: $c-blue-pale;
+}
+.resource-row{
+	padding: 0 0.5rem;
+}
+.odd-child{
+	background-color: $c-blue-pale;
+	min-height: 2.2rem;
+}
+.textarea-box{
+	border: 1px solid black;
+	margin-bottom: 0.2rem;
+	padding: 0.2rem;
+	textarea{
+		border: none;
+		background-color: $c-blue-pale;
+		resize: none;
+		overflow: auto;
+	}
+}
+
 
 .button-roll, .button-push{
 	img{vertical-align: middle; border: none; max-width: 1rem; margin-right: 0.2rem;}

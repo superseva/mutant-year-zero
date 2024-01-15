@@ -1,0 +1,163 @@
+<form class="{{cssClass}} flexcol {{system.type}}" autocomplete="off">
+    <div class="actor-header">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <div class="header-fields">
+            <div class="flex row align-center space-between" style="margin-bottom: 1rem;">
+                <div>
+                    <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+                </div>                
+            </div>
+            <div class="flex row">
+                <label style="align-self: center" ><strong>{{localize "MYZ.COMMENT"}}:</strong></label>
+                <input type="text" class="nolabel" name="system.comment" value="{{system.comment}}" />
+            </div>        
+        </div>        
+    </div>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="attributes">{{localize "MYZ.ATTRIBUTES"}}</a>
+        <a class="item" data-tab="gear">{{localize "MYZ.SPACESHIP.Cargo"}}</a>
+        <a class="item" data-tab="info">{{localize "MYZ.INFO"}}</a>
+    </nav>
+
+    <div class="sheet-body">
+        <div class="tab" data-group="primary" data-tab="attributes">
+            <div class="box-list">
+                <div class="flexrow align-center resource-row-header">
+                    <p><strong>{{localize "MYZ.SPACESHIP.Stats"}}:</strong></p>
+                    <p><strong>{{localize "MYZ.SPACESHIP.Gear_Bonus"}}:</strong></p>
+                    <p><strong>{{localize "MYZ.SPACESHIP.Skills"}}:</strong></p>
+                </div>
+                <div class="flexrow align-center odd-child resource-row ">
+                    <label><strong>{{localize "MYZ.SPACESHIP.Hull"}}:</strong></label>
+                    <div>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.hull.current" value="{{system.hull.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.hull.max" value="{{system.hull.max}}" />
+                    </div>
+                    <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Hull_Skills"}}</p>
+                </div>  
+                <div class="flexrow align-center resource-row">
+                    <label><strong>{{localize "MYZ.SPACESHIP.Sensors"}}:</strong></label>
+                    <div>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.sensors.current" value="{{system.sensors.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.sensors.max" value="{{system.sensors.max}}" />
+                    </div>
+                    <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Sensors_Skills"}}</p>
+                </div>
+                <div class="flexrow align-center odd-child resource-row">
+                    <label><strong>{{localize "MYZ.SPACESHIP.Engine"}}:</strong></label>
+                    <div>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.engine.current" value="{{system.engine.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.engine.max" value="{{system.engine.max}}" />
+                    </div>
+                    <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Engine_Skills"}}</p>
+                </div>
+                <div class="flexrow align-center resource-row">
+                    <label><strong>{{localize "MYZ.SPACESHIP.Life_Support"}}:</strong></label>
+                    <div>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.lifeSupport.current" value="{{system.lifeSupport.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.lifeSupport.max" value="{{system.lifeSupport.max}}" />
+                    </div>
+                    <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Life_Support_Skills"}}</p>
+                </div>
+                <div class="flexrow align-center odd-child resource-row">
+                    <label><strong>{{localize "MYZ.SPACESHIP.Resilience"}}:</strong></label>
+                    <div>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.current" value="{{system.resilience.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.max" value="{{system.resilience.max}}" />
+                    </div>
+                    <p class="ship-skill-list">&nbsp;</p>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="flexcol">                    
+                    <div class="flexcol textarea-box">
+                        <label><strong>{{localize "MYZ.SPACESHIP.Crew"}}:</strong></label>
+                        <textarea name="system.crew.description" rows="2">{{system.crew.description}}</textarea>
+                    </div>
+                    <div class="flexcol textarea-box">
+                        <label><strong>{{localize "MYZ.SPACESHIP.Cargo"}}:</strong></label>
+                        <textarea name="system.cargo.description" rows="2">{{system.cargo.description}}</textarea>
+                    </div>
+                    <div class="flexcol textarea-box">
+                        <label><strong>{{localize "MYZ.SPACESHIP.Supplies"}}:</strong></label>
+                        <textarea name="system.supplies.description" rows="2">{{system.supplies.description}}</textarea>
+                    </div>
+                    
+                </div>
+                <div>
+                    <div class="drop-zone-for-occupants flex column">
+                        <div class="flex row align-center space-between resource-row-header">
+                            <div class="flex row item-name">
+                                <label style="align-self: center">{{localize "MYZ.SPACESHIP.Crew_Count"}}: &nbsp;</label>
+                                <input class="short-input" type="number" data-type="Number" name="system.occupantsCount" value="{{system.occupantsCount}}" />
+                            </div>
+                            <label class="remove-all-occupants" style="cursor:pointer; text-align: right;">{{localize "MYZ.REMOVEALL"}}</label>
+                        </div>
+                        <div class="box-list flex-column " style="min-height: 250px;">
+                            {{#ifCond system.occupants.length '<' 1}}
+                            <div class="flex" style="justify-content: center; align-items: center; height:200px">
+                                <p>{{localize "MYZ.DRAG_OCCUPANTS_HERE"}}</p>
+                            </div>
+                            {{/ifCond}}
+                            {{#each occupants}}
+                            <div class="box-item flex row occupant" data-uuid="{{this.uuid}}" data-id="{{this.id}}">
+                                <div class="item-name flex row align-center">
+                                    <img class="occupant-image" src="{{this.img}}" title="{{this.name}}" style="margin-right: 1rem;" />
+                                    <a class="occupant-name">{{this.name}}</a>
+                                </div>
+                                <div class="item-controls flex align-center" style="flex-direction: row-reverse;">
+                                    <i class="fas fa-trash fa-fw occupant-delete"></i>
+                                </div>                            
+                            </div>
+                            {{/each}}
+                        </div>                    
+                    </div>  
+                </div>                      
+            </div>
+        </div>
+
+        <div class="tab" data-group="primary" data-tab="gear">
+            <div class="flex column">
+                <div class="box-item header flex row align-center space-between" style="background-color: rgb(68, 68, 68);">
+                    <div class="flex row item-name">
+                        <label style="align-self: center">{{localize "MYZ.SPACESHIP.Cargo"}}</label>                        
+                    </div>                    
+                </div>
+                <ol class="box-list flex column" style="min-height: 100px; padding: unset;">
+                    {{#each itemsOnVehicle as |gear key|}}
+                    <li class="box-item gear flex row align-center space-between editable-item" data-item-id="{{gear._id}}">
+                        <span class="item-name flex row align-center">
+                            <img class="item-image" src="{{gear.img}}" />
+                            <a class="item-link">{{gear.name}} x &nbsp;</a>                            
+                            <input type="number" class="owned-item-value num-value-1rem" value="{{gear.system.quantity}}" data-item-id="{{gear._id}}" data-linked-value="system.quantity">
+                            {{#ifCond gear.type '==' 'weapon'}}
+                            <div style="padding: 0 0.5rem;" class="flex align-center space-between">
+                                <label style="margin-right: 0.5rem;">{{localize 'MYZ.BONUS'}}: {{gear.system.bonus.value}}</label>
+                                <label style="margin-right: 0.5rem;">{{localize 'MYZ.DAMAGE'}}: {{gear.system.damage}} </label>
+                                <label>{{localize (toUpperCase (concat "MYZ." gear.system.range))}}</label>                 
+                            </div>
+                            {{/ifCond}}
+                        </span>
+                        <span class="item-controls">
+                            <a class="chatable" data-item-id="{{gear._id}}"><i class="fas fa-comment"></i></a>
+                            <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a>
+                            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        </span>
+                    </li>
+                    {{/each}}
+                </ol>
+            </div>
+        </div>
+        
+        {{!-- Info Tab --}}
+        {{> systems/mutant-year-zero/templates/actor/partials/info.html}}
+
+    </div>    
+</form>
