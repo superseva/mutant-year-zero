@@ -407,7 +407,8 @@ export class MYZActorSheet extends ActorSheet {
 
     async _updateNPCCreatureType(event) {
         let _creatureType = $(event.currentTarget).data("creature");
-        await this.actor.update({ "system.creatureType": _creatureType });
+        let img = `systems/mutant-year-zero/assets/ico/img-${_creatureType}.svg`
+        await this.actor.update({ "system.creatureType": _creatureType, "img": img});       
         this.actor.sheet.render();
     }
 

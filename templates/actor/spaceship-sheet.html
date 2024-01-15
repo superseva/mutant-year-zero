@@ -24,12 +24,12 @@
     <div class="sheet-body">
         <div class="tab" data-group="primary" data-tab="attributes">
             <div class="box-list">
-                <div class="flexrow align-center resource-row-header">
+                <div class="flexrow align-center spaceship-resource-row-header">
                     <p><strong>{{localize "MYZ.SPACESHIP.Stats"}}:</strong></p>
                     <p><strong>{{localize "MYZ.SPACESHIP.Gear_Bonus"}}:</strong></p>
                     <p><strong>{{localize "MYZ.SPACESHIP.Skills"}}:</strong></p>
                 </div>
-                <div class="flexrow align-center odd-child resource-row ">
+                <div class="flexrow align-center odd-child spaceship-resource-row ">
                     <label><strong>{{localize "MYZ.SPACESHIP.Hull"}}:</strong></label>
                     <div>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.hull.current" value="{{system.hull.current}}" />
@@ -38,7 +38,7 @@
                     </div>
                     <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Hull_Skills"}}</p>
                 </div>  
-                <div class="flexrow align-center resource-row">
+                <div class="flexrow align-center spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Sensors"}}:</strong></label>
                     <div>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.sensors.current" value="{{system.sensors.current}}" />
@@ -47,7 +47,7 @@
                     </div>
                     <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Sensors_Skills"}}</p>
                 </div>
-                <div class="flexrow align-center odd-child resource-row">
+                <div class="flexrow align-center odd-child spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Engine"}}:</strong></label>
                     <div>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.engine.current" value="{{system.engine.current}}" />
@@ -56,7 +56,7 @@
                     </div>
                     <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Engine_Skills"}}</p>
                 </div>
-                <div class="flexrow align-center resource-row">
+                <div class="flexrow align-center spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Life_Support"}}:</strong></label>
                     <div>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.lifeSupport.current" value="{{system.lifeSupport.current}}" />
@@ -65,7 +65,7 @@
                     </div>
                     <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Life_Support_Skills"}}</p>
                 </div>
-                <div class="flexrow align-center odd-child resource-row">
+                <div class="flexrow align-center odd-child spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Resilience"}}:</strong></label>
                     <div>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.current" value="{{system.resilience.current}}" />
@@ -93,7 +93,7 @@
                 </div>
                 <div>
                     <div class="drop-zone-for-occupants flex column">
-                        <div class="flex row align-center space-between resource-row-header">
+                        <div class="flex row align-center space-between spaceship-resource-row-header">
                             <div class="flex row item-name">
                                 <label style="align-self: center">{{localize "MYZ.SPACESHIP.Crew_Count"}}: &nbsp;</label>
                                 <input class="short-input" type="number" data-type="Number" name="system.occupantsCount" value="{{system.occupantsCount}}" />
@@ -125,7 +125,7 @@
 
         <div class="tab" data-group="primary" data-tab="gear">
             <div class="flex column">
-                <div class="box-item header flex row align-center space-between" style="background-color: rgb(68, 68, 68);">
+                <div class="box-item header flex row align-center space-between spaceship-resource-row-header">
                     <div class="flex row item-name">
                         <label style="align-self: center">{{localize "MYZ.SPACESHIP.Cargo"}}</label>                        
                     </div>                    
