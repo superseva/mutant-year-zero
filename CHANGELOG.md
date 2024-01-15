@@ -2,6 +2,12 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+
+## 11.0.4
+
+- Added Spaceships
+- Changed editors to Prose Mirror
+
 ## 11.0.3
 
 - Roll window improvement (all modifiers visible in the dialog)
