@@ -9,10 +9,10 @@
             <h2>Description</h2>
             <div class="info-mid">
                 <div class="description">
-                    {{editor descriptionHTML target="system.description" button=true owner=owner editable=true}}
+                    {{editor descriptionHTML target="system.description" button=true owner=owner editable=true engine='prosemirror'}}
                 </div>
             </div>
         </div>
-        {{>"systems/mutant-year-zero/templates/item/partials/modifiers.html" engine='prosemirror'}}
+        {{>"systems/mutant-year-zero/templates/item/partials/modifiers.html"}}
     </div>
 </form>

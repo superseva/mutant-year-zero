@@ -325,6 +325,19 @@ export class MYZActorSheet extends ActorSheet {
             });
         });
 
+        //Roll Armor Rot Protection
+        html.find(".armor-rot-protection-roll").click((event) => {
+            const itemBox = $(event.currentTarget).parents(".box-item");
+            const itemId = itemBox.data("item-id");
+            const armorItem = this.actor.items.get(itemId);
+            let testName = armorItem.name;
+            RollDialog.prepareRollDialog({
+                rollName: testName,
+                diceRoller: this.diceRoller,
+                gear: {default:armorItem.system.rot.value, total: armorItem.system.rot.value, modifiers: null}
+            });
+        });
+
         //SET NPC creatureType
         html.find(".crature-picker").click(this._updateNPCCreatureType.bind(this));
 

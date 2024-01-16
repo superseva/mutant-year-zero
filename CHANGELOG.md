@@ -5,8 +5,12 @@ The Mutant Year Zero system for FoundryVTT
 
 ## 11.0.4
 
-- Added Spaceships
-- Changed editors to Prose Mirror
+- Added new actor type: Spaceship
+- Changed all editors to Prose Mirror
+- Added default images when creating actors
+- Added icons for the roll/push macros
+- Added Rot Protection value to Armor
+- Added a button to roll Rot Protection on equipped armor item
 
 ## 11.0.3
 

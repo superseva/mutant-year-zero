@@ -1,8 +1,9 @@
 <div class="box-item physical header flex row align-center space-between {{system.creatureType}}">
     <label class="item-name">{{localize "MYZ.ARMOR"}}</label>
-    <div class="item-values flexrow center">
+    <div class="item-values flexrow center align-center">
         <label>{{localize 'MYZ.ARMOR_RATING'}}</label>
-        <span>{{localize 'MYZ.ARMOR_TYPE'}}</span>
+        <label>{{localize 'MYZ.ARMOR_TYPE'}}</label>
+        <label>{{localize 'MYZ.ARMOR_ROT_PROTECTION'}}</label>
     </div>
     <div class="item-controls">
         <a class="item-create" data-type="armor">{{localize "MYZ.Add"}}</a>
@@ -22,6 +23,7 @@
                 <label>/{{armor.system.rating.max}}</label>
             </span>
             <label style="align-self: center;">{{localize (toUpperCase (concat "MYZ." armor.system.armorType))}}</label>
+            <a style="align-self: center;" class="rollable armor-rot-protection-roll">{{armor.system.rot.value}}</a>
         </div>
         <div class="item-controls">
             <!-- <a class="chatable" data-item-id="{{armor._id}}"><i class="fas fa-comment"></i></a> -->
