@@ -76,16 +76,16 @@
                 </div>
             </div>
             <div class="grid">
-                <div class="flexcol">                    
-                    <div class="flexcol textarea-box">
+                <div class="">                    
+                    <div class=" textarea-box">
                         <label><strong>{{localize "MYZ.SPACESHIP.Crew"}}:</strong></label>
                         <textarea name="system.crew.description" rows="2">{{system.crew.description}}</textarea>
                     </div>
-                    <div class="flexcol textarea-box">
+                    <div class="textarea-box">
                         <label><strong>{{localize "MYZ.SPACESHIP.Cargo"}}:</strong></label>
                         <textarea name="system.cargo.description" rows="2">{{system.cargo.description}}</textarea>
                     </div>
-                    <div class="flexcol textarea-box">
+                    <div class="textarea-box">
                         <label><strong>{{localize "MYZ.SPACESHIP.Supplies"}}:</strong></label>
                         <textarea name="system.supplies.description" rows="2">{{system.supplies.description}}</textarea>
                     </div>
@@ -140,8 +140,7 @@
                             {{#ifCond gear.type '==' 'weapon'}}
                             <div style="padding: 0 0.5rem;" class="flex align-center space-between">
                                 <label style="margin-right: 0.5rem;">{{localize 'MYZ.BONUS'}}: {{gear.system.bonus.value}}</label>
-                                <label style="margin-right: 0.5rem;">{{localize 'MYZ.DAMAGE'}}: {{gear.system.damage}} </label>
-                                <label>{{localize (toUpperCase (concat "MYZ." gear.system.range))}}</label>                 
+                                <label style="margin-right: 0.5rem;">{{localize 'MYZ.DAMAGE'}}: {{gear.system.damage}} </label>              
                             </div>
                             {{/ifCond}}
                         </span>
