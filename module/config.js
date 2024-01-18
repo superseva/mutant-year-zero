@@ -11,6 +11,7 @@ export class MYZ {
         "COORDINATE",
         "DATAMINE",
         "DOMINATE",
+        "DRIVE",
         "ENDURE",
         "ENLIGHTEN",
         "FIGHT",

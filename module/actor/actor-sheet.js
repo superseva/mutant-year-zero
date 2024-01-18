@@ -539,8 +539,7 @@ export class MYZActorSheet extends ActorSheet {
             const skill = this.actor.items.find((element) => element.id == itemId);
             const attName = skill.system.attribute;
             const attValue = this.actor.system.attributes[attName].value;
-            // Apply any modifiers from items or crits            
-
+            // Apply any modifiers from items or crits          
             const rollModifiers = this._getRollModifiers(skill);
             rollModifiers.gearDiceTotal = Math.max(0, rollModifiers.gearDiceTotal);
 
@@ -602,7 +601,8 @@ export class MYZActorSheet extends ActorSheet {
         let skillDiceTotal = parseInt(skill.system.value);     
         const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
         const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != 0)
-        let modifiersToSkill = []
+        let modifiersToSkill = [];
+
         if(skill.system.skillKey!=""){ 
             const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) {
                 modifiersToSkill.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[skill.system.skillKey] })
