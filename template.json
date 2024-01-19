@@ -264,6 +264,7 @@
 				"max":0, "value":0,"description":""
 			},
 			"resilience":{"max":0, "value":0},
+			"armor":{"max":0, "value":0},
 			"comment":"",
 			"description": "",
 			"occupantsCount":1,

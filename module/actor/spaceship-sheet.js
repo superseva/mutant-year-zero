@@ -12,8 +12,8 @@ export class MYZSpaceshipSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ["mutant-year-zero", "sheet", "actor"],
             template: "systems/mutant-year-zero/templates/actor/spaceship-sheet.html",
-            width: 600,
-            height: 680,
+            width: 660,
+            height: 550,
             tabs: [
                 {
                     navSelector: ".sheet-tabs",
@@ -94,7 +94,8 @@ export class MYZSpaceshipSheet extends ActorSheet {
             }
         }
 
-        context.itemsOnVehicle = [...weapons, ...armor, ...chassis, ...gear, ...artifacts];
+        context.itemsOnVehicle = [...armor, ...chassis, ...gear, ...artifacts];
+        context.weapons = weapons
     }
 
     /** @override */
@@ -110,6 +111,9 @@ export class MYZSpaceshipSheet extends ActorSheet {
             const _actor = game.actors.get(li.data("id"));
             _actor.sheet.render(true);
         })
+
+        /* ADD INVENTORY ITEM */
+        html.find(".item-create").click(this._onItemCreate.bind(this));
 
         // UPDATE INVENTORY ITEM
         html.find(".item-edit, .item-link").click((ev) => {
@@ -129,6 +133,56 @@ export class MYZSpaceshipSheet extends ActorSheet {
 
         // CHANGE ITEM VALUE
          html.find(".owned-item-value").change(this._onChangeOwnedItemValue.bind(this));
+
+          /* -------------------------------------------- */
+        /* ADD LEFT CLICK CONTENT MENU
+        /* -------------------------------------------- */
+        const editLabel = game.i18n.localize("MYZ.EDIT");
+        const deleteLabel = game.i18n.localize("MYZ.DELETE");
+        const toChatLabel = game.i18n.localize("MYZ.TOCHAT");
+        const stashLabel = game.i18n.localize("MYZ.STASH");
+        const equipLabel = game.i18n.localize("MYZ.EQUIP");
+
+        let menu_items = [
+            {
+                icon: `<i class="fas fa-comment" title="${toChatLabel}"></i>`,
+                name: '',
+                callback: (t) => {
+                    this._onPostItem(t.data("item-id"));
+                },
+            },
+            {
+                icon: `<i class="fas fa-edit" title="${editLabel}"></i>`,
+                name: '',
+                callback: (t) => {
+                    this._editOwnedItemById(t.data("item-id"));
+                },
+            },
+            {
+                icon: `<i class="fa-regular fa-box" title="${stashLabel}"></i>`,
+                name: '',
+                callback:async (t) => {
+                    const item = this.actor.items.get(t.data("item-id"));
+                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleStashed(t.data("item-id"), item)]);
+                },
+                condition: (t) => {
+                    if (t.data("physical")=="1") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+            },
+            {
+                icon: `<i class="fas fa-trash" title="${deleteLabel}"></i>`,
+                name: '',
+                callback: (t) => {
+                    this._deleteOwnedItemById(t.data("item-id"));
+                }
+            },
+        ];
+
+        new ContextMenu(html, ".editable-item", menu_items);
     }
 
     async _onDropOccupantActor(event) {
@@ -188,6 +242,22 @@ export class MYZSpaceshipSheet extends ActorSheet {
         }
     }
 
+  
+    async _onItemCreate(event) {
+        event.preventDefault();
+        const header = event.currentTarget;
+        const type = header.dataset.type;
+        const data = duplicate(header.dataset);
+        const name = `New ${type.capitalize()}`;
+        const itemData = {
+            name: name,
+            type: type,
+            data: data,
+        };
+        delete itemData.data["type"];
+        return this.actor.createEmbeddedDocuments("Item", [itemData]);
+    }
+
     _editOwnedItemById(_itemId) {
         const item = this.actor.items.get(_itemId);
         item.sheet.render(true);
@@ -206,6 +276,16 @@ export class MYZSpaceshipSheet extends ActorSheet {
 
     async _deleteOwnedItemById(_itemId) {
         await this.actor.deleteEmbeddedDocuments("Item", [_itemId]);
+    }
+
+    //Toggle Stahsing
+    _toggleStashed(id, item) {
+        return {
+            _id: id,
+            system: {
+                stashed: !item.system.stashed,
+            },
+        };
     }
 
 }

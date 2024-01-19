@@ -17,6 +17,7 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="attributes">{{localize "MYZ.ATTRIBUTES"}}</a>
+        <a class="item" data-tab="crew">{{localize "MYZ.SPACESHIP.Crew"}}</a>
         <a class="item" data-tab="gear">{{localize "MYZ.SPACESHIP.Cargo"}}</a>
         <a class="item" data-tab="info">{{localize "MYZ.INFO"}}</a>
     </nav>
@@ -32,7 +33,7 @@
                 <div class="flexrow align-center odd-child spaceship-resource-row ">
                     <label><strong>{{localize "MYZ.SPACESHIP.Hull"}}:</strong></label>
                     <div>
-                        <input class="nolabel short-input" type="number" data-type="Number" name="system.hull.current" value="{{system.hull.current}}" />
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.hull.value" value="{{system.hull.value}}" />
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.hull.max" value="{{system.hull.max}}" />
                     </div>
@@ -41,7 +42,7 @@
                 <div class="flexrow align-center spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Sensors"}}:</strong></label>
                     <div>
-                        <input class="nolabel short-input" type="number" data-type="Number" name="system.sensors.current" value="{{system.sensors.current}}" />
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.sensors.value" value="{{system.sensors.value}}" />
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.sensors.max" value="{{system.sensors.max}}" />
                     </div>
@@ -50,7 +51,7 @@
                 <div class="flexrow align-center odd-child spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Engine"}}:</strong></label>
                     <div>
-                        <input class="nolabel short-input" type="number" data-type="Number" name="system.engine.current" value="{{system.engine.current}}" />
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.engine.value" value="{{system.engine.value}}" />
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.engine.max" value="{{system.engine.max}}" />
                     </div>
@@ -59,22 +60,72 @@
                 <div class="flexrow align-center spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Life_Support"}}:</strong></label>
                     <div>
-                        <input class="nolabel short-input" type="number" data-type="Number" name="system.lifeSupport.current" value="{{system.lifeSupport.current}}" />
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.lifeSupport.value" value="{{system.lifeSupport.value}}" />
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.lifeSupport.max" value="{{system.lifeSupport.max}}" />
                     </div>
                     <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Life_Support_Skills"}}</p>
-                </div>
-                <div class="flexrow align-center odd-child spaceship-resource-row">
+                </div>                
+            </div>
+            <div class="grid" style="margin-bottom: 5px;">
+                <div class="flexrow flex-group-left odd-child">
                     <label><strong>{{localize "MYZ.SPACESHIP.Resilience"}}:</strong></label>
                     <div>
-                        <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.current" value="{{system.resilience.current}}" />
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.value" value="{{system.resilience.value}}" />
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.max" value="{{system.resilience.max}}" />
                     </div>
-                    <p class="ship-skill-list">&nbsp;</p>
+                </div>
+                <div class="flexrow flex-group-left odd-child">
+                    <label><strong>{{localize "MYZ.SPACESHIP.Armor"}}:</strong></label>
+                    <div>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.armor.value" value="{{system.armor.value}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.armor.max" value="{{system.armor.max}}" />
+                    </div>
                 </div>
             </div>
+            
+            <div class="box-item physical header flex row align-center space-between weapon spaceship-resource-row-header">
+                <label class="item-name">{{localize "MYZ.WEAPONS"}}</label>
+                <div class="item-values grid grid-3col center">
+                    <label>{{localize 'MYZ.BONUS'}}</label>
+                    <label>{{localize 'MYZ.DAMAGE'}}</label>
+                    <label>{{localize 'MYZ.RANGE'}}</label>
+                </div>
+                <div class="item-controls">
+                    <a class="item-create" data-type="weapon">{{localize "MYZ.Add"}}</a>
+                </div>
+            </div>
+            <ol class="box-list">
+                {{#each weapons as |weapon key|}}
+                <li class="box-item physical flex row align-center space-between editable-item weapon" data-physical="1" data-item-id="{{weapon._id}}">
+                    <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken weapon)}}broken{{/if}}" data-item-id="{{weapon._id}}">
+                        <img class="item-image" src="{{weapon.img}}" />
+                        <a>{{weapon.name}}</a>
+                        {{#if (isArtifact weapon)}} <img class="item-image" src="systems/mutant-year-zero/assets/ico/trophy.svg" style="border:none" />{{/if}}
+                    </span>
+                    <div class="item-values grid grid-3col center">
+                        <span>
+                            <input type="number" class="owned-item-value num-value-1rem" value="{{weapon.system.bonus.value}}" data-linked-value="system.bonus.value" data-item-id="{{weapon._id}}">
+                            <label>/{{weapon.system.bonus.max}}</label>
+                        </span>
+                        <!-- <label class="flex flex-center">{{weapon.system.bonus.value}} / {{weapon.system.bonus.max}}</label> -->
+                        <label class="flex flex-center">{{weapon.system.damage}}</label>
+                        <label class="flex flex-center">{{localize (toUpperCase (concat "MYZ." weapon.system.range))}}</label>
+                    </div>
+                    <div class="item-controls">
+                        {{#if weapon.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
+                            <i class="fa-regular fa-box"></i>
+                        </a>{{/if}}
+                        <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a>
+                    </div>
+                </li>
+                {{/each}}
+            </ol>
+        </div>
+
+        <div class="tab" data-group="primary" data-tab="crew">
             <div class="grid">
                 <div class="">                    
                     <div class=" textarea-box">
