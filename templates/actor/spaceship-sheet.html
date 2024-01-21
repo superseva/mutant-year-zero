@@ -37,7 +37,9 @@
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.hull.max" value="{{system.hull.max}}" />
                     </div>
-                    <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Hull_Skills"}}</p>
+                    <div class="ship-skill-list">
+                        {{#each spaceshipSkills.Hull}}<span class="skill" data-skillkey="{{this}}" data-gearbonus="{{../system.hull.value}}">{{localize (concat "MYZ.SKILL_" this)}}</span>, {{/each}}                        
+                    </div>
                 </div>  
                 <div class="flexrow align-center spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Sensors"}}:</strong></label>
@@ -46,7 +48,9 @@
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.sensors.max" value="{{system.sensors.max}}" />
                     </div>
-                    <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Sensors_Skills"}}</p>
+                    <div class="ship-skill-list">
+                        {{#each spaceshipSkills.Sensors}}<span class="skill" data-skillkey="{{this}}" data-gearbonus="{{../system.sensors.value}}">{{localize (concat "MYZ.SKILL_" this)}}</span>, {{/each}}                        
+                    </div>
                 </div>
                 <div class="flexrow align-center odd-child spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Engine"}}:</strong></label>
@@ -55,7 +59,9 @@
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.engine.max" value="{{system.engine.max}}" />
                     </div>
-                    <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Engine_Skills"}}</p>
+                    <div class="ship-skill-list">
+                        {{#each spaceshipSkills.Engine}}<span class="skill" data-skillkey="{{this}}" data-gearbonus="{{../system.engine.value}}">{{localize (concat "MYZ.SKILL_" this)}}</span>, {{/each}}                        
+                    </div>
                 </div>
                 <div class="flexrow align-center spaceship-resource-row">
                     <label><strong>{{localize "MYZ.SPACESHIP.Life_Support"}}:</strong></label>
@@ -64,7 +70,9 @@
                         <span>/</span>
                         <input class="nolabel short-input" type="number" data-type="Number" name="system.lifeSupport.max" value="{{system.lifeSupport.max}}" />
                     </div>
-                    <p class="ship-skill-list">{{localize "MYZ.SPACESHIP.Life_Support_Skills"}}</p>
+                    <div class="ship-skill-list">
+                        {{#each spaceshipSkills.LifeSupport}}<span class="skill" data-skillkey="{{this}}" data-gearbonus="{{../system.lifeSupport.value}}">{{localize (concat "MYZ.SKILL_" this)}}</span>, {{/each}}                        
+                    </div>
                 </div>                
             </div>
             <div class="grid" style="margin-bottom: 5px;">

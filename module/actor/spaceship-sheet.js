@@ -50,6 +50,14 @@ export class MYZSpaceshipSheet extends ActorSheet {
             secrets: this.actor.isOwner,
             async: true
         });
+
+        context.spaceshipSkills =  {
+            Hull : ['FORCE', 'ENDURE', 'PRESSON'],
+            Sensors: ['SCOUT', 'SCAN', 'CALCULATE', 'INVESTIGATE'],
+            Engine: ['DRIVE', 'COMPREHEND', 'JURYRIG', 'ANALYZE', 'REPAIR', 'MANUFACTURE', 'TINKER'],
+            LifeSupport: ['HEAL', 'CLEAN', 'RECYCLE', 'BREWPOTION']
+        }
+
         return context;
     }
 
@@ -101,7 +109,7 @@ export class MYZSpaceshipSheet extends ActorSheet {
     /** @override */
     activateListeners(html) {
         super.activateListeners(html);
-        // LISTEN FOR DRIVER ACTOR DROP
+        /** LISTEN FOR DRIVER ACTOR DROP */
         html.find(".drop-zone-for-occupants").on('drop', this._onDropOccupantActor.bind(this));
         html.find(".remove-all-occupants").click(this._removeAllOccupants.bind(this));
         html.find(".occupant-delete").click(this._removeOccupant.bind(this));
@@ -112,26 +120,29 @@ export class MYZSpaceshipSheet extends ActorSheet {
             _actor.sheet.render(true);
         })
 
-        /* ADD INVENTORY ITEM */
+        /** SKILL CLICK */
+        html.find(".skill").click(this._onSkillClick.bind(this));
+
+        /** ADD INVENTORY ITEM */
         html.find(".item-create").click(this._onItemCreate.bind(this));
 
-        // UPDATE INVENTORY ITEM
+        /** UPDATE INVENTORY ITEM */
         html.find(".item-edit, .item-link").click((ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
             this._editOwnedItemById(li.data("item-id"));
         });
 
-        // DELETE INVENTORY ITEM
+        /**DELETE INVENTORY ITEM */ 
         html.find(".item-delete").click((ev) => {
             const li = $(ev.currentTarget).parents(".box-item");
             this._deleteOwnedItemById(li.data("item-id"));
             li.slideUp(200, () => this.render(false));
         });
 
-        // SEND TO CHAT
+        /** SEND TO CHAT */
         html.find(".chatable").click(this._onItemSendToChat.bind(this));
 
-        // CHANGE ITEM VALUE
+        /** CHANGE ITEM VALUE */ 
          html.find(".owned-item-value").change(this._onChangeOwnedItemValue.bind(this));
 
           /* -------------------------------------------- */
@@ -231,6 +242,18 @@ export class MYZSpaceshipSheet extends ActorSheet {
         await this.actor.update({ "system.occupants": occupants })
     }
 
+    async _onSkillClick(event){
+        event.preventDefault();
+        const skillKey = $(event.currentTarget).data("skillkey");
+        const occupants = this.actor.system.occupants;
+        const shipGearBonus = $(event.currentTarget).data("gearbonus");
+        
+        // console.warn(occupants)
+        // console.warn(`skill key: ${skillKey}`)
+        // console.warn(`ship gear bonus: ${shipGearBonus}`)
+        // console.warn(game.myz)
+    }
+
     async _onChangeOwnedItemValue(event) {
         event.preventDefault();
         const itemId = $(event.currentTarget).data("item-id");
@@ -241,7 +264,6 @@ export class MYZSpaceshipSheet extends ActorSheet {
             await _item.update({ [valueToChange]: newValue });
         }
     }
-
   
     async _onItemCreate(event) {
         event.preventDefault();
