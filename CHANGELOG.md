@@ -12,6 +12,7 @@ The Mutant Year Zero system for FoundryVTT
 - Changed all text editors to Prose Mirror.
 - Added default images for different actor types when a new actor is created.
 - Added icons for the roll/push macros.
+- Fixed stunt description for the cerature that has a skill from other creature types
 
 
 ## 11.0.3

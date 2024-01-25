@@ -1,3 +1,8 @@
-2024/01/20-17:22:52.705 44ac Recovering log #110
-2024/01/20-17:22:52.805 44ac Delete type=0 #110
-2024/01/20-17:22:52.805 44ac Delete type=3 #109
+2024/01/25-09:39:55.794 1b2c Recovering log #149
+2024/01/25-09:39:55.958 1b2c Delete type=0 #149
+2024/01/25-09:39:55.958 1b2c Delete type=3 #147
+2024/01/25-09:40:20.430 6a60 Level-0 table #154: started
+2024/01/25-09:40:20.431 6a60 Level-0 table #154: 0 bytes OK
+2024/01/25-09:40:20.470 6a60 Delete type=0 #152
+2024/01/25-09:40:20.571 6a60 Manual compaction at level-0 from '!items!00k2InnscFLyDn28' @ 72057594037927935 : 1 .. '!items!zhR8eBI2wciDWLs0' @ 0 : 0; will stop at (end)
+2024/01/25-09:40:20.671 6a60 Manual compaction at level-1 from '!items!00k2InnscFLyDn28' @ 72057594037927935 : 1 .. '!items!zhR8eBI2wciDWLs0' @ 0 : 0; will stop at (end)

@@ -247,7 +247,11 @@ export class MYZSpaceshipSheet extends ActorSheet {
         const skillKey = $(event.currentTarget).data("skillkey");
         const occupants = this.actor.system.occupants;
         const shipGearBonus = $(event.currentTarget).data("gearbonus");
-        
+        // TODO 
+        // ! open dialog to pickup the occupant
+        // ! calculate occupant attr + skill + gear + ship gear
+        // ? how to resolve pushes ?
+
         // console.warn(occupants)
         // console.warn(`skill key: ${skillKey}`)
         // console.warn(`ship gear bonus: ${shipGearBonus}`)
