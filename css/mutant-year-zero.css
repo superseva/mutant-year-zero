@@ -45,6 +45,10 @@ $font-secondary: 'Roboto', sans-serif;*/
 /*TEAL*/
 /*PURPLE*/
 /* Global styles */
+:root {
+  scrollbar-color: unset;
+}
+
 .window-app {
   font-family: "Karla", sans-serif;
   /*.editor-content{
