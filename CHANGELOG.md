@@ -8,7 +8,7 @@ The Mutant Year Zero system for FoundryVTT
 - Added new actor type: Spaceship.
 - Added Rot Protection value to Armor.
 - Added a button to roll Rot Protection for equipped armor items.
-- On the weapon and armor sheet, the artifact stats are now under the "Artifact" tab.
+- On the weapon and armor sheet, the artifact stats are moved under the "Artifact" tab.
 - Changed all text editors to Prose Mirror.
 - Added default images for different actor types when a new actor is created.
 - Added icons for the roll/push macros.
