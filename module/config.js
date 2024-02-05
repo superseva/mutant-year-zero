@@ -1,5 +1,6 @@
 export class MYZ {   
     static STUNTS = {}
+
     static SKILLKEYS = ["ANALYZE",
         "ASSAULT",
         "BREWPOTION",
@@ -11,6 +12,7 @@ export class MYZ {
         "COORDINATE",
         "DATAMINE",
         "DOMINATE",
+        "DRIVE",
         "ENDURE",
         "ENLIGHTEN",
         "FIGHT",

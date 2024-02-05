@@ -43,7 +43,12 @@ $font-secondary: 'Roboto', sans-serif;*/
 /*GREENS*/
 /*BLUES*/
 /*TEAL*/
+/*PURPLE*/
 /* Global styles */
+:root {
+  scrollbar-color: unset;
+}
+
 .window-app {
   font-family: "Karla", sans-serif;
   /*.editor-content{
@@ -285,6 +290,7 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 /* Styles limited to mutant-year-zero sheets */
 .mutant-year-zero {
+  /*SPACESHIP*/
   /* .tabs {
    .item {
      background: rgba(0, 0, 0, 0.125);
@@ -373,13 +379,12 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .sheet-header,
 .mutant-year-zero .actor-header {
-  flex: 0 0 120px;
+  flex: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start !important;
-  margin-bottom: 10px;
 }
 
 .mutant-year-zero .sheet-header.npc,
@@ -835,6 +840,38 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 .mutant-year-zero .drop-zone-for-occupants .occupant .occupant-delete {
   cursor: pointer;
+}
+
+.mutant-year-zero .ship-skill-list {
+  font-size: 0.7rem;
+}
+
+.mutant-year-zero .spaceship-resource-row-header {
+  padding: 0 0.5rem;
+  background-color: #342950;
+  color: #e2eaf4;
+}
+
+.mutant-year-zero .spaceship-resource-row {
+  padding: 0 0.5rem;
+}
+
+.mutant-year-zero .odd-child {
+  background-color: #e2eaf4;
+  min-height: 2.2rem;
+}
+
+.mutant-year-zero .textarea-box {
+  border: 1px solid black;
+  margin-bottom: 0.2rem;
+  padding: 0.2rem;
+}
+
+.mutant-year-zero .textarea-box textarea {
+  border: none;
+  background-color: #e2eaf4;
+  resize: none;
+  overflow: auto;
 }
 
 .mutant-year-zero .button-roll img, .mutant-year-zero .button-push img {

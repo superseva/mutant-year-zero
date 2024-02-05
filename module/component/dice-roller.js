@@ -210,7 +210,16 @@ export class DiceRoller {
         let numberOfFailures = this.countFailures();
         let numberOfGearFailures = this.countGearFailures();
         let stuntText = ""
-        try{stuntText = this.actor? CONFIG.MYZ.STUNTS[this.skillItem.system.skillKey][this.actor.system.creatureType] : ""}catch(error){}
+        try{
+            stuntText = this.actor? CONFIG.MYZ.STUNTS[this.skillItem.system.skillKey][this.actor.system.creatureType] : "";
+            // If there is no stunt description for this type of creature return the first description you find            
+            if(stuntText=="" && CONFIG.MYZ.STUNTS[this.skillItem.system.skillKey]){
+                console.warn('Looking for other stunt description')
+                stuntText = this._findFirstNonEmptyStunt(CONFIG.MYZ.STUNTS[this.skillItem.system.skillKey])
+            }            
+        }catch(error){
+            console.warn(error)
+        }      
 
         let rollData = {
             name: this.lastRollName,
@@ -290,5 +299,14 @@ export class DiceRoller {
         this.traumaCount = 0;
         this.gearDamageCount = 0;
         return this;
+    }
+
+    _findFirstNonEmptyStunt(obj) {
+        for (let key in obj) {
+            if (obj[key] !== null && obj[key] !== "") {
+                return obj[key];
+            }
+        }
+        return "";
     }
 }

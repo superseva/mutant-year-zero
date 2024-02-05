@@ -1,17 +1,14 @@
 <form class="{{cssClass}}" autocomplete="off">
     {{>"systems/mutant-year-zero/templates/item/partials/header-physical.html"}}
-    {{>"systems/mutant-year-zero/templates/item/partials/tabs.html"}}    
+    <!-- {{>"systems/mutant-year-zero/templates/item/partials/tabs.html"}}     -->
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="details">{{localize "MYZ.DETAILS"}}</a>
+        <a class="item" data-tab="artifact">{{localize "MYZ.ARTIFACT"}}</a>
+        <a class="item" data-tab="modifiers">{{localize "MYZ.MODIFIERS"}}</a>
+    </nav>
     <div class="sheet-body">
         <div class="tab" data-group="primary" data-tab="details">
-            <div class="grid grid-3col align-end">
-                <div class="resource flex column item-attr-row">
-                    <label for="system.rating" class="resource-label">{{localize 'MYZ.ARMOR_RATING'}}</label>
-                    <div class="flex">
-                        <input type="text" name="system.rating.value" value="{{system.rating.value}}" />
-                        <span>/</span>
-                        <input type="text" name="system.rating.max" value="{{system.rating.max}}" />
-                    </div>
-                </div>
+            <div class="grid grid-4col align-end">
                 <div class="resource flex column item-attr-row">
                     <label for="system.armorType" class="resource-label">{{localize 'MYZ.ARMOR_TYPE'}}</label>
                     <select name="system.armorType">
@@ -21,14 +18,43 @@
                         {{/select}}
                     </select>
                 </div>
+                <div class="resource flex column item-attr-row">
+                    <label for="system.rating" class="resource-label">{{localize 'MYZ.ARMOR_RATING'}}</label>
+                    <div class="flex">
+                        <input type="number" min="0" class="short-input" name="system.rating.value" value="{{system.rating.value}}" />
+                        <span>/</span>
+                        <input type="number" min="0" class="short-input" name="system.rating.max" value="{{system.rating.max}}" />
+                    </div>
+                </div>
+                <div class="resource flex column item-attr-row">
+                    <label for="system.rot" class="resource-label">{{localize 'MYZ.ARMOR_ROT_PROTECTION'}}</label>
+                    <div class="flex">
+                        <input type="number" min="0" class="short-input" name="system.rot.value" value="{{system.rot.value}}" />
+                        <span>/</span>
+                        <input type="number" min="0" class="short-input" name="system.rot.max" value="{{system.rot.max}}" />
+                    </div>
+                </div>                
                 <div class="resource flex column align-end item-attr-row">
                     <label for="system.equipped" class="checkbox-label">
                         {{localize 'MYZ.EQUIPPED'}}
                         <input class="input-checkbox" type="checkbox" name="system.equipped" {{checked system.equipped}} data-dtype="Boolean" />
                     </label>
                 </div>
+            </div>            
+            <div class="item-attr-row">
+                <label for="system.comment" class="resource-label">{{localize 'MYZ.COMMENT'}}</label>
+                <input type="text" name="system.comment" value="{{system.comment}}" />
             </div>
-            <div class="grid item-attr-row">
+            <h2>Description</h2>
+            <div class="info">
+                <div class="description">
+                    {{editor descriptionHTML target="system.description" button=true owner=owner editable=true engine='prosemirror'}}
+                </div>
+            </div>
+        </div>
+
+        <div class="tab" data-group="primary" data-tab="artifact">
+            <div class="grid item-attr-row flex-group-left">
                 <div class="">
                     <label class="resource-label" for="system.dev_requirement">{{localize "MYZ.DEV_REQUIREMENT"}}</label>
                     <input class="input-underline" type="text" name="system.dev_requirement" value="{{system.dev_requirement}}">
@@ -39,17 +65,8 @@
                 </div>                
             </div>
             {{>"systems/mutant-year-zero/templates/item/partials/dev-levels.html"}}
-            <div class="item-attr-row">
-                <label for="system.comment" class="resource-label">{{localize 'MYZ.COMMENT'}}</label>
-                <input type="text" name="system.comment" value="{{system.comment}}" />
-            </div>
-            <h2>Description</h2>
-            <div class="info">
-                <div class="description">
-                    {{editor descriptionHTML target="system.description" button=true owner=owner editable=true}}
-                </div>
-            </div>
         </div>
+
         {{>"systems/mutant-year-zero/templates/item/partials/modifiers.html"}}
         
     </div>

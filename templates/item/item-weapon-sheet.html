@@ -1,61 +1,70 @@
 <form class="{{cssClass}}" autocomplete="off">
     {{>"systems/mutant-year-zero/templates/item/partials/header-physical.html"}}
 
-    <div>
-        <div class="grid grid-4col">
-            <div class="item-attr-row">
-                <label for="system.damage" class="resource-label">{{localize 'MYZ.DAMAGE'}}</label>
-                <input type="text" name="system.damage" value="{{system.damage}}" data-dtype="Number" />
-            </div>
-            <div class="flex column item-attr-row">
-                <label for="system.range" class="resource-label">{{localize 'MYZ.RANGE'}}</label>
-                <select name="system.range">
-                    {{#select system.range}}
-                    <option value="range_arm">{{localize "MYZ.RANGE_ARM"}}</option>
-                    <option value="range_near">{{localize "MYZ.RANGE_NEAR"}}</option>
-                    <option value="range_short">{{localize "MYZ.RANGE_SHORT"}}</option>
-                    <option value="range_long">{{localize "MYZ.RANGE_LONG"}}</option>
-                    <option value="range_distant">{{localize "MYZ.RANGE_DISTANT"}}</option>
-                    {{/select}}
-                </select>
-            </div>
-            <div class="flex column item-attr-row">
-                <label r="system.category" class="resource-label">{{localize "MYZ.CATEGORY"}}</label>
-                <select name="system.category">
-                    {{#select system.category}}
-                    <option value="melee">{{localize "MYZ.WEAPON_MELEE"}}</option>
-                    <option value="ranged">{{localize "MYZ.WEAPON_RANGED"}}</option>
-                    {{/select}}
-                </select>
-            </div>
-            <div class="item-attr-row">
-                <label for="system.bonus.value" class="resource-label">{{localize 'MYZ.BONUS'}}</label>
-                <div class="flex">
-                    <input type="text" name="system.bonus.value" value="{{system.bonus.value}}" />
-                    <span>/</span>
-                    <input type="text" name="system.bonus.max" value="{{system.bonus.max}}" />
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="details">{{localize "MYZ.DETAILS"}}</a>
+        <a class="item" data-tab="artifact">{{localize "MYZ.ARTIFACT"}}</a>
+    </nav>
+    <div class="sheet-body">
+        <div class="tab" data-group="primary" data-tab="details">
+            <div>
+                <div class="grid grid-4col">
+                    <div class="item-attr-row">
+                        <label for="system.damage" class="resource-label">{{localize 'MYZ.DAMAGE'}}</label>
+                        <input type="text" name="system.damage" value="{{system.damage}}" data-dtype="Number" />
+                    </div>
+                    <div class="flex column item-attr-row">
+                        <label for="system.range" class="resource-label">{{localize 'MYZ.RANGE'}}</label>
+                        <select name="system.range">
+                            {{#select system.range}}
+                            <option value="range_arm">{{localize "MYZ.RANGE_ARM"}}</option>
+                            <option value="range_near">{{localize "MYZ.RANGE_NEAR"}}</option>
+                            <option value="range_short">{{localize "MYZ.RANGE_SHORT"}}</option>
+                            <option value="range_long">{{localize "MYZ.RANGE_LONG"}}</option>
+                            <option value="range_distant">{{localize "MYZ.RANGE_DISTANT"}}</option>
+                            {{/select}}
+                        </select>
+                    </div>
+                    <div class="flex column item-attr-row">
+                        <label r="system.category" class="resource-label">{{localize "MYZ.CATEGORY"}}</label>
+                        <select name="system.category">
+                            {{#select system.category}}
+                            <option value="melee">{{localize "MYZ.WEAPON_MELEE"}}</option>
+                            <option value="ranged">{{localize "MYZ.WEAPON_RANGED"}}</option>
+                            {{/select}}
+                        </select>
+                    </div>
+                    <div class="item-attr-row">
+                        <label for="system.bonus.value" class="resource-label">{{localize 'MYZ.BONUS'}}</label>
+                        <div class="flex">
+                            <input type="text" name="system.bonus.value" value="{{system.bonus.value}}" />
+                            <span>/</span>
+                            <input type="text" name="system.bonus.max" value="{{system.bonus.max}}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="item-attr-row">
+                    <label for="system.comment" class="resource-label">{{localize 'MYZ.COMMENT'}}</label>
+                    <input type="text" name="system.comment" value="{{system.comment}}" />
                 </div>
             </div>
-        </div>
-        <div class="grid item-attr-row">
-            <div class="">
-                <label class="resource-label" for="system.dev_requirement">{{localize "MYZ.DEV_REQUIREMENT"}}</label>
-                <input class="input-underline" type="text" name="system.dev_requirement" value="{{system.dev_requirement}}" />
-            </div>
-            <div class="">
-                <label class="resource-label" for="system.dev_bonus">{{localize "MYZ.DEV_BONUS"}}</label>
-                <input class="input-underline" type="text" name="system.dev_bonus" value="{{system.dev_bonus}}" />
+            <h2>Description</h2>
+            <div class="info">
+                <div class="description">{{editor descriptionHTML target="system.description" button=true owner=owner editable=true engine='prosemirror'}}</div>
             </div>
         </div>
-        {{>"systems/mutant-year-zero/templates/item/partials/dev-levels.html"}}
-        <div class="item-attr-row">
-            <label for="system.comment" class="resource-label">{{localize 'MYZ.COMMENT'}}</label>
-            <input type="text" name="system.comment" value="{{system.comment}}" />
+        <div class="tab" data-group="primary" data-tab="artifact">
+            <div class="grid item-attr-row">
+                <div class="">
+                    <label class="resource-label" for="system.dev_requirement">{{localize "MYZ.DEV_REQUIREMENT"}}</label>
+                    <input class="input-underline" type="text" name="system.dev_requirement" value="{{system.dev_requirement}}" />
+                </div>
+                <div class="">
+                    <label class="resource-label" for="system.dev_bonus">{{localize "MYZ.DEV_BONUS"}}</label>
+                    <input class="input-underline" type="text" name="system.dev_bonus" value="{{system.dev_bonus}}" />
+                </div>
+            </div>
+            {{>"systems/mutant-year-zero/templates/item/partials/dev-levels.html"}}
         </div>
-    </div>
-
-    <h2>Description</h2>
-    <div class="info">
-        <div class="description">{{editor descriptionHTML target="system.description" button=true owner=owner editable=true}}</div>
     </div>
 </form>

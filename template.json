@@ -1,6 +1,6 @@
 {
 	"Actor": {
-		"types": ["mutant", "animal", "robot", "human", "npc", "ark", "vehicle"],
+		"types": ["mutant", "animal", "robot", "human", "npc", "ark", "vehicle","spaceship"],
 		"templates": {
 			"base": {
 				"role": "",
@@ -240,6 +240,35 @@
 			"occupantsCount":1,
 			"occupants":[],
 			"cost":0
+		},
+		"spaceship":{
+			"hull":{
+				"max":0, "value":0
+			},
+			"sensors":{
+				"max":0, "value":0
+			},
+			"engine":{
+				"max":0, "value":0
+			},
+			"lifeSupport":{
+				"max":0, "value":0
+			},
+			"crew":{
+				"passengers":0, "items":0,"description":""
+			},
+			"cargo":{
+				"max":0, "value":0,"description":""
+			},
+			"supplies":{
+				"max":0, "value":0,"description":""
+			},
+			"resilience":{"max":0, "value":0},
+			"armor":{"max":0, "value":0},
+			"comment":"",
+			"description": "",
+			"occupantsCount":1,
+			"occupants":[]
 		}
 	},
 	"Item": {
@@ -289,6 +318,7 @@
 					"HEAL":0,
 					"KNOWNATURE":0,
 					"DOMINATE":0,
+					"DRIVE":0,
 					"OVERLOAD":0,
 					"ASSAULT":0,
 					"INFILTRATE":0,
@@ -345,6 +375,7 @@
 					"HEAL":0,
 					"KNOWNATURE":0,
 					"DOMINATE":0,
+					"DRIVE":0,
 					"OVERLOAD":0,
 					"ASSAULT":0,
 					"INFILTRATE":0,
@@ -419,8 +450,12 @@
 			"templates": ["base", "physical", "dev", "modifiers-group"],
 			"armorType": "armor",
 			"rating": {
-				"value": 1,
-				"max": 1
+				"value": 0,
+				"max": 0
+			},
+			"rot": {
+				"value": 0,
+				"max": 0
 			},
 			"equipped": true
 		},

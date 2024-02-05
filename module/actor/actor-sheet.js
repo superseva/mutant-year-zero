@@ -325,6 +325,19 @@ export class MYZActorSheet extends ActorSheet {
             });
         });
 
+        //Roll Armor Rot Protection
+        html.find(".armor-rot-protection-roll").click((event) => {
+            const itemBox = $(event.currentTarget).parents(".box-item");
+            const itemId = itemBox.data("item-id");
+            const armorItem = this.actor.items.get(itemId);
+            let testName = armorItem.name;
+            RollDialog.prepareRollDialog({
+                rollName: testName,
+                diceRoller: this.diceRoller,
+                gear: {default:armorItem.system.rot.value, total: armorItem.system.rot.value, modifiers: null}
+            });
+        });
+
         //SET NPC creatureType
         html.find(".crature-picker").click(this._updateNPCCreatureType.bind(this));
 
@@ -407,7 +420,8 @@ export class MYZActorSheet extends ActorSheet {
 
     async _updateNPCCreatureType(event) {
         let _creatureType = $(event.currentTarget).data("creature");
-        await this.actor.update({ "system.creatureType": _creatureType });
+        let img = `systems/mutant-year-zero/assets/ico/img-${_creatureType}.svg`
+        await this.actor.update({ "system.creatureType": _creatureType, "img": img});       
         this.actor.sheet.render();
     }
 
@@ -525,8 +539,7 @@ export class MYZActorSheet extends ActorSheet {
             const skill = this.actor.items.find((element) => element.id == itemId);
             const attName = skill.system.attribute;
             const attValue = this.actor.system.attributes[attName].value;
-            // Apply any modifiers from items or crits            
-
+            // Apply any modifiers from items or crits          
             const rollModifiers = this._getRollModifiers(skill);
             rollModifiers.gearDiceTotal = Math.max(0, rollModifiers.gearDiceTotal);
 
@@ -588,7 +601,8 @@ export class MYZActorSheet extends ActorSheet {
         let skillDiceTotal = parseInt(skill.system.value);     
         const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
         const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != 0)
-        let modifiersToSkill = []
+        let modifiersToSkill = [];
+
         if(skill.system.skillKey!=""){ 
             const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) {
                 modifiersToSkill.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[skill.system.skillKey] })

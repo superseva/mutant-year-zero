@@ -8,19 +8,20 @@ export default class MYZHooks {
             return; 
         let updateData = {};
         updateData["token.disposition"] = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
-        updateData["token.vision"] = true;
+        updateData["token.vision"] = true;        
         if (actor.type != "npc") {
             updateData["system.creatureType"] = actor.type;
             updateData["token.actorLink"] = true;
+            updateData["img"] = `systems/mutant-year-zero/assets/ico/img-${actor.type}.svg`
         }
         if (actor.type == "npc") {
             if (actor.system.creatureType == "")
-                updateData["system.creatureType"] = actor.type;
+                updateData["system.creatureType"] = actor.type;           
         }
         await actor.update(updateData, { renderSheet: true });
 
         //IF ACTOR IS ARK DON'T DO ANYTHING ELSE
-        if (actor.type == "ark" || actor.type == "vehicle") return;
+        if (actor.type == "ark" || actor.type == "vehicle" || actor.type == "spaceship") return;
 
         if (actor.type != "npc") {
             const actorCoreSkills = actor.system.coreSkills;
