@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 11.0.5
+
+- Added the stunt text for the Drive skill in the chat message
+- Updated the stunt text for the Command skill in the chat message
 
 ## 11.0.4
 
@@ -14,7 +18,6 @@ The Mutant Year Zero system for FoundryVTT
 - Added icons for the roll/push macros.
 - Fixed stunt description for the creature that has a skill from other creature types
 
-
 ## 11.0.3
 
 - Roll window improvement (all modifiers visible in the dialog)
@@ -25,7 +28,6 @@ The Mutant Year Zero system for FoundryVTT
 - List of Artifacts in the Ark
 - Artifacts, Weapons, Armor, and Projects now have individual fields for each Dev type [food, culture, technology, warfare]. These should correspond to the results of the Dev roll and be numerical.
 - Automatically calculate the Ark's development levels.
-
 
 ## 11.0.1
 

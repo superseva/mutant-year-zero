@@ -30,7 +30,7 @@
         "human":""
     },
     "COMMAND":{
-        "mutant":"No Stunts",
+        "mutant":"<ul><li><p><strong>Focus</strong>! With a successful COMMAND roll you can point out an enemy within sight of you and your friends. Anyone who hears your orders receives a bonus on attacks against the target equal to the number of @myz[s] rolled. The effect lasts until the next time you act.</p></li><li><p><strong>Retreat</strong>! With a successful COMMAND roll you give all allies who hear your orders a bonus to MOVE equal to the number of @myz[s] rolled. The effect lasts until the next time you act.</p></li><li><p><strong>Captain</strong>: If you are the captain of a spaceship or some other crewed vehicle, you can command them in combat. With a successful COMMAND roll you give each crew member a bonus equal to the number of @myz[s] rolled on all their actions. The effect lasts until the next time you act.</p></li></ul>",
         "animal":"",
         "robot": "",
         "human":""
@@ -62,6 +62,12 @@
     "DOMINATE":{
         "mutant":"",
         "animal":"<p><strong>Stunt</strong>: Extra @myz[s] mean you sow fear and doubt in your opponent&rsquo;s heart. He suffers one point of doubt (@UUID[JournalEntry.AO27Uwzen1vnIMpK.JournalEntryPage.P3TQrVTls3ZHRvcn#doubt]{page 78}) for every additional @myz[s] you roll after the first one. If he is broken by doubt, he does what you want without getting the option to fight you.</p>",
+        "robot": "",
+        "human":""
+    },
+    "DRIVE":{
+        "mutant":"<p><strong>Stunts</strong>: For each extra @myz[s] you roll, choose an option from the list below.</p> <ul> <li> <p><strong>Broadside</strong>. You position the vehicle so that anyone riding in it gains +1 on all SHOOT rolls against a specific target until your next round. Can be selected multiple times for an increased bonus against the same target.</p> </li> <li> <p><strong>Evasive Maneuver.</strong> Anyone firing at the vehicle gets −1 until your next round. Can be selected multiple times.</p> </li> <li> <p><strong>Hypermiling</strong>. Your vehicle consumes half as much fuel over the distance covered by the DRIVE roll.</p> </li> <li> <p><strong>Full Speed Ahead</strong>. Your vehicle’s speed increases by 50%.</p> </li> <li> <p><strong>Ram</strong>. You ram another vehicle. If it is a spaceship, you can choose to board it. If it is a road vehicle, the driver must succeed with a MOVE or DRIVE roll or be rammed off the road.</p> </li> </ul>",
+        "animal":"",
         "robot": "",
         "human":""
     },
