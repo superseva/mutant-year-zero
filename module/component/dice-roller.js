@@ -241,7 +241,7 @@ export class DiceRoller {
             content: html,
             type: CONST.CHAT_MESSAGE_TYPES.ROLL,
             roll: _roll,
-            flags : {itemId: this.itemId, actorId: this.actor}
+            flags : {itemId: this.itemId}
         };
         if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
             chatData.whisper = ChatMessage.getWhisperRecipients("GM");
