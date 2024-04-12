@@ -320,6 +320,7 @@ export class MYZActorSheet extends ActorSheet {
             let testName = armorItem.name;
             RollDialog.prepareRollDialog({
                 rollName: testName,
+                itemId,
                 diceRoller: this.diceRoller,
                 gear: {default:armorItem.system.rating.value, total: armorItem.system.rating.value, modifiers: null}
             });
