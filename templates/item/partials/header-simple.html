@@ -7,12 +7,7 @@
             <div class="flex column">
                 <label class="resource-label" for="system.creatureType">{{localize "MYZ.ABILITY_TYPE"}}</label>
                 <select name="system.creatureType">
-                    {{#select system.creatureType}}
-                    <option value="mutant">{{localize "MYZ.ABILITY_MUTANT"}}</option>
-                    <option value="animal">{{localize "MYZ.ABILITY_ANIMAL"}}</option>
-                    <option value="robot">{{localize "MYZ.ABILITY_ROBOT"}}</option>
-                    <option value="human">{{localize "MYZ.ABILITY_HUMAN"}}</option>
-                    {{/select}}
+                    {{selectOptions MYZ.CREATURE_TYPES selected=system.creatureType localize=true}}
                 </select>
             </div>
             <div class="flex column">
@@ -30,22 +25,13 @@
             <div class="flex column">
                 <label class="resource-label" for="system.creatureType">{{localize "MYZ.TALENT_TYPE"}}</label>
                 <select name="system.creatureType">
-                    {{#select system.creatureType}}
-                    <option value="mutant">{{localize "MYZ.TALENT_MUTANT"}}</option>
-                    <option value="animal">{{localize "MYZ.TALENT_ANIMAL"}}</option>
-                    <option value="robot">{{localize "MYZ.TALENT_ROBOT"}}</option>
-                    <option value="human">{{localize "MYZ.TALENT_HUMAN"}}</option>
-                    {{/select}}
+                    {{selectOptions MYZ.TALENT_CREATURE_TYPES selected=system.creatureType localize=true}}
                 </select>
             </div>
             <div class="flex column">
-
                 <label class="resource-label" for="system.roleType">{{localize "MYZ.TALENT_SOURCE"}}</label>
                 <select name="system.roleType">
-                    {{#select system.roleType}}
-                    <option value="general">{{localize "MYZ.GENERAL"}}</option>
-                    <option value="role">{{localize "MYZ.ROLE"}}</option>
-                    {{/select}}
+                    {{selectOptions MYZ.TALENT_ROLE_TYPES selected=system.roleType localize=true}}
                 </select>
             </div>
             <div></div>

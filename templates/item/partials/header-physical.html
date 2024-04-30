@@ -10,13 +10,7 @@
             <div class="resource flex column">
                 <label for="system.weight" class="resource-label">{{localize 'MYZ.WEIGHT'}}</label>
                 <select class="input-underline" name="system.weight">
-                    {{#select system.weight}}
-                    <option value="0">{{localize 'MYZ.WEIGHT_TINY'}} (0)</option>
-                    <option value="0.25">{{localize 'MYZ.WEIGHT_QUARTER'}} (1/4)</option>
-                    <option value="0.5">{{localize 'MYZ.WEIGHT_LIGHT'}} (1/2)</option>
-                    <option value="1">{{localize 'MYZ.WEIGHT_REGULAR'}} (1)</option>
-                    <option value="2">{{localize 'MYZ.WEIGHT_HEAVY'}} (2)</option>
-                    {{/select}}
+                    {{selectOptions MYZ.ITEM_SIZES selected=system.weight localize=true}}
                 </select>
             </div>
             <div class="resource">

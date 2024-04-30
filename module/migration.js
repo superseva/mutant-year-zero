@@ -107,7 +107,7 @@ export const migrateActorData = function (actor) {
         // Update the Owned Item
         if (!isObjectEmpty(itemUpdate)) {
             hasItemUpdates = true;
-            return mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
+            return foundry.utils.mergeObject(i, itemUpdate, { enforceTypes: false, inplace: false });
         } else return i;
     });
     if (hasItemUpdates) updateData.items = items;
@@ -152,7 +152,7 @@ export const migrateSceneData = function (scene) {
                 t.actorData = {};
             } else if (!t.actorLink) {
                 const updateData = migrateActorData(token.data.actorData);
-                t.actorData = mergeObject(token.data.actorData, updateData);
+                t.actorData = foundry.utils.mergeObject(token.data.actorData, updateData);
             }
             return t;
         }),

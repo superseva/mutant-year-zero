@@ -38,10 +38,22 @@ export class DiceRoller {
             computedSkill = -computedSkill;
             this.computedSkillType = "skill-penalty";
         }
+        computedSkill = Math.abs(computedSkill);
 
-        let rollFormula = `${base}db + ${Math.abs(computedSkill)}ds + ${gear}dg`;
+        //let rollFormula = `${base}db + ${Math.abs(computedSkill)}ds + ${gear}dg`; // V11 way
+
+        const _dicesToConsider = { db: base, ds: computedSkill, dg: gear };
+        let rollFormula = Object.entries(_dicesToConsider).reduce((formula, [key, value]) => {
+            if (value !== 0) {
+                let newValue = value;
+                let newKey = key;        
+                formula += `${newValue}${newKey} + `;
+            }
+            return formula;
+        }, '').slice(0, -3); // Removes the last " + " from the string
+
         let roll = new Roll(rollFormula);
-        await roll.evaluate({ async: true });
+        await roll.evaluate();
 
         this.parseResults(roll);
 
@@ -218,7 +230,8 @@ export class DiceRoller {
                 stuntText = this._findFirstNonEmptyStunt(CONFIG.MYZ.STUNTS[this.skillItem.system.skillKey])
             }            
         }catch(error){
-            console.warn(error)
+            // probably no skill included, or some custom skill
+            // console.warn(error)
         }      
 
         let rollData = {
@@ -238,9 +251,8 @@ export class DiceRoller {
         let chatData = {
             user: game.user.id,
             rollMode: game.settings.get("core", "rollMode"),
-            content: html,
-            type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-            roll: _roll,
+            content: html,            
+            rolls: [_roll],
             flags : {itemId: this.itemId}
         };
         if (["gmroll", "blindroll"].includes(chatData.rollMode)) {

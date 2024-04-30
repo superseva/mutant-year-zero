@@ -1,10 +1,7 @@
 <div class="grid">
     <label for="system.creatureType">{{localize "MYZ.TYPE"}}</label>
     <select name="system.creatureType">
-        {{#select system.creatureType}}
-        <option value="general">{{localize "MYZ.GENERAL"}}</option>
-        <option value="role">{{localize "MYZ.ROLE"}}</option>
-        {{/select}}
+        {{selectOptions MYZ.CREATURE_TYPES selected=system.creatureType localize=true}}
     </select>
 
     <label for="system.effect">{{localize "MYZ.EFFECT"}}</label>

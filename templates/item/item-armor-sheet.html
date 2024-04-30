@@ -12,10 +12,7 @@
                 <div class="resource flex column item-attr-row">
                     <label for="system.armorType" class="resource-label">{{localize 'MYZ.ARMOR_TYPE'}}</label>
                     <select name="system.armorType">
-                        {{#select system.armorType}}
-                        <option value="armor">{{localize "MYZ.ARMOR_BODY"}}</option>
-                        <option value="shield">{{localize "MYZ.ARMOR_SHIELD"}}</option>
-                        {{/select}}
+                        {{selectOptions MYZ.ARMOR_TYPES selected=system.armorType localize=true}}
                     </select>
                 </div>
                 <div class="resource flex column item-attr-row">

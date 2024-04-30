@@ -11,23 +11,13 @@
                 <div class="resource flex column">
                     <label class="resource-label" for="system.creatureType">{{localize 'MYZ.ACTOR_TYPE'}}</label>
                     <select name="system.creatureType">
-                        {{#select system.creatureType}}
-                        <option value="mutant">{{localize "MYZ.MUTANT"}}</option>
-                        <option value="animal">{{localize "MYZ.ANIMAL"}}</option>
-                        <option value="robot">{{localize "MYZ.ROBOT"}}</option>
-                        <option value="human">{{localize "MYZ.HUMAN"}}</option>
-                        {{/select}}
+                        {{selectOptions MYZ.CREATURE_TYPES selected=system.creatureType localize=true}}
                     </select>
                 </div>
                 <div class="resource flex column">
                     <label class="resource-label" for="system.attribute">{{localize "MYZ.ATTRIBUTES"}}</label>
                     <select name="system.attribute">
-                        {{#select system.attribute}}
-                        <option value="strength">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_STRENGTH_' system.creatureType))}}</option>
-                        <option value="agility">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_AGILITY_' system.creatureType))}}</option>
-                        <option value="wits">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_WITS_' system.creatureType))}}</option>
-                        <option value="empathy">{{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_EMPATHY_' system.creatureType))}}</option>
-                        {{/select}}
+                        {{selectOptions creatureAttributes selected=system.attribute localize=true}}
                     </select>
                 </div>
             </div>
