@@ -84,8 +84,10 @@
       "flags": {}
     }
   ],
-  "grid.distance": 1,
-  "grid.units": "m",
+  "grid":{
+	  "distance": 1,
+	  "units": "m"
+  },
   "background":"systems/mutant-year-zero/assets/img/splash-page.jpg",
   "url": "https://github.com/superseva/mutant-year-zero",
   "manifest": "https://github.com/superseva/mutant-year-zero/releases/latest/download/system.json",
