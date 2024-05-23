@@ -4,7 +4,7 @@ The Mutant Year Zero system for FoundryVTT
 
 ## 12.0.0
 
-- The system update for Foundry v12
+- The system is now compatible with Foundry v12
 
 ## 11.0.5
 
