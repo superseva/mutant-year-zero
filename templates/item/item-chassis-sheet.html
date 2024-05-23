@@ -30,11 +30,7 @@
                 <div class="flex column">
                     <label class="resource-label" for="system.location">{{localize 'MYZ.LOCATION'}}</label>
                     <select name="system.location">
-                        {{#select system.location }}
-                        <option value="head">{{localize 'MYZ.HEAD'}}</option>
-                        <option value="torso">{{localize 'MYZ.TORSO'}}</option>
-                        <option value="undercarriage">{{localize 'MYZ.UNDERCARRIAGE'}}</option>
-                        {{/select}}
+                        {{selectOptions MYZ.ROBOT_LOCATIONS selected=system.location localize=true}}
                     </select>
                 </div>
                 <div>

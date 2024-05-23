@@ -5,7 +5,7 @@
 export class MYZItemSheet extends ItemSheet {
     /** @override */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["mutant-year-zero", "sheet", "item"],
             width: 520,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
@@ -49,7 +49,10 @@ export class MYZItemSheet extends ItemSheet {
         if (actor) {
             context.rollData = actor.getRollData();
         }
-        
+
+        context.MYZ = CONFIG.MYZ;
+        context.creatureAttributes = Object.keys(CONFIG.MYZ.ATTRIBUTES).map(k=>`${CONFIG.MYZ.ATTRIBUTES[k]}_${source.system.creatureType}`.toUpperCase())   
+
         return context;
     }
 

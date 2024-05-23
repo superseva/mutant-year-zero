@@ -9,7 +9,7 @@ export class MYZVehicleSheet extends ActorSheet {
     //diceRoller = new DiceRoller();
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["mutant-year-zero", "sheet", "actor"],
             template: "systems/mutant-year-zero/templates/actor/vehicle-sheet.html",
             width: 600,

@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 12.0.0
+
+- The system is now compatible with Foundry v12
+
 ## 11.0.5
 
 - Added the stunt text for the Drive skill in the chat message
