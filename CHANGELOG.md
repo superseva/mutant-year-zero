@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 12.0.1
+
+- Fixed Skill-Attribute bug
+
 ## 12.0.0
 
 - The system is now compatible with Foundry v12
