@@ -51,8 +51,8 @@ export class MYZItemSheet extends ItemSheet {
         }
 
         context.MYZ = CONFIG.MYZ;
-        context.creatureAttributes = Object.keys(CONFIG.MYZ.ATTRIBUTES).map(k=>`${CONFIG.MYZ.ATTRIBUTES[k]}_${source.system.creatureType}`.toUpperCase())   
-
+        context.creatureAttributes = Object.fromEntries(Object.keys(CONFIG.MYZ.ATTRIBUTES).map(k => [k, `${CONFIG.MYZ.ATTRIBUTES[k]}_${source.system.creatureType}`.toUpperCase()]));
+        
         return context;
     }
 
