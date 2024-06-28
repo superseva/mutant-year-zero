@@ -17,7 +17,6 @@ export class MYZItemSheet extends ItemSheet {
         const path = "systems/mutant-year-zero/templates/item";
         // Return a single sheet for all item types.
         // return `${path}/item-sheet.html`;
-
         // Alternatively, you could use the following return statement to do a
         // unique item sheet by type, like `weapon-sheet.html`.
         return `${path}/item-${this.item.type}-sheet.html`;
