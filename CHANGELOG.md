@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 12.0.2
+
+- Bug Fix: Arc Project complete bug
+
 ## 12.0.1
 
 - Fixed Skill-Attribute bug

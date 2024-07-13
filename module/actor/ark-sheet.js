@@ -84,6 +84,7 @@ export class MYZArkSheet extends ActorSheet {
 
         //Toggle Equip Inventory Item
         html.find(".item-toggle").click(async (ev) => {
+            ev.preventDefault();
             const li = $(ev.currentTarget).parents(".box-item");
             const item = this.actor.items.get(li.data("item-id"));
             await this.actor.updateEmbeddedDocuments("Item", [this._toggleCompleted(li.data("item-id"), item)]);
@@ -126,7 +127,7 @@ export class MYZArkSheet extends ActorSheet {
     _toggleCompleted(id, item) {
         return {
             _id: id,
-            data: {
+            system: {
                 completed: !item.system.completed,
             },
         };
