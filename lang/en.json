@@ -297,5 +297,16 @@
   "SETTINGS.ApplyPushGearDamageH": "Whether to apply gear damage from banes on pushed rolls.",
   "SETTINGS.ApplyPushGearDamageN": "Apply Push Gear Damage",
   "SETTINGS.ApplyPushTraumaH": "Whether to apply trauma from banes on pushed rolls.",
-  "SETTINGS.ApplyPushTraumaN": "Apply Push Trauma"
+  "SETTINGS.ApplyPushTraumaN": "Apply Push Trauma",
+  "MYZ.Appearance_and_den": "Apperance and Den",
+  "MYZ.Face": "Face",
+  "MYZ.Body": "Body",
+  "MYZ.Clothing": "Clothing",
+  "MYZ.My_den": "My Den",
+  "MYZ.Relationships": "Relationships",
+  "MYZ.Buddy": "Buddy",
+  "MYZ.I_hate": "I Hate",
+  "MYZ.I_Need_to_Protect": "I Need to Protect",
+  "MYZ.My_Big_Dream": "My Big Dream",
+  "MYZ.BIO": "Bio"
 }
