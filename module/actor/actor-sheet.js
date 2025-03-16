@@ -19,7 +19,7 @@ export class MYZActorSheet extends ActorSheet {
             actor: actorData,
             source: source.system,
             system: actorData.system,
-            items: actorData.items,
+            items: actorData.items.sort((a, b) => (a.sort || 0) - (b.sort || 0)),
             effects: prepareActiveEffectCategories(this.actor.effects),
             owner: this.actor.isOwner,
             limited: this.actor.limited,
