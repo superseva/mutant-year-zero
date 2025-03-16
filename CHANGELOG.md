@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 12.0.3
+
+- Updated: Swedish Translation
+- Improved: The name of the speaker in a chat message should now be the token/character name instead of the player's name.
+
 ## 12.0.2
 
 - Bug Fix: Arc Project complete bug

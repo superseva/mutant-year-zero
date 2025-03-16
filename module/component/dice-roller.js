@@ -250,6 +250,7 @@ export class DiceRoller {
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", rollData);
         let chatData = {
             user: game.user.id,
+            speaker:ChatMessage.getSpeaker(),
             rollMode: game.settings.get("core", "rollMode"),
             content: html,            
             rolls: [_roll],
