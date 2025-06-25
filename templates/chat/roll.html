@@ -15,7 +15,9 @@
         {{/unless}} {{/if}}
         <div class="dices-result">
             {{#each dices as |dice|}}
-            <img src="systems/mutant-year-zero/ui/dice-{{dice.diceType}}{{#ifCond dice.success '==' -1}}-penalty{{/ifCond}}-{{dice.value}}.png" title="{{dice.success}}"/>
+            <div class="dice">
+                <img src="systems/mutant-year-zero/ui/dice-{{dice.diceType}}{{#ifCond dice.success '==' -1}}-penalty{{/ifCond}}-{{dice.value}}.png" title="{{dice.success}}"/>
+            </div>
             {{/each}}
         </div>
         {{# if skillItem}}
