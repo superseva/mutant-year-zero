@@ -6,7 +6,7 @@ import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class MYZActorSheet extends ActorSheet {
+export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
     diceRoller = new DiceRoller();
 
     /* -------------------------------------------- */
@@ -33,7 +33,7 @@ export class MYZActorSheet extends ActorSheet {
         }
         context.effects = prepareActiveEffectCategories(this.actor.effects);
         this._prepareCharacterItems(context);
-        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
+        context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description, {
             secrets: this.actor.isOwner,
             async: true
         });

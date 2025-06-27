@@ -1,4 +1,4 @@
-const debounceReload = debounce(() => window.location.reload(), 100)
+const debounceReload = foundry.utils.debounce(() => window.location.reload(), 100)
 export const registerSystemSettings = function () {
     /**
      * Track the system version upon which point a migration was last applied

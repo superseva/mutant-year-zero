@@ -12,14 +12,12 @@ input[type="checkbox"]:checked, input[type="radio"]:checked {
 
 .sheet-header,
 .actor-header {
-	//flex: 0 0 120px;
 	flex: 0;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: flex-start !important;
-	//margin-bottom: 10px;
 
 	&.npc {
 		flex: 0 0 110px;
@@ -229,7 +227,7 @@ input.nolabel {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		grid-gap: 10px;
 		margin-bottom: 5px;
-		//grid-auto-rows: minmax(100px, auto);
+
 		:nth-child(1) {
 			grid-column: 1 / span 3;
 		}
@@ -269,16 +267,16 @@ input.nolabel {
 		margin-bottom: 5px;
 		//grid-auto-rows: minmax(100px, auto);
 		:nth-child(1) {
-			grid-column: 1 / span 3;
+			grid-column: 1 / span 4;
 		}
 
 		:nth-child(2) {
-			grid-column: 4 / span 1;
-		}
-
-		:nth-child(3) {
 			grid-column: 5 / span 2;
 		}
+
+		// :nth-child(3) {
+		// 	grid-column: 5 / span 2;
+		// }
 	}
 }
 

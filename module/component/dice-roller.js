@@ -11,7 +11,7 @@ export class DiceRoller {
 
         const dicePool = await DiceRoller.ParseResults(roll, skill);
         dicePool.sort(DiceRoller.SortPool);        
-
+        // What was this part ? It m to chat as Damage.
         let computedDamage = damage;
         if (damage) {
             this.baseDamage = damage;
@@ -32,7 +32,7 @@ export class DiceRoller {
             base: base,
             skill: skill,
             gear: gear,
-            damage: computedDamage,
+            damage: damage,
             actor: actor,
             actorUuid: actorUuid,
             skillItem: skillItem,
@@ -189,7 +189,7 @@ export class DiceRoller {
         }catch(error){
             // probably no skill included, or some custom skill
             // console.warn(error)
-        }      
+        }     
 
         let htmlData = {
             name: rollName,

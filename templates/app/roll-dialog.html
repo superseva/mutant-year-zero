@@ -1,26 +1,30 @@
-<div class="roll-dialog">
+<div>
     <div class="grid grid-3col dice-row">
-        <div class="flexcol flex-group-center">
-            <span>
-                <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-base-6.png" />
-                <label for="base-input">{{localize base.name}}</label>
-            </span>
+
+        <div class="flexrow flex-group-center">
+            <div>
+                <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-base-6.png" />               
+            </div>
+             <label for="base-input">{{localize base.name}}</label>
             <input type="number" name="base-input" data-type="Number" id="{{base.type}}" value="{{base.total}}" />
         </div>
-        <div class="flexcol flex-group-center">
-            <span>
-                <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-skill-6.png" />
-                <label>{{localize skill.name}}</label>
-            </span>
+
+        <div class="flexrow flex-group-center">
+            <div>
+                <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-skill-6.png" />                
+            </div>
+            <label>{{localize skill.name}}</label>
             <input type="number" data-type="Number" id="{{skill.type}}" value="{{skill.total}}" />
         </div>
-        <div class="flexcol flex-group-center">
-            <span>
-                <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-gear-6.png" />
-                <label>{{localize gear.name}}</label>
-            </span>
+
+        <div class="flexrow flex-group-center">
+            <div>
+                <img class="dice-image base" src="systems/mutant-year-zero/ui/dice-gear-6.png" />                
+            </div>
+            <label>{{localize gear.name}}</label>
             <input type="number" data-type="Number" id="{{gear.type}}" value="{{gear.total}}" />
-        </div>        
+        </div>
+
     </div>
 
     <div class="roll-bonus">

@@ -122,6 +122,7 @@
   "MYZ.EQUIPPED": "Equipped",
   "MYZ.FOOD": "Food",
   "MYZ.GEAR": "Gear",
+  "MYZ.GEAR_DAMAGE": "Gear Damage",
   "MYZ.GENERAL": "General",
   "MYZ.GRUB": "Grub",
   "MYZ.HEAD": "Head",
@@ -256,6 +257,7 @@
     "Skills":"Skills",
     "Crew_Count":"Crew Count"
   },
+  "MYZ.SUCCESS": "Success",
   "MYZ.TALENT": "Talent",
   "MYZ.TALENT_ANIMAL": "Animal Talent",
   "MYZ.TALENTS_ANIMAL": "Talents",
@@ -274,6 +276,7 @@
   "MYZ.TIMELIMIT": "Time limit",
   "MYZ.TOCHAT":"To Chat",
   "MYZ.TORSO": "Torso",
+  "MYZ.TRAUMA": "Trauma",
   "MYZ.TYPE": "Type",
   "MYZ.UNDERCARRIAGE": "Undercarriage",
   "MYZ.UN_STASH_ITEM":"Take from stash",

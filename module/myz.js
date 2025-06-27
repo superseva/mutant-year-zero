@@ -88,41 +88,41 @@ Hooks.once("init", async function () {
     registerSystemSettings();
 
     // Register sheet application classes
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("mutant-year-zero", MYZMutantSheet, {
+    foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZMutantSheet, {
         types: ["mutant"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZAnimalSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZAnimalSheet, {
         types: ["animal"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZRobotSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZRobotSheet, {
         types: ["robot"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZHumanSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZHumanSheet, {
         types: ["human"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZNpcSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZNpcSheet, {
         types: ["npc"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
         types: ["ark"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZVehicleSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZVehicleSheet, {
         types: ["vehicle"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZSpaceshipSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZSpaceshipSheet, {
         types: ["spaceship"],
         makeDefault: true,
     });
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
+    foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+    foundry.documents.collections.Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
 
     /* -------------------------------------------- */
     /*  HANDLEBARS HELPERS      */

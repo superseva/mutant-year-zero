@@ -80,6 +80,7 @@ export class RollDialog {
             rollName
           )}`,
         },
+        classes: [ "roll-dialog"],
         content: htmlContent,
         buttons: [
           {

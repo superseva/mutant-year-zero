@@ -67,10 +67,11 @@ $font-secondary: 'Roboto', sans-serif;*/
 
 /*ROLL DIALOG*/
 .roll-dialog {
-  min-height: 65px;
-}
-.roll-dialog .dice-row {
-  margin-bottom: 5px;
+  background: url("../ui/mutant-sheet-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 3rem;
+  max-width: 32rem;
 }
 .roll-dialog .dice-image {
   max-width: 20px;
@@ -78,13 +79,23 @@ $font-secondary: 'Roboto', sans-serif;*/
   border: none;
 }
 .roll-dialog label {
+  color: black;
   text-transform: capitalize;
 }
 .roll-dialog ul.roll-bonus-list {
   list-style: none;
   padding: 5px;
-  border: 1px solid #999;
+  border: 1px solid #888888;
   font-size: 0.7rem;
+}
+.roll-dialog ul.roll-bonus-list li {
+  color: #373737;
+}
+.roll-dialog input {
+  border: #888888 1px solid;
+  text-align: center;
+  background-color: white;
+  color: black;
 }
 
 .grid,
@@ -641,12 +652,9 @@ $font-secondary: 'Roboto', sans-serif;*/
   margin-bottom: 5px;
 }
 .mutant-year-zero .header-fields .row3 :nth-child(1) {
-  grid-column: 1/span 3;
+  grid-column: 1/span 4;
 }
 .mutant-year-zero .header-fields .row3 :nth-child(2) {
-  grid-column: 4/span 1;
-}
-.mutant-year-zero .header-fields .row3 :nth-child(3) {
   grid-column: 5/span 2;
 }
 .mutant-year-zero .rot-box,

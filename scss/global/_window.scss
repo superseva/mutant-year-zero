@@ -24,26 +24,40 @@
 
 /*ROLL DIALOG*/
 .roll-dialog {
-    min-height:65px;
-   // margin-bottom:10px;
-    .dice-row{
-        margin-bottom:5px;
-    }
 
+    background: url("../ui/mutant-sheet-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;    
+    min-height:3rem;
+    max-width: 32rem;
+ 
+    .dice-row{
+        //margin-bottom:5px;
+    }
     .dice-image {
         max-width: 20px;
         max-height: 20px;
         border: none;
     }
-
     label {
+        color: black;
         text-transform: capitalize;
     }
 
     ul.roll-bonus-list{
         list-style: none;
         padding: 5px;
-        border: 1px solid #999;        
+        border: 1px solid #888888;        
         font-size: 0.7rem;
+        li{
+            color: #373737;
+        }
+    }
+    
+    input{
+        border: #888888 1px solid;;
+        text-align: center;
+        background-color: white;
+        color: black;
     }
 }
