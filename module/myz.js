@@ -20,6 +20,7 @@ import { MYZDieGear } from "./MYZDice.js";
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
 
+
 //import * as migrations from "./migration.js";
 
 /* ------------------------------------ */
@@ -320,7 +321,17 @@ Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor
 Hooks.on("preCreateItem", MYZHooks.onPreCreateItem);
 Hooks.on("preUpdateItem", MYZHooks.onUpdateOwnedItem);
 
-Hooks.on("renderChatMessage", (message, html, data)=>{
+Hooks.on("renderChatMessage", (message, html, data)=>{   
+    if(message.isAuthor || game.user.isGM){
+        html.find('.push-button').click((ev)=>{
+            ev.stopImmediatePropagation();
+            ev.preventDefault();
+            DiceRoller.Push(message, html, data);
+        });
+    }else{
+        html.find('.push-button').remove();
+    }
+    
     html.find('.stunts-trigger').click((ev)=>{
         $(ev.currentTarget).siblings('.stunts').toggle(200)
     });

@@ -14,12 +14,13 @@
         <h4 style="text-align: left">{{localize "MYZ.DAMAGE"}} 0 <span style="font-weight: 400">({{localize 'MYZ.STUNTS'}} 0)</span></h4>
         {{/unless}} {{/if}}
         <div class="dices-result">
-            {{#each dices as |dice|}}
-            <div class="dice">
+            {{#each dicePool as |dice|}}
+            <div class="dice {{#if dice.hasResult}}locked{{/if}}" >                
                 <img src="systems/mutant-year-zero/ui/dice-{{dice.diceType}}{{#ifCond dice.success '==' -1}}-penalty{{/ifCond}}-{{dice.value}}.png" title="{{dice.success}}"/>
             </div>
             {{/each}}
         </div>
+        <div><button class="push-button">{{localize 'MYZ.PUSH'}}</button></div>
         {{# if skillItem}}
         <div>
             <a class="stunts-trigger" style="display: flex; flex-direction: row; justify-content: flex-end; margin-top: 0.75em;">{{localize 'MYZ.STUNTS'}}</a>

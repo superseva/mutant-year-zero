@@ -231,11 +231,94 @@ $font-secondary: 'Roboto', sans-serif;*/
   flex-wrap: wrap;
   align-content: space-between;
 }
+.myz.chat-item .dices-result .dice {
+  scale: 0;
+  animation-fill-mode: forwards !important;
+  animation: fade 0.4s cubic-bezier(0.99, 0.8, 0.2, 0.99) 1;
+}
 .myz.chat-item .dices-result .dice img {
   border: 0;
   width: 30px;
   height: 30px;
   margin: 0 2px 2px 0;
+}
+.myz.chat-item .dices-result .dice:nth-child(1n) {
+  animation-delay: 0.04s;
+}
+.myz.chat-item .dices-result .dice:nth-child(2n) {
+  animation-delay: 0.08s;
+}
+.myz.chat-item .dices-result .dice:nth-child(3n) {
+  animation-delay: 0.12s;
+}
+.myz.chat-item .dices-result .dice:nth-child(4n) {
+  animation-delay: 0.16s;
+}
+.myz.chat-item .dices-result .dice:nth-child(5n) {
+  animation-delay: 0.2s;
+}
+.myz.chat-item .dices-result .dice:nth-child(6n) {
+  animation-delay: 0.24s;
+}
+.myz.chat-item .dices-result .dice:nth-child(7n) {
+  animation-delay: 0.28s;
+}
+.myz.chat-item .dices-result .dice:nth-child(8n) {
+  animation-delay: 0.32s;
+}
+.myz.chat-item .dices-result .dice:nth-child(9n) {
+  animation-delay: 0.36s;
+}
+.myz.chat-item .dices-result .dice:nth-child(10n) {
+  animation-delay: 0.4s;
+}
+.myz.chat-item .dices-result .dice:nth-child(11n) {
+  animation-delay: 0.44s;
+}
+.myz.chat-item .dices-result .dice:nth-child(12n) {
+  animation-delay: 0.48s;
+}
+.myz.chat-item .dices-result .dice:nth-child(13n) {
+  animation-delay: 0.52s;
+}
+.myz.chat-item .dices-result .dice:nth-child(14n) {
+  animation-delay: 0.56s;
+}
+.myz.chat-item .dices-result .dice:nth-child(15n) {
+  animation-delay: 0.6s;
+}
+.myz.chat-item .dices-result .dice:nth-child(16n) {
+  animation-delay: 0.64s;
+}
+.myz.chat-item .dices-result .dice:nth-child(17n) {
+  animation-delay: 0.68s;
+}
+.myz.chat-item .dices-result .dice:nth-child(18n) {
+  animation-delay: 0.72s;
+}
+.myz.chat-item .dices-result .dice:nth-child(19n) {
+  animation-delay: 0.76s;
+}
+.myz.chat-item .dices-result .dice:nth-child(20n) {
+  animation-delay: 0.8s;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    left: 100px;
+    scale: 0;
+    rotate: -120deg;
+  }
+  to {
+    opacity: 1;
+    left: 0px;
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+.myz.chat-item .dices-result .dice.locked {
+  animation-duration: 0s;
+  scale: 1;
 }
 .myz.chat-item i {
   margin-left: 2px;
