@@ -47,11 +47,48 @@
         flex-direction: row;
         flex-wrap: wrap;
         align-content: space-between;
-        img {
-            border: 0;
-            width: 30px;
-            height: 30px;
-            margin: 0 2px 2px 0;
+        
+        .dice{
+            scale: 0;
+            img {
+                border: 0;
+                width: 30px;
+                height: 30px;
+                margin: 0 2px 2px 0;
+            }
+
+            animation-fill-mode: forwards !important;
+            @for $i from 1 through 20 {
+                &:nth-child(#{$i}n) {
+                    animation-delay: #{$i * 0.04}s;
+                }
+            }
+
+            @include keyframes(fade) {
+                from {
+                    opacity: 0;
+                    left: 100px;
+                    scale:0;
+                    rotate:-120deg;
+                }
+                to {
+                    opacity: 1;
+                    left: 0px;
+                    scale:1;
+                    rotate:0deg;
+                }
+            }
+            @include animate(fade, 0.4s, cubic-bezier(.99, .80, .20, .99), 1);
+
+
+            &.locked {
+                animation-duration: 0s;
+                scale: 1;
+                img {
+                    //filter: grayscale(75%);
+                }
+                
+            }
         }
     }
 

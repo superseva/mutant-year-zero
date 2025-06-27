@@ -20,6 +20,7 @@ import { MYZDieGear } from "./MYZDice.js";
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
 
+
 //import * as migrations from "./migration.js";
 
 /* ------------------------------------ */
@@ -87,41 +88,41 @@ Hooks.once("init", async function () {
     registerSystemSettings();
 
     // Register sheet application classes
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("mutant-year-zero", MYZMutantSheet, {
+    foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZMutantSheet, {
         types: ["mutant"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZAnimalSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZAnimalSheet, {
         types: ["animal"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZRobotSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZRobotSheet, {
         types: ["robot"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZHumanSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZHumanSheet, {
         types: ["human"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZNpcSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZNpcSheet, {
         types: ["npc"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
         types: ["ark"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZVehicleSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZVehicleSheet, {
         types: ["vehicle"],
         makeDefault: true,
     });
-    Actors.registerSheet("mutant-year-zero", MYZSpaceshipSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZSpaceshipSheet, {
         types: ["spaceship"],
         makeDefault: true,
     });
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
+    foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+    foundry.documents.collections.Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
 
     /* -------------------------------------------- */
     /*  HANDLEBARS HELPERS      */
@@ -320,7 +321,17 @@ Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor
 Hooks.on("preCreateItem", MYZHooks.onPreCreateItem);
 Hooks.on("preUpdateItem", MYZHooks.onUpdateOwnedItem);
 
-Hooks.on("renderChatMessage", (message, html, data)=>{
+Hooks.on("renderChatMessage", (message, html, data)=>{   
+    if(message.isAuthor || game.user.isGM){
+        html.find('.push-button').click((ev)=>{
+            ev.stopImmediatePropagation();
+            ev.preventDefault();
+            DiceRoller.Push(message, html, data);
+        });
+    }else{
+        html.find('.push-button').remove();
+    }
+    
     html.find('.stunts-trigger').click((ev)=>{
         $(ev.currentTarget).siblings('.stunts').toggle(200)
     });

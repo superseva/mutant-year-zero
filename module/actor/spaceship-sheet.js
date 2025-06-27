@@ -4,7 +4,7 @@ import { RollDialog } from "../app/roll-dialog.js";
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class MYZSpaceshipSheet extends ActorSheet {
+export class MYZSpaceshipSheet extends foundry.appv1.sheets.ActorSheet {
 
     //diceRoller = new DiceRoller();
 

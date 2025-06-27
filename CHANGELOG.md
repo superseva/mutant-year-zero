@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.0.0
+
+- Foundry VTT v13 compatible
+- Roll and Push buttons removed from the sheets. Push button is now available in the original roll chat message
+
 ## 12.0.3
 
 - Updated: Swedish Translation

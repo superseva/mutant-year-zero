@@ -1,4 +1,4 @@
-export class MYZDieBase extends Die {
+export class MYZDieBase extends foundry.dice.terms.Die {
     constructor(termData) {
         termData.faces = 6;
         super(termData);
@@ -24,7 +24,7 @@ export class MYZDieBase extends Die {
     }
 }
 
-export class MYZDieSkill extends Die {
+export class MYZDieSkill extends foundry.dice.terms.Die {
     constructor(termData) {
         termData.faces = 6;
         super(termData);
@@ -49,7 +49,7 @@ export class MYZDieSkill extends Die {
     }
 }
 
-export class MYZDieGear extends Die {
+export class MYZDieGear extends foundry.dice.terms.Die {
     constructor(termData) {
         termData.faces = 6;
         super(termData);

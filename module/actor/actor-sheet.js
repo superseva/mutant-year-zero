@@ -6,7 +6,7 @@ import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class MYZActorSheet extends ActorSheet {
+export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
     diceRoller = new DiceRoller();
 
     /* -------------------------------------------- */
@@ -33,7 +33,7 @@ export class MYZActorSheet extends ActorSheet {
         }
         context.effects = prepareActiveEffectCategories(this.actor.effects);
         this._prepareCharacterItems(context);
-        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
+        context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description, {
             secrets: this.actor.isOwner,
             async: true
         });
@@ -168,7 +168,7 @@ export class MYZActorSheet extends ActorSheet {
         html.find(".button-roll").click((ev) => {
             ev.preventDefault();
             let rollName = "MYZ.CUSTOM_ROLL";
-            RollDialog.prepareRollDialog({
+            RollDialog.OpenRollDialog({
                 rollName: rollName,
                 diceRoller: this.diceRoller,
             });
@@ -245,7 +245,7 @@ export class MYZActorSheet extends ActorSheet {
         //Roll Rot
         html.find(".roll-rot").click((event) => {
             let rotTotal = parseInt(this.actor.system.rot.value) + parseInt(this.actor.system.rot.permanent);
-            RollDialog.prepareRollDialog({
+            RollDialog.OpenRollDialog({
                 rollName: game.i18n.localize("MYZ.ROT"),
                 diceRoller: this.diceRoller,
                 base: {default:rotTotal, total: rotTotal, modifiers: null}
@@ -287,7 +287,7 @@ export class MYZActorSheet extends ActorSheet {
             rollModifiers.gearDiceTotal += parseInt(weapon.system.bonus.value)
             rollModifiers.gearDiceTotal = Math.max(0, rollModifiers.gearDiceTotal)
 
-            RollDialog.prepareRollDialog({
+            RollDialog.OpenRollDialog({
                 rollName: testName,
                 attributeName: skill.system.attribute,
                 itemId,
@@ -298,6 +298,7 @@ export class MYZActorSheet extends ActorSheet {
                 modifierDefault: weapon.system.skillBonus,
                 artifactDefault: weapon.system.artifactBonus || 0,
                 damage: weapon.system.damage,
+                actorUuid: this.actor.uuid,
                 actor: this.actor,
                 skillItem: skill
             });
@@ -305,7 +306,7 @@ export class MYZActorSheet extends ActorSheet {
 
         //Roll Armor
         html.find(".armor-roll").click((event) => {
-            RollDialog.prepareRollDialog({
+            RollDialog.OpenRollDialog({
                 rollName: game.i18n.localize("MYZ.ARMOR"),
                 diceRoller: this.diceRoller,
                 gear: {default:this.actor.system.armorrating.value, total: this.actor.system.armorrating.value, modifiers: null}
@@ -318,7 +319,7 @@ export class MYZActorSheet extends ActorSheet {
             const itemId = itemBox.data("item-id");
             const armorItem = this.actor.items.get(itemId);
             let testName = armorItem.name;
-            RollDialog.prepareRollDialog({
+            RollDialog.OpenRollDialog({
                 rollName: testName,
                 itemId: itemId,
                 diceRoller: this.diceRoller,
@@ -332,7 +333,7 @@ export class MYZActorSheet extends ActorSheet {
             const itemId = itemBox.data("item-id");
             const armorItem = this.actor.items.get(itemId);
             let testName = armorItem.name;
-            RollDialog.prepareRollDialog({
+            RollDialog.OpenRollDialog({
                 rollName: testName,
                 diceRoller: this.diceRoller,
                 gear: {default:armorItem.system.rot.value, total: armorItem.system.rot.value, modifiers: null}
@@ -513,7 +514,7 @@ export class MYZActorSheet extends ActorSheet {
         rollModifiers.gearDiceTotal = 0;
         rollModifiers.modifiersToGear = [];
 
-        RollDialog.prepareRollDialog({
+        RollDialog.OpenRollDialog({
             rollName: rollName,
             attributeName: attName,
             diceRoller: this.diceRoller,
@@ -522,7 +523,8 @@ export class MYZActorSheet extends ActorSheet {
             gear: {default:0, total: rollModifiers.gearDiceTotal, modifiers:rollModifiers.modifiersToGear},            
             modifierDefault: 0,
             applyedModifiers: null,
-            actor: this.actor
+            actor: this.actor,
+            actorUuid: this.actor.uuid
         });
     }
 
@@ -552,7 +554,7 @@ export class MYZActorSheet extends ActorSheet {
                 skillName = game.i18n.localize(`MYZ.SKILL_${skill.system.skillKey}`);
             }
 
-            RollDialog.prepareRollDialog({
+            RollDialog.OpenRollDialog({
                 rollName: skillName,
                 attributeName: attName,
                 diceRoller: this.diceRoller,
@@ -561,6 +563,7 @@ export class MYZActorSheet extends ActorSheet {
                 gear: {default:0, total: rollModifiers.gearDiceTotal, modifiers: rollModifiers.modifiersToGear},
                 modifierDefault: 0,
                 actor: this.actor,
+                actorUuid: this.actor.uuid,
                 skillItem: skill
             });
         }
