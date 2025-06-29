@@ -11,6 +11,7 @@ export function onManageActiveEffect(event, owner) {
   switch (a.dataset.action) {
     case "create":
       return owner.createEmbeddedDocuments("ActiveEffect", [{
+        name: "New Effect",
         label: "New Effect",
         icon: "icons/svg/aura.svg",
         origin: owner.uuid,

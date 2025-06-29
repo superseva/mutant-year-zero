@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.0.1
+
+- Active Effects Bug fix
+
 ## 13.0.0
 
 - Foundry VTT v13 compatible
