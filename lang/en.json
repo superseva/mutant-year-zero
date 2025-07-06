@@ -36,6 +36,7 @@
     }
   },
   "MYZ.ABILITIES": "Abilities",
+  "MYZ.ABILITY": "Ability",
   "MYZ.ABILITY_ANIMAL": "Animal Power",
   "MYZ.ABILITY_HUMAN": "Contact",
   "MYZ.ABILITY_MUTANT": "Mutation",
@@ -176,6 +177,7 @@
   "MYZ.SECONDARY_FUNCTION": "Secondary Function",
   "MYZ.SECONDARY_FUNCTIONS": "Secondary Functions",
   "MYZ.SHIELD": "Shield",
+  "MYZ.SKILL": "Skill",
   "MYZ.SKILL_ANALYZE": "Analyze",
   "MYZ.SKILL_ASSAULT": "Assault",
   "MYZ.SKILL_BONUS": "Skill Bonus",

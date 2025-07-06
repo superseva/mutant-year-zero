@@ -279,6 +279,13 @@ Hooks.once("init", async function () {
             return "MYZ.CONTACTS"
         }else{ return ""}
     });
+
+    Handlebars.registerHelper('anyDefined', function() {
+        const options = arguments[arguments.length - 1];
+        // Exclude the last argument (Handlebars options object)
+        return Array.prototype.slice.call(arguments, 0, -1).some(v => v !== undefined && v !== null);
+        });
+
 });
 
 // LOAD STUNTS
@@ -331,9 +338,13 @@ Hooks.on("renderChatMessage", (message, html, data)=>{
     }else{
         html.find('.push-button').remove();
     }
+
+    html.find('.modifiers-trigger').click((ev)=>{
+        html.find('.modifiers').toggle(200)
+    });
     
     html.find('.stunts-trigger').click((ev)=>{
-        $(ev.currentTarget).siblings('.stunts').toggle(200)
+        html.find('.stunts').toggle(200)
     });
 })
 

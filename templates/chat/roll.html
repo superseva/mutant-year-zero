@@ -12,19 +12,68 @@
 
         <h4>{{successes}}<i class="myz-radioactive" title="{{localize 'MYZ.SUCCESS'}}"></i> | {{failures}}<i class="myz-biohazard" title="{{localize 'MYZ.TRAUMA'}}"></i> | {{gearfailures}}<i class="myz-explosion" title="{{localize 'MYZ.GEAR_DAMAGE'}}"></i></h4>
 
-        <div class="dices-result">
+        <div class="dices-result flex-center">
             {{#each dicePool as |dice|}}
             <div class="dice {{#if dice.hasResult}}locked{{/if}}" >                
                 <img src="systems/mutant-year-zero/ui/dice-{{dice.diceType}}{{#ifCond dice.success '==' -1}}-penalty{{/ifCond}}-{{dice.value}}.png" title="{{dice.success}}"/>
             </div>
             {{/each}}
         </div>
-        <div><button class="push-button">{{localize 'MYZ.PUSH'}}</button></div>
-        {{# if skillItem}}
-        <div>
-            <a class="stunts-trigger" style="display: flex; flex-direction: row; justify-content: flex-end; margin-top: 0.75em;">{{localize 'MYZ.STUNTS'}}</a>
+        <div class="flexrow flex-center"><button class="push-button">{{localize 'MYZ.PUSH'}}</button></div>
+        
+        <div class="triggers">
+            {{#if (anyDefined modifiers.base.modifiers modifiers.skill.modifiers.length modifiers.gear.modifiers.length)}}
+            <a class="modifiers-trigger">{{localize 'MYZ.MODIFIERS'}}</a>
+            {{/if}}
+
+            {{#if stuntText}}
+            <a class="stunts-trigger">{{localize 'MYZ.STUNTS'}}</a>
+            {{/if}}
+        </div>
+
+        {{#if (anyDefined modifiers.base.modifiers modifiers.skill.modifiers.length modifiers.gear.modifiers.length)}}
+        <div class="modifiers" style="display: none">          
+            <div class="grid grid-3col dice-row modifiers-list">
+                <div>
+                    {{#ifCond modifiers.base.modifiers.length '>' 0}}
+                    <ul class="roll-bonus-list">
+                        <!-- <li><em>{{localize 'MYZ.ABILITY'}}: {{modifiers.base.default}}</em></li> -->
+                        {{#each modifiers.base.modifiers as |item key|}}
+                        <li><em>{{item.name}}: {{item.value}}</em></li>
+                        {{/each}}
+                </ul>
+                {{/ifCond}}
+                </div>
+                <div>
+                    {{#ifCond modifiers.skill.modifiers.length '>' 0}}
+                    <ul class="roll-bonus-list">
+                        <!-- <li><em>{{localize 'MYZ.SKILL'}}: {{modifiers.skill.default}}</em></li> -->
+                        {{#each modifiers.skill.modifiers as |item key|}}
+                        <li><em>{{item.name}}: {{item.value}}</em></li>
+                        {{/each}}               
+                    </ul>
+                    {{/ifCond}}
+                </div>
+                <div>
+                    {{#ifCond modifiers.gear.modifiers.length '>' 0}}
+                    <ul class="roll-bonus-list">
+                        <!-- <li><em>{{localize 'MYZ.GEAR'}}: {{modifiers.gear.default}}</em></li> -->
+                        {{#each modifiers.gear.modifiers as |item key|}}
+                        <li><em>{{item.name}}: {{item.value}}</em></li>
+                        {{/each}}               
+                    </ul>
+                    {{/ifCond}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+
+        {{#if stuntText}}
+        <div>            
             <div class="stunts" style="display: none">{{{stuntText}}}</div>
         </div>
         {{/if}}
+
     </div>
 </div>

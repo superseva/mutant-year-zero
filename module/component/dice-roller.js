@@ -2,7 +2,7 @@
 
 export class DiceRoller {
 
-    static async Roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillItem = null, attributeName = null, itemId = null } = {}) {
+    static async Roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", attributeName = null, itemId = null, modifiers = null } = {}) {
         console.warn("DiceRoller.Roll is hot.");
         let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;
         
@@ -35,15 +35,17 @@ export class DiceRoller {
             damage: damage,
             actor: actor,
             actorUuid: actorUuid,
-            skillItem: skillItem,
+            skillUuid:skillUuid,
             attributeName: attributeName,
             itemId: itemId,
+            modifiers: modifiers,
         });
         
     }
 
     static async Push(message, html, data){
-
+        console.log(message)
+        console.log(data)
         // create formula from message.flags.dicePool
         if (!message.getFlag("mutant-year-zero", "dicePool"))
             throw new Error("No dice pool found in message flags");
@@ -80,6 +82,8 @@ export class DiceRoller {
                 failures: DiceRoller.CountFailures(finalPool),
                 gearfailures: DiceRoller.CountGearFailures(finalPool),
                 damage: message.getFlag("mutant-year-zero", "damage") || 0,
+                stuntText: message.getFlag("mutant-year-zero", "stuntText") || "",
+                modifiers: message.getFlag("mutant-year-zero", "modifiers") || null,
             }),
         });
         await message.setFlag("mutant-year-zero", "dicePool", finalPool);
@@ -87,7 +91,7 @@ export class DiceRoller {
         try {
             await game.dice3d.showForRoll(roll);
         } catch (error) {
-            console.warn("DiceRoller.Push error showing 3D dice", error);
+            //console.warn("DiceRoller.Push error showing 3D dice", error);
         }
 
         // Check For Trauma to Actor and Gear
@@ -172,7 +176,7 @@ export class DiceRoller {
     }
 
     /**     * Send the roll result to chat     */
-    static async SendToChat({isPushed = false, dicePool = null, _roll = null, rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillItem = null,attributeName = null, itemId = null} = {}) {
+    static async SendToChat({isPushed = false, dicePool = null, _roll = null, rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", attributeName = null, itemId = null, modifiers = null} = {}) {
  
         let numberOfSuccesses = DiceRoller.CountSuccesses(dicePool);
         let numberOfFailures = DiceRoller.CountFailures(dicePool);
@@ -180,11 +184,14 @@ export class DiceRoller {
 
         let stuntText = ""
         try{
-            stuntText = actor? CONFIG.MYZ.STUNTS[skillItem.system.skillKey][actor.system.creatureType] : "";
+            const actor = await fromUuid(actorUuid);
+            const _skill = await fromUuid(skillUuid)
+            //stuntText = DiceRoller._getStuntText(_skill, actor)
+            stuntText = actor? CONFIG.MYZ.STUNTS[_skill.system.skillKey][actor.system.creatureType] : "";
             // If there is no stunt description for this type of creature return the first description you find            
-            if(stuntText=="" && CONFIG.MYZ.STUNTS[skillItem.system.skillKey]){
+            if(stuntText=="" && CONFIG.MYZ.STUNTS[_skill.system.skillKey]){
                 console.warn('Looking for other stunt description')
-                stuntText = DiceRoller._findFirstNonEmptyStunt(CONFIG.MYZ.STUNTS[skillItem.system.skillKey])
+                stuntText = DiceRoller._findFirstNonEmpty(CONFIG.MYZ.STUNTS[_skill.system.skillKey])
             }
         }catch(error){
             // probably no skill included, or some custom skill
@@ -201,8 +208,9 @@ export class DiceRoller {
             dicePool: dicePool,
             actor: actor,
             actorUuid: actorUuid,
-            skillItem: skillItem,
-            stuntText: stuntText
+            skillUuid: skillUuid,
+            stuntText: stuntText,
+            modifiers: modifiers
         };
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", htmlData);
         let chatData = {
@@ -225,11 +233,12 @@ export class DiceRoller {
         msg.setFlag("mutant-year-zero", "skill", skill ? skill : 0);
         msg.setFlag("mutant-year-zero", "damage", damage || 0);
         msg.setFlag("mutant-year-zero", "actor", actor ? actor.id : null);
-        msg.setFlag("mutant-year-zero", "skillItem", skillItem ? skillItem.id : null);
+        msg.setFlag("mutant-year-zero", "stuntText", stuntText ? stuntText : null);
         msg.setFlag("mutant-year-zero", "rollName", rollName || "");
         msg.setFlag("mutant-year-zero", "attributeName", attributeName || null);
         msg.setFlag("mutant-year-zero", "itemId", itemId || null);
         msg.setFlag("mutant-year-zero", "actorUuid", actorUuid || null);
+        msg.setFlag("mutant-year-zero", "modifiers", modifiers || null)
     }
 
     /**     * Map the dice type to a string     */
@@ -306,7 +315,7 @@ export class DiceRoller {
         return b.weight - a.weight;
     }
 
-    static _findFirstNonEmptyStunt(obj) {
+    static _findFirstNonEmpty(obj) {
         for (let key in obj) {
             if (obj[key] !== null && obj[key] !== "") {
                 return obj[key];

@@ -294,13 +294,13 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                 diceRoller: this.diceRoller,
                 base: {default:attValue, total: rollModifiers.baseDiceTotal, modifiers: rollModifiers.modifiersToAttributes},
                 skill: {default:skill.system.value, total: rollModifiers.skillDiceTotal, modifiers: rollModifiers.modifiersToSkill},
-                gear: {default:0, total: rollModifiers.gearDiceTotal, modifiers: rollModifiers.modifiersToGear},                
+                gear: {default:parseInt(weapon.system.bonus.value), total: rollModifiers.gearDiceTotal, modifiers: rollModifiers.modifiersToGear},                
                 modifierDefault: weapon.system.skillBonus,
                 artifactDefault: weapon.system.artifactBonus || 0,
                 damage: weapon.system.damage,
                 actorUuid: this.actor.uuid,
                 actor: this.actor,
-                skillItem: skill
+                skillUuid: skill.uuid,
             });
         });
 
@@ -522,7 +522,6 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
             skill: {default:0, total: rollModifiers.skillDiceTotal, modifiers:rollModifiers.modifiersToSkill},
             gear: {default:0, total: rollModifiers.gearDiceTotal, modifiers:rollModifiers.modifiersToGear},            
             modifierDefault: 0,
-            applyedModifiers: null,
             actor: this.actor,
             actorUuid: this.actor.uuid
         });
@@ -564,7 +563,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                 modifierDefault: 0,
                 actor: this.actor,
                 actorUuid: this.actor.uuid,
-                skillItem: skill
+                skillUuid:skill.uuid,
             });
         }
     }
