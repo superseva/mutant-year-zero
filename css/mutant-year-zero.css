@@ -331,6 +331,10 @@ $font-secondary: 'Roboto', sans-serif;*/
   animation-duration: 0s;
   scale: 1;
 }
+.myz.chat-item .push-button {
+  margin: 5px;
+  max-width: 160px;
+}
 .myz.chat-item i {
   margin-left: 2px;
 }
@@ -346,6 +350,13 @@ $font-secondary: 'Roboto', sans-serif;*/
   font-family: "Karla", sans-serif;
   margin: 0 0 4px;
 }
+.myz.chat-item .triggers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: smaller;
+  padding: 5px 5px 0 5px;
+}
 .myz.chat-item .stunts ul li {
   margin-bottom: 0.5em;
 }
@@ -359,6 +370,26 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 .myz.chat-item .stunts a.entity-link i, .myz.chat-item .stunts a.content-link i {
   color: #a67060;
+}
+.myz.chat-item .modifiers {
+  font-size: smaller;
+}
+.myz.chat-item .modifiers .modifiers-list {
+  gap: 5px;
+}
+.myz.chat-item .modifiers .modifiers-list > *:nth-child(1) {
+  background-color: rgba(248, 244, 0, 0.32);
+}
+.myz.chat-item .modifiers .modifiers-list > *:nth-child(2) {
+  background-color: rgba(0, 117, 32, 0.32);
+}
+.myz.chat-item .modifiers .modifiers-list > *:nth-child(3) {
+  background-color: rgba(0, 0, 0, 0.32);
+}
+.myz.chat-item .modifiers ul {
+  margin: 0;
+  padding: 2px;
+  list-style-type: none;
 }
 
 /* Styles limited to mutant-year-zero sheets */
@@ -608,9 +639,6 @@ $font-secondary: 'Roboto', sans-serif;*/
   border-bottom: 1px solid;
   margin-bottom: 2px;
   background-color: rgba(0, 0, 0, 0);
-}
-.mutant-year-zero ::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.4);
 }
 .mutant-year-zero ::placeholder {
   color: rgba(0, 0, 0, 0.4);

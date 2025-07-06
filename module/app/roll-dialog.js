@@ -26,10 +26,9 @@ export class RollDialog {
     damage = 0,
     diceRoller = null,
     onAfterRoll = null,
-    applyedModifiers = null,
     actor = null,
     actorUuid = "",
-    skillItem = null,
+    skillUuid = "",
   } = {}) {
     if (!diceRoller) {
       throw new Error(
@@ -64,8 +63,7 @@ export class RollDialog {
         name: "MYZ.MODIFIER",
         type: "modifier",
         value: modifierDefault,
-      },
-      applyedModifiers: applyedModifiers,
+      }
     };
 
     const htmlContent = await renderTemplate(
@@ -90,32 +88,19 @@ export class RollDialog {
               let base = button.form.elements.base.value;
               let skill = button.form.elements.skill.value;
               let gear = button.form.elements.gear.value;
-              let modifier = button.form.elements.modifier.value;
               
-            // OLD METHOD
-            //diceRoller.preparePushData(attributeName, itemId);
-            //   diceRoller.roll({
-            //                     rollName: rollName,
-            //                     base: parseInt(base, 10),
-            //                     skill: parseInt(skill, 10),
-            //                     gear: parseInt(gear, 10),
-            //                     modifier: parseInt(modifier, 10),
-            //                     damage: parseInt(damage, 10),
-            //                     actor: actor,
-            //                     skillItem: skillItem
-            //                 });
               DiceRoller.Roll({
                 rollName: rollName,
                 base: parseInt(base, 10),
                 skill: parseInt(skill, 10),
                 gear: parseInt(gear, 10),
-                modifier: parseInt(modifier, 10),
                 damage: parseInt(damage, 10),
                 actor: actor,
                 actorUuid: actorUuid,
-                skillItem: skillItem,
+                skillUuid:skillUuid,
                 attributeName:attributeName,
-                itemId:itemId
+                itemId:itemId,
+                modifiers: htmlData,
               });
               onAfterRoll(diceRoller);
             },
