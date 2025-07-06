@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.0.2
+
+- Improved Chat Roll Message. Added Modifiers
+
 ## 13.0.1
 
 - Active Effects Bug fix
