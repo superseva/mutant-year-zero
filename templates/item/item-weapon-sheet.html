@@ -35,6 +35,10 @@
                     </div>
                 </div>
                 <div class="item-attr-row">
+                    <label for="system.usesBullets" class="resource-label">{{localize 'MYZ.USES_BULLETS'}}</label>
+                    <input type="checkbox" name="system.usesBullets" {{#if system.usesBullets}}checked{{/if}} />
+                </div>
+                <div class="item-attr-row">
                     <label for="system.comment" class="resource-label">{{localize 'MYZ.COMMENT'}}</label>
                     <input type="text" name="system.comment" value="{{system.comment}}" />
                 </div>

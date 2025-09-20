@@ -282,10 +282,19 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                 }
             }
 
+            console.log("Using skill", skill);
             const attValue = this.actor.system.attributes[skill.system.attribute].value;
-            const rollModifiers = this._getRollModifiers(skill)
-            rollModifiers.gearDiceTotal += parseInt(weapon.system.bonus.value)
-            rollModifiers.gearDiceTotal = Math.max(0, rollModifiers.gearDiceTotal)
+            const rollModifiers = this._getRollModifiers(skill);
+            rollModifiers.gearDiceTotal += parseInt(weapon.system.bonus.value);
+            rollModifiers.gearDiceTotal = Math.max(0, rollModifiers.gearDiceTotal);
+
+            // Check for bullets if the weapon uses them
+            if(weapon.system.usesBullets){
+                if (this.actor.system.resources?.bullets?.value < 1) {
+                    ui.notifications.warn(game.i18n.localize("MYZ.NO_BULLETS"));
+                    return;
+                }
+            }
 
             RollDialog.OpenRollDialog({
                 rollName: testName,

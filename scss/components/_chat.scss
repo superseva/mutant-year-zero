@@ -28,7 +28,7 @@
 
     h3 {
         font-family: $font-secondary;
-        font-size: 16px;
+        font-size: 1.4em;
         font-weight: bold;
         margin: 0 0 8px;
         text-align: center;
@@ -36,9 +36,9 @@
 
     h4 {
         font-family: $font-secondary;
-        font-size: 14px;
+        font-size: 1em;
         font-weight: bold;
-        margin: 0 0 8px;
+        margin: 0.5em 0 0 0;
         text-align: center;
     }
 
@@ -94,7 +94,12 @@
 
     .push-button{
         margin: 5px;
-        max-width: 160px;
+        max-width: 110px;
+        background-color: transparent;
+        background-image: url('../assets/img/push-btn.webp');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        opacity: 0.86;
     }
     
 
@@ -125,6 +130,7 @@
     }
 
     .stunts{
+        padding: 0.5em;
         ul{
             li{
                 margin-bottom: 0.5em;
@@ -166,5 +172,8 @@
             list-style-type: none;
             
         }
+    }
+    .usebullets{
+        font-size: smaller;
     }
 }

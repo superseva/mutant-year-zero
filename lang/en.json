@@ -139,6 +139,7 @@
   "MYZ.MUTANT_YEAR_ZERO": "Mutant Year Zero",
   "MYZ.MUTATIONS": "Mutations",
   "MYZ.NAME": "Name",
+  "MYZ.NO_BULLETS": "No Bullets left",
   "MYZ.NO_COMBAT_SKILL": "No Combat skill found [Fight, Assault or Shoot]",
   "MYZ.NUMBER_OF_MODULES": "# of Modules",
   "MYZ.OTHER_REQUIREMENTS": "Other Requirements",
@@ -148,6 +149,7 @@
   "MYZ.PROJECTS": "Projects",
   "MYZ.PUSH": "Push",
   "MYZ.PUSHED": "Pushed",
+  "MYZ.PUSH_BULLET": "Use a bullet when pushing",
   "MYZ.QUANTITY": "Quantity",
   "MYZ.RANGE": "Range",
   "MYZ.RANGE_ARM": "Arms Length",
@@ -259,6 +261,7 @@
     "Skills":"Skills",
     "Crew_Count":"Crew Count"
   },
+  "MYZ.USES_BULLETS": "Uses Bullets",
   "MYZ.SUCCESS": "Success",
   "MYZ.TALENT": "Talent",
   "MYZ.TALENT_ANIMAL": "Animal Talent",

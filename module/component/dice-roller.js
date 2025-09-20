@@ -3,7 +3,6 @@
 export class DiceRoller {
 
     static async Roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", attributeName = null, itemId = null, modifiers = null } = {}) {
-        console.warn("DiceRoller.Roll is hot.");
         let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;
         
         let roll = new Roll(rollFormula);
@@ -26,7 +25,7 @@ export class DiceRoller {
         await DiceRoller.SendToChat({
             _roll: roll,
             rollName: rollName,
-            isPushed: false,
+            pushCount: 0,
             dicePool: dicePool,
             rollName: rollName,
             base: base,
@@ -40,13 +39,37 @@ export class DiceRoller {
             itemId: itemId,
             modifiers: modifiers,
         });
+
+        // update actor bullets if a weapon is used and it uses bullets
+        if (actorUuid && itemId) {
+            const actorInstance = await fromUuid(actorUuid);
+            const item = actorInstance?.items.get(itemId);
+            if (item && item.type === "weapon" && item.system.usesBullets) {
+            const spent = await actorInstance.spendBullet();
+            if (!spent) {
+                ui.notifications?.warn(game.i18n.localize("MYZ.NO_BULLETS"));
+            }
+            }
+        }
         
     }
 
     static async Push(message, html, data){
-        console.log(message)
-        console.log(data)
-        // create formula from message.flags.dicePool
+
+        // If push bullet checkbox is selected and actor doesn't have bullets, return false
+        const messageElement = html[0]?.closest('li.chat-message');
+        const pushBulletChecked = messageElement?.querySelector('input[name="push-bullet"]')?.checked ?? false;
+        if (pushBulletChecked && message.getFlag("mutant-year-zero", "actorUuid")) {
+            const actorInstance = await fromUuid(message.getFlag("mutant-year-zero", "actorUuid"));
+            console.log("Actor instance for push bullet check", actorInstance);
+            const hasBullets = actorInstance?.system?.resources.bullets?.value > 0;
+            if (!hasBullets) {
+            ui.notifications?.warn(game.i18n.localize("MYZ.NO_BULLETS"));
+            return false;
+            }
+        }
+        
+        // create ROLL formula from message.flags.dicePool
         if (!message.getFlag("mutant-year-zero", "dicePool"))
             throw new Error("No dice pool found in message flags");
 
@@ -71,22 +94,28 @@ export class DiceRoller {
 
         const finalPool = diceWithResults.concat(dicePool);
         finalPool.sort(DiceRoller.SortPool);
+        
+        // Push count
+        let pushCount = await message.getFlag("mutant-year-zero", "pushCount") || 0;
+        pushCount += 1;
 
         // update the message with the new dice pool        
         await message.update({
                 content: await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", {
-                name: message.getFlag("mutant-year-zero", "rollName") || "Roll Name",
-                isPushed: true,
-                dicePool: finalPool,
-                successes: DiceRoller.CountSuccesses(finalPool),
-                failures: DiceRoller.CountFailures(finalPool),
-                gearfailures: DiceRoller.CountGearFailures(finalPool),
-                damage: message.getFlag("mutant-year-zero", "damage") || 0,
-                stuntText: message.getFlag("mutant-year-zero", "stuntText") || "",
-                modifiers: message.getFlag("mutant-year-zero", "modifiers") || null,
+                    name: message.getFlag("mutant-year-zero", "rollName") || "Roll Name",
+                    pushCount: pushCount,
+                    dicePool: finalPool,
+                    successes: DiceRoller.CountSuccesses(finalPool),
+                    failures: DiceRoller.CountFailures(finalPool),
+                    gearfailures: DiceRoller.CountGearFailures(finalPool),
+                    damage: message.getFlag("mutant-year-zero", "damage") || 0,
+                    stuntText: message.getFlag("mutant-year-zero", "stuntText") || "",
+                    modifiers: message.getFlag("mutant-year-zero", "modifiers") || null,
+                    weaponNotes: message.getFlag("mutant-year-zero", "weaponNotes") || "",
             }),
         });
-        await message.setFlag("mutant-year-zero", "dicePool", finalPool);
+        await message.setFlag("mutant-year-zero", "dicePool", finalPool);        
+        await message.setFlag("mutant-year-zero", "pushCount", pushCount);
         
         try {
             await game.dice3d.showForRoll(roll);
@@ -155,6 +184,14 @@ export class DiceRoller {
                         await message.setFlag("mutant-year-zero", "gearDamageCount", gearDamageCount);
                     }
             }
+
+            // Spend a Bullet on Push
+            const messageElement = html[0]?.closest('li.chat-message');
+            const pushBulletChecked = messageElement?.querySelector('input[name="push-bullet"]')?.checked ?? false;
+            if (pushBulletChecked) {
+                await actor.spendBullet();
+            }
+
         }
     }
     
@@ -176,7 +213,7 @@ export class DiceRoller {
     }
 
     /**     * Send the roll result to chat     */
-    static async SendToChat({isPushed = false, dicePool = null, _roll = null, rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", attributeName = null, itemId = null, modifiers = null} = {}) {
+    static async SendToChat({pushCount = 0, dicePool = null, _roll = null, rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", attributeName = null, itemId = null, modifiers = null} = {}) {
  
         let numberOfSuccesses = DiceRoller.CountSuccesses(dicePool);
         let numberOfFailures = DiceRoller.CountFailures(dicePool);
@@ -196,11 +233,20 @@ export class DiceRoller {
         }catch(error){
             // probably no skill included, or some custom skill
             // console.warn(error)
-        }     
+        }
+        
+        // check if itemID is a weapon and get notes
+        let weaponNotes = "";
+        if (itemId && actor) {
+            const item = actor.items.get(itemId);
+            if (item && item.type === "weapon" && item.system.comment) {
+                weaponNotes = item.system.comment;
+            }
+        }
 
         let htmlData = {
             name: rollName,
-            isPushed: isPushed,
+            pushCount: pushCount,
             successes: numberOfSuccesses,
             failures: numberOfFailures,
             gearfailures: numberOfGearFailures,
@@ -210,7 +256,8 @@ export class DiceRoller {
             actorUuid: actorUuid,
             skillUuid: skillUuid,
             stuntText: stuntText,
-            modifiers: modifiers
+            modifiers: modifiers,
+            weaponNotes: weaponNotes
         };
         const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", htmlData);
         let chatData = {
@@ -228,7 +275,6 @@ export class DiceRoller {
             chatData.whisper = [game.user];
         }
         const msg = await ChatMessage.create(chatData);
-        msg.setFlag("mutant-year-zero", "itemId", itemId || null);
         msg.setFlag("mutant-year-zero", "dicePool", dicePool || []);
         msg.setFlag("mutant-year-zero", "skill", skill ? skill : 0);
         msg.setFlag("mutant-year-zero", "damage", damage || 0);
@@ -238,7 +284,9 @@ export class DiceRoller {
         msg.setFlag("mutant-year-zero", "attributeName", attributeName || null);
         msg.setFlag("mutant-year-zero", "itemId", itemId || null);
         msg.setFlag("mutant-year-zero", "actorUuid", actorUuid || null);
-        msg.setFlag("mutant-year-zero", "modifiers", modifiers || null)
+        msg.setFlag("mutant-year-zero", "modifiers", modifiers || null);
+        msg.setFlag("mutant-year-zero", "pushCount", pushCount || 0);     
+        msg.setFlag("mutant-year-zero", "weaponNotes", weaponNotes || 0);   
     }
 
     /**     * Map the dice type to a string     */
