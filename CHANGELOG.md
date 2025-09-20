@@ -2,6 +2,14 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.0.3
+
+- Automated bullet spending for selected weapons
+- Added a way to spend bullets when pushing
+- You can now see the weapon's comment in the chat roll message (eg. Clip, Full Auto, .etc)
+- UI MYZ Roller and Chat Messages : rearanging, adding elelemts and small visual changes
+
+
 ## 13.0.2
 
 - Improved Chat Roll Message. Added Modifiers

@@ -73,10 +73,29 @@ $font-secondary: 'Roboto', sans-serif;*/
   min-height: 3rem;
   max-width: 32rem;
 }
-.roll-dialog .dice-image {
-  max-width: 20px;
-  max-height: 20px;
+.roll-dialog .dice-pool {
+  flex: 1;
+  margin: 0 2px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7137254902);
+  border-radius: 0.5em;
+  padding: 0.5em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.roll-dialog .dice-pool .dice-total {
+  padding: 0.6em;
+  background: #eef2f7;
+  border-radius: 6px;
+}
+.roll-dialog .dice-pool img {
+  max-width: 2em;
+  max-height: 2em;
   border: none;
+}
+.roll-dialog .dice-pool .dice-pool-name {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5em;
 }
 .roll-dialog label {
   color: black;
@@ -84,18 +103,20 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 .roll-dialog ul.roll-bonus-list {
   list-style: none;
-  padding: 5px;
-  border: 1px solid #888888;
-  font-size: 0.7rem;
-}
-.roll-dialog ul.roll-bonus-list li {
-  color: #373737;
+  color: black;
+  background: #eef2f7;
+  border-radius: 6px;
+  margin-top: 6px;
+  padding: 0.2em;
+  font-size: 12px;
 }
 .roll-dialog input {
   border: #888888 1px solid;
   text-align: center;
   background-color: white;
   color: black;
+  width: 2.5em;
+  margin-left: 1em;
 }
 
 .grid,
@@ -224,16 +245,16 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 .myz.chat-item h3 {
   font-family: "Karla", sans-serif;
-  font-size: 16px;
+  font-size: 1.4em;
   font-weight: bold;
   margin: 0 0 8px;
   text-align: center;
 }
 .myz.chat-item h4 {
   font-family: "Karla", sans-serif;
-  font-size: 14px;
+  font-size: 1em;
   font-weight: bold;
-  margin: 0 0 8px;
+  margin: 0.5em 0 0 0;
   text-align: center;
 }
 .myz.chat-item .dices-result {
@@ -333,7 +354,12 @@ $font-secondary: 'Roboto', sans-serif;*/
 }
 .myz.chat-item .push-button {
   margin: 5px;
-  max-width: 160px;
+  max-width: 110px;
+  background-color: transparent;
+  background-image: url("../assets/img/push-btn.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.86;
 }
 .myz.chat-item i {
   margin-left: 2px;
@@ -356,6 +382,9 @@ $font-secondary: 'Roboto', sans-serif;*/
   justify-content: space-between;
   font-size: smaller;
   padding: 5px 5px 0 5px;
+}
+.myz.chat-item .stunts {
+  padding: 0.5em;
 }
 .myz.chat-item .stunts ul li {
   margin-bottom: 0.5em;
@@ -390,6 +419,9 @@ $font-secondary: 'Roboto', sans-serif;*/
   margin: 0;
   padding: 2px;
   list-style-type: none;
+}
+.myz.chat-item .usebullets {
+  font-size: smaller;
 }
 
 /* Styles limited to mutant-year-zero sheets */

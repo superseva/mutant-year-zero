@@ -30,15 +30,35 @@
     background-repeat: no-repeat;    
     min-height:3rem;
     max-width: 32rem;
- 
-    .dice-row{
-        //margin-bottom:5px;
+    
+    .dice-pool{
+        flex: 1;
+        margin: 0 2px;
+        text-align: center;
+        background: #ffffffb6;
+        border-radius: 0.5em;
+        padding: 0.5em;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+        .dice-total{
+            padding: 0.6em;
+            background: #eef2f7;
+            border-radius: 6px;
+        }
+
+        img {
+            max-width: 2em;
+            max-height: 2em;
+            border: none;
+        }
+
+        .dice-pool-name {       
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.5em;        
+        }
     }
-    .dice-image {
-        max-width: 20px;
-        max-height: 20px;
-        border: none;
-    }
+    
     label {
         color: black;
         text-transform: capitalize;
@@ -46,12 +66,12 @@
 
     ul.roll-bonus-list{
         list-style: none;
-        padding: 5px;
-        border: 1px solid #888888;        
-        font-size: 0.7rem;
-        li{
-            color: #373737;
-        }
+        color: black;
+        background: #eef2f7;
+        border-radius: 6px;
+        margin-top: 6px;
+        padding: 0.2em;
+        font-size: 12px;
     }
     
     input{
@@ -59,5 +79,7 @@
         text-align: center;
         background-color: white;
         color: black;
+        width: 2.5em;
+        margin-left: 1em;
     }
 }

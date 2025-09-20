@@ -444,7 +444,8 @@
 			"range": "range_arm",
 			"category": "",
 			"artifactBonus": 0,
-			"skillBonus": 0
+			"skillBonus": 0,
+			"usesBullets": false
 		},
 		"armor": {
 			"templates": ["base", "physical", "dev", "modifiers-group"],
