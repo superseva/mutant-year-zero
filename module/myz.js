@@ -499,7 +499,8 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/item/partials/header-physical.html",
         "systems/mutant-year-zero/templates/item/partials/tabs.html",
         "systems/mutant-year-zero/templates/item/partials/modifiers.html",
-        "systems/mutant-year-zero/templates/item/partials/dev-levels.html"
+        "systems/mutant-year-zero/templates/item/partials/dev-levels.html",
+        "systems/mutant-year-zero/templates/actor/partials/bio.html"
         
     ];
     return loadTemplates(templatePaths);
