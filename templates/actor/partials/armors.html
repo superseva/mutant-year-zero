@@ -9,9 +9,9 @@
         <a class="item-create" data-type="armor">{{localize "MYZ.Add"}}</a>
     </div>
 </div>
-<ol class="box-list {{system.creatureType}}">
+<ol class="item-list box-list {{system.creatureType}}">
     {{#each armor as |armor key|}}
-    <li class="box-item physical flex row align-center space-between editable-armor" data-physical="1" data-item-id="{{armor._id}}">
+    <li class="item box-item physical flex row align-center space-between editable-armor" data-physical="1" data-item-id="{{armor._id}}">
         <span class="item-name flex row align-center {{#if (isBroken armor)}}broken{{/if}}" data-item-id="{{armor._id}}">
             <img class="item-image" src="{{armor.img}}" />
             <a class="rollable armor-item-roll">{{armor.name}}</a>
