@@ -16,6 +16,10 @@ import { MYZItemSheet } from "./item/item-sheet.js";
 import { MYZDieBase } from "./MYZDice.js";
 import { MYZDieSkill } from "./MYZDice.js";
 import { MYZDieGear } from "./MYZDice.js";
+import { MYZMutantDataModel, MYZAnimalDataModel, 
+    MYZRobotDataModel,  MYZHumanDataModel, MYZNPCDataModel, MYZArkDataModel, MYZVehicleDataModel, MYZSpaceshipDataModel,
+    MYZSkillDataModel, MYZAbilityDataModel, MYZTalentDataModel, MYZWeaponDataModel, MYZArmorDataModel, MYZChassisDataModel,
+    MYZGearDataModel, MYZArtifactDataModel, MYZCriticalDataModel, MYZProjectDataModel} from "./data-model.js";
 
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
@@ -55,8 +59,26 @@ Hooks.once("init", async function () {
     // Define custom Entity classes
     CONFIG.MYZ = MYZ;
     CONFIG.Actor.documentClass = MYZActor;
+    CONFIG.Actor.dataModels.mutant = MYZMutantDataModel;
+    CONFIG.Actor.dataModels.animal = MYZAnimalDataModel;
+    CONFIG.Actor.dataModels.robot = MYZRobotDataModel;
+    CONFIG.Actor.dataModels.human = MYZHumanDataModel;
+    CONFIG.Actor.dataModels.npc = MYZNPCDataModel;
+    CONFIG.Actor.dataModels.ark = MYZArkDataModel;
+    CONFIG.Actor.dataModels.vehicle = MYZVehicleDataModel;
+    CONFIG.Actor.dataModels.spaceship = MYZSpaceshipDataModel;
+
     CONFIG.Item.documentClass = MYZItem;
-    //CONFIG.diceRoller = DiceRoller;
+    CONFIG.Item.dataModels.skill = MYZSkillDataModel;
+    CONFIG.Item.dataModels.ability = MYZAbilityDataModel;
+    CONFIG.Item.dataModels.talent = MYZTalentDataModel;
+    CONFIG.Item.dataModels.weapon = MYZWeaponDataModel;
+    CONFIG.Item.dataModels.armor = MYZArmorDataModel;
+    CONFIG.Item.dataModels.chassis = MYZChassisDataModel;
+    CONFIG.Item.dataModels.gear = MYZGearDataModel;
+    CONFIG.Item.dataModels.artifact = MYZArtifactDataModel;
+    CONFIG.Item.dataModels.critical = MYZCriticalDataModel;
+    CONFIG.Item.dataModels.project = MYZProjectDataModel;
 
     CONFIG.roller = new DiceRoller();
 
@@ -268,6 +290,23 @@ Hooks.once("init", async function () {
         return val1 - val2;
     });
 
+    
+    Handlebars.registerHelper('ifInArray', function(value, list, options) {  
+        // Normalize list to an Array
+        let arr = list;
+        if (typeof list === 'string') {
+            try {
+                arr = JSON.parse(list);
+            } catch (err) {
+                arr = list.split(',').map(s => s.trim()).filter(Boolean);
+            }
+        }
+
+        const contains = Array.isArray(arr) ? arr.indexOf(value) > -1 : false;
+        return contains ? options.fn(this) : options.inverse(this);
+    });
+    
+
     Handlebars.registerHelper("getAbilitiesTypeName", function (val) {
         if(val=="mutant"){
             return "MYZ.MUTATIONS"
@@ -288,7 +327,7 @@ Hooks.once("init", async function () {
 
 });
 
-// LOAD STUNTS
+// LOAD STUNTS JSON With stunt's descriptions
 Hooks.on("init", async function(){
     const stuntJSON = game.settings.get('mutant-year-zero','stuntsJSON')
     const jsonFile = await fetch(stuntJSON)

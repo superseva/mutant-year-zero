@@ -1,5 +1,5 @@
 <form class="{{cssClass}} flexcol {{system.type}} {{system.creatureType}}" autocomplete="off">
-    {{#if (ifvalue system.creatureType 'npc')}}
+    {{#ifInArray system.creatureType '["","npc"]'}}
     <div class="overlay">
         <div class="flex column center flex-center pick-npc">
             <h2>{{localize 'MYZ.PICK_NPC_TYPE'}}</h2>
@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    {{/if}}
+    {{/ifInArray}}
 
     <div class="actor-header {{system.type}}">
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />

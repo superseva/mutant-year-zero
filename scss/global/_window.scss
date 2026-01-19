@@ -83,3 +83,47 @@
         margin-left: 1em;
     }
 }
+
+
+// Global Journal Page Style
+// This makes sure journal entries have a consistent look
+// regardless of the user's chosen Foundry VTT theme.
+$dark-text: #000000;
+$border-color: #333333;
+$journal-bg-fallback: rgb(243, 243, 243);
+
+.sheet.journal-entry {
+  .journal-entry-content {
+    background-color: $journal-bg-fallback;
+    background: url("../ui/mutant-sheet-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $dark-text;
+    border-color: $border-color;
+    h1, h2, h3, h4, h5, h6 {
+        border: none;
+        color: $dark-text;
+    }
+  }
+
+  .journal-entry-page {
+    &.theme-dark, &.theme-light {
+      color: $dark-text;
+    }
+
+    .journal-page-header {
+      h1, h2, h3, h4, h5, h6 {
+        border: none;
+        color: $dark-text;
+      }
+    }
+
+    // Ensures the actual text editor area also follows your dark-on-white rules
+    .editor-content {
+      color: $dark-text;
+      a, li, p {
+        color: $dark-text;
+      }
+    }
+  }
+}

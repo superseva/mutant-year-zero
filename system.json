@@ -20,6 +20,30 @@
   "styles": [
     "css/mutant-year-zero.css"
   ],
+  "documentTypes": {
+    "Actor":{
+      "mutant":{"htmlFields": ["description"]},
+      "animal":{"htmlFields": ["description"]},
+      "robot":{"htmlFields": ["description"]},
+      "human":{"htmlFields": ["description"]},
+      "npc":{"htmlFields": ["description"]},
+      "ark":{"htmlFields": ["description"]},
+      "vehicle":{"htmlFields": ["description"]},
+      "spaceship":{"htmlFields": ["description"]}
+    },
+    "Item":{
+      "skill":{"htmlFields": ["description", "comment"]},
+      "ability":{"htmlFields": ["description", "comment"]},
+      "talent":{"htmlFields": ["description", "comment"]},
+      "weapon":{"htmlFields": ["description", "comment"]},
+      "armor":{"htmlFields": ["description", "comment"]},
+      "chassis":{"htmlFields": ["description", "comment"]},
+      "gear":{"htmlFields": ["description", "comment"]},
+      "artifact":{"htmlFields": ["description", "comment"]},
+      "critical":{"htmlFields": ["description", "comment"]},
+      "project":{"htmlFields": ["description", "comment"]}
+    } 
+  },
   "packs": [
     {
       "name": "core-skills",

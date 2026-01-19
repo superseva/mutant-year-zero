@@ -2,6 +2,12 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.0.4
+
+- Switched to DataModel
+- Fixed the Journal Page styling so it is consistent
+
+
 ## 13.0.3
 
 - Automated bullet spending for selected weapons

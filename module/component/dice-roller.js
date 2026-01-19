@@ -140,10 +140,10 @@ export class DiceRoller {
                     const attributes = actor.system.attributes || {};
                     const attribute = attributes[attributeName];
                     if (attribute?.value > 0) {
-                        const { value, min } = attribute;
-                        const newVal = Math.max(min, value - baneCount);
+                        const { value, max } = attribute;
+                        const newVal = Math.max(0, value - baneCount);
                         if (newVal !== value) {
-                            updateData[`system.attributes.${attributeName}.value`] = newVal;
+                            updateData[`system.attributes.${attributeName}.value`] = parseInt(newVal);
                         }
                     }
                     // Adds Resources Points only to Mutants and Animals
@@ -153,7 +153,7 @@ export class DiceRoller {
                             const { value, max } = resPts;
                             const newVal = Math.min(max, value + baneCount);
                             if (newVal !== value) {
-                                updateData[`system.resource_points.value`] = newVal;
+                                updateData[`system.resource_points.value`] = parseInt(newVal);
                             }
                         }
                     }
