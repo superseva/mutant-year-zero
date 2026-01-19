@@ -119,6 +119,32 @@ $font-secondary: 'Roboto', sans-serif;*/
   margin-left: 1em;
 }
 
+.sheet.journal-entry .journal-entry-content {
+  background-color: rgb(243, 243, 243);
+  background: url("../ui/mutant-sheet-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #000000;
+  border-color: #333333;
+}
+.sheet.journal-entry .journal-entry-content h1, .sheet.journal-entry .journal-entry-content h2, .sheet.journal-entry .journal-entry-content h3, .sheet.journal-entry .journal-entry-content h4, .sheet.journal-entry .journal-entry-content h5, .sheet.journal-entry .journal-entry-content h6 {
+  border: none;
+  color: #000000;
+}
+.sheet.journal-entry .journal-entry-page.theme-dark, .sheet.journal-entry .journal-entry-page.theme-light {
+  color: #000000;
+}
+.sheet.journal-entry .journal-entry-page .journal-page-header h1, .sheet.journal-entry .journal-entry-page .journal-page-header h2, .sheet.journal-entry .journal-entry-page .journal-page-header h3, .sheet.journal-entry .journal-entry-page .journal-page-header h4, .sheet.journal-entry .journal-entry-page .journal-page-header h5, .sheet.journal-entry .journal-entry-page .journal-page-header h6 {
+  border: none;
+  color: #000000;
+}
+.sheet.journal-entry .journal-entry-page .editor-content {
+  color: #000000;
+}
+.sheet.journal-entry .journal-entry-page .editor-content a, .sheet.journal-entry .journal-entry-page .editor-content li, .sheet.journal-entry .journal-entry-page .editor-content p {
+  color: #000000;
+}
+
 .grid,
 .grid-2col {
   display: grid;

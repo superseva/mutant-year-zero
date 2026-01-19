@@ -2,7 +2,7 @@
   "id": "mutant-year-zero",
   "title": "Mutant Year Zero",
   "description": "The Official Mutant Year Zero system for FoundryVTT!",
-  "version": "13.0.3",
+  "version": "13.0.4",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
@@ -20,6 +20,30 @@
   "styles": [
     "css/mutant-year-zero.css"
   ],
+  "documentTypes": {
+    "Actor":{
+      "mutant":{"htmlFields": ["description"]},
+      "animal":{"htmlFields": ["description"]},
+      "robot":{"htmlFields": ["description"]},
+      "human":{"htmlFields": ["description"]},
+      "npc":{"htmlFields": ["description"]},
+      "ark":{"htmlFields": ["description"]},
+      "vehicle":{"htmlFields": ["description"]},
+      "spaceship":{"htmlFields": ["description"]}
+    },
+    "Item":{
+      "skill":{"htmlFields": ["description", "comment"]},
+      "ability":{"htmlFields": ["description", "comment"]},
+      "talent":{"htmlFields": ["description", "comment"]},
+      "weapon":{"htmlFields": ["description", "comment"]},
+      "armor":{"htmlFields": ["description", "comment"]},
+      "chassis":{"htmlFields": ["description", "comment"]},
+      "gear":{"htmlFields": ["description", "comment"]},
+      "artifact":{"htmlFields": ["description", "comment"]},
+      "critical":{"htmlFields": ["description", "comment"]},
+      "project":{"htmlFields": ["description", "comment"]}
+    } 
+  },
   "packs": [
     {
       "name": "core-skills",
@@ -91,6 +115,6 @@
   "background":"systems/mutant-year-zero/assets/img/splash-page.jpg",
   "url": "https://github.com/superseva/mutant-year-zero",
   "manifest": "https://github.com/superseva/mutant-year-zero/releases/latest/download/system.json",
-  "download": "https://github.com/superseva/mutant-year-zero/releases/download/v13.0.3/mutant-year-zero.zip",
+  "download": "https://github.com/superseva/mutant-year-zero/releases/download/v13.0.4/mutant-year-zero.zip",
   "license": "LICENSE"
 }

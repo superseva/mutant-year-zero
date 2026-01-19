@@ -20,6 +20,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
             source: source.system,
             system: actorData.system,
             items: actorData.items,
+            encumbrance: this.actor.system.encumbrance,
             effects: prepareActiveEffectCategories(this.actor.effects),
             owner: this.actor.isOwner,
             limited: this.actor.limited,
@@ -145,7 +146,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
             else if(context.system.creatureType=="human"){
                 context.npcInventory = [...context.npcInventory, ...chassis]
             }
-        }        
+        }   
     }
     /* -------------------------------------------- */
 
@@ -282,7 +283,6 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                 }
             }
 
-            console.log("Using skill", skill);
             const attValue = this.actor.system.attributes[skill.system.attribute].value;
             const rollModifiers = this._getRollModifiers(skill);
             rollModifiers.gearDiceTotal += parseInt(weapon.system.bonus.value);
@@ -295,7 +295,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                     return;
                 }
             }
-
+            
             RollDialog.OpenRollDialog({
                 rollName: testName,
                 attributeName: skill.system.attribute,

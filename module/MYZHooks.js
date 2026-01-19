@@ -16,9 +16,9 @@ export default class MYZHooks {
         }
         if (actor.type == "npc") {
             if (actor.system.creatureType == "")
-                updateData["system.creatureType"] = actor.type;           
+                updateData["system.creatureType"] = actor.type;        
         }
-        await actor.update(updateData, { renderSheet: true });
+        await actor.update(updateData);
 
         //IF ACTOR IS ARK DON'T DO ANYTHING ELSE
         if (actor.type == "ark" || actor.type == "vehicle" || actor.type == "spaceship") return;
