@@ -296,10 +296,13 @@ export class MYZArkDataModel extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
     super.prepareDerivedData();
     const projects = this.parent.items.filter(i=> i.type=="project" && i.system?.completed);
-    let food = projects.reduce((total, item)=> total + item.system.food, 0);
-    let culture = projects.reduce((total, item)=> total + item.system.culture, 0);
-    let technology = projects.reduce((total, item)=> total + item.system.technology, 0);
-    let warfare = projects.reduce((total, item)=> total + item.system.warfare, 0);
+    const artifacts = this.parent.items.filter(i=> i.type=="artifact");
+    const projectsAndArtifacts = [...projects, ...artifacts];
+
+    let food = projectsAndArtifacts.reduce((total, item)=> total + item.system.food, 0);
+    let culture = projectsAndArtifacts.reduce((total, item)=> total + item.system.culture, 0);
+    let technology = projectsAndArtifacts.reduce((total, item)=> total + item.system.technology, 0);
+    let warfare = projectsAndArtifacts.reduce((total, item)=> total + item.system.warfare, 0);
     this.parent.system.dev_levels.food.value = parseInt(food);
     this.parent.system.dev_levels.culture.value = parseInt(culture);
     this.parent.system.dev_levels.technology.value = parseInt(technology);
@@ -376,10 +379,10 @@ function devItemMixin() {
   return {
     dev_requirement: new StringField({ nullable: true, blank: true }),
     dev_bonus: new StringField({ nullable: true, blank: true }),
-    food: new NumberField({ integer: true, min: 0, initial: 0 }),
-    culture: new NumberField({ integer: true, min: 0, initial: 0 }),
-    technology: new NumberField({ integer: true, min: 0, initial: 0 }),
-    warfare: new NumberField({ integer: true, min: 0, initial: 0 })
+    food: new NumberField({ integer: true, initial: 0 }),
+    culture: new NumberField({ integer: true, initial: 0 }),
+    technology: new NumberField({ integer: true, initial: 0 }),
+    warfare: new NumberField({ integer: true, initial: 0 })
   }
 }
 
@@ -658,10 +661,10 @@ export class MYZProjectDataModel extends foundry.abstract.TypeDataModel {
       special: new StringField({ nullable: true, blank: true }),
       completed: new BooleanField({ initial: false }),
       value: new NumberField({ integer: true, min: 0, initial: 0 }),
-      food: new NumberField({ integer: true, min: 0, initial: 0 }),
-      culture: new NumberField({ integer: true, min: 0, initial: 0 }),
-      technology: new NumberField({ integer: true, min: 0, initial: 0 }),
-      warfare: new NumberField({ integer: true, min: 0, initial: 0 }),
+      food: new NumberField({ integer: true, initial: 0 }),
+      culture: new NumberField({ integer: true, initial: 0 }),
+      technology: new NumberField({ integer: true, initial: 0 }),
+      warfare: new NumberField({ integer: true, initial: 0 }),
       completed: new BooleanField({ initial: false }),
       description: new HTMLField()
     };

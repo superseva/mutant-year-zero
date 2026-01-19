@@ -4,9 +4,9 @@ The Mutant Year Zero system for FoundryVTT
 
 ## 13.0.4
 
-- Switched to DataModel
+- Switched from template.josn to DataModel
 - Fixed the Journal Page styling so it is consistent
-
+- Artifacts added to the Ark now affect its overall progression.
 
 ## 13.0.3
 
