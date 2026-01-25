@@ -289,7 +289,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
             rollModifiers.gearDiceTotal = Math.max(0, rollModifiers.gearDiceTotal);
 
             // Check for bullets if the weapon uses them
-            if(weapon.system.usesBullets){
+            if(weapon.system.useBullets){
                 if (this.actor.system.resources?.bullets?.value < 1) {
                     ui.notifications.warn(game.i18n.localize("MYZ.NO_BULLETS"));
                     return;
@@ -523,6 +523,10 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         rollModifiers.gearDiceTotal = 0;
         rollModifiers.modifiersToGear = [];
 
+        console.log(rollModifiers)
+
+
+
         RollDialog.OpenRollDialog({
             rollName: rollName,
             attributeName: attName,
@@ -612,7 +616,8 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         // SKILL MODIFIERS
         let skillDiceTotal = parseInt(skill.system.value);     
         const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
-        const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != 0)
+        //const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != 0)
+        const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != null && i.system.modifiers[skill.system.skillKey] !== 0)
         let modifiersToSkill = [];
 
         if(skill.system.skillKey!=""){ 
@@ -626,7 +631,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         const attrModifiers = this._getAttibuteModifiers(skill.system.attribute)
         // GEAR MODIFIERS  
         const itmGMap = this.actor.items.filter(itm => itm.system.gearModifiers != undefined)
-        const itemsThatModifyGear = itmGMap.filter(i => i.system.gearModifiers[skill.system.skillKey] != 0)
+        const itemsThatModifyGear = itmGMap.filter(i => i.system.gearModifiers[skill.system.skillKey] != null && i.system.gearModifiers[skill.system.skillKey] != 0)
         let modifiersToGear = []
         let gearDiceTotal = 0
         if(skill.system.skillKey!=""){
@@ -649,14 +654,16 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     _getAttibuteModifiers(attribute){
         const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
-        const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[attribute] != 0)
+        console.log(itmMap)
+        const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[attribute] != null && i.system.modifiers[attribute] !== 0)
         let modifiersToAttributes = []
         const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) {
             modifiersToAttributes.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[attribute] })
             return acc + obj.system.modifiers[attribute];
         }, 0);
-        const baseDice = this.actor.system.attributes[attribute].value;
-        let baseDiceTotal = parseInt(baseDice) + parseInt(baseDiceModifier);
+
+        const baseDice = this.actor.system.attributes[attribute].value || 0;
+        let baseDiceTotal = parseInt(baseDice) + (parseInt(baseDiceModifier)||0);
         baseDiceTotal = Math.max(baseDiceTotal, 0)
         //if(baseDiceTotal<0) baseDiceTotal = 0;
         return {baseDiceTotal: baseDiceTotal, modifiersToAttributes:modifiersToAttributes}

@@ -44,7 +44,7 @@ export class MYZItem extends Item {
         if (this.parent)
             itemData.creatureType = this.actor.system.creatureType;
 
-        const html = await renderTemplate("systems/mutant-year-zero/templates/chat/item.html", itemData);
+        const html = await foundry.applications.handlebars.renderTemplate("systems/mutant-year-zero/templates/chat/item.html", itemData);
         const chatData = {
             user: game.user.id,
             rollMode: game.settings.get("core", "rollMode"),

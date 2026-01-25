@@ -541,7 +541,7 @@ function _preloadHandlebarsTemplates() {
         "systems/mutant-year-zero/templates/item/partials/dev-levels.html"
         
     ];
-    return loadTemplates(templatePaths);
+    return foundry.applications.handlebars.loadTemplates(templatePaths);
 }
 
 function normalize(data, defaultValue) {
