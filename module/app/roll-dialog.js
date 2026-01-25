@@ -66,7 +66,7 @@ export class RollDialog {
       }
     };
 
-    const htmlContent = await renderTemplate(
+    const htmlContent = await foundry.applications.handlebars.renderTemplate(
       "systems/mutant-year-zero/templates/app/roll-dialog.html",
       htmlData
     );

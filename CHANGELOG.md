@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.0.5
+
+- Fix spending bullets
+- Fix Calculateing the modifiers
+
 ## 13.0.4
 
 - Switched from template.josn to DataModel
