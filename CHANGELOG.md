@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.0.6
+
+- Fix XP bug, from Number to String
+
+
 ## 13.0.5
 
 - Fix spending bullets

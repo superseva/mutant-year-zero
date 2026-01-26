@@ -45,7 +45,7 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
 
       xp: new SchemaField({ 
         label: new StringField({nullable: true, blank: true}), 
-        value: new NumberField({integer: true, min: 0}) }),
+        value: new StringField({nullable: true, blank: true}) }),
 
       crit: new SchemaField({ 
         label: new StringField({nullable: true, blank: true}), 
