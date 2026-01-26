@@ -28,7 +28,7 @@ export class MYZItem extends Item {
 
 
     async sendToChat() {
-        const itemData = duplicate(this.system);
+        const itemData = foundry.utils.duplicate(this.system);
         itemData.name = this.name;
         itemData.img = this.img;
         itemData.isWeapon = this.type === "weapon";

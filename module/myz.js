@@ -367,24 +367,36 @@ Hooks.on("createActor", async (actor, options, userId) => MYZHooks.onCreateActor
 Hooks.on("preCreateItem", MYZHooks.onPreCreateItem);
 Hooks.on("preUpdateItem", MYZHooks.onUpdateOwnedItem);
 
-Hooks.on("renderChatMessage", (message, html, data)=>{   
+Hooks.on("renderChatMessageHTML", (message, html, data)=>{   
     if(message.isAuthor || game.user.isGM){
-        html.find('.push-button').click((ev)=>{
-            ev.stopImmediatePropagation();
-            ev.preventDefault();
-            DiceRoller.Push(message, html, data);
-        });
+        const pushButton = html.querySelector('.push-button');
+        if (pushButton) {
+            pushButton.addEventListener('click', (ev)=>{
+                ev.stopImmediatePropagation();
+                ev.preventDefault();
+                DiceRoller.Push(message, html, data);
+            });
+        }
     }else{
-        html.find('.push-button').remove();
+        const pushButton = html.querySelector('.push-button');
+        if (pushButton) pushButton.remove();
     }
 
-    html.find('.modifiers-trigger').click((ev)=>{
-        html.find('.modifiers').toggle(200)
-    });
+    const modifiersTrigger = html.querySelector('.modifiers-trigger');
+    if (modifiersTrigger) {
+        modifiersTrigger.addEventListener('click', (ev)=>{
+            const modifiers = html.querySelector('.modifiers');
+            if (modifiers) modifiers.style.display = modifiers.style.display === 'none' ? 'block' : 'none';
+        });
+    }
     
-    html.find('.stunts-trigger').click((ev)=>{
-        html.find('.stunts').toggle(200)
-    });
+    const stuntsTrigger = html.querySelector('.stunts-trigger');
+    if (stuntsTrigger) {
+        stuntsTrigger.addEventListener('click', (ev)=>{
+            const stunts = html.querySelector('.stunts');
+            if (stunts) stunts.style.display = stunts.style.display === 'none' ? 'block' : 'none';
+        });
+    }
 })
 
 /* -------------------------------------------- */

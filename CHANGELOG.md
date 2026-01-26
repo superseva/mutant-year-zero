@@ -2,6 +2,13 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.0.7
+
+- Improvement: Dice only have symbols now (numbers are removed)
+- Chore: Major cleanup of deprication 'warnings'
+- Chore: fixing jquery deprications (ContextMenu)
+
+
 ## 13.0.6
 
 - Fix XP bug, from Number to String

@@ -36,7 +36,7 @@ export class MYZItemSheet extends foundry.appv1.sheets.ItemSheet {
             isEmbedded: item.isEmbedded,
             type: item.type,      
             flags: item.flags,
-            descriptionHTML: await TextEditor.enrichHTML(item.system.description, {
+            descriptionHTML: await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, {
               secrets: item.isOwner,
               async: true
             })

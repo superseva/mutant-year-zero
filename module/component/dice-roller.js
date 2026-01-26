@@ -259,7 +259,7 @@ export class DiceRoller {
             modifiers: modifiers,
             weaponNotes: weaponNotes
         };
-        const html = await renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", htmlData);
+        const html = await foundry.applications.handlebars.renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", htmlData);
         let chatData = {
             user: game.user.id,
             speaker:ChatMessage.getSpeaker({actor: actor, token: actor?.token, alias: actor?.name || ""}),

@@ -139,7 +139,7 @@ export const migrateItemData = function (item) {
  * @return {Object}       The updateData to apply
  */
 export const migrateSceneData = function (scene) {
-    const tokens = duplicate(scene.tokens);
+    const tokens = foundry.utils.duplicate(scene.tokens);
     return {
         tokens: tokens.map((t) => {
             if (!t.actorId || t.actorLink || !t.actorData.data) {
