@@ -513,10 +513,6 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         rollModifiers.gearDiceTotal = 0;
         rollModifiers.modifiersToGear = [];
 
-        console.log(rollModifiers)
-
-
-
         RollDialog.OpenRollDialog({
             rollName: rollName,
             attributeName: attName,
@@ -644,7 +640,6 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     _getAttibuteModifiers(attribute){
         const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
-        console.log(itmMap)
         const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[attribute] != null && i.system.modifiers[attribute] !== 0)
         let modifiersToAttributes = []
         const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) {
