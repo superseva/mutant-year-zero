@@ -46,7 +46,7 @@ export class MYZSpaceshipSheet extends foundry.appv1.sheets.ActorSheet {
 
         await this._prepareOccupants(context);
         this._prepareItems(context)
-        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
+        context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description, {
             secrets: this.actor.isOwner,
             async: true
         });
@@ -159,25 +159,25 @@ export class MYZSpaceshipSheet extends foundry.appv1.sheets.ActorSheet {
                 icon: `<i class="fas fa-comment" title="${toChatLabel}"></i>`,
                 name: '',
                 callback: (t) => {
-                    this._onPostItem(t.data("item-id"));
+                    this._onPostItem(t.dataset.itemId);
                 },
             },
             {
                 icon: `<i class="fas fa-edit" title="${editLabel}"></i>`,
                 name: '',
                 callback: (t) => {
-                    this._editOwnedItemById(t.data("item-id"));
+                    this._editOwnedItemById(t.dataset.itemId);
                 },
             },
             {
                 icon: `<i class="fa-regular fa-box" title="${stashLabel}"></i>`,
                 name: '',
                 callback:async (t) => {
-                    const item = this.actor.items.get(t.data("item-id"));
-                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleStashed(t.data("item-id"), item)]);
+                    const item = this.actor.items.get(t.dataset.itemId);
+                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleStashed(t.dataset.itemId, item)]);
                 },
                 condition: (t) => {
-                    if (t.data("physical")=="1") {
+                    if (t.dataset.physical=="1") {
                         return true;
                     } else {
                         return false;
@@ -188,12 +188,12 @@ export class MYZSpaceshipSheet extends foundry.appv1.sheets.ActorSheet {
                 icon: `<i class="fas fa-trash" title="${deleteLabel}"></i>`,
                 name: '',
                 callback: (t) => {
-                    this._deleteOwnedItemById(t.data("item-id"));
+                    this._deleteOwnedItemById(t.dataset.itemId);
                 }
             },
         ];
 
-        new ContextMenu(html, ".editable-item", menu_items);
+        new foundry.applications.ux.ContextMenu(html[0], ".editable-item", menu_items, { jQuery: false });
     }
 
     async _onDropOccupantActor(event) {
@@ -273,7 +273,7 @@ export class MYZSpaceshipSheet extends foundry.appv1.sheets.ActorSheet {
         event.preventDefault();
         const header = event.currentTarget;
         const type = header.dataset.type;
-        const data = duplicate(header.dataset);
+        const data = foundry.utils.duplicate(header.dataset);
         const name = `New ${type.capitalize()}`;
         const itemData = {
             name: name,

@@ -64,7 +64,7 @@ export class MYZVehicleSheet extends foundry.appv1.sheets.ActorSheet {
             }
         }
         context.occupants = occupants;
-        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
+        context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description, {
             secrets: this.actor.isOwner,
             async: true
         });

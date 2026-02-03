@@ -40,7 +40,7 @@ export class MYZArkSheet extends foundry.appv1.sheets.ActorSheet {
         }
 
         this._prepareArkProjects(context);
-        context.descriptionHTML = await TextEditor.enrichHTML(context.system.description, {
+        context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description, {
             secrets: this.actor.isOwner,
             async: true
         });
@@ -103,7 +103,7 @@ export class MYZArkSheet extends foundry.appv1.sheets.ActorSheet {
         event.preventDefault();
         const header = event.currentTarget;
         const type = header.dataset.type;
-        const data = duplicate(header.dataset);
+        const data = foundry.utils.duplicate(header.dataset);
         const name = `New ${type.capitalize()}`;
         const itemData = {
             name: name,

@@ -12,3 +12,4 @@ npm-debug.log
 *.rar
 
 foundry.js
+foundry.mjs

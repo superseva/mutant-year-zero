@@ -369,25 +369,25 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                 icon: `<i class="fas fa-comment" title="${toChatLabel}"></i>`,
                 name: '',
                 callback: (t) => {
-                    this._onPostItem(t.data("item-id"));
+                    this._onPostItem(t.dataset.itemId);
                 },
             },
             {
                 icon: `<i class="fas fa-edit" title="${editLabel}"></i>`,
                 name: '',
                 callback: (t) => {
-                    this._editOwnedItemById(t.data("item-id"));
+                    this._editOwnedItemById(t.dataset.itemId);
                 },
             },
             {
                 icon: `<i class="fa-regular fa-box" title="${stashLabel}"></i>`,
                 name: '',
                 callback:async (t) => {
-                    const item = this.actor.items.get(t.data("item-id"));
-                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleStashed(t.data("item-id"), item)]);
+                    const item = this.actor.items.get(t.dataset.itemId);
+                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleStashed(t.dataset.itemId, item)]);
                 },
                 condition: (t) => {
-                    if (t.data("physical")=="1") {
+                    if (t.dataset.physical=="1") {
                         return true;
                     } else {
                         return false;
@@ -398,34 +398,24 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                 icon: `<i class="fas fa-trash" title="${deleteLabel}"></i>`,
                 name: '',
                 callback: (t) => {
-                    this._deleteOwnedItemById(t.data("item-id"));
+                    this._deleteOwnedItemById(t.dataset.itemId);
                 }
             },
         ];
 
-        new ContextMenu(html, ".editable-item", menu_items);
+        new foundry.applications.ux.ContextMenu(html[0], ".editable-item", menu_items, { jQuery: false });
 
-        new ContextMenu(html, ".editable-armor", [            
+        new foundry.applications.ux.ContextMenu(html[0], ".editable-armor", [            
             {
                 icon: `<i class="fa-solid fa-shirt" title="${equipLabel}"></i>`,
                 name: '',
                 callback: async (t) => {
-                    const item = this.actor.items.get(t.data("item-id"));
-                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleEquipped(t.data("item-id"), item)]);
+                    const item = this.actor.items.get(t.dataset.itemId);
+                    await this.actor.updateEmbeddedDocuments("Item", [this._toggleEquipped(t.dataset.itemId, item)]);
                 }
             },
             ...menu_items
-        ]);
-
-        // Drag events for macros.
-        /*if (this.actor.isOwner) {
-            let handler = (ev) => this._onDragItemStart(ev);
-            html.find("li.box-item").each((i, li) => {
-                if (li.classList.contains("header")) return;
-                li.setAttribute("draggable", true);
-                li.addEventListener("dragstart", handler, false);
-            });
-        }*/
+        ], { jQuery: false });
     }
     
 
@@ -483,7 +473,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         event.preventDefault();
         const header = event.currentTarget;
         const type = header.dataset.type;
-        const data = duplicate(header.dataset);
+        const data = foundry.utils.duplicate(header.dataset);
         const name = `New ${type.capitalize()}`;
         const itemData = {
             name: name,
@@ -522,10 +512,6 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         rollModifiers.modifiersToSkill = [];
         rollModifiers.gearDiceTotal = 0;
         rollModifiers.modifiersToGear = [];
-
-        console.log(rollModifiers)
-
-
 
         RollDialog.OpenRollDialog({
             rollName: rollName,
@@ -654,7 +640,6 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     _getAttibuteModifiers(attribute){
         const itmMap = this.actor.items.filter(itm => itm.system.modifiers != undefined)
-        console.log(itmMap)
         const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[attribute] != null && i.system.modifiers[attribute] !== 0)
         let modifiersToAttributes = []
         const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) {
