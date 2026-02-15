@@ -1,5 +1,3 @@
-2026/02/14-19:08:01.347 29ac Recovering log #367
-2026/02/14-19:08:01.347 29ac Level-0 table #369: started
-2026/02/14-19:08:01.348 29ac Level-0 table #369: 735 bytes OK
-2026/02/14-19:08:01.353 29ac Delete type=0 #367
-2026/02/14-19:08:01.353 29ac Delete type=3 #366
+2026/02/15-00:39:34.281 ac8 Recovering log #370
+2026/02/15-00:39:34.286 ac8 Delete type=0 #370
+2026/02/15-00:39:34.286 ac8 Delete type=3 #368
