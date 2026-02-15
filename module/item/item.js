@@ -62,17 +62,31 @@ export class MYZItem extends Item {
             attName = this.system.attribute;
             skill = this;
         }
+
         // For weapon we need to add the weapon bonus.value to the gear dice total, 
         // for skills we just use the skill dice total as is since it already includes the skill value.
         let gearBonus = itemData.bonus?.value ?? 0;
+        //if the parent actor doesn't have the skill related to the weapon we need to create empty skillRollData with default 0 values to avoid errors in the roll dialog.
+        //skill: {default:0, total: 0, modifiers: []},
+        let skillRollData = {};
+        let gearRollData = {};
+        let ownedSkills = actor.items.filter(i => i.type === "skill"&& i.system.skillKey === skill.system.skillKey);
+        if (ownedSkills.length === 0) {
+            ui.notifications.warn(`MYZ: You do not have the skill required to roll this item.`);
+            skillRollData = {default:0, total: 0, modifiers: []};
+            gearRollData = {default:gearBonus, total: gearBonus, modifiers: []};
+        }else{
+            skillRollData = {default:skill.system.value, total: rollData.skillDiceTotals[skill.system.skillKey].skillDiceTotal, modifiers: rollData.skillDiceTotals[skill.system.skillKey].modifiersToSkill};
+            gearRollData = {default:gearBonus, total: rollData.skillDiceTotals[skill.system.skillKey].gearDiceTotal + gearBonus, modifiers: rollData.skillDiceTotals[skill.system.skillKey].modifiersToGear};
+        }   
 
        await RollDialogV2.create({
                 rollName: this.name,
                 attributeName: attName,
                 diceRoller: new DiceRoller(),
                 base: {default:rollData.attributeDiceTotals[attName].baseDiceUnmodified, total: rollData.attributeDiceTotals[attName].baseDiceTotal, modifiers: rollData.attributeDiceTotals[attName].modifiersToAttributes},
-                skill: {default:skill.system.value, total: rollData.skillDiceTotals[skill.system.skillKey].skillDiceTotal, modifiers: rollData.skillDiceTotals[skill.system.skillKey].modifiersToSkill},
-                gear: {default:gearBonus, total: rollData.skillDiceTotals[skill.system.skillKey].gearDiceTotal + gearBonus, modifiers: rollData.skillDiceTotals[skill.system.skillKey].modifiersToGear},
+                skill: skillRollData,
+                gear: gearRollData,
                 modifierDefault: 0,
                 actor: this.actor,
                 actorUuid: this.actor.uuid,
