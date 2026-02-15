@@ -45,23 +45,15 @@ export class MYZItem extends Item {
         const rollName = `${actor.name} - ${this.name}`;
         //console.log("Rolling item with data", { rollData, itemData, rollName });
 
-        let skill;
-        let attName = "";
+        let skill = this.type === "weapon" ? this.system.skill : this.type === "skill" ? this : null;;
+        let attName = this.type === "weapon" ? skill.system.attribute : this.type === "skill" ? this.system.attribute : null;;
         if(this.type === "weapon") {
             let hasEnoughBullets = !this.system.useBullets || (this.parent.system.resources?.bullets?.value ?? 0) >= 1;
             if (!hasEnoughBullets) {
                 ui.notifications.warn("MYZ: Not enough bullets to fire this weapon.");
                 return;
-            }       
-            skill = this.system.skill;
-            attName = skill.system.attribute;   
+            }
         } 
-
-        // if it is a skill it should have attribute value.
-        if(this.type === "skill") {
-            attName = this.system.attribute;
-            skill = this;
-        }
 
         // For weapon we need to add the weapon bonus.value to the gear dice total, 
         // for skills we just use the skill dice total as is since it already includes the skill value.
@@ -72,7 +64,7 @@ export class MYZItem extends Item {
         let gearRollData = {};
         let ownedSkills = actor.items.filter(i => i.type === "skill"&& i.system.skillKey === skill.system.skillKey);
         if (ownedSkills.length === 0) {
-            ui.notifications.warn(`MYZ: You do not have the skill required to roll this item.`);
+            //ui.notifications.warn(`MYZ: You do not have the skill required to roll this item.`);
             skillRollData = {default:0, total: 0, modifiers: []};
             gearRollData = {default:gearBonus, total: gearBonus, modifiers: []};
         }else{
