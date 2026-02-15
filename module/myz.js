@@ -23,6 +23,7 @@ import { MYZMutantDataModel, MYZAnimalDataModel,
 
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialog } from "./app/roll-dialog.js";
+import { RollDialogV2 } from "./app/RollDialogV2.mjs";
 
 
 //import * as migrations from "./migration.js";
@@ -46,6 +47,7 @@ Hooks.once("init", async function () {
         rollItemMacro,
         DiceRoller,
         RollDialog,
+        RollDialogV2
     };
     /**
      * Set an initiative formula for the system

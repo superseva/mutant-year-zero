@@ -7,7 +7,7 @@
             </div> -->
             <div class="flexrow dice-total">
                 <img src="systems/mutant-year-zero/ui/dice-base-6.png" title="{{localize base.name}}"/>                
-                <input type="number" name="base-input" data-type="Number" id="{{base.type}}" value="{{base.total}}" />
+                <input type="number" name="base" data-type="Number" id="{{base.type}}" value="{{base.total}}" />
             </div>
             <div>
                 {{#ifCond base.modifiers.length '>' 0}}
@@ -27,7 +27,7 @@
             </div> -->
             <div class="flexrow dice-total">
                 <img src="systems/mutant-year-zero/ui/dice-skill-6.png" title="{{localize skill.name}}"/>
-                <input type="number" name="skill-input" data-type="Number" id="{{skill.type}}" value="{{skill.total}}" />
+                <input type="number" name="skill" data-type="Number" id="{{skill.type}}" value="{{skill.total}}" />
             </div>
             <div>                
                 {{#ifCond skill.modifiers.length '>' 0}}                
@@ -47,7 +47,7 @@
             </div> -->
             <div class="flexrow dice-total">                
                 <img src="systems/mutant-year-zero/ui/dice-gear-6.png" title="{{localize gear.name}}"/>
-                <input type="number" name="gear-input" data-type="Number" id="{{gear.type}}" value="{{gear.total}}" />
+                <input type="number" name="gear" data-type="Number" id="{{gear.type}}" value="{{gear.total}}" />
             </div>
              <div>                
                 {{#ifCond gear.modifiers.length '>' 0}}

@@ -1,4 +1,5 @@
 import { DiceRoller } from "../component/dice-roller.js";
+import { RollDialogV2 } from "../app/RollDialogV2.mjs";
 import { RollDialog } from "../app/roll-dialog.js";
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs'
 
@@ -162,23 +163,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
             .find('.effect-control')
             .click((ev) => onManageActiveEffect(ev, this.actor))
 
-        /* -------------------------------------------- */
-        /* ROLL & PUSH BUTTONS
-        /* -------------------------------------------- */
 
-        html.find(".button-roll").click((ev) => {
-            ev.preventDefault();
-            let rollName = "MYZ.CUSTOM_ROLL";
-            RollDialog.OpenRollDialog({
-                rollName: rollName,
-                diceRoller: this.diceRoller,
-            });
-        });
-
-        html.find(".button-push").click((ev) => {
-            ev.preventDefault();
-            this.diceRoller.push({ actor: this.actor });
-        });
 
         /* -------------------------------------------- */
         /* LISTEN VALUE CHANGING
@@ -244,9 +229,9 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         html.find(".chatable").click(this._onItemSendToChat.bind(this));
 
         //Roll Rot
-        html.find(".roll-rot").click((event) => {
+        html.find(".roll-rot").click(async (event) => {
             let rotTotal = parseInt(this.actor.system.rot.value) + parseInt(this.actor.system.rot.permanent);
-            RollDialog.OpenRollDialog({
+            await RollDialogV2.create({
                 rollName: game.i18n.localize("MYZ.ROT"),
                 diceRoller: this.diceRoller,
                 base: {default:rotTotal, total: rotTotal, modifiers: null}
@@ -254,7 +239,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         });
 
         //Roll Weapon Item
-        html.find(".roll-weapon").click((event) => {
+        html.find(".roll-weapon").click(async (event) => {
             const itemId = $(event.currentTarget).data("item-id");
             const weapon = this.actor.items.get(itemId);
             let testName = weapon.name;
@@ -296,7 +281,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                 }
             }
             
-            RollDialog.OpenRollDialog({
+            await RollDialogV2.create({
                 rollName: testName,
                 attributeName: skill.system.attribute,
                 itemId,
@@ -314,8 +299,8 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         });
 
         //Roll Armor
-        html.find(".armor-roll").click((event) => {
-            RollDialog.OpenRollDialog({
+        html.find(".armor-roll").click(async (event) => {
+            await RollDialogV2.create({
                 rollName: game.i18n.localize("MYZ.ARMOR"),
                 diceRoller: this.diceRoller,
                 gear: {default:this.actor.system.armorrating.value, total: this.actor.system.armorrating.value, modifiers: null}
@@ -323,12 +308,12 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         });
 
         //Roll Armor Item
-        html.find(".armor-item-roll").click((event) => {
+        html.find(".armor-item-roll").click(async (event) => {
             const itemBox = $(event.currentTarget).parents(".box-item");
             const itemId = itemBox.data("item-id");
             const armorItem = this.actor.items.get(itemId);
             let testName = armorItem.name;
-            RollDialog.OpenRollDialog({
+            await RollDialogV2.create({
                 rollName: testName,
                 itemId: itemId,
                 diceRoller: this.diceRoller,
@@ -337,12 +322,12 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         });
 
         //Roll Armor Rot Protection
-        html.find(".armor-rot-protection-roll").click((event) => {
+        html.find(".armor-rot-protection-roll").click(async (event) => {
             const itemBox = $(event.currentTarget).parents(".box-item");
             const itemId = itemBox.data("item-id");
             const armorItem = this.actor.items.get(itemId);
             let testName = armorItem.name;
-            RollDialog.OpenRollDialog({
+            await RollDialogV2.create({
                 rollName: testName,
                 diceRoller: this.diceRoller,
                 gear: {default:armorItem.system.rot.value, total: armorItem.system.rot.value, modifiers: null}
@@ -501,7 +486,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         item.sendToChat();
     }
 
-    _onRollAttribute(event) {
+    async _onRollAttribute(event) {
         event.preventDefault();
         const attName = $(event.currentTarget).data("attribute");
         const attVal = this.actor.system.attributes[attName].value;
@@ -513,7 +498,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         rollModifiers.gearDiceTotal = 0;
         rollModifiers.modifiersToGear = [];
 
-        RollDialog.OpenRollDialog({
+        await RollDialogV2.create({
             rollName: rollName,
             attributeName: attName,
             diceRoller: this.diceRoller,
@@ -531,7 +516,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
      * @param {Event} event   The originating click event
      * @private
      */
-    _onRollSkill(event) {
+    async _onRollSkill(event) {
         event.preventDefault();
         const element = event.currentTarget;
         const itemId = $(element).data("item-id");
@@ -552,7 +537,7 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
                 skillName = game.i18n.localize(`MYZ.SKILL_${skill.system.skillKey}`);
             }
 
-            RollDialog.OpenRollDialog({
+            await RollDialogV2.create({
                 rollName: skillName,
                 attributeName: attName,
                 diceRoller: this.diceRoller,

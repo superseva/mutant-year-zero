@@ -52,7 +52,7 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
         value: new StringField({nullable: true, blank: true}) }),
 
       creatureType: new StringField({nullable: true, blank: true, initial: ""}),
-      encumbranceBonus: new NumberField({integer: true}),
+      encumbranceBonus: new NumberField({integer: true, initial: 0}),
 
       attributes: new SchemaField({
         strength: new SchemaField({
