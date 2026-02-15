@@ -54,20 +54,22 @@ export class DiceRoller {
         
     }
 
-    static async Push(message, html, data){
 
+    static async Push(message, html, data){
         // If push bullet checkbox is selected and actor doesn't have bullets, return false
-        const messageElement = html[0]?.closest('li.chat-message');
-        const pushBulletChecked = messageElement?.querySelector('input[name="push-bullet"]')?.checked ?? false;
+        const pushBulletChecked = html.querySelector('input[name="push-bullet"]')?.checked ?? false;
         if (pushBulletChecked && message.getFlag("mutant-year-zero", "actorUuid")) {
             const actorInstance = await fromUuid(message.getFlag("mutant-year-zero", "actorUuid"));
             //console.log("Actor instance for push bullet check", actorInstance);
             const hasBullets = actorInstance?.system?.resources.bullets?.value > 0;
             if (!hasBullets) {
-            ui.notifications?.warn(game.i18n.localize("MYZ.NO_BULLETS"));
-            return false;
+                ui.notifications?.warn(game.i18n.localize("MYZ.NO_BULLETS"));
+                return false;
+            } else {
+                await actorInstance.spendBullet();
             }
         }
+        
         
         // create ROLL formula from message.flags.dicePool
         if (!message.getFlag("mutant-year-zero", "dicePool"))
@@ -185,12 +187,7 @@ export class DiceRoller {
                     }
             }
 
-            // Spend a Bullet on Push
-            const messageElement = html[0]?.closest('li.chat-message');
-            const pushBulletChecked = messageElement?.querySelector('input[name="push-bullet"]')?.checked ?? false;
-            if (pushBulletChecked) {
-                await actor.spendBullet();
-            }
+            
 
         }
     }

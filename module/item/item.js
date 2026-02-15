@@ -1,3 +1,6 @@
+import { RollDialogV2 } from "../app/RollDialogV2.mjs";
+import { DiceRoller } from "../component/dice-roller.js";
+
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
@@ -26,7 +29,79 @@ export class MYZItem extends Item {
         this.system.skillKeysList = CONFIG.MYZ.SKILLKEYS;
     }
 
+    async roll() {
+        const actor = this.actor;
+        if (!actor) {
+            ui.notifications.warn("MYZ: Cannot roll an item that is not owned by an actor.");
+            return;
+        } else if (!actor.isOwner) {
+            ui.notifications.warn("MYZ: You do not have permission to roll this item.");
+            return;
+        }
+        const rollData = actor.getRollData();
+        const itemData = this.system;
+        const rollName = `${actor.name} - ${this.name}`;
+        console.log("Rolling item with data", { rollData, itemData, rollName });
 
+        let skill;
+        let attName = "";
+        if(this.type === "weapon") {
+
+            let hasEnoughBullets = !this.system.useBullets || (this.parent.system.resources?.bullets?.value ?? 0) >= 1;
+            if (!hasEnoughBullets) {
+                ui.notifications.warn("MYZ: Not enough bullets to fire this weapon.");
+                return;
+            }
+
+            // Determine which skill to use based on weapon category            
+            if (itemData.category === "melee") {
+                if (this.parent.system.creatureType != "robot") {
+                    skill = this.parent.items.find((i) => i.system.skillKey == "FIGHT" && i.type === "skill");
+                } else {
+                    skill = this.parent.items.find((i) => i.system.skillKey === "ASSAULT" && i.type === "skill");
+                }
+            } else {
+                skill = this.parent.items.find((i) => i.system.skillKey == "SHOOT" && i.type === "skill");
+            }
+
+            // Create default skill if not found
+            if (!skill) {
+                skill = {
+                    type: "skill",
+                    uuid: "",
+                    system: {
+                        value: 0,
+                        skillKey: itemData.category === "melee" 
+                            ? (this.parent.system.creatureType != "robot" ? "FIGHT" : "ASSAULT")
+                            : "SHOOT",
+                        attribute: itemData.category === "melee" ? "strength" : "agility"
+                    }
+                };
+            }
+
+            attName = skill.system.attribute;
+        }       
+
+        // if it is a skill it should have attribute value.
+        if(this.type === "skill") {
+            attName = this.system.attribute;
+            skill = this;
+        }
+
+       await RollDialogV2.create({
+                rollName: this.name,
+                attributeName: attName,
+                diceRoller: new DiceRoller(),
+                base: {default:rollData.attributeDiceTotals[attName].baseDiceUnmodified, total: rollData.attributeDiceTotals[attName].baseDiceTotal, modifiers: rollData.attributeDiceTotals[attName].modifiersToAttributes},
+                skill: {default:this.system.value, total: rollData.skillDiceTotals[skill.system.skillKey].skillDiceTotal, modifiers: rollData.skillDiceTotals[skill.system.skillKey].modifiersToSkill},
+                gear: {default:0, total: rollData.skillDiceTotals[skill.system.skillKey].gearDiceTotal, modifiers: rollData.skillDiceTotals[skill.system.skillKey].modifiersToGear},
+                modifierDefault: 0,
+                actor: this.actor,
+                actorUuid: this.actor.uuid,
+                skillUuid:this.uuid,
+                itemId: this.id,
+            });
+    }
     async sendToChat() {
         const itemData = foundry.utils.duplicate(this.system);
         itemData.name = this.name;

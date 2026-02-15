@@ -7,6 +7,7 @@ const {
 // Base Actor DataModel -------------------------------------------------
 
 class MYZActorDataModel extends foundry.abstract.TypeDataModel {
+
   static defineSchema() {
     return {
       role: new StringField({nullable: true, blank: true}),
@@ -104,7 +105,46 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     };
   }
 
-  get encumbrance() {
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    // Roll Modifiers
+    const attributeModifiers = {};
+    for (let attributeName of Object.keys(this.parent.system.attributes)) {
+        attributeModifiers[attributeName] = this._getAttributeModifiers(attributeName);
+    }
+    const skillModifiers = {};
+    for (let skill of this.parent.items.filter(i => i.type === "skill")) {
+        skillModifiers[skill.system.skillKey] = this._getRollModifiers(skill);
+    }
+    // Update Armor Rating
+    if (this.parent.system.creatureType != "robot") {           
+      let equippedArmor = this.parent.items.filter(i=>i.type=="armor" && !i.system.stashed && i.system.equipped && i.system.armorType == "armor");
+      if(equippedArmor.length){
+          let equippedArmorTotal = equippedArmor.reduce(function (acc, obj) { return parseInt(acc) + parseInt(obj.system.rating.value); }, 0);
+          this.parent.system.armorrating.value = parseInt(equippedArmorTotal);
+      }else{
+          this.parent.system.armorrating.value = 0;
+      }
+    } else {
+      let chassisArmorTotal = 0;
+      this.parent.items._source.forEach((i) => {
+          if (i.type == "chassis" && i.system.equipped && !i.system.stashed) {
+              chassisArmorTotal += parseInt(i.system.armor);
+          }
+      });
+      this.parent.system.armorrating.value = chassisArmorTotal;      
+    }
+
+    // slap this into the system for easy access during rolls and other calculations
+    this.attributeDiceTotals = attributeModifiers;
+    this.skillDiceTotals = skillModifiers;
+    this.encumbrance = this._getEncumbrance();
+
+    //console.log(this);
+
+  }
+
+  _getEncumbrance() {
     // Update encumbrance
     let encumbranceMax = parseInt(this.parent.system.attributes.strength.max) * 2;    
     // Check for SCROUNGER Animal Talent and replace Str with Wits
@@ -121,14 +161,15 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     }
     let encumbranceBonus = (this.parent.system.encumbranceBonus) ? this.parent.system.encumbranceBonus : 0;
     encumbranceMax += encumbranceBonus;
-    let _totalWeight = 0;
+    let _totalWeight = 0.0;
     // add weight of physical items
     let physicalItems = this.parent.items.filter(i=>i.system.weight!=undefined);
-    let weightedItems = physicalItems.filter(_itm => _itm.system.weight > 0 && !_itm.system.stashed);
-    var itemsWeight = weightedItems.reduce(function (accumulator, i) {
-        return accumulator + (parseInt(i.system.quantity) * Number(i.system.weight));
+    let weightedItems = physicalItems.filter(_itm => Number(_itm.system.weight) > 0 && !_itm.system.stashed);
+    var itemsWeight = weightedItems.reduce(function (accumulator, i) {      
+        return accumulator + (parseInt(i.system.quantity)||1 * Number(i.system.weight));
     }, 0);
     _totalWeight += Number(itemsWeight);
+
     //add weight of grub, water, booze and bullets
     try {
         _totalWeight += parseInt(this.parent.system.resources.grub.value) / 4;
@@ -149,27 +190,66 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     };
   }
 
-  prepareDerivedData() {
-    super.prepareDerivedData();
-    // Update Armor Rating
-    if (this.parent.system.creatureType != "robot") {           
-      let equippedArmor = this.parent.items.filter(i=>i.type=="armor" && !i.system.stashed && i.system.equipped && i.system.armorType == "armor");
-      if(equippedArmor.length){
-          let equippedArmorTotal = equippedArmor.reduce(function (acc, obj) { return parseInt(acc) + parseInt(obj.system.rating.value); }, 0);
-          this.parent.system.armorrating.value = parseInt(equippedArmorTotal);
-      }else{
-          this.parent.system.armorrating.value = 0;
-      }
-    } else {
-      let chassisArmorTotal = 0;
-      this.parent.items._source.forEach((i) => {
-          if (i.type == "chassis" && i.system.equipped && !i.system.stashed) {
-              chassisArmorTotal += parseInt(i.system.armor);
-          }
-      });
-      this.parent.system.armorrating.value = chassisArmorTotal;
-    }
+  _getAttributeModifiers(attribute) {
+      const itmMap = this.parent.items.filter(itm => itm.system.modifiers != undefined);
+      const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[attribute] != null && i.system.modifiers[attribute] !== 0);
+      let modifiersToAttributes = [];
+
+      const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) {
+          modifiersToAttributes.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[attribute]});
+          return acc + obj.system.modifiers[attribute];
+      }, 0);
+
+      const baseDice = this.parent.system.attributes[attribute].value || 0;
+      let baseDiceTotal = parseInt(baseDice) + (parseInt(baseDiceModifier) || 0);
+      baseDiceTotal = Math.max(baseDiceTotal, 0);
+
+      return { baseDiceTotal: baseDiceTotal, modifiersToAttributes: modifiersToAttributes, baseDiceUnmodified: this.parent.system.attributes[attribute].value };
   }
+
+  _getRollModifiers(skill) {
+        // SKILL MODIFIERS
+        let skillDiceTotal = parseInt(skill.system.value);
+        const itmMap = this.parent.items.filter(itm => itm.system.modifiers != undefined);
+        const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != null && i.system.modifiers[skill.system.skillKey] !== 0);
+        let modifiersToSkill = [];
+
+        if (skill.system.skillKey != "") {
+            const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) {
+                modifiersToSkill.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[skill.system.skillKey] });
+                return acc + obj.system.modifiers[skill.system.skillKey];
+            }, 0);
+            skillDiceTotal += parseInt(skillDiceModifier);
+        }
+
+        // ATTRIBUTE MODIFIERS
+        const attrModifiers = this._getAttributeModifiers(skill.system.attribute);
+
+        // GEAR MODIFIERS
+        const itmGMap = this.parent.items.filter(itm => itm.system.gearModifiers != undefined);
+        const itemsThatModifyGear = itmGMap.filter(i => i.system.gearModifiers[skill.system.skillKey] != null && i.system.gearModifiers[skill.system.skillKey] != 0);
+        let modifiersToGear = [];
+        let gearDiceTotal = 0;
+
+        if (skill.system.skillKey != "") {
+            const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) {
+                modifiersToGear.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.gearModifiers[skill.system.skillKey] });
+                return acc + obj.system.gearModifiers[skill.system.skillKey];
+            }, 0);
+            gearDiceTotal = parseInt(gearDiceModifier);
+        }
+
+        return {
+            skillDiceTotal: skillDiceTotal,
+            baseDiceTotal: attrModifiers.baseDiceTotal,
+            gearDiceTotal: gearDiceTotal,
+            modifiersToSkill: modifiersToSkill,
+            modifiersToAttributes: attrModifiers.modifiersToAttributes,
+            modifiersToGear: modifiersToGear,
+            skillDiceUnmodified: skill.system.value,
+        };
+  }
+  
 }
 
 // Type-specific actor DataModel subclasses with embedded initial values
@@ -190,10 +270,6 @@ export class MYZMutantDataModel extends MYZActorDataModel {
       })
     };    
   }
-  get encumbrance() {
-    return super.encumbrance;
-  }
-
 }
 
 export class MYZAnimalDataModel extends MYZActorDataModel {
@@ -346,6 +422,8 @@ export class MYZSpaceshipDataModel extends MYZActorDataModel {
     };
   }
 }
+
+
 
 
 // Item Mixins -------------------------------------------------
