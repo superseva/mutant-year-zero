@@ -135,13 +135,12 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
       this.parent.system.armorrating.value = chassisArmorTotal;      
     }
 
-    // slap this into the system for easy access during rolls and other calculations
+    // Slap this onto the system for easy access during rolls and other calculations
+    // It will be under actor.system.attributeDiceTotals and actor.system.skillDiceTotals...etc
     this.attributeDiceTotals = attributeModifiers;
     this.skillDiceTotals = skillModifiers;
     this.encumbrance = this._getEncumbrance();
-
     //console.log(this);
-
   }
 
   _getEncumbrance() {
@@ -230,7 +229,6 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
         const itemsThatModifyGear = itmGMap.filter(i => i.system.gearModifiers[skill.system.skillKey] != null && i.system.gearModifiers[skill.system.skillKey] != 0);
         let modifiersToGear = [];
         let gearDiceTotal = 0;
-
         if (skill.system.skillKey != "") {
             const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) {
                 modifiersToGear.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.gearModifiers[skill.system.skillKey] });
@@ -643,8 +641,43 @@ export class MYZWeaponDataModel extends foundry.abstract.TypeDataModel {
       artifactBonus: new NumberField({integer: true, min: 0, initial: 0}),
       skillBonus: new NumberField({integer: true, min: 0, initial: 0}),
       useBullets: new BooleanField({ initial: false })
-    };
+    };        
   }
+
+  prepareDerivedData() {
+        super.prepareDerivedData();
+        if(!this.parent.parent) return;
+        
+        // Determine which skill to use based on weapon category     
+        let skill;      
+        if (this.category === "melee") {
+            if (this.parent.parent.system.creatureType != "robot") {
+                skill = this.parent.parent.items.find((i) => i.system.skillKey == "FIGHT" && i.type === "skill");
+            } else {
+                skill = this.parent.parent.items.find((i) => i.system.skillKey === "ASSAULT" && i.type === "skill");
+            }
+        } else {
+            skill = this.parent.parent.items.find((i) => i.system.skillKey == "SHOOT" && i.type === "skill");
+        }
+
+        // Create default skill if not found
+            if (!skill) {
+                skill = {
+                    type: "skill",
+                    uuid: "",
+                    system: {
+                        value: 0,
+                        skillKey: this.category === "melee" 
+                            ? (this.parent.parent.system.creatureType != "robot" ? "FIGHT" : "ASSAULT")
+                            : "SHOOT",
+                        attribute: this.category === "melee" ? "strength" : "agility"
+                    }
+                };
+            }
+
+        this.skill = skill;
+        this.skillKey = skill.system.skillKey;
+    }
 }
 
 // ARMOR

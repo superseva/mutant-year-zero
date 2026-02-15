@@ -29,6 +29,8 @@ export class MYZItem extends Item {
         this.system.skillKeysList = CONFIG.MYZ.SKILLKEYS;
     }
 
+    
+
     async roll() {
         const actor = this.actor;
         if (!actor) {
@@ -46,41 +48,16 @@ export class MYZItem extends Item {
         let skill;
         let attName = "";
         if(this.type === "weapon") {
-
             let hasEnoughBullets = !this.system.useBullets || (this.parent.system.resources?.bullets?.value ?? 0) >= 1;
             if (!hasEnoughBullets) {
                 ui.notifications.warn("MYZ: Not enough bullets to fire this weapon.");
                 return;
-            }
-
-            // Determine which skill to use based on weapon category            
-            if (itemData.category === "melee") {
-                if (this.parent.system.creatureType != "robot") {
-                    skill = this.parent.items.find((i) => i.system.skillKey == "FIGHT" && i.type === "skill");
-                } else {
-                    skill = this.parent.items.find((i) => i.system.skillKey === "ASSAULT" && i.type === "skill");
-                }
-            } else {
-                skill = this.parent.items.find((i) => i.system.skillKey == "SHOOT" && i.type === "skill");
-            }
-
-            // Create default skill if not found
-            if (!skill) {
-                skill = {
-                    type: "skill",
-                    uuid: "",
-                    system: {
-                        value: 0,
-                        skillKey: itemData.category === "melee" 
-                            ? (this.parent.system.creatureType != "robot" ? "FIGHT" : "ASSAULT")
-                            : "SHOOT",
-                        attribute: itemData.category === "melee" ? "strength" : "agility"
-                    }
-                };
-            }
-
+            }       
+            skill = this.system.skill;
             attName = skill.system.attribute;
-        }       
+            // add weapon bonus value to precalculated modifiers for gear dice total
+            rollData.skillDiceTotals[skill.system.skillKey].gearDiceTotal = rollData.skillDiceTotals[skill.system.skillKey].gearDiceTotal + this.system.bonus.value;    
+        } 
 
         // if it is a skill it should have attribute value.
         if(this.type === "skill") {
@@ -99,6 +76,7 @@ export class MYZItem extends Item {
                 actor: this.actor,
                 actorUuid: this.actor.uuid,
                 skillUuid:this.uuid,
+                itemUuid: this.uuid,
                 itemId: this.id,
             });
     }

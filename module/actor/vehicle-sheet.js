@@ -1,5 +1,5 @@
 import { DiceRoller } from "../component/dice-roller.js";
-import { RollDialog } from "../app/roll-dialog.js";
+import { RollDialogV2 } from "../app/RollDialogV2.mjs";
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}

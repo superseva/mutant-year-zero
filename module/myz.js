@@ -22,7 +22,6 @@ import { MYZMutantDataModel, MYZAnimalDataModel,
     MYZGearDataModel, MYZArtifactDataModel, MYZCriticalDataModel, MYZProjectDataModel} from "./data-model.js";
 
 import { DiceRoller } from "./component/dice-roller.js";
-import { RollDialog } from "./app/roll-dialog.js";
 import { RollDialogV2 } from "./app/RollDialogV2.mjs";
 
 
@@ -46,7 +45,6 @@ Hooks.once("init", async function () {
         MYZSpaceshipSheet,
         rollItemMacro,
         DiceRoller,
-        RollDialog,
         RollDialogV2
     };
     /**

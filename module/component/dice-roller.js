@@ -2,7 +2,7 @@
 
 export class DiceRoller {
 
-    static async Roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", attributeName = null, itemId = null, modifiers = null } = {}) {
+    static async Roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", itemUuid = "", attributeName = null, itemId = null, modifiers = null } = {}) {
         let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;
         
         let roll = new Roll(rollFormula);
@@ -35,6 +35,7 @@ export class DiceRoller {
             actor: actor,
             actorUuid: actorUuid,
             skillUuid:skillUuid,
+            itemUuid: itemUuid,
             attributeName: attributeName,
             itemId: itemId,
             modifiers: modifiers,
@@ -210,22 +211,29 @@ export class DiceRoller {
     }
 
     /**     * Send the roll result to chat     */
-    static async SendToChat({pushCount = 0, dicePool = null, _roll = null, rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", attributeName = null, itemId = null, modifiers = null} = {}) {
+    static async SendToChat({pushCount = 0, dicePool = null, _roll = null, rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", itemUuid = "", attributeName = null, itemId = null, modifiers = null} = {}) {
  
         let numberOfSuccesses = DiceRoller.CountSuccesses(dicePool);
         let numberOfFailures = DiceRoller.CountFailures(dicePool);
         let numberOfGearFailures = DiceRoller.CountGearFailures(dicePool);
 
+        //console.log(actorUuid, skillUuid)
+        console.log(itemUuid, "Item UUID in SendToChat")
+        let _item = await fromUuid(itemUuid);
+        console.log(_item, "Item from UUID in SendToChat")
+        let _skillKey =  _item.system.skillKey;
         let stuntText = ""
         try{
             const actor = await fromUuid(actorUuid);
             const _skill = await fromUuid(skillUuid)
+            console.log("Actor and skill for stunt text", {actorUuid, skillUuid, itemUuid})
+            
             //stuntText = DiceRoller._getStuntText(_skill, actor)
-            stuntText = actor? CONFIG.MYZ.STUNTS[_skill.system.skillKey][actor.system.creatureType] : "";
+            stuntText = actor? CONFIG.MYZ.STUNTS[_skillKey][actor.system.creatureType] : "";
             // If there is no stunt description for this type of creature return the first description you find            
-            if(stuntText=="" && CONFIG.MYZ.STUNTS[_skill.system.skillKey]){
+            if(stuntText=="" && CONFIG.MYZ.STUNTS[_skillKey]){
                 console.warn('Looking for other stunt description')
-                stuntText = DiceRoller._findFirstNonEmpty(CONFIG.MYZ.STUNTS[_skill.system.skillKey])
+                stuntText = DiceRoller._findFirstNonEmpty(CONFIG.MYZ.STUNTS[_skillKey])
             }
         }catch(error){
             // probably no skill included, or some custom skill

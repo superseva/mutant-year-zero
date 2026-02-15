@@ -22,6 +22,7 @@ export class RollDialogV2 extends foundry.applications.api.DialogV2 {
         actor = null,
         actorUuid = "",
         skillUuid = "",
+        itemUuid = "",
     } = {}) {
         if (!diceRoller) {
             throw new Error("DiceRoller object must be passed to RollDialogV2");
@@ -89,6 +90,7 @@ export class RollDialogV2 extends foundry.applications.api.DialogV2 {
         dialog.actor = actor;
         dialog.actorUuid = actorUuid;
         dialog.skillUuid = skillUuid;
+        dialog.itemUuid = itemUuid;
         dialog.htmlData = htmlData;
 
         // Render and return
@@ -133,6 +135,7 @@ export class RollDialogV2 extends foundry.applications.api.DialogV2 {
             actor: this.actor,
             actorUuid: this.actorUuid,
             skillUuid: this.skillUuid,
+            itemUuid: this.itemUuid,
             attributeName: this.attributeName,
             itemId: this.itemId,
             modifiers: this.htmlData,

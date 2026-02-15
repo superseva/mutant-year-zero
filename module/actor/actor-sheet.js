@@ -1,6 +1,5 @@
 import { DiceRoller } from "../component/dice-roller.js";
 import { RollDialogV2 } from "../app/RollDialogV2.mjs";
-import { RollDialog } from "../app/roll-dialog.js";
 import { onManageActiveEffect, prepareActiveEffectCategories } from '../helpers/effects.mjs'
 
 /**
