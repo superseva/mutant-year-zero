@@ -42,7 +42,7 @@ export class MYZItem extends Item {
         }
         const rollData = actor.getRollData();
         const itemData = this.system;
-        const rollName = `${actor.name} - ${this.name}`;
+        //const rollName = `${actor.name} - ${this.name}`;
         //console.log("Rolling item with data", { rollData, itemData, rollName });
 
         let skill = this.type === "weapon" ? this.system.skill : this.type === "skill" ? this : null;;

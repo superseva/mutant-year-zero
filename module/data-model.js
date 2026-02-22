@@ -107,7 +107,9 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
 
   prepareDerivedData() {
     super.prepareDerivedData();
+
     // Roll Modifiers
+    // TODO: Refactor this to be more efficient by only recalculating modifiers for the skill that was rolled instead of all skills and attributes on every change. Maybe we can calculate and store the modifiers to attributes and skills on each item and then just sum them up here for each skill/attribute instead of looping through all items multiple times for each skill and attribute.  
     const attributeModifiers = {};
     for (let attributeName of Object.keys(this.parent.system.attributes)) {
         attributeModifiers[attributeName] = this._getAttributeModifiers(attributeName);
@@ -661,20 +663,19 @@ export class MYZWeaponDataModel extends foundry.abstract.TypeDataModel {
         }
 
         // Create default skill if not found
-            if (!skill) {
-                skill = {
-                    type: "skill",
-                    uuid: "",
-                    system: {
-                        value: 0,
-                        skillKey: this.category === "melee" 
-                            ? (this.parent.parent.system.creatureType != "robot" ? "FIGHT" : "ASSAULT")
-                            : "SHOOT",
-                        attribute: this.category === "melee" ? "strength" : "agility"
-                    }
-                };
-            }
-
+        if (!skill) {
+            skill = {
+                type: "skill",
+                uuid: "",
+                system: {
+                    value: 0,
+                    skillKey: this.category === "melee" 
+                        ? (this.parent.parent.system.creatureType != "robot" ? "FIGHT" : "ASSAULT")
+                        : "SHOOT",
+                    attribute: this.category === "melee" ? "strength" : "agility"
+                }
+            };
+        }
         this.skill = skill;
         this.skillKey = skill.system.skillKey;
     }
