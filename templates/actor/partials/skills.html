@@ -2,19 +2,15 @@
 
 <div class="box-item header flex row align-center space-between {{system.creatureType}}">
     <label class="item-name">{{localize (toUpperCase (concat 'MYZ.SKILLS_LABEL_' system.creatureType))}}</label>
-    <div class="item-controls">
-        <!-- <a class="item-create" data-type="skill">{{localize "MYZ.Add"}}</a> -->
-    </div>
 </div>
 <div class="box-list skills {{system.creatureType}} {{fixedHeight}}">
     {{#each skills as |skill index|}}
     <div class="box-item flex row align-center space-between editable-item" data-item-id="{{skill._id}}" data-coreSkill="{{skill.system.coreSkill}}">
-        {{#ifCond skill.system.skillKey '!==' ''}}
+        {{#if skill.system.skillKey}}
         <a class="item-name flex row align-center roll-skill rollable" data-item-id="{{skill._id}}"><strong>{{localize (concat "MYZ.SKILL_" skill.system.skillKey)}}</strong></a>
-        {{/ifCond}}
-        {{#ifCond skill.system.skillKey '===' ''}}
+        {{else}}
         <a class="item-name flex row align-center roll-skill rollable" data-item-id="{{skill._id}}"><strong>{{skill.name}}</strong></a>
-        {{/ifCond}}
+        {{/if}}
         <span class="item-controls grid grid-2col align-center">
             <label style="text-align: left">{{trimString3 (localize (createLocalizationString "MYZ.ATTRIBUTE" skill.system.attribute ../system.creatureType))}}
             </label>
