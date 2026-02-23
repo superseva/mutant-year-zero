@@ -3,6 +3,9 @@ import { MYZ } from "./config.js";
 import { registerSystemSettings } from "./settings.js";
 import MYZHooks from "./MYZHooks.js";
 import { MYZActor } from "./actor/actor.js";
+
+import { MYZCharacterSheet } from "./sheets/character-sheet.mjs";
+
 import { MYZMutantSheet } from "./actor/mutant-sheet.js";
 import { MYZAnimalSheet } from "./actor/animal-sheet.js";
 import { MYZRobotSheet } from "./actor/robot-sheet.js";
@@ -35,6 +38,7 @@ Hooks.once("init", async function () {
     game.myz = {
         MYZ,
         MYZActor,
+        MYZCharacterSheet,
         MYZMutantSheet,
         MYZAnimalSheet,
         MYZRobotSheet,
@@ -111,7 +115,7 @@ Hooks.once("init", async function () {
 
     // Register sheet application classes
     foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZMutantSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZCharacterSheet, {
         types: ["mutant"],
         makeDefault: true,
     });

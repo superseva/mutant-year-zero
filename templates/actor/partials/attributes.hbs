@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.agility.value '<' system.attributes.agility.max}}style="background-color:#f1510d9e" {{/ifCond}}>
-        <label class="item-name attribute-name roll-attribute rollable" data-attribute="agility">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_AGILITY_" system.creatureType))}}</label>
+        <label data-action="onRollAttribute" class="item-name attribute-name roll-attribute rollable" data-attribute="agility">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_AGILITY_" system.creatureType))}}</label>
         <div class="item-controls flex row">
             <input type="number" name="system.attributes.agility.value" value="{{system.attributes.agility.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.wits.value '<' system.attributes.wits.max}}style="background-color:#f1510d9e" {{/ifCond}}>
-        <label class="item-name attribute-name roll-attribute rollable" data-attribute="wits">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_WITS_" system.creatureType))}}</label>
+        <label data-action="onRollAttribute" class="item-name attribute-name roll-attribute rollable" data-attribute="wits">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_WITS_" system.creatureType))}}</label>
         <div class="item-controls flex row">
             <input type="number" name="system.attributes.wits.value" value="{{system.attributes.wits.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.empathy.value '<' system.attributes.empathy.max}}style="background-color:#f1510d9e" {{/ifCond}}>
-        <label class="item-name attribute-name roll-attribute rollable" data-attribute="empathy">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_EMPATHY_" system.creatureType))}}</label>
+        <label data-action="onRollAttribute" class="item-name attribute-name roll-attribute rollable" data-attribute="empathy">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_EMPATHY_" system.creatureType))}}</label>
         <div class="item-controls flex row">
             <input type="number" name="system.attributes.empathy.value" value="{{system.attributes.empathy.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>

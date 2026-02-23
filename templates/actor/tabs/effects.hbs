@@ -1,0 +1,42 @@
+<section
+  class='tab effects {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='effects'>
+<h1>EFFECTS</h1>
+   <ol class="items-list effects-list">
+    {{#each effects as |section sid|}}
+    <li class="items-header flexrow" data-effect-type="{{section.type}}">
+        <h3 class="item-name effect-name flexrow">{{localize section.label}}</h3>
+        <div class="effect-source">{{localize "MYZ.TEMPLATES.Source"}}</div>
+        <div class="effect-source">{{localize "MYZ.TEMPLATES.Duration"}}</div>
+        <div class="item-controls effect-controls flexrow">
+            <a class="effect-control" data-action="create" title="{{localize 'MYZ.EffectCreate'}}">{{localize "MYZ.Add"}}</a>
+        </div>
+    </li>
+
+    <ol class="item-list">
+        {{#each section.effects as |effect|}}
+        <li class="item effect flexrow" data-effect-id="{{effect.id}}">
+            <div class="item-name effect-name flexrow">
+                <img class="item-image" style="max-width: 20px; max-height: 20px; " src="{{effect.icon}}" />
+                <h4>{{effect.name}}</h4>
+            </div>
+            <div class="effect-source">{{effect.sourceName}}</div>
+            <div class="effect-duration">{{effect.duration.label}}</div>
+            <div class="item-controls effect-controls flexrow">
+                <a class="effect-control" data-action="toggle" title="{{localize 'MYZ.EffectToggle'}}">
+                    <i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+                </a>
+                <a class="effect-control" data-action="edit" title="{{localize 'MYZ.EffectEdit'}}">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="effect-control" data-action="delete" title="{{localize 'MYZ.EffectDelete'}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        </li>
+        {{/each}}
+    </ol>
+    {{/each}}
+</ol>
+</section>

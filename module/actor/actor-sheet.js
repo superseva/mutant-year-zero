@@ -277,7 +277,11 @@ export class MYZActorSheet extends foundry.appv1.sheets.ActorSheet {
         event.preventDefault();
         event.stopPropagation();
         const attName = event.currentTarget.dataset.attribute;
-        await this.actor.RollAttribute(attName);        
+        await this.actor.rollAttribute(attName);        
+    }
+
+    async rollAttribute(attribure){
+        await this.actor.rollAttribute(attribure);
     }
 
     async _onRollItem(event) {

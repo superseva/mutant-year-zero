@@ -1,0 +1,25 @@
+<section
+  class='tab attributes {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='attributes'
+>
+    <div class="grid grid-3col">
+        <!--LEFT SECTION-->
+        <div class="col1">
+            {{> systems/mutant-year-zero/templates/actor/partials/attributes.hbs}}
+            {{> systems/mutant-year-zero/templates/actor/partials/conditions.hbs}}
+            {{> systems/mutant-year-zero/templates/actor/partials/criticals.hbs}}
+
+        </div>
+        <!--MID SECTION-->
+        <div class="col2">
+            {{> systems/mutant-year-zero/templates/actor/partials/skills.hbs}}
+        </div>
+        <!--RIGHT SECTION-->
+        <div class="col3">
+            {{> systems/mutant-year-zero/templates/actor/partials/resource-counter.hbs}}
+            {{> systems/mutant-year-zero/templates/actor/partials/abilities.hbs sourceType='ability' sourceList=abilities sourceLabel='MYZ.MUTATIONS'}}
+            {{> systems/mutant-year-zero/templates/actor/partials/talents.hbs sourceType='talent' sourceList=talents sourceLabel='MYZ.TALENTS'}}
+        </div>
+    </div>
+</section>

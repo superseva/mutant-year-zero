@@ -223,7 +223,7 @@ export class MYZActor extends Actor {
             },
         };
     }
-    async RollAttribute(attributeName) {
+    async rollAttribute(attributeName) {
         const attVal = this.system.attributes[attributeName].value;
         let rollName = `MYZ.ATTRIBUTE_${attributeName.toUpperCase()}_${this.system.creatureType.toUpperCase()}`;
         const rollModifiers = this.getAttributeModifiers(attributeName)        
