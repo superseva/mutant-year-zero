@@ -3,24 +3,13 @@
 export class DiceRoller {
 
     static async Roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", itemUuid = "", attributeName = null, itemId = null, modifiers = null } = {}) {
-        let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;
-        
+        // Create Roll Formula
+        let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;        
         let roll = new Roll(rollFormula);
-        await roll.evaluate();        
-
+        await roll.evaluate();
+        // Parse roll
         const dicePool = await DiceRoller.ParseResults(roll, skill);
-        dicePool.sort(DiceRoller.SortPool);        
-        // What was this part ? It m to chat as Damage.
-        let computedDamage = damage;
-        if (damage) {
-            this.baseDamage = damage;
-            if (damage > 0) {
-                computedDamage = computedDamage - 1;
-            }
-            this.lastDamage = computedDamage;
-        } else {
-            this.baseDamage = 0;
-        }
+        dicePool.sort(DiceRoller.SortPool);
         
         await DiceRoller.SendToChat({
             _roll: roll,
@@ -55,7 +44,6 @@ export class DiceRoller {
         
     }
 
-
     static async Push(message, html, data){
         // If push bullet checkbox is selected and actor doesn't have bullets, return false
         const pushBulletChecked = html.querySelector('input[name="push-bullet"]')?.checked ?? false;
@@ -69,8 +57,7 @@ export class DiceRoller {
             } else {
                 await actorInstance.spendBullet();
             }
-        }
-        
+        }        
         
         // create ROLL formula from message.flags.dicePool
         if (!message.getFlag("mutant-year-zero", "dicePool"))
@@ -186,9 +173,7 @@ export class DiceRoller {
                         gearDamageCount += baneCount;
                         await message.setFlag("mutant-year-zero", "gearDamageCount", gearDamageCount);
                     }
-            }
-
-            
+            }           
 
         }
     }
@@ -216,19 +201,14 @@ export class DiceRoller {
         let numberOfSuccesses = DiceRoller.CountSuccesses(dicePool);
         let numberOfFailures = DiceRoller.CountFailures(dicePool);
         let numberOfGearFailures = DiceRoller.CountGearFailures(dicePool);
-
-        //console.log(actorUuid, skillUuid)
-        console.log(itemUuid, "Item UUID in SendToChat")
         let _item = await fromUuid(itemUuid);
-        console.log(_item, "Item from UUID in SendToChat")
-        let _skillKey =  _item.system.skillKey;
+
+        // Get Stunts
+        let _skillKey =  _item?.system?.skillKey || null;
         let stuntText = ""
-        try{
+        try{           
             const actor = await fromUuid(actorUuid);
-            const _skill = await fromUuid(skillUuid)
-            console.log("Actor and skill for stunt text", {actorUuid, skillUuid, itemUuid})
-            
-            //stuntText = DiceRoller._getStuntText(_skill, actor)
+            const _skill = await fromUuid(skillUuid);
             stuntText = actor? CONFIG.MYZ.STUNTS[_skillKey][actor.system.creatureType] : "";
             // If there is no stunt description for this type of creature return the first description you find            
             if(stuntText=="" && CONFIG.MYZ.STUNTS[_skillKey]){
