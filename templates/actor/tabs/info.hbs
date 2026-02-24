@@ -1,10 +1,19 @@
-
 <section
   class='tab info {{tab.cssClass}}'
   data-group='primary'
   data-tab='info'
->
+>   
+{{!-- <h2>INFO</h2>
     <div>
         {{editor descriptionHTML target="system.description" button=true owner=owner editable=true engine='prosemirror'}}
-    </div>
+    </div> --}}
+
+
+    {{#if editable}}
+		<prose-mirror style='height: 590px;' name='system.description' data-document-uuid='{{actor.uuid}}' value='{{system.description}}' collaborate='true' toggled='true'>
+			{{{descriptionHTML}}}
+		</prose-mirror>
+	{{else}}
+		{{{descriptionHTML}}}
+	{{/if}}
 </section>

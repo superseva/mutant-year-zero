@@ -1,0 +1,23 @@
+<div class="box-item header flex row align-center space-between {{system.creatureType}}">
+    <label class="item-name">{{localize "MYZ.ARTIFACTS"}}</label>
+    <span class="item-controls">
+        <a class="item-create" data-action="createDoc" data-type="artifact">{{localize "MYZ.Add"}}</a>
+    </span>
+</div>
+<ol class="box-list artifacts {{system.creatureType}}">
+    {{#each artifacts as |artifact key|}}
+    <li class="box-item gear flex row align-center space-between editable-item item-edit" data-physical="1" data-item-id="{{artifact._id}}">
+        <span class="item-name flex row align-center">
+            <img class="item-image" src="{{artifact.img}}" />
+            <a data-action="viewDoc" data-item-id="{{artifact._id}}">{{artifact.name}}</a>
+        </span>
+        <span class="item-controls">
+            <!-- <a class="chatable" data-item-id="{{artifact._id}}"><i class="fas fa-comment"></i></a> -->
+            <label><i class="fas fa-weight-hanging"></i>:{{artifact.system.weight}}</label>
+            {{#if artifact.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
+                <i class="fa-regular fa-box"></i>
+            </a>{{/if}}
+        </span>
+    </li>
+    {{/each}}
+</ol>

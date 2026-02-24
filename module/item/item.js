@@ -19,17 +19,6 @@ export class MYZItem extends Item {
             this.updateSource({"img":_itemImg})
         }
     }
-    /**
-     * Augment the basic Item values model with additional dynamic values.
-     */
-    prepareData() {
-        super.prepareData();
-        this.system.itemType = this.type;
-        this.system.default_attributes = CONFIG.MYZ.attributes; // ? WHAT IS THIS FOR ?
-        this.system.skillKeysList = CONFIG.MYZ.SKILLKEYS;
-    }
-
-    
 
     async roll() {
         const actor = this.actor;

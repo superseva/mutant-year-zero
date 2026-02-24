@@ -585,6 +585,21 @@ function modifiersItemMixin() {
 }
 
 // Item DataModels -------------------------------------------------
+class MYZItemDataModel extends foundry.abstract.TypeDataModel {
+  static defineSchema() {
+    return {
+      ...baseItemMixin(),
+    };
+  }
+
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.itemType = this.type;
+    //this.default_attributes = CONFIG.MYZ.attributes; // ? WHAT IS THIS FOR ?
+    this.skillKeysList = CONFIG.MYZ.SKILLKEYS;
+    //console.log(this);
+  }
+}
 
 // SKILL
 export class MYZSkillDataModel extends foundry.abstract.TypeDataModel {
@@ -602,7 +617,7 @@ export class MYZSkillDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // ABILITY
-export class MYZAbilityDataModel extends foundry.abstract.TypeDataModel {
+export class MYZAbilityDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -616,7 +631,7 @@ export class MYZAbilityDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // TALENT
-export class MYZTalentDataModel extends foundry.abstract.TypeDataModel {
+export class MYZTalentDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -647,42 +662,42 @@ export class MYZWeaponDataModel extends foundry.abstract.TypeDataModel {
   }
 
   prepareDerivedData() {
-        super.prepareDerivedData();
-        if(!this.parent.parent) return;
-        
-        // Determine which skill to use based on weapon category     
-        let skill;      
-        if (this.category === "melee") {
-            if (this.parent.parent.system.creatureType != "robot") {
-                skill = this.parent.parent.items.find((i) => i.system.skillKey == "FIGHT" && i.type === "skill");
-            } else {
-                skill = this.parent.parent.items.find((i) => i.system.skillKey === "ASSAULT" && i.type === "skill");
-            }
+    super.prepareDerivedData();
+    if(!this.parent.parent) return;
+    
+    // Determine which skill to use based on weapon category     
+    let skill;      
+    if (this.category === "melee") {
+        if (this.parent.parent.system.creatureType != "robot") {
+            skill = this.parent.parent.items.find((i) => i.system.skillKey == "FIGHT" && i.type === "skill");
         } else {
-            skill = this.parent.parent.items.find((i) => i.system.skillKey == "SHOOT" && i.type === "skill");
+            skill = this.parent.parent.items.find((i) => i.system.skillKey === "ASSAULT" && i.type === "skill");
         }
-
-        // Create default skill if not found
-        if (!skill) {
-            skill = {
-                type: "skill",
-                uuid: "",
-                system: {
-                    value: 0,
-                    skillKey: this.category === "melee" 
-                        ? (this.parent.parent.system.creatureType != "robot" ? "FIGHT" : "ASSAULT")
-                        : "SHOOT",
-                    attribute: this.category === "melee" ? "strength" : "agility"
-                }
-            };
-        }
-        this.skill = skill;
-        this.skillKey = skill.system.skillKey;
+    } else {
+        skill = this.parent.parent.items.find((i) => i.system.skillKey == "SHOOT" && i.type === "skill");
     }
+
+    // Create default skill if not found
+    if (!skill) {
+        skill = {
+            type: "skill",
+            uuid: "",
+            system: {
+                value: 0,
+                skillKey: this.category === "melee" 
+                    ? (this.parent.parent.system.creatureType != "robot" ? "FIGHT" : "ASSAULT")
+                    : "SHOOT",
+                attribute: this.category === "melee" ? "strength" : "agility"
+            }
+        };
+    }
+    this.skill = skill;
+    this.skillKey = skill.system.skillKey;
+  }
 }
 
 // ARMOR
-export class MYZArmorDataModel extends foundry.abstract.TypeDataModel {
+export class MYZArmorDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -704,7 +719,7 @@ export class MYZArmorDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // CHASSIS
-export class MYZChassisDataModel extends foundry.abstract.TypeDataModel {
+export class MYZChassisDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -723,7 +738,7 @@ export class MYZChassisDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // GEAR
-export class MYZGearDataModel extends foundry.abstract.TypeDataModel {
+export class MYZGearDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -735,7 +750,7 @@ export class MYZGearDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // ARTIFACT
-export class MYZArtifactDataModel extends foundry.abstract.TypeDataModel {
+export class MYZArtifactDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -748,7 +763,7 @@ export class MYZArtifactDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // CRITICAL
-export class MYZCriticalDataModel extends foundry.abstract.TypeDataModel {
+export class MYZCriticalDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...modifiersItemMixin(),

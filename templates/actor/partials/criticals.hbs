@@ -1,18 +1,17 @@
 <div class="box-item header flex row align-center space-between {{system.creatureType}}">
     <label class="item-name">{{localize "MYZ.CRITICALS"}}</label>
     <span class="item-controls">
-        <a class="item-create" data-type="critical">{{localize "MYZ.Add"}}</a>
+        <a class="item-create" data-action="createDoc" data-type="critical">{{localize "MYZ.Add"}}</a>
     </span>
 </div>
 <div class="box-list criticals {{system.creatureType}} {{fixedHeight}}">
     {{#each criticals as |critical index|}}
     <div class="box-item critical-item editable-item flex column" data-item-id="{{critical._id}}">
         <span class="item-name">
-            <i class="fas fa-comment chatable" data-item-id="{{critical._id}}" title="{{localize 'MYZ.TOCHAT'}}"></i>
-            <label><strong>{{critical.name}}:</strong></label>
+            <i class="fas fa-comment chatable"  data-action="sendToChat" data-item-id="{{critical._id}}" title="{{localize 'MYZ.TOCHAT'}}"></i>
+            <a data-action="viewDoc" data-item-id="{{critical._id}}"><strong>{{critical.name}}:</strong></a>
         </span>
         <label class="item-name">{{critical.system.effect}}</label>
     </div>
     {{/each}}
-
 </div>

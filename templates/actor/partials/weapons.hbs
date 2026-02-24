@@ -1,0 +1,40 @@
+<div class="box-item physical header flex row align-center space-between weapon {{system.creatureType}}">
+    <label class="item-name">{{localize "MYZ.WEAPONS"}}</label>
+    <div class="item-values grid grid-3col center">
+        <label>{{localize 'MYZ.BONUS'}}</label>
+        <label>{{localize 'MYZ.DAMAGE'}}</label>
+        <label>{{localize 'MYZ.RANGE'}}</label>
+    </div>
+    <div class="item-controls">
+        <a class="item-create" data-action="createDoc" data-type="weapon">{{localize "MYZ.Add"}}</a>
+    </div>
+</div>
+<ol class="box-list {{system.creatureType}}">
+    {{#each weapons as |weapon key|}}
+    <li class="box-item physical flex row align-center space-between editable-item weapon item-edit" data-physical="1" data-item-id="{{weapon._id}}">
+        <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken weapon)}}broken{{/if}}" data-item-id="{{weapon._id}}">
+            <img class="item-image" src="{{weapon.img}}" />
+            <a data-action="onRollWeapon" data-item-id="{{weapon._id}}">{{weapon.name}}</a>
+            {{#if (isArtifact weapon)}} <img class="item-image" src="systems/mutant-year-zero/assets/ico/trophy.svg" style="border:none" />{{/if}}
+        </span>
+        <div class="item-values grid grid-3col center">
+            <span>
+                <input type="number" class="owned-item-value num-value-1rem" name="items.{{weapon._id}}.system.bonus.value" value="{{weapon.system.bonus.value}}" data-linked-value="system.bonus.value" data-item-id="{{weapon._id}}">
+                <label>/{{weapon.system.bonus.max}}</label>
+            </span>
+            <!-- <label class="flex flex-center">{{weapon.system.bonus.value}} / {{weapon.system.bonus.max}}</label> -->
+            <label class="flex flex-center">{{weapon.system.damage}}</label>
+            <label class="flex flex-center">{{localize (toUpperCase (concat "MYZ." weapon.system.range))}}</label>
+        </div>
+        <div class="item-controls">
+            <!-- <a class="chatable" data-item-id="{{weapon._id}}"><i class="fas fa-comment"></i></a> -->
+            <!-- <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a> -->
+            <!-- <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a> -->
+            {{#if weapon.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
+                <i class="fa-regular fa-box"></i>
+            </a>{{/if}}
+            
+        </div>
+    </li>
+    {{/each}}
+</ol>

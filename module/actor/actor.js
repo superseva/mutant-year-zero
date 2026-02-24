@@ -5,20 +5,9 @@ import { DiceRoller } from "../component/dice-roller.js";
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
  */
-export class MYZActor extends Actor {
+export class MYZActor extends Actor {    
 
-    async spendBullet() {
-        const bullets = this.system?.resources?.bullets?.value ?? 0;
-        if (bullets > 0) {
-            await this.update({ "system.resources.bullets.value": bullets - 1 });
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Prepare and organize items into categories
-     */
+    /** Prepare and organize items into categories */
     prepareCharacterItems(items) {
         const skills = [];
         const talents = [];
@@ -117,9 +106,7 @@ export class MYZActor extends Actor {
         return result;
     }
 
-    /**
-     * Get roll modifiers for a skill based on equipped items
-     */
+    /** * Get roll modifiers for a skill based on equipped items */
     getSkillModifiers(skill) {
         // SKILL MODIFIERS
         let skillDiceTotal = parseInt(skill.system.value);
@@ -162,9 +149,7 @@ export class MYZActor extends Actor {
         };
     }
 
-    /**
-     * Get attribute modifiers based on equipped items
-     */
+    /**  Get attribute modifiers based on equipped items */
     getAttributeModifiers(attribute) {
         const itmMap = this.items.filter(itm => itm.system.modifiers != undefined);
         const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[attribute] != null && i.system.modifiers[attribute] !== 0);
@@ -182,9 +167,7 @@ export class MYZActor extends Actor {
         return { baseDiceTotal: baseDiceTotal, modifiersToAttributes: modifiersToAttributes };
     }
 
-    /**
-     * Toggle equipped state of an item
-     */
+    /** Toggle equipped state of an item */
     toggleEquipped(itemId) {
         const item = this.items.get(itemId);
         if (!item) return null;
@@ -196,9 +179,7 @@ export class MYZActor extends Actor {
         };
     }
 
-    /**
-     * Toggle stashed state of an item
-     */
+    /** Toggle stashed state of an item */
     toggleStashed(itemId) {
         const item = this.items.get(itemId);
         if (!item) return null;
@@ -210,9 +191,7 @@ export class MYZActor extends Actor {
         };
     }
 
-    /**
-     * Toggle broken state of an item
-     */
+    /** Toggle broken state of an item */
     toggleBroken(itemId) {
         const item = this.items.get(itemId);
         if (!item) return null;
@@ -223,6 +202,8 @@ export class MYZActor extends Actor {
             },
         };
     }
+
+    /** Roll Character Attribute */
     async rollAttribute(attributeName) {
         const attVal = this.system.attributes[attributeName].value;
         let rollName = `MYZ.ATTRIBUTE_${attributeName.toUpperCase()}_${this.system.creatureType.toUpperCase()}`;
@@ -244,11 +225,37 @@ export class MYZActor extends Actor {
         });
     }
 
+    /**
+     * note: 
+     * Rolling Skills and Weapons call MYZItem.roll() directly, so they are not here
+     * */
+
+    /** Roll Total Armor */
     async RollArmor() {
         await RollDialogV2.create({
             rollName: game.i18n.localize("MYZ.ARMOR"),
             diceRoller: new DiceRoller(),
             gear: {default:this.system.armorrating.value, total: this.system.armorrating.value, modifiers: null}
         });
+    }
+
+    /** Roll Rot */
+    async RollRot() {
+        let rotTotal = parseInt(this.system.rot.value) + parseInt(this.system.rot.permanent);
+        await RollDialogV2.create({
+            rollName: game.i18n.localize("MYZ.ROT"),
+            diceRoller: new DiceRoller(),
+            base: {default:rotTotal, total: rotTotal, modifiers: null}
+        });
+    }
+
+    /** Spend a bullet */
+    async spendBullet() {
+        const bullets = this.system?.resources?.bullets?.value ?? 0;
+        if (bullets > 0) {
+            await this.update({ "system.resources.bullets.value": bullets - 1 });
+            return true;
+        }
+        return false;
     }
 }

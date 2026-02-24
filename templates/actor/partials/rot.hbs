@@ -1,0 +1,14 @@
+<div class="box-item rot-box flex row space-between align-center {{system.type}}">
+    <span>
+        <label class="roll-rot rollable" style="padding-left: 0.5em;" for="system.rot.value">{{localize 'MYZ.ROT'}}</label>
+        <input class="short-input rot" type="number" data-type="Number" name="system.rot.value" value="{{system.rot.value}}" min="0" />
+    </span>
+    <span>
+        <label for="system.rot.value">{{localize 'MYZ.PERMA_ROT'}}</label>
+        <input class="short-input rot-perma" type="number" data-type="Number" name="system.rot.permanent" value="{{system.rot.permanent}}" min="0" />
+    </span>
+    <span class="right-element rot-button roll-rot rollable flex align-center" data-action="onRollRot" style="cursor:pointer; padding: 5px 0 0 0; text-align: center; width:100%; min-height:26px; background-image: url(systems/mutant-year-zero/ui/grey-skull.png); background-position: center; background-repeat: no-repeat;">
+        <label for="system.rot.value" class="right-element">{{localize 'MYZ.ROLL'}}</label>
+        <img src="systems/mutant-year-zero/ui/dice-base-1.png" />
+    </span>
+</div>

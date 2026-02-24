@@ -4,13 +4,13 @@ create a header label - DEPRICAATED}} {{! PARAM: fixedHeight: should it grow or 
 <div class="box-item header flex row align-center space-between {{system.creatureType}}">
     <label class="item-name">{{localize (getAbilitiesTypeName system.creatureType)}}</label>
     <span class="item-controls">
-        <a class="item-create" data-type="{{sourceType}}">{{localize "MYZ.Add"}}</a>
+        <a class="item-create" data-action="createDoc" data-type="{{sourceType}}">{{localize "MYZ.Add"}}</a>
     </span>
 </div>
 <div class="box-list abilities {{system.creatureType}} {{fixedHeight}}">
     {{#each sourceList as |listItem index|}}
-    <div class="box-item flex row align-center space-between editable-item" data-item-id="{{listItem._id}}">
-        <a class="item-name viewable" data-item-id="{{listItem._id}}">{{listItem.name}}</a>
+    <div class="box-item flex row align-center space-between editable-item item-edit" data-item-id="{{listItem._id}}">
+        <a class="item-name viewable" data-item-id="{{listItem._id}}" data-action="viewDoc">{{listItem.name}}</a>
         <span class="item-controls">
             {{#if (ifvalue listItem.system.creatureType 'robot')}}
             <a class="item-broken" title="{{localize 'MYZ.BROKEN'}}">
@@ -21,7 +21,7 @@ create a header label - DEPRICAATED}} {{! PARAM: fixedHeight: should it grow or 
                 {{/if}}
             </a>
             {{/if}}
-            <a class="chatable" data-item-id="{{listItem._id}}" title="{{localize 'MYZ.TOCHAT'}}"><i class="fas fa-comment"></i></a>
+            <a class="chatable" data-action="sendToChat" data-item-id="{{listItem._id}}" title="{{localize 'MYZ.TOCHAT'}}"><i class="fas fa-comment"></i></a>
         </span>
     </div>
     {{/each}}
