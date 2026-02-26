@@ -1,7 +1,3 @@
-2026/02/22-13:10:45.964 fbac Recovering log #351
-2026/02/22-13:10:45.968 fbac Delete type=0 #351
-2026/02/22-13:10:45.968 fbac Delete type=3 #350
-2026/02/22-13:20:47.640 2ebc Level-0 table #355: started
-2026/02/22-13:20:47.640 2ebc Level-0 table #355: 0 bytes OK
-2026/02/22-13:20:47.642 2ebc Delete type=0 #353
-2026/02/22-13:20:47.645 2ebc Manual compaction at level-0 from '!macros!mQY7R3PxE2zTB4iq' @ 72057594037927935 : 1 .. '!macros!mQY7R3PxE2zTB4iq' @ 0 : 0; will stop at (end)
+2026/02/26-08:22:16.360 7c18 Recovering log #354
+2026/02/26-08:22:16.365 7c18 Delete type=0 #354
+2026/02/26-08:22:16.365 7c18 Delete type=3 #352
