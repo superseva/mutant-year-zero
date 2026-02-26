@@ -400,21 +400,30 @@ input.nolabel {
 	display: flex;
 	flex: 0 0 160px;
 	flex-direction: row;
+	color:black;
+	input {
+		background-color: rgba(255, 255, 255, 0);
+		color:black;
+	}
 	img {
 		width: 120px;
 		height: 120px;
 		margin-right: 10px;
 	}
-	h1.charname {
-		height: 1.2em;
+	.charname {
+		height: 2rem;
 		padding: 0px;
-		margin: 5px 0;
+		margin: 0 0;
 		border-bottom: 0;
-
+		font-size: 1.7rem;
+		
 		input {
 			width: 100%;
 			height: 100%;
 			margin: 0;
+			padding-left: 0;
+			background-color: rgba(255, 255, 255, 0);
+			color: black;
 		}
 	}
 	.header-fields {
@@ -468,13 +477,21 @@ input.nolabel {
 	padding: 5px;
 	border-radius: 3px;
 	border: 1px solid #7e7e7e;
+	color: black;
 	.boss-name {
 		font-weight: bold;
+		color: black;
 	}
 	textarea {
 		resize: vertical;
-		min-height: 5.5em;
+		width: 100%;
+		min-height: 5.5rem;
+		color: black;
+		background-color: rgba(255, 255, 255, 0);
 		border-color: #cccccc;
+	}
+	input {
+		color: black;
 	}
 }
 

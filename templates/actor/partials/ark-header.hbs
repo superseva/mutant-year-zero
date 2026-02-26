@@ -1,8 +1,10 @@
 <div class="ark-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" data-action="onEditImage" title="{{actor.name}}" />
     <div class="header-fields">
         <div>
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="charname">
+                <input name="name" class="input-underline" type="text" value="{{actor.name}}" placeholder="Name" />
+            </div>
             <div class="flexrow align-center">
                 <label for="system.ark_type">{{localize 'MYZ.TYPE'}}:&nbsp;</label>
                 <input type="text" class="input-underline" name="system.ark_type" value="{{system.ark_type}}" />
