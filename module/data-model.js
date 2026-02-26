@@ -529,6 +529,7 @@ export class MYZAbilityDataModel extends foundry.abstract.TypeDataModel {
     return {
       ...baseItemMixin(),
       ...modifiersItemMixin(),
+      creatureType: new StringField({nullable: true, blank: true}),
       abilityType: new StringField({nullable: true, blank: true}),
       effect: new StringField({nullable: true, blank: true}),
       roleType: new StringField({nullable: true, blank: true}),

@@ -57,8 +57,11 @@ export class DiceRoller {
     static async Push(message, html, data){
 
         // If push bullet checkbox is selected and actor doesn't have bullets, return false
-        const messageElement = html[0]?.closest('li.chat-message');
-        const pushBulletChecked = messageElement?.querySelector('input[name="push-bullet"]')?.checked ?? false;
+        const messageElement = html?.closest('li.chat-message');
+        const pushBulletChecked = html?.querySelector('input[name="push-bullet"]')?.checked ?? false;
+        // console.log(message)
+        // console.log(pushBulletChecked)
+        // console.log(html)
         if (pushBulletChecked && message.getFlag("mutant-year-zero", "actorUuid")) {
             const actorInstance = await fromUuid(message.getFlag("mutant-year-zero", "actorUuid"));
             //console.log("Actor instance for push bullet check", actorInstance);
@@ -185,11 +188,8 @@ export class DiceRoller {
                     }
             }
 
-            // Spend a Bullet on Push
-            const messageElement = html[0]?.closest('li.chat-message');
-            const pushBulletChecked = messageElement?.querySelector('input[name="push-bullet"]')?.checked ?? false;
             if (pushBulletChecked) {
-                await actor.spendBullet();
+                 await actor.spendBullet();
             }
 
         }
