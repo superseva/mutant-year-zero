@@ -6,6 +6,7 @@ import { MYZActor } from "./actor/actor.js";
 
 import { MYZCharacterSheet } from "./sheets/character-sheet.mjs";
 import { MYZNPCSheetV2 } from "./sheets/npc-sheet.mjs";
+import { MYZArkSheetV2 } from "./sheets/ark-sheet.mjs";
 
 import { MYZMutantSheet } from "./actor/mutant-sheet.js";
 import { MYZAnimalSheet } from "./actor/animal-sheet.js";
@@ -41,6 +42,7 @@ Hooks.once("init", async function () {
         MYZActor,
         MYZCharacterSheet,
         MYZNPCSheetV2,
+        MYZArkSheetV2,
         MYZMutantSheet,
         MYZAnimalSheet,
         MYZRobotSheet,
@@ -137,7 +139,7 @@ Hooks.once("init", async function () {
         types: ["npc"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZArkSheetV2, {
         types: ["ark"],
         makeDefault: true,
     });

@@ -23,6 +23,7 @@ export class MYZActor extends Actor {
         const gear = [];
         const artifacts = [];
         const criticals = [];
+        const projects = [];
 
         // Iterate through items, allocating to containers
         for (let i of items) {
@@ -55,6 +56,8 @@ export class MYZActor extends Actor {
                 artifacts.push(i);
             } else if (i.type === "critical") {
                 criticals.push(i);
+            } else if (i.type === "project") {
+                projects.push(i);
             }
         }
 
@@ -87,6 +90,7 @@ export class MYZActor extends Actor {
             gear,
             artifacts,
             criticals,
+            projects
         };
 
         // Pack inventory for NPCs

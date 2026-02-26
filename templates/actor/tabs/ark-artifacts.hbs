@@ -1,0 +1,35 @@
+<section
+  class='tab artifacts {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='artifacts'
+>
+   <ol class="box-list projects-box" style="border-top: 1px solid; height: 100%">
+                <li class="flexrow box-item align-center projects-box-header">
+                    <label style="flex: 2">{{localize 'MYZ.NAME'}}</label>
+                    <label style="flex: 2">{{localize 'MYZ.DEV_REQUIREMENT'}}</label>
+                    <label style="flex: 2">{{localize 'MYZ.DEV_BONUS'}}</label>
+                    <a style="text-align: right; padding-right: 5px" class="item-create" data-action="createDoc" data-type="artifact">{{localize "MYZ.Add"}}</a>
+                </li>
+                {{#each artifacts as |item id|}}
+                <li class="box-item align-center" data-item-id="{{item._id}}" style="padding-left: 5px">
+                    <div class="flexrow margin-bottom">
+                        <label style="flex: 2"><strong>{{item.name}}</strong></label>
+                        <label style="flex: 2" class="size12">{{item.system.dev_requirement}} </label>
+                        <label style="flex: 2" class="size12">{{item.system.dev_bonus}} </label>
+                        <div class="item-controls" style="flex: 1">
+                            <a class="chatable" data-action="sendToChat" data-item-id="{{item._id}}" title="{{localize 'MYZ.TOCHAT'}}"><i class="fas fa-comment"></i></a>
+                            <a class="item-control" data-action="viewDoc" data-item-id="{{item._id}}" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a>
+                            <a class="item-control" data-action="deleteDoc" data-item-id="{{item._id}}" title="{{localize 'MYZ.DELETE'}}"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                    <div class="flexrow item-info">
+                        <label class="size12"><strong>{{localize 'MYZ.FOOD'}} :</strong> {{item.system.food}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.CULTURE'}} :</strong> {{item.system.culture}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.TECHNOLOGY'}} :</strong> {{item.system.technology}} </label>
+                        <label class="size12"><strong>{{localize 'MYZ.WARFARE'}} :</strong> {{item.system.warfare}} </label>
+                    </div>
+                </li>
+                {{/each}}
+            </ol>          
+
+</section>

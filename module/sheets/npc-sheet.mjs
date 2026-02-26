@@ -59,10 +59,10 @@ export class MYZNPCSheetV2 extends MYZCharacterSheet {
 		}
 
     };
-    /** @override */
-    static TABS = foundry.utils.mergeObject(foundry.utils.deepClone(super.TABS), {});
 
+    /** ACTION HANDLERS */
 
+    /** Choose Creature Type (mutant/animal/robot/human) */
     static async #chooseCreatureType(event, target) {
 		event.preventDefault();
         //console.log("update creature", target)

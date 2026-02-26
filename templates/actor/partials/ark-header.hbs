@@ -1,0 +1,47 @@
+<div class="ark-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    <div class="header-fields">
+        <div>
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="flexrow align-center">
+                <label for="system.ark_type">{{localize 'MYZ.TYPE'}}:&nbsp;</label>
+                <input type="text" class="input-underline" name="system.ark_type" value="{{system.ark_type}}" />
+            </div>
+            <div class="flexrow align-center">
+                <label for="system.coordinates">{{localize 'MYZ.COORDINATES'}}:&nbsp;</label>
+                <input type="text" class="input-underline" name="system.coordinates" value="{{system.coordinates}}" />
+            </div>
+            <div class="flexrow align-center">
+                <label for="system.population">{{localize 'MYZ.POPULATION'}}:&nbsp;</label>
+                <input type="text" class="input-underline" name="system.population" value="{{system.population}}" />
+            </div>
+            <div class="flexrow align-center">
+                <label for="system.water_source">{{localize 'MYZ.WATER_SOURCE'}}:&nbsp;</label>
+                <input type="text" class="input-underline" name="system.water_source" value="{{system.water_source}}" />
+            </div>
+            <div class="flexrow align-center">
+                <label for="system.season">{{localize 'MYZ.SEASON'}}:&nbsp;</label>
+                <input type="text" class="input-underline" name="system.season" value="{{system.season}}" />
+            </div>
+        </div>
+    </div>
+    <div class="dev-box">
+        <div class="title-box">{{localize 'MYZ.DEV_LEVELS'}}</div>
+        <div class="flexrow resource">
+            <label for="system.dev_levels.food.value">{{localize 'MYZ.FOOD'}}</label>
+            <input type="number" name="system.dev_levels.food.value" value="{{system.dev_levels.food.value}}" disabled />
+        </div>
+        <div class="flexrow resource">
+            <label for="system.dev_levels.culture.value">{{localize 'MYZ.CULTURE'}}</label>
+            <input type="number" name="system.dev_levels.culture.value" value="{{system.dev_levels.culture.value}}" disabled />
+        </div>
+        <div class="flexrow resource">
+            <label for="system.dev_levels.technology.value">{{localize 'MYZ.TECHNOLOGY'}}</label>
+            <input type="number" name="system.dev_levels.technology.value" value="{{system.dev_levels.technology.value}}" disabled />
+        </div>
+        <div class="flexrow resource">
+            <label for="system.dev_levels.warfare.value">{{localize 'MYZ.WARFARE'}}</label>
+            <input type="number" name="system.dev_levels.warfare.value" value="{{system.dev_levels.warfare.value}}" disabled />
+        </div>
+    </div>
+</div>

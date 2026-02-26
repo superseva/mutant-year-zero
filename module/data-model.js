@@ -787,7 +787,6 @@ export class MYZProjectDataModel extends foundry.abstract.TypeDataModel {
       other_requirements: new StringField({ nullable: true, blank: true }),
       DEV_Bonus: new StringField({ nullable: true, blank: true }),
       special: new StringField({ nullable: true, blank: true }),
-      completed: new BooleanField({ initial: false }),
       value: new NumberField({ integer: true, min: 0, initial: 0 }),
       food: new NumberField({ integer: true, initial: 0 }),
       culture: new NumberField({ integer: true, initial: 0 }),

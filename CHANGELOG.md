@@ -2,6 +2,16 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+
+## 13.0.9
+
+- Fix: Missing creatureType param in Ability DataModel
+- Fix: Spend Bullets on Push
+
+## 13.0.8
+
+- Fix: Custom Skill name
+
 ## 13.0.7
 
 - Improvement: Dice only have symbols now (numbers are removed)
