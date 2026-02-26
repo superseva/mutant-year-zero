@@ -5,6 +5,7 @@ import MYZHooks from "./MYZHooks.js";
 import { MYZActor } from "./actor/actor.js";
 
 import { MYZCharacterSheet } from "./sheets/character-sheet.mjs";
+import { MYZNPCSheetV2 } from "./sheets/npc-sheet.mjs";
 
 import { MYZMutantSheet } from "./actor/mutant-sheet.js";
 import { MYZAnimalSheet } from "./actor/animal-sheet.js";
@@ -39,6 +40,7 @@ Hooks.once("init", async function () {
         MYZ,
         MYZActor,
         MYZCharacterSheet,
+        MYZNPCSheetV2,
         MYZMutantSheet,
         MYZAnimalSheet,
         MYZRobotSheet,
@@ -119,19 +121,19 @@ Hooks.once("init", async function () {
         types: ["mutant"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZAnimalSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZCharacterSheet, {
         types: ["animal"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZRobotSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZCharacterSheet, {
         types: ["robot"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZHumanSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZCharacterSheet, {
         types: ["human"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZNpcSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZNPCSheetV2, {
         types: ["npc"],
         makeDefault: true,
     });
@@ -402,6 +404,7 @@ Hooks.on("renderChatMessageHTML", (message, html, data)=>{
         });
     }
 })
+
 
 /* -------------------------------------------- */
 /*  DsN Hooks                                   */

@@ -1,0 +1,78 @@
+<div>
+    <div class="actor-header {{system.type}}">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <div class="header-fields">
+            <div class="npc-name-rank">
+                <div class="charname npc-name" style="margin-top: 0px; margin-bottom: 10px">
+                    <input name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+                </div>
+                <div class="flex row npc-rank align-center">
+                    <label for="system.rank">{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' system.creatureType))}}:&nbsp;</label>
+                    <input class="input-underline" type="text" placeholder="{{localize (toUpperCase (concat 'MYZ.RANK_FOR_' system.creatureType))}}" name="system.rank" value="{{system.rank}}" />
+                </div>
+            </div>
+            <div class="flexrow align-center">
+
+                <div class="flex flex-center know-nature margin-right">
+                    <input type="number" class="short-input" name="system.knowNature" value="{{system.knowNature}}">
+                </div>
+
+                <div class="flex column margin-right">
+                    <div class="box-item armor-box flex row space-between align-center armor {{system.creatureType}}">
+                        <label class="item-name armor-roll rollable" for="system.armorrating.value">{{localize 'MYZ.ARMOR'}}</label>
+                        <span class="right-element">
+                            <div class="armor-roll" data-action="onRollArmor" style="cursor:pointer; padding: 5px 0 0 0; text-align: center; width:22px; min-height:26px; background-image: url(systems/mutant-year-zero/ui/grey-shield.png); background-position: center; background-repeat: no-repeat;">{{system.armorrating.value}}</div>
+                        </span>
+                    </div>
+
+                    
+                </div>
+
+                <div class="flexcol space-between" style="padding:4px">
+                    <div class="box-item header flex row space-between align-center {{system.creatureType}}">
+                        <label class="item-name" for="system.resource_points.value">{{localize (toUpperCase (concat "MYZ.RESOURCE_" "POINTS_" system.creatureType ))}}</label>
+                        <span class="right-element">
+                            <input class="short-input" type="number" name="system.resource_points.value" value="{{system.resource_points.value}}" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex row" style="max-height: 65px">
+        <div class="grid grid-4col align-center" style="width: 100%">
+            <div class="flexcol flex-group-center">
+                <label class="roll-attribute rollable" data-action="onRollAttribute" data-attribute="strength" style="margin-bottom: 5px; color:black"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "STRENGTH_" system.creatureType))}}</strong></label>
+                <span>
+                    <input type="number" name="system.attributes.strength.value" value="{{system.attributes.strength.value}}" class="short-input" />
+                    <label>&nbsp;/&nbsp;</label>
+                    <input type="number" name="system.attributes.strength.max" value="{{system.attributes.strength.max}}" class="short-input" />
+                </span>
+            </div>
+            <div class="flexcol flex-group-center">
+                <label class="roll-attribute rollable" data-action="onRollAttribute" data-attribute="agility" style="margin-bottom: 5px; color:black"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "AGILITY_" system.creatureType))}}</strong></label>
+                <span>
+                    <input type="number" name="system.attributes.agility.value" value="{{system.attributes.agility.value}}" class="short-input" />
+                    <label>&nbsp;/&nbsp;</label>
+                    <input type="number" name="system.attributes.agility.max" value="{{system.attributes.agility.max}}" class="short-input" />
+                </span>
+            </div>
+            <div class="flexcol flex-group-center">
+                <label class="roll-attribute rollable" data-action="onRollAttribute" data-attribute="wits" style="margin-bottom: 5px; color:black"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "WITS_" system.creatureType))}}</strong></label>
+                <span>
+                    <input type="number" name="system.attributes.wits.value" value="{{system.attributes.wits.value}}" class="short-input" />
+                    <label>&nbsp;/&nbsp;</label>
+                    <input type="number" name="system.attributes.wits.max" value="{{system.attributes.wits.max}}" class="short-input" />
+                </span>
+            </div>
+            <div class="flexcol flex-group-center">
+                <label class="roll-attribute rollable" data-action="onRollAttribute" data-attribute="empathy" style="margin-bottom: 5px; color:black"><strong>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" "EMPATHY_" system.creatureType))}}</strong></label>
+                <span>
+                    <input type="number" name="system.attributes.empathy.value" value="{{system.attributes.empathy.value}}" class="short-input" />
+                    <label>&nbsp;/&nbsp;</label>
+                    <input type="number" name="system.attributes.empathy.max" value="{{system.attributes.empathy.max}}" class="short-input" />
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

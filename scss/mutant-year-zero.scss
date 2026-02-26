@@ -1,22 +1,22 @@
 // Import utilities.
-@import 'utils/typography';
-@import 'utils/colors';
-@import 'utils/mixins';
-@import 'utils/variables';
+@layer mutant-year-zero {
+    @import 'utils/typography';
+    @import 'utils/colors';
+    @import 'utils/mixins';
+    @import 'utils/variables';
 
-/* Global styles */
-@import 'global/window';
-@import 'global/grid';
-@import 'global/flex';
-@import 'components/chat';
+    /* Global styles */
+    @import 'global/window';
+    @import 'global/grid';
+    @import 'global/flex';
+    @import 'components/chat';
 
-
-/* Styles limited to mutant-year-zero sheets */
-.mutant-year-zero {
-    @import 'global/common';
-    @import 'components/forms';
-    @import 'components/resource';
-    @import 'components/tabs';
-    @import 'components/items';
-    
+    /* Styles limited to mutant-year-zero sheets */
+    .mutant-year-zero {
+        @import 'global/common';
+        @import 'components/forms';
+        @import 'components/resource';
+        @import 'components/tabs';
+        @import 'components/items';        
+    }
 }

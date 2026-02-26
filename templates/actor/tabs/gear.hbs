@@ -11,7 +11,12 @@
         <!--WEAPON AND ARMOR SECTION-->
         <div class="col2">
             {{> systems/mutant-year-zero/templates/actor/partials/weapons.hbs}}
+            {{#ifCond system.creatureType "!=" "robot"}}
             {{> systems/mutant-year-zero/templates/actor/partials/armors.hbs}}
+            {{/ifCond}}
+            {{#ifCond system.creatureType "==" "robot"}}
+            {{> systems/mutant-year-zero/templates/actor/partials/chassis-1row.hbs}}
+            {{/ifCond}}
             <div class="gear-row grid grid-2col">
                 <div>
                     {{> systems/mutant-year-zero/templates/actor/partials/gear.hbs}}

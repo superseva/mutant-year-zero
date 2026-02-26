@@ -4,13 +4,19 @@
   data-tab='attributes'
 >
     <div class="grid grid-3col">
-        <!--LEFT SECTION-->
+        <!--LEFT SECTION-->       
         <div class="col1">
             {{> systems/mutant-year-zero/templates/actor/partials/attributes.hbs}}
+            {{#ifCond system.creatureType "!=" "robot"}}
             {{> systems/mutant-year-zero/templates/actor/partials/conditions.hbs}}
             {{> systems/mutant-year-zero/templates/actor/partials/criticals.hbs}}
-
+            {{/ifCond}}
+            {{#ifCond system.creatureType "==" "robot"}}
+            {{> systems/mutant-year-zero/templates/actor/partials/chassis.hbs}}    
+            {{/ifCond}}
         </div>
+       
+
         <!--MID SECTION-->
         <div class="col2">
             {{> systems/mutant-year-zero/templates/actor/partials/skills.hbs}}
@@ -22,4 +28,5 @@
             {{> systems/mutant-year-zero/templates/actor/partials/talents.hbs sourceType='talent' sourceList=talents sourceLabel='MYZ.TALENTS'}}
         </div>
     </div>
+
 </section>

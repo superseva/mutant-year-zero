@@ -17,6 +17,7 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 		},
 		window: {
 			resizable: true,
+			scrollable: ['.window-content']
 		},
         actions: {
 			onEditImage: this.#onEditImage,
@@ -30,6 +31,10 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 			viewDoc: this._viewDoc,
 			sendToChat: this._sendToChat,
 			toggleValue: this._toggleValue,
+			createAEffect: this.#onManageActiveEffect,
+			editAEffect: this.#onManageActiveEffect,
+			toggleAEffect: this.#onManageActiveEffect,
+			deleteAEffect: this.#onManageActiveEffect,
 		},
 		// Custom property that's merged into `this.options`
 		// dragDrop: [{ dragSelector: '.draggable', dropSelector: null }],
@@ -58,9 +63,10 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 				"systems/mutant-year-zero/templates/actor/partials/skills.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/resource-counter.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/abilities.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/talents.hbs"
+				"systems/mutant-year-zero/templates/actor/partials/talents.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/chassis.hbs",
 			],
-			scrollable: ['']
+			scrollable: []
 		},
 		gear: {
 			template: "systems/mutant-year-zero/templates/actor/tabs/gear.hbs",
@@ -69,6 +75,7 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 				"systems/mutant-year-zero/templates/actor/partials/encumbrance.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/weapons.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/armors.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/chassis-1row.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/gear.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/artifacts.hbs"],
 			scrollable: [''],
@@ -115,14 +122,9 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 		const preparedItems = this.actor.prepareCharacterItems(context.items);
 		Object.assign(context, preparedItems);
 
-		context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description, {
-			secrets: this.actor.isOwner,
-			relativeTo: this.document
-		});
-
 		context.tabs = this._prepareTabs("primary");
 
-		console.log("Context prepared:", context);
+		//console.log("Context prepared:", context);
 		return context;
 	}
 
@@ -130,10 +132,16 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 	async _preparePartContext(partId, context) {
 		switch (partId) {
 			case 'attributes':
-			case 'gear':
-			case 'info':
+			case 'gear':			
 			case 'effects':
 			context.tab = context.tabs[partId];
+			break;
+			case 'info':
+				context.tab = context.tabs[partId];
+				context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.description, {
+						secrets: this.actor.isOwner,
+						relativeTo: this.document
+					});
 			break;
 			default:
 		}
@@ -141,7 +149,7 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 	}
 
 	/** Prepare ActiveEffects */
-	async _prepareActiveEffects(effects) {
+	_prepareActiveEffects(effects) {
 		// Define effect header categories
   		const categories = {
 			temporary: {
@@ -179,6 +187,7 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 	 */
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options)
+		console.log(this)
 
 		this._createContextMenu(this._getItemEditMenuOptions, ".item-edit", {
 			hookName: "getItemEditMenuOptions",
@@ -242,6 +251,32 @@ export class MYZCharacterSheet extends api.HandlebarsApplicationMixin(sheets.Act
 		})
 		fp.render(true)
 	}
+
+	/** Active Effects Actions */
+	static async #onManageActiveEffect(event, target) {
+		event.preventDefault();
+		const li = target.closest("li");		
+		const effect = li.dataset.effectId ? this.document.effects.get(li.dataset.effectId) : null;
+		console.log("Managing Active Effect:", { action: target.dataset.action, effect });
+		switch (target.dataset.action) {
+			case "createAEffect":
+				return this.document.createEmbeddedDocuments("ActiveEffect", [{
+					name: "New Effect",
+					label: "New Effect",
+					img: "systems/mutant-year-zero/assets/ico/biohazard-black.svg",
+					origin: this.document.uuid,
+					"duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
+					disabled: li.dataset.effectType === "inactive"
+				}]);
+			case "editAEffect":
+				return effect.sheet.render(true);
+			case "deleteAEffect":
+				return effect.delete();
+			case "toggleAEffect":
+				return effect.update({ disabled: !effect.disabled });
+		}
+	}
+
 
 	/**
 	 * ITEMS MANIPULATION

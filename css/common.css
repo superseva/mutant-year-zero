@@ -49,4 +49,10 @@
 
 .space-between {
   justify-content: space-between;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }/*# sourceMappingURL=common.css.map */

@@ -1,9 +1,10 @@
 .box-item {
     min-height: 30px;
-    padding: 0.3em 0 0.3em 0;
+    padding: 3px 0;
     line-height: 14px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
-    list-style: none;   
+    list-style: none;
+    color: black;
 
     &.physical {
         .item-name {
@@ -151,6 +152,7 @@
     margin-bottom: 5px;
     min-height: 90px;
     position: relative;
+    color: black;
 
     &.mutant {
         background-color: $c-brown-pale;

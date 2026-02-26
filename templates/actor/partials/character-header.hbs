@@ -2,8 +2,8 @@
     <img class="profile-img" src="{{actor.img}}" data-edit="img" data-action="onEditImage" title="{{actor.name}}" />
     <div class="header-fields">
         <div class="row1 align-center">
-            <div>
-                <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            <div class="charname flex row">
+                <input name="name" class="nolabel" type="text" value="{{actor.name}}" placeholder="Name" />
             </div>
             <div class="flex row">
                 <input class="nolabel" name="system.role" type="text" value="{{system.role}}" placeholder="{{localize (toUpperCase (concat 'MYZ.ROLE_FOR_' system.creatureType))}}" />
@@ -28,9 +28,9 @@
         </div>
         <div class="row3 align-center">
             {{> systems/mutant-year-zero/templates/actor/partials/rot.hbs}}
-            <div class="box-item armor-box flex armor space-between align-center {{system.creatureType}}">
+            <div class="armor-box armor {{system.creatureType}}">
                 <label class="item-name armor-roll rollable" for="system.armorrating.value" data-action="onRollArmor">{{localize 'MYZ.ARMOR'}}</label>
-                <div class="right-element armor-roll" data-action="onRollArmor" style="cursor:pointer; padding: 5px 0 0 0; text-align: center; width:100%; min-height:26px; background-image: url(systems/mutant-year-zero/ui/grey-shield.png); background-position: center; background-repeat: no-repeat;">{{system.armorrating.value}}</div>
+                <div class="armor-roll shield-box" data-action="onRollArmor">{{system.armorrating.value}}</div>
             </div>
         </div>
     </div>
