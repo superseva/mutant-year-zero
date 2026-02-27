@@ -1,0 +1,45 @@
+<div class="actor-header">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        <div class="header-fields">
+            <div class="flex row align-center space-between" style="margin-bottom: 1rem;">
+                <div>
+                    <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+                </div>                
+               
+                <div class="flex row">
+                    <label style="align-self: center" >{{localize "MYZ.COST"}}:</label>
+                    <input class="nolabel short-input" type="number" data-type="Number" name="system.cost" value="{{system.cost}}" />
+                </div>
+            </div>
+            <div class="grid">
+                <div>
+                    <div class="flex row ">
+                        <label style="align-self: center" >{{localize "MYZ.VEHICLE.MOVE_BONUS"}}:</label>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.movementBonus.current" value="{{system.movementBonus.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.movementBonus.max" value="{{system.movementBonus.max}}" />
+                    </div>  
+                    <div class="flex row ">
+                        <label style="align-self: center" >{{localize "MYZ.VEHICLE.FUEL"}}:</label>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.fuel.current" value="{{system.fuel.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.fuel.max" value="{{system.fuel.max}}" />
+                    </div>    
+                </div>
+                <div>
+                    <div class="flex row ">
+                        <label style="align-self: center" >{{localize "MYZ.VEHICLE.ARMOR"}}:</label>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.vehicleArmor.current" value="{{system.vehicleArmor.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.vehicleArmor.max" value="{{system.vehicleArmor.max}}" />
+                    </div>
+                    <div class="flex row ">
+                        <label style="align-self: center" >{{localize "MYZ.VEHICLE.RESILIENCE"}}:</label>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.current" value="{{system.resilience.current}}" />
+                        <span>/</span>
+                        <input class="nolabel short-input" type="number" data-type="Number" name="system.resilience.max" value="{{system.resilience.max}}" />
+                    </div>
+                </div>                                          
+            </div>         
+        </div>        
+    </div>

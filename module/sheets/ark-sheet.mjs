@@ -11,8 +11,6 @@ export class MYZArkSheetV2 extends MYZActorBaseSheet {
     
     /** @override */
 	static DEFAULT_OPTIONS = foundry.utils.mergeObject(foundry.utils.deepClone(super.DEFAULT_OPTIONS), {
-		tag: "form",
-        classes: ["mutant-year-zero", "sheet", "actor"],
         position: {
 			width: 720,
 			height: 720,
@@ -48,12 +46,6 @@ export class MYZArkSheetV2 extends MYZActorBaseSheet {
 			initial: "projects", // Set the initial tab
 		},
     }
-	
-	/** @override */
-	// async _prepareContext(options) {
-	// 	const context = await super._prepareContext(options);
-	// 	return context;
-	// }
 
 	/** @override */
 	async _preparePartContext(partId, context) {

@@ -1,0 +1,69 @@
+<section 
+class='tab occupants {{tab.cssClass}}' 
+data-group='primary' 
+data-tab='occupants'
+>
+  {{!-- OCCUPANTS --}}  
+  <div class="drop-zone-for-occupants flex column">
+    <div class="box-item header flex row align-center space-between" style="background-color: rgb(68, 68, 68);">
+      <div class="flex row item-name">
+        <label style="align-self: center">{{localize "MYZ.VEHICLE.OCCUPANTS_COUNT"}}: &nbsp;</label>
+        <input class="short-input" type="number" data-type="Number" name="system.occupantsCount"
+          value="{{system.occupantsCount}}" />
+      </div>
+      <a class="remove-all-occupants" data-action="deleteAllOccupants" style="margin-right: 1rem; cursor:pointer">{{localize
+        "MYZ.REMOVEALL"}}</a>
+    </div>
+    <div class="box-list flex-column " style="min-height: 250px;">
+      {{#ifCond system.occupants.length '<' 1}} <div class="flex"
+        style="justify-content: center; align-items: center; height:200px">
+        <p>{{localize "MYZ.DRAG_OCCUPANTS_HERE"}}</p>
+    </div>
+    {{/ifCond}}
+    {{#each occupants}}
+    <div class="box-item flex row occupant" data-uuid="{{this.uuid}}" data-id="{{this.id}}">
+      <div class="item-name flex row align-center" data-action="viewOccupant" data-uuid="{{this.uuid}}" >
+        <img class="occupant-image" src="{{this.img}}" title="{{this.name}}" style="margin-right: 1rem;" />
+        <a class="occupant-name">{{this.name}}</a>
+      </div>
+      <div class="item-controls flex align-center" style="flex-direction: row-reverse;" data-action="deleteOccupant" data-uuid="{{this.uuid}}">
+        <i class="fas fa-trash fa-fw occupant-delete"></i>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  
+  {{!-- ITEMS --}}
+  <div class="flex column">
+    <div class="box-item header flex row align-center space-between" style="background-color: rgb(68, 68, 68);">
+        <div class="flex row item-name">
+            <label style="align-self: center">{{localize "MYZ.GEAR"}}</label>                        
+        </div>                    
+    </div>
+    <ol class="box-list flex column" style="min-height: 100px; padding: unset;">
+        {{#each itemsOnVehicle as |gear key|}}
+        <li class="box-item gear flex row align-center space-between editable-item item-edit" data-item-id="{{gear._id}}">
+            <span class="item-name flex row align-center">
+                <img class="item-image" src="{{gear.img}}" />
+                <a class="item-link">{{gear.name}} x &nbsp;</a>                            
+                <input type="number" class="owned-item-value num-value-1rem" value="{{gear.system.quantity}}" data-item-id="{{gear._id}}" data-linked-value="system.quantity">
+                {{#ifCond gear.type '==' 'weapon'}}
+                <div style="padding: 0 0.5rem;" class="flex align-center space-between">
+                    <label style="margin-right: 0.5rem;">{{localize 'MYZ.BONUS'}}: {{gear.system.bonus.value}}</label>
+                    <label style="margin-right: 0.5rem;">{{localize 'MYZ.DAMAGE'}}: {{gear.system.damage}} </label>
+                    <label>{{localize (toUpperCase (concat "MYZ." gear.system.range))}}</label>                 
+                </div>
+                {{/ifCond}}
+            </span>
+            <span class="item-controls">
+                <a class="chatable" data-action="sendToChat" data-item-id="{{gear._id}}"><i class="fas fa-comment"></i></a>
+                <a class="item-control item-edit" data-action="viewDoc" data-item-id="{{gear._id}}" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" data-action="deleteDoc" data-item-id="{{gear._id}}" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </span>
+        </li>
+        {{/each}}
+    </ol>
+  </div>
+
+
+</section>
