@@ -938,12 +938,14 @@
   }
   .mutant-year-zero .textarea-box {
     border: 1px solid black;
+    color: black;
     margin-bottom: 0.2rem;
     padding: 0.2rem;
   }
   .mutant-year-zero .textarea-box textarea {
     border: none;
     background-color: #e2eaf4;
+    width: 100%;
     resize: none;
     overflow: auto;
   }

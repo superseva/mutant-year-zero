@@ -7,7 +7,8 @@ import { MYZActor } from "./actor/actor.js";
 import { MYZCharacterSheet } from "./sheets/character-sheet.mjs";
 import { MYZNPCSheetV2 } from "./sheets/npc-sheet.mjs";
 import { MYZArkSheetV2 } from "./sheets/ark-sheet.mjs";
-import { MYZVehicleSheetV2 } from "./sheets/vehicle-sheet.mjs"
+import { MYZVehicleSheetV2 } from "./sheets/vehicle-sheet.mjs";
+import { MYZSpaceshipSheetV2 } from "./sheets/spaceship-sheet.mjs"
 
 import { MYZMutantSheet } from "./actor/mutant-sheet.js";
 import { MYZAnimalSheet } from "./actor/animal-sheet.js";
@@ -45,6 +46,7 @@ Hooks.once("init", async function () {
         MYZNPCSheetV2,
         MYZArkSheetV2,
         MYZVehicleSheetV2,
+        MYZSpaceshipSheetV2,
         MYZMutantSheet,
         MYZAnimalSheet,
         MYZRobotSheet,
@@ -149,7 +151,7 @@ Hooks.once("init", async function () {
         types: ["vehicle"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZSpaceshipSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZSpaceshipSheetV2, {
         types: ["spaceship"],
         makeDefault: true,
     });

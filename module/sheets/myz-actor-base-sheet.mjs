@@ -220,7 +220,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 				return this.document.createEmbeddedDocuments("ActiveEffect", [{
 					name: "New Effect",
 					label: "New Effect",
-					img: "systems/mutant-year-zero/assets/ico/biohazard-black.svg",
+					img: "systems/mutant-year-zero/assets/ico/biohazard-white.svg",
 					origin: this.document.uuid,
 					"duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
 					disabled: li.dataset.effectType === "inactive"

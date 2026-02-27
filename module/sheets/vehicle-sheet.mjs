@@ -49,7 +49,7 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
     #dragDrop
     constructor(options = {}) {
         super(options)
-        this.#dragDrop = this.#createDragDropHandlers()
+        this.#dragDrop = this._createDragDropHandlers()
     }
 
     /** @override */
@@ -118,7 +118,7 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
 	}
 
     /** DRAG AND DROP */
-    #createDragDropHandlers() {
+    _createDragDropHandlers() {
         return this.options.dragDrop.map((d) => {
             d.permissions = {
                 dragstart: this._canDragStart.bind(this),

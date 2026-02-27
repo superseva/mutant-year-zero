@@ -528,11 +528,13 @@ input.nolabel {
 }
 .textarea-box{
 	border: 1px solid black;
+	color: black;
 	margin-bottom: 0.2rem;
 	padding: 0.2rem;
 	textarea{
 		border: none;
 		background-color: $c-blue-pale;
+		width: 100%;
 		resize: none;
 		overflow: auto;
 	}

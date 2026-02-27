@@ -1,0 +1,14 @@
+<div class="actor-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" data-action="onEditImage" title="{{actor.name}}" />
+    <div class="header-fields">
+        <div class="flex row align-center space-between" style="margin-bottom: 1rem;">
+            <div>
+                <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+            </div>
+        </div>
+        <div class="flex row">
+            <label style="align-self: center"><strong>{{localize "MYZ.COMMENT"}}:</strong></label>
+            <input type="text" class="nolabel" name="system.comment" value="{{system.comment}}" />
+        </div>
+    </div>
+</div>
