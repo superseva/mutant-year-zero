@@ -20,7 +20,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 			scrollable: ['.window-content']
 		},
         actions: {
-			onEditImage: this.#onEditImage,
+			editImage: this.#onEditImage,
             createDoc: this.#createDoc,
 			deleteDoc: this._deleteDoc,
 			viewDoc: this._viewDoc,
