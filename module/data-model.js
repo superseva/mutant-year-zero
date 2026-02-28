@@ -423,9 +423,6 @@ export class MYZSpaceshipDataModel extends MYZActorDataModel {
   }
 }
 
-
-
-
 // Item Mixins -------------------------------------------------
 
 function baseItemMixin() {

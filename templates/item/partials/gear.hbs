@@ -1,0 +1,25 @@
+<section class='tab gear {{tab.cssClass}}' data-group='primary' data-tab='gear'>
+    <div class="item-attr-row">
+        <label class="resource-label" for="system.comment">{{localize "MYZ.COMMENT"}}</label>
+        <input type="text" name="system.comment" value="{{system.comment}}">
+    </div>
+
+    <div class="item-attr-row">
+        <label class="resource-label" for="system.requirement">{{localize "MYZ.REQUIREMENT"}}</label>
+        <input type="text" name="system.requirement" value="{{system.requirement}}">
+    </div>
+
+    <h2>Description</h2>
+    <div class="info">
+        <div class="description">
+            {{#if editable}}
+            <prose-mirror name='system.description' data-document-uuid='{{item.uuid}}'
+                value='{{system.description}}' collaborate='false' toggled='false'>
+                {{{descriptionHTML}}}
+            </prose-mirror>
+            {{else}}
+                {{{descriptionHTML}}}
+            {{/if}}
+        </div>
+    </div>
+</section>

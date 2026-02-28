@@ -2,22 +2,16 @@
 import { MYZ } from "./config.js";
 import { registerSystemSettings } from "./settings.js";
 import MYZHooks from "./MYZHooks.js";
-import { MYZActor } from "./actor/actor.js";
+import { MYZActor } from "./actor/myz-actor.mjs";
 
-import { MYZCharacterSheet } from "./sheets/character-sheet.mjs";
-import { MYZNPCSheetV2 } from "./sheets/npc-sheet.mjs";
-import { MYZArkSheetV2 } from "./sheets/ark-sheet.mjs";
-import { MYZVehicleSheetV2 } from "./sheets/vehicle-sheet.mjs";
-import { MYZSpaceshipSheetV2 } from "./sheets/spaceship-sheet.mjs"
+import { MYZCharacterSheet } from "./actor/sheets/character-sheet.mjs";
+import { MYZNPCSheetV2 } from "./actor/sheets/npc-sheet.mjs";
+import { MYZArkSheetV2 } from "./actor/sheets/ark-sheet.mjs";
+import { MYZVehicleSheetV2 } from "./actor/sheets/vehicle-sheet.mjs";
+import { MYZSpaceshipSheetV2 } from "./actor/sheets/spaceship-sheet.mjs"
 
-import { MYZMutantSheet } from "./actor/mutant-sheet.js";
-import { MYZAnimalSheet } from "./actor/animal-sheet.js";
-import { MYZRobotSheet } from "./actor/robot-sheet.js";
-import { MYZHumanSheet } from "./actor/human-sheet.js";
-import { MYZNpcSheet } from "./actor/npc-sheet.js";
-import { MYZArkSheet } from "./actor/ark-sheet.js";
-import {MYZVehicleSheet} from "./actor/vehicle-sheet.js";
-import {MYZSpaceshipSheet} from "./actor/spaceship-sheet.js";
+import { MYZItemBaseSheet } from "./item/sheets/myz-item-base-sheet.mjs";
+
 import { MYZItem } from "./item/item.js";
 import { MYZItemSheet } from "./item/item-sheet.js";
 import { MYZDieBase } from "./MYZDice.js";
@@ -47,14 +41,7 @@ Hooks.once("init", async function () {
         MYZArkSheetV2,
         MYZVehicleSheetV2,
         MYZSpaceshipSheetV2,
-        MYZMutantSheet,
-        MYZAnimalSheet,
-        MYZRobotSheet,
-        MYZHumanSheet,
-        MYZNpcSheet,
-        MYZArkSheet,
-        MYZVehicleSheet,
-        MYZSpaceshipSheet,
+        MYZItemBaseSheet,   
         rollItemMacro,
         DiceRoller,
         RollDialogV2
@@ -156,7 +143,7 @@ Hooks.once("init", async function () {
         makeDefault: true,
     });
     foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-    foundry.documents.collections.Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
+    foundry.documents.collections.Items.registerSheet("mutant-year-zero", MYZItemBaseSheet, { makeDefault: true });
 
     /* -------------------------------------------- */
     /*  HANDLEBARS HELPERS      */
@@ -538,27 +525,6 @@ function rollItemMacro(itemName) {
 
 function _preloadHandlebarsTemplates() {
     const templatePaths = [
-        "systems/mutant-year-zero/templates/actor/partials/character-header.html",
-        "systems/mutant-year-zero/templates/actor/partials/attributes.html",
-        "systems/mutant-year-zero/templates/actor/partials/conditions.html",
-        "systems/mutant-year-zero/templates/actor/partials/criticals.html",
-        "systems/mutant-year-zero/templates/actor/partials/rot.html",
-        "systems/mutant-year-zero/templates/actor/partials/skills.html",
-        "systems/mutant-year-zero/templates/actor/partials/weapons.html",
-        "systems/mutant-year-zero/templates/actor/partials/armors.html",
-        "systems/mutant-year-zero/templates/actor/partials/chassis.html",
-        "systems/mutant-year-zero/templates/actor/partials/chassis-1row.html",
-        "systems/mutant-year-zero/templates/actor/partials/gear.html",
-        "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
-        "systems/mutant-year-zero/templates/actor/partials/resource-counter.html",
-        "systems/mutant-year-zero/templates/actor/partials/abilities.html",
-        "systems/mutant-year-zero/templates/actor/partials/talents.html",
-        "systems/mutant-year-zero/templates/actor/partials/info.html",
-        "systems/mutant-year-zero/templates/actor/partials/consumables.html",
-        "systems/mutant-year-zero/templates/actor/partials/encumbrance.html",
-        "systems/mutant-year-zero/templates/actor/partials/actor-effects.html",
-        "systems/mutant-year-zero/templates/actor/partials/special.html",
-        "systems/mutant-year-zero/templates/actor/partials/npc-inventory.html",
         "systems/mutant-year-zero/templates/item/partials/header-simple.html",
         "systems/mutant-year-zero/templates/item/partials/header-physical.html",
         "systems/mutant-year-zero/templates/item/partials/tabs.html",

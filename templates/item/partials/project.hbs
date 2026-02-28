@@ -1,0 +1,54 @@
+<section class='tab project {{tab.cssClass}}' data-group='primary' data-tab='project'>
+    <div class="flexrow margin align-center">
+        <label for="system.DEV_Requirement">{{localize 'MYZ.DEV_REQUIREMENT'}}</label>
+        <input type="text" name="system.DEV_Requirement" value="{{system.DEV_Requirement}}" style="flex: 2" />
+    </div>
+    <div class="flexrow margin align-center">
+        <label for="system.other_requirements">{{localize 'MYZ.OTHER_REQUIREMENTS'}}</label>
+        <input type="text" name="system.other_requirements" value="{{system.other_requirements}}" style="flex: 2" />
+    </div>
+    <div class="flexrow margin align-center">
+        <label for="system.skills">{{localize 'MYZ.SKILLS'}}</label>
+        <input type="text" name="system.skills" value="{{system.skills}}" style="flex: 2" />
+    </div>
+    <div class="flexrow margin align-center">
+        <label for="system.work_points">{{localize 'MYZ.WORK_POINTS'}}</label>
+        <input type="text" name="system.work_points" value="{{system.work_points}}" style="flex: 2" />
+    </div>
+    <div class="flexrow margin align-center">
+        <label for="system.DEV_Bonus">{{localize 'MYZ.DEV_BONUS'}}</label>
+        <input type="text" name="system.DEV_Bonus" value="{{system.DEV_Bonus}}" style="flex: 2" />
+    </div>
+    
+
+<div class="resource flexrow flex-group-left item-attr-row">
+        <div class="flexcol">
+            <label class="resource-label">{{localize 'MYZ.FOOD'}}</label>
+            <input type="number" min="0" class="short-input" name="system.food" value="{{system.food}}" />
+        </div>
+        <div class="flexcol">
+            <label class="resource-label">{{localize 'MYZ.CULTURE'}}</label>
+            <input type="number" min="0" class="short-input" name="system.culture" value="{{system.culture}}" />
+        </div>
+        <div class="flexcol">
+            <label class="resource-label">{{localize 'MYZ.TECHNOLOGY'}}</label>
+            <input type="number" min="0" class="short-input" name="system.technology" value="{{system.technology}}" />
+        </div>
+        <div class="flexcol">
+            <label class="resource-label">{{localize 'MYZ.WARFARE'}}</label>
+            <input type="number" min="0" class="short-input" name="system.warfare" value="{{system.warfare}}" />
+        </div>
+    </div>
+
+
+    <div class="margin">
+        <label for="system.special" class="uppercase">{{localize 'MYZ.SPECIAL'}}</label>
+        <textarea name="system.special" style="resize: vertical">{{system.special}}</textarea>
+    </div>
+
+    <h2>Description</h2>
+    <div class="info">
+        <div class="description">{{editor descriptionHTML target="system.description" button=true owner=owner editable=true engine='prosemirror'}}</div>
+    </div>
+
+</section>

@@ -1,0 +1,39 @@
+<section
+  class='tab skill {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='skill'
+>
+    <div class="grid grid-3col item-attr-row align-start">
+        <div class="resource">
+            <label class="resource-label" for="system.value">{{localize 'MYZ.VALUE'}}</label>
+            <input type="text" name="system.value" value="{{system.value}}" data-dtype="Number" />
+        </div>
+        <div class="resource flex column">
+            <label class="resource-label" for="system.creatureType">{{localize 'MYZ.ACTOR_TYPE'}}</label>
+            <select name="system.creatureType">
+                {{selectOptions MYZ.CREATURE_TYPES selected=system.creatureType localize=true}}
+            </select>
+        </div>
+        <div class="resource flex column">
+            <label class="resource-label" for="system.attribute">{{localize "MYZ.ATTRIBUTES"}}</label>
+            <select name="system.attribute">
+                {{selectOptions creatureAttributes selected=system.attribute localize=true}}
+            </select>
+        </div>
+    </div>
+    
+    
+    <h2>Description</h2>
+    <div class="info-high">
+        <div class="description">
+            {{#if editable}}
+            <prose-mirror name='system.description' data-document-uuid='{{item.uuid}}' value='{{system.description}}'
+                collaborate='false' toggled='false'>
+                {{{descriptionHTML}}}
+            </prose-mirror>
+            {{else}}
+            {{{descriptionHTML}}}
+            {{/if}}
+        </div>
+    </div>
+</div>
