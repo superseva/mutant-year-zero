@@ -1,12 +1,15 @@
 <div>
-		<h2>{{localize 'MYZ.DESCRIPTION'}}</h2>
-
-  {{#if editable}}
-  <prose-mirror style='height: 320px;' name='system.description' data-document-uuid='{{item.uuid}}' value='{{system.description}}' collaborate='false' toggled='true'>
-    {{{descriptionHTML}}}
-  </prose-mirror>
-  {{else}}
-    {{{descriptionHTML}}}
-  {{/if}}
-
+  <label class="page-section-header">{{localize 'MYZ.DESCRIPTION'}}</label>
+  <div class="{{classCSS}}">
+    <div class="description">
+      {{#if editable}}
+      <prose-mirror name='system.description' data-document-uuid='{{item.uuid}}' value='{{system.description}}'
+        collaborate='false' toggled='false'>
+        {{{descriptionHTML}}}
+      </prose-mirror>
+      {{else}}
+      {{{descriptionHTML}}}
+      {{/if}}
+    </div>
+  </div>
 </div>

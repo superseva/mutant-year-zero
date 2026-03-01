@@ -19,7 +19,7 @@ export class MYZSpaceshipSheetV2 extends MYZVehicleSheetV2{
             template:"systems/mutant-year-zero/templates/actor/partials/spaceship-header.hbs"
         },
         tasbs:{
-            template:"systems/mutant-year-zero/templates/actor/partials/spaceship-tabs.hbs"
+            template: "templates/generic/tab-navigation.hbs",
         },
         attributes:{
              template:"systems/mutant-year-zero/templates/actor/tabs/spaceship-attributes.hbs"
@@ -37,7 +37,8 @@ export class MYZSpaceshipSheetV2 extends MYZVehicleSheetV2{
 
     static TABS = {
         primary: {
-			tabs: [{ id: "attributes" }, {id: "crew"}, {id: "cargo"}, {id: "info"}],
+            labelPrefix: "MYZ",
+			tabs: [{ id: "attributes", label: "ATTRIBUTES" }, {id: "crew", label: "CREW"}, {id: "cargo", label: "CARGO"}, {id: "info", label: "INFO"}],
 			initial: "attributes", // Set the initial tab
 		}
     }

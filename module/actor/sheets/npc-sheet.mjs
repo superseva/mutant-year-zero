@@ -9,7 +9,7 @@ export class MYZNPCSheetV2 extends MYZCharacterSheet {
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(foundry.utils.deepClone(super.DEFAULT_OPTIONS), {
        position: {
 			width: 600,
-			height: 615,
+			height: 635,
 		},
         actions:{
             chooseCreatureType:this.#chooseCreatureType
@@ -25,7 +25,7 @@ export class MYZNPCSheetV2 extends MYZCharacterSheet {
 			template: "systems/mutant-year-zero/templates/actor/partials/npc-header.hbs",
 		},
         tabs: {
-			template: "systems/mutant-year-zero/templates/actor/partials/character-tabs.hbs",
+			template: "templates/generic/tab-navigation.hbs",
 		},
         attributes: {
 			template: "systems/mutant-year-zero/templates/actor/tabs/npc-attributes.hbs",			

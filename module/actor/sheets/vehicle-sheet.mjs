@@ -29,7 +29,7 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
             template:"systems/mutant-year-zero/templates/actor/partials/vehicle-header.hbs"
         },
         tabs:{
-            template:"systems/mutant-year-zero/templates/actor/partials/vehicle-tabs.hbs"
+            template: "templates/generic/tab-navigation.hbs",
         },
         occupants:{
             template:"systems/mutant-year-zero/templates/actor/tabs/vehicle-occupants.hbs"
@@ -41,7 +41,8 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
 
     static TABS = {
         primary: {
-			tabs: [{ id: "occupants" }, {id: "info"}],
+            labelPrefix: "MYZ",
+			tabs: [{ id: "occupants", label: "OCCUPANTS" }, {id: "info", label: "INFO"}],
 			initial: "occupants"
 		},
     }

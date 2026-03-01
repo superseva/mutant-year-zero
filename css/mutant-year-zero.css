@@ -1,7 +1,5 @@
 @layer mutant-year-zero {
   @import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;500;800&family=Cairo:wght@400;600;700&display=swap");
-  /*$font-primary: 'Roboto', sans-serif;
-  $font-secondary: 'Roboto', sans-serif;*/
   /* MYZ FONT SYMBOLS*/
   @font-face {
     font-family: "myz";
@@ -244,17 +242,17 @@
     text-transform: uppercase;
   }
   .myz.chat-item h2 {
-    font-family: "Karla", sans-serif;
+    font-family: "BigNoodleTitling", sans-serif;
   }
   .myz.chat-item h3 {
-    font-family: "Karla", sans-serif;
+    font-family: "BigNoodleTitling", sans-serif;
     font-size: 1.4em;
     font-weight: bold;
     margin: 0 0 8px;
     text-align: center;
   }
   .myz.chat-item h4 {
-    font-family: "Karla", sans-serif;
+    font-family: "BigNoodleTitling", sans-serif;
     font-size: 1em;
     font-weight: bold;
     margin: 0.5em 0 0 0;
@@ -483,8 +481,30 @@
     margin: 0;
     list-style: none;
   }
+  .mutant-year-zero input {
+    background-color: white;
+    color: black;
+  }
+  .mutant-year-zero select {
+    background-color: white;
+    color: black;
+  }
+  .mutant-year-zero input[type=checkbox] {
+    background-color: rgba(0, 0, 0, 0);
+  }
   .mutant-year-zero input[type=checkbox]:checked, .mutant-year-zero input[type=radio]:checked {
     accent-color: #fff100;
+  }
+  .mutant-year-zero .resource-label {
+    color: black;
+    text-transform: capitalize;
+    font-size: 0.8rem;
+  }
+  .mutant-year-zero .page-section-header {
+    font-family: "BigNoodleTitling", sans-serif;
+    font-size: 1.1rem;
+    color: black;
+    text-transform: uppercase;
   }
   .mutant-year-zero .sheet-header,
   .mutant-year-zero .actor-header {
@@ -495,6 +515,7 @@
     justify-content: flex-start;
     align-items: flex-start !important;
     color: black;
+    margin-bottom: 10px;
   }
   .mutant-year-zero .sheet-header.npc,
   .mutant-year-zero .actor-header.npc {
@@ -533,10 +554,6 @@
   .mutant-year-zero .sheet-header input,
   .mutant-year-zero .actor-header input {
     color: black;
-  }
-  .mutant-year-zero .sheet-tabs {
-    flex: 0;
-    margin-bottom: 5px;
   }
   .mutant-year-zero .sheet-body,
   .mutant-year-zero .sheet-body .tab,
@@ -797,6 +814,7 @@
     border-radius: 0;
     border-bottom: 1px solid;
     background-color: unset;
+    color: black;
   }
   .mutant-year-zero .npc-name-rank {
     display: flex;
@@ -978,44 +996,21 @@
     font-size: 12px;
     line-height: 14px;
   }
-  .mutant-year-zero .resource-label {
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .mutant-year-zero {
-    /* .tabs {
-       .item {
-         background: rgba(0, 0, 0, 0.125);
-         border: 1px solid;
-         border-radius: 4px;
-         margin: 0 10px 0;
-         padding: 8px 4px;
-
-         &:hover,
-         &:focus {
-           background: rgba(0, 0, 0, 0.125);
-         }
-
-         &.active {
-           background: transparent;
-         }
-       }
-     }*/
-  }
-  .mutant-year-zero .tabs {
+  .mutant-year-zero nav.tabs {
     height: 40px;
     border-top: 1px solid #AAA;
     border-bottom: 1px solid #AAA;
     padding: 10px 0;
+    margin-bottom: 10px;
   }
-  .mutant-year-zero .tabs .item {
+  .mutant-year-zero nav.tabs [data-tab] {
     line-height: 40px;
     line-height: 23px;
     font-family: "BigNoodleTitling";
     font-size: 1.3rem;
     color: black;
   }
-  .mutant-year-zero .tabs .item.active {
+  .mutant-year-zero nav.tabs [data-tab].active, .mutant-year-zero nav.tabs [data-tab]:hover {
     text-decoration: underline;
     text-shadow: none;
   }

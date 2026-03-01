@@ -1,4 +1,5 @@
 const { api, sheets } = foundry.applications;
+const { getProperty } = foundry.utils;
 
 /**
  * Extend the basic ItemSheetV2 V2
@@ -22,7 +23,10 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 			submitOnChange: true,
 			submitOnClose: false,
 			closeOnSubmit: false,
-		}
+		},
+        actions:{
+            addSkillModifier: this.#onAddSkillModifier
+        }
     }
 
     static PARTS = {
@@ -33,9 +37,7 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
             template:"systems/mutant-year-zero/templates/item/partials/header-physical.hbs"
         },
         tabs:{
-            // Foundry-provided generic template
 			template: "templates/generic/tab-navigation.hbs",
-            //template:"systems/mutant-year-zero/templates/item/partials/tabs.hbs"
         },
         ability:{
             template:"systems/mutant-year-zero/templates/item/partials/ability.hbs"
@@ -161,6 +163,7 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 
         //context.tabs = this._prepareTabs("primary");
         context.tabs = this._getTabs(options.parts);
+        console.log(context.tabs)
 
         return context;
     }
@@ -208,7 +211,32 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 			tabs[partId] = tab
 			return tabs
 		}, {})
+    }
 
+    /** ACTION HANDLERS */
+
+    static async #onAddSkillModifier(event, target){
+        event.preventDefault();
+        console.log("Dinner time", {event, target})
+        const skillKey = target.form.querySelector('select[name="skill-selector"]').value;
+        const tempSkillModifier = parseInt(target.form.querySelector('input[name="tempSkillModifier"]').value) || 0;
+        const tempGearModifier = parseInt(target.form.querySelector('input[name="tempGearModifier"]').value) || 0;
+        if (!skillKey) {
+            ui.notifications.warn("MYZ: Please select a skill to add modifiers for.");
+            return;
+        }
+        if (tempSkillModifier === 0 && tempGearModifier === 0) {
+            ui.notifications.warn("MYZ: Please enter a non-zero modifier value.");
+            return;
+        }
+        const modifierPath = `system.modifiers.${skillKey}`;
+        const gearModifierPath = `system.gearModifiers.${skillKey}`;
+        const currentModifier = getProperty(this.document, modifierPath) || 0;
+        const currentGearModifier = getProperty(this.document, gearModifierPath) || 0;
+        await this.document.update({
+            [modifierPath]: currentModifier + tempSkillModifier,
+            [gearModifierPath]: currentGearModifier + tempGearModifier
+        });
     }
     
 }

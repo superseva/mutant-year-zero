@@ -6,8 +6,37 @@ ol {
 	list-style: none;
 }
 
+
+input {
+	background-color: white;
+	color: black;
+	
+}
+select {
+	background-color: white;
+	color: black;           
+}
+input[type="checkbox"]{
+	background-color: rgba(0, 0, 0, 0)
+}
+
 input[type="checkbox"]:checked, input[type="radio"]:checked {
     accent-color: #fff100;
+	
+}
+
+
+.resource-label {
+	color: black;
+	text-transform: capitalize;
+	font-size: 0.8rem;
+}
+.page-section-header{
+	font-family: $font-secondary;
+	font-size: 1.1rem;
+	//font-weight: bold;
+	color: black;
+	text-transform: uppercase;
 }
 
 .sheet-header,
@@ -19,6 +48,7 @@ input[type="checkbox"]:checked, input[type="radio"]:checked {
 	justify-content: flex-start;
 	align-items: flex-start !important;
 	color:black;
+	margin-bottom: 10px;
 
 	&.npc {
 		flex: 0 0 110px;
@@ -60,8 +90,8 @@ input[type="checkbox"]:checked, input[type="radio"]:checked {
 }
 
 .sheet-tabs {
-	flex: 0;
-	margin-bottom: 5px;
+	//flex: 0;
+	//margin-bottom: 5px;
 }
 
 .sheet-body,
@@ -376,6 +406,7 @@ input.nolabel {
 	border-radius: 0;
 	border-bottom: 1px solid;
 	background-color: unset;
+	color: black;
 }
 
 .npc-name-rank {

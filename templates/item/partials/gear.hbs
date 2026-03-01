@@ -9,17 +9,6 @@
         <input type="text" name="system.requirement" value="{{system.requirement}}">
     </div>
 
-    <h2>Description</h2>
-    <div class="info">
-        <div class="description">
-            {{#if editable}}
-            <prose-mirror name='system.description' data-document-uuid='{{item.uuid}}'
-                value='{{system.description}}' collaborate='false' toggled='false'>
-                {{{descriptionHTML}}}
-            </prose-mirror>
-            {{else}}
-                {{{descriptionHTML}}}
-            {{/if}}
-        </div>
-    </div>
+    {{!-- Description --}}
+    {{> systems/mutant-year-zero/templates/item/partials/info.hbs editable=editable classCSS="info-mid"}}
 </section>

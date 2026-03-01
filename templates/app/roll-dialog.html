@@ -9,15 +9,15 @@
                 <img src="systems/mutant-year-zero/ui/dice-base-6.png" title="{{localize base.name}}"/>                
                 <input type="number" name="base" data-type="Number" id="{{base.type}}" value="{{base.total}}" />
             </div>
-            <div>
-                {{#ifCond base.modifiers.length '>' 0}}
+            <div>                
                 <ul class="roll-bonus-list">
-                    <li><em>{{localize 'MYZ.DEFAULT'}}: {{base.default}}</em></li>
+                    <li><em>{{base.name}}{{#ifCond base.default '>' 0}}: {{base.default}}{{/ifCond}}</em></li>
+                    {{#ifCond base.modifiers.length '>' 0}}
                     {{#each base.modifiers as |item key|}}
                     <li><em>{{item.name}}: {{item.value}}</em></li>
-                    {{/each}}               
-                </ul>
-                {{/ifCond}}
+                    {{/each}}       
+                    {{/ifCond}}        
+                </ul>                
             </div>
         </div>
 
@@ -29,15 +29,16 @@
                 <img src="systems/mutant-year-zero/ui/dice-skill-6.png" title="{{localize skill.name}}"/>
                 <input type="number" name="skill" data-type="Number" id="{{skill.type}}" value="{{skill.total}}" />
             </div>
-            <div>                
-                {{#ifCond skill.modifiers.length '>' 0}}                
+            <div>             
                 <ul class="roll-bonus-list">
-                    <li><em>{{localize 'MYZ.DEFAULT'}}: {{skill.default}}</em></li>
+                    {{log skill}}                
+                    <li><em>{{skill.name}}{{#ifCond skill.default '>' 0}}: {{skill.default}}{{/ifCond}}</em></li>
+                    {{#ifCond skill.modifiers.length '>' 0}}  
                     {{#each skill.modifiers as |item key|}}
                     <li><em>{{item.name}}: {{item.value}}</em></li>
                     {{/each}}               
+                     {{/ifCond}}
                 </ul>
-                {{/ifCond}}
             </div>
         </div>
         
@@ -49,15 +50,15 @@
                 <img src="systems/mutant-year-zero/ui/dice-gear-6.png" title="{{localize gear.name}}"/>
                 <input type="number" name="gear" data-type="Number" id="{{gear.type}}" value="{{gear.total}}" />
             </div>
-             <div>                
-                {{#ifCond gear.modifiers.length '>' 0}}
-                <ul class="roll-bonus-list">
-                    <li><em>{{localize 'MYZ.DEFAULT'}}: {{gear.default}}</em></li>
+             <div>
+                <ul class="roll-bonus-list">                   
+                    <li><em>{{gear.name}}{{#ifCond gear.default '>' 0}}: {{gear.default}}{{/ifCond}}</em></li>
+                    {{#ifCond gear.modifiers.length '>' 0}}
                     {{#each gear.modifiers as |item key|}}
                     <li><em>{{item.name}}: {{item.value}}</em></li>
                     {{/each}}
-            </ul>
-            {{/ifCond}}
+                    {{/ifCond}}
+                </ul>
             </div>
         </div>
 

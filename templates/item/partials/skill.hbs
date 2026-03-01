@@ -3,6 +3,11 @@
   data-group='primary'
   data-tab='skill'
 >
+    {{!-- <div class="resource">
+        <label class="resource-label" for="system.skillKey">SKILL KEY, every official skill has a skillKey set</label>
+        <input type="text" name="system.skillKey" value="{{system.skillKey}}" data-dtype="text" />
+    </div>  --}}
+
     <div class="grid grid-3col item-attr-row align-start">
         <div class="resource">
             <label class="resource-label" for="system.value">{{localize 'MYZ.VALUE'}}</label>
@@ -22,18 +27,9 @@
         </div>
     </div>
     
+
+    {{!-- Description --}}
+    {{> systems/mutant-year-zero/templates/item/partials/info.hbs editable=editable classCSS="info-high"}}
     
-    <h2>Description</h2>
-    <div class="info-high">
-        <div class="description">
-            {{#if editable}}
-            <prose-mirror name='system.description' data-document-uuid='{{item.uuid}}' value='{{system.description}}'
-                collaborate='false' toggled='false'>
-                {{{descriptionHTML}}}
-            </prose-mirror>
-            {{else}}
-            {{{descriptionHTML}}}
-            {{/if}}
-        </div>
-    </div>
+
 </div>

@@ -23,7 +23,7 @@ export class MYZArkSheetV2 extends MYZActorBaseSheet {
             template:"systems/mutant-year-zero/templates/actor/partials/ark-header.hbs"
         },
         tabs:{
-            template:"systems/mutant-year-zero/templates/actor/partials/ark-tabs.hbs"
+            template: "templates/generic/tab-navigation.hbs",
         },
         projects:{
             template:"systems/mutant-year-zero/templates/actor/tabs/ark-projects.hbs"
@@ -42,7 +42,11 @@ export class MYZArkSheetV2 extends MYZActorBaseSheet {
     /** @override */
     static TABS = {
         primary: {
-			tabs: [{ id: "projects" }, {id: "artifacts"}, {id: "bosses"}, {id: "info"}],
+            labelPrefix: "MYZ",
+			tabs: [{ id: "projects", label:"PROJECTS" },
+                {id: "artifacts", label:"ARTIFACTS"}, 
+                {id: "bosses", label:"BOSSES"}, 
+                {id: "info", label:"INFO"}],
 			initial: "projects", // Set the initial tab
 		},
     }

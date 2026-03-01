@@ -4,40 +4,78 @@
   data-tab='modifiers'
 >
     <div>
-        <h3 style="text-transform:uppercase; text-align: center; font-weight: 900;">{{localize 'MYZ.BASE_DICE'}}</h3>
+        <label class="page-section-header">{{localize 'MYZ.BASE_DICE'}}</label>
         <div>
             <div class="flex space-between">
-                <p>{{localize 'MYZ.ATTRIBUTE_STRENGTH_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_STRENGTH_ROBOT'}}</p>
-                <input class="short-input" type="number" name="system.modifiers.strength" value="{{system.modifiers.strength}}" {{#ifCond system.modifiers.strength '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond system.modifiers.strength '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}>
+                <label class="resource-label">{{localize 'MYZ.ATTRIBUTE_STRENGTH_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_STRENGTH_ROBOT'}}</label>
+                <div class="flex align-center">
+                    <img src="systems/mutant-year-zero/ui/dice-base-6.png" style="width: 20px; height: 20px; margin-left: 10px;" />
+                    <input class="short-input" type="number" name="system.modifiers.strength" value="{{system.modifiers.strength}}" {{#ifCond system.modifiers.strength '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond system.modifiers.strength '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}>
+                </div>
             </div>
             <div class="flex space-between">
-                <p>{{localize 'MYZ.ATTRIBUTE_AGILITY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_AGILITY_ROBOT'}}</p>
-                <input class="short-input" type="number" name="system.modifiers.agility" value="{{system.modifiers.agility}}" {{#ifCond system.modifiers.agility '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond system.modifiers.agility '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}>
+                <label class="resource-label">{{localize 'MYZ.ATTRIBUTE_AGILITY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_AGILITY_ROBOT'}}</label>
+                <div class="flex align-center">
+                    <img src="systems/mutant-year-zero/ui/dice-base-6.png" style="width: 20px; height: 20px; margin-left: 10px;" />
+                    <input class="short-input" type="number" name="system.modifiers.agility" value="{{system.modifiers.agility}}" {{#ifCond system.modifiers.agility '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond system.modifiers.agility '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}>
+                </div>
             </div>
             <div class="flex space-between">
-                <p>{{localize 'MYZ.ATTRIBUTE_WITS_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_WITS_ROBOT'}}</p>
-                <input class="short-input" type="number" name="system.modifiers.wits" value="{{system.modifiers.wits}}" {{#ifCond system.modifiers.wits '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond system.modifiers.wits '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}>
+                <label class="resource-label">{{localize 'MYZ.ATTRIBUTE_WITS_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_WITS_ROBOT'}}</label>
+                <div class="flex align-center">
+                    <img src="systems/mutant-year-zero/ui/dice-base-6.png" style="width: 20px; height: 20px; margin-left: 10px;" />
+                    <input class="short-input" type="number" name="system.modifiers.wits" value="{{system.modifiers.wits}}" {{#ifCond system.modifiers.wits '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond system.modifiers.wits '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}>
+                </div>
             </div>
             <div class="flex space-between">
-                <p>{{localize 'MYZ.ATTRIBUTE_EMPATHY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ANIMAL'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ROBOT'}}</p>
-                <input class="short-input" type="number" name="system.modifiers.empathy" value="{{system.modifiers.empathy}}" {{#ifCond system.modifiers.empathy '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond system.modifiers.empathy '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}>
+                <label class="resource-label">{{localize 'MYZ.ATTRIBUTE_EMPATHY_MUTANT'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ANIMAL'}} / {{localize 'MYZ.ATTRIBUTE_EMPATHY_ROBOT'}}</label>
+                <div class="flex align-center">
+                    <img src="systems/mutant-year-zero/ui/dice-base-6.png" style="width: 20px; height: 20px; margin-left: 10px;" />
+                    <input class="short-input" type="number" name="system.modifiers.empathy" value="{{system.modifiers.empathy}}" {{#ifCond system.modifiers.empathy '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond system.modifiers.empathy '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}>
+                </div>
             </div>
+        </div>
+    </div>
+    <hr />
+
+    <label class="page-section-header">{{localize 'MYZ.SKILL_DICE'}} & {{localize 'MYZ.GEAR_DICE'}}</label>    
+    <div class="box-item header flexrow align-center">        
+        <div class="flexrow">            
+            <select name="skill-selector">
+                <option value="">{{localize 'MYZ.CHOOSE_SKILL'}}</option>
+                {{#each system.skillKeysList as |key index|}}
+                    <option value="{{key}}">{{localize (concat 'MYZ.SKILL_' key)}}</option>
+                {{/each}}
+            </select>
+            <div class="flex">
+                <span class="flex row align-center">
+                <img src="systems/mutant-year-zero/ui/dice-skill-6.png" style="width: 20px; height: 20px; margin-left: 10px;" />      
+                <input class="short-input" type="number" name="tempSkillModifier" value="0" style="margin-left: 10px;">
+                </span>
+                <span class="flex row align-center">
+                <img src="systems/mutant-year-zero/ui/dice-gear-6.png" style="width: 20px; height: 20px; margin-left: 10px;" />
+                <input class="short-input" type="number" name="tempGearModifier" value="0" style="margin-left: 10px;">
+                </span>
+            </div>
+            <button style="margin:0 10px;" data-action="addSkillModifier">{{localize 'MYZ.ADD'}}</button>
         </div>
     </div>
 
     <div class="grid-odd-raw-color-shift">
-        <h3 style="text-transform:uppercase; text-align: center; font-weight: 900; padding-top: 10px;">{{localize 'MYZ.SKILL_DICE'}} & {{localize 'MYZ.GEAR_DICE'}}</h3>
+        {{!-- <label class="page-section-header">{{localize 'MYZ.SKILL_DICE'}} & {{localize 'MYZ.GEAR_DICE'}}</label> --}}
         <div class="grid grid-3col">
-            <p>{{localize 'MYZ.SKILL_NAME'}}</p>
-            <span style="display: flex; justify-content: center;"><p>{{localize 'MYZ.SKILL_DICE_MODIFIER'}}</p></span>
-            <span style="display: flex; justify-content: center;"><p>{{localize 'MYZ.GEAR_DICE_MODIFIER'}}</p></span>
+            <p class="resource-label">{{localize 'MYZ.SKILL_NAME'}}</p>
+            <span style="display: flex; justify-content: center;"><p class="resource-label">{{localize 'MYZ.SKILL_DICE_MODIFIER'}}</p></span>
+            <span style="display: flex; justify-content: center;"><p class="resource-label">{{localize 'MYZ.GEAR_DICE_MODIFIER'}}</p></span>
         </div>
         {{#each system.skillKeysList as |key index|}}
+        {{#if (or (lookup ../system.modifiers key) (lookup ../system.gearModifiers key))}}
         <div class="grid grid-3col" >
-            <span><p>{{localize (concat 'MYZ.SKILL_' key)}}</p></span>
+            <span><p class="resource-label">{{localize (concat 'MYZ.SKILL_' key)}}</p></span>
             <span style="display: flex; justify-content: center;"><input class="short-input" type="number" name="system.modifiers.{{key}}" value="{{lookup ../system.modifiers key}}" {{#ifCond (lookup ../system.modifiers key) '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond (lookup ../system.modifiers key) '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}></span>
             <span style="display: flex; justify-content: center;"><input class="short-input" type="number" name="system.gearModifiers.{{key}}" value="{{lookup ../system.gearModifiers key}}" {{#ifCond (lookup ../system.gearModifiers key) '>' 0}}style="background-color:#026300;color:white;"{{/ifCond}}{{#ifCond (lookup ../system.gearModifiers key) '<' 0}}style="background-color:#800000;color:white;"{{/ifCond}}></span>
         </div>
+        {{/if}}
         {{/each}}
     </div>
 </section>

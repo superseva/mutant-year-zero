@@ -67,6 +67,8 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 		Object.assign(context, preparedItems);
 
 		context.tabs = this._prepareTabs("primary");
+		console.log(this.tabGroups)
+		console.log(context.tabs)
 
 		//console.log("Context prepared:", context);
 		return context;

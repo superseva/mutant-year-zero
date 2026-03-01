@@ -32,7 +32,7 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 			templates:["systems/mutant-year-zero/templates/actor/partials/rot.hbs"]
 		},
 		tabs: {
-			template: "systems/mutant-year-zero/templates/actor/partials/character-tabs.hbs",
+			template: "templates/generic/tab-navigation.hbs",
 		},
 		attributes: {
 			template: "systems/mutant-year-zero/templates/actor/tabs/attributes.hbs",			
@@ -73,7 +73,12 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 	/** @type {Record<string, foundry.applications.types.ApplicationTabsConfiguration>} */
 	static TABS = {
 		primary: {
-			tabs: [{ id: "attributes" }, {id: "gear"}, {id: "info"}, {id: "effects"}],
+			labelPrefix: "MYZ",
+			tabs: [
+				{ id: "attributes", label: "ATTRIBUTES" }, 
+				{id: "gear", label: "GEAR"}, 
+				{id: "info", label: "INFO"}, 
+				{id: "effects", label: "EFFECTS"}],
 			initial: "attributes", // Set the initial tab
 		},
 	};

@@ -31,21 +31,21 @@ export class RollDialogV2 extends foundry.applications.api.DialogV2 {
         // Prepare HTML data
         const htmlData = {
             base: {
-                name: "MYZ.DICE_BASE",
+                name: attributeName ? attributeName.toUpperCase() : game.i18n.localize("MYZ.DICE_BASE"),
                 type: "base",
                 total: base.total,
                 default: base.default,
                 modifiers: base.modifiers || [],
             },
             skill: {
-                name: "MYZ.DICE_SKILL",
+                name: skill.name ? skill.name.toUpperCase() : game.i18n.localize("MYZ.DICE_SKILL"),
                 type: "skill",
                 total: skill.total,
                 default: skill.default,
                 modifiers: skill.modifiers || [],
             },
             gear: {
-                name: "MYZ.DICE_GEAR",
+                name: gear.name ? gear.name.toUpperCase() : game.i18n.localize("MYZ.DICE_GEAR"),
                 type: "gear",
                 total: gear.total,
                 default: gear.default,

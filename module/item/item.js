@@ -49,7 +49,7 @@ export class MYZItem extends Item {
         let gearBonus = itemData.bonus?.value ?? 0;
         //if the parent actor doesn't have the skill related to the weapon we need to create empty skillRollData with default 0 values to avoid errors in the roll dialog.
         //skill: {default:0, total: 0, modifiers: []},
-        let skillRollData = {};
+        let skillRollData = {};        
         let gearRollData = {};
         let ownedSkills = actor.items.filter(i => i.type === "skill"&& i.system.skillKey === skill.system.skillKey);
         if (ownedSkills.length === 0) {
@@ -60,6 +60,9 @@ export class MYZItem extends Item {
             skillRollData = {default:skill.system.value, total: rollData.skillDiceTotals[skill.system.skillKey].skillDiceTotal, modifiers: rollData.skillDiceTotals[skill.system.skillKey].modifiersToSkill};
             gearRollData = {default:gearBonus, total: rollData.skillDiceTotals[skill.system.skillKey].gearDiceTotal + gearBonus, modifiers: rollData.skillDiceTotals[skill.system.skillKey].modifiersToGear};
         }   
+        skillRollData.name = skill ? skill.name : "";
+        if (this.type === "weapon") 
+            gearRollData.name = this.name;
 
        await RollDialogV2.create({
                 rollName: this.name,

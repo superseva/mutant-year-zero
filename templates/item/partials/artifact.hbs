@@ -5,12 +5,6 @@
 >
     {{>"systems/mutant-year-zero/templates/item/partials/dev-levels.hbs"}}
 
-    <h2>Description</h2>
-    <div class="info">
-        <div class="description">
-              <prose-mirror style='height: 320px;' name='system.description' data-document-uuid='{{item.uuid}}' value='{{system.description}}' collaborate='false' toggled='true'>
-                {{{descriptionHTML}}}
-            </prose-mirror>
-        </div>
-    </div>
+    {{!-- Description --}}
+    {{> systems/mutant-year-zero/templates/item/partials/info.hbs editable=editable classCSS="info-mid"}}
 </section>
