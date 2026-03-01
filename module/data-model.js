@@ -13,7 +13,8 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
       role: new StringField({nullable: true, blank: true}),
       specificType: new StringField({nullable: true, blank: true}),
       rank: new StringField({nullable: true, blank: true}),
-      age: new StringField({nullable: true, blank: true}),      
+      age: new StringField({nullable: true, blank: true}),
+      houseAttribute: new StringField({nullable: true, blank: true, initial: ""}),    
 
       resources: new SchemaField({
         grub: new SchemaField({ value: new NumberField({integer: false, min: 0, initial:0}) }),
@@ -142,7 +143,7 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     this.attributeDiceTotals = attributeModifiers;
     this.skillDiceTotals = skillModifiers;
     this.encumbrance = this._getEncumbrance();
-    //console.log(this);
+    console.log(this);
   }
 
   _getEncumbrance() {

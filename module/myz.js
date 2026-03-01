@@ -149,8 +149,6 @@ Hooks.once("init", async function () {
     /*  HANDLEBARS HELPERS      */
     /* -------------------------------------------- */
 
-    _preloadHandlebarsTemplates();
-
     Handlebars.registerHelper("concat", function () {
         var outStr = "";
         for (var arg in arguments) {
@@ -424,9 +422,7 @@ Hooks.on('getChatMessageContextOptions', (app, options) => {
             const messageId = msg.dataset.messageId;            
             const message = await game.messages.get(messageId);           
             const currentStatus = message.getFlag('mutant-year-zero', 'toggleDiceNumbers') ?? false;
-            console.log("Current toggle status for message", messageId, "is", currentStatus);
             const newStatus = !currentStatus;
-            console.log("Setting new toggle status for message", messageId, "to", newStatus);
             await message.setFlag('mutant-year-zero', 'toggleDiceNumbers', newStatus);
         }
     });
@@ -553,21 +549,6 @@ function rollItemMacro(itemName) {
     return item.roll();
 }
 
-/* -------------------------------------------- */
-/** LOAD PARTIALS
-/* -------------------------------------------- */
-
-function _preloadHandlebarsTemplates() {
-    const templatePaths = [
-        "systems/mutant-year-zero/templates/item/partials/header-simple.html",
-        "systems/mutant-year-zero/templates/item/partials/header-physical.html",
-        "systems/mutant-year-zero/templates/item/partials/tabs.html",
-        "systems/mutant-year-zero/templates/item/partials/modifiers.html",
-        "systems/mutant-year-zero/templates/item/partials/dev-levels.html"
-        
-    ];
-    return foundry.applications.handlebars.loadTemplates(templatePaths);
-}
 
 function normalize(data, defaultValue) {
     if (data) {

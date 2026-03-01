@@ -192,7 +192,6 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
     static async _deleteAllOccupants(event, target){
         event.preventDefault();
         const occupants = []
-        console.log("BRISI")
         await this.actor.update({ "system.occupants": occupants })
     }
 

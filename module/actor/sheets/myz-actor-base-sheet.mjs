@@ -59,16 +59,10 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 		context.isNPC = this.document.type === "npc";
 		context.isVehicle = this.document.type === "vehicle";
 		context.rollData = this.document.getRollData.bind(this.document);
-
-		context.effects = this._prepareActiveEffects(this.document.effects);
-		
-		// Use actor method to prepare items
+		context.effects = this._prepareActiveEffects(this.document.effects);		
 		const preparedItems = this.actor.prepareCharacterItems(context.items);
 		Object.assign(context, preparedItems);
-
 		context.tabs = this._prepareTabs("primary");
-		console.log(this.tabGroups)
-		console.log(context.tabs)
 
 		//console.log("Context prepared:", context);
 		return context;
@@ -128,7 +122,6 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 
 		// Iterate over active effects, classifying them into categories
 		for (let e of effects) {
-			//e._getSourceName(); // Trigger a lookup for the source name DePRICATED ??
 			if (e.disabled) categories.inactive.effects.push(e);
 			else if (e.isTemporary) categories.temporary.effects.push(e);
 			else categories.passive.effects.push(e);

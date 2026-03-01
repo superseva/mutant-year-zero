@@ -5,22 +5,22 @@
 >
 
             <div class="grid grid-2col">
-                <div>{{!-- Skills --}} {{> systems/mutant-year-zero/templates/actor/partials/skills.hbs fixedHeight='fixed-height'}}</div>
+                <div>{{!-- Skills --}} {{> systems/mutant-year-zero/templates/actor/partials/character-skills.hbs fixedHeight='fixed-height'}}</div>
                 <div>
-                    {{!-- Abilities --}} {{> systems/mutant-year-zero/templates/actor/partials/abilities.hbs sourceType='ability' sourceList=abilities
+                    {{!-- Abilities --}} {{> systems/mutant-year-zero/templates/actor/partials/character-abilities.hbs sourceType='ability' sourceList=abilities
                     sourceLabel='MYZ.ABILITIES' fixedHeight='fixed-height'}}
                 </div>
                 <div>
-                    {{!-- Talents --}} {{> systems/mutant-year-zero/templates/actor/partials/talents.hbs sourceType='talent' sourceList=talents
+                    {{!-- Talents --}} {{> systems/mutant-year-zero/templates/actor/partials/character-talents.hbs sourceType='talent' sourceList=talents
                     sourceLabel='MYZ.TALENTS' fixedHeight='fixed-height'}}
                 </div>
                 <div>
                     {{#ifCond system.creatureType '==' 'robot'}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/special.hbs}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/character-special.hbs}}
                     {{/ifCond}}
 
                     {{#ifCond system.creatureType '!==' 'robot'}}
-                    {{> systems/mutant-year-zero/templates/actor/partials/criticals.hbs fixedHeight='fixed-height'}}
+                    {{> systems/mutant-year-zero/templates/actor/partials/character-criticals.hbs fixedHeight='fixed-height'}}
                     {{/ifCond}}
                 </div>
 

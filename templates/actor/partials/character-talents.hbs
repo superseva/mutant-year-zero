@@ -10,6 +10,7 @@ create a header label}} {{! PARAM: fixedHeight: should it grow or have a scroll}
 <div class="box-list {{system.creatureType}} {{fixedHeight}}">
     {{#each sourceList as |listItem index|}}
     <div class="box-item flex row align-center space-between editable-item item-edit" data-item-id="{{listItem._id}}">
+        <img class="item-image small" src="{{listItem.img}}" />
         <label class="item-name viewable rollable" data-item-id="{{listItem._id}}" data-action="viewDoc">{{listItem.name}}</label>
         <span class="item-controls">
             <a class="chatable" data-action="sendToChat" data-item-id="{{listItem._id}}" title="{{localize 'MYZ.TOCHAT'}}"><i class="fas fa-comment"></i></a>

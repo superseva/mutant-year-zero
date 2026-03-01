@@ -29,7 +29,7 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 	static PARTS = {
 		header: {
 			template: "systems/mutant-year-zero/templates/actor/partials/character-header.hbs",
-			templates:["systems/mutant-year-zero/templates/actor/partials/rot.hbs"]
+			templates:["systems/mutant-year-zero/templates/actor/partials/character-rot.hbs"]
 		},
 		tabs: {
 			template: "templates/generic/tab-navigation.hbs",
@@ -37,27 +37,27 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 		attributes: {
 			template: "systems/mutant-year-zero/templates/actor/tabs/attributes.hbs",			
 			templates: [
-				"systems/mutant-year-zero/templates/actor/partials/attributes.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/conditions.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/criticals.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/skills.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/resource-counter.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/abilities.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/talents.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/chassis.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-attributes.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-conditions.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-criticals.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-skills.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-resource-counter.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-abilities.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-talents.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-chassis.hbs",
 			],
 			scrollable: []
 		},
 		gear: {
 			template: "systems/mutant-year-zero/templates/actor/tabs/gear.hbs",
 			templates: [
-				"systems/mutant-year-zero/templates/actor/partials/consumables.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/encumbrance.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/weapons.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/armors.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/chassis-1row.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/gear.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/artifacts.hbs"],
+				"systems/mutant-year-zero/templates/actor/partials/character-consumables.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-encumbrance.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-weapons.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-armor.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-chassis-1row.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-gear.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-artifacts.hbs"],
 			scrollable: [''],
 		},
 		info:{

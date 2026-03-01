@@ -10,6 +10,7 @@ create a header label - DEPRICAATED}} {{! PARAM: fixedHeight: should it grow or 
 <div class="box-list abilities {{system.creatureType}} {{fixedHeight}}">
     {{#each sourceList as |listItem index|}}
     <div class="box-item flex row align-center space-between editable-item item-edit" data-item-id="{{listItem._id}}">
+        <img class="item-image small" src="{{listItem.img}}" />
         <a class="item-name viewable" data-item-id="{{listItem._id}}" data-action="viewDoc">{{listItem.name}}</a>
         <span class="item-controls">
             {{#if (ifvalue listItem.system.creatureType 'robot')}}

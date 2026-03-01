@@ -6,26 +6,26 @@
     <div class="grid grid-3col">
         <!--LEFT SECTION-->       
         <div class="col1">
-            {{> systems/mutant-year-zero/templates/actor/partials/attributes.hbs}}
+            {{> systems/mutant-year-zero/templates/actor/partials/character-attributes.hbs}}
             {{#ifCond system.creatureType "!=" "robot"}}
-            {{> systems/mutant-year-zero/templates/actor/partials/conditions.hbs}}
-            {{> systems/mutant-year-zero/templates/actor/partials/criticals.hbs}}
+            {{> systems/mutant-year-zero/templates/actor/partials/character-conditions.hbs}}
+            {{> systems/mutant-year-zero/templates/actor/partials/character-criticals.hbs}}
             {{/ifCond}}
             {{#ifCond system.creatureType "==" "robot"}}
-            {{> systems/mutant-year-zero/templates/actor/partials/chassis.hbs}}    
+            {{> systems/mutant-year-zero/templates/actor/partials/character-chassis.hbs}}    
             {{/ifCond}}
         </div>
        
 
         <!--MID SECTION-->
         <div class="col2">
-            {{> systems/mutant-year-zero/templates/actor/partials/skills.hbs}}
+            {{> systems/mutant-year-zero/templates/actor/partials/character-skills.hbs}}
         </div>
         <!--RIGHT SECTION-->
         <div class="col3">
-            {{> systems/mutant-year-zero/templates/actor/partials/resource-counter.hbs}}
-            {{> systems/mutant-year-zero/templates/actor/partials/abilities.hbs sourceType='ability' sourceList=abilities sourceLabel='MYZ.MUTATIONS'}}
-            {{> systems/mutant-year-zero/templates/actor/partials/talents.hbs sourceType='talent' sourceList=talents sourceLabel='MYZ.TALENTS'}}
+            {{> systems/mutant-year-zero/templates/actor/partials/character-resource-counter.hbs}}
+            {{> systems/mutant-year-zero/templates/actor/partials/character-abilities.hbs sourceType='ability' sourceList=abilities sourceLabel='MYZ.MUTATIONS'}}
+            {{> systems/mutant-year-zero/templates/actor/partials/character-talents.hbs sourceType='talent' sourceList=talents sourceLabel='MYZ.TALENTS'}}
         </div>
     </div>
 

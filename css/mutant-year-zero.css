@@ -1076,7 +1076,26 @@
     flex: 0 0 24px;
     width: 24px;
     height: 24px;
-    margin-right: 0.5em;
+    margin-right: 5px;
+  }
+  .mutant-year-zero .box-item .item-image.small {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    margin-right: 0;
+  }
+  .mutant-year-zero .box-item .item-image.house-attribute {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+    opacity: 0;
+  }
+  .mutant-year-zero .box-item .item-image.house-attribute.active {
+    filter: drop-shadow(0 0 2px gold);
+    opacity: 1;
   }
   .mutant-year-zero .box-item img {
     display: block;

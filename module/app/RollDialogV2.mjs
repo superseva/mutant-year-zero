@@ -60,7 +60,7 @@ export class RollDialogV2 extends foundry.applications.api.DialogV2 {
 
         // Render the template content
         const htmlContent = await foundry.applications.handlebars.renderTemplate(
-            "systems/mutant-year-zero/templates/app/roll-dialog.html",
+            "systems/mutant-year-zero/templates/app/roll-dialog.hbs",
             htmlData
         );
 

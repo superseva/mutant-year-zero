@@ -163,7 +163,6 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 
         //context.tabs = this._prepareTabs("primary");
         context.tabs = this._getTabs(options.parts);
-        console.log(context.tabs)
 
         return context;
     }
@@ -217,7 +216,6 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 
     static async #onAddSkillModifier(event, target){
         event.preventDefault();
-        console.log("Dinner time", {event, target})
         const skillKey = target.form.querySelector('select[name="skill-selector"]').value;
         const tempSkillModifier = parseInt(target.form.querySelector('input[name="tempSkillModifier"]').value) || 0;
         const tempGearModifier = parseInt(target.form.querySelector('input[name="tempGearModifier"]').value) || 0;

@@ -30,23 +30,23 @@ export class MYZNPCSheetV2 extends MYZCharacterSheet {
         attributes: {
 			template: "systems/mutant-year-zero/templates/actor/tabs/npc-attributes.hbs",			
 			templates: [
-				"systems/mutant-year-zero/templates/actor/partials/criticals.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/skills.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/abilities.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/talents.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/chassis.hbs",
-                "systems/mutant-year-zero/templates/actor/partials/special.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-criticals.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-skills.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-abilities.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-talents.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-chassis.hbs",
+                "systems/mutant-year-zero/templates/actor/partials/character-special.hbs",
 			],
 			scrollable: []
 		},
         gear:{
             template: "systems/mutant-year-zero/templates/actor/tabs/npc-gear.hbs",
             templates: [
-				"systems/mutant-year-zero/templates/actor/partials/weapons.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/armors.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/chassis-1row.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/gear.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/artifacts.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-weapons.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-armor.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-chassis-1row.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-gear.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-artifacts.hbs",
                 "systems/mutant-year-zero/templates/actor/partials/npc-inventory.hbs"],
         },
         info:{

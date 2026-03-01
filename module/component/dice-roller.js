@@ -92,7 +92,7 @@ export class DiceRoller {
         // update the message with the new dice pool        
         await message.update(
             {
-                content: await foundry.applications.handlebars.renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", {
+                content: await foundry.applications.handlebars.renderTemplate("systems/mutant-year-zero/templates/chat/roll.hbs", {
                     name: message.getFlag("mutant-year-zero", "rollName") || "Roll Name",
                     pushCount: pushCount,
                     dicePool: finalPool,
@@ -134,7 +134,7 @@ export class DiceRoller {
                 const updateData = {};
                 let traumaCount = await message.getFlag("mutant-year-zero", "traumaCount") || 0;
                 const baneCount = DiceRoller.CountFailures(finalPool)-traumaCount;
-                if (baneCount > 0) {
+                if (baneCount > 0 && actor.system?.houseAttribute !== attributeName) {
                 // Decreases the attribute.
                     const attributes = actor.system.attributes || {};
                     const attribute = attributes[attributeName];

@@ -2,6 +2,18 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 14.0.0
+
+### General
+- Foundry v14 compatible
+- All Actors/Items updated to DataModel and SheetsV2
+### Improvement
+- Roll Dialog
+- Dice Number Toggle feature and settings
+- Item Modifiers
+- Human Attribute Damage Immunity Toggle
+
+
 
 ## 13.0.9
 

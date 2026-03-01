@@ -1,0 +1,32 @@
+<div class="box-item header flex row align-center {{system.creatureType}}">
+    <label class="item-name">{{localize "MYZ.ATTRIBUTES"}}</label>
+</div>
+<div class="box-list attributes {{system.creatureType}}">
+
+    {{#each system.attributes as |attribute key|}}
+    <div class="box-item flex row align-center space-between" {{#ifCond attribute.value '<' attribute.max}}style="background-color:#f1510d9e" {{/ifCond}}>
+        <div class="flex align-center">
+            <label data-action="onRollAttribute" class="item-name attribute-name roll-attribute rollable" data-attribute="{{key}}">{{key}}</label>
+            <img class="item-image house-attribute {{#ifCond ../system.houseAttribute "==" key}}active{{/ifCond}}" src="systems/mutant-year-zero/ui/attribute-{{key}}.webp" />
+        </div>
+        <div class="flex row">
+            <input type="number" name="system.attributes.{{key}}.value" value="{{attribute.value}}" class="short-input" />
+            <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
+            <input type="number" name="system.attributes.{{key}}.max" value="{{attribute.max}}" class="short-input" />
+        </div>
+    </div>
+    {{/each}}
+
+    {{#ifCond system.creatureType "==" "human"}}
+    <div class="box-item flex row align-center {{system.creatureType}}">    
+        <select name="system.houseAttribute" >
+            <option value="">{{localize "MYZ.CHOOSE_HOUSE_ATTRIBUTE"}}</option>
+            <option value="strength" {{#ifCond system.houseAttribute "==" "strength"}}selected{{/ifCond}}>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_STRENGTH_" system.creatureType))}}</option>
+            <option value="agility" {{#ifCond system.houseAttribute "==" "agility"}}selected{{/ifCond}}>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_AGILITY_" system.creatureType))}}</option>
+            <option value="wits" {{#ifCond system.houseAttribute "==" "wits"}}selected{{/ifCond}}>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_WITS_" system.creatureType))}}</option>
+            <option value="empathy" {{#ifCond system.houseAttribute "==" "empathy"}}selected{{/ifCond}}>{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_EMPATHY_" system.creatureType))}}</option>
+        </select>
+    </div>
+    {{/ifCond}}
+</div>
+
