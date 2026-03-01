@@ -7,11 +7,19 @@ The Mutant Year Zero system for FoundryVTT
 ### General
 - Foundry v14 compatible
 - All Actors/Items updated to DataModel and SheetsV2
+
+### New
+- Human/House Attribute Push Immunity
+
 ### Improvement
-- Roll Dialog
-- Dice Number Toggle feature and settings
-- Item Modifiers
-- Human Attribute Damage Immunity Toggle
+- Roll Dialog UI
+- Dice Number Toggle feature
+- Item Modifiers UI
+- ActiveEffects UI
+
+### Chore
+- Sheets refactoring
+- callbacks optimization
 
 
 
