@@ -90,7 +90,8 @@ export class DiceRoller {
         pushCount += 1;
 
         // update the message with the new dice pool        
-        await message.update({
+        await message.update(
+            {
                 content: await foundry.applications.handlebars.renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", {
                     name: message.getFlag("mutant-year-zero", "rollName") || "Roll Name",
                     pushCount: pushCount,
@@ -102,10 +103,18 @@ export class DiceRoller {
                     stuntText: message.getFlag("mutant-year-zero", "stuntText") || "",
                     modifiers: message.getFlag("mutant-year-zero", "modifiers") || null,
                     weaponNotes: message.getFlag("mutant-year-zero", "weaponNotes") || "",
-            }),
-        });
-        await message.setFlag("mutant-year-zero", "dicePool", finalPool);        
-        await message.setFlag("mutant-year-zero", "pushCount", pushCount);
+                }),
+                flags:{
+                    "mutant-year-zero": {
+                        dicePool: finalPool,
+                        pushCount: pushCount,  
+
+                }}
+            }
+        );
+       // await message.setFlag("mutant-year-zero", "dicePool", finalPool);        
+       // await message.setFlag("mutant-year-zero", "pushCount", pushCount);
+
         
         try {
             await game.dice3d.showForRoll(roll);
@@ -177,7 +186,8 @@ export class DiceRoller {
 
         }
     }
-    
+
+      
     /**     * Takes a roll and Creates the result object to be send with messages     */
     static async ParseResults(_roll, _skill){
         let parsedResult = [];
@@ -242,9 +252,9 @@ export class DiceRoller {
             skillUuid: skillUuid,
             stuntText: stuntText,
             modifiers: modifiers,
-            weaponNotes: weaponNotes
+            weaponNotes: weaponNotes,
         };
-        const html = await foundry.applications.handlebars.renderTemplate("systems/mutant-year-zero/templates/chat/roll.html", htmlData);
+        const html = await foundry.applications.handlebars.renderTemplate("systems/mutant-year-zero/templates/chat/roll.hbs", htmlData);
         let chatData = {
             user: game.user.id,
             speaker:ChatMessage.getSpeaker({actor: actor, token: actor?.token, alias: actor?.name || ""}),
@@ -252,6 +262,24 @@ export class DiceRoller {
             rollMode: game.settings.get("core", "rollMode"),
             content: html,
             rolls: [_roll],
+            flags: {
+                "mutant-year-zero": {
+                    dicePool: dicePool ?? [],
+                    skill: skill ?? 0,
+                    damage: damage ?? 0,
+                    actor: actor?.id ?? null,
+                    stuntText: stuntText ?? null,
+                    rollName: rollName ?? "",
+                    attributeName: attributeName ?? null,
+                    itemId: itemId ?? null,
+                    actorUuid: actorUuid ?? null,
+                    modifiers: modifiers ?? null,
+                    pushCount: pushCount ?? 0,
+                    weaponNotes: weaponNotes ?? 0,
+                    toggleDiceNumbers: false
+                }
+            }            
+            
         };
         if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
             chatData.whisper = ChatMessage.getWhisperRecipients("GM");
@@ -259,18 +287,6 @@ export class DiceRoller {
             chatData.whisper = [game.user];
         }
         const msg = await ChatMessage.create(chatData);
-        msg.setFlag("mutant-year-zero", "dicePool", dicePool || []);
-        msg.setFlag("mutant-year-zero", "skill", skill ? skill : 0);
-        msg.setFlag("mutant-year-zero", "damage", damage || 0);
-        msg.setFlag("mutant-year-zero", "actor", actor ? actor.id : null);
-        msg.setFlag("mutant-year-zero", "stuntText", stuntText ? stuntText : null);
-        msg.setFlag("mutant-year-zero", "rollName", rollName || "");
-        msg.setFlag("mutant-year-zero", "attributeName", attributeName || null);
-        msg.setFlag("mutant-year-zero", "itemId", itemId || null);
-        msg.setFlag("mutant-year-zero", "actorUuid", actorUuid || null);
-        msg.setFlag("mutant-year-zero", "modifiers", modifiers || null);
-        msg.setFlag("mutant-year-zero", "pushCount", pushCount || 0);     
-        msg.setFlag("mutant-year-zero", "weaponNotes", weaponNotes || 0);   
     }
 
     /**     * Map the dice type to a string     */

@@ -1,5 +1,6 @@
 <div class="myz chat-item">
-    <div class="border">
+    <div class="border">       
+
         {{#ifCond pushCount '>' 0}}
         <h3>{{localize name}} - {{localize "MYZ.PUSHED"}} ({{pushCount}})</h3>
         {{else}}
@@ -16,8 +17,6 @@
 
         <hr style="margin: 0.4em;"/>     
         
-        <span>ALOOO {{lookup (lookup message.flags "mutant-year-zero") "toggleDiceNumbers"}}</span>
-        {{log lookup message.flags "mutant-year-zero"}}
         <div class="dices-result flex-center">
             {{#each dicePool as |dice|}}
             <div class="dice {{#if dice.hasResult}}locked{{/if}}" >

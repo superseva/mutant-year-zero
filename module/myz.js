@@ -396,7 +396,41 @@ Hooks.on("renderChatMessageHTML", (message, html, data)=>{
             if (stunts) stunts.style.display = stunts.style.display === 'none' ? 'block' : 'none';
         });
     }
+
+    if (!message.flags?.["mutant-year-zero"]) return;
+    const showNumbers = message.flags['mutant-year-zero'].toggleDiceNumbers ?? false;
+    //show numbers on dice if the flag is set, otherwise show images
+     if(showNumbers){
+         const diceElements = html.querySelectorAll('.dice img');
+         diceElements.forEach(die => {
+                const src = die.getAttribute('src');
+                const diceWithNumbers = src.replace(/\/ui\//g, "/ui/dice_with_numbers/");
+                die.setAttribute('src', diceWithNumbers);
+         });
+     }
 })
+
+
+/** Insert a button in Chat Message Context to toggle numbers on dices*/
+Hooks.on('getChatMessageContextOptions', (app, options) => {
+    options.push({
+        name: "Toggle Dice Numbers", icon: '<i class="fa-solid fa-square-6"></i>',
+        condition: (msg) => {
+        // Optional: Add conditions (e.g., only for GM, only for rolls)
+        return game.user.isGM;
+        }, 
+        callback: async (msg) => {
+            // // Action to perform
+            const messageId = msg.dataset.messageId;            
+            const message = await game.messages.get(messageId);           
+            const currentStatus = message.getFlag('mutant-year-zero', 'toggleDiceNumbers') ?? false;
+            console.log("Current toggle status for message", messageId, "is", currentStatus);
+            const newStatus = !currentStatus;
+            console.log("Setting new toggle status for message", messageId, "to", newStatus);
+            await message.setFlag('mutant-year-zero', 'toggleDiceNumbers', newStatus);
+        }
+    });
+});
 
 
 /* -------------------------------------------- */
