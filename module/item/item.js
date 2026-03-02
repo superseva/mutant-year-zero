@@ -71,6 +71,7 @@ export class MYZItem extends Item {
                 base: {default:rollData.attributeDiceTotals[attName].baseDiceUnmodified, total: rollData.attributeDiceTotals[attName].baseDiceTotal, modifiers: rollData.attributeDiceTotals[attName].modifiersToAttributes},
                 skill: skillRollData,
                 gear: gearRollData,
+                damage: itemData.damage || 0,
                 modifierDefault: 0,
                 actor: this.actor,
                 actorUuid: this.actor.uuid,
