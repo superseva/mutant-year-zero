@@ -55,7 +55,7 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 				"systems/mutant-year-zero/templates/actor/partials/character-encumbrance.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-weapons.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-armor.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/character-chassis-1row.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-chassis-armor.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-gear.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-artifacts.hbs"],
 			scrollable: [''],

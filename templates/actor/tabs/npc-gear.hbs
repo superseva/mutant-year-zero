@@ -4,7 +4,7 @@
   data-tab='gear'>
     {{> systems/mutant-year-zero/templates/actor/partials/character-weapons.hbs}} 
     {{#if (ifvalue system.creatureType 'robot')}} 
-    {{> systems/mutant-year-zero/templates/actor/partials/character-chassis-1row.hbs}}
+    {{> systems/mutant-year-zero/templates/actor/partials/character-chassis-armor.hbs}}
     {{/if}} 
     {{#unless (ifvalue system.creatureType 'robot')}} 
     {{> systems/mutant-year-zero/templates/actor/partials/character-armor.hbs}}

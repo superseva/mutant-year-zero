@@ -13,7 +13,7 @@ The Mutant Year Zero system for FoundryVTT
 
 ### Improvement
 - Roll Dialog UI
-- Dice Number Toggle feature
+- Dice Number Toggle feature (right click on roll message)
 - Item Modifiers UI
 - ActiveEffects UI
 

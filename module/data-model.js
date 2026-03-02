@@ -436,7 +436,7 @@ function baseItemMixin() {
 
 function physicalItemMixin() {
   return {
-    quantity: new NumberField({ integer: true, min: 0 }),
+    quantity: new NumberField({ integer: true, min: 0, initial: 1 }),
     weight: new StringField({initial: "0.00"}),
     stashed: new BooleanField({ initial: false })
   }
@@ -651,7 +651,7 @@ export class MYZWeaponDataModel extends foundry.abstract.TypeDataModel {
       ...bonuslItemMixin(),
       ...devItemMixin(),
       ...modifiersItemMixin(),
-      damage: new NumberField({ninteger: true, min: 0, initial: 1}),
+      damage: new NumberField({integer: true, min: 0, initial: 1}),
       range: new StringField({nullable: true, blank: true, initial: "range_arm"}),
       category: new StringField({nullable: true, blank: true}),
       artifactBonus: new NumberField({integer: true, min: 0, initial: 0}),

@@ -280,14 +280,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
     /** Get context menu options for items */
 	_getItemEditMenuOptions() {
 		let menu_items = [
-            {
-                icon: `<i class="fas fa-comment" title="${game.i18n.localize("MYZ.TOCHAT")}"></i>`,
-                name: game.i18n.localize("MYZ.TOCHAT"),
-                callback: (target) => {
-                    this.constructor._sendToChat.call(this, new Event("click"), target);
-                },
-            },
-            {
+			{
                 icon: `<i class="fas fa-edit" title="${game.i18n.localize("MYZ.EDIT")}"></i>`,
                 name: game.i18n.localize("MYZ.EDIT"),
                 callback: async (target) => {
@@ -295,6 +288,13 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 					await this.constructor._viewDoc.call(this, new Event("click"), target);
                 },
             },
+            {
+                icon: `<i class="fas fa-comment" title="${game.i18n.localize("MYZ.TOCHAT")}"></i>`,
+                name: game.i18n.localize("MYZ.TOCHAT"),
+                callback: (target) => {
+                    this.constructor._sendToChat.call(this, new Event("click"), target);
+                },
+            },            
             {
                 icon: `<i class="fa-regular fa-box" title="${game.i18n.localize("MYZ.STASH")}"></i>`,
                 name: game.i18n.localize("MYZ.STASH"),

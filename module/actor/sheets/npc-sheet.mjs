@@ -44,7 +44,7 @@ export class MYZNPCSheetV2 extends MYZCharacterSheet {
             templates: [
 				"systems/mutant-year-zero/templates/actor/partials/character-weapons.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-armor.hbs",
-				"systems/mutant-year-zero/templates/actor/partials/character-chassis-1row.hbs",
+				"systems/mutant-year-zero/templates/actor/partials/character-chassis-armor.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-gear.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-artifacts.hbs",
                 "systems/mutant-year-zero/templates/actor/partials/npc-inventory.hbs"],
