@@ -45,10 +45,17 @@ export class DiceRoller {
     }
 
     static async Push(message, html, data){
+
+        const flags = message.flags?.["mutant-year-zero"] ?? {};
+        const actorInstance = flags.actorUuid ? await fromUuid(flags.actorUuid) : null;
+
+
         // If push bullet checkbox is selected and actor doesn't have bullets, return false
         const pushBulletChecked = html.querySelector('input[name="push-bullet"]')?.checked ?? false;
-        if (pushBulletChecked && message.getFlag("mutant-year-zero", "actorUuid")) {
-            const actorInstance = await fromUuid(message.getFlag("mutant-year-zero", "actorUuid"));
+        const isHouseAttribute = actorInstance?.type === 'human' &&
+        actorInstance?.system?.houseAttribute === flags.attributeName;
+
+        if (pushBulletChecked && message.getFlag("mutant-year-zero", "actorUuid") && actorInstance) {           
             //console.log("Actor instance for push bullet check", actorInstance);
             const hasBullets = actorInstance?.system?.resources.bullets?.value > 0;
             if (!hasBullets) {
@@ -57,65 +64,53 @@ export class DiceRoller {
             } else {
                 await actorInstance.spendBullet();
             }
-        }        
-        
-        // create ROLL formula from message.flags.dicePool
-        if (!message.getFlag("mutant-year-zero", "dicePool"))
-            throw new Error("No dice pool found in message flags");
+        }
 
-        // Get dice with results
-        // base dice with 1 or 6, gear dice with 1 or 6, skill dice with 6
-        const diceWithResults = message.getFlag("mutant-year-zero", "dicePool").filter(d => (d.diceType === "base" && (d.value === 1 || d.value === 6)) || (d.diceType === "gear" && (d.value === 1 || d.value === 6)) || (d.diceType === "skill" && d.value === 6));
-        // add property oldRoll to each dice
-        diceWithResults.forEach(d => {
-            d.hasResult = true;
-        }); 
+        const { diceWithResults, baseCount, skillCount, gearCount } = flags.dicePool
+            .reduce((acc, d) => {
+                if (d.diceType === "base") {
+                    if (d.value === 6) { acc.diceWithResults.push({ ...d, hasResult: true }); }
+                    else if (d.value === 1) {
+                        if (!isHouseAttribute) acc.diceWithResults.push({ ...d, hasResult: true });
+                        else acc.baseCount++;
+                    }
+                    else acc.baseCount++;
+                }
+                else if (d.diceType === "gear") {
+                    if (d.value === 1 || d.value === 6) acc.diceWithResults.push({ ...d, hasResult: true });
+                    else acc.gearCount++;
+                }
+                else if (d.diceType === "skill") {
+                    if (d.value === 6) acc.diceWithResults.push({ ...d, hasResult: true });
+                    else acc.skillCount++;
+                }
+                return acc;
+            }, { diceWithResults: [], baseCount: 0, skillCount: 0, gearCount: 0 });
 
-        // Get the dice count for the dice without results and create a new roll formula
-        const baseCount = message.getFlag("mutant-year-zero", "dicePool").filter(d => (d.diceType === "base" && (d.value !=1 && d.value !=6))).length;
-        const skillCount = message.getFlag("mutant-year-zero", "dicePool").filter(d => d.diceType === "skill" && d.value !=6).length;
-        const gearCount = message.getFlag("mutant-year-zero", "dicePool").filter(d => d.diceType === "gear" && (d.value !=1 && d.value !=6)).length;
-        const rollFormula = `${baseCount}db + ${skillCount}ds + ${gearCount}dg`;        
-        const roll = new Roll(rollFormula);
+        const roll = new Roll(`${baseCount}db + ${skillCount}ds + ${gearCount}dg`);
         await roll.evaluate();
 
-        // Parse roll
-        const dicePool = await DiceRoller.ParseResults(roll, message.getFlag("mutant-year-zero", "skill") || 0);
+        const newDice = await DiceRoller.ParseResults(roll, flags.skill || 0);
+        const finalPool = [...diceWithResults, ...newDice].sort(DiceRoller.SortPool);
+        const pushCount = (flags.pushCount ?? 0) + 1;
 
-        const finalPool = diceWithResults.concat(dicePool);
-        finalPool.sort(DiceRoller.SortPool);
-        
-        // Push count
-        let pushCount = await message.getFlag("mutant-year-zero", "pushCount") || 0;
-        pushCount += 1;
+        const templateData = {
+            ...flags,
+            name: flags.rollName ?? "Roll Name",
+            pushCount,
+            dicePool: finalPool,
+            successes: DiceRoller.CountSuccesses(finalPool),
+            failures: DiceRoller.CountFailures(finalPool),
+            gearfailures: DiceRoller.CountGearFailures(finalPool),
+        };
 
-        // update the message with the new dice pool        
-        await message.update(
-            {
-                content: await foundry.applications.handlebars.renderTemplate("systems/mutant-year-zero/templates/chat/roll.hbs", {
-                    name: message.getFlag("mutant-year-zero", "rollName") || "Roll Name",
-                    pushCount: pushCount,
-                    dicePool: finalPool,
-                    successes: DiceRoller.CountSuccesses(finalPool),
-                    failures: DiceRoller.CountFailures(finalPool),
-                    gearfailures: DiceRoller.CountGearFailures(finalPool),
-                    damage: message.getFlag("mutant-year-zero", "damage") || 0,
-                    stuntText: message.getFlag("mutant-year-zero", "stuntText") || "",
-                    modifiers: message.getFlag("mutant-year-zero", "modifiers") || null,
-                    weaponNotes: message.getFlag("mutant-year-zero", "weaponNotes") || "",
-                }),
-                flags:{
-                    "mutant-year-zero": {
-                        dicePool: finalPool,
-                        pushCount: pushCount,  
+        await message.update({
+            content: await foundry.applications.handlebars.renderTemplate(
+                "systems/mutant-year-zero/templates/chat/roll.hbs", templateData
+            ),
+            flags: { "mutant-year-zero": { ...flags, dicePool: finalPool, pushCount } }
+        });
 
-                }}
-            }
-        );
-       // await message.setFlag("mutant-year-zero", "dicePool", finalPool);        
-       // await message.setFlag("mutant-year-zero", "pushCount", pushCount);
-
-        
         try {
             await game.dice3d.showForRoll(roll);
         } catch (error) {
@@ -133,8 +128,11 @@ export class DiceRoller {
                 const attributeName = message.getFlag("mutant-year-zero", "attributeName");
                 const updateData = {};
                 let traumaCount = await message.getFlag("mutant-year-zero", "traumaCount") || 0;
+                if (actor.type === "human" && actor.system.houseAttribute === attributeName || pushCount <=1) {
+                    traumaCount = 0; // No trauma for pushing house attribute or for the first push
+                }
                 const baneCount = DiceRoller.CountFailures(finalPool)-traumaCount;
-                if (baneCount > 0 && actor.system?.houseAttribute !== attributeName) {
+                if (baneCount > 0) {
                 // Decreases the attribute.
                     const attributes = actor.system.attributes || {};
                     const attribute = attributes[attributeName];
@@ -182,11 +180,11 @@ export class DiceRoller {
                         gearDamageCount += baneCount;
                         await message.setFlag("mutant-year-zero", "gearDamageCount", gearDamageCount);
                     }
-            }           
+            }
+        }      
 
-        }
     }
-
+    
       
     /**     * Takes a roll and Creates the result object to be send with messages     */
     static async ParseResults(_roll, _skill){
@@ -241,6 +239,7 @@ export class DiceRoller {
 
         let htmlData = {
             name: rollName,
+            attributeName: attributeName,
             pushCount: pushCount,
             successes: numberOfSuccesses,
             failures: numberOfFailures,
