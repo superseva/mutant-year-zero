@@ -163,15 +163,14 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     }
     let encumbranceBonus = (this.parent.system.encumbranceBonus) ? this.parent.system.encumbranceBonus : 0;
     encumbranceMax += encumbranceBonus;
-    let _totalWeight = 0.0;
+    let _totalWeight = parseFloat('0.00');
     // add weight of physical items
     let physicalItems = this.parent.items.filter(i=>i.system.weight!=undefined);
-    let weightedItems = physicalItems.filter(_itm => Number(_itm.system.weight) > 0 && !_itm.system.stashed);
+    let weightedItems = physicalItems.filter(_itm => parseFloat(_itm.system.weight) > 0 && !_itm.system.stashed);
     var itemsWeight = weightedItems.reduce(function (accumulator, i) {      
-        return accumulator + (parseInt(i.system.quantity)||1 * Number(i.system.weight));
-    }, 0);
-    _totalWeight += Number(itemsWeight);
-
+        return accumulator + ((i.system.quantity || 1) * i.system.weight);
+    }, 0);    
+    _totalWeight += parseFloat(itemsWeight.toFixed(2));
     //add weight of grub, water, booze and bullets
     try {
         _totalWeight += parseInt(this.parent.system.resources.grub.value) / 4;
@@ -183,7 +182,8 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     } catch (error) {
         console.error(error);
     }
-    _totalWeight = Math.round((_totalWeight + Number.EPSILON) * 100) / 100;
+    console.log("----------Total encumbrance weight: " + _totalWeight.toFixed(2));
+    //_totalWeight = Math.round((_totalWeight + Number.EPSILON) * 100) / 100;
 
     return {
       itemsWeight: _totalWeight,
