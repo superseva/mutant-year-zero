@@ -182,7 +182,7 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     } catch (error) {
         console.error(error);
     }
-    console.log("----------Total encumbrance weight: " + _totalWeight.toFixed(2));
+    //console.log("----------Total encumbrance weight: " + _totalWeight.toFixed(2));
     //_totalWeight = Math.round((_totalWeight + Number.EPSILON) * 100) / 100;
 
     return {
