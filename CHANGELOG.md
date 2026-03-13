@@ -2,6 +2,15 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.1.2
+
+### Minor Improvements
+- Added a button to delete modifiers
+
+### Minor Styling
+- Input fields now match the color of the dice they represent
+
+
 ## 13.1.1
 
 ### General

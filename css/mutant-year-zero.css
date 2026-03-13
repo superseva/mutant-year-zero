@@ -400,6 +400,7 @@
     border: unset;
     border-bottom: 1px solid;
     border-color: #a67060;
+    color: black;
     padding: 0;
   }
   .myz.chat-item .stunts a.entity-link i, .myz.chat-item .stunts a.content-link i {
@@ -474,6 +475,18 @@
     justify-content: center;
     text-align: center;
   }
+  .mutant-year-zero .content-link {
+    background: unset;
+    font-family: inherit;
+    border: unset;
+    border-bottom: 1px solid;
+    border-color: #a67060;
+    color: black;
+    padding: 0;
+  }
+  .mutant-year-zero .content-link i {
+    color: #a67060;
+  }
   .mutant-year-zero .item-form {
     font-family: "Karla", sans-serif;
   }
@@ -484,6 +497,18 @@
   .mutant-year-zero input {
     background-color: white;
     color: black;
+  }
+  .mutant-year-zero input.myz-base-dice {
+    background-color: yellow;
+    color: black;
+  }
+  .mutant-year-zero input.myz-skill-dice {
+    background-color: darkgreen;
+    color: white;
+  }
+  .mutant-year-zero input.myz-gear-dice {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
   }
   .mutant-year-zero select {
     background-color: white;
@@ -644,7 +669,7 @@
   }
   .mutant-year-zero .short-input-2em.rot {
     background-size: cover;
-    background-color: #f3f100;
+    background-color: #b9b9b9;
     font-weight: 500;
     border: dotted 1px black;
   }

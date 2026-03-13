@@ -25,7 +25,21 @@ ol {
 input {
 	background-color: white;
 	color: black;
-	
+	&.myz-base-dice {
+		background-color: yellow;
+		color: black;
+		// font-size: large;
+	}
+	&.myz-skill-dice {
+		background-color: darkgreen;
+		color: white;
+		// font-size: larger;
+	}
+	&.myz-gear-dice {
+		background-color: rgb(0, 0, 0);
+		color: rgb(255, 255, 255);
+		// font-size: larger;
+	}
 }
 select {
 	background-color: white;
@@ -34,10 +48,8 @@ select {
 input[type="checkbox"]{
 	background-color: rgba(0, 0, 0, 0)
 }
-
 input[type="checkbox"]:checked, input[type="radio"]:checked {
-    accent-color: #fff100;
-	
+    accent-color: #fff100;	
 }
 
 
@@ -215,7 +227,7 @@ a {
 	&.rot{
 		//background:url(../assets/ico/biohazard-grey.svg) no-repeat left top;
 		background-size: cover;
-		background-color: #f3f100;
+		background-color: #b9b9b9;
 		//color: white;
 		font-weight: 500;
 		border: dotted 1px black;

@@ -17,9 +17,9 @@
             <a data-action="onRollWeapon" data-item-id="{{weapon._id}}">{{weapon.name}}</a>
             {{#if (isArtifact weapon)}} <img class="item-image" src="systems/mutant-year-zero/assets/ico/trophy.svg" style="border:none" />{{/if}}
         </span>
-        <div class="item-values grid grid-3col center">
+        <div class="item-values grid grid-3col align-center center">
             <span>
-                <input type="number" class="owned-item-value num-value-1rem" name="items.{{weapon._id}}.system.bonus.value" value="{{weapon.system.bonus.value}}" data-linked-value="system.bonus.value" data-item-id="{{weapon._id}}">
+                <input type="number" class="owned-item-value num-value-1rem myz-gear-dice" name="items.{{weapon._id}}.system.bonus.value" value="{{weapon.system.bonus.value}}" data-linked-value="system.bonus.value" data-item-id="{{weapon._id}}">
                 <label>/{{weapon.system.bonus.max}}</label>
             </span>
             <!-- <label class="flex flex-center">{{weapon.system.bonus.value}} / {{weapon.system.bonus.max}}</label> -->
