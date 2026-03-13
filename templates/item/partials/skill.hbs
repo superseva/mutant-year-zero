@@ -1,0 +1,35 @@
+<section
+  class='tab skill {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='skill'
+>
+    {{!-- <div class="resource">
+        <label class="resource-label" for="system.skillKey">SKILL KEY, every official skill has a skillKey set</label>
+        <input type="text" name="system.skillKey" value="{{system.skillKey}}" data-dtype="text" />
+    </div>  --}}
+
+    <div class="grid grid-3col item-attr-row align-start">
+        <div class="resource">
+            <label class="resource-label" for="system.value">{{localize 'MYZ.VALUE'}}</label>
+            <input type="text" name="system.value" value="{{system.value}}" data-dtype="Number" />
+        </div>
+        <div class="resource flex column">
+            <label class="resource-label" for="system.creatureType">{{localize 'MYZ.ACTOR_TYPE'}}</label>
+            <select name="system.creatureType">
+                {{selectOptions MYZ.CREATURE_TYPES selected=system.creatureType localize=true}}
+            </select>
+        </div>
+        <div class="resource flex column">
+            <label class="resource-label" for="system.attribute">{{localize "MYZ.ATTRIBUTES"}}</label>
+            <select name="system.attribute">
+                {{selectOptions creatureAttributes selected=system.attribute localize=true}}
+            </select>
+        </div>
+    </div>
+    
+
+    {{!-- Description --}}
+    {{> systems/mutant-year-zero/templates/item/partials/info.hbs editable=editable classCSS="info-high"}}
+    
+
+</div>

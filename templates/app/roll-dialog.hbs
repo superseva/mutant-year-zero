@@ -1,0 +1,68 @@
+<div>
+    <div class="grid grid-3col dice-row">
+
+        <div class="flexcol dice-pool">
+            <!-- <div class="dice-pool-name">
+                <label for="base-input">{{localize base.name}}</label>      
+            </div> -->
+            <div class="flexrow dice-total">
+                <img src="systems/mutant-year-zero/ui/dice-base-6.png" title="{{localize base.name}}"/>                
+                <input type="number" name="base" data-type="Number" id="{{base.type}}" value="{{base.total}}" />
+            </div>
+            <div>                
+                <ul class="roll-bonus-list">
+                    <li><em>{{base.name}}{{#ifCond base.default '>' 0}}: {{base.default}}{{/ifCond}}</em></li>
+                    {{#ifCond base.modifiers.length '>' 0}}
+                    {{#each base.modifiers as |item key|}}
+                    <li><em>{{item.name}}: {{item.value}}</em></li>
+                    {{/each}}       
+                    {{/ifCond}}        
+                </ul>                
+            </div>
+        </div>
+
+        <div class="flexcol dice-pool">
+            <!-- <div class="dice-pool-name">
+                <label for="skill-input">{{localize skill.name}}</label>             
+            </div> -->
+            <div class="flexrow dice-total">
+                <img src="systems/mutant-year-zero/ui/dice-skill-6.png" title="{{localize skill.name}}"/>
+                <input type="number" name="skill" data-type="Number" id="{{skill.type}}" value="{{skill.total}}" />
+            </div>
+            <div>             
+                <ul class="roll-bonus-list">            
+                    <li><em>{{skill.name}}{{#ifCond skill.default '>' 0}}: {{skill.default}}{{/ifCond}}</em></li>
+                    {{#ifCond skill.modifiers.length '>' 0}}  
+                    {{#each skill.modifiers as |item key|}}
+                    <li><em>{{item.name}}: {{item.value}}</em></li>
+                    {{/each}}               
+                     {{/ifCond}}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="flexcol dice-pool">
+            <!-- <div class="dice-pool-name">
+                <label for="gear-input">{{localize gear.name}}</label>
+            </div> -->
+            <div class="flexrow dice-total">                
+                <img src="systems/mutant-year-zero/ui/dice-gear-6.png" title="{{localize gear.name}}"/>
+                <input type="number" name="gear" data-type="Number" id="{{gear.type}}" value="{{gear.total}}" />
+            </div>
+             <div>
+                <ul class="roll-bonus-list">                   
+                    <li><em>{{gear.name}}{{#ifCond gear.default '>' 0}}: {{gear.default}}{{/ifCond}}</em></li>
+                    {{#ifCond gear.modifiers.length '>' 0}}
+                    {{#each gear.modifiers as |item key|}}
+                    <li><em>{{item.name}}: {{item.value}}</em></li>
+                    {{/each}}
+                    {{/ifCond}}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+</div>

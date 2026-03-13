@@ -2,6 +2,25 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.1.1
+
+### General
+- All Actors/Items updated to DataModel and SheetsV2
+
+### New
+- Human/House Attribute Push Immunity
+- Added Active Effect to items (all but item type 'skill' and 'project')
+
+### Improvement
+- Roll Dialog UI
+- Dice Number Toggle feature (right click on roll message)
+- Item Modifiers UI
+- ActiveEffects UI
+
+### Chore
+- Sheets refactoring
+- callbacks optimization
+
 
 ## 13.0.9
 

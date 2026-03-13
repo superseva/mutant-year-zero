@@ -1,0 +1,138 @@
+<div class="myz chat-item">
+    <div class="border">
+        <h3>{{name}}</h3>
+
+        {{#if isWeapon}}
+        <h4>{{weaponCategory category}}</h4>
+        {{/if}} 
+
+        {{#if isArmor}}
+        <h4>{{armorPart armorType}}</h4>
+        {{/if}}
+
+        {{#if isCritical}}
+        <h4>{{localize "MYZ.CRITICAL"}}</h4>
+        {{/if}}
+
+        {{#if isGear}}
+        <h4>{{localize "MYZ.GEAR"}}</h4>
+        {{/if}}
+
+        {{#if isArtifact}}
+        <h4>{{localize "MYZ.ARTIFACT"}}</h4>
+        {{/if}}
+
+        {{#if isTalent}}
+        <h4>{{localize (toUpperCase (concat 'MYZ.TALENT_' creatureType))}}</h4>
+        {{/if}}
+        
+        {{#if isAbility}}
+        <h4>{{localize (toUpperCase (concat 'MYZ.ABILITY_' creatureType))}}</h4>
+        {{/if}}
+        
+        {{#if img}}
+        <img class="item-img" src="{{img}}" title="{{name}}" />
+        {{/if}}
+        
+        {{#if isWeapon}}
+        <p><strong>{{localize "MYZ.DAMAGE"}}:</strong> {{damage}}</p>
+        <p><strong>{{localize "MYZ.BONUS"}}:</strong> {{bonus.value}} / {{bonus.max}}</p>
+        <p><strong>{{localize "MYZ.RANGE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' range))}}</p>
+        <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{comment}}</p>
+        <hr />
+        <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
+        {{{description}}}
+        <hr />
+        {{/if}} 
+        
+        {{#if isArmor}}
+        <p><strong>{{localize "MYZ.ARMOR_RATING"}}:</strong> {{rating.value}} / {{rating.max}}</p>
+        <p><strong>{{localize "MYZ.EQUIPPED"}}:</strong> {{equipped}}</p>
+        <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{comment}}</p>
+        <hr />
+        <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
+        {{{description}}}
+        <hr />
+        {{/if}} 
+        
+        {{#if isChassis}}
+        <p><strong>{{localize "MYZ.LOCATION"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' location))}}</p>
+        <p><strong>{{localize "MYZ.ATTRIBUTE_STRENGTH_ROBOT"}}:</strong> {{strength}}</p>
+        <p><strong>{{localize "MYZ.ATTRIBUTE_AGILITY_ROBOT"}}:</strong> {{agility}}</p>
+        <p><strong>{{localize "MYZ.ATTRIBUTE_WITS_ROBOT"}}:</strong> {{wits}}</p>
+        <p><strong>{{localize "MYZ.ATTRIBUTE_EMPATHY_ROBOT"}}:</strong> {{empathy}}</p>
+        <p><strong>{{localize "MYZ.ARMOR"}}:</strong> {{armor}}</p>
+        <p><strong>{{localize "MYZ.NUMBER_OF_MODULES"}}:</strong> {{modules}}</p>
+        <p><strong>{{localize "MYZ.EQUIPPED"}}:</strong> {{equipped}}</p>
+        <hr />
+        <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
+        {{{description}}}
+        <hr />
+        {{/if}} 
+        
+        {{#if isCritical}}
+        <p><strong>{{localize "MYZ.LETHAL"}}:</strong> {{lethal}}</p>
+        <p><strong>{{localize "MYZ.TIMELIMIT"}}:</strong> {{timeLimit}}</p>
+        <p><strong>{{localize "MYZ.HEALINGTIME"}}:</strong> {{healingTime}}</p>
+        {{#if effect}}
+        <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{effect}}</p>
+        {{/if}}
+        {{/if}} 
+        
+        {{#if isGear}}
+        <p><strong>{{localize "MYZ.COMMENT"}}:</strong> {{comment}}</p>
+        <hr />
+        <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
+        {{{description}}}
+        <hr />
+        {{/if}} 
+        
+        {{#if isArtifact}}
+        <p><strong>{{localize "MYZ.DEV_BONUS"}}:</strong> {{dev_bonus}}</p>
+        <p><strong>{{localize "MYZ.DEV_REQUIREMENT"}}:</strong> {{dev_requirement}}</p>
+        <p><strong>{{localize "MYZ.EFFECT"}}:</strong> {{effect}}</p>
+        <hr />
+        <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
+        {{{description}}}
+        <hr />
+        {{/if}}
+
+        {{#if isSkill}}
+        <p><strong>{{localize "MYZ.ATTRIBUTE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.ATTRIBUTE_' attribute '_' creatureType))}}</p>
+        <p><strong>{{localize "MYZ.VALUE"}}:</strong> {{value}}</p>
+        {{{description}}}
+        {{/if}}
+
+        {{#if isTalent}}
+        <p><strong>{{localize "MYZ.TALENT_TYPE"}}:</strong> {{localize (toUpperCase (concat 'MYZ.' roleType))}}</p>
+        {{{description}}}
+        {{/if}}
+
+        {{#if isAbility}}
+        {{#if (ifvalue 'robot' creatureType)}}
+        <p><strong>{{localize "MYZ.BROKEN"}}:</strong> {{broken}}</p>
+        {{/if}}
+        {{{description}}}
+        {{/if}}
+        
+        {{#if isProject}}
+        <p><strong>{{localize "MYZ.COMPLETED"}}:</strong> {{completed}}</p>
+        <p><strong>{{localize "MYZ.SKILLS"}}:</strong> {{skills}}</p>
+        <p><strong>{{localize "MYZ.WORK_POINTS"}}:</strong> {{work_points}}</p>
+        <p><strong>{{localize "MYZ.DEV_BONUS"}}:</strong> {{DEV_Bonus}}</p>
+        <p><strong>{{localize "MYZ.DEV_REQUIREMENT"}}:</strong> {{DEV_Requirement}}</p>
+        <p><strong>{{localize "MYZ.SPECIAL"}}:</strong> {{special}}</p>
+        <hr />
+        <h4>{{localize 'MYZ.DESCRIPTION'}}:</h4>
+        {{{description}}}
+        {{/if}}
+        
+        {{#if weight}}
+        <p><strong>{{localize "MYZ.WEIGHT"}}:</strong> {{weight}}</p>
+        {{/if}}
+        
+        {{#if cost}}
+        <p><strong>{{localize "MYZ.COST"}}:</strong> {{cost}}</p>
+        {{/if}}
+    </div>
+</div>

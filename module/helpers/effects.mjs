@@ -13,7 +13,7 @@ export function onManageActiveEffect(event, owner) {
       return owner.createEmbeddedDocuments("ActiveEffect", [{
         name: "New Effect",
         label: "New Effect",
-        icon: "icons/svg/aura.svg",
+        img: "icons/svg/aura.svg",
         origin: owner.uuid,
         "duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
         disabled: li.dataset.effectType === "inactive"

@@ -1,0 +1,15 @@
+<div>
+{{#ifInArray system.creatureType '["","npc"]'}}
+    <div class="overlay">
+        <div class="flex column center flex-center pick-npc">
+            <h2>{{localize 'MYZ.PICK_NPC_TYPE'}}</h2>
+            <div class="grid grid-2col">
+                <a class="crature-picker" data-action="chooseCreatureType" data-creature="mutant">{{localize 'MYZ.MUTANT'}}</a>
+                <a class="crature-picker" data-action="chooseCreatureType" data-creature="animal">{{localize 'MYZ.ANIMAL'}}</a>
+                <a class="crature-picker" data-action="chooseCreatureType" data-creature="robot">{{localize 'MYZ.ROBOT'}}</a>
+                <a class="crature-picker" data-action="chooseCreatureType" data-creature="human">{{localize 'MYZ.HUMAN'}}</a>
+            </div>
+        </div>
+    </div>
+{{/ifInArray}}
+</div>

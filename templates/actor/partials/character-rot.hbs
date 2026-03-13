@@ -1,0 +1,14 @@
+<div class="rot-box {{system.type}}">
+    <div>
+        <label class="roll-rot rollable" for="system.rot.value">{{localize 'MYZ.ROT'}}</label>
+        <input class="short-input rot" type="number" data-type="Number" name="system.rot.value" value="{{system.rot.value}}" min="0" />
+    </div>
+    <div>
+        <label for="system.rot.value">{{localize 'MYZ.PERMA_ROT'}}</label>
+        <input class="short-input rot-perma" type="number" data-type="Number" name="system.rot.permanent" value="{{system.rot.permanent}}" min="0" />
+    </div>
+    <div class="rot-button roll-rot rollable flex align-center" data-action="onRollRot" ">
+        <label for="system.rot.value" class="right-element">{{localize 'MYZ.ROLL'}}&nbsp;</label>
+        <img src="systems/mutant-year-zero/ui/dice-base-1.png" />
+    </div>
+</div>

@@ -2,17 +2,18 @@
 import { MYZ } from "./config.js";
 import { registerSystemSettings } from "./settings.js";
 import MYZHooks from "./MYZHooks.js";
-import { MYZActor } from "./actor/actor.js";
-import { MYZMutantSheet } from "./actor/mutant-sheet.js";
-import { MYZAnimalSheet } from "./actor/animal-sheet.js";
-import { MYZRobotSheet } from "./actor/robot-sheet.js";
-import { MYZHumanSheet } from "./actor/human-sheet.js";
-import { MYZNpcSheet } from "./actor/npc-sheet.js";
-import { MYZArkSheet } from "./actor/ark-sheet.js";
-import {MYZVehicleSheet} from "./actor/vehicle-sheet.js";
-import {MYZSpaceshipSheet} from "./actor/spaceship-sheet.js";
+import { MYZActor } from "./actor/myz-actor.mjs";
+
+import { MYZCharacterSheet } from "./actor/sheets/character-sheet.mjs";
+import { MYZNPCSheetV2 } from "./actor/sheets/npc-sheet.mjs";
+import { MYZArkSheetV2 } from "./actor/sheets/ark-sheet.mjs";
+import { MYZVehicleSheetV2 } from "./actor/sheets/vehicle-sheet.mjs";
+import { MYZSpaceshipSheetV2 } from "./actor/sheets/spaceship-sheet.mjs"
+
+import { MYZItemBaseSheet } from "./item/sheets/myz-item-base-sheet.mjs";
+
 import { MYZItem } from "./item/item.js";
-import { MYZItemSheet } from "./item/item-sheet.js";
+//import { MYZItemSheet } from "./item/item-sheet.js";
 import { MYZDieBase } from "./MYZDice.js";
 import { MYZDieSkill } from "./MYZDice.js";
 import { MYZDieGear } from "./MYZDice.js";
@@ -22,9 +23,8 @@ import { MYZMutantDataModel, MYZAnimalDataModel,
     MYZGearDataModel, MYZArtifactDataModel, MYZCriticalDataModel, MYZProjectDataModel} from "./data-model.js";
 
 import { DiceRoller } from "./component/dice-roller.js";
-import { RollDialog } from "./app/roll-dialog.js";
-
-
+import { RollDialogV2 } from "./app/RollDialogV2.mjs";
+//import MYZActiveEffectConfig from "./component/myz-active-effect.mjs";
 //import * as migrations from "./migration.js";
 
 /* ------------------------------------ */
@@ -35,17 +35,15 @@ Hooks.once("init", async function () {
     game.myz = {
         MYZ,
         MYZActor,
-        MYZMutantSheet,
-        MYZAnimalSheet,
-        MYZRobotSheet,
-        MYZHumanSheet,
-        MYZNpcSheet,
-        MYZArkSheet,
-        MYZVehicleSheet,
-        MYZSpaceshipSheet,
+        MYZCharacterSheet,
+        MYZNPCSheetV2,
+        MYZArkSheetV2,
+        MYZVehicleSheetV2,
+        MYZSpaceshipSheetV2,
+        MYZItemBaseSheet,   
         rollItemMacro,
         DiceRoller,
-        RollDialog,
+        RollDialogV2
     };
     /**
      * Set an initiative formula for the system
@@ -111,46 +109,52 @@ Hooks.once("init", async function () {
 
     // Register sheet application classes
     foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZMutantSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZCharacterSheet, {
         types: ["mutant"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZAnimalSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZCharacterSheet, {
         types: ["animal"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZRobotSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZCharacterSheet, {
         types: ["robot"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZHumanSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZCharacterSheet, {
         types: ["human"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZNpcSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZNPCSheetV2, {
         types: ["npc"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZArkSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZArkSheetV2, {
         types: ["ark"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZVehicleSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZVehicleSheetV2, {
         types: ["vehicle"],
         makeDefault: true,
     });
-    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZSpaceshipSheet, {
+    foundry.documents.collections.Actors.registerSheet("mutant-year-zero", MYZSpaceshipSheetV2, {
         types: ["spaceship"],
         makeDefault: true,
     });
     foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-    foundry.documents.collections.Items.registerSheet("mutant-year-zero", MYZItemSheet, { makeDefault: true });
+    foundry.documents.collections.Items.registerSheet("mutant-year-zero", MYZItemBaseSheet, { makeDefault: true });
+
+
+    // Unregister the core ActiveEffect sheet so we have <select> instead text inputsfor keys affected
+    // DocumentSheetConfig.unregisterSheet(ActiveEffect, "core", foundry.applications.sheets.ActiveEffectConfig);
+    // DocumentSheetConfig.registerSheet(ActiveEffect, "mutant-year-zero", MYZActiveEffectConfig, {
+    //     makeDefault: true,
+    //     label: "My System Active Effect Config"
+    // });
 
     /* -------------------------------------------- */
     /*  HANDLEBARS HELPERS      */
     /* -------------------------------------------- */
-
-    _preloadHandlebarsTemplates();
 
     Handlebars.registerHelper("concat", function () {
         var outStr = "";
@@ -397,7 +401,40 @@ Hooks.on("renderChatMessageHTML", (message, html, data)=>{
             if (stunts) stunts.style.display = stunts.style.display === 'none' ? 'block' : 'none';
         });
     }
+
+    if (!message.flags?.["mutant-year-zero"]) return;
+    const showNumbers = message.flags['mutant-year-zero'].toggleDiceNumbers ?? false;
+    //show numbers on dice if the flag is set, otherwise show images
+     if(showNumbers){
+         const diceElements = html.querySelectorAll('.dice img');
+         diceElements.forEach(die => {
+                const src = die.getAttribute('src');
+                const diceWithNumbers = src.replace(/\/ui\//g, "/ui/dice_with_numbers/");
+                die.setAttribute('src', diceWithNumbers);
+         });
+     }
 })
+
+
+/** Insert a button in Chat Message Context to toggle numbers on dices*/
+Hooks.on('getChatMessageContextOptions', (app, options) => {
+    options.push({
+        name: "Toggle Dice Numbers", icon: '<i class="fa-solid fa-square-6"></i>',
+        condition: (msg) => {
+        // Optional: Add conditions (e.g., only for GM, only for rolls)
+        return game.user.isGM;
+        }, 
+        callback: async (msg) => {
+            // // Action to perform
+            const messageId = msg.dataset.messageId;            
+            const message = await game.messages.get(messageId);           
+            const currentStatus = message.getFlag('mutant-year-zero', 'toggleDiceNumbers') ?? false;
+            const newStatus = !currentStatus;
+            await message.setFlag('mutant-year-zero', 'toggleDiceNumbers', newStatus);
+        }
+    });
+});
+
 
 /* -------------------------------------------- */
 /*  DsN Hooks                                   */
@@ -519,42 +556,6 @@ function rollItemMacro(itemName) {
     return item.roll();
 }
 
-/* -------------------------------------------- */
-/** LOAD PARTIALS
-/* -------------------------------------------- */
-
-function _preloadHandlebarsTemplates() {
-    const templatePaths = [
-        "systems/mutant-year-zero/templates/actor/partials/character-header.html",
-        "systems/mutant-year-zero/templates/actor/partials/attributes.html",
-        "systems/mutant-year-zero/templates/actor/partials/conditions.html",
-        "systems/mutant-year-zero/templates/actor/partials/criticals.html",
-        "systems/mutant-year-zero/templates/actor/partials/rot.html",
-        "systems/mutant-year-zero/templates/actor/partials/skills.html",
-        "systems/mutant-year-zero/templates/actor/partials/weapons.html",
-        "systems/mutant-year-zero/templates/actor/partials/armors.html",
-        "systems/mutant-year-zero/templates/actor/partials/chassis.html",
-        "systems/mutant-year-zero/templates/actor/partials/chassis-1row.html",
-        "systems/mutant-year-zero/templates/actor/partials/gear.html",
-        "systems/mutant-year-zero/templates/actor/partials/artifacts.html",
-        "systems/mutant-year-zero/templates/actor/partials/resource-counter.html",
-        "systems/mutant-year-zero/templates/actor/partials/abilities.html",
-        "systems/mutant-year-zero/templates/actor/partials/talents.html",
-        "systems/mutant-year-zero/templates/actor/partials/info.html",
-        "systems/mutant-year-zero/templates/actor/partials/consumables.html",
-        "systems/mutant-year-zero/templates/actor/partials/encumbrance.html",
-        "systems/mutant-year-zero/templates/actor/partials/actor-effects.html",
-        "systems/mutant-year-zero/templates/actor/partials/special.html",
-        "systems/mutant-year-zero/templates/actor/partials/npc-inventory.html",
-        "systems/mutant-year-zero/templates/item/partials/header-simple.html",
-        "systems/mutant-year-zero/templates/item/partials/header-physical.html",
-        "systems/mutant-year-zero/templates/item/partials/tabs.html",
-        "systems/mutant-year-zero/templates/item/partials/modifiers.html",
-        "systems/mutant-year-zero/templates/item/partials/dev-levels.html"
-        
-    ];
-    return foundry.applications.handlebars.loadTemplates(templatePaths);
-}
 
 function normalize(data, defaultValue) {
     if (data) {

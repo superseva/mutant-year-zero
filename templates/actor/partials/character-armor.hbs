@@ -1,0 +1,39 @@
+<div class="box-item physical header flex row align-center space-between {{system.creatureType}}">
+    <label class="item-name">{{localize "MYZ.ARMOR"}}</label>
+    <div class="item-values flexrow center align-center">
+        <label>{{localize 'MYZ.ARMOR_RATING'}}</label>
+        <label>{{localize 'MYZ.ARMOR_TYPE'}}</label>
+        <label>{{localize 'MYZ.ARMOR_ROT_PROTECTION'}}</label>
+    </div>
+    <div class="item-controls">
+        <a class="item-create" data-action="createDoc" data-type="armor">{{localize "MYZ.Add"}}</a>
+    </div>
+</div>
+<ol class="box-list {{system.creatureType}}">
+    {{#each armor as |armor key|}}
+    <li class="box-item physical flex row align-center space-between editable-armor item-edit" data-physical="1" data-item-id="{{armor._id}}">
+        <span class="item-name flex row align-center {{#if (isBroken armor)}}broken{{/if}}" data-item-id="{{armor._id}}">
+            <img class="item-image" src="{{armor.img}}" />
+            <a class="rollable armor-item-roll">{{armor.name}}</a>
+            {{#if (isArtifact armor)}} <img class="item-image" src="systems/mutant-year-zero/assets/ico/trophy.svg" style="border:none" />{{/if}}                        
+        </span>
+        <div class="item-values flexrow center">
+            <span>
+                <input type="number" class="owned-item-value num-value-1rem" name="items.{{armor._id}}.system.rating.value" value="{{armor.system.rating.value}}" data-linked-value="system.rating.value" data-item-id="{{armor._id}}">
+                <label>/{{armor.system.rating.max}}</label>
+            </span>
+            <label style="align-self: center;">{{localize (toUpperCase (concat "MYZ." armor.system.armorType))}}</label>
+            <a style="align-self: center;" class="rollable armor-rot-protection-roll">{{armor.system.rot.value}}</a>
+        </div>
+        <div class="item-controls">
+            <!-- <a class="chatable" data-item-id="{{armor._id}}"><i class="fas fa-comment"></i></a> -->
+            {{#unless armor.system.stashed}}<a data-action="toggleValue" data-linked-value="equipped" data-item-id="{{armor._id}}" class="item-control item-toggle {{#unless armor.system.equipped}}item-unequipped{{/unless}}" title='{{localize "MYZ.EQUIP"}}'>
+                <i class="fas fa-tshirt"></i>
+            </a>{{/unless}}
+            {{#if armor.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
+                <i class="fa-regular fa-box"></i>
+            </a>{{/if}}            
+        </div>
+    </li>
+    {{/each}}
+</ol>

@@ -1,3 +1,18 @@
+.content-link{
+	background:unset;
+	font-family: inherit;
+	border:unset;
+	border-bottom: 1px solid;
+	border-color:#a67060;
+	color: black;
+	padding: 0;
+	i{
+		color:#a67060;
+	}
+}
+
+
+
 .item-form {
 	font-family: $font-primary;
 }
@@ -6,8 +21,37 @@ ol {
 	list-style: none;
 }
 
+
+input {
+	background-color: white;
+	color: black;
+	
+}
+select {
+	background-color: white;
+	color: black;           
+}
+input[type="checkbox"]{
+	background-color: rgba(0, 0, 0, 0)
+}
+
 input[type="checkbox"]:checked, input[type="radio"]:checked {
     accent-color: #fff100;
+	
+}
+
+
+.resource-label {
+	color: black;
+	text-transform: capitalize;
+	font-size: 0.8rem;
+}
+.page-section-header{
+	font-family: $font-secondary;
+	font-size: 1.1rem;
+	//font-weight: bold;
+	color: black;
+	text-transform: uppercase;
 }
 
 .sheet-header,
@@ -18,12 +62,15 @@ input[type="checkbox"]:checked, input[type="radio"]:checked {
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: flex-start !important;
+	color:black;
+	margin-bottom: 10px;
 
 	&.npc {
 		flex: 0 0 110px;
 
-		h1.charname {
-			height: 1em;
+		charname {
+			height: 2rem;
+			font-size: 1.7rem;
 		}
 	}
 
@@ -37,23 +84,29 @@ input[type="checkbox"]:checked, input[type="radio"]:checked {
 		flex: 1;
 	}
 
-	h1.charname {
-		height: 1.2em;
+	.charname {
+		height: 2rem;
 		padding: 0px;
-		margin: 5px 0;
+		margin: 0 0;
 		border-bottom: 0;
-
+		font-size: 1.7rem;
+		
 		input {
 			width: 100%;
 			height: 100%;
 			margin: 0;
+			background-color: rgba(255, 255, 255, 0);
 		}
+	}
+
+	input{
+		color: black;
 	}
 }
 
 .sheet-tabs {
-	flex: 0;
-	margin-bottom: 5px;
+	//flex: 0;
+	//margin-bottom: 5px;
 }
 
 .sheet-body,
@@ -66,18 +119,21 @@ input[type="checkbox"]:checked, input[type="radio"]:checked {
 .info .description,
 .info .description .editor {
 	height: 180px;
+	color:$dark-text;
 }
 
 .info-mid,
 .info-mid .description,
 .info-mid .description .editor {
 	height: 280px;
+	color:$dark-text;
 }
 
 .info-high,
 .info-high .description,
 .info-high .description .editor {
 	height: 380px;
+	color:$dark-text;
 }
 
 .rollable,
@@ -95,7 +151,6 @@ a {
 }
 
 .gear-section {
-	padding-top: 10px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-gap: 10px;
@@ -139,19 +194,23 @@ a {
 }
 
 .short-input {
-	max-width: 3em;
+	max-width: 2rem;
+	max-height: 1.7rem;
 	text-align: center;
 	background-color: white;
 	color: black;
+	padding: 0 0;
+	border: 1px solid grey;
 }
 .short-input-2em {
-	max-width: 2em;
+	max-width: 2rem;
+	max-height: 1.7rem;
 	text-align: center;
 	background-color: white;
 	color: black;
 	padding: 0 0;
 	margin-right: 0.5em;	
-	background-color: white;
+	border: 1px solid grey;
 	
 	&.rot{
 		//background:url(../assets/ico/biohazard-grey.svg) no-repeat left top;
@@ -163,7 +222,7 @@ a {
 	}
 }
 .num-value-1rem {
-	max-width: 1.2em;
+	max-width: 1.2rem;
 	max-height: 1.2rem;
 	text-align: center;
 	background-color: rgba(255, 255, 255, 0.3);
@@ -284,20 +343,36 @@ input.nolabel {
 .armor-box {
 	border: 1px solid;
 	border-bottom: 1px solid !important;
-	min-height: 36px !important;
-	padding: 0.3em 0 0.3em 0;
+	min-height: 44px !important;
+	padding: 0.3rem;
 	line-height: 14px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 
 	img {
 		border: none;
 		width: 26px;
 		height: 26px;
 	}
-
 	.rot-button {
 		cursor: pointer;
 	}
+
+	.shield-box{
+		cursor:pointer; 
+		padding: 5px 0 0 0; 
+		text-align: center; 
+		width:50%; 
+		min-height:26px; 
+		background-image: url(../ui/grey-shield.png);
+		background-position: center;
+		background-repeat: no-repeat;
+	}
 }
+
 .item-attr-row {
 	margin-bottom: 10px;
 }
@@ -308,6 +383,7 @@ input.nolabel {
 	background-position: center;
 	background-size: contain;
 	max-width: 70px;
+	height: 50px;
 	input {
 		background-color: rgba(0, 0, 0, 0);
 		border: none;
@@ -345,6 +421,7 @@ input.nolabel {
 	border-radius: 0;
 	border-bottom: 1px solid;
 	background-color: unset;
+	color: black;
 }
 
 .npc-name-rank {
@@ -369,21 +446,30 @@ input.nolabel {
 	display: flex;
 	flex: 0 0 160px;
 	flex-direction: row;
+	color:black;
+	input {
+		background-color: rgba(255, 255, 255, 0);
+		color:black;
+	}
 	img {
 		width: 120px;
 		height: 120px;
 		margin-right: 10px;
 	}
-	h1.charname {
-		height: 1.2em;
+	.charname {
+		height: 2rem;
 		padding: 0px;
-		margin: 5px 0;
+		margin: 0 0;
 		border-bottom: 0;
-
+		font-size: 1.7rem;
+		
 		input {
 			width: 100%;
 			height: 100%;
 			margin: 0;
+			padding-left: 0;
+			background-color: rgba(255, 255, 255, 0);
+			color: black;
 		}
 	}
 	.header-fields {
@@ -437,13 +523,21 @@ input.nolabel {
 	padding: 5px;
 	border-radius: 3px;
 	border: 1px solid #7e7e7e;
+	color: black;
 	.boss-name {
 		font-weight: bold;
+		color: black;
 	}
 	textarea {
 		resize: vertical;
-		min-height: 5.5em;
+		width: 100%;
+		min-height: 5.5rem;
+		color: black;
+		background-color: rgba(255, 255, 255, 0);
 		border-color: #cccccc;
+	}
+	input {
+		color: black;
 	}
 }
 
@@ -480,11 +574,13 @@ input.nolabel {
 }
 .textarea-box{
 	border: 1px solid black;
+	color: black;
 	margin-bottom: 0.2rem;
 	padding: 0.2rem;
 	textarea{
 		border: none;
 		background-color: $c-blue-pale;
+		width: 100%;
 		resize: none;
 		overflow: auto;
 	}

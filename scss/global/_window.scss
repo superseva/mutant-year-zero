@@ -1,6 +1,14 @@
 :root {
     scrollbar-color: unset;
   }
+
+
+  .application {
+    .window-content {
+      overflow-y: auto;
+    }
+  }
+  
   
 .window-app {
     font-family: $font-primary;
@@ -8,7 +16,7 @@
     .window-content {
         background-image: url(../ui/mutant-sheet-bg.jpg);
         background-size: cover;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat;        
     }
 
     /*.editor-content{

@@ -7,12 +7,14 @@ const {
 // Base Actor DataModel -------------------------------------------------
 
 class MYZActorDataModel extends foundry.abstract.TypeDataModel {
+
   static defineSchema() {
     return {
       role: new StringField({nullable: true, blank: true}),
       specificType: new StringField({nullable: true, blank: true}),
       rank: new StringField({nullable: true, blank: true}),
-      age: new StringField({nullable: true, blank: true}),      
+      age: new StringField({nullable: true, blank: true}),
+      houseAttribute: new StringField({nullable: true, blank: true, initial: ""}),    
 
       resources: new SchemaField({
         grub: new SchemaField({ value: new NumberField({integer: false, min: 0, initial:0}) }),
@@ -52,7 +54,7 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
         value: new StringField({nullable: true, blank: true}) }),
 
       creatureType: new StringField({nullable: true, blank: true, initial: ""}),
-      encumbranceBonus: new NumberField({integer: true}),
+      encumbranceBonus: new NumberField({integer: true, initial: 0}),
 
       attributes: new SchemaField({
         strength: new SchemaField({
@@ -104,53 +106,19 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     };
   }
 
-  get encumbrance() {
-    // Update encumbrance
-    let encumbranceMax = parseInt(this.parent.system.attributes.strength.max) * 2;    
-    // Check for SCROUNGER Animal Talent and replace Str with Wits
-    const findScroungerTalent = this.parent.items.filter(item => (item.type === 'talent' && item.name === 'Scrounger'))
-    if(findScroungerTalent.length === 1)
-        encumbranceMax = parseInt(this.parent.system.attributes.wits.max) * 2;
-    // Pack Mule talent
-    if ('items' in this.parent) {
-        const items = Array.from(this.parent.items.values())
-        const findPackMuleTalent = items.filter(item => (item.type === 'talent' && item.name === 'Pack Mule'))
-        if (findPackMuleTalent.length === 1) {
-            encumbranceMax *= 2;
-        }
-    }
-    let encumbranceBonus = (this.parent.system.encumbranceBonus) ? this.parent.system.encumbranceBonus : 0;
-    encumbranceMax += encumbranceBonus;
-    let _totalWeight = 0;
-    // add weight of physical items
-    let physicalItems = this.parent.items.filter(i=>i.system.weight!=undefined);
-    let weightedItems = physicalItems.filter(_itm => _itm.system.weight > 0 && !_itm.system.stashed);
-    var itemsWeight = weightedItems.reduce(function (accumulator, i) {
-        return accumulator + (parseInt(i.system.quantity) * Number(i.system.weight));
-    }, 0);
-    _totalWeight += Number(itemsWeight);
-    //add weight of grub, water, booze and bullets
-    try {
-        _totalWeight += parseInt(this.parent.system.resources.grub.value) / 4;
-        _totalWeight += parseInt(this.parent.system.resources.grubRot.value) / 4;
-        _totalWeight += parseInt(this.parent.system.resources.water.value) / 4;
-        _totalWeight += parseInt(this.parent.system.resources.waterRot.value) / 4;
-        _totalWeight += parseFloat(this.parent.system.resources.booze.value);
-        _totalWeight += parseInt(this.parent.system.resources.bullets.value) / 20;
-    } catch (error) {
-        console.error(error);
-    }
-    _totalWeight = Math.round((_totalWeight + Number.EPSILON) * 100) / 100;
-
-    return {
-      itemsWeight: _totalWeight,
-      encumbranceMax: encumbranceMax,
-      isEncumbered: _totalWeight > encumbranceMax ? "encumbered" : "",
-    };
-  }
-
   prepareDerivedData() {
     super.prepareDerivedData();
+
+    // Roll Modifiers
+    // TODO: Refactor this to be more efficient by only recalculating modifiers for the skill that was rolled instead of all skills and attributes on every change. Maybe we can calculate and store the modifiers to attributes and skills on each item and then just sum them up here for each skill/attribute instead of looping through all items multiple times for each skill and attribute.  
+    const attributeModifiers = {};
+    for (let attributeName of Object.keys(this.parent.system.attributes)) {
+        attributeModifiers[attributeName] = this._getAttributeModifiers(attributeName);
+    }
+    const skillModifiers = {};
+    for (let skill of this.parent.items.filter(i => i.type === "skill")) {
+        skillModifiers[skill.system.skillKey] = this._getRollModifiers(skill);
+    }
     // Update Armor Rating
     if (this.parent.system.creatureType != "robot") {           
       let equippedArmor = this.parent.items.filter(i=>i.type=="armor" && !i.system.stashed && i.system.equipped && i.system.armorType == "armor");
@@ -167,9 +135,121 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
               chassisArmorTotal += parseInt(i.system.armor);
           }
       });
-      this.parent.system.armorrating.value = chassisArmorTotal;
+      this.parent.system.armorrating.value = chassisArmorTotal;      
     }
+
+    // Slap this onto the system for easy access during rolls and other calculations
+    // It will be under actor.system.attributeDiceTotals and actor.system.skillDiceTotals...etc
+    this.attributeDiceTotals = attributeModifiers;
+    this.skillDiceTotals = skillModifiers;
+    this.encumbrance = this._getEncumbrance();
   }
+
+  _getEncumbrance() {
+    // Update encumbrance
+    let encumbranceMax = parseInt(this.parent.system.attributes.strength.max) * 2;    
+    // Check for SCROUNGER Animal Talent and replace Str with Wits
+    const findScroungerTalent = this.parent.items.filter(item => (item.type === 'talent' && item.name === 'Scrounger'))
+    if(findScroungerTalent.length === 1)
+        encumbranceMax = parseInt(this.parent.system.attributes.wits.max) * 2;
+    // Pack Mule talent
+    if ('items' in this.parent) {
+        const items = Array.from(this.parent.items.values())
+        const findPackMuleTalent = items.filter(item => (item.type === 'talent' && item.name === 'Pack Mule'))
+        if (findPackMuleTalent.length === 1) {
+            encumbranceMax *= 2;
+        }
+    }
+    let encumbranceBonus = (this.parent.system.encumbranceBonus) ? this.parent.system.encumbranceBonus : 0;
+    encumbranceMax += encumbranceBonus;
+    let _totalWeight = parseFloat('0.00');
+    // add weight of physical items
+    let physicalItems = this.parent.items.filter(i=>i.system.weight!=undefined);
+    let weightedItems = physicalItems.filter(_itm => parseFloat(_itm.system.weight) > 0 && !_itm.system.stashed);
+    var itemsWeight = weightedItems.reduce(function (accumulator, i) {      
+        return accumulator + ((i.system.quantity || 1) * i.system.weight);
+    }, 0);    
+    _totalWeight += parseFloat(itemsWeight.toFixed(2));
+    //add weight of grub, water, booze and bullets
+    try {
+        _totalWeight += parseInt(this.parent.system.resources.grub.value) / 4;
+        _totalWeight += parseInt(this.parent.system.resources.grubRot.value) / 4;
+        _totalWeight += parseInt(this.parent.system.resources.water.value) / 4;
+        _totalWeight += parseInt(this.parent.system.resources.waterRot.value) / 4;
+        _totalWeight += parseFloat(this.parent.system.resources.booze.value);
+        _totalWeight += parseInt(this.parent.system.resources.bullets.value) / 20;
+    } catch (error) {
+        console.error(error);
+    }
+    //console.log("----------Total encumbrance weight: " + _totalWeight.toFixed(2));
+    //_totalWeight = Math.round((_totalWeight + Number.EPSILON) * 100) / 100;
+
+    return {
+      itemsWeight: _totalWeight,
+      encumbranceMax: encumbranceMax,
+      isEncumbered: _totalWeight > encumbranceMax ? "encumbered" : "",
+    };
+  }
+
+  _getAttributeModifiers(attribute) {
+      const itmMap = this.parent.items.filter(itm => itm.system.modifiers != undefined);
+      const itemsThatModifyAttribute = itmMap.filter(i => i.system.modifiers[attribute] != null && i.system.modifiers[attribute] !== 0);
+      let modifiersToAttributes = [];
+
+      const baseDiceModifier = itemsThatModifyAttribute.reduce(function (acc, obj) {
+          modifiersToAttributes.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[attribute]});
+          return acc + obj.system.modifiers[attribute];
+      }, 0);
+
+      const baseDice = this.parent.system.attributes[attribute].value || 0;
+      let baseDiceTotal = parseInt(baseDice) + (parseInt(baseDiceModifier) || 0);
+      baseDiceTotal = Math.max(baseDiceTotal, 0);
+
+      return { baseDiceTotal: baseDiceTotal, modifiersToAttributes: modifiersToAttributes, baseDiceUnmodified: this.parent.system.attributes[attribute].value };
+  }
+
+  _getRollModifiers(skill) {
+        // SKILL MODIFIERS
+        let skillDiceTotal = parseInt(skill.system.value);
+        const itmMap = this.parent.items.filter(itm => itm.system.modifiers != undefined);
+        const itemsThatModifySkill = itmMap.filter(i => i.system.modifiers[skill.system.skillKey] != null && i.system.modifiers[skill.system.skillKey] !== 0);
+        let modifiersToSkill = [];
+
+        if (skill.system.skillKey != "") {
+            const skillDiceModifier = itemsThatModifySkill.reduce(function (acc, obj) {
+                modifiersToSkill.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.modifiers[skill.system.skillKey] });
+                return acc + obj.system.modifiers[skill.system.skillKey];
+            }, 0);
+            skillDiceTotal += parseInt(skillDiceModifier);
+        }
+
+        // ATTRIBUTE MODIFIERS
+        const attrModifiers = this._getAttributeModifiers(skill.system.attribute);
+
+        // GEAR MODIFIERS
+        const itmGMap = this.parent.items.filter(itm => itm.system.gearModifiers != undefined);
+        const itemsThatModifyGear = itmGMap.filter(i => i.system.gearModifiers[skill.system.skillKey] != null && i.system.gearModifiers[skill.system.skillKey] != 0);
+        let modifiersToGear = [];
+        let gearDiceTotal = 0;
+        if (skill.system.skillKey != "") {
+            const gearDiceModifier = itemsThatModifyGear.reduce(function (acc, obj) {
+                modifiersToGear.push({ 'type': obj.type, 'name': obj.name, 'value': obj.system.gearModifiers[skill.system.skillKey] });
+                return acc + obj.system.gearModifiers[skill.system.skillKey];
+            }, 0);
+            gearDiceTotal = parseInt(gearDiceModifier);
+        }
+
+        return {
+            skillDiceTotal: skillDiceTotal,
+            baseDiceTotal: attrModifiers.baseDiceTotal,
+            gearDiceTotal: gearDiceTotal,
+            modifiersToSkill: modifiersToSkill,
+            modifiersToAttributes: attrModifiers.modifiersToAttributes,
+            modifiersToGear: modifiersToGear,
+            skillDiceUnmodified: skill.system.value,
+        };
+  }
+  
 }
 
 // Type-specific actor DataModel subclasses with embedded initial values
@@ -190,10 +270,6 @@ export class MYZMutantDataModel extends MYZActorDataModel {
       })
     };    
   }
-  get encumbrance() {
-    return super.encumbrance;
-  }
-
 }
 
 export class MYZAnimalDataModel extends MYZActorDataModel {
@@ -347,7 +423,6 @@ export class MYZSpaceshipDataModel extends MYZActorDataModel {
   }
 }
 
-
 // Item Mixins -------------------------------------------------
 
 function baseItemMixin() {
@@ -360,7 +435,7 @@ function baseItemMixin() {
 
 function physicalItemMixin() {
   return {
-    quantity: new NumberField({ integer: true, min: 0 }),
+    quantity: new NumberField({ integer: true, min: 0, initial: 1 }),
     weight: new StringField({initial: "0.00"}),
     stashed: new BooleanField({ initial: false })
   }
@@ -507,6 +582,21 @@ function modifiersItemMixin() {
 }
 
 // Item DataModels -------------------------------------------------
+class MYZItemDataModel extends foundry.abstract.TypeDataModel {
+  static defineSchema() {
+    return {
+      ...baseItemMixin(),
+    };
+  }
+
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.itemType = this.type;
+    //this.default_attributes = CONFIG.MYZ.attributes; // ? WHAT IS THIS FOR ?
+    this.skillKeysList = CONFIG.MYZ.SKILLKEYS;
+    //console.log(this);
+  }
+}
 
 // SKILL
 export class MYZSkillDataModel extends foundry.abstract.TypeDataModel {
@@ -524,7 +614,7 @@ export class MYZSkillDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // ABILITY
-export class MYZAbilityDataModel extends foundry.abstract.TypeDataModel {
+export class MYZAbilityDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -539,7 +629,7 @@ export class MYZAbilityDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // TALENT
-export class MYZTalentDataModel extends foundry.abstract.TypeDataModel {
+export class MYZTalentDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -560,18 +650,52 @@ export class MYZWeaponDataModel extends foundry.abstract.TypeDataModel {
       ...bonuslItemMixin(),
       ...devItemMixin(),
       ...modifiersItemMixin(),
-      damage: new NumberField({ninteger: true, min: 0, initial: 1}),
+      damage: new NumberField({integer: true, min: 0, initial: 1}),
       range: new StringField({nullable: true, blank: true, initial: "range_arm"}),
       category: new StringField({nullable: true, blank: true}),
       artifactBonus: new NumberField({integer: true, min: 0, initial: 0}),
       skillBonus: new NumberField({integer: true, min: 0, initial: 0}),
       useBullets: new BooleanField({ initial: false })
-    };
+    };        
+  }
+
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    if(!this.parent.parent) return;
+    
+    // Determine which skill to use based on weapon category     
+    let skill;      
+    if (this.category === "melee") {
+        if (this.parent.parent.system.creatureType != "robot") {
+            skill = this.parent.parent.items.find((i) => i.system.skillKey == "FIGHT" && i.type === "skill");
+        } else {
+            skill = this.parent.parent.items.find((i) => i.system.skillKey === "ASSAULT" && i.type === "skill");
+        }
+    } else {
+        skill = this.parent.parent.items.find((i) => i.system.skillKey == "SHOOT" && i.type === "skill");
+    }
+
+    // Create default skill if not found
+    if (!skill) {
+        skill = {
+            type: "skill",
+            uuid: "",
+            system: {
+                value: 0,
+                skillKey: this.category === "melee" 
+                    ? (this.parent.parent.system.creatureType != "robot" ? "FIGHT" : "ASSAULT")
+                    : "SHOOT",
+                attribute: this.category === "melee" ? "strength" : "agility"
+            }
+        };
+    }
+    this.skill = skill;
+    this.skillKey = skill.system.skillKey;
   }
 }
 
 // ARMOR
-export class MYZArmorDataModel extends foundry.abstract.TypeDataModel {
+export class MYZArmorDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -593,7 +717,7 @@ export class MYZArmorDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // CHASSIS
-export class MYZChassisDataModel extends foundry.abstract.TypeDataModel {
+export class MYZChassisDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -612,7 +736,7 @@ export class MYZChassisDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // GEAR
-export class MYZGearDataModel extends foundry.abstract.TypeDataModel {
+export class MYZGearDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -624,7 +748,7 @@ export class MYZGearDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // ARTIFACT
-export class MYZArtifactDataModel extends foundry.abstract.TypeDataModel {
+export class MYZArtifactDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...baseItemMixin(),
@@ -637,7 +761,7 @@ export class MYZArtifactDataModel extends foundry.abstract.TypeDataModel {
 }
 
 // CRITICAL
-export class MYZCriticalDataModel extends foundry.abstract.TypeDataModel {
+export class MYZCriticalDataModel extends MYZItemDataModel {
   static defineSchema() {
     return {
       ...modifiersItemMixin(),
@@ -660,7 +784,6 @@ export class MYZProjectDataModel extends foundry.abstract.TypeDataModel {
       other_requirements: new StringField({ nullable: true, blank: true }),
       DEV_Bonus: new StringField({ nullable: true, blank: true }),
       special: new StringField({ nullable: true, blank: true }),
-      completed: new BooleanField({ initial: false }),
       value: new NumberField({ integer: true, min: 0, initial: 0 }),
       food: new NumberField({ integer: true, initial: 0 }),
       culture: new NumberField({ integer: true, initial: 0 }),

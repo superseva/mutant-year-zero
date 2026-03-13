@@ -1,0 +1,50 @@
+<section class='tab crew {{tab.cssClass}} drop-zone-for-occupants' data-group='primary' data-tab='crew'>
+    <div class="grid">
+        <div class="">
+            <div class=" textarea-box">
+                <label><strong>{{localize "MYZ.SPACESHIP.Crew"}}:</strong></label>
+                <textarea name="system.crew.description" rows="2">{{system.crew.description}}</textarea>
+            </div>
+            <div class="textarea-box">
+                <label><strong>{{localize "MYZ.SPACESHIP.Cargo"}}:</strong></label>
+                <textarea name="system.cargo.description" rows="2">{{system.cargo.description}}</textarea>
+            </div>
+            <div class="textarea-box">
+                <label><strong>{{localize "MYZ.SPACESHIP.Supplies"}}:</strong></label>
+                <textarea name="system.supplies.description" rows="2">{{system.supplies.description}}</textarea>
+            </div>
+
+        </div>
+        <div>
+            <div class="flex column">
+                <div class="flex row align-center space-between spaceship-resource-row-header">
+                    <div class="flex row item-name">
+                        <label style="align-self: center">{{localize "MYZ.SPACESHIP.Crew_Count"}}: &nbsp;</label>
+                        <input class="short-input" type="number" data-type="Number" name="system.occupantsCount"
+                            value="{{system.occupantsCount}}" />
+                    </div>
+                    <label class="remove-all-occupants" style="cursor:pointer; text-align: right;">{{localize
+                        "MYZ.REMOVEALL"}}</label>
+                </div>
+                <div class="box-list flex-column " style="min-height: 250px;">
+                    {{#ifCond system.occupants.length '<' 1}} <div class="flex"
+                        style="justify-content: center; align-items: center; height:200px">
+                        <p>{{localize "MYZ.DRAG_OCCUPANTS_HERE"}}</p>
+                </div>
+                {{/ifCond}}
+                {{#each occupants}}
+                <div class="box-item flex row occupant" data-uuid="{{this.uuid}}" data-id="{{this.id}}">
+                    <div class="item-name flex row align-center" data-action="viewOccupant" data-uuid="{{this.uuid}}">
+                        <img class="occupant-image" src="{{this.img}}" title="{{this.name}}"
+                            style="margin-right: 1rem;" />
+                        <a class="occupant-name">{{this.name}}</a>
+                    </div>
+                    <div class="item-controls flex align-center" style="flex-direction: row-reverse;">
+                        <i class="fas fa-trash fa-fw occupant-delete" data-action="deleteOccupant" data-uuid="{{this.uuid}}" data-id="{{this.id}}"></i>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</section>

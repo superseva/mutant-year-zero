@@ -3,7 +3,7 @@
 </div>
 <div class="box-list attributes {{system.creatureType}}">
     <div class="box-item flex row align-center space-between" {{#ifCond system.attributes.strength.value '<' system.attributes.strength.max}}style="background-color:#f1510d9e" {{/ifCond}}>
-        <label class="item-name attribute-name roll-attribute rollable" data-attribute="strength">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_STRENGTH_" system.creatureType))}}</label>
+        <label data-action="onRollAttribute" class="item-name attribute-name roll-attribute rollable" data-attribute="strength">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE" "_STRENGTH_" system.creatureType))}}</label>
         <div class="item-controls flex row">
             <input type="number" name="system.attributes.strength.value" value="{{system.attributes.strength.value}}" class="short-input" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
