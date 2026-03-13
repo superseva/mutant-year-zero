@@ -13,7 +13,7 @@ import { MYZSpaceshipSheetV2 } from "./actor/sheets/spaceship-sheet.mjs"
 import { MYZItemBaseSheet } from "./item/sheets/myz-item-base-sheet.mjs";
 
 import { MYZItem } from "./item/item.js";
-import { MYZItemSheet } from "./item/item-sheet.js";
+//import { MYZItemSheet } from "./item/item-sheet.js";
 import { MYZDieBase } from "./MYZDice.js";
 import { MYZDieSkill } from "./MYZDice.js";
 import { MYZDieGear } from "./MYZDice.js";
@@ -24,8 +24,7 @@ import { MYZMutantDataModel, MYZAnimalDataModel,
 
 import { DiceRoller } from "./component/dice-roller.js";
 import { RollDialogV2 } from "./app/RollDialogV2.mjs";
-
-
+//import MYZActiveEffectConfig from "./component/myz-active-effect.mjs";
 //import * as migrations from "./migration.js";
 
 /* ------------------------------------ */
@@ -144,6 +143,14 @@ Hooks.once("init", async function () {
     });
     foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
     foundry.documents.collections.Items.registerSheet("mutant-year-zero", MYZItemBaseSheet, { makeDefault: true });
+
+
+    // Unregister the core ActiveEffect sheet so we have <select> instead text inputsfor keys affected
+    // DocumentSheetConfig.unregisterSheet(ActiveEffect, "core", foundry.applications.sheets.ActiveEffectConfig);
+    // DocumentSheetConfig.registerSheet(ActiveEffect, "mutant-year-zero", MYZActiveEffectConfig, {
+    //     makeDefault: true,
+    //     label: "My System Active Effect Config"
+    // });
 
     /* -------------------------------------------- */
     /*  HANDLEBARS HELPERS      */

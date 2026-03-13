@@ -110,4 +110,11 @@ export class MYZ {
         "general":"MYZ.GENERAL",
         "role":"MYZ.ROLE"
     }
+
+    static activeEffectChangeKeys = {
+        "system.attributes.strength.value": "MYZ.ATTRIBUTE_STRENGTH",
+        "system.attributes.agility.value": "MYZ.ATTRIBUTE_AGILITY",
+        "system.attributes.wits.value": "MYZ.ATTRIBUTE_WITS",
+        "system.attributes.empathy.value": "MYZ.ATTRIBUTE_EMPATHY",
+    }
 }

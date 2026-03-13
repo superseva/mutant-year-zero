@@ -1035,6 +1035,7 @@
     color: ghostwhite;
     font-weight: 800;
     border: 1px solid black;
+    background-image: url("../ui/box-header-brown.png");
   }
   .mutant-year-zero .box-item.header.mutant {
     background-image: url("../ui/box-header-brown.png");

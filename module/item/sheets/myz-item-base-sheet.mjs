@@ -25,7 +25,11 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 			closeOnSubmit: false,
 		},
         actions:{
-            addSkillModifier: this.#onAddSkillModifier
+            addSkillModifier: this.#onAddSkillModifier,
+            createAEffect: this.#onManageActiveEffect,
+			editAEffect: this.#onManageActiveEffect,
+			toggleAEffect: this.#onManageActiveEffect,
+			deleteAEffect: this.#onManageActiveEffect,
         }
     }
 
@@ -82,6 +86,10 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
         weapon:{
              template:"systems/mutant-year-zero/templates/item/partials/weapon.hbs"
         }
+        ,
+		effects: {
+			template: "systems/mutant-year-zero/templates/actor/tabs/effects.hbs"
+		}
     }
 
     // static TABS = {
@@ -91,6 +99,7 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
     /** @override */
 	async _preparePartContext(partId, context) {
         context.tab = context.tabs[partId];
+        context.effects = this._prepareActiveEffects(this.document.effects);
 		return context;
 	}
 
@@ -105,34 +114,34 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 		// Control which parts show based on document subtype
 		switch (this.document.type) {
 			case "ability":
-				options.parts = ["header_simple", "tabs", "ability", "modifiers"]
+				options.parts = ["header_simple", "tabs", "ability", "modifiers", "effects"]
 				break            
             case "armor":
-                options.parts = ["header_physical","tabs", "armor", "artifacttab", "modifiers"]
+                options.parts = ["header_physical","tabs", "armor", "artifacttab", "modifiers", "effects"]
 				break
             case "artifact":
-                options.parts = ["header_physical", "tabs", "artifact", "modifiers"]
+                options.parts = ["header_physical", "tabs", "artifact", "modifiers", "effects"]
 				break
             case "chassis":
-                options.parts = ["header_physical","tabs", "chassis", "modifiers"]
+                options.parts = ["header_physical","tabs", "chassis", "modifiers", "effects"]
 				break
             case "critical":
-                options.parts = ["header_simple", "tabs", "critical", "modifiers"]
+                options.parts = ["header_simple", "tabs", "critical", "modifiers", "effects"]
 				break
             case "gear":
-                options.parts = ["header_physical", "tabs", "gear", "modifiers"]
+                options.parts = ["header_physical", "tabs", "gear", "modifiers", "effects"]
 				break
             case "project":
                 options.parts = ["header_simple", "project"]
 				break
             case "talent":
-                options.parts = ["header_simple", "tabs", "talent", "modifiers"]
+                options.parts = ["header_simple", "tabs", "talent", "modifiers", "effects"]
 				break    
             case "skill":
                 options.parts = ["header_simple",  "skill"]
                 break
             case "weapon":
-                options.parts = ["header_physical",  "tabs", "weapon", "artifacttab"]
+                options.parts = ["header_physical",  "tabs", "weapon", "artifacttab", "effects"]
                 break
 
         }
@@ -212,6 +221,37 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 		}, {})
     }
 
+
+    /** Prepare ActiveEffects */
+	_prepareActiveEffects(effects) {
+		// Define effect header categories
+  		const categories = {
+			temporary: {
+			type: "temporary",
+			label: "Temporary Effects",
+			effects: []
+			},
+			passive: {
+			type: "passive",
+			label: "Passive Effects",
+			effects: []
+			},
+			inactive: {
+			type: "inactive",
+			label: "Inactive Effects",
+			effects: []
+			}
+		};
+
+		// Iterate over active effects, classifying them into categories
+		for (let e of effects) {
+			if (e.disabled) categories.inactive.effects.push(e);
+			else if (e.isTemporary) categories.temporary.effects.push(e);
+			else categories.passive.effects.push(e);
+		}
+		return categories;
+	}
+
     /** ACTION HANDLERS */
 
     static async #onAddSkillModifier(event, target){
@@ -236,5 +276,30 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
             [gearModifierPath]: currentGearModifier + tempGearModifier
         });
     }
+
+    /** Active Effects Actions */
+	static async #onManageActiveEffect(event, target) {
+		event.preventDefault();
+		const li = target.closest("li");		
+		const effect = li.dataset.effectId ? this.document.effects.get(li.dataset.effectId) : null;
+
+		switch (target.dataset.action) {
+			case "createAEffect":
+				return this.document.createEmbeddedDocuments("ActiveEffect", [{
+					name: "New Effect",
+					label: "New Effect",
+					img: "systems/mutant-year-zero/assets/ico/biohazard-white.svg",
+					origin: this.document.uuid,
+					"duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
+					disabled: li.dataset.effectType === "inactive"
+				}]);
+			case "editAEffect":
+				return effect.sheet.render(true);
+			case "deleteAEffect":
+				return effect.delete();
+			case "toggleAEffect":
+				return effect.update({ disabled: !effect.disabled });
+		}
+	}
     
 }

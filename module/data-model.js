@@ -143,7 +143,6 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
     this.attributeDiceTotals = attributeModifiers;
     this.skillDiceTotals = skillModifiers;
     this.encumbrance = this._getEncumbrance();
-    console.log(this);
   }
 
   _getEncumbrance() {
