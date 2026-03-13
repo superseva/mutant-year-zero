@@ -10,9 +10,9 @@
             <img class="item-image house-attribute {{#ifCond ../system.houseAttribute "==" key}}active{{/ifCond}}" src="systems/mutant-year-zero/ui/attribute-{{key}}.webp" />
         </div>
         <div class="flex row">
-            <input type="number" name="system.attributes.{{key}}.value" value="{{attribute.value}}" class="short-input" />
+            <input type="number" name="system.attributes.{{key}}.value" value="{{attribute.value}}" class="short-input myz-base-dice" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
-            <input type="number" name="system.attributes.{{key}}.max" value="{{attribute.max}}" class="short-input" />
+            <input type="number" name="system.attributes.{{key}}.max" value="{{attribute.max}}" class="short-input myz-base-dice" />
         </div>
     </div>
     {{/each}}

@@ -26,6 +26,7 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
 		},
         actions:{
             addSkillModifier: this.#onAddSkillModifier,
+            removeSkillModifier: this.#onRemoveSkillModifier,
             createAEffect: this.#onManageActiveEffect,
 			editAEffect: this.#onManageActiveEffect,
 			toggleAEffect: this.#onManageActiveEffect,
@@ -275,6 +276,22 @@ export class MYZItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.Item
             [modifierPath]: currentModifier + tempSkillModifier,
             [gearModifierPath]: currentGearModifier + tempGearModifier
         });
+    }
+
+    static async #onRemoveSkillModifier(event, target){
+        event.preventDefault();
+        const skillKey = target.dataset.skillKey;
+        if (!skillKey) {
+            ui.notifications.warn("MYZ: No skill key provided for removal.");
+            return;
+        }
+        const modifierPath = `system.modifiers.${skillKey}`;
+        const gearModifierPath = `system.gearModifiers.${skillKey}`;
+        await this.document.update({
+            [modifierPath]: 0,
+            [gearModifierPath]: 0
+        });
+
     }
 
     /** Active Effects Actions */

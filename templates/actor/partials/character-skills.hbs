@@ -17,7 +17,7 @@
         <span class="item-controls grid grid-2col align-center">
             <label style="text-align: left">{{trimString3 (localize (createLocalizationString "MYZ.ATTRIBUTE" skill.system.attribute ../system.creatureType))}}
             </label>
-            <input type="number" class="skill-value short-input" data-item-id="{{skill._id}}" value="{{skill.system.value}}" name="items.{{skill._id}}.system.value"/>
+            <input type="number" class="skill-value short-input myz-skill-dice" data-item-id="{{skill._id}}" value="{{skill.system.value}}" name="items.{{skill._id}}.system.value"/>
         </span>
     </div>
     {{/each}}
