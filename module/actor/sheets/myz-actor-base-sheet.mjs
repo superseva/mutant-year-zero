@@ -105,17 +105,17 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
   		const categories = {
 			temporary: {
 			type: "temporary",
-			label: "Temporary Effects",
+			label: game.i18n.localize("MYZ.TEMPORARY_EFFECTS"),
 			effects: []
 			},
 			passive: {
 			type: "passive",
-			label: "Passive Effects",
+			label: game.i18n.localize("MYZ.PASSIVE_EFFECTS"),
 			effects: []
 			},
 			inactive: {
 			type: "inactive",
-			label: "Inactive Effects",
+			label: game.i18n.localize("MYZ.INACTIVE_EFFECTS"),
 			effects: []
 			}
 		};

@@ -75,10 +75,10 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 		primary: {
 			labelPrefix: "MYZ",
 			tabs: [
-				{ id: "attributes", label: "ATTRIBUTES" }, 
-				{id: "gear", label: "GEAR"}, 
-				{id: "info", label: "INFO"}, 
-				{id: "effects", label: "EFFECTS"}],
+				{ id: "attributes", label: "MYZ.ATTRIBUTES" }, 
+				{id: "gear", label: "MYZ.GEAR"}, 
+				{id: "info", label: "MYZ.INFO"}, 
+				{id: "effects", label: "MYZ.EFFECTS"}],
 			initial: "attributes", // Set the initial tab
 		},
 	};
