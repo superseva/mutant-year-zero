@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.1.4
+
+- Update: Swedish translation in se.json
+
 ## 13.1.3
 
 - Fix: changing item images. Issue: #144 
