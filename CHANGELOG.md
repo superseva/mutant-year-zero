@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.1.5
+
+- Minor translation fixes
+
 ## 13.1.4
 
 - Update: Swedish translation in se.json
