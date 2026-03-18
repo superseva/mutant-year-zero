@@ -28,17 +28,25 @@ export class RollDialogV2 extends foundry.applications.api.DialogV2 {
             throw new Error("DiceRoller object must be passed to RollDialogV2");
         }
 
-        // Prepare HTML data
+        // Prepare HTML data        
+        const _baseDiceName = attributeName ? game.i18n.localize("MYZ.ATTRIBUTE_" + attributeName.toUpperCase() + "_" + actor.system.creatureType.toUpperCase()) : game.i18n.localize("MYZ.DICE_BASE");
+        let _skillName;
+        if (skillUuid && skillUuid !== "") {
+            const skillObj = await foundry.utils.fromUuid(skillUuid);
+            _skillName = game.i18n.localize(`MYZ.SKILL_${skillObj?.system?.skillKey}`) ?? game.i18n.localize("MYZ.DICE_SKILL");
+        } else {
+            _skillName = game.i18n.localize("MYZ.DICE_SKILL");
+        }
         const htmlData = {
             base: {
-                name: attributeName ? attributeName.toUpperCase() : game.i18n.localize("MYZ.DICE_BASE"),
+                name: _baseDiceName,
                 type: "base",
                 total: base.total,
                 default: base.default,
                 modifiers: base.modifiers || [],
             },
             skill: {
-                name: skill.name ? skill.name.toUpperCase() : game.i18n.localize("MYZ.DICE_SKILL"),
+                name: _skillName,
                 type: "skill",
                 total: skill.total,
                 default: skill.default,

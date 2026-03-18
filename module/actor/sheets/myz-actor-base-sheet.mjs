@@ -137,7 +137,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 		const field = target.dataset.field || "img"
 		const current = foundry.utils.getProperty(this.document, field)
 		const fp = new foundry.applications.apps.FilePicker({
-			type: "image",
+			type: "any",
 			current: current,
 			callback: (path) => this.document.update({ [field]: path })
 		})
@@ -209,7 +209,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 		event.preventDefault();
 		const li = target.closest("li");		
 		const effect = li.dataset.effectId ? this.document.effects.get(li.dataset.effectId) : null;
-		console.log("Managing Active Effect:", { action: target.dataset.action, effect });
+		//console.log("Managing Active Effect:", { action: target.dataset.action, effect });
 		switch (target.dataset.action) {
 			case "createAEffect":
 				return this.document.createEmbeddedDocuments("ActiveEffect", [{

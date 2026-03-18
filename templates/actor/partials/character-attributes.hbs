@@ -6,10 +6,10 @@
     {{#each system.attributes as |attribute key|}}
     <div class="box-item flex row align-center space-between" {{#ifCond attribute.value '<' attribute.max}}style="background-color:#f1510d9e" {{/ifCond}}>
         <div class="flex align-center">
-            <label data-action="onRollAttribute" class="item-name attribute-name roll-attribute rollable" data-attribute="{{key}}">{{key}}</label>
+            <label data-action="onRollAttribute" class="item-name attribute-name roll-attribute rollable" data-attribute="{{key}}">{{localize (toUpperCase (concat "MYZ.ATTRIBUTE_" (toUpperCase key) "_" ../system.creatureType))}}</label>
             <img class="item-image house-attribute {{#ifCond ../system.houseAttribute "==" key}}active{{/ifCond}}" src="systems/mutant-year-zero/ui/attribute-{{key}}.webp" />
         </div>
-        <div class="flex row">
+        <div class="flex row" style="padding-right: 5px;">
             <input type="number" name="system.attributes.{{key}}.value" value="{{attribute.value}}" class="short-input myz-base-dice" />
             <label style="padding-top: 0.2em">&nbsp;/&nbsp;</label>
             <input type="number" name="system.attributes.{{key}}.max" value="{{attribute.max}}" class="short-input myz-base-dice" />
