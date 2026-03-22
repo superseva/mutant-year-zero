@@ -1,0 +1,20 @@
+<div class="box-item physical header flex row align-center space-between weapon {{system.creatureType}}">
+    <label class="item-name">{{localize "MYZ.FAVORITES"}}</label>
+</div>
+<ol class="box-list {{system.creatureType}}">
+    {{#each weapons as |weapon key|}}
+    <li class="box-item physical flex column editable-item weapon item-edit" data-physical="1" data-item-id="{{weapon._id}}">
+        <div class="flex row align-center space-between roll-weapon rollable {{#if (isBroken weapon)}}broken{{/if}}" data-item-id="{{weapon._id}}">
+            <div class="flex row align-center">
+                <img class="item-image" src="{{weapon.img}}" />
+                <a data-action="onRollWeapon" data-item-id="{{weapon._id}}">{{weapon.name}}</a>
+            </div>
+            <input type="number" class="owned-item-value num-value-1rem myz-gear-dice" name="items.{{weapon._id}}.system.bonus.value" value="{{weapon.system.bonus.value}}" data-linked-value="system.bonus.value" data-item-id="{{weapon._id}}">
+        </div>
+        <div class="flex align-center center" style="font-size: small;">
+            <label class="flex flex-center">{{localize 'MYZ.DAMAGE'}}: {{weapon.system.damage}}</label>,&nbsp;
+            <label class="flex flex-center">{{localize 'MYZ.RANGE'}}:{{localize (toUpperCase (concat "MYZ." weapon.system.range))}}</label>
+        </div>
+    </li>
+    {{/each}}
+</ol>
