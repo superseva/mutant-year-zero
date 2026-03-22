@@ -1,6 +1,6 @@
 .box-item {
     min-height: 30px;
-    padding: 3px 0;
+    padding: 3px 5px;
     line-height: 14px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
     list-style: none;
@@ -110,7 +110,7 @@
 
     .item-name {
         flex-basis: 70%;
-        padding-left: 0.5em;
+        //padding-left: 0.5em;
         //overflow: hidden;
         &.broken{
             color:darkred;
@@ -124,7 +124,7 @@
     .item-controls {
         text-align: right;
         flex-basis: 30%;
-        padding-right: 0.5em;
+        //padding-right: 0.5em;
     }
 
     .right-element {

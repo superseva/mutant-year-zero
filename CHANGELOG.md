@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.1.6
+
+- Fix: NPC Inventory
+
 ## 13.1.5
 
 - Minor translation fixes
