@@ -100,9 +100,26 @@ class MYZActorDataModel extends foundry.abstract.TypeDataModel {
         label: new StringField({nullable: true, blank: true}), 
         value: new NumberField({integer: true, min: 0}), 
         max: new NumberField({integer: true, min: 0}) 
-        }),
+      }),
 
-        description: new HTMLField(),        
+      description: new HTMLField({nullable: true, blank: true, initial: ""}),
+      notes: new HTMLField({nullable: true, blank: true, initial: ""}),
+
+      party: new ArrayField(new SchemaField({
+        value: new StringField({blank: true, initial: ""}),
+        isBuddy: new BooleanField({initial: false})
+      }), {initial: [
+        {value: "", isBuddy: true},
+        {value: "", isBuddy: false},
+        {value: "", isBuddy: false},
+        {value: "", isBuddy: false}
+      ]}),
+
+      hate: new StringField({nullable: true, blank: true, initial: ""}),
+      protect: new StringField({nullable: true, blank: true, initial: ""}),
+      dream: new StringField({nullable: true, blank: true, initial: ""}),
+      myHome: new StringField({nullable: true, blank: true, initial: ""}),
+
     };
   }
 

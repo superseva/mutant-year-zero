@@ -1,0 +1,106 @@
+<section
+  class='tab info {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='info'
+>
+    
+    <!-- RELATIONSHIPS -->
+    <div>
+        <div class="box-item header flex row align-center {{system.creatureType}}">
+                <label class="item-name">{{localize "MYZ.RELATIONSHIPS"}}</label>
+        </div>
+        <div class="box-list {{system.creatureType}}">
+            <div class="item-box flex align-center " style="padding: 0 5px;">
+                
+                    <label style="display:flex; flex-basis: 100%;">{{localize "MYZ.NAME"}}</label>
+                    <label style="display:flex; flex-basis: 20%; justify-content: center;">{{localize "MYZ.BUDDY"}}</label>
+                <span class="item-controls">
+                    <a class="item-create" data-action="addPC" style="white-space: nowrap;">+ {{localize "MYZ.ADD"}}</a>
+                </span>
+            </div>
+            {{#each system.party as |pc idx|}}
+            <div class="box-item flex align-center {{#if pc.isBuddy}}is-buddy{{/if}}" data-index="{{idx}}">
+
+                <input type="text" class="nolabel" name="system.party.{{idx}}.value" value="{{pc.value}}" placeholder="PC Name"/>
+               
+               <input type="radio" name="buddy-selection"
+                    title="{{localize 'MYZ.BUDDY'}}" 
+                    style="display: flex; flex-basis: 20%; justify-content: center;"
+                    data-action="setBuddy" data-index="{{idx}}"
+                    {{checked pc.isBuddy}} />
+                {{!-- {{#if pc.isBuddy}}
+                <label>{{localize "MYZ.BUDDY"}}</label>
+                {{/if}} --}}
+               
+                <button type="button" data-action="deletePC" data-index="{{idx}}">
+                <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            {{/each}}
+
+            <div class="box-item flex align-center" style="margin-top: 20px;">
+                <label style="white-space: nowrap;">{{localize "MYZ.HATE"}}&nbsp;</label>
+                <input type="text" class="nolabel" name="system.hate" value="{{system.hate}}" />
+            </div>
+            <div class="box-item flex align-center">
+                <label style="white-space: nowrap;">{{localize "MYZ.PROTECT"}}&nbsp;</label>
+                <input type="text" class="nolabel" name="system.protect" value="{{system.protect}}" />
+            </div>
+            <div class="box-item flex align-center">
+                <label style="white-space: nowrap;">{{localize "MYZ.DREAM"}}&nbsp;</label>
+                <input type="text" class="nolabel" name="system.dream" value="{{system.dream}}" />
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="grid grid-2col">
+
+        <!-- LEFT SIDE -->
+        <div>
+
+            <div class="box-item header flex row align-center space-between {{system.creatureType}}">
+                <label class="item-name">{{localize "MYZ.MY_HOME"}}</label>
+            </div>
+            <div class="box-list padded {{system.creatureType}}">
+                <textarea name="system.myHome" rows="6" style="width: 100%; border: none; resize: none; font-family: $font-primary;" placeholder="...">{{system.myHome}}</textarea>
+            </div>
+
+
+            <div class="box-item header flex row align-center space-between {{system.creatureType}}">
+                <label class="item-name">{{localize "MYZ.DESCRIPTION"}}</label>
+            </div>
+            <!--  TEXT EDITOR -->
+             <div class="box-list padded {{system.creatureType}}">
+                {{#if editable}}
+                <prose-mirror style='height: 185px;' name='system.description' data-document-uuid='{{actor.uuid}}' value='{{system.description}}' collaborate='true' toggled='true'>
+                    {{{descriptionHTML}}}
+                </prose-mirror>
+                {{else}}
+                {{{descriptionHTML}}}
+                {{/if}}
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div>
+            <div class="box-item header flex row align-center space-between {{system.creatureType}}">
+                <label class="item-name">{{localize "MYZ.NOTES"}}</label>
+            </div>
+            <!--  TEXT EDITOR -->
+             <div class="box-list padded {{system.creatureType}}">
+                {{#if editable}}
+                <prose-mirror style='height: 350px;' name='system.notes' data-document-uuid='{{actor.uuid}}' value='{{system.notes}}' collaborate='true' toggled='true'>
+                    {{{notesHTML}}}
+                </prose-mirror>
+                {{else}}
+                {{{notesHTML}}}
+                {{/if}}
+            </div>
+
+        </div>
+     
+        
+    </div>
+
+</section>

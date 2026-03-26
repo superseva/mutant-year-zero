@@ -48,8 +48,12 @@ select {
 input[type="checkbox"]{
 	background-color: rgba(0, 0, 0, 0)
 }
+input[type="radio"]{
+	background-color: rgba(0, 0, 0, 0)
+}
 input[type="checkbox"]:checked, input[type="radio"]:checked {
     accent-color: #fff100;	
+	background-color: rgba(0, 0, 0, 0);
 }
 
 

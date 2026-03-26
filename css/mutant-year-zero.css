@@ -517,8 +517,12 @@
   .mutant-year-zero input[type=checkbox] {
     background-color: rgba(0, 0, 0, 0);
   }
+  .mutant-year-zero input[type=radio] {
+    background-color: rgba(0, 0, 0, 0);
+  }
   .mutant-year-zero input[type=checkbox]:checked, .mutant-year-zero input[type=radio]:checked {
     accent-color: #fff100;
+    background-color: rgba(0, 0, 0, 0);
   }
   .mutant-year-zero .resource-label {
     color: black;
@@ -1172,6 +1176,9 @@
     background-color: #f0eeeb;
     padding: 0.2rem 0;
   }
+  .mutant-year-zero .box-item.is-buddy input[type=text] {
+    border-bottom: 2px solid black;
+  }
   .mutant-year-zero .box-list {
     list-style: none;
     padding: 0;
@@ -1207,6 +1214,9 @@
     resize: none;
     font-family: "Karla", sans-serif;
   }
+  .mutant-year-zero .box-list.padded {
+    padding: 5px;
+  }
   .mutant-year-zero .box-list .box-item:last-child {
     border: none;
   }
@@ -1222,4 +1232,4 @@
   .mutant-year-zero .item-unequipped {
     color: rgba(0, 0, 0, 0.2);
   }
-}/*# sourceMappingURL=mutant-year-zero.css.map */
+}

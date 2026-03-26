@@ -21,7 +21,9 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 			onRollWeapon: this.#onRollWeapon,
 			onRollArmor: this.#onRollArmor,
 			onRollRot: this.#onRollRot,
-			
+			setBuddy: this.#onSetBuddy,
+			addPC: this.#onAddPC,
+			deletePC: this.#onDeletePC
 		}
     })
 
@@ -61,7 +63,7 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 			scrollable: [''],
 		},
 		info:{
-			template: "systems/mutant-year-zero/templates/actor/tabs/info.hbs",
+			template: "systems/mutant-year-zero/templates/actor/tabs/character-info.hbs",
 			scrollable: [''],
 		},
 		effects: {
@@ -82,6 +84,22 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 			initial: "attributes", // Set the initial tab
 		},
 	};
+
+
+	/** @override */
+	_prepareSubmitData(event, form, formData) {
+		const submitData = super._prepareSubmitData(event, form, formData);
+		
+		const update = foundry.utils.expandObject(submitData);
+		// If party is being updated, ensure isBuddy isn't lost
+		if (update.system?.party) {
+			const currentEntries = this.document.system.party;
+			// Merge the existing 'isBuddy' status back into the submission
+			for (const [idx, entry] of Object.entries(update.system.party)) {
+				entry.isBuddy = currentEntries[idx]?.isBuddy ?? false;}
+		}
+		return foundry.utils.flattenObject(update);
+	}
 
 	/** ACTIONS */
 
@@ -125,6 +143,40 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 	static async #onRollRot(event, target) {
 		event.preventDefault();
 		await this.document.RollRot();		
+	}
+
+
+	/** PART MANAGEMENT	 */
+	static async #onSetBuddy(event, target) {
+		event.preventDefault();
+		const selectedIndex = parseInt(target.dataset.index);
+		const party = foundry.utils.deepClone(this.document.system.party);
+		
+		const updatedEntries = party.map((entry, i) => ({
+		...entry,
+		isBuddy: i === selectedIndex
+		}));
+
+		await this.document.update({ "system.party": updatedEntries });
+	}
+
+	static async #onAddPC(event, target) {
+		const party = [...this.document.system.party];
+    	party.push({ value: "", isBuddy: false });
+    
+    	await this.document.update({ "system.party": party });
+	}
+
+	static async #onDeletePC(event, target) {
+		const index = parseInt(target.dataset.index);
+		const party = this.document.system.party.filter((_, i) => i !== index);
+
+		// If we deleted the 'main' one, set the first remaining one to main
+		if (party.length && !party.some(e => e.isBuddy)) {
+		party[0].isBuddy = true;
+		}
+
+		await this.document.update({ "system.party": party });
 	}
 	
 }
