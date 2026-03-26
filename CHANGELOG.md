@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.1.7
+
+- Improved character's info tab
+
 ## 13.1.6
 
 - Fix: NPC Inventory

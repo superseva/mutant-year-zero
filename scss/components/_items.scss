@@ -163,6 +163,15 @@
         background-color: #f0eeeb;
         padding: 0.2rem 0;
     }
+
+    &.is-buddy {
+       
+        input[type="text"]{
+            //background-color: $c-brown-mid;
+            //color: white;
+            border-bottom: 2px solid black;
+        }
+    }
 }
 
 .box-list {
@@ -204,6 +213,10 @@
             resize: none;
             font-family: $font-primary;
         }
+    }
+
+    &.padded {
+        padding: 5px;
     }
 
     .box-item:last-child {

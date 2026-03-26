@@ -82,6 +82,10 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 						secrets: this.actor.isOwner,
 						relativeTo: this.document
 					});
+				context.notesHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.system.notes, {
+						secrets: this.actor.isOwner,
+						relativeTo: this.document
+					});
 			break;
 			default:
 		}
