@@ -310,5 +310,12 @@
   "SETTINGS.ApplyPushGearDamageH": "Huruvida man vill applicera skada på prylbonus från bane",
   "SETTINGS.ApplyPushGearDamageN": "Applicera Skada På Pryl Från Pressat Slag",
   "SETTINGS.ApplyPushTraumaH": "Huruvida man vill applicera trauma från bane vid pressade slag.",
-  "SETTINGS.ApplyPushTraumaN": "Applicera Trauma Från Pressat Slag"
+  "SETTINGS.ApplyPushTraumaN": "Applicera Trauma Från Pressat Slag",
+  "MYZ.BUDDY": "Närstående",
+  "MYZ.DREAM": "Min stora dröm:",
+  "MYZ.HATE": "Jag hatar:",
+  "MYZ.MY_HOME": "Min lya",
+  "MYZ.NOTES": "Anteckningar",
+  "MYZ.PROTECT": "Jag vill skydda:",
+  "MYZ.RELATIONSHIPS": "Relationer"
 }
