@@ -10,31 +10,24 @@
     </div>
 </div>
 <ol class="box-list {{system.creatureType}}">
-    {{#each weapons as |weapon key|}}
-    <li class="box-item physical flex row align-center space-between editable-item weapon item-edit" data-physical="1" data-item-id="{{weapon._id}}">
-        <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken weapon)}}broken{{/if}}" data-item-id="{{weapon._id}}">
-            <img class="item-image" src="{{weapon.img}}" />
-            <a data-action="onRollWeapon" data-item-id="{{weapon._id}}">{{weapon.name}}</a>
-            {{#if (isArtifact weapon)}} <img class="item-image" src="systems/mutant-year-zero/assets/ico/trophy.svg" style="border:none" />{{/if}}
+    {{#each weapons as |item key|}}
+    <li class="box-item physical flex row align-center space-between editable-item weapon item-edit" data-physical="1" data-item-id="{{item._id}}">
+        <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken item)}}broken{{/if}}" data-item-id="{{item._id}}">
+            <img class="item-image" src="{{item.img}}" />
+            <a data-action="onRollWeapon" data-item-id="{{item._id}}">{{item.name}}</a>
+            {{#if (isArtifact item)}} <img class="item-image" src="systems/mutant-year-zero/assets/ico/trophy.svg" style="border:none" />{{/if}}
         </span>
         <div class="item-values grid grid-3col align-center center">
             <span>
-                <input type="number" class="owned-item-value num-value-1rem myz-gear-dice" name="items.{{weapon._id}}.system.bonus.value" value="{{weapon.system.bonus.value}}" data-linked-value="system.bonus.value" data-item-id="{{weapon._id}}">
-                <label>/{{weapon.system.bonus.max}}</label>
+                <input type="number" class="owned-item-value num-value-1rem myz-gear-dice" name="items.{{item._id}}.system.bonus.value" value="{{item.system.bonus.value}}" data-linked-value="system.bonus.value" data-item-id="{{item._id}}">
+                <label>/{{item.system.bonus.max}}</label>
             </span>
-            <!-- <label class="flex flex-center">{{weapon.system.bonus.value}} / {{weapon.system.bonus.max}}</label> -->
-            <label class="flex flex-center">{{weapon.system.damage}}</label>
-            <label class="flex flex-center">{{localize (toUpperCase (concat "MYZ." weapon.system.range))}}</label>
+            <!-- <label class="flex flex-center">{{item.system.bonus.value}} / {{item.system.bonus.max}}</label> -->
+            <label class="flex flex-center">{{item.system.damage}}</label>
+            <label class="flex flex-center">{{localize (toUpperCase (concat "MYZ." item.system.range))}}</label>
         </div>
-        <div class="item-controls">
-            <!-- <a class="chatable" data-item-id="{{weapon._id}}"><i class="fas fa-comment"></i></a> -->
-            <!-- <a class="item-control item-edit" title="{{localize 'MYZ.EDIT'}}"><i class="fas fa-edit"></i></a> -->
-            <!-- <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a> -->
-            {{#if weapon.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
-                <i class="fa-regular fa-box"></i>
-            </a>{{/if}}
-            
-        </div>
+
+        {{> systems/mutant-year-zero/templates/actor/partials/item-edit-controls.hbs item=item}}
     </li>
     {{/each}}
 </ol>

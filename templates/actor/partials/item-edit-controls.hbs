@@ -1,0 +1,21 @@
+<div class="item-controls">
+    {{#if (or (eq item.type "armor") (eq item.type "chassis"))}}
+    {{#unless item.system.stashed}}
+        <a data-action="toggleValue" data-linked-value="equipped" data-item-id="{{item._id}}"
+            class="item-control item-toggle {{#unless item.system.equipped}}item-unequipped{{/unless}}"
+            title='{{localize "MYZ.EQUIP"}}'>
+            <i class="fas fa-tshirt"></i>
+        </a>
+    {{/unless}}
+    {{/if}}
+
+
+    {{#if item.system.stashed}}<a class="item-control item-stash-toggle" title='{{localize "MYZ.UN_STASH_ITEM"}}'>
+        <i class="fa-regular fa-box"></i>
+    </a>{{/if}}
+
+
+    <a class="item-control item-edit-btn" title="Item Options" data-physical="1" data-item-id="{{item._id}}">
+        <i class="fas fa-ellipsis-v"></i>
+    </a>
+</div>

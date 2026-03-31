@@ -337,6 +337,9 @@ Hooks.on("init", async function(){
     const jsonFile = await fetch(stuntJSON)
     const content = await jsonFile.json();
     CONFIG.MYZ.STUNTS = content;
+
+    // load globaly used templates
+    foundry.applications.handlebars.loadTemplates(["systems/mutant-year-zero/templates/actor/partials/item-edit-controls.hbs"]);
 })
 
 // CHECK MIGRATIOM

@@ -29,13 +29,14 @@ export class MYZNPCSheetV2 extends MYZCharacterSheet {
 		},
         attributes: {
 			template: "systems/mutant-year-zero/templates/actor/tabs/npc-attributes.hbs",			
-			templates: [
-				"systems/mutant-year-zero/templates/actor/partials/character-criticals.hbs",
+			templates: [				
 				"systems/mutant-year-zero/templates/actor/partials/character-skills.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-abilities.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-talents.hbs",
 				"systems/mutant-year-zero/templates/actor/partials/character-chassis.hbs",
                 "systems/mutant-year-zero/templates/actor/partials/character-special.hbs",
+                "systems/mutant-year-zero/templates/actor/partials/character-criticals.hbs",
+                "systems/mutant-year-zero/templates/actor/partials/character-weapons.hbs",
 			],
 			scrollable: []
 		},

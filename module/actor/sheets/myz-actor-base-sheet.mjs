@@ -19,17 +19,17 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 			resizable: true,
 			scrollable: ['.window-content']
 		},
-        actions: {
-			editImage: this.#onEditImage,
-            createDoc: this.#createDoc,
+        actions: {	
+			editImage: this._onEditImage,
+            createDoc: this._createDoc,
 			deleteDoc: this._deleteDoc,
 			viewDoc: this._viewDoc,
 			sendToChat: this._sendToChat,
 			toggleValue: this._toggleValue,
-			createAEffect: this.#onManageActiveEffect,
-			editAEffect: this.#onManageActiveEffect,
-			toggleAEffect: this.#onManageActiveEffect,
-			deleteAEffect: this.#onManageActiveEffect,
+			createAEffect: this._onManageActiveEffect,
+			editAEffect: this._onManageActiveEffect,
+			toggleAEffect: this._onManageActiveEffect,
+			deleteAEffect: this._onManageActiveEffect,
 		},
 		// Custom property that's merged into `this.options`
 		// dragDrop: [{ dragSelector: '.draggable', dropSelector: null }],
@@ -95,8 +95,16 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
     /** Create Left Click Menu */
 	async _onFirstRender(context, options) {
 		await super._onFirstRender(context, options)
-
+		// Right Click Context Menu for items
 		this._createContextMenu(this._getItemEditMenuOptions, ".item-edit", {
+			hookName: "getItemEditMenuOptions",
+			parentClassHooks: false,
+			fixed: true,
+		})
+
+		// Left Click Menu for items when clicked Edit Button
+		this._createContextMenu(this._getItemEditMenuOptions, ".item-edit-btn", {
+			eventName: "click",
 			hookName: "getItemEditMenuOptions",
 			parentClassHooks: false,
 			fixed: true,
@@ -137,7 +145,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
     /** ACTIONS HANDLERS*/
 
     /** Changing a Document's image. */
-	static async #onEditImage(event, target) {
+	static async _onEditImage(event, target) {
 		const field = target.dataset.field || "img"
 		const current = foundry.utils.getProperty(this.document, field)
 		const fp = new foundry.applications.apps.FilePicker({
@@ -155,7 +163,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 	 * - Drag and Drop items
 	 */
 
-    static async #createDoc(event, target) {
+    static async _createDoc(event, target) {
 		event.preventDefault()
 		// Retrieve the configured document class for Item or ActiveEffect
 		const type = target.dataset.type;
@@ -209,7 +217,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 	}
 
     /** Active Effects Actions */
-	static async #onManageActiveEffect(event, target) {
+	static async _onManageActiveEffect(event, target) {
 		event.preventDefault();
 		const li = target.closest("li");		
 		const effect = li.dataset.effectId ? this.document.effects.get(li.dataset.effectId) : null;
@@ -307,11 +315,8 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 					await item.update({"system.stashed": !item.system.stashed});
                 },
                 condition: (target) => {
-                    if (target.dataset.physical=="1") {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    const element = target instanceof HTMLElement ? target : target[0];
+    				return element?.dataset?.physical === "1";
                 },
             },
             {
