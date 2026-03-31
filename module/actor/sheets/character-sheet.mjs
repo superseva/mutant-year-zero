@@ -107,7 +107,7 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 		event.preventDefault();
 		const attribute = target.dataset.attribute;
 		if (!attribute) return;
-		await this.document.rollAttribute(attribute);
+		await this.document.rollAttribute(attribute, event.shiftKey);
 	}
 
 	/** Skill Roll on Click */	
@@ -117,7 +117,7 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 		if (!itemId) return;
 		const item = this.actor.items.get(itemId);
         if (item) {
-            await item.roll();
+            await item.roll(event);
         }
 	}
 
@@ -128,20 +128,20 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 		if (!itemId) return;
 		const item = this.actor.items.get(itemId);
         if (item) {
-            await item.roll();
+            await item.roll(event);
         }
 	}
 
 	/** Armor Roll on Click */	
 	static async #onRollArmor(event, target) {
 		event.preventDefault();
-		await this.document.RollArmor();
+		await this.document.RollArmor(event);
 	}
 
 	/** Rot Roll on Click */	
 	static async #onRollRot(event, target) {
 		event.preventDefault();
-		await this.document.RollRot();		
+		await this.document.RollRot(event);		
 	}
 
 

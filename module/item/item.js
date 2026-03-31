@@ -20,7 +20,7 @@ export class MYZItem extends Item {
         }
     }
 
-    async roll() {
+    async roll(event) {
         const actor = this.actor;
         if (!actor) {
             ui.notifications.warn("MYZ: Cannot roll an item that is not owned by an actor.");
@@ -64,7 +64,8 @@ export class MYZItem extends Item {
         if (this.type === "weapon") 
             gearRollData.name = this.name;
 
-       await RollDialogV2.create({
+        if (event?.shiftKey) {
+            await RollDialogV2.create({
                 rollName: this.name,
                 attributeName: attName,
                 diceRoller: new DiceRoller(),
@@ -78,7 +79,39 @@ export class MYZItem extends Item {
                 skillUuid:this.uuid,
                 itemUuid: this.uuid,
                 itemId: this.id,
+            });            
+        } else {
+            const _baseDiceName = attName ? game.i18n.localize("MYZ.ATTRIBUTE_" + attName.toUpperCase() + "_" + actor.system.creatureType.toUpperCase()) : game.i18n.localize("MYZ.DICE_BASE");
+            const baseRollData = attName ? rollData.attributeDiceTotals[attName] : { baseDiceTotal: 0, baseDiceUnmodified: 0, modifiersToAttributes: [] };
+            const htmlData = DiceRoller.buildModifiers({
+                baseName: _baseDiceName,
+                baseTotal: baseRollData.baseDiceTotal,
+                baseDefault: baseRollData.baseDiceUnmodified,
+                baseModifiers: baseRollData.modifiersToAttributes || [],
+                skillName: skillRollData.name || undefined,
+                skillTotal: skillRollData.total,
+                skillDefault: skillRollData.default,
+                skillModifiers: skillRollData.modifiers || [],
+                gearName: gearRollData.name ? gearRollData.name.toUpperCase() : undefined,
+                gearTotal: gearRollData.total,
+                gearDefault: gearRollData.default,
+                gearModifiers: gearRollData.modifiers || [],
             });
+            DiceRoller.Roll({
+                rollName: this.name,
+                base: baseRollData.baseDiceTotal,
+                skill: skillRollData.total,
+                gear: gearRollData.total,
+                damage: itemData.damage || 0,
+                actor: this.actor,
+                actorUuid: this.actor.uuid,
+                skillUuid: this.uuid,
+                itemUuid: this.uuid,
+                attributeName: attName,
+                itemId: this.id,
+                modifiers: htmlData,
+            });            
+        }
     }
     async sendToChat() {
         const itemData = foundry.utils.duplicate(this.system);
