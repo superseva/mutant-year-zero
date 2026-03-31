@@ -2,6 +2,19 @@
 
 export class DiceRoller {
 
+    static buildModifiers({
+        baseName, baseTotal = 0, baseDefault = 0, baseModifiers = [],
+        skillName, skillTotal = 0, skillDefault = 0, skillModifiers = [],
+        gearName, gearTotal = 0, gearDefault = 0, gearModifiers = [],
+    } = {}) {
+        return {
+            base:     { name: baseName  ?? game.i18n.localize("MYZ.DICE_BASE"),  type: "base",     total: baseTotal,  default: baseDefault,  modifiers: baseModifiers  },
+            skill:    { name: skillName ?? game.i18n.localize("MYZ.DICE_SKILL"), type: "skill",    total: skillTotal, default: skillDefault, modifiers: skillModifiers },
+            gear:     { name: gearName  ?? game.i18n.localize("MYZ.DICE_GEAR"),  type: "gear",     total: gearTotal,  default: gearDefault,  modifiers: gearModifiers  },
+            modifier: { name: "MYZ.MODIFIER", type: "modifier", value: 0 },
+        };
+    }
+
     static async Roll({ rollName = "Roll Name", base = 0, skill = 0, gear = 0, damage = null, actor = null, actorUuid = "", skillUuid = "", itemUuid = "", attributeName = null, itemId = null, modifiers = null } = {}) {
         // Create Roll Formula
         let rollFormula = `${base}db + ${skill}ds + ${gear}dg`;        

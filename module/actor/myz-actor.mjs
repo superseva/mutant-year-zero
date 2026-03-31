@@ -208,7 +208,7 @@ export class MYZActor extends Actor {
     }
 
     /** Roll Character Attribute */
-    async rollAttribute(attributeName) {
+    async rollAttribute(attributeName, showRoller = false) {
         const attVal = this.system.attributes[attributeName].value;
         let rollName = `MYZ.ATTRIBUTE_${attributeName.toUpperCase()}_${this.system.creatureType.toUpperCase()}`;
         const rollModifiers = this.getAttributeModifiers(attributeName)        
@@ -216,17 +216,39 @@ export class MYZActor extends Actor {
         rollModifiers.modifiersToSkill = [];
         rollModifiers.gearDiceTotal = 0;
         rollModifiers.modifiersToGear = [];
-        await RollDialogV2.create({
-            rollName: rollName,
-            attributeName: attributeName,
-            diceRoller: new DiceRoller(),
-            base: {default:attVal, total: rollModifiers.baseDiceTotal, modifiers:rollModifiers.modifiersToAttributes},
-            skill: {default:0, total: rollModifiers.skillDiceTotal, modifiers:rollModifiers.modifiersToSkill},
-            gear: {default:0, total: rollModifiers.gearDiceTotal, modifiers:rollModifiers.modifiersToGear},            
-            modifierDefault: 0,
-            actor: this,
-            actorUuid: this.uuid
-        });
+
+        if (showRoller) {
+            await RollDialogV2.create({
+                rollName: rollName,
+                attributeName: attributeName,
+                diceRoller: new DiceRoller(),
+                base: {default:attVal, total: rollModifiers.baseDiceTotal, modifiers:rollModifiers.modifiersToAttributes},
+                skill: {default:0, total: rollModifiers.skillDiceTotal, modifiers:rollModifiers.modifiersToSkill},
+                gear: {default:0, total: rollModifiers.gearDiceTotal, modifiers:rollModifiers.modifiersToGear},            
+                modifierDefault: 0,
+                actor: this,
+                actorUuid: this.uuid
+            });
+        } else {
+            const _baseDiceName = game.i18n.localize("MYZ.ATTRIBUTE_" + attributeName.toUpperCase() + "_" + this.system.creatureType.toUpperCase());
+            const htmlData = DiceRoller.buildModifiers({
+                baseName: _baseDiceName,
+                baseTotal: rollModifiers.baseDiceTotal,
+                baseDefault: attVal,
+                baseModifiers: rollModifiers.modifiersToAttributes,
+            });
+            DiceRoller.Roll({
+                rollName: rollName,
+                base: parseInt(rollModifiers.baseDiceTotal, 10),
+                skill: 0,
+                gear: 0,
+                actor: this,
+                actorUuid: this.uuid,
+                attributeName: attributeName,
+                modifiers: htmlData,
+            });
+        }     
+        
     }
 
     /**
@@ -235,22 +257,63 @@ export class MYZActor extends Actor {
      * */
 
     /** Roll Total Armor */
-    async RollArmor() {
-        await RollDialogV2.create({
-            rollName: game.i18n.localize("MYZ.ARMOR"),
-            diceRoller: new DiceRoller(),
-            gear: {default:this.system.armorrating.value, total: this.system.armorrating.value, modifiers: null}
-        });
+    async RollArmor(event) {
+        const armorVal = this.system.armorrating.value;
+        const rollName = "MYZ.ARMOR";
+        if (event?.shiftKey) {
+            await RollDialogV2.create({
+                rollName: rollName,
+                diceRoller: new DiceRoller(),
+                gear: { default: armorVal, total: armorVal, modifiers: [] },
+                actor: this,
+                actorUuid: this.uuid,
+            });
+        } else {
+            const htmlData = DiceRoller.buildModifiers({
+                gearName: game.i18n.localize("MYZ.ARMOR"),
+                gearTotal: armorVal,
+                gearDefault: armorVal,
+            });
+            DiceRoller.Roll({
+                rollName: rollName,
+                base: 0,
+                skill: 0,
+                gear: armorVal,
+                actor: this,
+                actorUuid: this.uuid,
+                modifiers: htmlData,
+            });
+        }
     }
 
     /** Roll Rot */
-    async RollRot() {
-        let rotTotal = parseInt(this.system.rot.value) + parseInt(this.system.rot.permanent);
-        await RollDialogV2.create({
-            rollName: game.i18n.localize("MYZ.ROT"),
-            diceRoller: new DiceRoller(),
-            base: {default:rotTotal, total: rotTotal, modifiers: null}
-        });
+    async RollRot(event) {
+        const rotTotal = parseInt(this.system.rot.value) + parseInt(this.system.rot.permanent);
+        const rollName = "MYZ.ROT";
+        if (event?.shiftKey) {
+            await RollDialogV2.create({
+                rollName: rollName,
+                diceRoller: new DiceRoller(),
+                base: { default: rotTotal, total: rotTotal, modifiers: [] },
+                actor: this,
+                actorUuid: this.uuid,
+            });
+        } else {
+            const htmlData = DiceRoller.buildModifiers({
+                baseName: game.i18n.localize("MYZ.ROT"),
+                baseTotal: rotTotal,
+                baseDefault: rotTotal,
+            });
+            DiceRoller.Roll({
+                rollName: rollName,
+                base: rotTotal,
+                skill: 0,
+                gear: 0,
+                actor: this,
+                actorUuid: this.uuid,
+                modifiers: htmlData,
+            });
+        }
     }
 
     /** Spend a bullet */

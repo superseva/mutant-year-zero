@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.1.9
+
+- Detailed Roller Dialog moved to Shift+Click
+
 ## 13.1.8
 
 - Fr and Se translations added
