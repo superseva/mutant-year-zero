@@ -91,10 +91,9 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 		const submitData = super._prepareSubmitData(event, form, formData);
 		
 		const update = foundry.utils.expandObject(submitData);
-		// If party is being updated, ensure isBuddy isn't lost
+		// Ensure isBuddy isn't lost
 		if (update.system?.party) {
 			const currentEntries = this.document.system.party;
-			// Merge the existing 'isBuddy' status back into the submission
 			for (const [idx, entry] of Object.entries(update.system.party)) {
 				entry.isBuddy = currentEntries[idx]?.isBuddy ?? false;}
 		}

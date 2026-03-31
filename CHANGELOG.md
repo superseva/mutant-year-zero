@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 13.1.8
+
+- Fr and Se translations added
+- Small cleanups
+
 ## 13.1.7
 
 - Improved character's info tab

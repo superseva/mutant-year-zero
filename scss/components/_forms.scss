@@ -11,7 +11,11 @@
 	}
 }
 
-
+textarea {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+}
 
 .item-form {
 	font-family: $font-primary;
@@ -260,6 +264,7 @@ a {
 	margin-bottom: 5px;
 	position: relative;
 	vertical-align: middle;
+	color: #000;
 
 	input {
 		position: absolute;
