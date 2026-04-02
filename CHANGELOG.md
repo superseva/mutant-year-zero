@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 14.0.1
+
+- Foundry V14 compatible
+
 ## 13.1.9
 
 - Detailed Roller Dialog moved to Shift+Click
