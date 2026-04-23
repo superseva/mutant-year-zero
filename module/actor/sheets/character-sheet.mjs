@@ -107,7 +107,7 @@ export class MYZCharacterSheet extends MYZActorBaseSheet{
 		event.preventDefault();
 		const attribute = target.dataset.attribute;
 		if (!attribute) return;
-		await this.document.rollAttribute(attribute, event.shiftKey);
+		await this.document.rollAttribute(attribute, event);
 	}
 
 	/** Skill Roll on Click */	

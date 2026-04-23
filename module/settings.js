@@ -11,6 +11,15 @@ export const registerSystemSettings = function () {
         default: 0,
     });
 
+    game.settings.register("mutant-year-zero", "showRollDialog", {
+        name: "SETTINGS.ShowRollDialogN",
+        hint: "SETTINGS.ShowRollDialogH",
+        config: true,
+        scope: "world",
+        type: Boolean,
+        default: false,
+    });
+
     game.settings.register("mutant-year-zero", "applyPushTrauma", {
         name: "SETTINGS.ApplyPushTraumaN",
         hint: "SETTINGS.ApplyPushTraumaH",

@@ -317,5 +317,7 @@
   "SETTINGS.ApplyPushGearDamageH": "Whether to apply gear damage from banes on pushed rolls.",
   "SETTINGS.ApplyPushGearDamageN": "Apply Push Gear Damage",
   "SETTINGS.ApplyPushTraumaH": "Whether to apply trauma from banes on pushed rolls.",
-  "SETTINGS.ApplyPushTraumaN": "Apply Push Trauma"
+  "SETTINGS.ApplyPushTraumaN": "Apply Push Trauma",
+  "SETTINGS.ShowRollDialogH": "The roll dialog window only appears when using Shift + Click on rolls. Enable this setting to always show it when making rolls.",
+  "SETTINGS.ShowRollDialogN": "Always Show Roll Dialog Window"
 }
