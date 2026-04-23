@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 14.0.2
+
+- Added a setting to display the Roll Window by default when clicking an attribute, skill, or weapon.
+
 ## 14.0.1
 
 - Foundry V14 compatible

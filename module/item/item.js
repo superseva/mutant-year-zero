@@ -64,7 +64,7 @@ export class MYZItem extends Item {
         if (this.type === "weapon") 
             gearRollData.name = this.name;
 
-        if (event?.shiftKey) {
+        if (event?.shiftKey || game.settings.get("mutant-year-zero", "showRollDialog")) {
             await RollDialogV2.create({
                 rollName: this.name,
                 attributeName: attName,
@@ -76,10 +76,10 @@ export class MYZItem extends Item {
                 modifierDefault: 0,
                 actor: this.actor,
                 actorUuid: this.actor.uuid,
-                skillUuid:this.uuid,
+                skillUuid: this.uuid,
                 itemUuid: this.uuid,
                 itemId: this.id,
-            });            
+            });
         } else {
             const _baseDiceName = attName ? game.i18n.localize("MYZ.ATTRIBUTE_" + attName.toUpperCase() + "_" + actor.system.creatureType.toUpperCase()) : game.i18n.localize("MYZ.DICE_BASE");
             const baseRollData = attName ? rollData.attributeDiceTotals[attName] : { baseDiceTotal: 0, baseDiceUnmodified: 0, modifiersToAttributes: [] };
@@ -110,7 +110,7 @@ export class MYZItem extends Item {
                 attributeName: attName,
                 itemId: this.id,
                 modifiers: htmlData,
-            });            
+            });
         }
     }
     async sendToChat() {

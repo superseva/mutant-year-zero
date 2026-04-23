@@ -208,7 +208,7 @@ export class MYZActor extends Actor {
     }
 
     /** Roll Character Attribute */
-    async rollAttribute(attributeName, showRoller = false) {
+    async rollAttribute(attributeName, event) {
         const attVal = this.system.attributes[attributeName].value;
         let rollName = `MYZ.ATTRIBUTE_${attributeName.toUpperCase()}_${this.system.creatureType.toUpperCase()}`;
         const rollModifiers = this.getAttributeModifiers(attributeName)        
@@ -217,7 +217,7 @@ export class MYZActor extends Actor {
         rollModifiers.gearDiceTotal = 0;
         rollModifiers.modifiersToGear = [];
 
-        if (showRoller) {
+        if (event?.shiftKey || game.settings.get("mutant-year-zero", "showRollDialog")) {
             await RollDialogV2.create({
                 rollName: rollName,
                 attributeName: attributeName,
@@ -260,7 +260,7 @@ export class MYZActor extends Actor {
     async RollArmor(event) {
         const armorVal = this.system.armorrating.value;
         const rollName = "MYZ.ARMOR";
-        if (event?.shiftKey) {
+        if (event?.shiftKey || game.settings.get("mutant-year-zero", "showRollDialog")) {
             await RollDialogV2.create({
                 rollName: rollName,
                 diceRoller: new DiceRoller(),
@@ -290,7 +290,7 @@ export class MYZActor extends Actor {
     async RollRot(event) {
         const rotTotal = parseInt(this.system.rot.value) + parseInt(this.system.rot.permanent);
         const rollName = "MYZ.ROT";
-        if (event?.shiftKey) {
+        if (event?.shiftKey || game.settings.get("mutant-year-zero", "showRollDialog")) {
             await RollDialogV2.create({
                 rollName: rollName,
                 diceRoller: new DiceRoller(),
