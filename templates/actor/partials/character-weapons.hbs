@@ -11,8 +11,9 @@
 </div>
 <ol class="box-list {{system.creatureType}}">
     {{#each weapons as |item key|}}
-    <li class="box-item physical flex row align-center space-between editable-item weapon item-edit" data-physical="1" data-item-id="{{item._id}}">
+    <li class="box-item physical flex row align-center space-between editable-item weapon item-edit" data-physical="1" data-item-id="{{item._id}}" draggable="true">
         <span class="item-name flex row align-center roll-weapon rollable {{#if (isBroken item)}}broken{{/if}}" data-item-id="{{item._id}}">
+            <i class="fas fa-grip-vertical drag-handle"></i>
             <img class="item-image" src="{{item.img}}" />
             <a data-action="onRollWeapon" data-item-id="{{item._id}}">{{item.name}}</a>
             {{#if (isArtifact item)}} <img class="item-image" src="systems/mutant-year-zero/assets/ico/trophy.svg" style="border:none" />{{/if}}

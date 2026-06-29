@@ -1,4 +1,5 @@
 const { api, sheets } = foundry.applications;
+const { DragDrop } = foundry.applications.ux;
 
 /**
  * Extend the basic ActorSheet V2
@@ -31,8 +32,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 			toggleAEffect: this._onManageActiveEffect,
 			deleteAEffect: this._onManageActiveEffect,
 		},
-		// Custom property that's merged into `this.options`
-		// dragDrop: [{ dragSelector: '.draggable', dropSelector: null }],
+		dragDrop: [{ dragSelector: '.item-edit[data-item-id]', dropSelector: '.box-list' }],
 		form: {
 			submitOnChange: true,
 			submitOnClose: false,
@@ -109,6 +109,145 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 			parentClassHooks: false,
 			fixed: true,
 		})
+	}
+
+	/* ---------------------------------------- */
+	/*  Drag and Drop                           */
+	/* ---------------------------------------- */
+
+	#dragDrop;
+
+	constructor(options = {}) {
+		super(options);
+		this.#dragDrop = this._createDragDropHandlers();
+	}
+
+	_createDragDropHandlers() {
+		return this.options.dragDrop.map((d) => {
+			d.permissions = {
+				dragstart: this._canDragStart.bind(this),
+				drop: this._canDragDrop.bind(this),
+			};
+			d.callbacks = {
+				dragstart: this._onDragStart.bind(this),
+				dragover: this._onDragOver.bind(this),
+				drop: this._onDrop.bind(this),
+			};
+			return new DragDrop(d);
+		});
+	}
+
+	_onRender(context, options) {
+		this.#dragDrop.forEach((d) => d.bind(this.element));
+		// Clean up drag state when drag ends (cancelled or completed)
+		this.element.querySelectorAll("[draggable='true']").forEach((el) => {
+			el.addEventListener("dragend", () => {
+				this.element.querySelectorAll(".dragging").forEach((e) => e.classList.remove("dragging"));
+				this.element.querySelectorAll(".drag-over").forEach((e) => e.classList.remove("drag-over"));
+			});
+		});
+	}
+
+	_canDragStart(event) {
+		return this.document.isOwner && this.isEditable;
+	}
+
+	_canDragDrop(event) {
+		return this.document.isOwner && this.isEditable;
+	}
+
+	_onDragStart(event) {
+		const li = event.currentTarget.closest("[data-item-id]");
+		if (!li) return;
+		const itemId = li.dataset.itemId;
+		const item = this.actor.items.get(itemId);
+		if (!item) return;
+
+		// Add a dragging class for visual feedback
+		li.classList.add("dragging");
+		event.dataTransfer.effectAllowed = "move";
+
+		const dragData = {
+			type: "Item",
+			uuid: item.uuid,
+			itemId: item.id,
+			actorId: this.actor.id,
+		};
+		event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+	}
+
+	_onDragOver(event) {
+		event.preventDefault();
+		event.dataTransfer.dropEffect = "move";
+
+		const target = event.target.closest("[data-item-id]");
+		// Clear all existing drop indicators
+		this.element.querySelectorAll(".drag-over").forEach((el) => el.classList.remove("drag-over"));
+		if (target) {
+			target.classList.add("drag-over");
+		}
+	}
+
+	async _onDrop(event) {
+		event.preventDefault();
+		// Clear visual indicators
+		this.element.querySelectorAll(".dragging").forEach((el) => el.classList.remove("dragging"));
+		this.element.querySelectorAll(".drag-over").forEach((el) => el.classList.remove("drag-over"));
+
+		let data;
+		try {
+			data = JSON.parse(event.dataTransfer.getData("text/plain"));
+		} catch (e) {
+			return;
+		}
+		if (!data || data.type !== "Item") return;
+
+		const targetElement = event.target.closest("[data-item-id]");
+
+		// Case 1: Reorder within the same actor
+		if (data.actorId === this.actor.id) {
+			if (!targetElement) return;
+			const targetId = targetElement.dataset.itemId;
+			if (targetId === data.itemId) return;
+
+			const dragItem = this.actor.items.get(data.itemId);
+			const targetItem = this.actor.items.get(targetId);
+			if (!dragItem || !targetItem) return;
+
+			// Only reorder within the same type
+			if (dragItem.type !== targetItem.type) return;
+
+			// Get all items of the same type sorted by current sort order
+			const siblings = this.actor.items
+				.filter((i) => i.type === dragItem.type && i.id !== dragItem.id)
+				.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+
+			const sortUpdates = SortingHelpers.performIntegerSort(dragItem, {
+				target: targetItem,
+				siblings: siblings,
+			});
+
+			const updateData = sortUpdates.map((u) => ({
+				_id: u.target.id,
+				sort: u.update.sort,
+			}));
+
+			await this.actor.updateEmbeddedDocuments("Item", updateData);
+			return;
+		}
+
+		// Case 2: Transfer item from another actor or compendium
+		const item = await fromUuid(data.uuid);
+		if (!item) return;
+
+		// Create the item on this actor
+		const itemData = item.toObject();
+		await this.actor.createEmbeddedDocuments("Item", [itemData]);
+
+		// Delete from source actor (only if it belongs to an actor, not a compendium)
+		if (item.parent && item.parent.documentName === "Actor") {
+			await item.parent.deleteEmbeddedDocuments("Item", [item.id]);
+		}
 	}
 
 	/** Prepare ActiveEffects */
