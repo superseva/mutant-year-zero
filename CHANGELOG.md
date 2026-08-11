@@ -2,6 +2,11 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 14.0.3
+
+- Implemented draggable items in character sheet-  (thanks to @sambarilov)
+
+
 ## 14.0.2
 
 - Added a setting to display the Roll Window by default when clicking an attribute, skill, or weapon.
