@@ -273,3 +273,30 @@
     }
     
 }
+
+/* Drag and Drop */
+.drag-handle {
+    cursor: grab;
+    opacity: 0.4;
+    margin-right: 4px;
+    font-size: 10px;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.box-item[draggable="true"] {
+    cursor: grab;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+
+    &.dragging {
+        opacity: 0.4;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &.drag-over {
+        border-top: 2px solid #ff6600;
+        margin-top: -2px;
+    }
+}

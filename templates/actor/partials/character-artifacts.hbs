@@ -6,8 +6,9 @@
 </div>
 <ol class="box-list artifacts {{system.creatureType}}">
     {{#each artifacts as |item key|}}
-    <li class="box-item gear flex row align-center space-between editable-item item-edit" data-physical="1" data-item-id="{{item._id}}">
+    <li class="box-item gear flex row align-center space-between editable-item item-edit" data-physical="1" data-item-id="{{item._id}}" draggable="true">
         <span class="item-name flex row align-center">
+            <i class="fas fa-grip-vertical drag-handle"></i>
             <img class="item-image" src="{{item.img}}" />
             <a data-action="viewDoc" data-item-id="{{item._id}}">{{item.name}}</a>
         </span>

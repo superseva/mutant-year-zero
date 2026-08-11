@@ -1258,4 +1258,26 @@
     /* Column 1 heights (2:1 ratio) */
     /* Column 2 heights (1:1:1 ratio) */
   }
+  /* Drag and Drop */
+  .mutant-year-zero .drag-handle {
+    cursor: grab;
+    opacity: 0.4;
+    margin-right: 4px;
+    font-size: 10px;
+  }
+  .mutant-year-zero .drag-handle:hover {
+    opacity: 1;
+  }
+  .mutant-year-zero .box-item[draggable="true"] {
+    cursor: grab;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
+  .mutant-year-zero .box-item[draggable="true"].dragging {
+    opacity: 0.4;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  .mutant-year-zero .box-item[draggable="true"].drag-over {
+    border-top: 2px solid #ff6600;
+    margin-top: -2px;
+  }
 }

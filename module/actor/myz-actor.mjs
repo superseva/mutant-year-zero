@@ -75,6 +75,12 @@ export class MYZActor extends Actor {
             }
         });
 
+        // Sort draggable item lists by sort order
+        weapons.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+        armor.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+        gear.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+        artifacts.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+
         const result = {
             skills,
             talents,

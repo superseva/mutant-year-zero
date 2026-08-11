@@ -2,7 +2,6 @@ import { MYZActorBaseSheet } from "./myz-actor-base-sheet.mjs";
 
 
 const { api, sheets } = foundry.applications;
-const { DragDrop } = foundry.applications.ux
 
 
 export class MYZVehicleSheetV2 extends MYZActorBaseSheet{    
@@ -18,10 +17,10 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
             deleteAllOccupants:this._deleteAllOccupants,
             viewOccupant:this._viewOccupant
         },
-        dragDrop: [{
-            dragSelector: '[data-drag="true"]',  // Custom selector
-            dropSelector: '.drop-zone-for-occupants'
-        }]
+        dragDrop: [
+            { dragSelector: '.item-edit[data-item-id]', dropSelector: '.box-list' },
+            { dragSelector: '[data-drag="true"]', dropSelector: '.drop-zone-for-occupants' }
+        ]
     })    
 
     static PARTS = {
@@ -45,12 +44,6 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
 			tabs: [{ id: "occupants", label: "OCCUPANTS" }, {id: "info", label: "INFO"}],
 			initial: "occupants"
 		},
-    }
-
-    #dragDrop
-    constructor(options = {}) {
-        super(options)
-        this.#dragDrop = this._createDragDropHandlers()
     }
 
     /** @override */
@@ -119,27 +112,17 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
 	}
 
     /** DRAG AND DROP */
-    _createDragDropHandlers() {
-        return this.options.dragDrop.map((d) => {
-            d.permissions = {
-                dragstart: this._canDragStart.bind(this),
-                drop: this._canDragDrop.bind(this)
-            }
-            d.callbacks = {
-                dragstart: this._onDragStart.bind(this),
-                dragover: this._onDragOver.bind(this),
-                drop: this._onDrop.bind(this)
-            }
-            return new DragDrop(d)
-        })
-    }
-
     // Adding Actor to the occupants
     async _onDrop(event) {
-        const data = foundry.applications.ux.TextEditor.getDragEventData(event)
-        if (!data) return false;
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer.getData("text/plain"));
+        } catch (e) {
+            return;
+        }
+        if (!data) return;
 
-        if(data.type=="Actor"){
+        if (data.type === "Actor") {
             let occupantActor = await fromUuid(data.uuid);
             if(occupantActor?.type == "vehicle" || occupantActor?.type=="ark"){
                 ui.notifications.warn("You can't add vehicle or ark actors");
@@ -159,22 +142,11 @@ export class MYZVehicleSheetV2 extends MYZActorBaseSheet{
             {
                 ui.notifications.warn("There is no free space");
             }
+            return;
         }
 
-        // Delegate to ActorSheetV2's built-in drop handling
-        return super._onDrop?.(event)
-    }
-    
-    _onRender(context, options) {
-        this.#dragDrop.forEach((d) => d.bind(this.element))
-    }
-
-    _canDragStart(event) {
-        return this.document.isOwner && this.isEditable
-    }
-
-    _canDragDrop(selector) {
-        return this.document.isOwner && this.isEditable
+        // Delegate item drops to base class handler
+        return super._onDrop(event);
     }
 
     // OCCUPANTS
