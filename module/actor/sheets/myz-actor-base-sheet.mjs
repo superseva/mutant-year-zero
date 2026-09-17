@@ -20,8 +20,7 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 			resizable: true,
 			scrollable: ['.window-content']
 		},
-        actions: {	
-			editImage: this._onEditImage,
+        actions: {
             createDoc: this._createDoc,
 			deleteDoc: this._deleteDoc,
 			viewDoc: this._viewDoc,
@@ -282,18 +281,6 @@ export class MYZActorBaseSheet extends api.HandlebarsApplicationMixin(sheets.Act
 
 
     /** ACTIONS HANDLERS*/
-
-    /** Changing a Document's image. */
-	static async _onEditImage(event, target) {
-		const field = target.dataset.field || "img"
-		const current = foundry.utils.getProperty(this.document, field)
-		const fp = new foundry.applications.apps.FilePicker({
-			type: "any",
-			current: current,
-			callback: (path) => this.document.update({ [field]: path })
-		})
-		fp.render(true)
-	}
 
     /**
 	 * ITEMS MANIPULATION

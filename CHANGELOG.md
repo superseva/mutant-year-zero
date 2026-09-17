@@ -2,6 +2,10 @@
 
 The Mutant Year Zero system for FoundryVTT
 
+## 14.0.4
+
+- Fixed a FilePicker Bug happening of Forge
+
 ## 14.0.3
 
 - Implemented draggable items in character sheet-  (thanks to @sambarilov)
